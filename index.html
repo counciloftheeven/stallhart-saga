@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Son İmparator — Stallhart Destanı</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#060402;
+  --deep:#0d0804;
+  --surface:#110b05;
+  --card:#18100780;
+  --border:#3D2A14;
+  --borderl:#5C3F1E;
+  --gold:#C4962A;
+  --goldb:#E8B84B;
+  --goldd:#7A5C18;
+  --parch:#D4C0A0;
+  --parchl:#F0E6C8;
+  --parchd:#9A8870;
+  --blood:#5C1A1A;
+  --bloodb:#8B2A2A;
+}
+html{scroll-behavior:smooth}
+body{background-color:var(--bg);background-image:radial-gradient(ellipse 80% 60% at 15% 15%,rgba(92,26,26,.09) 0%,transparent 100%),radial-gradient(ellipse 60% 80% at 85% 85%,rgba(196,150,42,.05) 0%,transparent 100%);color:var(--parch);font-family:'Crimson Text',Georgia,serif;font-size:18px;line-height:1.75}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(4,2,1,.94);backdrop-filter:blur(10px);border-bottom:1px solid var(--border)}
+.nav-in{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:0 2rem;height:54px}
+.nav-brand{font-family:'Cinzel',serif;font-size:.88rem;font-weight:700;color:var(--gold);letter-spacing:.12em;text-decoration:none}
+.nav-links{display:flex;gap:1.8rem;list-style:none}
+.nav-links a{font-family:'Cinzel',serif;font-size:.75rem;font-weight:600;color:var(--parchd);text-decoration:none;letter-spacing:.07em;transition:color .18s}
+.nav-links a:hover{color:var(--gold)}
+.nav-ham{display:none;background:none;border:none;cursor:pointer;flex-direction:column;gap:5px;padding:4px}
+.nav-ham span{display:block;width:22px;height:1.5px;background:var(--parchd);transition:.2s}
+@media(max-width:680px){.nav-links{display:none;flex-direction:column;position:absolute;top:54px;left:0;right:0;background:rgba(4,2,1,.97);border-bottom:1px solid var(--border);padding:1rem 2rem;gap:1rem}.nav-links.open{display:flex}.nav-ham{display:flex}}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:80px 2rem 5rem;position:relative;overflow:hidden}
+.hero::after{content:'';position:absolute;bottom:0;left:0;right:0;height:200px;background:linear-gradient(to bottom,transparent,var(--bg));pointer-events:none}
+.hero-seal{width:148px;height:148px;margin-bottom:2.5rem}
+.seal-ring{animation:rot 40s linear infinite;transform-origin:100px 100px}
+@keyframes rot{to{transform:rotate(360deg)}}
+@media(prefers-reduced-motion:reduce){.seal-ring{animation:none}}
+.hero-eye{font-family:'Cinzel',serif;font-size:.75rem;letter-spacing:.3em;color:var(--goldd);margin-bottom:1.25rem}
+.hero-title{font-family:'Cinzel',serif;font-size:clamp(3rem,7vw,5.8rem);font-weight:700;color:var(--parchl);line-height:1.05;margin-bottom:.5rem}
+.hero-sub{font-family:'Cinzel',serif;font-size:clamp(.95rem,2vw,1.35rem);font-weight:400;color:var(--gold);letter-spacing:.06em;margin-bottom:1.75rem}
+.hero-q{max-width:500px;font-size:1.05rem;font-style:italic;color:var(--parchd);line-height:1.85;margin-bottom:2.5rem;border-left:2px solid var(--border);padding-left:1.25rem;text-align:left}
+.hero-ctas{display:flex;gap:1rem;flex-wrap:wrap;justify-content:center}
+.btn-g{font-family:'Cinzel',serif;font-size:.82rem;font-weight:600;letter-spacing:.09em;color:var(--bg);background:var(--gold);border:none;padding:.8rem 2.5rem;cursor:pointer;text-decoration:none;transition:background .18s}
+.btn-g:hover{background:var(--goldb)}
+.btn-o{font-family:'Cinzel',serif;font-size:.82rem;font-weight:600;letter-spacing:.09em;color:var(--gold);background:transparent;border:1px solid var(--borderl);padding:.8rem 2.5rem;cursor:pointer;text-decoration:none;transition:border-color .18s,color .18s}
+.btn-o:hover{border-color:var(--gold)}
+
+/* COMMON */
+section{padding:6rem 2rem}
+.inn{max-width:1100px;margin:0 auto}
+.sec-h{margin-bottom:3rem}
+.sec-t{font-family:'Cinzel',serif;font-size:clamp(1.5rem,3vw,2.2rem);font-weight:700;color:var(--parchl);margin-bottom:.6rem}
+.sec-s{color:var(--parchd);font-style:italic;max-width:520px}
+.rule{display:block;width:100px;height:1px;background:linear-gradient(to right,var(--goldd),transparent);margin:1rem 0 0}
+
+/* corner ornament mixin via pseudo */
+.corn{position:relative}
+.corn::before,.corn::after{content:'';position:absolute;width:10px;height:10px;border-color:var(--goldd);border-style:solid}
+.corn::before{top:-1px;left:-1px;border-width:2px 0 0 2px}
+.corn::after{bottom:-1px;right:-1px;border-width:0 2px 2px 0}
+
+/* EVREN */
+#evren{background:var(--deep);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.tabs{display:flex;border-bottom:1px solid var(--border);margin-bottom:2.5rem;flex-wrap:wrap}
+.tab-b{font-family:'Cinzel',serif;font-size:.78rem;font-weight:600;letter-spacing:.07em;color:var(--parchd);background:none;border:none;padding:.9rem 1.4rem;cursor:pointer;position:relative;transition:color .18s}
+.tab-b::after{content:'';position:absolute;bottom:-1px;left:0;right:0;height:2px;background:var(--gold);transform:scaleX(0);transition:transform .2s}
+.tab-b.on{color:var(--gold)}.tab-b.on::after{transform:scaleX(1)}
+.tab-b:hover{color:var(--parchl)}.tab-b:hover::after{transform:scaleX(1)}
+.tab-p{display:none}
+.tab-p.on{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
+@media(max-width:680px){.tab-p.on{grid-template-columns:1fr}}
+.lc{background:rgba(24,16,7,.6);border:1px solid var(--border);padding:1.75rem;position:relative}
+.lc::before{content:'';position:absolute;inset:4px;border:1px solid rgba(196,150,42,.07);pointer-events:none}
+.lc h3{font-family:'Cinzel',serif;font-size:.95rem;font-weight:600;color:var(--gold);margin-bottom:.75rem}
+.lc p{font-size:.95rem;color:var(--parch);line-height:1.75}
+.lc.sp{grid-column:1/-1}
+
+/* KARAKTERLER */
+#karakterler{background:var(--bg)}
+.cg{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:1.25rem}
+.cc{background:rgba(24,16,7,.7);border:1px solid var(--border);padding:1.5rem;position:relative;transition:border-color .2s}
+.cc:hover{border-color:var(--borderl)}
+.cc::before,.cc::after{content:'';position:absolute;width:10px;height:10px;border-color:var(--goldd);border-style:solid}
+.cc::before{top:-1px;left:-1px;border-width:2px 0 0 2px}
+.cc::after{bottom:-1px;right:-1px;border-width:0 2px 2px 0}
+.cc-h{font-family:'Cinzel',serif;font-size:.65rem;letter-spacing:.18em;color:var(--goldd);margin-bottom:.4rem}
+.cc-n{font-family:'Cinzel',serif;font-size:1.1rem;font-weight:700;color:var(--parchl);margin-bottom:.2rem}
+.cc-r{font-size:.9rem;color:var(--gold);font-style:italic;margin-bottom:1rem}
+.cc-d{font-size:.9rem;color:var(--parchd);line-height:1.65}
+.cc-e{display:block;margin-top:1rem;padding-top:.75rem;border-top:1px solid var(--border);font-family:'Cinzel',serif;font-size:.7rem;letter-spacing:.06em;color:var(--bloodb);font-style:italic}
+
+/* BOLUMLER */
+#bolumler{background:var(--deep);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.cl{display:flex;flex-direction:column;gap:1px;background:var(--border)}
+.ci{background:var(--surface);padding:1.5rem 2rem;display:grid;grid-template-columns:80px 1fr auto;gap:1.5rem;align-items:start;transition:background .18s}
+.ci:hover{background:rgba(24,16,7,.8)}
+.ci-v{font-family:'Cinzel',serif;font-size:.7rem;color:var(--goldd);letter-spacing:.12em;padding-top:.3rem}
+.ci-n{font-family:'Cinzel',serif;font-size:1rem;font-weight:600;color:var(--parchl);margin-bottom:.35rem}
+.ci-d{font-size:.88rem;color:var(--parchd);font-style:italic}
+.ci-p{font-family:'Cinzel',serif;font-size:.7rem;color:var(--goldd);padding-top:.3rem;white-space:nowrap}
+.ci.dim .ci-n{color:var(--borderl)}.ci.dim .ci-v{color:var(--border)}
+@media(max-width:680px){.ci{grid-template-columns:1fr;gap:.3rem}.ci-p,.ci-v{display:none}}
+
+/* HARİTA */
+#harita{background:var(--bg)}
+.map-w{border:1px solid var(--border);overflow:hidden;background:#080604;position:relative}
+.map-w svg{display:block;width:100%;height:auto}
+
+/* SSS */
+#sss{background:var(--deep);border-top:1px solid var(--border)}
+.faq{max-width:760px;display:flex;flex-direction:column;gap:1px;background:var(--border)}
+.fi{background:var(--surface)}
+.fq{font-family:'Cinzel',serif;font-size:.9rem;font-weight:600;color:var(--parch);padding:1.2rem 1.5rem;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:1rem;transition:color .18s;user-select:none}
+.fq:hover{color:var(--gold)}
+.fq svg{width:14px;height:14px;flex-shrink:0;stroke:var(--goldd);transition:transform .25s,stroke .18s;fill:none;stroke-width:2;stroke-linecap:round}
+.fi.on .fq{color:var(--gold)}.fi.on .fq svg{transform:rotate(45deg);stroke:var(--gold)}
+.fb{max-height:0;overflow:hidden;transition:max-height .32s ease}
+.fi.on .fb{max-height:500px}
+.fb p{padding:0 1.5rem 1.2rem;font-size:.93rem;color:var(--parchd);line-height:1.78}
+
+/* FOOTER */
+footer{background:#040301;border-top:1px solid var(--border);padding:3rem 2rem;text-align:center}
+footer p{font-family:'Cinzel',serif;font-size:.75rem;letter-spacing:.12em;color:var(--goldd)}
+footer small{display:block;margin-top:.5rem;font-size:.85rem;color:var(--border);font-style:italic}
+
+/* SCROLL UP */
+.up{position:fixed;bottom:2rem;right:2rem;width:40px;height:40px;background:rgba(196,150,42,.15);border:1px solid var(--goldd);display:flex;align-items:center;justify-content:center;cursor:pointer;opacity:0;pointer-events:none;transition:opacity .3s;text-decoration:none}
+.up.vis{opacity:1;pointer-events:auto}
+.up:hover{background:rgba(196,150,42,.25)}
+.up svg{width:14px;height:14px;stroke:var(--gold);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-in">
+    <a href="#" class="nav-brand">Son İmparator</a>
+    <button class="nav-ham" id="ham" aria-label="Menü">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links" id="navl">
+      <li><a href="#evren">Evren</a></li>
+      <li><a href="#karakterler">Karakterler</a></li>
+      <li><a href="#bolumler">Bölümler</a></li>
+      <li><a href="#harita">Harita</a></li>
+      <li><a href="#sss">S.S.S.</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <svg class="hero-seal" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <defs>
+      <radialGradient id="sg" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stop-color="#C4962A" stop-opacity=".8"/>
+        <stop offset="100%" stop-color="#7A5C18" stop-opacity=".4"/>
+      </radialGradient>
+    </defs>
+    <g class="seal-ring">
+      <circle cx="100" cy="100" r="96" fill="none" stroke="#5C3F1E" stroke-width=".8"/>
+      <circle cx="100" cy="100" r="92" fill="none" stroke="#3D2A14" stroke-width=".5"/>
+      <line x1="100" y1="5" x2="100" y2="16" stroke="#C4962A" stroke-width="1.5" transform="rotate(0 100 100)"/>
+      <line x1="100" y1="5" x2="100" y2="11" stroke="#7A5C18" stroke-width="1" transform="rotate(15 100 100)"/>
+      <line x1="100" y1="5" x2="100" y2="11" stroke="#7A5C18" stroke-width="1" transform="rotate(30 100 100)"/>
+      <line x1="100" y1="5" x2="100" y2="16" stroke="#C4962A" stroke-width="1.5" transform="rotate(45 100 100)"/>
+      <line x1="100" y1="5" x2="100" y2="11" stroke="#7A5C18" stroke-width="1" transform="rotate(60 100 100)"/>
+      <line x1="100" y1="5" x2="100" y2="11" stroke="#7A5C18" stroke-width="1" transform="rotate(75 100 100)"/>
+      <line x1="100" y1="5" x2="100" y2="16" stroke="#C4962A" stroke-width="1.5" transform="rotate(90 100 100)"/>
+      <line x1="100" y1="5" x2="100" y2="11" stroke="#7A5C18" stroke-width="1" transform="rotate(105 100 100)"/>
+      <line x1="100" y1="5" x2="100" y2="11" stroke="#7A5C18" stroke-width="1" transform="rotate(120 100 100)"/>
+      <line x1="100" y1="5" x2="100" y2="16" stroke="#C4962A" stroke-width="1.5" transform="rotate(135 100 100)"/>
+      <line x1="100" y1="5" x2="100" y2="11" stroke="#7A5C18" stroke-width="1" transform="rotate(150 100 100)"/>
+      <line x1="100" y1="5" x2="100" y2="11" stroke="#7A5C18" stroke-width="1" transform="rotate(165 100 100)"/>
+      <line x1="100" y1="5" x2="100" y2="16" stroke="#C4962A" stroke-width="1.5" transform="rotate(180 100 100)"/>
+      <line x1="100" y1="5" x2="100" y2="11" stroke="#7A5C18" stroke-width="1" transform="rotate(195 100 100)"/>
+      <line x1="100" y1="5" x2="100" y2="11" stroke="#7A5C18" stroke-width="1" transform="rotate(210 100 100)"/>
+      <line x1="100" y1="5" x2="100" y2="16" stroke="#C4962A" stroke-width="1.5" transform="rotate(225 100 100)"/>
+      <line x1="100" y1="5" x2="100" y2="11" stroke="#7A5C18" stroke-width="1" transform="rotate(240 100 100)"/>
+      <line x1="100" y1="5" x2="100" y2="11" stroke="#7A5C18" stroke-width="1" transform="rotate(255 100 100)"/>
+      <line x1="100" y1="5" x2="100" y2="16" stroke="#C4962A" stroke-width="1.5" transform="rotate(270 100 100)"/>
+      <line x1="100" y1="5" x2="100" y2="11" stroke="#7A5C18" stroke-width="1" transform="rotate(285 100 100)"/>
+      <line x1="100" y1="5" x2="100" y2="11" stroke="#7A5C18" stroke-width="1" transform="rotate(300 100 100)"/>
+      <line x1="100" y1="5" x2="100" y2="16" stroke="#C4962A" stroke-width="1.5" transform="rotate(315 100 100)"/>
+      <line x1="100" y1="5" x2="100" y2="11" stroke="#7A5C18" stroke-width="1" transform="rotate(330 100 100)"/>
+      <line x1="100" y1="5" x2="100" y2="11" stroke="#7A5C18" stroke-width="1" transform="rotate(345 100 100)"/>
+    </g>
+    <circle cx="100" cy="100" r="78" fill="rgba(196,150,42,.03)" stroke="#3D2A14" stroke-width="1"/>
+    <g stroke="#C4962A" stroke-width=".7" opacity=".5">
+      <line x1="100" y1="24" x2="100" y2="40" transform="rotate(0 100 100)"/>
+      <line x1="100" y1="24" x2="100" y2="40" transform="rotate(30 100 100)"/>
+      <line x1="100" y1="24" x2="100" y2="40" transform="rotate(60 100 100)"/>
+      <line x1="100" y1="24" x2="100" y2="40" transform="rotate(90 100 100)"/>
+      <line x1="100" y1="24" x2="100" y2="40" transform="rotate(120 100 100)"/>
+      <line x1="100" y1="24" x2="100" y2="40" transform="rotate(150 100 100)"/>
+      <line x1="100" y1="24" x2="100" y2="40" transform="rotate(180 100 100)"/>
+      <line x1="100" y1="24" x2="100" y2="40" transform="rotate(210 100 100)"/>
+      <line x1="100" y1="24" x2="100" y2="40" transform="rotate(240 100 100)"/>
+      <line x1="100" y1="24" x2="100" y2="40" transform="rotate(270 100 100)"/>
+      <line x1="100" y1="24" x2="100" y2="40" transform="rotate(300 100 100)"/>
+      <line x1="100" y1="24" x2="100" y2="40" transform="rotate(330 100 100)"/>
+    </g>
+    <circle cx="100" cy="100" r="50" fill="rgba(196,150,42,.05)" stroke="#C4962A" stroke-width="1"/>
+    <path d="M76,118 L76,93 L86,104 L100,83 L114,104 L124,93 L124,118 Z" fill="none" stroke="#C4962A" stroke-width="1.5" stroke-linejoin="round"/>
+    <line x1="73" y1="118" x2="127" y2="118" stroke="#C4962A" stroke-width="1.5"/>
+    <circle cx="100" cy="102" r="2.5" fill="#C4962A"/>
+  </svg>
+  <p class="hero-eye">Stallhart Destanı · Cilt I</p>
+  <h1 class="hero-title">Son İmparator</h1>
+  <p class="hero-sub">Bir Hanedanın Şafağı ve Alacakaranlığı</p>
+  <blockquote class="hero-q">
+    "İmparatorluklar taştan değil, itaatten inşa edilir.<br>Ve itaat, her zaman bir günün gelip çatacağını bilir."
+  </blockquote>
+  <div class="hero-ctas">
+    <a href="#bolumler" class="btn-g">Bölümleri Oku</a>
+    <a href="#evren" class="btn-o">Evreni Keşfet</a>
+  </div>
+</section>
+
+<!-- EVREN -->
+<section id="evren">
+  <div class="inn">
+    <div class="sec-h">
+      <h2 class="sec-t">Evren</h2>
+      <p class="sec-s">Stallhart İmparatorluğu'nun tarihi, coğrafyası, inançları ve yasaları.</p>
+      <span class="rule"></span>
+    </div>
+    <div class="tabs">
+      <button class="tab-b on" data-tab="cog">Coğrafya</button>
+      <button class="tab-b" data-tab="din">Din &amp; İnanç</button>
+      <button class="tab-b" data-tab="sih">Sihir</button>
+      <button class="tab-b" data-tab="siy">Siyaset</button>
+    </div>
+
+    <div class="tab-p on" id="tab-cog">
+      <div class="lc">
+        <h3>Stallhart İmparatorluğu</h3>
+        <p>Gümüş Yol Boğazı ile ikiye ayrılan kıtanın büyük bölümüne hükmeden Stallhart İmparatorluğu, onlarca eyaleti bünyesinde barındırır. Başkent Başsancak topraklarında yer alır ve imparatorluk buradan yönetilir.</p>
+      </div>
+      <div class="lc">
+        <h3>Gümüş Yol Boğazı</h3>
+        <p>Kıtanın en stratejik su yolu. Kuzeyde Garall (Z'ela) ile güneyde Todfa ve Gom Ara (Başsancak/Onneva) arasında uzanan bu boğaz, doğuyla batı arasındaki ticareti ve askerî hareketliliği belirler.</p>
+      </div>
+      <div class="lc">
+        <h3>Kuzey Eyaletleri</h3>
+        <p>Galetsha ve Memanth, imparatorluğun sert kuzey sınırlarını oluştururlar. Sarp dağlar, uçsuz bucaksız ormanlar ve geçit vermez vadilerle dolu bu topraklar, askerî stratejinin merkezinde yer alır.</p>
+      </div>
+      <div class="lc">
+        <h3>Adalar &amp; Güney</h3>
+        <p>Selya, Khasinya ve Pilkard adaları deniz gücünün temelidir. Selya stratejik konumuyla öne çıkar; bilge Celios Selya'nın yönetiminde yarı özerk bir yapı sürdürür. Güneyde Solgar ve Mabed eyaletleri yer alır.</p>
+      </div>
+    </div>
+
+    <div class="tab-p" id="tab-din">
+      <div class="lc sp">
+        <h3>Denge Konseyi</h3>
+        <p>İmparatorluğun resmî dini Denge Konseyi öğretisi, Kaos ve Düzen tanrıları arasındaki denge ilkesine dayanır. Kaos tanrıları: Nazeth, Naldor, Garator, Lodvez, Vazmer, Zetus, Hardir. Düzen tanrıları: Gydor, Lidros, Lomera, Veleris, Brikon, Eanhar, Raxes. Tarafsız tanrı Galdra ise tüm inançların üzerinde konumlandırılır. Bu çerçeve, imparatorluk hukukunun ve dinî otoritenin temelidir.</p>
+      </div>
+      <div class="lc">
+        <h3>İlk Anne İnancı</h3>
+        <p>Yasak İlk Anne inancı yüzyıllar önce yasaklanmıştır. Üç Yapraklı Yonca sembolüyle tanınan bu inanç; madenlerde, tavan aralarında, ninnilerde ve gizli el yazmalarıyla nesilden nesle aktarılmaya devam eder.</p>
+      </div>
+      <div class="lc">
+        <h3>Kutsal Kan Doktrini</h3>
+        <p>Kurucu Craes Stallhart, esaretten döndükten sonra Stallhart soyunun ilahi bir kandan geldiğini ilan etti. Bu doktrin hanedanın iktidarını ilahi hakka dönüştürdü. Arathen Krallığı bu iddiayı küfür olarak reddeder.</p>
+      </div>
+    </div>
+
+    <div class="tab-p" id="tab-sih">
+      <div class="lc">
+        <h3>Khaan</h3>
+        <p>En eski bilinen sihir biçimi. Ruhsal enerjiyi doğrudan bedenden çekerek güce dönüştürür; uygulayıcı ne kadar ileri giderse bedeni o kadar tükenir. İmparatorluk hukukunda mutlak yasaktır.</p>
+      </div>
+      <div class="lc">
+        <h3>Loth İllüzyon Sihrî</h3>
+        <p>Algıyı ve gerçekliğin görünümünü manipüle eden Loth sihrî, yanılsama ve gizleme sanatıdır. Ustalar sesten şekle her şeyi değiştirebilir. Yasak; en sık izlerde bulunan türdür.</p>
+      </div>
+      <div class="lc">
+        <h3>Gylian Kaos Sihrî</h3>
+        <p>Kaos tanrılarından ilham alan Gylian sihrî, yıkım güçlerine çağrı yapan en tehlikeli daldır. Denge Konseyi tarafından şeytani kabul edilir. Uygulayanın sonu genellikle kendini de yok etmektir.</p>
+      </div>
+      <div class="lc">
+        <h3>Yasağın Sebebi</h3>
+        <p>Sihir hiyerarşik iktidarı tehdit eder. Doğuştan güçlü olan biri, soy veya topraktan bağımsız iktidar talep edebilir. Karabıçaklar bu yasağın yürütücüsüdür; bulduğu her sihir kullanıcısını ortadan kaldırır.</p>
+      </div>
+    </div>
+
+    <div class="tab-p" id="tab-siy">
+      <div class="lc">
+        <h3>Kuruluş &amp; Hanedan</h3>
+        <p>Stallhart İmparatorluğu Craes Stallhart tarafından KS 1144'te kuruldu. Stallhart hanedanı o günden bu yana iktidardadır. İmparatorluğun çöküşü Rones (demir disiplin) → Elron (pasiflik) → İmloth (çürüme) seyriyle açıklanır.</p>
+      </div>
+      <div class="lc">
+        <h3>Eyalet Valileri</h3>
+        <p>Her biri bir Melik, Vali ya da Kont tarafından yönetilen eyaletler, merkezi otorite zayıfladıkça fiilen yarı özerk hale gelir. Bu ayrışma, iç çatışmaların tohumunu eker.</p>
+      </div>
+      <div class="lc">
+        <h3>Yabancı Güçler</h3>
+        <p>Batıda Zelaina Elfin İmparatorluğu binyıllardan beri seçimle yönetilir. Doğuda Arathen Krallığı sabırlı ve hesaplı; imparatorluğu içten çökertmeye kararlıdır. Garchar Cumhuriyeti ise büyük güçlerin oyuncağına dönmüştür.</p>
+      </div>
+      <div class="lc">
+        <h3>Karabıçaklar</h3>
+        <p>Amadon Stallhart'ın kurduğu gizli polis teşkilatı. İmparatorluk içindeki muhalifleri, sihir kullanıcılarını ve yasak inanç mensuplarını takip eder. İmparatorluğun en korku salıcı kurumlarından biridir.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- KARAKTERLER -->
+<section id="karakterler">
+  <div class="inn">
+    <div class="sec-h">
+      <h2 class="sec-t">Karakterler</h2>
+      <p class="sec-s">Destanın köşe taşları — tahtlar kuranlar, tahtlar yıkanlar ve ortada sıkışıp kalanlar.</p>
+      <span class="rule"></span>
+    </div>
+    <div class="cg">
+
+      <div class="cc">
+        <p class="cc-h">İmparatorluk Hanedanı</p>
+        <h3 class="cc-n">Zeandor Stallhart</h3>
+        <p class="cc-r">Melik Vali → İmparator</p>
+        <p class="cc-d">9 yaşında Selya'ya sürgün edilen Zeandor, bilge Celios'un yanında olgunlaştı. Soğuk, hesaplı; ancak adalete karşı körlüğü yoktur. Erthan'ın isyanını bastırmak için gönderilen kişi, beklenmedik biçimde imparatorluğun son umudu hâline gelir.</p>
+        <span class="cc-e">"Yarının Hükümdarı" · "Sürgünün Oğlu"</span>
+      </div>
+
+      <div class="cc">
+        <p class="cc-h">İmparatorluk Hanedanı</p>
+        <h3 class="cc-n">Amadon Stallhart</h3>
+        <p class="cc-r">Seltanya Meliki → İmparator</p>
+        <p class="cc-d">Zekâsı ve kararlılığıyla çürüyen imparatorluğu yeniden ayağa kaldırmayı başardı; ama iktidara geldikten sonra karanlıklaştı. Karabıçaklar'ın kurucusu. Paranoyası giderek büyüyen, trajik bir hükümdardır.</p>
+        <span class="cc-e">"Enkazın Hükümdarı"</span>
+      </div>
+
+      <div class="cc">
+        <p class="cc-h">Çukurtepe · İsyancı</p>
+        <h3 class="cc-n">Erthan</h3>
+        <p class="cc-r">Köylü → İsyan Lideri</p>
+        <p class="cc-d">Babası Almonth, bir yazı hatası yüzünden idam edildi. Edlas'ın yardımcısı olarak adaletin hizmetine koştu; ama adaletin sınırları öfkesinin sınırından dar gelir. İsyanı hem imparatorluğu sarstı hem de Zeandor'un yükselişine zemin hazırladı.</p>
+        <span class="cc-e">"İmparatorluğun Kâbusu"</span>
+      </div>
+
+      <div class="cc">
+        <p class="cc-h">Arhan Hanesi</p>
+        <h3 class="cc-n">Edlas Arhan</h3>
+        <p class="cc-r">Kont'un Oğlu · Tarikat Üyesi</p>
+        <p class="cc-d">Turuncu-kızıl saçlı, ince bedenli, entelektüel aura. İlk Anne tarikatının gizli üyesi; amatör sihir kullanıcısı. Erthan'ın tam tersi: beyin ve ruh. Yasak bilgisini nihai bir kurban hâline getirecektir.</p>
+        <span class="cc-e">Zihin — Erthan'ın Çekicine Karşı</span>
+      </div>
+
+      <div class="cc">
+        <p class="cc-h">Arhan Hanesi</p>
+        <h3 class="cc-n">Fihor Arhan</h3>
+        <p class="cc-r">Kont · Askerî İstihbarat Şefi</p>
+        <p class="cc-d">Heybetli, savaş izli, çelik gözlü bir istihbarat dehası. Edlas'ın yasak bağlantısını keşfeder ama baba sevgisiyle susar. Bu susku, onu da yutan ateşi tutuşturur. Wolrez Galet tarafından hain ilan edilerek diri diri yakılır.</p>
+        <span class="cc-e">Sükût Eden Baba</span>
+      </div>
+
+      <div class="cc">
+        <p class="cc-h">Arathen Krallığı</p>
+        <h3 class="cc-n">Leno Kridas</h3>
+        <p class="cc-r">Arathen Kralı</p>
+        <p class="cc-d">24 yaşında, seyrek sakallı, buz mavisi gözlü; sabrın ve hesabın adamı. Stallhart'ı yıkmak için on yıllar öncesinden düşünür. Sihirle güçlendirilmiş savaş topu projesi, kurnaz istihbarat ve uzun soluklu dış politika — hepsi tek amaca hizmet eder.</p>
+        <span class="cc-e">"Buzun Oğlu" · "Sabırlı Akbaba"</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- BÖLÜMLER -->
+<section id="bolumler">
+  <div class="inn">
+    <div class="sec-h">
+      <h2 class="sec-t">Bölümler</h2>
+      <p class="sec-s">Cilt I'in kronik akışı — yazılmış ve yazılmakta olan.</p>
+      <span class="rule"></span>
+    </div>
+    <div class="cl">
+      <div class="ci">
+        <p class="ci-v">Cilt I</p>
+        <div>
+          <p class="ci-n">Bölüm — Yasa</p>
+          <p class="ci-d">Erthan'ın köyü ve babasının infazı. Adaletsizliğin şekillendirdiği bir hayatın ilk sayfası.</p>
+        </div>
+        <p class="ci-p">Erthan</p>
+      </div>
+      <div class="ci">
+        <p class="ci-v">Cilt I</p>
+        <div>
+          <p class="ci-n">Bölüm — Bakır</p>
+          <p class="ci-d">Edlas ve Erthan'ın buluşması. Zihin ile yumruk arasında doğan bir ortaklık.</p>
+        </div>
+        <p class="ci-p">Edlas · Erthan</p>
+      </div>
+      <div class="ci">
+        <p class="ci-v">Cilt I</p>
+        <div>
+          <p class="ci-n">Bölüm — Tarikat</p>
+          <p class="ci-d">İlk Anne tarikatının gizli dünyasına açılan kapı. Edlas'ın gerçek yüzü.</p>
+        </div>
+        <p class="ci-p">Edlas</p>
+      </div>
+      <div class="ci">
+        <p class="ci-v">Cilt I</p>
+        <div>
+          <p class="ci-n">Bölüm — Kıyafet</p>
+          <p class="ci-d">Galetsha'ya yolculuk. Kuzey geçitlerinde yükselen gerilim ve değişen dengeler.</p>
+        </div>
+        <p class="ci-p">Erthan</p>
+      </div>
+      <div class="ci dim">
+        <p class="ci-v">Cilt I</p>
+        <div>
+          <p class="ci-n">Bölüm — Mağara</p>
+          <p class="ci-d">Dişi suikastçıyla mağara yüzleşmesi. Edlas'ın saplantısı ve Erthan'ın öfkesi.</p>
+        </div>
+        <p class="ci-p">Yakında</p>
+      </div>
+      <div class="ci dim">
+        <p class="ci-v">Cilt I</p>
+        <div>
+          <p class="ci-n">Bölüm — Karar</p>
+          <p class="ci-d">Amadon, tahtının geleceğini belirleyecek bir karar verir. Zeandor kuzeyden çağrılır.</p>
+        </div>
+        <p class="ci-p">Yakında</p>
+      </div>
+      <div class="ci dim">
+        <p class="ci-v">Cilt I</p>
+        <div>
+          <p class="ci-n">Bölüm — Toprak</p>
+          <p class="ci-d">Bakırsu Vadisi pususunda Reun Solgar'ın ordusu tarihin en ağır bozgunlarından birini yaşar.</p>
+        </div>
+        <p class="ci-p">Yakında</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HARİTA -->
+<section id="harita">
+  <div class="inn">
+    <div class="sec-h">
+      <h2 class="sec-t">İmparatorluk Haritası</h2>
+      <p class="sec-s">Stallhart İmparatorluğu'nun bilinen dünya sınırları — eyaletler ve stratejik noktalar.</p>
+      <span class="rule"></span>
+    </div>
+    <div class="map-w">
+      <svg viewBox="0 0 900 560" xmlns="http://www.w3.org/2000/svg" aria-label="Stallhart İmparatorluğu haritası">
+        <!-- Ocean -->
+        <rect width="900" height="560" fill="#060408"/>
+        <!-- Main Landmass N/W -->
+        <polygon points="50,28 200,18 320,24 450,20 580,30 680,48 760,75 785,130 780,200 762,270 738,330 705,368 660,382 610,380 550,375 490,385 430,375 370,368 310,358 268,332 230,318 185,308 148,278 112,268 72,255 36,235 18,205 16,170 22,130 32,85 50,28" fill="#1a1409" stroke="#3D2A14" stroke-width="1.5"/>
+        <!-- Galetsha -->
+        <polygon points="470,22 590,32 680,48 640,82 555,78 478,60" fill="#1f1808" stroke="#5C3F1E" stroke-width="1"/>
+        <text x="568" y="57" fill="#C4962A" font-family="'Cinzel', serif" font-size="9.5" text-anchor="middle" font-weight="600">GALETSHA</text>
+        <!-- Memanth -->
+        <polygon points="310,22 470,22 478,60 400,70 320,66 262,50" fill="#1c1608" stroke="#5C3F1E" stroke-width="1"/>
+        <text x="390" y="47" fill="#C4962A" font-family="'Cinzel', serif" font-size="9.5" text-anchor="middle" font-weight="600">MEMANTH</text>
+        <!-- Z'ela W -->
+        <polygon points="18,148 118,138 128,195 112,245 62,252 16,222" fill="#1a1508" stroke="#5C3F1E" stroke-width="1"/>
+        <text x="70" y="196" fill="#C4962A" font-family="'Cinzel', serif" font-size="9.5" text-anchor="middle" font-weight="600">Z'ELA</text>
+        <!-- Adamen SW -->
+        <polygon points="22,252 112,245 124,295 108,335 62,338 30,315" fill="#1a1508" stroke="#5C3F1E" stroke-width="1"/>
+        <text x="70" y="298" fill="#C4962A" font-family="'Cinzel', serif" font-size="9" text-anchor="middle" font-weight="600">ADAMEN</text>
+        <!-- Seltanya -->
+        <polygon points="118,195 222,185 244,248 204,292 132,282 114,245" fill="#1c1608" stroke="#5C3F1E" stroke-width="1"/>
+        <text x="178" y="244" fill="#C4962A" font-family="'Cinzel', serif" font-size="9" text-anchor="middle" font-weight="600">SELTANYA</text>
+        <!-- Başsancak (capital) — highlighted -->
+        <polygon points="282,175 428,168 455,222 434,272 354,286 282,276 244,228" fill="#231908" stroke="#7A5C18" stroke-width="1.5"/>
+        <text x="356" y="228" fill="#E8B84B" font-family="'Cinzel', serif" font-size="11" text-anchor="middle" font-weight="700">BAŞSANCAK</text>
+        <circle cx="356" cy="215" r="3.5" fill="#C4962A"/>
+        <text x="356" y="207" fill="#C4962A" font-family="'Cinzel', serif" font-size="7" text-anchor="middle">✦ Başkent</text>
+        <!-- Onneva E -->
+        <polygon points="458,220 592,202 626,248 606,290 515,298 455,274" fill="#1a1508" stroke="#5C3F1E" stroke-width="1"/>
+        <text x="536" y="252" fill="#C4962A" font-family="'Cinzel', serif" font-size="9.5" text-anchor="middle" font-weight="600">ONNEVA</text>
+        <!-- Mabed S-center -->
+        <polygon points="280,345 440,335 462,392 408,435 315,430 272,398" fill="#191408" stroke="#5C3F1E" stroke-width="1"/>
+        <text x="365" y="390" fill="#C4962A" font-family="'Cinzel', serif" font-size="9.5" text-anchor="middle" font-weight="600">MABED</text>
+        <!-- Solgar SE -->
+        <polygon points="462,338 592,328 618,384 568,425 475,420 445,390" fill="#1a1508" stroke="#5C3F1E" stroke-width="1"/>
+        <text x="524" y="380" fill="#C4962A" font-family="'Cinzel', serif" font-size="9.5" text-anchor="middle" font-weight="600">SOLGAR</text>
+        <!-- Gümüş Yol strait -->
+        <path d="M148,308 C218,292 285,302 355,292 C425,282 492,298 558,286 C622,275 668,292 720,280" fill="none" stroke="#0d1a2e" stroke-width="22" opacity=".9"/>
+        <path d="M148,308 C218,292 285,302 355,292 C425,282 492,298 558,286 C622,275 668,292 720,280" fill="none" stroke="#08101e" stroke-width="16"/>
+        <text x="415" y="296" fill="#2a4a6a" font-family="'Cinzel', serif" font-size="7.5" text-anchor="middle" font-style="italic" font-weight="400">Gümüş Yol Boğazı</text>
+        <!-- Selya island -->
+        <ellipse cx="90" cy="422" rx="52" ry="24" fill="#1c1608" stroke="#5C3F1E" stroke-width="1"/>
+        <text x="90" y="426" fill="#C4962A" font-family="'Cinzel', serif" font-size="9" text-anchor="middle" font-weight="600">SELYA</text>
+        <!-- Khasinya island -->
+        <ellipse cx="694" cy="372" rx="50" ry="22" fill="#1a1608" stroke="#5C3F1E" stroke-width="1"/>
+        <text x="694" y="376" fill="#C4962A" font-family="'Cinzel', serif" font-size="9" text-anchor="middle" font-weight="600">KHASİNYA</text>
+        <!-- Pilkard island -->
+        <ellipse cx="740" cy="470" rx="48" ry="21" fill="#1a1608" stroke="#5C3F1E" stroke-width="1"/>
+        <text x="740" y="474" fill="#C4962A" font-family="'Cinzel', serif" font-size="9" text-anchor="middle" font-weight="600">PİLKARD</text>
+        <!-- Border -->
+        <rect x="8" y="8" width="884" height="544" fill="none" stroke="#3D2A14" stroke-width="1.5"/>
+        <!-- Corner ornaments -->
+        <path d="M8,8 L32,8 M8,8 L8,32" stroke="#7A5C18" stroke-width="1.5" fill="none"/>
+        <path d="M892,8 L868,8 M892,8 L892,32" stroke="#7A5C18" stroke-width="1.5" fill="none"/>
+        <path d="M8,552 L32,552 M8,552 L8,528" stroke="#7A5C18" stroke-width="1.5" fill="none"/>
+        <path d="M892,552 L868,552 M892,552 L892,528" stroke="#7A5C18" stroke-width="1.5" fill="none"/>
+        <!-- Map title -->
+        <text x="450" y="534" fill="#5C3F1E" font-family="'Cinzel', serif" font-size="8.5" text-anchor="middle" letter-spacing="3.5">STALLHART İMPARATORLUĞU — BİLİNEN DÜNYA</text>
+        <!-- Compass rose -->
+        <g transform="translate(848,490)">
+          <line x1="0" y1="-18" x2="0" y2="18" stroke="#5C3F1E" stroke-width="1"/>
+          <line x1="-18" y1="0" x2="18" y2="0" stroke="#5C3F1E" stroke-width="1"/>
+          <polygon points="0,-20 -3.5,-12 3.5,-12" fill="#C4962A"/>
+          <text x="0" y="-22" fill="#C4962A" font-family="'Cinzel', serif" font-size="8" text-anchor="middle">K</text>
+        </g>
+        <!-- Arathen label off map -->
+        <text x="818" y="170" fill="#3D2A14" font-family="'Cinzel', serif" font-size="8" text-anchor="middle" font-style="italic" opacity=".8">↑ Arathen</text>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- SSS -->
+<section id="sss">
+  <div class="inn">
+    <div class="sec-h">
+      <h2 class="sec-t">Sıkça Sorulan Sorular</h2>
+      <p class="sec-s">Evren hakkında en çok merak edilenler.</p>
+      <span class="rule"></span>
+    </div>
+    <div class="faq">
+
+      <div class="fi">
+        <div class="fq" role="button" tabindex="0">
+          Stallhart Destanı ne tür bir hikâye?
+          <svg viewBox="0 0 24 24" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </div>
+        <div class="fb"><p>Bir imparatorluğun çöküşünü üç kuşaktan anlatan, Türkçe yazılmış epik bir dark fantasy destanıdır. George R.R. Martin'in etkisiyle şekillenmiş; saray entrikası, askerî çatışma, dinî siyaset ve karakter odaklı trajedileri bir arada barındıran çok ciltlik bir roman projesinin ilk kitabıdır. Siyah-beyaz ahlaki yargılar yerine grilik egemendir.</p></div>
+      </div>
+
+      <div class="fi">
+        <div class="fq" role="button" tabindex="0">
+          İmparatorlukta sihir neden yasak?
+          <svg viewBox="0 0 24 24" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </div>
+        <div class="fb"><p>Sihir hiyerarşik iktidarı tehdit eder. Doğuştan sihirli olan biri, soy veya toprak hakkı olmaksızın iktidar talep edebilir. İmparatorluk bu tehdidi asla göze alamaz. Khaan, Loth ve Gylian olmak üzere üç sihir okulu vardır; hepsi kesinlikle yasaklanmıştır. Karabıçaklar yasağın yürütücüsüdür.</p></div>
+      </div>
+
+      <div class="fi">
+        <div class="fq" role="button" tabindex="0">
+          İlk Anne inancı nedir ve neden tehlikeli sayılır?
+          <svg viewBox="0 0 24 24" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </div>
+        <div class="fb"><p>İmparatorluktan önceki kadim bir inanç sistemidir. Üç Yapraklı Yonca sembolüyle tanınır. İnananlara göre hiçbir insan diğerinden daha kutsal değildir — bu fikir, Stallhart'ın Kutsal Kan Doktriniyle doğrudan çatışır. Bugün ninnilerde ve gizli el yazmalarında yaşamaya devam eder.</p></div>
+      </div>
+
+      <div class="fi">
+        <div class="fq" role="button" tabindex="0">
+          Zeandor nasıl imparator oldu?
+          <svg viewBox="0 0 24 24" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </div>
+        <div class="fb"><p>Amadon'un ölüm döşeğinde yazdığı mühürlü fermanlar, Zeandor'u halef olarak belirledi. Ancak bu yükseliş Erthan'ın isyanını bastırmasıyla mümkün oldu. İronik olan şu: Erthan'ın isyanı hem Amadon ve Edun Solgar'ın meşruiyetini yerle bir etti hem de Zeandor'un tahta çıkış zeminini hazırladı. Bir şehidin ölümü bir imparatorun doğuşuna dönüştü.</p></div>
+      </div>
+
+      <div class="fi">
+        <div class="fq" role="button" tabindex="0">
+          Arathen neden Stallhart'a karşı?
+          <svg viewBox="0 0 24 24" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </div>
+        <div class="fb"><p>Arathen, Stallhart'ın Kutsal Kan Doktrini'ni küfür olarak reddeder; bu iddianın salt siyasi bir araç olduğuna inanır. Kral Leno Kridas sabırlı ve hesaplı; yıllar içinde istihbarat, suikast ve sihirle güçlendirilmiş savaş topu geliştirme yoluyla imparatorluğu içten çökertmeyi planlamaktadır.</p></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <svg width="44" height="44" viewBox="0 0 200 200" style="display:block;margin:0 auto 1.5rem;opacity:.28" aria-hidden="true">
+    <circle cx="100" cy="100" r="95" fill="none" stroke="#7A5C18" stroke-width="1.5"/>
+    <circle cx="100" cy="100" r="70" fill="none" stroke="#3D2A14" stroke-width="1"/>
+    <path d="M76,118 L76,93 L86,104 L100,83 L114,104 L124,93 L124,118 Z" fill="none" stroke="#7A5C18" stroke-width="1.5" stroke-linejoin="round"/>
+    <line x1="73" y1="118" x2="127" y2="118" stroke="#7A5C18" stroke-width="1.5"/>
+  </svg>
+  <p>Stallhart Destanı · Son İmparator · Cilt I</p>
+  <small>© 2025 · Tüm hakları saklıdır · Dünya ve karakterler tamamen kurmacadır.</small>
+</footer>
+
+<!-- Scroll up -->
+<a href="#" class="up" id="up" aria-label="Yukarı çık">
+  <svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+</a>
+
+<script>
+// Hamburger
+document.getElementById('ham').addEventListener('click',function(){
+  document.getElementById('navl').classList.toggle('open');
+});
+document.querySelectorAll('#navl a').forEach(a=>a.addEventListener('click',()=>document.getElementById('navl').classList.remove('open')));
+
+// Tabs
+document.querySelectorAll('.tab-b').forEach(btn=>{
+  btn.addEventListener('click',function(){
+    document.querySelectorAll('.tab-b').forEach(b=>b.classList.remove('on'));
+    document.querySelectorAll('.tab-p').forEach(p=>p.classList.remove('on'));
+    this.classList.add('on');
+    document.getElementById('tab-'+this.dataset.tab).classList.add('on');
+  });
+});
+
+// FAQ
+document.querySelectorAll('.fi').forEach(item=>{
+  const q=item.querySelector('.fq');
+  q.addEventListener('click',()=>{
+    const open=item.classList.contains('on');
+    document.querySelectorAll('.fi').forEach(i=>i.classList.remove('on'));
+    if(!open) item.classList.add('on');
+  });
+  q.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();q.click();}});
+});
+
+// Scroll up button
+const upBtn=document.getElementById('up');
+window.addEventListener('scroll',()=>{
+  upBtn.classList.toggle('vis',window.scrollY>400);
+},{passive:true});
+</script>
+</body>
+</html>
