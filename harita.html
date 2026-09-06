@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="tr" id="r">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Stallhart Destanı — İnteraktif İmparatorluk Haritası">
+<title>Harita — Son İmparator</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#060402;--deep:#0d0804;--surface:#110b05;
+  --card:rgba(20,12,6,.92);--border:#3D2A14;--borderl:#5C3F1E;
+  --gold:#C4962A;--goldb:#E8B84B;--goldd:#7A5C18;
+  --parch:#D4C0A0;--parchl:#F0E6C8;--parchd:#9A8870;
+  --blood:#5C1A1A;--bloodb:#8B2A2A;
+}
+html,body{height:100%;overflow:hidden}
+body{background:var(--bg);color:var(--parch);font-family:'Libre Baskerville',Georgia,serif;font-size:16px;display:flex;flex-direction:column}
+::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:var(--deep)}::-webkit-scrollbar-thumb{background:var(--border)}
+
+/* ── NAV ── */
+nav{flex-shrink:0;background:rgba(4,2,1,.96);backdrop-filter:blur(10px);border-bottom:1px solid var(--border);z-index:200}
+.nav-in{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:0 2rem;height:54px;gap:1rem}
+.nav-brand{font-family:'IM Fell English',serif;font-size:1.1rem;color:var(--gold);text-decoration:none;flex-shrink:0}
+.nav-links{display:flex;gap:1.4rem;list-style:none;flex:1;justify-content:center}
+.nav-links a{font-family:'IM Fell English',serif;font-size:.88rem;color:var(--parchd);text-decoration:none;transition:color .18s}
+.nav-links a:hover,.nav-links a.cur{color:var(--gold)}
+.nav-r{display:flex;align-items:center;flex-shrink:0}
+.lang-btn{font-family:'IM Fell English',serif;font-size:.8rem;color:var(--parchd);background:none;border:1px solid var(--border);padding:.28rem .65rem;cursor:pointer;transition:.18s}
+.lang-btn:hover{border-color:var(--goldd);color:var(--gold)}
+.nav-ham{display:none;background:none;border:none;cursor:pointer;flex-direction:column;gap:5px;padding:4px;flex-shrink:0}
+.nav-ham span{display:block;width:22px;height:1.5px;background:var(--parchd)}
+@media(max-width:700px){.nav-links{display:none;flex-direction:column;position:absolute;top:54px;left:0;right:0;background:rgba(4,2,1,.97);border-bottom:1px solid var(--border);padding:1rem 2rem;gap:.9rem;z-index:199}.nav-links.open{display:flex}.nav-ham{display:flex}}
+
+/* ── MAP LAYOUT ── */
+.map-layout{flex:1;display:grid;grid-template-columns:1fr;position:relative;overflow:hidden}
+
+/* ── TOOLBAR ── */
+.toolbar{position:absolute;top:1rem;left:1rem;z-index:100;display:flex;flex-direction:column;gap:.4rem}
+.tb-btn{width:36px;height:36px;background:rgba(13,8,4,.92);border:1px solid var(--border);color:var(--parchd);cursor:pointer;display:flex;align-items:center;justify-content:center;font-family:'IM Fell English',serif;font-size:1.1rem;transition:.18s;backdrop-filter:blur(4px)}
+.tb-btn:hover{border-color:var(--goldd);color:var(--gold)}
+.tb-btn svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.tb-sep{height:1px;background:var(--border);margin:.1rem 0}
+
+/* ── LEGEND ── */
+.legend{position:absolute;bottom:1rem;left:1rem;z-index:100;background:rgba(13,8,4,.92);border:1px solid var(--border);padding:.75rem 1rem;backdrop-filter:blur(4px)}
+.leg-title{font-family:'IM Fell English',serif;font-size:.65rem;letter-spacing:.15em;color:var(--goldd);margin-bottom:.6rem}
+.leg-item{display:flex;align-items:center;gap:.5rem;font-size:.7rem;color:var(--parchd);margin-bottom:.35rem;font-style:italic}
+.leg-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+.leg-line{width:18px;height:2px;flex-shrink:0}
+
+/* ── MAP CONTAINER ── */
+.map-container{width:100%;height:100%;overflow:hidden;position:relative;cursor:grab;user-select:none;background:#050308}
+.map-container.dragging{cursor:grabbing}
+#map-svg{width:100%;height:100%;display:block;touch-action:none}
+
+/* ── REGION HOVER ── */
+.region{cursor:pointer;transition:filter .2s,opacity .2s}
+.region:hover{filter:brightness(1.4);opacity:.9}
+.region.active{filter:brightness(1.6)}
+
+/* ── CITY DOTS ── */
+.city-dot{transition:r .2s}
+.city-dot:hover{r:5}
+.city-label{font-family:'IM Fell English',serif;font-style:italic;pointer-events:none}
+
+/* ── INFO PANEL ── */
+.info-panel{position:absolute;top:0;right:0;bottom:0;width:300px;background:rgba(10,6,2,.96);border-left:1px solid var(--border);transform:translateX(100%);transition:transform .3s ease;z-index:110;overflow-y:auto;backdrop-filter:blur(8px)}
+.info-panel.open{transform:translateX(0)}
+.info-close{position:absolute;top:.75rem;right:.75rem;background:none;border:none;color:var(--parchd);cursor:pointer;font-family:'IM Fell English',serif;font-size:1.2rem;z-index:10;transition:color .18s;line-height:1}
+.info-close:hover{color:var(--gold)}
+.info-body{padding:2rem 1.5rem}
+.info-eyebrow{font-family:'IM Fell English',serif;font-size:.65rem;letter-spacing:.18em;color:var(--goldd);margin-bottom:.4rem;font-style:italic}
+.info-name{font-family:'IM Fell English',serif;font-size:1.6rem;color:var(--parchl);line-height:1.15;margin-bottom:.25rem}
+.info-capital{font-size:.82rem;font-style:italic;color:var(--gold);margin-bottom:1.25rem}
+.info-rule{width:60px;height:1px;background:linear-gradient(to right,var(--goldd),transparent);margin-bottom:1.25rem}
+.info-section{margin-bottom:1.25rem}
+.info-sl{font-family:'IM Fell English',serif;font-size:.65rem;letter-spacing:.12em;color:var(--goldd);margin-bottom:.4rem}
+.info-val{font-size:.82rem;color:var(--parchd);line-height:1.72;font-style:italic}
+.info-house{display:inline-block;font-family:'IM Fell English',serif;font-size:.72rem;border:1px solid var(--borderl);padding:.2rem .65rem;color:var(--parch);font-style:italic;margin-bottom:.75rem}
+.info-tags{display:flex;flex-wrap:wrap;gap:.35rem}
+.itag{font-family:'IM Fell English',serif;font-size:.68rem;padding:.18rem .55rem;border:1px solid var(--border);color:var(--parchd);font-style:italic}
+
+/* ── COORD DISPLAY ── */
+.coords{position:absolute;bottom:1rem;right:1rem;z-index:100;font-family:'IM Fell English',serif;font-size:.65rem;color:var(--goldd);font-style:italic;pointer-events:none;opacity:.5}
+.coords.has-panel{right:316px}
+
+/* ── HELP TOOLTIP ── */
+.hint{position:absolute;top:1rem;left:50%;transform:translateX(-50%);z-index:100;font-family:'IM Fell English',serif;font-size:.72rem;font-style:italic;color:var(--parchd);background:rgba(13,8,4,.7);border:1px solid var(--border);padding:.3rem .85rem;pointer-events:none;white-space:nowrap;opacity:1;transition:opacity 1s;backdrop-filter:blur(4px)}
+.hint.fade{opacity:0}
+
+@media(max-width:640px){.info-panel{width:100%;top:auto;height:60%;transform:translateY(100%)}.info-panel.open{transform:translateY(0)}.legend{display:none}}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-in">
+    <a href="son-imparator.html" class="nav-brand">Son İmparator</a>
+    <button class="nav-ham" id="ham" aria-label="Menü"><span></span><span></span><span></span></button>
+    <ul class="nav-links" id="navl">
+      <li><a href="son-imparator.html" id="nl-home">Ana Sayfa</a></li>
+      <li><a href="lore.html" id="nl-lore">Evren</a></li>
+      <li><a href="karakterler.html" id="nl-chars">Karakterler</a></li>
+      <li><a href="son-imparator.html#bolumler" id="nl-chapters">Bölümler</a></li>
+      <li><a href="harita.html" class="cur" id="nl-map">Harita</a></li>
+    </ul>
+    <div class="nav-r">
+      <button class="lang-btn" id="lang-btn" onclick="toggleLang()">EN</button>
+    </div>
+  </div>
+</nav>
+
+<div class="map-layout">
+
+  <!-- Toolbar -->
+  <div class="toolbar">
+    <button class="tb-btn" onclick="zoomStep(0.7)" title="Yakınlaştır">
+      <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+    </button>
+    <button class="tb-btn" onclick="zoomStep(1.43)" title="Uzaklaştır">
+      <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/></svg>
+    </button>
+    <div class="tb-sep"></div>
+    <button class="tb-btn" onclick="resetView()" title="Sıfırla">
+      <svg viewBox="0 0 24 24"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-3.5"/></svg>
+    </button>
+  </div>
+
+  <!-- Legend -->
+  <div class="legend">
+    <div class="leg-title" id="leg-title">AÇIKLAMA</div>
+    <div class="leg-item"><div class="leg-dot" style="background:#E8B84B;border:1px solid #C4962A"></div><span id="leg-capital">Başkent</span></div>
+    <div class="leg-item"><div class="leg-dot" style="background:rgba(196,150,42,.3);border:1px solid #5C3F1E"></div><span id="leg-city">Şehir</span></div>
+    <div class="leg-item"><div class="leg-line" style="background:#2A4A8A;opacity:.7"></div><span id="leg-strait">Gümüş Yol Boğazı</span></div>
+    <div class="leg-item"><div class="leg-line" style="background:#3A5C18;opacity:.6"></div><span id="leg-border">Sınır</span></div>
+  </div>
+
+  <!-- Hint -->
+  <div class="hint" id="hint" id="hint-text">Sürükle: kaydır &nbsp;·&nbsp; Kaydır / Sıkıştır: yakınlaştır &nbsp;·&nbsp; Bölgeye tıkla: bilgi</div>
+
+  <!-- Map -->
+  <div class="map-container" id="map-container">
+    <svg id="map-svg" viewBox="0 0 1400 900" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+      <defs>
+        <!-- Ocean pattern -->
+        <pattern id="ocean-pat" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
+          <rect width="40" height="40" fill="#05030A"/>
+          <circle cx="10" cy="10" r=".6" fill="#0A0714" opacity=".6"/>
+          <circle cx="30" cy="25" r=".5" fill="#0A0714" opacity=".5"/>
+        </pattern>
+        <!-- Land gradient -->
+        <radialGradient id="land-grd" cx="50%" cy="40%" r="60%">
+          <stop offset="0%" stop-color="#201508"/>
+          <stop offset="100%" stop-color="#150e05"/>
+        </radialGradient>
+        <!-- Glow filter for capital -->
+        <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+          <feGaussianBlur in="SourceGraphic" stdDeviation="3" result="blur"/>
+          <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+        </filter>
+      </defs>
+
+      <!-- Ocean -->
+      <rect width="1400" height="900" fill="url(#ocean-pat)"/>
+
+      <!-- ── MAIN LANDMASS ── -->
+      <polygon class="region" data-region="none"
+        points="80,45 320,28 520,35 720,45 920,75 1080,120 1200,175 1230,265 1210,370 1180,460 1140,540 1090,595 1020,615 950,610 870,600 780,610 700,620 620,608 540,590 470,580 400,568 340,555 285,532 240,510 195,490 158,465 122,438 90,402 62,370 42,330 28,280 24,225 35,165 52,110 80,45"
+        fill="url(#land-grd)" stroke="#3D2A14" stroke-width="2"/>
+
+      <!-- ── REGIONS ── -->
+      <!-- GALETSHA (NE) -->
+      <polygon class="region" data-region="galetsha"
+        points="720,45 920,75 1080,120 1030,175 930,165 830,155 750,130 720,85"
+        fill="rgba(26,20,8,.8)" stroke="#5C3F1E" stroke-width="1.2"/>
+
+      <!-- MEMANTH (N center) -->
+      <polygon class="region" data-region="memanth"
+        points="440,32 720,45 720,85 660,105 590,110 500,102 440,82"
+        fill="rgba(22,16,7,.8)" stroke="#5C3F1E" stroke-width="1.2"/>
+
+      <!-- Z'ELA (W) -->
+      <polygon class="region" data-region="zela"
+        points="28,230 170,215 182,305 165,388 100,400 40,368 24,310"
+        fill="rgba(20,15,7,.8)" stroke="#5C3F1E" stroke-width="1.2"/>
+
+      <!-- ADAMEN (SW) -->
+      <polygon class="region" data-region="adamen"
+        points="38,370 165,388 178,465 155,525 90,535 42,500"
+        fill="rgba(20,15,7,.8)" stroke="#5C3F1E" stroke-width="1.2"/>
+
+      <!-- SELTANYA (center-W) -->
+      <polygon class="region" data-region="seltanya"
+        points="182,305 318,288 342,378 310,455 220,462 168,440 165,388"
+        fill="rgba(22,16,7,.8)" stroke="#5C3F1E" stroke-width="1.2"/>
+
+      <!-- BAŞSANCAK (center — capital) -->
+      <polygon class="region" data-region="bssancak"
+        points="440,260 650,245 692,325 668,420 580,440 448,435 388,390 390,308"
+        fill="rgba(35,26,10,.9)" stroke="#7A5C18" stroke-width="2"/>
+
+      <!-- ONNEVA (E) -->
+      <polygon class="region" data-region="onneva"
+        points="700,315 870,295 940,355 915,445 830,465 720,458 668,420 692,325"
+        fill="rgba(22,16,7,.8)" stroke="#5C3F1E" stroke-width="1.2"/>
+
+      <!-- MABED (S center) -->
+      <polygon class="region" data-region="mabed"
+        points="390,548 618,530 648,618 595,680 485,688 400,668"
+        fill="rgba(20,14,7,.8)" stroke="#5C3F1E" stroke-width="1.2"/>
+
+      <!-- SOLGAR (SE) -->
+      <polygon class="region" data-region="solgar"
+        points="650,528 840,510 880,580 840,650 740,662 648,640 618,580"
+        fill="rgba(22,16,7,.8)" stroke="#5C3F1E" stroke-width="1.2"/>
+
+      <!-- Arathen hint (off east edge) -->
+      <text x="1250" y="280" fill="#3D2A14" font-family="'IM Fell English', serif" font-size="15" font-style="italic" opacity=".5">Arathen →</text>
+
+      <!-- ── GÜMÜŞ YOL BOĞAZI ── -->
+      <!-- Water in strait -->
+      <path d="M240,510 C340,490 430,502 550,488 C660,474 760,490 878,475 C970,462 1040,478 1130,462"
+            fill="none" stroke="#0A1428" stroke-width="44" opacity=".95"/>
+      <path d="M240,510 C340,490 430,502 550,488 C660,474 760,490 878,475 C970,462 1040,478 1130,462"
+            fill="none" stroke="#060E1E" stroke-width="36"/>
+      <path d="M240,510 C340,490 430,502 550,488 C660,474 760,490 878,475 C970,462 1040,478 1130,462"
+            fill="none" stroke="#08121E" stroke-width="24"/>
+      <!-- Strait label -->
+      <text x="640" y="487" fill="#2A4A6A" font-family="'IM Fell English', serif" font-size="12" text-anchor="middle" font-style="italic" opacity=".85">Gümüş Yol Boğazı</text>
+
+      <!-- ── ISLANDS ── -->
+      <!-- Selya -->
+      <ellipse class="region" data-region="selya" cx="148" cy="685" rx="84" ry="40"
+               fill="rgba(22,16,7,.8)" stroke="#5C3F1E" stroke-width="1.2"/>
+      <!-- Khasinya -->
+      <ellipse class="region" data-region="khasinya" cx="1068" cy="595" rx="78" ry="36"
+               fill="rgba(20,15,7,.8)" stroke="#5C3F1E" stroke-width="1.2"/>
+      <!-- Pilkard -->
+      <ellipse class="region" data-region="pilkard" cx="1148" cy="755" rx="76" ry="34"
+               fill="rgba(20,15,7,.8)" stroke="#5C3F1E" stroke-width="1.2"/>
+      <!-- Garchar (small neutral island) -->
+      <ellipse cx="950" cy="730" rx="38" ry="18" fill="rgba(18,14,6,.7)" stroke="#3D2A14" stroke-width="1"/>
+      <text x="950" y="734" fill="#5C3F1E" font-family="'IM Fell English', serif" font-size="9" text-anchor="middle" font-style="italic">Garchar</text>
+
+      <!-- ── REGION LABELS ── -->
+      <text class="region-label" x="868" y="118" fill="#C4962A" font-family="'IM Fell English', serif" font-size="14" text-anchor="middle" font-style="italic" pointer-events="none">GALETSHA</text>
+      <text class="region-label" x="572" y="76" fill="#C4962A" font-family="'IM Fell English', serif" font-size="14" text-anchor="middle" font-style="italic" pointer-events="none">MEMANTH</text>
+      <text class="region-label" x="108" y="308" fill="#C4962A" font-family="'IM Fell English', serif" font-size="13" text-anchor="middle" font-style="italic" pointer-events="none">Z'ELA</text>
+      <text class="region-label" x="108" y="456" fill="#C4962A" font-family="'IM Fell English', serif" font-size="12" text-anchor="middle" font-style="italic" pointer-events="none">ADAMEN</text>
+      <text class="region-label" x="254" y="378" fill="#C4962A" font-family="'IM Fell English', serif" font-size="13" text-anchor="middle" font-style="italic" pointer-events="none">SELTANYA</text>
+      <text class="region-label" x="538" y="345" fill="#E8B84B" font-family="'IM Fell English', serif" font-size="17" text-anchor="middle" font-weight="bold" font-style="italic" pointer-events="none">BAŞSANCAK</text>
+      <text class="region-label" x="808" y="378" fill="#C4962A" font-family="'IM Fell English', serif" font-size="14" text-anchor="middle" font-style="italic" pointer-events="none">ONNEVA</text>
+      <text class="region-label" x="508" y="612" fill="#C4962A" font-family="'IM Fell English', serif" font-size="14" text-anchor="middle" font-style="italic" pointer-events="none">MABED</text>
+      <text class="region-label" x="750" y="588" fill="#C4962A" font-family="'IM Fell English', serif" font-size="14" text-anchor="middle" font-style="italic" pointer-events="none">SOLGAR</text>
+      <text class="region-label" x="148" y="688" fill="#C4962A" font-family="'IM Fell English', serif" font-size="13" text-anchor="middle" font-style="italic" pointer-events="none">SELYA</text>
+      <text class="region-label" x="1068" y="598" fill="#C4962A" font-family="'IM Fell English', serif" font-size="12" text-anchor="middle" font-style="italic" pointer-events="none">KHASİNYA</text>
+      <text class="region-label" x="1148" y="758" fill="#C4962A" font-family="'IM Fell English', serif" font-size="12" text-anchor="middle" font-style="italic" pointer-events="none">PİLKARD</text>
+
+      <!-- ── CITIES ── -->
+      <!-- Capital (Başkent) -->
+      <circle filter="url(#glow)" cx="538" cy="330" r="8" fill="#C4962A" opacity=".3"/>
+      <circle class="city-dot" cx="538" cy="330" r="5" fill="#E8B84B" stroke="#C4962A" stroke-width="1.5" data-city="baskent"/>
+      <text class="city-label" x="548" y="322" fill="#E8B84B" font-size="10" font-style="italic" pointer-events="none">★ Başkent</text>
+
+      <!-- Garall (Z'ela strategic port) -->
+      <circle class="city-dot" cx="95" cy="268" r="3.5" fill="rgba(196,150,42,.4)" stroke="#7A5C18" stroke-width="1" data-city="garall"/>
+      <text class="city-label" x="104" y="265" fill="#9A8870" font-size="9" font-style="italic" pointer-events="none">Garall</text>
+
+      <!-- Todfa (Boğaz güney) -->
+      <circle class="city-dot" cx="428" cy="520" r="3.5" fill="rgba(196,150,42,.4)" stroke="#7A5C18" stroke-width="1" data-city="todfa"/>
+      <text class="city-label" x="438" y="517" fill="#9A8870" font-size="9" font-style="italic" pointer-events="none">Todfa</text>
+
+      <!-- Craber Kalesi (Memanth) -->
+      <rect x="578" y="92" width="8" height="8" fill="rgba(196,150,42,.3)" stroke="#7A5C18" stroke-width="1" data-city="craber"/>
+      <text class="city-label" x="590" y="100" fill="#9A8870" font-size="9" font-style="italic" pointer-events="none">Craber Kalesi</text>
+
+      <!-- Bakırsu Vadisi (savaş alanı) -->
+      <path d="M640,165 L648,182 M644,165 L636,182" stroke="#8B2A2A" stroke-width="1.5" opacity=".7"/>
+      <text class="city-label" x="656" y="175" fill="#8B2A2A" font-size="9" font-style="italic" pointer-events="none">✕ Bakırsu Vadisi</text>
+
+      <!-- ── MAP BORDER ── -->
+      <rect x="12" y="12" width="1376" height="876" fill="none" stroke="#3D2A14" stroke-width="2"/>
+      <rect x="20" y="20" width="1360" height="860" fill="none" stroke="#221408" stroke-width=".8"/>
+
+      <!-- Corner ornaments -->
+      <path d="M12,12 L50,12 M12,12 L12,50" stroke="#7A5C18" stroke-width="2" fill="none"/>
+      <path d="M1388,12 L1350,12 M1388,12 L1388,50" stroke="#7A5C18" stroke-width="2" fill="none"/>
+      <path d="M12,888 L50,888 M12,888 L12,850" stroke="#7A5C18" stroke-width="2" fill="none"/>
+      <path d="M1388,888 L1350,888 M1388,888 L1388,850" stroke="#7A5C18" stroke-width="2" fill="none"/>
+
+      <!-- Compass -->
+      <g transform="translate(1330,840)">
+        <line x1="0" y1="-24" x2="0" y2="24" stroke="#5C3F1E" stroke-width="1.5"/>
+        <line x1="-24" y1="0" x2="24" y2="0" stroke="#5C3F1E" stroke-width="1.5"/>
+        <polygon points="0,-28 -5,-16 5,-16" fill="#C4962A"/>
+        <text x="0" y="-30" fill="#C4962A" font-family="'IM Fell English', serif" font-size="12" text-anchor="middle">K</text>
+      </g>
+
+      <!-- Map title -->
+      <text x="700" y="873" fill="#5C3F1E" font-family="'IM Fell English', serif" font-size="12" text-anchor="middle" letter-spacing="4" font-style="italic">STALLHART İMPARATORLUĞU — BİLİNEN DÜNYA</text>
+    </svg>
+  </div>
+
+  <!-- Info Panel -->
+  <div class="info-panel" id="info-panel">
+    <button class="info-close" onclick="closeInfo()">✕</button>
+    <div class="info-body" id="info-body"></div>
+  </div>
+
+  <div class="coords" id="coords"></div>
+</div>
+
+<script>
+// ─── LANGUAGE ─────────────────────────────────────────────
+let L = localStorage.getItem('si-lang') || 'tr';
+const T = o => (o&&o[L])||(o&&o.tr)||'';
+
+const NAV_STR = {
+  home:{tr:'Ana Sayfa',en:'Home'}, lore:{tr:'Evren',en:'Lore'},
+  chars:{tr:'Karakterler',en:'Characters'}, chapters:{tr:'Bölümler',en:'Chapters'},
+  map:{tr:'Harita',en:'Map'}
+};
+const LEG_STR = {
+  title:{tr:'AÇIKLAMA',en:'LEGEND'},
+  capital:{tr:'Başkent',en:'Capital'},
+  city:{tr:'Şehir / Kale',en:'City / Fortress'},
+  strait:{tr:'Gümüş Yol Boğazı',en:'Silver Way Strait'},
+  border:{tr:'Eyalet Sınırı',en:'Province Border'}
+};
+const HINT_STR = {
+  tr:'Sürükle: kaydır &nbsp;·&nbsp; Kaydır / Sıkıştır: yakınlaştır &nbsp;·&nbsp; Bölgeye tıkla: bilgi',
+  en:'Drag: pan &nbsp;·&nbsp; Scroll / Pinch: zoom &nbsp;·&nbsp; Click region: info'
+};
+
+function applyLang() {
+  document.getElementById('r').lang=L;
+  document.getElementById('lang-btn').textContent=L==='tr'?'EN':'TR';
+  ['home','lore','chars','chapters','map'].forEach(k=>{
+    const el=document.getElementById('nl-'+k);
+    if(el) el.textContent=T(NAV_STR[k]);
+  });
+  document.getElementById('leg-title').textContent=T(LEG_STR.title);
+  document.getElementById('leg-capital').textContent=T(LEG_STR.capital);
+  document.getElementById('leg-city').textContent=T(LEG_STR.city);
+  document.getElementById('leg-strait').textContent=T(LEG_STR.strait);
+  document.getElementById('leg-border').textContent=T(LEG_STR.border);
+  document.getElementById('hint').innerHTML=L==='tr'?HINT_STR.tr:HINT_STR.en;
+  document.title=(L==='tr'?'Harita':'Map')+' — Son İmparator';
+}
+function toggleLang() {
+  L=L==='tr'?'en':'tr';
+  localStorage.setItem('si-lang',L);
+  applyLang();
+  if(activeRegion) showInfo(activeRegion);
+}
+
+// ─── REGION DATA ──────────────────────────────────────────
+const REGIONS = {
+  bssancak:{
+    name:{tr:'Başsancak',en:'Başsancak'},
+    eyebrow:{tr:'Merkez Eyalet',en:'Central Province'},
+    capital:{tr:'Başkent (İmparatorluk Sarayı)',en:'The Capital (Imperial Palace)'},
+    house:{tr:'Stallhart Hanedanı',en:'Stallhart Dynasty'},
+    desc:{tr:'İmparatorluğun kalbi ve idari merkezi. Stallhart sarayı, tüm eyaletlerin bağlı olduğu yönetim odağı ve Karabıçaklar\'ın merkez üssü burada yer alır. Rones döneminde büyüyen bu şehir, İmloth yönetiminde ciddi bir çöküşe girdi.',en:'The heart and administrative center of the empire. The Stallhart palace, the governing hub to which all provinces report, and the headquarters of the Black Claws are all found here. The city grew under Rones but entered serious decline under Imloth.'},
+    tags:{tr:['İmparatorluk Sarayı','Karabıçaklar Merkezi','Verimli Ovalar'],en:['Imperial Palace','Black Claws HQ','Fertile Plains']}
+  },
+  galetsha:{
+    name:{tr:'Galetsha',en:'Galetsha'},
+    eyebrow:{tr:'Kuzey Eyaleti',en:'Northern Province'},
+    capital:{tr:'Galetsha Kalesi',en:'Galetsha Fortress'},
+    house:{tr:'Galet / Galetsha Hanesi',en:'House Galet / Galetsha'},
+    desc:{tr:'Sarp geçitleri ve stratejik mevzileriyle kuzeyin bekçisi. Metron\'dan oğlu Wolrez\'e geçen yönetim, Arathen casusuyla ittifak kurarak Olinder Albea suikastını örgütledi. Başkomutan\'ın ölümü Erthan yayının fitilini ateşledi.',en:'Guardian of the north with its treacherous passes and strategic positions. The governorship passed from Metron to his son Wolrez, who allied with an Arathen spy to orchestrate Olinder Albea\'s assassination — igniting the Erthan arc.'},
+    tags:{tr:['Sarp Dağlar','Stratejik Geçitler','Galet Hanesi'],en:['Rugged Mountains','Strategic Passes','House Galet']}
+  },
+  memanth:{
+    name:{tr:'Memanth',en:'Memanth'},
+    eyebrow:{tr:'Kuzey Eyaleti',en:'Northern Province'},
+    capital:{tr:'Craber Kalesi',en:'Craber Fortress'},
+    house:{tr:'Sınglew Hanesi (önde gelen)',en:'House Sınglew (prominent)'},
+    desc:{tr:'Kuzey sınır hattının kritik dayanak noktası. Craber Kalesi ve Arava Garnizonu bölgenin askerî omurgasını oluşturur. Reanloth\'un sabırlı seferlerle ilhak ettiği bu eyalet, Erthan döneminde isyanın önemli bir arenasına dönüşmüştür.',en:'Critical anchor of the northern frontier. Craber Fortress and Arava Garrison form the military backbone of the region. Annexed by Reanloth through patient campaigns, this province became a key arena during Erthan\'s rebellion.'},
+    tags:{tr:['Craber Kalesi','Arava Garnizonu','Sınır Hattı'],en:['Craber Fortress','Arava Garrison','Border Line']}
+  },
+  zela:{
+    name:{tr:'Z\'ela',en:'Z\'ela'},
+    eyebrow:{tr:'Batı Eyaleti',en:'Western Province'},
+    capital:{tr:'Garall',en:'Garall'},
+    house:{tr:'Çeşitli Haneler (Carvhen, Itrez...)',en:'Various Houses (Carvhen, Itrez...)'},
+    desc:{tr:'Gümüş Yol Boğazı\'nın kuzey yakasında, Garall limanıyla kıtalar arası ticaretin merkezi. Eyaletin karmaşık haneler yapısı, merkezi otoritenin zayıfladığı dönemlerde önemli bir baskı noktasına dönüşür.',en:'On the north bank of the Silver Way Strait, with the port of Garall as the center of intercontinental trade. The province\'s complex house structure becomes a significant pressure point when central authority weakens.'},
+    tags:{tr:['Garall Limanı','Deniz Ticareti','Boğaz Hakimiyeti'],en:['Port of Garall','Maritime Trade','Strait Control']}
+  },
+  adamen:{
+    name:{tr:'Adamen',en:'Adamen'},
+    eyebrow:{tr:'Güneybatı Eyaleti',en:'Southwestern Province'},
+    capital:{tr:'Adamen Madenleri Bölgesi',en:'Adamen Mining District'},
+    house:{tr:'Saert Hanesi (Cüce Vali)',en:'House Saert (Dwarf Governor)'},
+    desc:{tr:'İmparatorluğun en büyük maden yataklarına ev sahipliği yapan eyalet. Cüce Vali Gulwar Saert, işçilerin hakları için baskı uygular. İlk Anne inancının en güçlü biçimde yaşadığı topraklar — madencilerin ninnileri.',en:'Province home to the empire\'s largest mineral deposits. Dwarf Governor Gulwar Saert exerts pressure for miners\' rights. The land where the First Mother faith survives most strongly — in the lullabies of miners.'},
+    tags:{tr:['Maden Yatakları','Cüce Nüfus','İlk Anne İzleri'],en:['Mineral Deposits','Dwarf Population','First Mother Traces']}
+  },
+  seltanya:{
+    name:{tr:'Seltanya',en:'Seltanya'},
+    eyebrow:{tr:'Güney Eyaleti',en:'Southern Province'},
+    capital:{tr:'Seltanya Şehri',en:'City of Seltanya'},
+    house:{tr:'Vizelar Hanesi (önde gelen)',en:'House Vizelar (prominent)'},
+    desc:{tr:'Amadon\'un iktidar üssünü inşa ettiği eyalet. Seltanya Meliki sıfatıyla Karabıçaklar\'ı burada kurdu; buradan imparatorluk tahtına uzandı. Scifella\'nın KS 1248-49 seferinde fethedilmişti.',en:'The province where Amadon built his power base. As Melik of Seltanya he founded the Black Claws here; from here he reached for the imperial throne. Conquered by Scifella in KS 1248-49.'},
+    tags:{tr:['Amadon\'un Üssü','Karabıçaklar Kuruluşu','Güney Sınırı'],en:['Amadon\'s Base','Black Claws Founded','Southern Border']}
+  },
+  onneva:{
+    name:{tr:'Onneva',en:'Onneva'},
+    eyebrow:{tr:'Doğu Eyaleti',en:'Eastern Province'},
+    capital:{tr:'Onneva Limanı',en:'Port of Onneva'},
+    house:{tr:'Onneva Hanesi',en:'House Onneva'},
+    desc:{tr:'Gümüş Yol Boğazı\'nın güney doğu yakasında, Todfa ve Gom Ara\'nın geçiş noktalarıyla stratejik değer taşır. Deniz kuvvetleri için kritik üs konumunda.',en:'On the southeastern bank of the Silver Way Strait, strategically valuable with the crossing points of Todfa and Gom Ara. Serves as a critical naval base.'},
+    tags:{tr:['Todfa Geçidi','Doğu Ticareti','Deniz Üssü'],en:['Todfa Crossing','Eastern Trade','Naval Base']}
+  },
+  mabed:{
+    name:{tr:'Mabed',en:'Mabed'},
+    eyebrow:{tr:'Güney Eyaleti',en:'Southern Province'},
+    capital:{tr:'Mabed Tapınak Şehri',en:'Mabed Temple City'},
+    house:{tr:'Dinî Otorite (Serbam Hanesi)',en:'Religious Authority (House Serbam)'},
+    desc:{tr:'İmparatorluğun dinî merkezi; Yüksek Rahip\'in makamı burada bulunur. Denge Konseyi\'nin en güçlü etki alanı. Irin Onneva\'nın ölümünün ardından Ertler Serbam yeni Yüksek Rahip seçildi.',en:'The empire\'s religious center; seat of the High Priest. The strongest sphere of influence for the Council of Balance. After Irin Onneva\'s death, Ertler Serbam was elected new High Priest.'},
+    tags:{tr:['Yüksek Rahip Makamı','Denge Konseyi','Tapınak Kompleksi'],en:['High Priest\'s Seat','Council of Balance','Temple Complex']}
+  },
+  solgar:{
+    name:{tr:'Solgar',en:'Solgar'},
+    eyebrow:{tr:'Güneydoğu Eyaleti',en:'Southeastern Province'},
+    capital:{tr:'Solgar Sarayı',en:'Solgar Palace'},
+    house:{tr:'Solgar Hanesi (Edun Solgar)',en:'House Solgar (Edun Solgar)'},
+    desc:{tr:'Edun Solgar\'ın Zeandor tarafından sürgün edildiği eyalet. Bataklık zenginlikleriyle bilinen güneydoğu toprakları, başkentten uzak konumuyla siyasi sürgünlerin gönderildiği yer olarak tarihe geçmiştir.',en:'The province to which Edun Solgar was exiled by Zeandor. The southeastern lands known for their marsh riches have historically served as a destination for political exiles due to their distance from the capital.'},
+    tags:{tr:['Edun Solgar\'ın Sürgünü','Bataklık Zenginlikleri','Güneydoğu Sınırı'],en:['Edun Solgar\'s Exile','Marsh Riches','Southeastern Border']}
+  },
+  selya:{
+    name:{tr:'Selya',en:'Selya'},
+    eyebrow:{tr:'Batı Adası',en:'Western Island'},
+    capital:{tr:'Selya Limanı',en:'Selya Harbor'},
+    house:{tr:'Selya Hanesi (Celios Selya)',en:'House Selya (Celios Selya)'},
+    desc:{tr:'Zeandor\'un 9 yaşından itibaren büyüdüğü ada. Bilge eski Başvezir Celios Selya\'nın liderliğinde, yarı özerk bir yapı sürdürür. Liman vinci icadı, Kör Yengeç tavernası ve Zeandor\'un olgunluk yılları bu adaya aittir.',en:'The island where Zeandor grew up from age 9. Under the leadership of the wise former Grand Vizier Celios Selya, it maintains a semi-autonomous structure. The port crane invention, the Blind Crab Tavern, and Zeandor\'s formative years all belong to this island.'},
+    tags:{tr:['Zeandor\'un Sürgün Yeri','Celios\'un Yönetimi','Deniz Gücü'],en:['Zeandor\'s Exile','Celios\'s Rule','Naval Power']}
+  },
+  khasinya:{
+    name:{tr:'Khasinya',en:'Khasinya'},
+    eyebrow:{tr:'Doğu Adası',en:'Eastern Island'},
+    capital:{tr:'Khasinya Kalesi',en:'Khasinya Fortress'},
+    house:{tr:'Khasin Hanesi',en:'House Khasin'},
+    desc:{tr:'I. Lun Aldris tarafından Safir Boğazı\'ndaki deniz zaferinin ardından boyun eğdirilen ada. Güçlü deniz kültürü ve tarihi isyan eğilimiyle bilinen Khasinya, Khasin Hanesi\'nin burnu kırık olduğu dönemi temsil eder.',en:'The island subdued by Lun Aldris I after his Sapphire Strait naval victory. Known for its strong maritime culture and historical rebellious tendencies, Khasinya represents the era when House Khasin was humbled.'},
+    tags:{tr:['Deniz Kültürü','Tarihsel İsyan','Khasin Hanesi'],en:['Maritime Culture','Historical Rebellion','House Khasin']}
+  },
+  pilkard:{
+    name:{tr:'Pilkard',en:'Pilkard'},
+    eyebrow:{tr:'Güneydoğu Adası',en:'Southeastern Island'},
+    capital:{tr:'Pilkard Kalesi',en:'Pilkard Fortress'},
+    house:{tr:'Fendrel Hanesi (önde gelen)',en:'House Fendrel (prominent)'},
+    desc:{tr:'Scifella\'nın KS 1258\'de fethettiği güneybatı adası. Lunrye döneminde başarısız bir kuşatmaya direnen Pilkard, imparatorluk tarihindeki tek büyük askerî yenilginin sembolü olarak kalır.',en:'The southwestern island conquered by Scifella in KS 1258. Pilkard, which resisted a failed siege in Lunrye\'s reign, remains a symbol of the only major military defeat in imperial history.'},
+    tags:{tr:['Scifella\'nın Fethi','Lunrye\'nin Yenilgisi','Ada Kalesi'],en:['Scifella\'s Conquest','Lunrye\'s Defeat','Island Fortress']}
+  }
+};
+
+// ─── PAN / ZOOM ENGINE ────────────────────────────────────
+const SVG_W = 1400, SVG_H = 900;
+let vx=0, vy=0, vw=SVG_W, vh=SVG_H;
+let dragging=false, lastX=0, lastY=0;
+let pinching=false, lastPinchDist=0;
+const MIN_VW=300, MAX_VW=SVG_W*2;
+
+function updateViewBox() {
+  vx=Math.max(-SVG_W*.3, Math.min(SVG_W*.3+SVG_W-vw, vx));
+  vy=Math.max(-SVG_H*.3, Math.min(SVG_H*.3+SVG_H-vh, vy));
+  document.getElementById('map-svg').setAttribute('viewBox',`${vx} ${vy} ${vw} ${vh}`);
+}
+
+function svgPoint(clientX, clientY) {
+  const svg = document.getElementById('map-svg');
+  const rect = svg.getBoundingClientRect();
+  return {
+    x: vx + (clientX-rect.left)/rect.width*vw,
+    y: vy + (clientY-rect.top)/rect.height*vh
+  };
+}
+
+function zoomAt(factor, cx, cy) {
+  const newVw = Math.max(MIN_VW, Math.min(MAX_VW, vw*factor));
+  const newVh = newVw*(vh/vw);
+  const scale = newVw/vw;
+  vx = cx-(cx-vx)*scale;
+  vy = cy-(cy-vy)*scale;
+  vw = newVw; vh = newVh;
+  updateViewBox();
+}
+
+function zoomStep(f) {
+  const cx=vx+vw/2, cy=vy+vh/2;
+  zoomAt(f, cx, cy);
+}
+
+function resetView() {
+  vx=0;vy=0;vw=SVG_W;vh=SVG_H;
+  updateViewBox();
+}
+
+// Mouse events
+const mc = document.getElementById('map-container');
+mc.addEventListener('mousedown', e=>{
+  if(e.button!==0) return;
+  dragging=true; lastX=e.clientX; lastY=e.clientY;
+  mc.classList.add('dragging');
+  e.preventDefault();
+});
+window.addEventListener('mousemove', e=>{
+  if(!dragging) return;
+  const dx=(e.clientX-lastX)/mc.clientWidth*vw;
+  const dy=(e.clientY-lastY)/mc.clientHeight*vh;
+  vx-=dx; vy-=dy;
+  lastX=e.clientX; lastY=e.clientY;
+  updateViewBox();
+});
+window.addEventListener('mouseup', ()=>{
+  dragging=false; mc.classList.remove('dragging');
+});
+mc.addEventListener('wheel', e=>{
+  e.preventDefault();
+  const factor = e.deltaY>0?1.15:0.87;
+  const pt = svgPoint(e.clientX, e.clientY);
+  zoomAt(factor, pt.x, pt.y);
+},{passive:false});
+
+// Touch events
+mc.addEventListener('touchstart', e=>{
+  if(e.touches.length===1){
+    dragging=true;
+    lastX=e.touches[0].clientX; lastY=e.touches[0].clientY;
+  } else if(e.touches.length===2){
+    pinching=true; dragging=false;
+    lastPinchDist=Math.hypot(
+      e.touches[0].clientX-e.touches[1].clientX,
+      e.touches[0].clientY-e.touches[1].clientY
+    );
+  }
+  e.preventDefault();
+},{passive:false});
+
+mc.addEventListener('touchmove', e=>{
+  if(dragging&&e.touches.length===1){
+    const dx=(e.touches[0].clientX-lastX)/mc.clientWidth*vw;
+    const dy=(e.touches[0].clientY-lastY)/mc.clientHeight*vh;
+    vx-=dx; vy-=dy;
+    lastX=e.touches[0].clientX; lastY=e.touches[0].clientY;
+    updateViewBox();
+  } else if(pinching&&e.touches.length===2){
+    const dist=Math.hypot(
+      e.touches[0].clientX-e.touches[1].clientX,
+      e.touches[0].clientY-e.touches[1].clientY
+    );
+    const factor=lastPinchDist/dist;
+    const cx=(e.touches[0].clientX+e.touches[1].clientX)/2;
+    const cy=(e.touches[0].clientY+e.touches[1].clientY)/2;
+    const pt=svgPoint(cx,cy);
+    zoomAt(factor,pt.x,pt.y);
+    lastPinchDist=dist;
+  }
+  e.preventDefault();
+},{passive:false});
+
+mc.addEventListener('touchend', ()=>{
+  dragging=false; pinching=false;
+});
+
+// ─── INFO PANEL ───────────────────────────────────────────
+let activeRegion = null;
+
+function showInfo(id) {
+  const data = REGIONS[id];
+  if(!data) return;
+  activeRegion = id;
+
+  // Highlight active region
+  document.querySelectorAll('.region').forEach(el=>{
+    el.classList.toggle('active', el.dataset.region===id);
+  });
+
+  const tags = T(data.tags)||[];
+  document.getElementById('info-body').innerHTML = `
+    <p class="info-eyebrow">${T(data.eyebrow)}</p>
+    <h2 class="info-name">${T(data.name)}</h2>
+    <p class="info-capital">★ ${T(data.capital)}</p>
+    <div class="info-rule"></div>
+    <div class="info-section">
+      <p class="info-sl">${L==='tr'?'YÖNETİCİ HANE':'RULING HOUSE'}</p>
+      <span class="info-house">${T(data.house)}</span>
+    </div>
+    <div class="info-section">
+      <p class="info-sl">${L==='tr'?'TANIM':'DESCRIPTION'}</p>
+      <p class="info-val">${T(data.desc)}</p>
+    </div>
+    ${tags.length?`<div class="info-section">
+      <p class="info-sl">${L==='tr'?'ÖZELLİKLER':'FEATURES'}</p>
+      <div class="info-tags">${tags.map(t=>`<span class="itag">${t}</span>`).join('')}</div>
+    </div>`:''}
+  `;
+  document.getElementById('info-panel').classList.add('open');
+  document.getElementById('coords').classList.add('has-panel');
+}
+
+function closeInfo() {
+  activeRegion=null;
+  document.getElementById('info-panel').classList.remove('open');
+  document.getElementById('coords').classList.remove('has-panel');
+  document.querySelectorAll('.region').forEach(el=>el.classList.remove('active'));
+}
+
+// Click regions
+document.querySelectorAll('[data-region]').forEach(el=>{
+  el.addEventListener('click', e=>{
+    if(el.dataset.region==='none') return;
+    e.stopPropagation();
+    showInfo(el.dataset.region);
+  });
+});
+mc.addEventListener('click', e=>{
+  if(e.target===mc||e.target===document.getElementById('map-svg')) closeInfo();
+});
+
+// ─── HINT FADE ─────────────────────────────────────────────
+setTimeout(()=>document.getElementById('hint').classList.add('fade'), 4000);
+
+// ─── NAV ──────────────────────────────────────────────────
+document.getElementById('ham').addEventListener('click',()=>
+  document.getElementById('navl').classList.toggle('open')
+);
+document.querySelectorAll('#navl a').forEach(a=>
+  a.addEventListener('click',()=>document.getElementById('navl').classList.remove('open'))
+);
+
+// ─── INIT ─────────────────────────────────────────────────
+applyLang();
+updateViewBox();
+</script>
+</body>
+</html>
