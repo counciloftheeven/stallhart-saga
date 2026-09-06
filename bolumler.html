@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="tr" id="r">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bölümler — Son İmparator</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#060402;--deep:#0d0804;--surface:#110b05;
+  --card:rgba(24,16,7,.78);--border:#3D2A14;--borderl:#5C3F1E;
+  --gold:#C4962A;--goldb:#E8B84B;--goldd:#7A5C18;
+  --parch:#D4C0A0;--parchl:#F0E6C8;--parchd:#9A8870;
+  --blood:#5C1A1A;--bloodb:#8B2A2A;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);background-image:radial-gradient(ellipse 70% 50% at 18% 18%,rgba(92,26,26,.08) 0%,transparent 100%);color:var(--parch);font-family:'Libre Baskerville',Georgia,serif;font-size:16px;line-height:1.75;min-height:100vh}
+::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:var(--deep)}::-webkit-scrollbar-thumb{background:var(--border)}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(4,2,1,.96);backdrop-filter:blur(10px);border-bottom:1px solid var(--border)}
+.nav-in{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:0 2rem;height:54px;gap:1rem}
+.nav-brand{font-family:'IM Fell English',serif;font-size:1.1rem;color:var(--gold);text-decoration:none;flex-shrink:0}
+.nav-links{display:flex;gap:1.4rem;list-style:none;flex:1;justify-content:center}
+.nav-links a{font-family:'IM Fell English',serif;font-size:.88rem;color:var(--parchd);text-decoration:none;transition:color .18s}
+.nav-links a:hover,.nav-links a.cur{color:var(--gold)}
+.nav-r{display:flex;align-items:center;flex-shrink:0}
+.lang-btn{font-family:'IM Fell English',serif;font-size:.8rem;color:var(--parchd);background:none;border:1px solid var(--border);padding:.28rem .65rem;cursor:pointer;transition:.18s}
+.lang-btn:hover{border-color:var(--goldd);color:var(--gold)}
+.nav-ham{display:none;background:none;border:none;cursor:pointer;flex-direction:column;gap:5px;padding:4px;flex-shrink:0}
+.nav-ham span{display:block;width:22px;height:1.5px;background:var(--parchd)}
+@media(max-width:700px){.nav-links{display:none;flex-direction:column;position:absolute;top:54px;left:0;right:0;background:rgba(4,2,1,.97);border-bottom:1px solid var(--border);padding:1rem 2rem;gap:.9rem;z-index:199}.nav-links.open{display:flex}.nav-ham{display:flex}}
+
+/* ── INDEX VIEW ── */
+#view-index{padding-top:54px}
+.pg-hero{padding:4rem 2rem 3rem;text-align:center;border-bottom:1px solid var(--border);background:var(--deep)}
+.pg-hero h1{font-family:'IM Fell English',serif;font-size:clamp(2rem,5vw,3.2rem);color:var(--parchl);margin-bottom:.5rem}
+.pg-hero p{color:var(--parchd);font-style:italic;max-width:500px;margin:0 auto;font-size:.92rem}
+
+.ch-index-wrap{max-width:900px;margin:0 auto;padding:3rem 2rem 6rem}
+.arc-label{font-family:'IM Fell English',serif;font-size:.72rem;letter-spacing:.2em;color:var(--goldd);margin:2.5rem 0 1rem;font-style:italic;display:flex;align-items:center;gap:1rem}
+.arc-label::after{content:'';flex:1;height:1px;background:var(--border)}
+
+.ch-card{display:grid;grid-template-columns:60px 1fr;gap:0;border:1px solid var(--border);background:var(--card);margin-bottom:1px;cursor:pointer;transition:border-color .2s,background .18s;position:relative}
+.ch-card:hover{border-color:var(--borderl);background:rgba(28,18,8,.85)}
+.ch-card::before,.ch-card::after{content:'';position:absolute;width:8px;height:8px;border-color:var(--goldd);border-style:solid;pointer-events:none}
+.ch-card::before{top:-1px;left:-1px;border-width:2px 0 0 2px}
+.ch-card::after{bottom:-1px;right:-1px;border-width:0 2px 2px 0}
+
+.ch-num{background:rgba(12,8,4,.5);border-right:1px solid var(--border);display:flex;align-items:center;justify-content:center;padding:1.5rem .5rem}
+.ch-num span{font-family:'IM Fell English',serif;font-size:1.6rem;color:var(--goldd);font-style:italic;line-height:1}
+
+.ch-meta{padding:1.25rem 1.5rem;display:flex;flex-direction:column;gap:.35rem}
+.ch-title-wrap{display:flex;align-items:baseline;gap:.75rem;flex-wrap:wrap}
+.ch-title{font-family:'IM Fell English',serif;font-size:1.18rem;color:var(--parchl);line-height:1.2}
+.ch-ks{font-family:'IM Fell English',serif;font-size:.68rem;color:var(--goldd);font-style:italic}
+.ch-pov{font-size:.78rem;font-style:italic;color:var(--gold);margin-bottom:.1rem}
+.ch-synopsis{font-size:.82rem;color:var(--parchd);line-height:1.68}
+.ch-first{font-size:.78rem;color:var(--border);font-style:italic;margin-top:.3rem;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.ch-badge{display:inline-flex;align-items:center;gap:.35rem;margin-top:.5rem}
+.badge{font-family:'IM Fell English',serif;font-size:.62rem;padding:.12rem .5rem;border:1px solid;font-style:italic}
+.badge-free{color:var(--gold);border-color:rgba(196,150,42,.4)}
+.badge-sub{color:var(--parchd);border-color:var(--border)}
+.ch-read-btn{position:absolute;right:1rem;bottom:1rem;font-family:'IM Fell English',serif;font-size:.75rem;color:var(--goldd);font-style:italic;display:flex;align-items:center;gap:.3rem}
+.ch-read-btn svg{width:12px;height:12px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+
+@media(max-width:560px){.ch-card{grid-template-columns:44px 1fr}.ch-num span{font-size:1.2rem}.ch-read-btn{display:none}}
+
+/* ── READING VIEW ── */
+#view-read{display:none;padding-top:54px;min-height:100vh}
+.read-topbar{background:rgba(4,2,1,.96);border-bottom:1px solid var(--border);padding:.75rem 2rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;backdrop-filter:blur(8px)}
+.read-back{font-family:'IM Fell English',serif;font-size:.82rem;color:var(--parchd);background:none;border:none;cursor:pointer;display:flex;align-items:center;gap:.4rem;transition:color .18s;font-style:italic}
+.read-back:hover{color:var(--gold)}
+.read-back svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.read-title-bar{font-family:'IM Fell English',serif;font-size:.88rem;color:var(--parchd);text-align:center;font-style:italic}
+.read-nav{display:flex;gap:.5rem}
+.rnav-btn{font-family:'IM Fell English',serif;font-size:.75rem;color:var(--parchd);background:none;border:1px solid var(--border);padding:.25rem .7rem;cursor:pointer;transition:.18s;font-style:italic}
+.rnav-btn:hover:not(:disabled){border-color:var(--goldd);color:var(--gold)}
+.rnav-btn:disabled{opacity:.3;cursor:default}
+
+.read-content{max-width:680px;margin:0 auto;padding:4rem 2rem 6rem}
+
+/* Reading typography */
+.read-ch-eye{font-family:'IM Fell English',serif;font-size:.72rem;letter-spacing:.18em;color:var(--goldd);margin-bottom:.5rem;font-style:italic}
+.read-ch-num{font-family:'IM Fell English',serif;font-size:3rem;color:var(--parchl);line-height:1;margin-bottom:.25rem}
+.read-ch-title{font-family:'IM Fell English',serif;font-size:2rem;color:var(--parchl);line-height:1.1;margin-bottom:2rem}
+.read-rule{width:80px;height:1px;background:linear-gradient(to right,var(--goldd),transparent);margin-bottom:2.5rem}
+
+.epi-block{border-left:2px solid var(--border);padding:.75rem 1.25rem;margin-bottom:2.5rem;background:rgba(12,8,4,.4)}
+.epi-text{font-style:italic;font-size:.88rem;color:var(--parchd);line-height:1.82;margin-bottom:.5rem}
+.epi-source{font-family:'IM Fell English',serif;font-size:.72rem;color:var(--goldd);font-style:italic;letter-spacing:.06em}
+
+.read-body p{font-size:.95rem;line-height:1.88;color:var(--parch);margin-bottom:1.4rem;text-align:justify}
+.read-body p:first-child::first-letter{font-family:'IM Fell English',serif;font-size:3.5rem;font-style:normal;float:left;line-height:.75;margin-right:.12em;margin-top:.08em;color:var(--gold)}
+.read-body p em{font-style:italic;color:var(--parchd)}
+.read-body p strong{font-weight:700;color:var(--parchl)}
+.read-body .scene-break{text-align:center;color:var(--goldd);font-family:'IM Fell English',serif;margin:2rem 0;font-size:1.1rem}
+.read-body blockquote{border-left:2px solid var(--border);padding:.5rem 1rem;margin:1.5rem 0;font-style:italic;color:var(--parchd)}
+
+.read-cta{background:rgba(20,12,6,.8);border:1px solid var(--border);padding:2rem;text-align:center;margin-top:2rem}
+.read-cta p{font-family:'IM Fell English',serif;font-style:italic;color:var(--parchd);margin-bottom:1.25rem;font-size:.92rem;line-height:1.72}
+.cta-btn{display:inline-block;font-family:'IM Fell English',serif;font-size:.85rem;color:var(--bg);background:var(--gold);padding:.75rem 2rem;text-decoration:none;transition:background .18s;font-style:normal}
+.cta-btn:hover{background:var(--goldb)}
+
+/* FOOTER */
+footer{background:#040301;border-top:1px solid var(--border);padding:2.5rem 2rem;text-align:center}
+footer p{font-family:'IM Fell English',serif;font-style:italic;font-size:.8rem;color:var(--goldd)}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-in">
+    <a href="son-imparator.html" class="nav-brand">Son İmparator</a>
+    <button class="nav-ham" id="ham" aria-label="Menü"><span></span><span></span><span></span></button>
+    <ul class="nav-links" id="navl">
+      <li><a href="son-imparator.html" id="nl-home">Ana Sayfa</a></li>
+      <li><a href="lore.html" id="nl-lore">Evren</a></li>
+      <li><a href="karakterler.html" id="nl-chars">Karakterler</a></li>
+      <li><a href="bolumler.html" class="cur" id="nl-chaps">Bölümler</a></li>
+      <li><a href="harita.html" id="nl-map">Harita</a></li>
+    </ul>
+    <div class="nav-r">
+      <button class="lang-btn" id="lang-btn" onclick="toggleLang()">EN</button>
+    </div>
+  </div>
+</nav>
+
+<!-- INDEX VIEW -->
+<div id="view-index">
+  <header class="pg-hero">
+    <h1 id="idx-title">Bölümler</h1>
+    <p id="idx-sub">Cilt I — Stallhart Destanı'nın açılış yayının kronolojik akışı.</p>
+  </header>
+  <div class="ch-index-wrap">
+    <div class="arc-label" id="arc1-label">Zeandor Yayı · Başkent · KS 1481 Öncesi</div>
+    <div id="ch-list-1"></div>
+    <div class="arc-label" id="arc2-label" style="margin-top:3rem">Erthan Yayı · Kuzey · KS 1481</div>
+    <div id="ch-list-2"></div>
+    <div class="arc-label" id="arc3-label" style="margin-top:3rem">Amadon Yayı · Seltanya</div>
+    <div id="ch-list-3"></div>
+    <div class="arc-label" id="arc4-label" style="margin-top:3rem">Leno Kridas Yayı · Arathen</div>
+    <div id="ch-list-4"></div>
+  </div>
+</div>
+
+<!-- READING VIEW -->
+<div id="view-read">
+  <div class="read-topbar">
+    <button class="read-back" onclick="backToIndex()">
+      <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+      <span id="rb-label">Bölümler</span>
+    </button>
+    <div class="read-title-bar" id="rtitle-bar"></div>
+    <div class="read-nav">
+      <button class="rnav-btn" id="btn-prev" onclick="navigate(-1)">◂ Önceki</button>
+      <button class="rnav-btn" id="btn-next" onclick="navigate(1)">Sonraki ▸</button>
+    </div>
+  </div>
+  <div class="read-content" id="read-content"></div>
+</div>
+
+<footer>
+  <p id="ft-p">Stallhart Destanı · Son İmparator · Cilt I</p>
+</footer>
+
+<script>
+// ─── LANG ─────────────────────────────────────────────────
+let L = localStorage.getItem('si-lang') || 'tr';
+const T = o => (o&&o[L])||(o&&o.tr)||'';
+const NAV = {
+  home:{tr:'Ana Sayfa',en:'Home'}, lore:{tr:'Evren',en:'Lore'},
+  chars:{tr:'Karakterler',en:'Characters'}, chaps:{tr:'Bölümler',en:'Chapters'},
+  map:{tr:'Harita',en:'Map'}
+};
+
+function applyLang() {
+  document.getElementById('r').lang=L;
+  document.getElementById('lang-btn').textContent=L==='tr'?'EN':'TR';
+  ['home','lore','chars','chaps','map'].forEach(k=>{
+    const el=document.getElementById('nl-'+k); if(el) el.textContent=T(NAV[k]);
+  });
+  document.getElementById('idx-title').textContent=L==='tr'?'Bölümler':'Chapters';
+  document.getElementById('idx-sub').textContent=L==='tr'?'Cilt I — Stallhart Destanı\'nın açılış yayının kronolojik akışı.':'Volume I — The chronological flow of the Stallhart Chronicles opening arc.';
+  document.getElementById('arc1-label').textContent=L==='tr'?'Zeandor Yayı · Başkent · KS 1481 Öncesi':'Zeandor Arc · The Capital · Pre-KS 1481';
+  document.getElementById('arc2-label').textContent=L==='tr'?'Erthan Yayı · Kuzey · KS 1481':'Erthan Arc · The North · KS 1481';
+  document.getElementById('arc3-label').textContent=L==='tr'?'Amadon Yayı · Seltanya':'Amadon Arc · Seltanya';
+  document.getElementById('arc4-label').textContent=L==='tr'?'Leno Kridas Yayı · Arathen':'Leno Kridas Arc · Arathen';
+  document.getElementById('rb-label').textContent=L==='tr'?'Bölümler':'Chapters';
+  document.getElementById('ft-p').textContent=L==='tr'?'Stallhart Destanı · Son İmparator · Cilt I':'Stallhart Chronicles · The Last Emperor · Volume I';
+  document.title=(L==='tr'?'Bölümler':'Chapters')+' — Son İmparator';
+  renderIndex();
+}
+function toggleLang(){L=L==='tr'?'en':'tr';localStorage.setItem('si-lang',L);applyLang();}
+
+// ─── CHAPTER DATA ─────────────────────────────────────────
+const CHAPTERS = [
+  // ARC 1 — Başkent
+  {
+    id:1, arc:1, free:true,
+    title:{tr:'Çamur',en:'Mud'}, num:'I',
+    pov:{tr:'Aertas Sınglew · Ellan · İmparator Imloth · Erthan',en:'Aertas Sınglew · Ellan · Emperor Imloth · Erthan'},
+    ks:'KS 1481 Öncesi',
+    synopsis:{
+      tr:'Örebas Elçisi Ellan, başkente süren konvoyda Komutan Aertas Sınglew ile tehlikeli bir siyasi satranç oynar. Başkentte ise Erthan, haksız yere zindana atılan babasını kurtarmak için İmparator\'un huzuruna çıkar ve sarayı kısa bir süreliğine sarstığı sessizliği bırakarak ayrılır.',
+      en:'The Örebas envoy Ellan plays a dangerous political game with Commander Aertas Sınglew in the convoy to the capital. Meanwhile, Erthan forces his way into the Emperor\'s presence to plead for his unjustly imprisoned father.'
+    },
+    firstLine:'Puslu bulutlar gökyüzünü tamamen esir almıştı.',
+    fullRead:true
+  },
+  {
+    id:2, arc:1, free:false,
+    title:{tr:'Elçi',en:'The Envoy'}, num:'II',
+    pov:{tr:'İmparator Imloth · İmparatoriçe Selmira · Ellan',en:'Emperor Imloth · Empress Selmira · Ellan'},
+    ks:'KS 1481 Öncesi',
+    synopsis:{
+      tr:'İmparator ve İmparatoriçe, veliaht meselesi üzerine şiddetli bir kavgaya girerler. O gece, İmparatoriçe sancılar içinde doğum masasına uzanır. Örebas Elçisi Ellan ise diplomatik yemekte İmparatoriçe\'nin acı haberini alır.',
+      en:'The Emperor and Empress clash violently over the succession question. That night, the Empress goes into labor. Envoy Ellan receives the devastating news at the diplomatic dinner.'
+    },
+    firstLine:'Güneşin son soluk ışıkları, imparatorluk sarayının efsunlu kubbelerinde mat yansımalar bırakarak çekilirken...',
+    fullRead:false
+  },
+  {
+    id:3, arc:1, free:false,
+    title:{tr:'Tembellik',en:'Indolence'}, num:'III',
+    pov:{tr:'İmparatoriçe Selmira · Ebe Eadan · Celios Selya · İmparator Imloth',en:'Empress Selmira · Midwife Eadan · Celios Selya · Emperor Imloth'},
+    ks:'KS 1481 Öncesi',
+    synopsis:{
+      tr:'İmparatoriçe Selmira, oğlu Zeandor\'u dünyaya getirirken hayatını kaybeder. Başvezir Celios, bu ikili haberi — bir doğumu ve bir ölümü — imparatora iletmek zorunda kalır.',
+      en:'Empress Selmira dies delivering her son Zeandor. Grand Vizier Celios must deliver this dual news — a birth and a death — to the Emperor.'
+    },
+    firstLine:'İmparatoriçe Selmira, titreyen sesiyle sarayın yüksek mermer örgüleri arasında çınlayan bir feryat kopardı.',
+    fullRead:false
+  },
+  {
+    id:4, arc:1, free:false,
+    title:{tr:'Cenaze',en:'The Funeral'}, num:'IV',
+    pov:{tr:'Komutan Rean Certfa · Vali Metron Galetsha · İmparator Imloth',en:'Commander Rean Certfa · Governor Metron Galetsha · Emperor Imloth'},
+    ks:'KS 1481 Öncesi',
+    synopsis:{
+      tr:'İmparatoriçe\'nin cenazesi Arava\'yı harekete geçirir. Galetsha Valisi Metron başkente gelir. Büyük cenaze töreninde, imparatorun çöken beden dilini ve içindeki karanlığı yalnızca Rean Certfa görür.',
+      en:'The Empress\'s funeral sets the capital in motion. Governor Metron of Galetsha arrives at the capital. At the great ceremony, only Rean Certfa sees the Emperor\'s physical collapse and inner darkness.'
+    },
+    firstLine:'Şafağın solgun parmakları başkentin yüksek kulelerine dokunduğunda, gökyüzü taze bir yara gibi gri ve morun huzursuz tonlarına bürünmüştü.',
+    fullRead:false
+  },
+  // ARC 2 — Erthan
+  {
+    id:5, arc:2, free:false,
+    title:{tr:'Hırsızlar',en:'Thieves'}, num:'V',
+    pov:{tr:'Erthan · Elara Valer',en:'Erthan · Elara Valer'},
+    ks:'KS 1481',
+    synopsis:{
+      tr:'Erthan, başkentten kefil bulamadan ayrılmak zorunda kalır. Baron\'un kızı Elara ona para uzatır ancak Erthan gururu adına reddeder. Niron Nehri kıyısında hırsızlara saldırıya uğrar ve gençliğini ortaya koyar — olayın diğer tanığı ise genç bir soyludur.',
+      en:'Erthan leaves the capital unable to find a guarantor. Baron\'s daughter Elara offers money; Erthan refuses out of pride. On the Niron riverbank he\'s attacked by thieves — and his rescue is witnessed by a young nobleman.'
+    },
+    firstLine:'Doru\'nun nalları, Çukurtepe\'nin vıcık vıcık balçığa dönmüş toprak yolunu döverken çıkan ses, Erthan\'ın şakaklarında zonklayan bir migren gibi çınlıyordu.',
+    fullRead:false
+  },
+  {
+    id:6, arc:2, free:false,
+    title:{tr:'Kefil',en:'The Guarantor'}, num:'VI',
+    pov:{tr:'Erthan · Sarya · Baron Zarek Valer',en:'Erthan · Sarya · Baron Zarek Valer'},
+    ks:'KS 1481',
+    synopsis:{
+      tr:'Erthan köyüne döner, annesini bulur ve Baron Valer\'e gider. Bir onurlu sözleşmeyle değil, gelecek beş hasatın üçte birini vererek kefil sağlar. Ormanda pusu kuran iki haydut, babaya kavuşma umudunu yok etmeye çalışır.',
+      en:'Erthan returns to his village, finds his mother, and goes to Baron Valer. He secures a guarantor not through honor, but by giving up a third of the next five harvests. Two ambushing bandits in the forest try to destroy all hope of reaching his father.'
+    },
+    firstLine:'Erthan köyüne döndüğünde, bacakları üzengiden ayrılmak istemezcesine uyuşmuştu.',
+    fullRead:false
+  },
+  // ARC 3 — Amadon
+  {
+    id:7, arc:3, free:false,
+    title:{tr:'Ulak',en:'The Messenger'}, num:'VII',
+    pov:{tr:'Amadon Stallhart · Hiles Vizelar',en:'Amadon Stallhart · Hiles Vizelar'},
+    ks:'KS 1481 Öncesi',
+    synopsis:{
+      tr:'Seltanya\'nın sarp kaleleri... Bir ulak, Amadon\'a İmparatoriçe Selmira\'nın öldüğünü ve bir erkek veliahtın doğduğunu haber verir. Amadon ve sadık yoldaşı Hiles Vizelar, başkente dönme kararı alır. Lakin bu yolun üzerinde türlü tehlikeler pusudadır.',
+      en:'In the fortress of Seltanya, a messenger brings Amadon news of Selmira\'s death and the birth of a male heir. Amadon and his loyal companion Hiles Vizelar decide to return to the capital — but the road ahead is full of danger.'
+    },
+    firstLine:'Güz, Seltanya topraklarına merhamet nedir bilmeden inmişti.',
+    fullRead:false
+  },
+  // ARC 1 — Başkent (devam)
+  {
+    id:8, arc:1, free:false,
+    title:{tr:'Cüce Kral',en:'The Dwarf King'}, num:'VIII',
+    pov:{tr:'İmparator Imloth · Gulwar Saert',en:'Emperor Imloth · Gulwar Saert'},
+    ks:'KS 1481 Öncesi',
+    synopsis:{
+      tr:'Adamen\'in güçlü Cüce Valisi Gulwar Saert başkente gelir. Madencilerin haklarını imparatorla yüz yüze müzakere eder. Sarayın demir tavanları altında iki ağır irade çarpışır.',
+      en:'Adamen\'s powerful Dwarf Governor Gulwar Saert arrives at the capital. He negotiates miners\' rights face to face with the Emperor. Two heavy wills collide beneath the iron ceilings of the palace.'
+    },
+    firstLine:'Sarayın bazalt döşemeli avlusunda yankılanan ağır adımlar, sessizliğin içine bir bıçak gibi saplandı.',
+    fullRead:false
+  },
+  {
+    id:9, arc:1, free:false,
+    title:{tr:'Süt Anne',en:'The Wet Nurse'}, num:'IX',
+    pov:{tr:'Celios Selya · İmparator Imloth · Valerith Kalpear',en:'Celios Selya · Emperor Imloth · Valerith Kalpear'},
+    ks:'KS 1481 Öncesi',
+    synopsis:{
+      tr:'Küçük Prens Zeandor için süt anne bulunur. Saray entrikası dinmez: Örebas meselesi kapanır, Amadon\'un yola çıktığı haberi gelir, İmparator oğluna bakamaz. Sarayın zehirli dengeleri kasılmaya devam eder.',
+      en:'A wet nurse is found for little Prince Zeandor. Palace intrigue continues: the Örebas matter closes, news arrives of Amadon departing, the Emperor cannot bring himself to look at his son. The palace\'s poisonous balances keep tightening.'
+    },
+    firstLine:'Güz mevsiminin ayaz nefesi, Arava Sarayı\'nın kemerli yüksek pencerelerinden içeri süzülüyor...',
+    fullRead:false
+  },
+  // ARC 4 — Arathen
+  {
+    id:10, arc:4, free:false,
+    title:{tr:'Akbaba',en:'The Vulture'}, num:'X',
+    pov:{tr:'Leno Kridas · Eron Gjin · General Derevon Kessen · Vezir Yssa Morden',en:'Leno Kridas · Eron Gjin · General Derevon Kessen · Vezir Yssa Morden'},
+    ks:'KS 1481 Öncesi',
+    synopsis:{
+      tr:'Arathen taht odası: Kral Leno Kridas, casusbaşı Eron Gjin ve danışmanları imparatorluğun çöküşünü bekler. Sabırlı mı olunacak, yoksa harekete mi geçilecek? Derevon\'un askeri ihtiyatı ile Yssa\'nın sinsi diplomasisi çarpışır. Leno, babasının gölgesinde kendi sesini bulmaya çalışır.',
+      en:'Arathen\'s throne room: King Leno Kridas, spymaster Eron Gjin, and advisors await the empire\'s collapse. Act now or wait? Derevon\'s military caution clashes with Yssa\'s sinister diplomacy. Leno tries to find his own voice from his father\'s shadow.'
+    },
+    firstLine:'Arathen\'in taht odası, Stallhart sarayının o cilalı, altın yaldızlı ihtişamından kasıtlı bir meydan okumayla uzaktı.',
+    fullRead:false
+  }
+];
+
+// Group by arc
+const ARCS = {1:[],2:[],3:[],4:[]};
+CHAPTERS.forEach(c=>ARCS[c.arc].push(c));
+
+// ─── INDEX RENDER ─────────────────────────────────────────
+function renderIndex() {
+  [1,2,3,4].forEach(a=>{
+    const el = document.getElementById('ch-list-'+a);
+    if(!el) return;
+    el.innerHTML = ARCS[a].map(c=>`
+      <div class="ch-card" onclick="openChapter(${c.id})" tabindex="0" role="button" onkeydown="if(event.key==='Enter')openChapter(${c.id})">
+        <div class="ch-num"><span>${c.num}</span></div>
+        <div class="ch-meta">
+          <div class="ch-title-wrap">
+            <span class="ch-title">${T(c.title)}</span>
+            <span class="ch-ks">${c.ks}</span>
+          </div>
+          <div class="ch-pov">${T(c.pov)}</div>
+          <div class="ch-synopsis">${T(c.synopsis)}</div>
+          <div class="ch-first">"${c.firstLine}"</div>
+          <div class="ch-badge">
+            <span class="badge ${c.free?'badge-free':'badge-sub'}">${c.free?(L==='tr'?'Ücretsiz':'Free'):(L==='tr'?'Substack':'Substack')}</span>
+          </div>
+        </div>
+        <div class="ch-read-btn">
+          ${L==='tr'?'Oku':'Read'}
+          <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+        </div>
+      </div>`).join('');
+  });
+}
+
+// ─── CHAPTER READING ──────────────────────────────────────
+let currentId = 1;
+
+function openChapter(id) {
+  currentId = id;
+  const c = CHAPTERS.find(x=>x.id===id);
+  if(!c) return;
+  document.getElementById('view-index').style.display='none';
+  document.getElementById('view-read').style.display='block';
+  document.getElementById('rtitle-bar').textContent = `${c.num} — ${T(c.title)}`;
+  window.scrollTo(0,0);
+  renderReading(c);
+  updateNavBtns();
+  history.replaceState(null,'','#bolum-'+id);
+}
+
+function backToIndex() {
+  document.getElementById('view-read').style.display='none';
+  document.getElementById('view-index').style.display='block';
+  history.replaceState(null,'',window.location.pathname);
+  window.scrollTo(0,0);
+}
+
+function navigate(dir) {
+  const idx = CHAPTERS.findIndex(c=>c.id===currentId);
+  const next = CHAPTERS[idx+dir];
+  if(next) openChapter(next.id);
+}
+
+function updateNavBtns() {
+  const idx = CHAPTERS.findIndex(c=>c.id===currentId);
+  document.getElementById('btn-prev').disabled = idx===0;
+  document.getElementById('btn-next').disabled = idx===CHAPTERS.length-1;
+  const pl = L==='tr'?'◂ Önceki':'◂ Prev';
+  const nl = L==='tr'?'Sonraki ▸':'Next ▸';
+  document.getElementById('btn-prev').textContent=pl;
+  document.getElementById('btn-next').textContent=nl;
+}
+
+function renderReading(c) {
+  const container = document.getElementById('read-content');
+  const isRead = c.fullRead;
+  const subLabel = L==='tr'?'Bu bölümün tamamı Substack\'ta yayınlanmaktadır.':'The full chapter is available on Substack.';
+  const subBtn = L==='tr'?'Substack\'ta Devam Et →':'Continue on Substack →';
+  const subNote = L==='tr'?'İlk 3 bölüm ücretsiz erişime açıktır. Diğer bölümler için abone olun.':'First 3 chapters are free. Subscribe for the rest.';
+
+  container.innerHTML = `
+    <p class="read-ch-eye">Stallhart Destanı · Cilt I</p>
+    <div class="read-ch-num">${c.num}</div>
+    <h1 class="read-ch-title">${T(c.title)}</h1>
+    <div class="read-rule"></div>
+    <div class="read-body">
+      ${getChapterContent(c.id, isRead)}
+    </div>
+    ${!isRead ? `<div class="read-cta">
+      <p>${subLabel}<br><small style="font-size:.8rem;color:var(--border)">${subNote}</small></p>
+      <a href="https://craesx.substack.com" target="_blank" class="cta-btn">${subBtn}</a>
+    </div>` : ''}
+  `;
+}
+
+function getChapterContent(id, fullRead) {
+  // Returns HTML content for each chapter
+  const excerpts = {
+    1: fullRead ? FULL_CH1 : EXCERPT_CH1,
+    2: EXCERPT_CH2, 3: EXCERPT_CH3, 4: EXCERPT_CH4,
+    5: EXCERPT_CH5, 6: EXCERPT_CH6, 7: EXCERPT_CH7,
+    8: EXCERPT_CH8, 9: EXCERPT_CH9, 10: EXCERPT_CH10
+  };
+  return excerpts[id] || '<p>İçerik yükleniyor...</p>';
+}
+
+// ─── CHAPTER CONTENT ──────────────────────────────────────
+
+const FULL_CH1 = `
+<div class="epi-block">
+<p class="epi-text">Stallhart İmparatorluğu, KS 1144 yılında İlteriş (Kurucu) Kağan Craes Stallhart tarafından kurulmuştur. Craes Stallhart, dönemin bölünmüş hanlıklarını tek bir çatı altında birleştiren ve çevredeki düşman devletleri bölgeden püskürterek sınırlarını güvence altına alan güçlü bir hükümdar olarak tanınır.<br><br>
+Ancak, hükümdarlığına ait asıl kayıtlar, KS 1307–1309 yılındaki Büyük Başsancak Ayaklanmaları sırasında kraliyet arşivlerinin eski tarih kısımlarıyla birlikte yanarak kül olmuştur.</p>
+<p class="epi-source">İmparatorluk Arşivi — İmparatorlar Ansiklopedisi — Cilt 1</p>
+</div>
+<p>Puslu bulutlar gökyüzünü tamamen esir almıştı. Güneşin varlığı hissedilse de solgun ışığı bulutların ardında kayboluyordu. İnce ince ama ısrarla yağan yağmur, toprağı kesif ve yapışkan bir balçığa dönüştürmüş, yolları geçilmez kılmıştı. Ufuk çizgisi, yoğun sisin ve yağmur perdesinin ardında silinmiş, eski kaya yollar çukur ve derin tekerlek izleriyle delik deşik olmuştu. Çevredeki ağaçlar, ıslak ve çıplak dallarını birbirine çarparken, rüzgâr onları uğursuz bir fısıltıyla sarsıyordu. İmparatorluğun iç bölgelerinden doğuya uzanan bu yol, bir zamanlar ticaretin kalbi olsa da artık bir bataklıktan farksızdı.</p>
+<p>Konvoy, balçığa bata çıka ilerliyordu. Atların nal sesleri boğuk ve derinden geliyordu; arabaların tekerlekleri, her çukura saplandığında devrilme tehlikesiyle sarsılıyordu. Aniden bir arabanın tekerleği, suyla dolu bir çukura gömüldü ve orada kaldı. Arabacılardan biri küfürler savurup dizginleri gererken, iki hafif zırhlı muhafız hemen yardıma koştu. Biri omuz vererek tekerleği yerinden oynatmaya çalışırken, diğeri paslı bir manivela ile arabayı kaldırmak için uğraştı. Yağmur, pusa ve demir plakaların üzerinde cılız bir melodi çalıyor, nefesler buğulu havada görünmez lanetler gibi dans ediyordu.</p>
+<p>Konvoyun merkezinde, kasvetin tam ortasında, görkemli bir kapalı araba ilerliyordu. Gövdesi koyu şarap kırmızısına boyanmış, üzerindeki altın işlemeler, kararan hava altında bile parlıyordu. Arabanın yan yüzünde, imparatorluğun amblemi işlenmişti: kalkan biçimindeki arma, eğilmez bir mirasın soğuk ama ihtişamlı ifadesi.</p>
+<p>Örebas Elçisi, ince ve uzun bedenini koyu lacivert kaftanının içinde dimdik tutuyordu; o duruşta asaletle birlikte, çatışmalarla örülmüş bir hayatın yükü vardı. Elçi Ellan'ın uzun parmakları, ellerinin arasında kenetlenmişti; zarif ama kemikli yapısı, tıpkı onun düşüncelerinde olduğu gibi bir gerilim taşıyordu.</p>
+<p>Elçinin karşısında oturan kişi, İmparatorluk sınır muhafızları komutanlarından Aertas Sınglew'di. Kafası tıraşlıydı; pürüzsüz, ama yara izleriyle bezeli derisi, meşum bir geçmişin sessiz tanıklığını taşıyordu. Çene hattı sert, elmacık kemikleri belirgindi ve gözleri... Gözleri, sönmemiş bir savaşın külleriyle doluydu.</p>
+<div class="scene-break">❦</div>
+<p>Arabadaki hava, bir anda soğuk bir bıçağın sırtına dönüşmüştü. Aertas, blöf görerek rest çekmişti. Bu artık bir istihbarat toplama gezisi değil, bir ittifak ve rıza sınamasıydı.</p>
+<p>Başkent Arava, imparatorluğun atan kalbi, ihtişamın ve sefaletin aynı mermer bloklar üzerinde yükseldiği devasa bir labirentti. Nehrin kıyılarından ağır ağır yükselen sabah pusu, şehrin ahşap çatılarının arasına sinsi birer yılan gibi süzülüyor; güneşin zayıf hüzmeleri, sis tabakasının içinde solgun altın parçaları misali kırılıyordu.</p>
+<p>Bugün, Halk Günüydü.</p>
+<p>İmparatorluğun ilk yıllarında, bölünmüş hanlıkları tek bayrak altında toplayan İlteriş Kağan döneminden kalan bu köklü gelenek, tebaanın dertlerini doğrudan hükümdara anlatabilmesi için tasarlanmıştı. Ne var ki, zamanın acımasız çarkları arasında bu soylu uygulama da anlamını yitirmiş, içi boşaltılmış bir formaliteye dönüşmüştü.</p>
+<div class="scene-break">❦</div>
+<p>Salonun oymalı ceviz kapılarından içeri fırtına öncesi bir tekinsizlik sızdı. Kalabalığı dirsekleriyle hoyratça yara yara ilerleyen genç bir adam, muhafızların şaşkın bakışları arasında salonun merkezine doğru adımladı. Üzerindeki kirli tunik, çamura ve toza bulanmış çizmeleri, günlerdir durmaksızın yol aldığını haykırıyordu. Saçları darmadağındı; fakat bu hırpalanmış görünüşün altında, salondaki soyluları ürküten bambaşka bir şey vardı: Gözleri... Korkunun zıddı olan ve meydan okuyan bir iradenin kıvılcımlarıyla yanan koyu renk gözler.</p>
+<p>Genç adam, tahtın birkaç adım önünde durduğunda nefes alışverişi henüz düzene girmemişti. Doğrudan İmparator Imloth'un gözlerine dikti bakışlarını. Sesi, sarayın yüksek kemerlerinde hoyrat bir kırbaç gibi patladı:</p>
+<p><em>"Babam Almonth, köy ağasının askerleri tarafından haksız yere zindana atıldı! Bir köylü olarak doğduğumuz için mi adalet bizden esirgeniyor, Yüce Kağan?"</em></p>
+<p>Salmira, elini hafifçe kaldırarak muhafızı tek bir hareketle durdurdu. Gözlerini genç adama sabitleyerek hafifçe öne eğildi: <em>"İsminiz nedir, beyim?"</em></p>
+<p>"Ben, Çukurtepe köyünden Almonth'un oğlu Erthan," dedi.</p>
+<p>Sesi beklenmedik bir kuvvet taşıyordu; taş duvarlara çarpıp geri dönen akis, salondaki soylular arasında görünmez bir ürküntü dalgası yarattı.</p>
+<div class="scene-break">❦</div>
+<p>İmparator sert ama bir hükümdar azametiyle konuştu: <em>"Eğer babanın suçsuz olduğuna inanıyorsan, sana tam bir haftalık süre veriyorum. Bu süre zarfında onun suçsuzluğuna kefil olacak, saray nizamınca tanınan bir bey ya da soylu bulup karşıma getireceksin. İşte o zaman davası, bizzat benim şahsi hakimlerim tarafından yeniden tetkik edilecek."</em></p>
+<p>Erthan bir an duraksadı. Arkasını dönüp salonun devasa kapılarına doğru yürüdüğünde, omuzlarındaki o ezici gerginlik tüm salona sirayet etti. Kapıya attığı her adımda, geride bıraktığı umutsuzluk ve hınç, saray mermerlerine kazınan silinmez birer leke gibiydi.</p>
+`;
+
+const EXCERPT_CH1 = `<p>Puslu bulutlar gökyüzünü tamamen esir almıştı. Güneşin varlığı hissedilse de solgun ışığı bulutların ardında kayboluyordu. İnce ince ama ısrarla yağan yağmur, toprağı kesif ve yapışkan bir balçığa dönüştürmüş, yolları geçilmez kılmıştı.</p>`;
+
+const EXCERPT_CH2 = `
+<div class="epi-block">
+<p class="epi-text">İmparator Imloth Stallhart, halkın fısıltılı dilinde 'Uyuşuk' ya da 'Tembel' unvanıyla yer bulmuştur.</p>
+<p class="epi-source">İmparatorluk Arşivi — İmparatorlar Ansiklopedisi, Cilt VI</p>
+</div>
+<p>Güneşin son soluk ışıkları, imparatorluk sarayının efsunlu kubbelerinde mat yansımalar bırakarak çekilirken, göğün derinliklerinden süzülen gece, mermer sütunların arasına usulca yayılıyordu. İmparator Imloth Stallhart, odanın kasvetli sükûneti içinde tek başınaydı. Geniş, heybetli meşe ağacından yapılmış masanın başında dikiliyor, parmak uçlarındaki hafif titremeyi gizlemek istercesine ellerini masanın kenarına yaslıyordu.</p>
+<p>Tam o sırada, odanın ağır kadife perdesini aralayan İmparatoriçe Selmira sessiz adımlarla içeri girdi. Üzerindeki solgun pembe elbise, balkondan içeri sızan soğuk rüzgârın dokunuşuyla usulca dalgalanıyordu.</p>
+<p><em>"Ben yalnızca halkı, devletimizin geleceğini düşünüyorum, majesteleri,"</em> dedi Selmira. Sesi, kadife perdelerin arasından süzülen dingin bir nefes gibiydi. Sonra çenesini dikleştirdi: <em>"Senin zihnini zehirleyen şey, taht odasındaki o sinsi korkuların. Amadon seni seviyor. O senin kanından, sana ve imparatorluğa her zaman sadık kaldı."</em></p>
+`;
+
+const EXCERPT_CH3 = `
+<div class="epi-block">
+<p class="epi-text">İmparator Imloth Stallhart, halkın fısıltılı dilinde 'Uyuşuk' ya da 'Tembel' unvanıyla yer bulmuştur. KS 1451 yılında omuzlarına binen tacın altında, ne tek bir sınır genişletmiş ne de ordularını tozlu cenk meydanlarına sürmüştür.</p>
+<p class="epi-source">İmparatorluk Arşivi — İmparatorlar Ansiklopedisi, Cilt VI</p>
+</div>
+<p>İmparatoriçe Selmira, titreyen sesiyle sarayın yüksek mermer örgüleri arasında çınlayan bir feryat kopardı. Acının hırpalayıcı gücüyle neredeyse soluğu kesildi, ama yine de içindeki tüm yırtıcı gücü toplayarak bir kez daha haykırdı: <em>"İmparator nerede kaldı?"</em></p>
+<p>Gözlerini odanın çift kanatlı, oymalı kapısına dikti. Yıllar boyu tek bir buyruğuyla ardına kadar açtırdığı, ardındaki adamı kendi iradesiyle yönettiği o ahşap kapı... Şimdi, ilk kez onu buraya getirecek hiçbir kuvvete sahip değildi.</p>
+<p>Ebe Eadan, derin bir nefes aldı. <em>"Başını görüyorum!"</em> diye seslendi, sesi fısıltıdan uzak, bükülmez ve yüreklendiriciydi. <em>"Birkaç güçlü itiş daha, imparatoriçe!"</em></p>
+`;
+
+const EXCERPT_CH4 = `
+<div class="epi-block">
+<p class="epi-text">Konsey Tanrılarından Maraz, kargaşanın ve bozuluşun hüküm sürdüğü semalarda ölümün ve etin çürümesinin mutlak mutasarrıfıdır. En tekinsiz nişanesi, ruhların kozmik yazgısını tayin eden İlahi Arp'tır.</p>
+<p class="epi-source">Denge Konseyi Rehberi — Tanrılar Bölümü</p>
+</div>
+<p>Şafağın solgun parmakları başkentin yüksek kulelerine dokunduğunda, gökyüzü taze bir yara gibi gri ve morun huzursuz tonlarına bürünmüştü. Dün gecenin yağmuru dinmişti; lakin izleri her köşedeydi. Sarayın avlusundaki soğuk mermerler hâlâ ıslaktı; sabahın çiğ kokusu yaklaşan gün ışığıyla kavga ediyor, çamurlu su birikintileri meşalelerin sönük yansımalarını titreterek tutuyordu.</p>
+<p>En yaşlı çığırtkan, asasını üç kez mermere vurduktan sonra boğazından dökülen kederi rüzgâra bıraktı: <em>"Güneşin tacı düştü, gökyüzü öksüz kaldı! Işığın koruyucusu, merhametin pınarı Ulu İmparatoriçemiz Selmira, fani dünyanın perdelerini sonsuzluk adına kapattı!"</em></p>
+<p>Rean Certfa, omuzlarından dökülen gece mavisi pelerinini tek bir sert hamleyle geriye savurdu. Sol yanağından kaşının altına kadar uzanan o eski ve derin yara izi, sabahın zayıf ışığında daha da belirginleşmiş, ona canlı bir büstten ziyade savaştan sağ çıkmış bir hayaletin havasını vermişti.</p>
+`;
+
+const EXCERPT_CH5 = `
+<p>Doru'nun nalları, arnavut kaldırımları üzerindeki çamurlu su birikintilerini döverken çıkan ses, Erthan'ın zihninde karanlık bir kaosun yankısıydı. Baron Valer'ın malikânesinden çıkalı üç gün olmuştu. Üç koca gün... Erthan için bu süre, bir ömürden farksızdı. Başkentin rutubet kokan sokaklarında, soylu hanelerin meşe kapılarını aşındırmış, boğumlu parmaklarıyla tokmakları dövmekten elleri sızlar olmuştu. Ancak her seferinde aldığı tek yanıt, yüzüne inen kapıların tok ve nihai sesiydi.</p>
+<p>Karşısında duran silüet, başkentin is, sidik ve çürümüş lahana kokan havasına savrulmuş bir hakaret gibiydi. Baron Valer'in kızı Elara, kadife pelerininin başlığını hafifçe kaldırdığında, sokağın pisliğine inat, etrafa taze bir lavanta kokusu yayıldı.</p>
+<p><em>"Babam..."</em> dedi Elara. Sesi, rüzgârda titreyen bir yaprak gibiydi. <em>"Baron Valer sana kefil olabilir, Erthan. Mühürlü bir parşömen, sadece tek bir haber uçurmama bakar."</em></p>
+<p>Erthan başını iki yana salladı. <em>"Hayır. Bu ricanın arkasında senin durduğunu sezerse, senin adını lekelemekten, babanın gazabını üzerine çekmekten başka bir işe yaramaz."</em></p>
+`;
+
+const EXCERPT_CH6 = `
+<p>Doru'nun nalları, Çukurtepe'nin vıcık vıcık balçığa dönmüş toprak yolunu döverken çıkan ses, Erthan'ın şakaklarında zonklayan bir migren gibi çınlıyordu. Baba ocağının önüne geldiğinde, bacakları üzengiden ayrılmak istemezcesine uyuşmuştu.</p>
+<p>Annesi Sarya, sönmeye yüz tutmuş ocağın başında, gıcırdayan taburesine tünemişti. Almonth'un götürüldüğü günden beri kadının omuzlarına görünmez bir dağ binmişti sanki. Kapının sesiyle irkildi; elindeki tahta kaşık, titreyen parmaklarının arasından kayıp yere düştü.</p>
+<p><em>"Baron Valer var,"</em> dedi Erthan, gıcırdayan tahta tabureden hışımla kalkarken. <em>"Toprağını kanımızla, terimizle suladığımız adam. Babamın eski bir asker olduğunu bilir. Ona gideceğim."</em></p>
+<p>Baron Valer, kadehinden keyifli bir yudum aldı. <em>"Çiftliğinizden çıkan mahsulün üçte birini bana vereceksiniz. Gelecek beş hasat boyunca."</em></p>
+`;
+
+const EXCERPT_CH7 = `
+<div class="epi-block">
+<p class="epi-text">Stallhart İmparatorluğu'nun askeri nizamı, "Kutsal Kan" dogması ile feodal gücü harmanlayan ve mutlak itaate dayanan dikey bir hiyerarşidir.</p>
+<p class="epi-source">İmparatorluk Arşivi — Askeriye Rehberi</p>
+</div>
+<p>Güz, Seltanya topraklarına merhamet nedir bilmeden inmişti. Tufan tanrısının kamçısını andıran hırçın sağanak, yüksek kayalıkların tepesine bir yırtıcı kuş misali tünemiş heybetli hisarın surlarında durmaksızın uğuldayan bir afetti.</p>
+<p>Amadon Stallhart, masanın üzerindeki nemli parşömene doğru eğildi. Mürekkep karası bulaşmış ince parmaklarını ahşabın pürüzlü kenarına dayadı. Henüz yirmi beşindeydi; loş odada tek başına dahi bir hükümdar azameti sergiliyordu.</p>
+<p><em>"Bir ulak geldi,"</em> dedi Hiles, sesini dışarıdaki boranın gürültüsüne uydurmaya çalışarak. <em>"Başkentten. Atı çatlamak üzere. Mesele mühim, Melikim."</em></p>
+<p><em>"İmparatoriçe Selmira... loğusa yatağından doğrulamadı. Ruhunu teslim etti."</em></p>
+`;
+
+const EXCERPT_CH8 = `
+<p>Sarayın bazalt döşemeli avlusunda yankılanan ağır adımlar, sessizliğin içine bir bıçak gibi saplandı. Demirden örülmüş büyük kapılar, gıcırdayarak açılırken, soğuk sabah havasına demirin eski kan kokusunu anımsatan ağır bir koku yayıldı.</p>
+<p>Cüce valisi Gulwar Saert, iki yanda duran muhafızların gölgeleri arasından ağır adımlarla sarayın bazalt döşemeli avlusuna girdi. Sakalları gümüş gibi parlıyor, kısa ama geniş gövdesi, yılların ve yeraltının ezici ağırlığından sapasağlam çıkmış bir dağ gibi duruyordu. Mavi gözleri, karanlık mağaraların dibinde keşfedilmiş kadim bir cevher gibi soğuk ve derindi.</p>
+<p><em>"Madenler hâlâ çalışıyor, İmparatorum,"</em> dedi cüce. <em>"Ama damarlar tükeniyor. İşçilerimiz, alın terlerinin karşılığını almak istiyorlar."</em></p>
+`;
+
+const EXCERPT_CH9 = `
+<p>Güz mevsiminin ayaz nefesi, Arava Sarayı'nın kemerli yüksek pencerelerinden içeri süzülüyor, günlerdir koridorların tavanına sinen o yoğun mür yağı ve yanık balmumu tortusunu usul usul dağıtıyordu. Seltanya valisinin kızı olan İmparatoriçe Selmira'nın bu dünyadan göçüşünün üzerinden tam altı gün geçmişti.</p>
+<p>Bu mermer labirentin tam göbeğinde, yüksek tavanlı odanın soğuğunda Küçük Prens Zeandor yatıyordu. Annesiz geçen bu altı gece boyunca tek bir kez bile ağlamamıştı bu sıbyan; etrafını kuşatan yontulmuş harç bloklarının soğukluğunu, henüz kundağa sarılmışken omuzlarına binen o külfetli yazgıyı hissetmişçesine tuhaf, tekinsiz bir sessizliğe bürünmüştü.</p>
+<p>Valerith Kalpear, odaya girdiğinde beraberinde taze süt ve nemli toprak kokusunu da taşımıştı. Kalpear soyunun o gürbüz, topraktan beslenen kavi yapısı kadının her çizgisinde kendini belli ediyordu.</p>
+`;
+
+const EXCERPT_CH10 = `
+<div class="epi-block">
+<p class="epi-text">Arathen Krallığı, Stallhart İmparatorluğu'nun doğusunda, Kemik Sırtı Dağları'nın keskin ve geçit vermez zirvelerinin ardında kurulmuştur. İki devlet arasındaki husumet, imparatorluğun ilk harcının karıldığı günlere kadar uzanır.</p>
+<p class="epi-source">Sınır Krallıkları Üzerine Notlar, İmparatorluk Arşivi</p>
+</div>
+<p>Arathen'in taht odası, Stallhart sarayının o cilalı, altın yaldızlı ihtişamından kasıtlı bir meydan okumayla uzaktı. Burada göz alıcı, insanı kör eden hiçbir cevher parlamıyordu. Duvarlar asırlık kara meşenin kasvetli dokusuyla yükseliyor, başın üzerindeki devasa kirişler is kararmış demir halkalarla birbirine bağlanıyordu.</p>
+<p>Kral Leno Kridas, tahtına kurulup omuzlarını gevşetmek yerine, önündeki geniş parşömen haritaya eğilmişti. Yirmi dört yaşında, bedeninin tüm sertliğini ve askeri terbiye nizamını koruyan bir adamdı. Sol elinin küçük parmağı yoktu — Teran düzlüklerindeki bir muharebede mızrak ucuyla biçilmiş, geride düzgün, soluk bir güdük bırakmıştı.</p>
+<p><em>"Üç kuşaktır,"</em> dedi Leno, sesi kesme bloklara çarpıp boğuk bir tonda odaya yayılarak. <em>"Büyükbabamdan beri bu parşömene bakıyor ve hep aynı soruyu soruyoruz: Ne zaman?"</em></p>
+<p>Eron Gjin, göründüğü an hafızalardan silinmeye yazgılı çehresiyle yanıtladı: <em>"Hünkarım, şimdi sorduğunuz soru artık bir 'ne zaman' değil, bir 'nasıl' sorusu. Çünkü zaman, olgunlaşmış bir meyve gibi kendi kendine avucumuza düşüyor."</em></p>
+`;
+
+// ─── INIT ─────────────────────────────────────────────────
+document.addEventListener('DOMContentLoaded',()=>{
+  applyLang();
+  document.getElementById('ham').addEventListener('click',()=>document.getElementById('navl').classList.toggle('open'));
+  document.querySelectorAll('#navl a').forEach(a=>a.addEventListener('click',()=>document.getElementById('navl').classList.remove('open')));
+  
+  // Hash routing
+  const hash = window.location.hash;
+  if(hash && hash.startsWith('#bolum-')) {
+    const id = parseInt(hash.replace('#bolum-',''));
+    if(id) setTimeout(()=>openChapter(id),50);
+  }
+});
+</script>
+</body>
+</html>
