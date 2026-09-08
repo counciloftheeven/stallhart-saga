@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="tr" id="r">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Soy Ağacı — Son İmparator</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#060402;--deep:#0d0804;--surface:#110b05;
+  --border:#3D2A14;--borderl:#5C3F1E;
+  --gold:#C4962A;--goldb:#E8B84B;--goldd:#7A5C18;
+  --parch:#D4C0A0;--parchl:#F0E6C8;--parchd:#9A8870;
+  --bloodb:#8B2A2A;
+}
+html,body{height:100%;overflow:hidden}
+body{background:var(--bg);color:var(--parch);font-family:'Libre Baskerville',Georgia,serif;font-size:16px;display:flex;flex-direction:column}
+::-webkit-scrollbar{width:4px;height:4px}::-webkit-scrollbar-track{background:var(--deep)}::-webkit-scrollbar-thumb{background:var(--border)}
+
+/* NAV */
+nav{flex-shrink:0;background:rgba(4,2,1,.96);backdrop-filter:blur(10px);border-bottom:1px solid var(--border);z-index:200}
+.nav-in{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:0 2rem;height:54px;gap:1rem}
+.nav-brand{font-family:'IM Fell English',serif;font-size:1.1rem;color:var(--gold);text-decoration:none;flex-shrink:0}
+.nav-links{display:flex;gap:1.4rem;list-style:none;flex:1;justify-content:center}
+.nav-links a{font-family:'IM Fell English',serif;font-size:.88rem;color:var(--parchd);text-decoration:none;transition:color .18s}
+.nav-links a:hover,.nav-links a.cur{color:var(--gold)}
+.nav-r{display:flex;align-items:center;flex-shrink:0}
+.lang-btn{font-family:'IM Fell English',serif;font-size:.8rem;color:var(--parchd);background:none;border:1px solid var(--border);padding:.28rem .65rem;cursor:pointer;transition:.18s}
+.lang-btn:hover{border-color:var(--goldd);color:var(--gold)}
+.nav-ham{display:none;background:none;border:none;cursor:pointer;flex-direction:column;gap:5px;padding:4px;flex-shrink:0}
+.nav-ham span{display:block;width:22px;height:1.5px;background:var(--parchd)}
+@media(max-width:700px){.nav-links{display:none;flex-direction:column;position:absolute;top:54px;left:0;right:0;background:rgba(4,2,1,.97);border-bottom:1px solid var(--border);padding:1rem 2rem;gap:.9rem;z-index:199}.nav-links.open{display:flex}.nav-ham{display:flex}}
+
+/* TREE LAYOUT */
+.tree-outer{flex:1;overflow:auto;position:relative;cursor:grab}
+.tree-outer.drag{cursor:grabbing}
+.tree-inner{min-width:1140px;min-height:740px;position:relative;display:flex;align-items:center;justify-content:center;padding:1rem}
+#tree-svg{display:block;user-select:none}
+
+/* SVG node styles */
+.fn{cursor:pointer}
+.fn rect{transition:filter .2s,stroke-width .18s}
+.fn:hover rect,.fn.active rect{filter:brightness(1.5)}
+.fn.active rect{stroke-width:2.5!important}
+.fn-hist rect{fill:rgba(12,8,4,.8);stroke:rgba(61,42,20,.7);stroke-width:1.5}
+.fn-dec rect{fill:rgba(36,18,18,.8);stroke:rgba(100,48,48,.7);stroke-width:1.5}
+.fn-alive rect{fill:rgba(20,14,6,.8);stroke:rgba(112,82,18,.7);stroke-width:1.5}
+.fn-star rect{fill:rgba(28,18,4,.9);stroke:#C4962A;stroke-width:2}
+.fn-spouse rect{fill:rgba(14,10,6,.7);stroke:rgba(61,42,20,.5);stroke-width:1;stroke-dasharray:4 3}
+.node-name{font-family:'IM Fell English',serif;font-size:12.5px;fill:#F0E6C8}
+.node-sub{font-family:'IM Fell English',serif;font-style:italic;font-size:10px;fill:#9A8870}
+.node-ks{font-family:'IM Fell English',serif;font-size:9.5px;fill:#7A5C18}
+.fn-star .node-name{fill:#E8B84B}
+.fn-star .node-sub{fill:#C4962A}
+.fl{stroke:#3D2A14;stroke-width:1.5;fill:none}
+.fl-dash{stroke:#3D2A14;stroke-width:1;fill:none;stroke-dasharray:5 4;opacity:.6}
+.ml{stroke:#7A5C18;stroke-width:1.5;fill:none}
+.msym{fill:var(--bg);stroke:#7A5C18;stroke-width:1.5}
+.chain-anno{font-family:'IM Fell English',serif;font-style:italic;font-size:10.5px;fill:#5C3F1E}
+.legend-text{font-family:'IM Fell English',serif;font-style:italic;font-size:10px;fill:#5C3F1E}
+.tree-title{font-family:'IM Fell English',serif;font-style:italic;font-size:11px;fill:#5C3F1E;letter-spacing:3px}
+
+/* INFO PANEL */
+.ipanel{position:fixed;right:0;top:54px;bottom:0;width:280px;background:rgba(8,5,2,.97);border-left:1px solid var(--border);transform:translateX(100%);transition:transform .28s ease;z-index:100;overflow-y:auto;backdrop-filter:blur(8px)}
+.ipanel.open{transform:translateX(0)}
+.ip-close{position:absolute;top:.9rem;right:1rem;background:none;border:none;color:var(--parchd);cursor:pointer;font-family:'IM Fell English',serif;font-size:1.2rem;transition:color .18s;z-index:10}
+.ip-close:hover{color:var(--gold)}
+.ip-body{padding:2rem 1.5rem 2rem}
+.ip-eye{font-family:'IM Fell English',serif;font-size:.65rem;letter-spacing:.15em;color:var(--goldd);margin-bottom:.4rem;font-style:italic}
+.ip-name{font-family:'IM Fell English',serif;font-size:1.5rem;color:var(--parchl);line-height:1.15;margin-bottom:.25rem}
+.ip-title{font-size:.82rem;font-style:italic;color:var(--gold);margin-bottom:1rem}
+.ip-rule{width:60px;height:1px;background:linear-gradient(to right,var(--goldd),transparent);margin-bottom:1rem}
+.ip-sl{font-family:'IM Fell English',serif;font-size:.63rem;letter-spacing:.12em;color:var(--goldd);margin-bottom:.35rem}
+.ip-val{font-size:.82rem;color:var(--parchd);line-height:1.72;font-style:italic;margin-bottom:1rem}
+.ip-epi{font-family:'IM Fell English',serif;font-style:italic;font-size:.75rem;color:var(--bloodb);padding-top:.75rem;border-top:1px solid var(--border)}
+.ip-ks{display:inline-block;font-family:'IM Fell English',serif;font-size:.68rem;border:1px solid var(--border);padding:.15rem .55rem;color:var(--goldd);font-style:italic;margin-bottom:1rem}
+.ip-link{display:block;font-family:'IM Fell English',serif;font-size:.75rem;color:var(--gold);font-style:italic;text-decoration:none;margin-top:1rem;padding-top:.75rem;border-top:1px solid var(--border)}
+.ip-link:hover{color:var(--goldb)}
+
+/* TOOLBAR */
+.toolbar{position:fixed;bottom:2rem;left:2rem;z-index:50;display:flex;gap:.4rem}
+.tb{width:34px;height:34px;background:rgba(13,8,4,.92);border:1px solid var(--border);color:var(--parchd);cursor:pointer;display:flex;align-items:center;justify-content:center;font-family:'IM Fell English',serif;font-size:.9rem;transition:.18s;backdrop-filter:blur(4px)}
+.tb:hover{border-color:var(--goldd);color:var(--gold)}
+.tb svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-in">
+    <a href="son-imparator.html" class="nav-brand">The Stallhart Saga</a>
+    <button class="nav-ham" id="ham" aria-label="Menü"><span></span><span></span><span></span></button>
+    <ul class="nav-links" id="navl">
+      <li><a href="son-imparator.html" id="nl-home">Ana Sayfa</a></li>
+      <li><a href="lore.html" id="nl-lore">Evren</a></li>
+      <li><a href="karakterler.html" id="nl-chars">Karakterler</a></li>
+      <li><a href="bolumler.html" id="nl-chaps">Bölümler</a></li>
+      <li><a href="harita.html" id="nl-map">Harita</a></li>
+      <li><a href="soy-agaci.html" id="nl-tree">Soy Ağacı</a></li>
+      <li><a href="alintılar.html" id="nl-quotes">Sözler</a></li>
+    </ul>
+    <div class="nav-r">
+      <button class="lang-btn" id="lang-btn" onclick="toggleLang()">EN</button>
+    </div>
+  </div>
+</nav>
+
+<div class="tree-outer" id="tree-outer">
+  <div class="tree-inner">
+    <svg id="tree-svg" viewBox="0 0 1100 730" width="1100" height="730" xmlns="http://www.w3.org/2000/svg">
+
+      <!-- ── CONNECTING LINES ── -->
+      <!-- Vertical: Craes → Nadima -->
+      <line x1="550" y1="82" x2="550" y2="110" class="fl"/>
+      <!-- Nadima → chain dashes -->
+      <line x1="550" y1="166" x2="550" y2="196" class="fl-dash"/>
+      <!-- chain → Rones -->
+      <line x1="550" y1="208" x2="550" y2="214" class="fl-dash"/>
+      <!-- Rones → Elron -->
+      <line x1="550" y1="270" x2="550" y2="300" class="fl"/>
+      <!-- Elron → split -->
+      <polyline points="550,356 550,374 246,374 246,390" class="fl"/>
+      <polyline points="550,374 855,374 855,390" class="fl"/>
+
+      <!-- Marriage: Selmira ─ Imloth -->
+      <line x1="162" y1="418" x2="174" y2="418" class="ml"/>
+      <polygon points="168,413 174,418 168,423 162,418" class="msym"/>
+      <!-- Marriage: Amadon ─ Meryen -->
+      <line x1="932" y1="418" x2="944" y2="418" class="ml"/>
+      <polygon points="938,413 944,418 938,423 932,418" class="msym"/>
+
+      <!-- Imloth → Zeandor -->
+      <line x1="246" y1="446" x2="246" y2="504" class="fl"/>
+      <!-- Amadon → children split -->
+      <polyline points="855,446 855,476 730,476 730,504" class="fl"/>
+      <polyline points="855,476 896,476 896,504" class="fl"/>
+
+      <!-- ── HISTORICAL CHAIN ANNOTATION ── -->
+      <text x="554" y="195" class="chain-anno" dominant-baseline="middle">
+        ↓  Nadima  ·  Scifella  ·  Reanloth  ·  Lun Aldris I &amp; II  ·  Domkha  ·  Lunrye  ·  II. Remal
+      </text>
+
+      <!-- ── NODES ── -->
+
+      <!-- I. Craes Stallhart -->
+      <g class="fn fn-hist" id="fn-craes" onclick="showInfo('craes')">
+        <rect x="478" y="26" width="144" height="56" rx="1"/>
+        <text x="550" y="47" class="node-name" text-anchor="middle">I. Craes Stallhart</text>
+        <text x="550" y="62" class="node-sub" text-anchor="middle">Kurucu Hakan</text>
+        <text x="550" y="75" class="node-ks" text-anchor="middle">KS 1144 →</text>
+      </g>
+
+      <!-- Rones Alvro -->
+      <g class="fn fn-hist" id="fn-rones" onclick="showInfo('rones')">
+        <rect x="478" y="214" width="144" height="56" rx="1"/>
+        <text x="550" y="235" class="node-name" text-anchor="middle">Rones Alvro</text>
+        <text x="550" y="250" class="node-sub" text-anchor="middle">Demiryumruk</text>
+        <text x="550" y="263" class="node-ks" text-anchor="middle">KS 1412 – 1441</text>
+      </g>
+
+      <!-- Elron III -->
+      <g class="fn fn-hist" id="fn-elron" onclick="showInfo('elron')">
+        <rect x="478" y="300" width="144" height="56" rx="1"/>
+        <text x="550" y="321" class="node-name" text-anchor="middle">III. Elron Stallhart</text>
+        <text x="550" y="336" class="node-sub" text-anchor="middle">Sulh Düşkünü</text>
+        <text x="550" y="349" class="node-ks" text-anchor="middle">KS 1441 – 1452</text>
+      </g>
+
+      <!-- Selmira (spouse / deceased) -->
+      <g class="fn fn-spouse" id="fn-selmira" onclick="showInfo('selmira')">
+        <rect x="14" y="390" width="148" height="56" rx="1"/>
+        <text x="88" y="411" class="node-name" text-anchor="middle">Selmira ✝</text>
+        <text x="88" y="426" class="node-sub" text-anchor="middle">İmparatoriçe</text>
+        <text x="88" y="439" class="node-ks" text-anchor="middle">? – KS 1481</text>
+      </g>
+
+      <!-- Imloth -->
+      <g class="fn fn-dec" id="fn-imloth" onclick="showInfo('imloth')">
+        <rect x="174" y="390" width="144" height="56" rx="1"/>
+        <text x="246" y="411" class="node-name" text-anchor="middle">İmloth Stallhart</text>
+        <text x="246" y="426" class="node-sub" text-anchor="middle">Tembel · İmparator</text>
+        <text x="246" y="439" class="node-ks" text-anchor="middle">KS 1452 – ?</text>
+      </g>
+
+      <!-- Amadon -->
+      <g class="fn fn-dec" id="fn-amadon" onclick="showInfo('amadon')">
+        <rect x="783" y="390" width="149" height="56" rx="1"/>
+        <text x="857" y="411" class="node-name" text-anchor="middle">Amadon Stallhart</text>
+        <text x="857" y="426" class="node-sub" text-anchor="middle">Enkazın Hükümdarı</text>
+        <text x="857" y="439" class="node-ks" text-anchor="middle">Melik → İmparator</text>
+      </g>
+
+      <!-- Meryen (spouse) -->
+      <g class="fn fn-spouse" id="fn-meryen" onclick="showInfo('meryen')">
+        <rect x="944" y="390" width="144" height="56" rx="1"/>
+        <text x="1016" y="411" class="node-name" text-anchor="middle">Meryen Stallhart</text>
+        <text x="1016" y="426" class="node-sub" text-anchor="middle">İmparatoriçe</text>
+        <text x="1016" y="439" class="node-ks" text-anchor="middle">Sürgünde</text>
+      </g>
+
+      <!-- ZEANDOR (protagonist) -->
+      <g class="fn fn-star" id="fn-zeandor" onclick="showInfo('zeandor')">
+        <rect x="174" y="504" width="144" height="60" rx="1"/>
+        <text x="246" y="526" class="node-name" text-anchor="middle">Zeandor Stallhart</text>
+        <text x="246" y="541" class="node-sub" text-anchor="middle">Yarının Hükümdarı</text>
+        <text x="246" y="556" class="node-ks" text-anchor="middle">KS 1481 →  ✦</text>
+      </g>
+
+      <!-- Lunin (deceased) -->
+      <g class="fn fn-dec" id="fn-lunin" onclick="showInfo('lunin')">
+        <rect x="658" y="504" width="144" height="60" rx="1"/>
+        <text x="730" y="526" class="node-name" text-anchor="middle">Lunin Stallhart ✝</text>
+        <text x="730" y="541" class="node-sub" text-anchor="middle">Şehzade</text>
+        <text x="730" y="556" class="node-ks" text-anchor="middle">Vebada hayatını kaybetti</text>
+      </g>
+
+      <!-- Lun Aldris -->
+      <g class="fn fn-alive" id="fn-lun-aldris" onclick="showInfo('lun-aldris')">
+        <rect x="824" y="504" width="144" height="60" rx="1"/>
+        <text x="896" y="526" class="node-name" text-anchor="middle">Lun Aldris</text>
+        <text x="896" y="541" class="node-sub" text-anchor="middle">Ay Gözcüsü</text>
+        <text x="896" y="556" class="node-ks" text-anchor="middle">Sürgünde</text>
+      </g>
+
+      <!-- LEGEND -->
+      <g transform="translate(20,655)">
+        <rect x="0" y="0" width="10" height="10" fill="rgba(12,8,4,.8)" stroke="rgba(61,42,20,.7)" stroke-width="1.2"/>
+        <text x="14" y="9" class="legend-text">Tarihsel</text>
+        <rect x="74" y="0" width="10" height="10" fill="rgba(36,18,18,.8)" stroke="rgba(100,48,48,.7)" stroke-width="1.2"/>
+        <text x="88" y="9" class="legend-text">Hayatını Kaybetti</text>
+        <rect x="194" y="0" width="10" height="10" fill="rgba(20,14,6,.8)" stroke="rgba(112,82,18,.7)" stroke-width="1.2"/>
+        <text x="208" y="9" class="legend-text">Hayatta</text>
+        <rect x="266" y="0" width="10" height="10" fill="rgba(28,18,4,.9)" stroke="#C4962A" stroke-width="1.8"/>
+        <text x="280" y="9" class="legend-text">Ana Karakter</text>
+        <rect x="366" y="0" width="10" height="10" fill="rgba(14,10,6,.7)" stroke="rgba(61,42,20,.5)" stroke-width="1" stroke-dasharray="4 3"/>
+        <text x="380" y="9" class="legend-text">Eş</text>
+        <!-- Marriage symbol explanation -->
+        <polygon points="452,5 458,0 464,5 458,10" fill="var(--bg)" stroke="#7A5C18" stroke-width="1.2"/>
+        <text x="468" y="9" class="legend-text">Evlilik</text>
+      </g>
+
+      <!-- BORDER -->
+      <rect x="6" y="6" width="1088" height="718" fill="none" stroke="#3D2A14" stroke-width="1.5"/>
+      <rect x="10" y="10" width="1080" height="710" fill="none" stroke="#221408" stroke-width=".5"/>
+      <!-- Corner ornaments -->
+      <path d="M6,6 L28,6 M6,6 L6,28" stroke="#5C3F1E" stroke-width="1.5" fill="none"/>
+      <path d="M1094,6 L1072,6 M1094,6 L1094,28" stroke="#5C3F1E" stroke-width="1.5" fill="none"/>
+      <path d="M6,724 L28,724 M6,724 L6,702" stroke="#5C3F1E" stroke-width="1.5" fill="none"/>
+      <path d="M1094,724 L1072,724 M1094,724 L1094,702" stroke="#5C3F1E" stroke-width="1.5" fill="none"/>
+      <!-- Title -->
+      <text x="550" y="718" text-anchor="middle" class="tree-title">STALLHART HANEDANI — SOY AĞACI</text>
+    </svg>
+  </div>
+</div>
+
+<!-- INFO PANEL -->
+<div class="ipanel" id="ipanel">
+  <button class="ip-close" onclick="closeInfo()">✕</button>
+  <div class="ip-body" id="ip-body"></div>
+</div>
+
+<!-- TOOLBAR -->
+<div class="toolbar">
+  <button class="tb" onclick="resetPan()" title="Sıfırla">
+    <svg viewBox="0 0 24 24"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-3.5"/></svg>
+  </button>
+</div>
+
+<footer style="display:none"></footer>
+
+<script>
+// ─── LANG ─────────────────────────────────────────────────
+let L = localStorage.getItem('si-lang') || 'tr';
+const T = o => (o&&o[L])||(o&&o.tr)||'';
+
+function applyLang() {
+  document.getElementById('r').lang=L;
+  document.getElementById('lang-btn').textContent=L==='tr'?'EN':'TR';
+  const nav={home:{tr:'Ana Sayfa',en:'Home'},lore:{tr:'Evren',en:'Lore'},chars:{tr:'Karakterler',en:'Characters'},chaps:{tr:'Bölümler',en:'Chapters'},map:{tr:'Harita',en:'Map'}};
+  Object.entries(nav).forEach(([k,v])=>{const el=document.getElementById('nl-'+k);if(el)el.textContent=T(v);});
+  document.title=(L==='tr'?'Soy Ağacı':'Family Tree')+' — Son İmparator';
+  if(activeNode) showInfo(activeNode);
+}
+function toggleLang(){L=L==='tr'?'en':'tr';localStorage.setItem('si-lang',L);applyLang();}
+
+// ─── PERSON DATA ──────────────────────────────────────────
+const PERSONS = {
+  craes:{
+    group:{tr:'Stallhart Hanedanı',en:'Stallhart Dynasty'},
+    name:{tr:'I. Craes Stallhart',en:'Craes Stallhart I'},
+    title:{tr:'Kurucu Hakan',en:'Founder Khan'},
+    ks:'KS 1144',
+    status:'historical',
+    epithet:{tr:'Acımasız Hakikatin Eli',en:'Hand of Ruthless Truth'},
+    desc:{tr:'Bölünmüş boyları tek bayrak altında birleştirerek Stallhart İmparatorluğu\'nu kurdu. Esaretten döndükten sonra Kutsal Kan Doktrini\'ni ilan ederek hanedanın ilahi kökenini tescil etti.',en:'Founded the Stallhart Empire by uniting fractured clans under one banner. Proclaimed the Holy Blood Doctrine upon returning from captivity, establishing the divine lineage of the dynasty.'},
+    link:'karakterler.html#craes'
+  },
+  rones:{
+    group:{tr:'Stallhart Hanedanı',en:'Stallhart Dynasty'},
+    name:{tr:'Rones Alvro Stallhart',en:'Rones Alvro Stallhart'},
+    title:{tr:'İmparator',en:'Emperor'},
+    ks:'KS 1412 – 1441',
+    status:'historical',
+    epithet:{tr:'Demiryumruk',en:'Iron Fist'},
+    desc:{tr:'Otuz yıllık demir disiplin. Burria\'yı haraca bağladı, Arathen sınırını dondurdu. Sokaklarda yas tutularak uğurlanan nadir imparatorlardan biridir. Elron\'un babasıdır.',en:'Thirty years of iron discipline. Bound Burria in tribute and froze the Arathen border. One of the rare emperors mourned in the streets at his death. Father of Elron.'},
+    link:'karakterler.html#rones'
+  },
+  elron:{
+    group:{tr:'Stallhart Hanedanı',en:'Stallhart Dynasty'},
+    name:{tr:'III. Elron Stallhart',en:'Elron Stallhart III'},
+    title:{tr:'İmparator',en:'Emperor'},
+    ks:'KS 1441 – 1452',
+    status:'historical',
+    epithet:{tr:'Sulh Düşkünü',en:'The Peace-Lover'},
+    desc:{tr:'Sulhsever ve pasif bir hükümdar. Eyalet kontrollerini gevşetti ve Burria\'yı kalıcı olarak kaybetti. Taşranın özerkleşmesinin kapısını araladı. İmloth ve Amadon\'un babasıdır.',en:'Peace-loving and passive ruler. Loosened provincial controls and permanently lost Burria. Opened the door to provincial autonomy. Father of Imloth and Amadon.'},
+    link:'karakterler.html#elron'
+  },
+  selmira:{
+    group:{tr:'İmparatorluk Hanedanı',en:'Imperial Dynasty'},
+    name:{tr:'Selmira Stallhart ✝',en:'Selmira Stallhart ✝'},
+    title:{tr:'İmparatoriçe',en:'Empress'},
+    ks:'? – KS 1481',
+    status:'deceased',
+    epithet:{tr:'Gümüş Okyanus',en:'Silver Ocean'},
+    desc:{tr:'Uzun boylu, porselen tenli, bakır kızıl örülü saçlı sevilen imparatoriçe. Halkın kalbinde Nadima Ana\'dan bu yana en kutsal isimdi. Zeandor\'u dünyaya getirirken hayatını kaybetti.',en:'Tall, porcelain-skinned, copper-red braided empress, beloved by the people. The most revered name since Empress Nadima. Died delivering Zeandor into the world.'},
+    link:'karakterler.html#selmira'
+  },
+  imloth:{
+    group:{tr:'Stallhart Hanedanı',en:'Stallhart Dynasty'},
+    name:{tr:'İmloth Stallhart',en:'Imloth Stallhart'},
+    title:{tr:'İmparator',en:'Emperor'},
+    ks:'KS 1452 – ?',
+    status:'deceased',
+    epithet:{tr:'Tembel · Derin Tuzak',en:'The Lazy · The Deep Trap'},
+    desc:{tr:'Şişman, kel, apodik gözlü; paranoya ve suçluluk onu felç etti. Selmira\'yı kaybederek Zeandor\'u dünyaya getirdi. Amadon\'un ağabeyi, Zeandor\'un babasıdır.',en:'Obese, bald, apathetic eyes; paralyzed by paranoia and guilt. Lost Selmira bringing Zeandor into the world. Amadon\'s older brother, Zeandor\'s father.'},
+    link:'karakterler.html#imloth'
+  },
+  amadon:{
+    group:{tr:'Stallhart Hanedanı',en:'Stallhart Dynasty'},
+    name:{tr:'Amadon Stallhart',en:'Amadon Stallhart'},
+    title:{tr:'Seltanya Meliki → İmparator',en:'Melik of Seltanya → Emperor'},
+    ks:'KS 1458 → ?',
+    status:'deceased',
+    epithet:{tr:'Enkazın Hükümdarı',en:'Sovereign of the Ruins'},
+    desc:{tr:'Zekâsı ve kararlılığıyla çürüyen imparatorluğu yeniden ayağa kaldırdı. Karabıçaklar\'ı kurdu, veba döneminde hüküm sürdü, paranoyası büyüdü. Ölüm döşeğinde mühürlü fermanlarla imparatorluğun kaderini belirledi.',en:'His intellect and resolve revived a crumbling empire. Founded the Black Claws, reigned through plague, succumbed to paranoia. Sealed edicts on his deathbed determined the empire\'s fate.'},
+    link:'karakterler.html#amadon'
+  },
+  meryen:{
+    group:{tr:'İmparatorluk Hanedanı',en:'Imperial Dynasty'},
+    name:{tr:'Meryen Stallhart',en:'Meryen Stallhart'},
+    title:{tr:'İmparatoriçe',en:'Empress'},
+    ks:'Sürgünde / In exile',
+    status:'alive',
+    epithet:{tr:'',en:''},
+    desc:{tr:'Zarif yüzlü, soluk tenli, gri gözlü. Zümrüt yeşili sabahlığı ve yakut kolyesiyle tanınır. Amadon\'un eşi. Edun Solgar tarafından Lun Aldris\'i gizlice taçlandırmak üzere manipüle edildi; başkenti terk etmek zorunda kaldı.',en:'Elegant features, pale skin, gray eyes. Known for her emerald dressing gown and ruby necklace. Amadon\'s wife. Manipulated by Edun Solgar into crowning Lun Aldris; forced to flee the capital.'},
+    link:'karakterler.html#meryen'
+  },
+  zeandor:{
+    group:{tr:'Stallhart Hanedanı',en:'Stallhart Dynasty'},
+    name:{tr:'Zeandor Stallhart',en:'Zeandor Stallhart'},
+    title:{tr:'Melik Vali → İmparator',en:'Governor King → Emperor'},
+    ks:'KS 1481 →',
+    status:'alive',
+    epithet:{tr:'Yarının Hükümdarı · Sürgünün Oğlu',en:'Tomorrow\'s Sovereign · Son of Exile'},
+    desc:{tr:'9 yaşında Selya\'ya sürgün edilen Zeandor, bilge Celios\'un yanında olgunlaştı. Soğuk, hesaplı; ama adalete karşı körlüğü yoktur. Erthan\'ın isyanını bastırmak için gönderildi; imparatorluğun son umudu hâline geldi.',en:'Exiled to Selya at age 9, Zeandor came of age under wise Celios. Cold and calculating, yet not blind to justice. Sent to quell Erthan\'s rebellion, he became the empire\'s last hope.'},
+    link:'karakterler.html#zeandor'
+  },
+  lunin:{
+    group:{tr:'Stallhart Hanedanı',en:'Stallhart Dynasty'},
+    name:{tr:'Lunin Stallhart ✝',en:'Lunin Stallhart ✝'},
+    title:{tr:'Şehzade',en:'Crown Prince'},
+    ks:'? – KS 1467',
+    status:'deceased',
+    epithet:{tr:'Ayın Oğlu',en:'Son of the Moon'},
+    desc:{tr:'Amadon\'un büyük oğlu. Büyük Veba\'da hayatını kaybetti. Bu kayıp Amadon\'un karanlıklaşmasını hızlandırdı ve imparatorluğun kaderini derinden sarstı.',en:'Amadon\'s firstborn. Died in the Great Plague. This loss accelerated Amadon\'s descent into darkness and shook the empire\'s fate to its foundations.'},
+    link:'karakterler.html'
+  },
+  'lun-aldris':{
+    group:{tr:'Stallhart Hanedanı',en:'Stallhart Dynasty'},
+    name:{tr:'Lun Aldris Stallhart',en:'Lun Aldris Stallhart'},
+    title:{tr:'Şehzade',en:'Crown Prince'},
+    ks:'KS 1470 → Sürgünde',
+    status:'alive',
+    epithet:{tr:'Ay Gözcüsü · Kutsal Işığın Varisi',en:'Moonwatcher · Heir of the Sacred Light'},
+    desc:{tr:'Amadon\'un küçük oğlu. Edun Solgar\'ın manipülasyonuyla annesi Meryen tarafından gizlice taç giydirilerek meşruiyet krizinin odağı oldu. Zeandor\'un yükselişinin ardından annesiyle birlikte kaçtı.',en:'Amadon\'s younger son. Manipulated into a secret coronation by his mother Meryen, becoming the center of a legitimacy crisis. Fled with his mother after Zeandor\'s ascension.'},
+    link:'karakterler.html#lun-aldris'
+  }
+};
+
+// ─── INFO PANEL ───────────────────────────────────────────
+let activeNode = null;
+
+function showInfo(id) {
+  const p = PERSONS[id]; if(!p) return;
+  activeNode = id;
+  document.querySelectorAll('.fn').forEach(n=>n.classList.remove('active'));
+  const node = document.getElementById('fn-'+id);
+  if(node) node.classList.add('active');
+
+  const statusLabel = {
+    historical: {tr:'Tarihsel Figür',en:'Historical Figure'},
+    deceased:   {tr:'Hayatını Kaybetti',en:'Deceased'},
+    alive:      {tr:'Hayatta',en:'Alive'}
+  };
+
+  document.getElementById('ip-body').innerHTML = `
+    <p class="ip-eye">${T(p.group)}</p>
+    <h2 class="ip-name">${T(p.name)}</h2>
+    <p class="ip-title">${T(p.title)}</p>
+    <span class="ip-ks">${p.ks}</span>
+    <div class="ip-rule"></div>
+    <p class="ip-sl">${L==='tr'?'DURUM':'STATUS'}</p>
+    <p class="ip-val">${T(statusLabel[p.status])||p.status}</p>
+    <p class="ip-sl">${L==='tr'?'AÇIKLAMA':'DESCRIPTION'}</p>
+    <p class="ip-val">${T(p.desc)}</p>
+    ${p.epithet&&T(p.epithet)?`<p class="ip-epi">${T(p.epithet)}</p>`:''}
+    ${p.link?`<a href="${p.link}" class="ip-link">→ ${L==='tr'?'Karakter Sayfasına Git':'Go to Character Page'}</a>`:''}
+  `;
+  document.getElementById('ipanel').classList.add('open');
+}
+
+function closeInfo() {
+  document.getElementById('ipanel').classList.remove('open');
+  document.querySelectorAll('.fn').forEach(n=>n.classList.remove('active'));
+  activeNode = null;
+}
+
+// Click outside to close
+document.getElementById('tree-outer').addEventListener('click',e=>{
+  if(!e.target.closest('.fn')&&!e.target.closest('#ipanel')) closeInfo();
+});
+
+// ─── PAN (simple drag) ────────────────────────────────────
+const outer = document.getElementById('tree-outer');
+let isDragging=false, startX=0, startY=0, scrollL=0, scrollT=0;
+outer.addEventListener('mousedown',e=>{isDragging=true;startX=e.pageX-outer.offsetLeft;startY=e.pageY-outer.offsetTop;scrollL=outer.scrollLeft;scrollT=outer.scrollTop;outer.classList.add('drag')});
+window.addEventListener('mouseup',()=>{isDragging=false;outer.classList.remove('drag')});
+window.addEventListener('mousemove',e=>{if(!isDragging)return;e.preventDefault();const x=e.pageX-outer.offsetLeft;const y=e.pageY-outer.offsetTop;outer.scrollLeft=scrollL-(x-startX);outer.scrollTop=scrollT-(y-startY)});
+outer.addEventListener('touchstart',e=>{const t=e.touches[0];startX=t.pageX;startY=t.pageY;scrollL=outer.scrollLeft;scrollT=outer.scrollTop},{passive:true});
+outer.addEventListener('touchmove',e=>{const t=e.touches[0];outer.scrollLeft=scrollL-(t.pageX-startX);outer.scrollTop=scrollT-(t.pageY-startY)},{passive:true});
+
+function resetPan(){outer.scrollLeft=0;outer.scrollTop=0;}
+
+// ─── NAV ──────────────────────────────────────────────────
+document.getElementById('ham').addEventListener('click',()=>document.getElementById('navl').classList.toggle('open'));
+document.querySelectorAll('#navl a').forEach(a=>a.addEventListener('click',()=>document.getElementById('navl').classList.remove('open')));
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeInfo();});
+
+applyLang();
+</script>
+</body>
+</html>
