@@ -1,0 +1,168 @@
+/* ══════════════════════════════════════════════════════════════
+   THE STALLHART SAGA — characters.css
+   Bağımlılık: karakterler.html içindeki CSS token'ları
+   Yazar: interaktif çalışma v1
+══════════════════════════════════════════════════════════════ */
+
+/* ── PORTRAIT FRAME ─────────────────────────────────────── */
+.portrait-frame {
+  position: relative;
+  width: 160px;
+  aspect-ratio: 3 / 4;
+  background: #080502;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+/* Dış altın çerçeve */
+.portrait-frame::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border: 1.5px solid rgba(196, 150, 42, 0.6);
+  box-shadow:
+    inset 0 0 28px rgba(196, 150, 42, 0.05),
+    0 0 20px rgba(196, 150, 42, 0.1);
+  pointer-events: none;
+  z-index: 3;
+  transition: box-shadow 0.35s ease;
+}
+
+/* İç ince çerçeve */
+.portrait-frame::after {
+  content: '';
+  position: absolute;
+  inset: 7px;
+  border: 1px solid rgba(196, 150, 42, 0.22);
+  pointer-events: none;
+  z-index: 3;
+}
+
+.portrait-frame:hover::before {
+  box-shadow:
+    inset 0 0 28px rgba(196, 150, 42, 0.08),
+    0 0 36px rgba(196, 150, 42, 0.22);
+}
+
+/* ── PORTRAIT IMAGE ──────────────────────────────────────── */
+.portrait-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  display: block;
+  opacity: 0;
+  transition: opacity 0.45s ease;
+  z-index: 1;
+}
+
+.portrait-img.loaded {
+  opacity: 1;
+}
+
+/* ── FILIGREE CORNER ORNAMENTS ───────────────────────────── */
+.portrait-corner {
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  z-index: 4;
+  pointer-events: none;
+  overflow: visible;
+}
+
+.portrait-corner.tl { top: -1px;  left: -1px; }
+.portrait-corner.tr { top: -1px;  right: -1px;  transform: scaleX(-1); }
+.portrait-corner.bl { bottom: -1px; left: -1px;  transform: scaleY(-1); }
+.portrait-corner.br { bottom: -1px; right: -1px; transform: scale(-1); }
+
+.portrait-corner svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* ── FALLBACK SİLUET ─────────────────────────────────────── */
+.portrait-fallback {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  padding-bottom: 0.75rem;
+  overflow: hidden;
+}
+
+.portrait-fallback-bg {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    170deg,
+    var(--group-fg, #7A5C18) 0%,
+    transparent 60%
+  );
+  opacity: 0.09;
+}
+
+.portrait-fallback-silhouette {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 78%;
+  height: 82%;
+  opacity: 0.18;
+  filter: drop-shadow(0 0 10px var(--group-fg, #C4962A));
+}
+
+.portrait-fallback-initial {
+  font-family: 'IM Fell English', serif;
+  font-size: 3.2rem;
+  opacity: 0.38;
+  position: relative;
+  z-index: 1;
+  line-height: 1;
+  text-shadow: 0 0 24px var(--group-fg, #C4962A);
+  letter-spacing: -0.02em;
+}
+
+/* ── MODAL: RESPONSIVE AYARLAR ──────────────────────────── */
+@media (max-width: 640px) {
+  .portrait-frame {
+    width: 104px;
+  }
+  .portrait-fallback-initial {
+    font-size: 2.2rem;
+  }
+}
+
+/* ── MO-L: Mobilde portrait + meta yan yana ─────────────── */
+@media (max-width: 640px) {
+  .mo-l {
+    flex-direction: row !important;
+    flex-wrap: wrap;
+    gap: 1rem !important;
+    padding: 1.25rem !important;
+    border-right: none !important;
+    border-bottom: 1px solid rgba(61, 42, 20, 0.4) !important;
+    align-items: flex-start !important;
+  }
+  .mo-l .mo-house-badge,
+  .mo-l .mo-meta {
+    flex: 1;
+    min-width: 0;
+    text-align: left !important;
+    align-items: flex-start !important;
+  }
+}
+
+/* ── HOVER GLOW — KART İYİLEŞTİRME ─────────────────────── */
+.cc:hover .portrait-frame::before,
+.cc:focus .portrait-frame::before {
+  box-shadow:
+    inset 0 0 28px rgba(196, 150, 42, 0.1),
+    0 0 28px rgba(196, 150, 42, 0.2);
+}
