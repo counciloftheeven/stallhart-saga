@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="tr" id="r">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sözler — Son İmparator</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#060402;--deep:#0d0804;--surface:#110b05;
+  --card:rgba(24,16,7,.78);--border:#3D2A14;--borderl:#5C3F1E;
+  --gold:#C4962A;--goldb:#E8B84B;--goldd:#7A5C18;
+  --parch:#D4C0A0;--parchl:#F0E6C8;--parchd:#9A8870;
+  --blood:#5C1A1A;--bloodb:#8B2A2A;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);background-image:radial-gradient(ellipse 70% 50% at 18% 18%,rgba(92,26,26,.08) 0%,transparent 100%);color:var(--parch);font-family:'Libre Baskerville',Georgia,serif;font-size:16px;line-height:1.75;min-height:100vh}
+::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:var(--deep)}::-webkit-scrollbar-thumb{background:var(--border)}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(4,2,1,.96);backdrop-filter:blur(10px);border-bottom:1px solid var(--border)}
+.nav-in{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:0 1.5rem;height:54px;gap:1rem}
+.nav-brand{font-family:'IM Fell English',serif;font-size:1.1rem;color:var(--gold);text-decoration:none;flex-shrink:0}
+.nav-links{display:flex;gap:1.2rem;list-style:none;flex:1;justify-content:center;flex-wrap:nowrap}
+.nav-links a{font-family:'IM Fell English',serif;font-size:.82rem;color:var(--parchd);text-decoration:none;transition:color .18s;white-space:nowrap}
+.nav-links a:hover,.nav-links a.cur{color:var(--gold)}
+.nav-r{display:flex;align-items:center;flex-shrink:0}
+.lang-btn{font-family:'IM Fell English',serif;font-size:.8rem;color:var(--parchd);background:none;border:1px solid var(--border);padding:.28rem .65rem;cursor:pointer;transition:.18s}
+.lang-btn:hover{border-color:var(--goldd);color:var(--gold)}
+.nav-ham{display:none;background:none;border:none;cursor:pointer;flex-direction:column;gap:5px;padding:4px;flex-shrink:0}
+.nav-ham span{display:block;width:22px;height:1.5px;background:var(--parchd)}
+@media(max-width:780px){.nav-links{display:none;flex-direction:column;position:absolute;top:54px;left:0;right:0;background:rgba(4,2,1,.97);border-bottom:1px solid var(--border);padding:1rem 2rem;gap:.9rem;z-index:199}.nav-links.open{display:flex}.nav-ham{display:flex}}
+
+/* HERO */
+.pg-hero{padding:110px 2rem 3rem;text-align:center;border-bottom:1px solid var(--border);background:var(--deep)}
+.pg-hero h1{font-family:'IM Fell English',serif;font-size:clamp(2.2rem,5vw,3.4rem);color:var(--parchl);margin-bottom:.5rem;line-height:1.1}
+.pg-hero p{color:var(--parchd);font-style:italic;max-width:500px;margin:0 auto;font-size:.92rem}
+
+/* SECTION TABS */
+.sec-nav{position:sticky;top:54px;z-index:150;background:rgba(6,4,2,.97);backdrop-filter:blur(8px);border-bottom:1px solid var(--border)}
+.sec-nav-in{max-width:1100px;margin:0 auto;display:flex;padding:0 2rem}
+.stab{font-family:'IM Fell English',serif;font-size:.88rem;font-style:italic;color:var(--parchd);background:none;border:none;padding:1rem 1.8rem;cursor:pointer;position:relative;transition:color .18s;white-space:nowrap}
+.stab::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--gold);transform:scaleX(0);transition:transform .2s}
+.stab.on{color:var(--gold)}.stab.on::after{transform:scaleX(1)}
+.stab:hover{color:var(--parchl)}.stab:hover::after{transform:scaleX(.5)}
+
+/* SECTIONS */
+.sec{display:none;padding:4rem 2rem 7rem}
+.sec.on{display:block}
+.inn{max-width:900px;margin:0 auto}
+.sec-h{margin-bottom:3rem}
+.sec-t{font-family:'IM Fell English',serif;font-size:clamp(1.5rem,3vw,2.2rem);color:var(--parchl);margin-bottom:.5rem}
+.sec-s{color:var(--parchd);font-style:italic;font-size:.92rem;max-width:520px}
+.rule{display:block;width:90px;height:1px;background:linear-gradient(to right,var(--goldd),transparent);margin:1rem 0 0}
+
+/* ══ QUOTES ══════════════════════════════════════════════ */
+#sec-quotes{background:var(--deep)}
+.quote-grid{display:flex;flex-direction:column;gap:1.5px;background:var(--border)}
+
+.quote-card{background:var(--card);padding:2.5rem 2rem;position:relative;transition:background .18s;cursor:default}
+.quote-card:hover{background:rgba(28,18,8,.85)}
+.quote-card::before{content:'\201C';position:absolute;top:.5rem;left:1.25rem;font-family:'IM Fell English',serif;font-size:5rem;color:rgba(196,150,42,.12);line-height:1;pointer-events:none}
+.q-text{font-family:'IM Fell English',serif;font-size:1.15rem;color:var(--parchl);line-height:1.85;font-style:italic;padding-left:.5rem;margin-bottom:1.25rem;position:relative;z-index:1}
+.q-bar{display:flex;align-items:center;gap:1rem;flex-wrap:wrap}
+.q-speaker{font-family:'IM Fell English',serif;font-size:.78rem;color:var(--gold);font-style:italic}
+.q-theme{font-family:'IM Fell English',serif;font-size:.65rem;letter-spacing:.12em;padding:.15rem .6rem;border:1px solid;font-style:italic}
+.qt-iktidar{color:var(--bloodb);border-color:rgba(139,42,42,.35)}
+.qt-inanc{color:#7A90A0;border-color:rgba(122,144,160,.35)}
+.qt-kader{color:var(--goldd);border-color:rgba(122,92,24,.35)}
+.qt-guven{color:#6A8070;border-color:rgba(106,128,112,.35)}
+.qt-tarih{color:var(--parchd);border-color:var(--border)}
+
+/* ══ ORTAK LİSAN ══════════════════════════════════════════ */
+#sec-lisan{background:var(--bg)}
+
+.cat-block{margin-bottom:3.5rem}
+.cat-title{font-family:'IM Fell English',serif;font-size:1.05rem;color:var(--gold);margin-bottom:.5rem;display:flex;align-items:center;gap:.75rem}
+.cat-title::after{content:'';flex:1;height:1px;background:var(--border)}
+.cat-desc{font-size:.82rem;color:var(--parchd);font-style:italic;margin-bottom:1.5rem}
+
+.phrase-list{display:flex;flex-direction:column;gap:1px;background:var(--border)}
+.phrase-item{background:var(--surface);padding:1.2rem 1.5rem;display:grid;grid-template-columns:220px 1fr;gap:.5rem 1.5rem;transition:background .18s}
+.phrase-item:hover{background:rgba(24,16,7,.75)}
+@media(max-width:600px){.phrase-item{grid-template-columns:1fr;gap:.35rem}}
+.ph-orig{font-family:'IM Fell English',serif;font-size:1.05rem;color:var(--parchl);font-style:italic;align-self:start}
+.ph-right{}
+.ph-literal{font-size:.78rem;color:var(--goldd);font-style:italic;margin-bottom:.3rem}
+.ph-meaning{font-size:.88rem;color:var(--parch);line-height:1.65}
+.ph-use{font-size:.78rem;color:var(--parchd);font-style:italic;margin-top:.4rem}
+
+/* ══ INTRO BANNER ════════════════════════════════════════ */
+.lisan-intro{background:rgba(20,12,6,.6);border:1px solid var(--border);border-left:2px solid var(--goldd);padding:1.25rem 1.5rem;margin-bottom:2.5rem}
+.lisan-intro p{font-size:.88rem;color:var(--parchd);font-style:italic;line-height:1.78}
+.lisan-intro strong{color:var(--gold);font-style:normal}
+
+/* FOOTER */
+footer{background:#040301;border-top:1px solid var(--border);padding:2.5rem 2rem;text-align:center}
+footer p{font-family:'IM Fell English',serif;font-style:italic;font-size:.8rem;color:var(--goldd)}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-in">
+    <a href="index.html" class="nav-brand">The Stallhart Saga</a>
+    <button class="nav-ham" id="ham" aria-label="Menü"><span></span><span></span><span></span></button>
+    <ul class="nav-links" id="navl">
+      <li><a href="index.html" id="nl-home">Ana Sayfa</a></li>
+      <li><a href="lore.html" id="nl-lore">Evren</a></li>
+      <li><a href="karakterler.html" id="nl-chars">Karakterler</a></li>
+      <li><a href="bolumler.html" id="nl-chaps">Bölümler</a></li>
+      <li><a href="harita.html" id="nl-map">Harita</a></li>
+      <li><a href="soy-agaci.html" id="nl-tree">Soy Ağacı</a></li>
+      <li><a href="alintılar.html" class="cur" id="nl-quotes">Sözler</a></li>
+    </ul>
+    <div class="nav-r">
+      <button class="lang-btn" id="lang-btn" onclick="toggleLang()">EN</button>
+    </div>
+  </div>
+</nav>
+
+<header class="pg-hero">
+  <h1 id="hero-title">Sözler &amp; Dil</h1>
+  <p id="hero-sub">Stallhart evreninin özlü sözleri ve İmparatorluk Ortak Lisanı'nın günlük kalıpları.</p>
+</header>
+
+<div class="sec-nav">
+  <div class="sec-nav-in">
+    <button class="stab on" data-sec="quotes" id="stab-q">Havalı Sözler</button>
+    <button class="stab" data-sec="lisan" id="stab-l">Ortak Lisan</button>
+  </div>
+</div>
+
+<!-- ══ QUOTES ═══════════════════════════════════════════ -->
+<section class="sec on" id="sec-quotes">
+  <div class="inn">
+    <div class="sec-h">
+      <h2 class="sec-t" id="qt-title">Havalı Sözler</h2>
+      <p class="sec-s" id="qt-sub">Evrenin ruhunu özetleyen, karakterlerin ağzından düşen ya da anlatının derinliklerinden yükselen sözler.</p>
+      <span class="rule"></span>
+    </div>
+    <div class="quote-grid" id="quote-grid"></div>
+  </div>
+</section>
+
+<!-- ══ ORTAK LİSAN ═══════════════════════════════════════ -->
+<section class="sec" id="sec-lisan">
+  <div class="inn">
+    <div class="sec-h">
+      <h2 class="sec-t" id="ls-title">Ortak Lisan</h2>
+      <p class="sec-s" id="ls-sub">İmparatorluğun ortak dilinin günlük kalıpları, askerî emirleri ve dinî ifadeleri.</p>
+      <span class="rule"></span>
+    </div>
+    <div class="lisan-intro">
+      <p id="ls-intro"><strong>Ortak Lisan</strong> (İmparatorluk Ortak Dili), Stallhart İmparatorluğu'nun tüm eyaletlerinde konuşulan standart dildir. Farklı boyların ve halkların dillerinin birleşiminden doğmuştur. Resmi belgelerde, askerî komutlarda ve dinî törenlerde bu dil kullanılır.</p>
+    </div>
+    <div id="lisan-content"></div>
+  </div>
+</section>
+
+<footer>
+  <p id="ft-p">Stallhart Destanı · Son İmparator · Cilt I</p>
+</footer>
+
+<script>
+// ─── LANG ─────────────────────────────────────────────────
+let L = localStorage.getItem('si-lang') || 'tr';
+const T = o => (o&&o[L])||(o&&o.tr)||'';
+
+const STRS = {
+  htitle:{tr:'Sözler & Dil',en:'Words & Language'},
+  hsub:{tr:'Stallhart evreninin özlü sözleri ve İmparatorluk Ortak Lisanı\'nın günlük kalıpları.',en:'Memorable quotes from the Stallhart universe and everyday phrases of the Imperial Common Tongue.'},
+  stab_q:{tr:'Havalı Sözler',en:'Notable Quotes'},
+  stab_l:{tr:'Ortak Lisan',en:'Common Tongue'},
+  qt_t:{tr:'Havalı Sözler',en:'Notable Quotes'},
+  qt_s:{tr:'Evrenin ruhunu özetleyen, karakterlerin ağzından düşen ya da anlatının derinliklerinden yükselen sözler.',en:'Quotes that distill the spirit of the universe — falling from characters\' lips or rising from the narrative\'s depths.'},
+  ls_t:{tr:'Ortak Lisan',en:'The Common Tongue'},
+  ls_s:{tr:'İmparatorluğun ortak dilinin günlük kalıpları, askerî emirleri ve dinî ifadeleri.',en:'Everyday phrases, military commands, and religious expressions of the imperial language.'},
+  ls_intro:{tr:'<strong>Ortak Lisan</strong> (İmparatorluk Ortak Dili), Stallhart İmparatorluğu\'nun tüm eyaletlerinde konuşulan standart dildir. Farklı boyların ve halkların dillerinin birleşiminden doğmuştur. Resmi belgelerde, askerî komutlarda ve dinî törenlerde bu dil kullanılır.',
+            en:'<strong>Ortak Lisan</strong> (the Imperial Common Tongue) is the standard language spoken across all provinces of the Stallhart Empire. Born from the fusion of various clan and folk tongues, it is used in official documents, military commands, and religious ceremonies.'},
+  ft:{tr:'Stallhart Destanı · Son İmparator · Cilt I',en:'Stallhart Chronicles · The Last Emperor · Volume I'},
+  home:{tr:'Ana Sayfa',en:'Home'},lore:{tr:'Evren',en:'Lore'},chars:{tr:'Karakterler',en:'Characters'},
+  chaps:{tr:'Bölümler',en:'Chapters'},map:{tr:'Harita',en:'Map'},
+  tree:{tr:'Soy Ağacı',en:'Family Tree'},quotes:{tr:'Sözler',en:'Words'}
+};
+
+function applyLang() {
+  document.getElementById('r').lang=L;
+  document.getElementById('lang-btn').textContent=L==='tr'?'EN':'TR';
+  ['home','lore','chars','chaps','map','tree','quotes'].forEach(k=>{
+    const el=document.getElementById('nl-'+k); if(el) el.textContent=T(STRS[k]);
+  });
+  document.getElementById('hero-title').textContent=T(STRS.htitle);
+  document.getElementById('hero-sub').textContent=T(STRS.hsub);
+  document.getElementById('stab-q').textContent=T(STRS.stab_q);
+  document.getElementById('stab-l').textContent=T(STRS.stab_l);
+  document.getElementById('qt-title').textContent=T(STRS.qt_t);
+  document.getElementById('qt-sub').textContent=T(STRS.qt_s);
+  document.getElementById('ls-title').textContent=T(STRS.ls_t);
+  document.getElementById('ls-sub').textContent=T(STRS.ls_s);
+  document.getElementById('ls-intro').innerHTML=T(STRS.ls_intro);
+  document.getElementById('ft-p').textContent=T(STRS.ft);
+  document.title=(L==='tr'?'Sözler':'Words')+' — Son İmparator';
+  renderQuotes();
+  renderLisan();
+}
+function toggleLang(){L=L==='tr'?'en':'tr';localStorage.setItem('si-lang',L);applyLang();}
+
+// ─── QUOTES DATA ──────────────────────────────────────────
+const THEME_LABELS = {
+  iktidar:{tr:'İktidar',en:'Power'},
+  inanc:{tr:'İnanç & Güç',en:'Faith & Power'},
+  kader:{tr:'Kader',en:'Fate'},
+  guven:{tr:'Güven & İhanet',en:'Trust & Betrayal'},
+  tarih:{tr:'Tarih',en:'History'}
+};
+
+const QUOTES = [
+  {
+    text:{tr:'Güneşe savaş açıyorsan, karanlıkta üşümeye razı geleceksin.',
+          en:'If you declare war on the sun, you will resign yourself to freezing in the dark.'},
+    speaker:{tr:'Evren · Anonim',en:'Universe · Anonymous'},
+    theme:'kader'
+  },
+  {
+    text:{tr:'İlahi bir gerçeklik oylamayla seçilmez, fetihle dayatılır. Yeterince kan döküldüğünde, en hastalıklı zihnin hezeyanları bile evrensel bir dine dönüşür.',
+          en:'Divine truth is not chosen by vote — it is imposed by conquest. When enough blood is spilled, even the ravings of the most diseased mind become a universal religion.'},
+    speaker:{tr:'Evren · Anonim',en:'Universe · Anonymous'},
+    theme:'inanc'
+  },
+  {
+    text:{tr:'Eğer tanrın adına yeterince boyun vurursan, sana \'elçi\' diyerek önünde eğilirler. Kılıcın körse, sen sadece kendi zihninin zindanında çürüyen tehlikeli bir hastasındır.',
+          en:'If you cut off enough heads in the name of your god, they call you a prophet and bow before you. If your blade is dull, you are merely a dangerous patient rotting in the prison of your own mind.'},
+    speaker:{tr:'Evren · Anonim',en:'Universe · Anonymous'},
+    theme:'inanc'
+  },
+  {
+    text:{tr:'Zindanlarda zincirlenmiş bir adamın gaipten duyduğu seslere \'delilik\' derler. Aynı sesleri altın bir tahtta oturan duyduğunda ise onun adı \'ilahi vahiy\' olur.',
+          en:'When a man chained in a dungeon hears voices from beyond, they call it madness. When the same voices reach someone seated on a golden throne, they call it divine revelation.'},
+    speaker:{tr:'Evren · Anonim',en:'Universe · Anonymous'},
+    theme:'iktidar'
+  },
+  {
+    text:{tr:'Bir deliyi peygamber yapan şey göklerden duyduğu fısıltılar değil, yeryüzünde o fısıltılar için kan dökecek ordusunun büyüklüğüdür.',
+          en:'What makes a madman a prophet is not the whispers he hears from the heavens — it is the size of the army willing to spill blood for those whispers on earth.'},
+    speaker:{tr:'Evren · Anonim',en:'Universe · Anonymous'},
+    theme:'inanc'
+  },
+  {
+    text:{tr:'Kaderini yazan kalemleri kırmaya niyetliysen, o kalemlerden senin için güzel bir son yazmalarını bekleyemezsin. Kendi destanımı kendi kanımla yazacağım.',
+          en:'If you intend to break the quills that write your fate, you cannot expect a beautiful ending to be written for you. I will write my own epic with my own blood.'},
+    speaker:{tr:'Evren · Anonim',en:'Universe · Anonymous'},
+    theme:'kader'
+  },
+  {
+    text:{tr:'Bu dünyada tereddütsüz sırtımı yaslayabileceğim tek şey, kendi kılıcımın kabzasıdır. Geri kalan herkes, henüz ihanet vaktini bekleyen müttefik kılıklı yabancılardır.',
+          en:'The only thing in this world I can lean against without hesitation is the hilt of my own sword. Everyone else is a stranger in ally\'s clothing, merely waiting for their moment to betray.'},
+    speaker:{tr:'Evren · Anonim',en:'Universe · Anonymous'},
+    theme:'guven'
+  },
+  {
+    text:{tr:'Beni sırtımdan vuracak birini bulamazsınız; çünkü ben, hiç kimseye sırtımı dönecek kadar şefkatli bir aptal olmadım.',
+          en:'You will find no one to strike me from behind — for I was never foolish enough, or tender enough, to turn my back on anyone.'},
+    speaker:{tr:'Evren · Anonim',en:'Universe · Anonymous'},
+    theme:'guven'
+  },
+  {
+    text:{tr:'Tarih, masumların kanıyla yazılır ama daima galiplerin mürekkebiyle imzalanır.',
+          en:'History is written in the blood of the innocent, but it is always signed in the ink of the victorious.'},
+    speaker:{tr:'Evren · Anonim',en:'Universe · Anonymous'},
+    theme:'tarih'
+  },
+  {
+    text:{tr:'Ben haklı olduğum için yenilmez değilim. Yenilmez olduğum için, bana \'haksızsın\' diyemiyorlar.',
+          en:'I am not invincible because I am right. They cannot call me wrong because I am invincible.'},
+    speaker:{tr:'Evren · Anonim',en:'Universe · Anonymous'},
+    theme:'iktidar'
+  },
+  {
+    text:{tr:'Suçlu ile kahraman arasındaki tek fark, celladı kimin kiraladığıdır.',
+          en:'The only difference between the guilty and the hero is who hired the executioner.'},
+    speaker:{tr:'Evren · Anonim',en:'Universe · Anonymous'},
+    theme:'tarih'
+  }
+];
+
+function renderQuotes() {
+  document.getElementById('quote-grid').innerHTML = QUOTES.map(q=>`
+    <div class="quote-card">
+      <p class="q-text">${T(q.text)}</p>
+      <div class="q-bar">
+        <span class="q-speaker">— ${T(q.speaker)}</span>
+        <span class="q-theme qt-${q.theme}">${T(THEME_LABELS[q.theme])}</span>
+      </div>
+    </div>`).join('');
+}
+
+// ─── LISAN DATA ───────────────────────────────────────────
+const CAT_LABELS = {
+  daily:    {tr:'Günlük Kalıplar &amp; Selamlaşmalar',en:'Daily Phrases &amp; Greetings'},
+  military: {tr:'Askerî Kalıplar &amp; Savaş Emirleri',en:'Military Phrases &amp; Battle Commands'},
+  religious:{tr:'Dinî Kalıplar &amp; Dualar',en:'Religious Phrases &amp; Prayers'}
+};
+const CAT_DESC = {
+  daily:    {tr:'Halkın sokakta, pazarda ve günlük yaşamda kullandığı kalıplaşmış sözler.',en:'Set phrases used by the people in the street, marketplace, and daily life.'},
+  military: {tr:'Komutanların savaş meydanlarında ve lejyonların yürüyüşlerinde kullandığı emirler.',en:'Commands used by commanders on the battlefield and legions on the march.'},
+  religious:{tr:'Era inancına tapanların ibadetlerinde ve törenlerde kullandığı spiritüel kalıplar.',en:'Spiritual expressions used by worshippers of the Era faith in prayer and ceremony.'}
+};
+
+const PHRASES = {
+  daily: [
+    {orig:'Heon eana.', literal:{tr:'Güneş (ve) Su.',en:'Sun (and) Water.'}, meaning:{tr:'Günlerin güneşli, suların bereketli olsun.',en:'May your days be sunny, your waters abundant.'}, use:{tr:'En yaygın selamlama. "Merhaba / İyi günler" anlamında.',en:'The most common greeting. Equivalent to "Hello / Good day."'}},
+    {orig:'Vash kal.', literal:{tr:'Rüzgar yolu.',en:'Wind path.'}, meaning:{tr:'Rüzgar arkandan essin, yolun açık olsun.',en:'May the wind blow at your back and your road stay clear.'}, use:{tr:'Yola çıkan birine edilen veda. "Güle güle" anlamında.',en:'Farewell said to a departing traveler. Equivalent to "Farewell / Safe travels."'}},
+    {orig:'Lun glew.', literal:{tr:'Gece feneri.',en:'Night lantern.'}, meaning:{tr:'Karanlıkta yolunu bul, gölgeler seni saklasın.',en:'Find your path in the dark, let the shadows conceal you.'}, use:{tr:'Akşam vedası. Gizli işler yapanların şans dileği.',en:'Evening farewell. Also a phrase of good luck among those doing covert work.'}},
+    {orig:'Edron.', literal:{tr:'Saf irade / Kırılmaz çelik.',en:'Pure will / Unbreakable steel.'}, meaning:{tr:'"Kesinlikle", "Anlaştık". Sözüm demir gibidir.',en:'"Absolutely", "Agreed." My word is as iron.'}, use:{tr:'Söz verirken veya bir durumu şiddetle onaylarken.',en:'When making a promise or strongly affirming something.'}},
+    {orig:'Namon xenor!', literal:{tr:'Hiçlik canavarı!',en:'Creature of nothingness!'}, meaning:{tr:'"Lanet olsun!", "Kahretsin!"',en:'"Damn it!", "Curse it all!"'}, use:{tr:'Beklenmedik kötü bir olayda öfke veya şaşkınlık nidası.',en:'An exclamation of anger or surprise at unexpected misfortune.'}}
+  ],
+  military: [
+    {orig:'Galdor rion!', literal:{tr:'Kalkan birliği!',en:'Shield unity!'}, meaning:{tr:'Kalkan duvarı kurun! Omuz omuza verin, hattı tutun!',en:'Form a shield wall! Stand shoulder to shoulder and hold the line!'}, use:{tr:'Piyadelere verilen savunma emri.',en:'Defensive command given to infantry.'}},
+    {orig:'Zirae athor!', literal:{tr:'Şimşek kılıcı!',en:'Lightning blade!'}, meaning:{tr:'Şimşek hızında saldırın! Düşmanı yarın geçin!',en:'Attack at lightning speed! Cut through the enemy!'}, use:{tr:'Süvarilere veya öncü birliklere verilen ani hücum emri.',en:'Sudden charge order given to cavalry or vanguard units.'}},
+    {orig:'Fira har!', literal:{tr:'Ateş yıkımı!',en:'Fire ruin!'}, meaning:{tr:'Okları ateşleyin! Yakıp yıkın!',en:'Fire your arrows! Burn and destroy!'}, use:{tr:'Kuşatma sırasında veya menzilli birliklere verilen atış emri.',en:'Fire order given to ranged units or during a siege.'}},
+    {orig:'Aron hanar, Edron rion.', literal:{tr:'Altın kök, Demir birlik.',en:'Golden root, Iron unity.'}, meaning:{tr:'Kanımız soylu, birliğimiz demir gibidir.',en:'Our blood is noble, our unity is as iron.'}, use:{tr:'İmparatorluk merkez ordusunun savaşa girerken okuduğu yenilmezlik sloganı.',en:'The invincibility slogan chanted by the imperial central army before battle.'}},
+    {orig:'Crae xes!', literal:{tr:'Ölüm İmparatoru!',en:'Death Emperor!'}, meaning:{tr:'Merhamet yok, esir almak yok — hepsini öldürün!',en:'No mercy, no prisoners — kill them all!'}, use:{tr:'Ordunun en karanlık ve acımasız infaz emri.',en:'The darkest and most ruthless execution order in the military.'}}
+  ],
+  religious: [
+    {orig:'Era Zeana.', literal:{tr:'Era (ve) Saf Işık.',en:'Era (and) Pure Light.'}, meaning:{tr:'Era\'nın ışığı üzerine olsun. Tanrı seni aydınlatsın.',en:'May Era\'s light be upon you. May the divine illuminate you.'}, use:{tr:'Tapınaklarda rahiplerin selamlaması veya birini kutsaması.',en:'Used by priests in temples when greeting or blessing someone.'}},
+    {orig:'Gema hanar, Era zeana.', literal:{tr:'Toprak kökü, Era ışığı.',en:'Earth root, Era light.'}, meaning:{tr:'Bedenimiz toprağa döner, ruhumuz Era\'nın ışığına kavuşur.',en:'Our bodies return to earth, our souls reunite with Era\'s light.'}, use:{tr:'Cenaze törenlerinin temel vedası. Ölülerin arkasından okunur.',en:'The fundamental farewell of funerary rites. Recited after the departed.'}},
+    {orig:'Era eana, Ahar cros.', literal:{tr:'Era su ver, Çöl ölüm getirir.',en:'Era give water, Desert brings death.'}, meaning:{tr:'Era bize merhamet et, yoksa bu felaket bizi yutacak.',en:'Era, have mercy on us — or this calamity will consume us.'}, use:{tr:'Büyük bir kriz, kuraklık veya savaş anında edilen umutsuz yakarış duası.',en:'A desperate prayer of supplication in times of great crisis, drought, or war.'}},
+    {orig:'Sin loth, Era galdor.', literal:{tr:'Günah tuzağı, Era kalkanı.',en:'Sin snare, Era shield.'}, meaning:{tr:'Şeytanın hilelerinden Era bizi korusun.',en:'May Era shield us from the snares of evil.'}, use:{tr:'Evden çıkarken veya tehlikeli bir yola girerken okunan koruma duası.',en:'A protection prayer recited when leaving home or embarking on a dangerous road.'}}
+  ]
+};
+
+function renderLisan() {
+  const cont = document.getElementById('lisan-content');
+  cont.innerHTML = ['daily','military','religious'].map(cat=>`
+    <div class="cat-block">
+      <h3 class="cat-title">${T(CAT_LABELS[cat])}</h3>
+      <p class="cat-desc">${T(CAT_DESC[cat])}</p>
+      <div class="phrase-list">
+        ${PHRASES[cat].map(ph=>`
+          <div class="phrase-item">
+            <div class="ph-orig">${ph.orig}</div>
+            <div class="ph-right">
+              <p class="ph-literal">${T(ph.literal)}</p>
+              <p class="ph-meaning">${T(ph.meaning)}</p>
+              <p class="ph-use">${T(ph.use)}</p>
+            </div>
+          </div>`).join('')}
+      </div>
+    </div>`).join('');
+}
+
+// ─── TABS ─────────────────────────────────────────────────
+document.querySelectorAll('.stab').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('.stab').forEach(b=>b.classList.remove('on'));
+    document.querySelectorAll('.sec').forEach(s=>s.classList.remove('on'));
+    btn.classList.add('on');
+    document.getElementById('sec-'+btn.dataset.sec).classList.add('on');
+  });
+});
+
+// ─── NAV + INIT ───────────────────────────────────────────
+document.getElementById('ham').addEventListener('click',()=>document.getElementById('navl').classList.toggle('open'));
+document.querySelectorAll('#navl a').forEach(a=>a.addEventListener('click',()=>document.getElementById('navl').classList.remove('open')));
+applyLang();
+</script>
+</body>
+</html>
