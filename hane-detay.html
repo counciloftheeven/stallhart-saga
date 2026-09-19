@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Hane · Stallhart Wiki</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&amp;family=Merriweather:ital,wght@0,300;0,400;0,700;1,300;1,400&amp;display=swap">
+<link rel="stylesheet" href="assets/css/styles.css">
+<style>
+body{background:var(--bg)}
+.wiki-layout{max-width:1100px;margin:0 auto;padding:6rem 2rem 4rem;display:grid;grid-template-columns:1fr 300px;gap:2.5rem;align-items:start}
+@media(max-width:800px){.wiki-layout{grid-template-columns:1fr;padding:5rem 1.25rem 3rem}}
+
+.breadcrumb{display:flex;align-items:center;gap:.5rem;font-size:.78rem;color:var(--parchd);margin-bottom:1.5rem;font-family:var(--font-display);font-style:italic;flex-wrap:wrap}
+.breadcrumb a{color:var(--goldd);text-decoration:none;transition:color .15s}
+.breadcrumb a:hover{color:var(--gold)}
+.breadcrumb span{color:var(--border)}
+
+.art-eyebrow{font-family:var(--font-display);font-style:italic;font-size:.7rem;letter-spacing:.15em;color:var(--goldd);margin-bottom:.4rem;text-transform:uppercase}
+.art-title{font-family:var(--font-display);font-size:clamp(1.8rem,3vw,2.6rem);color:var(--parchl);line-height:1.15;margin-bottom:.25rem}
+.art-subtitle{font-size:.9rem;color:var(--gold);font-style:italic;margin-bottom:.85rem}
+.art-tags{display:flex;flex-wrap:wrap;gap:.35rem;margin-bottom:1.25rem}
+.art-tag{font-family:var(--font-display);font-size:.68rem;padding:.18rem .55rem;border:1px solid var(--border);color:var(--parchd);font-style:italic;text-decoration:none;transition:.15s}
+.art-tag:hover{border-color:var(--goldd);color:var(--parchl)}
+.art-tag.major{border-color:var(--goldd);color:var(--goldd)}
+
+.toc{background:var(--surface);border:1px solid var(--border);padding:.9rem 1.1rem;margin-bottom:1.5rem}
+.toc-title{font-family:var(--font-display);font-size:.75rem;color:var(--goldd);margin-bottom:.5rem;font-style:italic;letter-spacing:.06em}
+.toc-list{list-style:none;display:flex;flex-direction:column;gap:.2rem}
+.toc-list a{font-family:var(--font-display);font-size:.78rem;color:var(--goldd);text-decoration:none;transition:color .15s}
+.toc-list a:hover{color:var(--gold)}
+
+.art-h2{font-family:var(--font-display);font-size:1.3rem;color:var(--parchl);margin:2rem 0 .8rem;padding-top:.4rem;border-top:1px solid var(--border);scroll-margin-top:70px}
+.art-h2:first-of-type{border-top:none;margin-top:0}
+.art-p{font-size:.94rem;line-height:1.9;color:var(--parch);margin-bottom:1rem}
+
+/* Hane amblemi — gerçek logo görseli olmadığından renk + sembol metniyle üretilir */
+.sigil{
+  width:140px;height:160px;margin:0 auto 1.25rem;position:relative;
+  clip-path:polygon(50% 0%,100% 22%,100% 70%,50% 100%,0% 70%,0% 22%);
+  display:flex;align-items:center;justify-content:center;text-align:center;
+  border:2px solid var(--house-accent,var(--goldd));
+  box-shadow:0 0 24px var(--house-glow,rgba(184,115,51,.18));
+}
+.sigil-inner{padding:1rem;font-family:var(--font-display);font-size:.8rem;color:var(--parchl);line-height:1.4}
+
+.color-swatches{display:flex;gap:.5rem;margin:.75rem 0 1.5rem}
+.swatch{width:32px;height:32px;border:1px solid var(--border);flex-shrink:0}
+
+/* Sağ panel */
+.hib{background:var(--surface);border:1px solid var(--border);overflow:hidden}
+.hib-head{padding:1.5rem 1.25rem;text-align:center;border-bottom:1px solid var(--border);background:var(--deep)}
+.hib-tier{font-family:var(--font-display);font-style:italic;font-size:.72rem;color:var(--house-accent,var(--goldd));letter-spacing:.06em}
+.hib-rows{padding:1rem 1.25rem}
+.hib-row{display:flex;justify-content:space-between;gap:.75rem;padding:.55rem 0;border-bottom:1px solid rgba(58,47,36,.35);font-size:.82rem}
+.hib-row:last-child{border-bottom:none}
+.hib-k{color:var(--parchd);font-style:italic}
+.hib-v{color:var(--parch);text-align:right}
+.hib-v a{color:var(--goldd);text-decoration:none}
+.hib-v a:hover{color:var(--gold)}
+
+/* Üyeler ızgarası */
+.member-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:1rem;margin-top:1rem}
+.member-card{background:var(--surface);border:1px solid var(--border);padding:.9rem;text-decoration:none;display:block;transition:.18s}
+.member-card:hover{border-color:var(--house-accent,var(--goldd));transform:translateY(-2px)}
+.member-thumb{width:100%;aspect-ratio:1;object-fit:cover;background:var(--deep);border:1px solid var(--border);margin-bottom:.6rem;display:block}
+.member-thumb-ph{width:100%;aspect-ratio:1;background:var(--deep);border:1px solid var(--border);margin-bottom:.6rem;display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:1.6rem;color:var(--house-accent,var(--goldd))}
+.member-name{font-family:var(--font-display);font-size:.9rem;color:var(--parchl);line-height:1.3}
+.member-title{font-size:.72rem;color:var(--parchd);font-style:italic;margin-top:.2rem}
+.member-status{display:inline-block;width:6px;height:6px;border-radius:50%;margin-right:.35rem}
+.member-status.alive{background:var(--gold)}
+.member-status.deceased{background:var(--bloodb)}
+.member-status.historical{background:var(--parchd)}
+
+.not-found{padding:4rem 1rem;text-align:center}
+.not-found h2{font-family:var(--font-display);font-size:1.6rem;color:var(--parchl);margin-bottom:.75rem}
+.not-found a{color:var(--goldd);text-decoration:none;font-family:var(--font-display);font-style:italic}
+
+.skel{background:linear-gradient(90deg,var(--surface) 25%,var(--deep) 50%,var(--surface) 75%);background-size:200% 100%;animation:skelShine 1.4s ease-in-out infinite}
+@keyframes skelShine{0%{background-position:200% 0}100%{background-position:-200% 0}}
+.skel-line{height:14px;border-radius:2px;margin-bottom:.6rem}
+</style>
+</head>
+<body>
+
+<div class="wiki-layout" id="wiki-root">
+  <div id="content-main">
+    <div class="skel skel-line" style="width:40%"></div>
+    <div class="skel skel-line" style="width:70%;height:32px;margin-bottom:1rem"></div>
+    <div class="skel skel-line" style="width:100%"></div>
+    <div class="skel skel-line" style="width:95%"></div>
+    <div class="skel skel-line" style="width:88%"></div>
+  </div>
+  <div id="content-side">
+    <div class="skel" style="height:280px"></div>
+  </div>
+</div>
+
+<script src="assets/js/wiki.js"></script>
+<script>
+'use strict';
+const { Lang, loadData, initWiki, esc } = Wiki;
+
+let allHouses = {};   // id -> {house, province}
+let allChars  = {};
+
+const TIER_LABEL = {
+  imperial: { tr: 'İmparatorluk Hanedanı', en: 'Imperial Dynasty' },
+  major:    { tr: 'Büyük Soylu Hane',       en: 'Major Noble House' },
+  minor:    { tr: 'Küçük Soylu Hane',        en: 'Minor Noble House' },
+  client:   { tr: 'Bağımlı Hane',            en: 'Vassal House' },
+};
+const STATUS_LABEL = {
+  alive: { tr: 'Yaşıyor', en: 'Alive' },
+  deceased: { tr: 'Hayatını Kaybetti', en: 'Deceased' },
+  historical: { tr: 'Tarihsel', en: 'Historical' },
+};
+
+function getHouseId() {
+  const p = new URLSearchParams(location.search);
+  return p.get('id') || location.hash.slice(1) || '';
+}
+
+async function init() {
+  try {
+    const [housesData, charsData] = await Promise.all([
+      loadData('houses.json'), loadData('characters.json')
+    ]);
+    (housesData?.provinces || []).forEach(prov => {
+      (prov.houses || []).forEach(h => { allHouses[h.id] = { house: h, province: prov }; });
+    });
+    (charsData?.characters || []).forEach(c => { allChars[c.id] = c; });
+    render();
+  } catch (err) {
+    console.error('Hane verisi yüklenemedi:', err);
+    Wiki.renderError('content-main', err);
+    const side = document.getElementById('content-side');
+    if (side) side.innerHTML = '';
+  }
+}
+
+function render() {
+  const l = Lang.get(), t = o => Lang.t(o);
+  const id = getHouseId();
+  const entry = allHouses[id];
+
+  if (!id || !entry) {
+    document.getElementById('content-main').innerHTML = `
+      <div class="not-found">
+        <h2>${l === 'tr' ? 'Hane Bulunamadı' : 'House Not Found'}</h2>
+        <p style="color:var(--parchd);font-style:italic">${l === 'tr' ? 'Aradığın hane mevcut değil.' : 'The house you are looking for does not exist.'}</p>
+        <br><a href="haneler.html">← ${l === 'tr' ? 'Tüm Haneler' : 'All Houses'}</a>
+      </div>`;
+    document.getElementById('content-side').innerHTML = '';
+    document.title = '404 · Stallhart Wiki';
+    return;
+  }
+
+  const h = entry.house, prov = entry.province;
+  document.title = `${esc(h.name)} · Stallhart Wiki`;
+  document.documentElement.lang = l;
+
+  const accent = (h.colors && h.colors[1]) || (h.colors && h.colors[0]) || '#b87333';
+  const wrap = document.getElementById('wiki-root');
+  if (wrap) wrap.style.setProperty('--house-accent', accent);
+
+  const members = (h.memberIds || []).map(mid => allChars[mid]).filter(Boolean);
+  const bannerSrc = Wiki.safeImg(h.banner);
+  /* Motto: seçili dilde boşsa diğer dile düş (admin'de EN boş bırakılabiliyor) */
+  const motto = t(h.motto) || (h.motto && typeof h.motto === 'object' ? (h.motto.tr || h.motto.en || '') : '');
+
+  const mainHTML = `
+    <div>
+      <nav class="breadcrumb">
+        <a href="index.html">${l === 'tr' ? 'Ana Sayfa' : 'Home'}</a><span>›</span>
+        <a href="haneler.html">${l === 'tr' ? 'Haneler' : 'Houses'}</a><span>›</span>
+        <strong style="color:var(--parchl)">${esc(h.name)}</strong>
+      </nav>
+
+      <div class="house-crest-wrap">
+        <div class="hcb-flag" style="--banner-c2:${esc((h.colors && h.colors[1]) || (h.colors && h.colors[0]) || '#b87333')}">
+          ${bannerSrc
+            ? `<div class="hcb-flag-frame"><img class="hc-banner-img" data-zoom src="${esc(bannerSrc)}" alt="${esc(h.name)} — ${l === 'tr' ? 'bayrak' : 'banner'}"></div>`
+            : bannerPlaceholder(l, h.name)}
+        </div>
+        <div>
+          <div class="art-eyebrow">${l === 'tr' ? 'Hane Maddesi' : 'House Article'}</div>
+          <h1 class="art-title">${esc(h.name)} ${l === 'tr' ? 'Hanesi' : 'House'}</h1>
+          <p class="art-subtitle">"${esc(t(h.meaning))}"</p>
+          <p class="house-crest-motto${motto ? '' : ' hcm-empty'}">${esc(motto)}</p>
+        </div>
+      </div>
+
+      <div class="art-tags">
+        <a href="haneler.html" class="art-tag major">${esc(t(prov.name))}</a>
+        <span class="art-tag">${esc((TIER_LABEL[h.tier] || TIER_LABEL.minor)[l])}</span>
+      </div>
+
+      <div class="toc">
+        <div class="toc-title">📜 ${l === 'tr' ? 'İçindekiler' : 'Contents'}</div>
+        <ul class="toc-list">
+          <li><a href="#koken">1. ${l === 'tr' ? 'Köken & Tarihçe' : 'Origin & History'}</a></li>
+          <li><a href="#semboller">2. ${l === 'tr' ? 'Semboller & Renkler' : 'Symbols & Colors'}</a></li>
+          ${members.length ? `<li><a href="#uyeler">3. ${l === 'tr' ? 'Hane Üyeleri' : 'House Members'}</a></li>` : ''}
+        </ul>
+      </div>
+
+      <h2 class="art-h2" id="koken">${l === 'tr' ? 'Köken & Tarihçe' : 'Origin & History'}</h2>
+      <p class="art-p">${esc(t(h.origin) || t(h.desc) || (l === 'tr' ? 'Bu hane hakkında ayrıntılı kayıt bulunmuyor.' : 'No detailed record exists for this house.'))}</p>
+
+      <h2 class="art-h2" id="semboller">${l === 'tr' ? 'Semboller & Renkler' : 'Symbols & Colors'}</h2>
+      <div class="sigil">
+        <div class="sigil-inner">${esc(t(h.symbol) || h.name)}</div>
+      </div>
+      <p class="art-p" style="text-align:center;font-style:italic;color:var(--parchd);font-size:.82rem;margin-top:-.5rem">${esc(t(h.symbol))}</p>
+      <p class="art-p">${esc(t(h.desc))}</p>
+      <div class="color-swatches">
+        ${(h.colors || []).map(c => `<div class="swatch" style="background:${esc(c)}" title="${esc(c)}"></div>`).join('')}
+      </div>
+
+      ${members.length ? `
+      <h2 class="art-h2" id="uyeler">${l === 'tr' ? 'Hane Üyeleri' : 'House Members'} (${members.length})</h2>
+      <div class="member-grid">
+        ${members.map(m => `
+          <a class="member-card" href="karakter-sablon.html?id=${encodeURIComponent(m.id)}">
+            ${m.image
+              ? `<img class="member-thumb" src="${esc(m.image)}" alt="" loading="lazy" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'member-thumb-ph',textContent:'${esc((t(m.name) || '?')[0])}'}))">`
+              : `<div class="member-thumb-ph">${esc((t(m.name) || '?')[0])}</div>`}
+            <div class="member-name"><span class="member-status ${esc(m.status || '')}"></span>${esc(t(m.name))}</div>
+            <div class="member-title">${esc(t(m.title) || '')}</div>
+          </a>`).join('')}
+      </div>` : `<p class="art-p" style="color:var(--parchd);font-style:italic">${l === 'tr' ? 'Bu haneye bağlı adı geçen bir karakter kaydı bulunmuyor.' : 'No named characters are recorded for this house.'}</p>`}
+    </div>`;
+
+  const sideHTML = `
+    <div class="hib">
+      <div class="hib-head">
+        <div class="hib-tier">${esc((TIER_LABEL[h.tier] || TIER_LABEL.minor)[l])}</div>
+      </div>
+      <div class="hib-rows">
+        <div class="hib-row"><span class="hib-k">${l === 'tr' ? 'Eyalet' : 'Province'}</span><span class="hib-v"><a href="haneler.html">${esc(t(prov.name))}</a></span></div>
+        <div class="hib-row"><span class="hib-k">${l === 'tr' ? 'Anlam' : 'Meaning'}</span><span class="hib-v">${esc(t(h.meaning))}</span></div>
+        <div class="hib-row"><span class="hib-k">${l === 'tr' ? 'Sembol' : 'Symbol'}</span><span class="hib-v">${esc(t(h.symbol))}</span></div>
+        ${t(h.motto) ? `<div class="hib-row"><span class="hib-k">${l === 'tr' ? 'Motto' : 'Motto'}</span><span class="hib-v">"${esc(t(h.motto))}"</span></div>` : ''}
+        <div class="hib-row"><span class="hib-k">${l === 'tr' ? 'Üye Sayısı' : 'Members'}</span><span class="hib-v">${members.length}</span></div>
+      </div>
+    </div>`;
+
+  document.getElementById('content-main').innerHTML = mainHTML;
+  document.getElementById('content-side').innerHTML = sideHTML;
+  Wiki.Tooltip.scan(document.getElementById('content-main'));
+
+  /* Bayrak yolu bozuksa kırık ikon yerine yer tutucu */
+  const bi = document.querySelector('#content-main img.hc-banner-img');
+  if (bi) bi.addEventListener('error', () => {
+    const holder = document.createElement('div');
+    holder.innerHTML = bannerPlaceholder(l, h.name, true);
+    bi.closest('.hcb-flag-frame').replaceWith(holder.firstChild);
+  }, { once: true });
+}
+
+function bannerPlaceholder(l, name, failed) {
+  const msg = failed
+    ? (l === 'tr' ? 'Bayrak görseli yüklenemedi' : 'Banner image failed to load')
+    : (l === 'tr' ? 'Bayrak henüz yüklenmemiş' : 'Flag not yet uploaded');
+  return `<div class="hcb-ph"><span class="hcb-ph-glyph">${esc((name || '?').trim()[0] || '?')}</span><span>${msg}</span></div>`;
+}
+
+/* Bayrağa tıklayınca tam ekran (bir kez bağlanır) */
+document.addEventListener('click', e => {
+  const im = e.target.closest && e.target.closest('img[data-zoom]');
+  if (!im) return;
+  const lb = document.createElement('div');
+  lb.style.cssText = 'position:fixed;inset:0;z-index:900;background:rgba(0,0,0,.9);display:flex;align-items:center;justify-content:center;padding:2rem;cursor:zoom-out';
+  const big = document.createElement('img');
+  big.src = im.src; big.alt = im.alt || '';
+  big.style.cssText = 'max-width:100%;max-height:100%;object-fit:contain;box-shadow:0 10px 40px rgba(0,0,0,.6)';
+  lb.appendChild(big);
+  const close = () => { lb.remove(); document.removeEventListener('keydown', onKey); };
+  const onKey = ev => { if (ev.key === 'Escape') close(); };
+  lb.addEventListener('click', close);
+  document.addEventListener('keydown', onKey);
+  document.body.appendChild(lb);
+});
+
+initWiki({ onLangChange: render });
+init();
+
+window.addEventListener('hashchange', render);
+</script>
+</body>
+</html>

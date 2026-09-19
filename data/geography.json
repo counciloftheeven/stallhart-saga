@@ -1,0 +1,563 @@
+{
+  "overview": {
+    "founding": {
+      "tr": "KS 1144 — I. Craes Stallhart tarafından; ilk statü Stallhart Krallığı, KS 1161 Eretay fethiyle imparatorluğa yükseltildi.",
+      "en": ""
+    },
+    "capital": {
+      "tr": "Arava (Başsancak eyaleti; Niron Nehri ve Gümüş Yol Denizi kıyısında)",
+      "en": ""
+    },
+    "population": {
+      "tr": "~14.000.000",
+      "en": ""
+    },
+    "area": {
+      "tr": "7.000.000–8.500.000 km²",
+      "en": ""
+    },
+    "army": {
+      "tr": "~120.000–140.000 kara ordusu",
+      "en": ""
+    },
+    "worldRank": {
+      "tr": "2. sıra (9,95 puan) — dünya güç sıralamasında",
+      "en": ""
+    },
+    "government": {
+      "tr": "İmparator → Kurultay (11 vezir) → Vezirlikler → Eyalet Valileri",
+      "en": ""
+    },
+    "succession": {
+      "tr": "16 yaş üstü en büyük evlat; Garnor'un Veraset Fermanı'yla düzenlenir.",
+      "en": ""
+    },
+    "doctrine": {
+      "tr": "Kutsal Kan Doktrini",
+      "en": ""
+    }
+  },
+  "continent": {
+    "silverRoad": {
+      "tr": "Gümüş Yol — kıtayı orta-güneyden dikey olarak ikiye bölen ana su yolu.",
+      "en": ""
+    },
+    "westOcean": {
+      "tr": "Gamhuyha Dev Denizi — batı okyanusu.",
+      "en": ""
+    },
+    "narrowestStrait": {
+      "tr": "Garall (batı) ile Todfa/Gom Ara (doğu) hizası — kıtanın en dar geçidi.",
+      "en": ""
+    }
+  },
+  "rivers": [
+    {
+      "name": "Niron Nehri",
+      "desc": {
+        "tr": "Z'ela'nın kuzeyinden doğar, Başsancak'ın batı sınırı boyunca güneye akar, Garall'da Gümüş Yol'a dökülür; Arava şehrinin batısından geçer.",
+        "en": ""
+      }
+    },
+    {
+      "name": "Kızılçay Nehri",
+      "desc": {
+        "tr": "Başsancak'ın kuzey dağlarından başlar, Harna şehrinden geçer, Niron Nehri'ne dökülür.",
+        "en": ""
+      }
+    },
+    {
+      "name": "Yevrass Nehri",
+      "desc": {
+        "tr": "Solgar'ın güneyinde doğar, Selya'ya akar, Gümüş Yol'a dökülür.",
+        "en": ""
+      }
+    },
+    {
+      "name": "Kamtel Nehri",
+      "desc": {
+        "tr": "Onneva'nın kuzeyinden (Ziron civarı) doğar, güneydoğuya akar.",
+        "en": ""
+      }
+    },
+    {
+      "name": "Cebra Nehri",
+      "desc": {
+        "tr": "Kragva şehrinden başlar, Niron Nehri'ne dökülür.",
+        "en": ""
+      }
+    }
+  ],
+  "mountains": [
+    {
+      "name": "Deli Dağı, Kloga Dağı",
+      "desc": {
+        "tr": "Memanth sınır dağ silsilesi.",
+        "en": ""
+      }
+    },
+    {
+      "name": "Ergall (\"Demir Geçit\") & Bora Dağları",
+      "desc": {
+        "tr": "Onneva bölgesinde yer alır.",
+        "en": ""
+      }
+    },
+    {
+      "name": "Solgar-Selya sınır dağ silsilesi",
+      "desc": {
+        "tr": "Güney-merkez; haritanın en yoğun dağlık alanlarından biri.",
+        "en": ""
+      }
+    }
+  ],
+  "forests": [
+    {
+      "name": "Arava Ormanı",
+      "desc": {
+        "tr": "Başsancak; Arava şehrinin güneydoğusunda, surların dışında.",
+        "en": ""
+      }
+    },
+    {
+      "name": "Z'ela Ormanları",
+      "desc": {
+        "tr": "Eyaletin büyük çoğunluğu; haritanın en yoğun orman alanı.",
+        "en": ""
+      }
+    },
+    {
+      "name": "Seltanya Ormanları",
+      "desc": {
+        "tr": "Eyaletin büyük çoğunluğu; haritanın ikinci en ormanlık bölgesi.",
+        "en": ""
+      }
+    },
+    {
+      "name": "Selya Ormanları",
+      "desc": {
+        "tr": "Efrork çevresi, güneybatı ucu.",
+        "en": ""
+      }
+    },
+    {
+      "name": "Mabed Ormanları",
+      "desc": {
+        "tr": "Güney ve batı kıyı şeridi.",
+        "en": ""
+      }
+    }
+  ],
+  "provinces": [
+    {
+      "name": "Başsancak (Taç Diyarı)",
+      "neighbors": "Batıda Z'ela, kuzeyde Galetsha, kuzeydoğuda Memanth, güneyde Onneva",
+      "cities": "Arava (başkent), Harna (Kızılçay), Solinor, Amuseya, Kutna, Xeska, Aksema, Dorma (Darova), Lougat",
+      "rivers": "",
+      "lake": "",
+      "mountains": "",
+      "governor": "",
+      "houses": "",
+      "flag": "Dama tahtası desenli siyah-beyaz zemin, altın çerçeveli",
+      "economy": "Tarım ve ticaret; imparatorluk yönetim merkezi"
+    },
+    {
+      "name": "Z'ela",
+      "neighbors": "Batıda Adamen, doğuda Başsancak, güneyde Solgar, kuzeydoğuda Galetsha",
+      "cities": "Kralya, Ulara, Fesmag, Kutsal Kütüphane (Niron Nehri kıyısı), Vekra, Kragva, Cebra, Bamo, Zela, Hema, Liwanhel (kale), Pearit (kale), Yukmar, Garall (kale --- Gümüş Yol ağzında), Ürga (en kuzey)",
+      "rivers": "Niron Nehri (ortadan kuzeyden güneye), Cebra Nehri (Kragva'dan Niron'a), Belkeba Nehri",
+      "lake": "",
+      "mountains": "",
+      "governor": "Eraldris Yonja (babasını öldürerek valiliği aldı)",
+      "houses": "",
+      "flag": "Küf yeşili zeminde kenetli yılan dişi/hilal motifleri",
+      "economy": "Kereste, maden, tarım/gıda merkezi"
+    },
+    {
+      "name": "Galetsha",
+      "neighbors": "Güneybatıda Adamen, güneyde Başsancak ve Z'ela, doğuda Memanth",
+      "cities": "Galetsha (merkez), Xora (kuzey), Yirsha (güney), Chebert (en kuzey uç), Exagna",
+      "rivers": "",
+      "lake": "",
+      "mountains": "",
+      "governor": "Wolrez Galet (babası Metron Galet'ten sonra)",
+      "houses": "Galet, Galron, Ohevon, Singlew, Sintash",
+      "flag": "Zifiri siyah zeminde sarı anahtar, dişlerinde gizli dağ-kale silüeti",
+      "economy": "Maden, kömür, kükürt, bakır"
+    },
+    {
+      "name": "Adamen",
+      "neighbors": "Doğuda Z'ela, güneyde Solgar",
+      "cities": "Adamen (merkez), Ojalo (batı kıyısı/liman), Fallar (güneybatı kıyısı, kale), Bamo, Razva, Fihka (Alevkent --- kuzeyde)",
+      "rivers": "",
+      "lake": "",
+      "mountains": "",
+      "governor": "Gulwar Saert",
+      "houses": "Lithrez, Rongema, Saert (kaya lordları)",
+      "flag": "Lacivert gökyüzü, beyaz sıradağlar, altın güneş, kızıl yakutlu haç",
+      "economy": "Cüce (İrun) madenciliği, çelik işçiliği, taş ustalığı, bakır ticareti"
+    },
+    {
+      "name": "Memanth",
+      "neighbors": "Batıda Galetsha, güneybatıda Başsancak, güneyde Onneva",
+      "cities": "Covan (kuzey), Eyross/Syross (kuzeydoğu köşe), Alvra, Drolla, Malenia (merkez), Aleron (doğu kıyısı), Aleron Kalesi (Aleron'un kuzeyi, kale), Solgnor (güneybatı), Remwanya (kale --- güney, Onneva sınırı), Arva/Arya (en güney), Eizgar (Arya'nın altı), Navza, Exagna (batı sınırı), Hioya",
+      "rivers": "",
+      "lake": "Emeralda Gölü (güney)",
+      "mountains": "Halka, Tarma, Edlith, Kroga, Deli, Kloga",
+      "governor": "Vizeho Brekfa",
+      "houses": "Berkov, Brekfa, Briktod, Rhiken, Rhoven; Brilar, Riknor, Kalpear, Rikler",
+      "flag": "Zifiri siyah zeminde kor ateşinden sarıya dönen geometrik kuzgun",
+      "economy": "Sınır savunma ekonomisi"
+    },
+    {
+      "name": "Onneva",
+      "neighbors": "Kuzeyde Başsancak ve Memanth, batıda Gümüş Yol üzerinden Solgar",
+      "cities": "Kamtel Şehri, Jihon/Ziron (kuzey), Eromer, Tolea (merkez), Remwanya (Memanth sınırı), Gelia, Seldur (batı delta), Isonwell, Serba, Elgarn, Gomara, Todea, Piekgow (kale), Gom Ara (kale), Ergall, Bora, Eldarn, Las, Yoren",
+      "rivers": "Kamtel Nehri (kuzeyden doğar)",
+      "lake": "Beryazz Gölü (güneydoğu)",
+      "mountains": "",
+      "governor": "Elglew Onneva",
+      "houses": "",
+      "flag": "Kömür karası zeminde kırmızı anka kuşu, gövdesi kılıç ucuna dönüşüyor",
+      "economy": "Tahıl/tarım ambarı; imparatorluğun ekonomik can damarı"
+    },
+    {
+      "name": "Solgar",
+      "neighbors": "Kuzeyde Adamen, kuzeydoğuda Z'ela, batıda Seltanya, güneyde Selya, doğuda Gümüş Yol üzerinden Onneva",
+      "cities": "Plarji (batı kıyısı), Sador, Artien (güneybatı), Velemdal (merkez), Orduların Sığınağı (güneydoğu boğaz kalesi), Faqlar, Albit (kuzey), Liwanhel (Z'ela sınırı), Pearit (kıyı, kale), Sagoe (Seltanya kuzey sınırı), Orhen/Altınpınar (Gümüşyol kıyısı), Garall (kale --- Gümüş Yol, Niron ağzı), Wyrmkal, Arden, Anga/Uluçayır (batı)",
+      "rivers": "",
+      "lake": "",
+      "mountains": "",
+      "governor": "",
+      "houses": "Solgar (ticaret/endüstri), Iden, Serbam, Itema",
+      "flag": "Gece mavisi zeminde gövdesi hançere dönüşen yusufçuk",
+      "economy": "Ticaret, endüstri zenginliği"
+    },
+    {
+      "name": "Seltanya",
+      "neighbors": "Doğuda Solgar, kuzeydoğuda Z'ela, güneyde Mabed",
+      "cities": "Seltanya (merkez, kale), Jilan, Sado (güneydoğu), Gado (güney), Mabed Kapısı (güney dağ geçidi), Aleksanya (batı ormanları), Anga/Uluçayır (kuzey)",
+      "rivers": "",
+      "lake": "",
+      "mountains": "",
+      "governor": "Ekash Triala (sonradan Dahiliye Veziri oldu; güncel vali belirsiz)",
+      "houses": "",
+      "flag": "Dikey yeşil-krem zeminde altın koç arması",
+      "economy": "Deniz ticareti, tersaneler"
+    },
+    {
+      "name": "Mabed",
+      "neighbors": "Kuzeyde Seltanya, doğuda Selya",
+      "cities": "Ulu Mabed (batı ucu, denize nazır, kale), Güney Kapısı (iç kesim dağ yamacı, kale), Khor Mmar, Shebet (kale --- güney), Qomar (en güney), Sabiryar (güneydoğu)",
+      "rivers": "",
+      "lake": "",
+      "mountains": "",
+      "governor": "",
+      "houses": "",
+      "flag": "Belirtilmemiş",
+      "economy": "Dini hac ekonomisi; siyasi ve ruhani özerklik"
+    },
+    {
+      "name": "Selya",
+      "neighbors": "Kuzeyde Solgar, batıda Seltanya ve Mabed, doğuda/güneyde deniz",
+      "cities": "Sayla, Terobi (kuzey nehir havzası), Direniş (batı ormanları), Selya Merkez (güney-orta, kale), Qomar, Sabiryah (güneybatı), Efrork, Kılıçlimanı (Gümüşyol kıyısı, doğu), Shada (merkez), Oıtcestr (Mabed sınırı), Zrustead",
+      "rivers": "",
+      "lake": "",
+      "mountains": "",
+      "governor": "Darios Selya (fiili); önceki Melik Vali: Zeandor Stallhart",
+      "houses": "Celios, Darios, Liaher, Elyndra, Enidres Selya; Baron Linroth Briktod",
+      "flag": "Bordo zeminde altın çerçeveli 12 ışınlı güneş, merkezde siyah boşluk",
+      "economy": "Deniz ticareti, tersaneler, liman ekonomisi"
+    },
+    {
+      "name": "Khasinya",
+      "neighbors": "",
+      "cities": "Qei (kuzeybatı kıyısı), Crosdar (güney kıyısı)",
+      "rivers": "",
+      "lake": "",
+      "mountains": "",
+      "governor": "Yunghar Khasin",
+      "houses": "Khasin, Haler, Kaher, Sersen, Eldora",
+      "flag": "Teal zeminde köpekbalığı çenesini andıran beyaz üçgen dizilimi",
+      "economy": "Stratejik kale-ada; donanma denetimi altında"
+    },
+    {
+      "name": "Pilkard",
+      "neighbors": "",
+      "cities": "Xoma (yalnızca kuzey burnunda)",
+      "rivers": "",
+      "lake": "",
+      "mountains": "",
+      "governor": "Belirtilmemiş",
+      "houses": "",
+      "flag": "Belirtilmemiş",
+      "economy": "Doğal savunma konumu, ticaret yolları, donanma üssü"
+    },
+    {
+      "name": "Burria (Bağımsız)",
+      "neighbors": "",
+      "cities": "Belirtilmemiş",
+      "rivers": "",
+      "lake": "",
+      "mountains": "",
+      "governor": "",
+      "houses": "",
+      "flag": "",
+      "economy": ""
+    }
+  ],
+  "worldPowers": [
+    {
+      "rank": 1,
+      "name": {
+        "tr": "Zelaina (Elf İmparatorluğu)",
+        "en": ""
+      },
+      "score": 10.0,
+      "population": 10500000,
+      "military": 150000
+    },
+    {
+      "rank": 2,
+      "name": {
+        "tr": "Stallhart İmparatorluğu",
+        "en": ""
+      },
+      "score": 9.95,
+      "population": 14000000,
+      "military": 140000
+    },
+    {
+      "rank": 3,
+      "name": {
+        "tr": "Rei Krallığı (Otbeind)",
+        "en": ""
+      },
+      "score": 7.77,
+      "population": 8500000,
+      "military": 95000
+    },
+    {
+      "rank": 4,
+      "name": {
+        "tr": "Arathen Krallığı",
+        "en": ""
+      },
+      "score": 7.5,
+      "population": 9000000,
+      "military": 100000
+    },
+    {
+      "rank": 5,
+      "name": {
+        "tr": "Gastenia",
+        "en": ""
+      },
+      "score": 7.22,
+      "population": 9500000,
+      "military": 105000
+    },
+    {
+      "rank": 6,
+      "name": {
+        "tr": "Selanharla",
+        "en": ""
+      },
+      "score": 6.57,
+      "population": 6500000,
+      "military": 82000
+    },
+    {
+      "rank": 7,
+      "name": {
+        "tr": "Esma Yatta",
+        "en": ""
+      },
+      "score": 6.5,
+      "population": 7000000,
+      "military": 80000
+    },
+    {
+      "rank": 8,
+      "name": {
+        "tr": "Grathen",
+        "en": ""
+      },
+      "score": 6.5,
+      "population": 7200000,
+      "military": 78000
+    },
+    {
+      "rank": 9,
+      "name": {
+        "tr": "Oushalux",
+        "en": ""
+      },
+      "score": 6.5,
+      "population": 7000000,
+      "military": 80000
+    },
+    {
+      "rank": 10,
+      "name": {
+        "tr": "Assigrat",
+        "en": ""
+      },
+      "score": 6.44,
+      "population": 6800000,
+      "military": 75000
+    },
+    {
+      "rank": 11,
+      "name": {
+        "tr": "Galantha Ada Devletleri",
+        "en": ""
+      },
+      "score": 6.23,
+      "population": 5500000,
+      "military": 70000
+    },
+    {
+      "rank": 12,
+      "name": {
+        "tr": "Vox Miysa",
+        "en": ""
+      },
+      "score": 6.0,
+      "population": 8000000,
+      "military": 65000
+    },
+    {
+      "rank": 13,
+      "name": {
+        "tr": "Burria (Bağımsız)",
+        "en": ""
+      },
+      "score": 5.76,
+      "population": 4800000,
+      "military": 55000
+    },
+    {
+      "rank": 14,
+      "name": {
+        "tr": "Xyloristan",
+        "en": ""
+      },
+      "score": 5.5,
+      "population": 4200000,
+      "military": 52000
+    },
+    {
+      "rank": 15,
+      "name": {
+        "tr": "Örebas Krallığı",
+        "en": ""
+      },
+      "score": 5.45,
+      "population": 4000000,
+      "military": 50000
+    },
+    {
+      "rank": 16,
+      "name": {
+        "tr": "Melerya",
+        "en": ""
+      },
+      "score": 5.24,
+      "population": 3800000,
+      "military": 45000
+    },
+    {
+      "rank": 17,
+      "name": {
+        "tr": "Selmakh Prensliği",
+        "en": ""
+      },
+      "score": 5.2,
+      "population": 3500000,
+      "military": 42000
+    },
+    {
+      "rank": 18,
+      "name": {
+        "tr": "Burria Prensliği",
+        "en": ""
+      },
+      "score": 5.13,
+      "population": 3200000,
+      "military": 40000
+    },
+    {
+      "rank": 19,
+      "name": {
+        "tr": "Lehm İna",
+        "en": ""
+      },
+      "score": 5.11,
+      "population": 3000000,
+      "military": 38000
+    },
+    {
+      "rank": 20,
+      "name": {
+        "tr": "Quizei Seha Şehir Devletleri",
+        "en": ""
+      },
+      "score": 5.1,
+      "population": 2800000,
+      "military": 37000
+    },
+    {
+      "rank": 21,
+      "name": {
+        "tr": "Tgronyz",
+        "en": ""
+      },
+      "score": 5.03,
+      "population": 2500000,
+      "military": 35000
+    },
+    {
+      "rank": 22,
+      "name": {
+        "tr": "Shonya",
+        "en": ""
+      },
+      "score": 4.9,
+      "population": 2000000,
+      "military": 30000
+    },
+    {
+      "rank": 23,
+      "name": {
+        "tr": "Kalasess",
+        "en": ""
+      },
+      "score": 4.34,
+      "population": 1500000,
+      "military": 20000
+    }
+  ],
+  "capitalArava": {
+    "location": {
+      "tr": "Başsancak eyaletinin merkezi; Niron Nehri ve Gümüş Yol Denizi kıyısında kurulmuş imparatorluk başkenti.",
+      "en": ""
+    },
+    "gates": {
+      "tr": "Şehir surlarında birden fazla kapı bulunur; en bilineni İkiz Muhafızlar Geçidi'dir.",
+      "en": ""
+    },
+    "twinGuardiansGate": {
+      "tr": "İkiz Muhafızlar Geçidi — şehrin en güçlü savunma noktası ve sembolik giriş kapısı.",
+      "en": ""
+    },
+    "greatTemple": {
+      "tr": "İmparatorluk Büyük Kutsal Şehir Mabedi — Denge Konseyi'ne adanmış başkentin en büyük dini yapısı.",
+      "en": ""
+    },
+    "roadNetwork": {
+      "tr": "Şehir merkezinden çevre eyaletlere uzanan, imparatorluk lejyonlarının hızlı hareketini sağlayan taşlı yol ağı.",
+      "en": ""
+    }
+  }
+}

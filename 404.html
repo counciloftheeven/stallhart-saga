@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>Sayfa Bulunamadı · Stallhart Wiki</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&amp;family=Merriweather:ital,wght@0,300;0,400;0,700;1,300;1,400&amp;display=swap">
+<link rel="stylesheet" href="assets/css/styles.css">
+<style>
+.nf-wrap{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:6rem 2rem 4rem;gap:.4rem}
+.nf-code{font-family:var(--font-display);font-size:clamp(4rem,14vw,8rem);color:var(--goldd);line-height:1;letter-spacing:.06em}
+.nf-title{font-family:var(--font-display);font-size:1.5rem;color:var(--parchl);margin-top:.5rem}
+.nf-sub{color:var(--parchd);font-style:italic;max-width:440px;line-height:1.85;margin:.75rem 0 2rem}
+.nf-links{display:flex;gap:1rem;flex-wrap:wrap;justify-content:center}
+</style>
+</head>
+<body>
+
+<div class="nf-wrap">
+  <div class="nf-code">404</div>
+  <h1 class="nf-title" id="nf-title">Bu sayfa haritada yok</h1>
+  <p class="nf-sub" id="nf-sub">
+    Aradığın belge taşınmış, adı değişmiş ya da hiç var olmamış olabilir.
+    Aşağıdaki bağlantılardan devam edebilir veya <kbd>Ctrl</kbd>+<kbd>K</kbd> ile arama yapabilirsin.
+  </p>
+  <div class="nf-links">
+    <a href="index.html" class="btn-g" id="nf-home">Ana Sayfa</a>
+    <a href="karakterler.html" class="btn-o" id="nf-chars">Karakterler</a>
+    <a href="harita.html" class="btn-o" id="nf-map">Harita</a>
+  </div>
+</div>
+
+<script src="assets/js/wiki.js"></script>
+<script>
+const { Lang, initWiki } = Wiki;
+
+function applyLang(l) {
+  document.documentElement.lang = l;
+  document.getElementById('nf-title').textContent =
+    l === 'tr' ? 'Bu sayfa haritada yok' : 'This page is not on the map';
+  document.getElementById('nf-sub').textContent = l === 'tr'
+    ? 'Aradığın belge taşınmış, adı değişmiş ya da hiç var olmamış olabilir. Aşağıdaki bağlantılardan devam edebilir veya Ctrl+K ile arama yapabilirsin.'
+    : 'The page you are looking for may have moved, been renamed, or never existed. Continue from the links below, or press Ctrl+K to search.';
+  document.getElementById('nf-home').textContent  = l === 'tr' ? 'Ana Sayfa'   : 'Home';
+  document.getElementById('nf-chars').textContent = l === 'tr' ? 'Karakterler' : 'Characters';
+  document.getElementById('nf-map').textContent   = l === 'tr' ? 'Harita'      : 'Map';
+  document.title = (l === 'tr' ? 'Sayfa Bulunamadı' : 'Page Not Found') + ' · Stallhart Wiki';
+}
+
+initWiki({ onLangChange: applyLang });
+applyLang(Lang.get());
+</script>
+</body>
+</html>
