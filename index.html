@@ -166,6 +166,7 @@ html[data-theme="light"] .hero-logo {
     "İmparatorluklar taştan değil, itaatten inşa edilir.<br>
     Ve itaat, her zaman bir günün gelip çatacağını bilir."
   </blockquote>
+  <div id="hero-resume-card" class="hero-resume" hidden></div>
   <div class="hero-ctas">
     <a href="#bolumler" class="btn-g" id="cta1">Bölümleri Oku</a>
     <a href="karakterler.html" class="btn-o" id="cta2">Karakterler</a>
@@ -424,8 +425,38 @@ async function renderFeatured() {
   }
 }
 
+function checkResume() {
+  try {
+    const raw = localStorage.getItem('sw-last-read');
+    if (!raw) return;
+    const data = JSON.parse(raw);
+    if (!data || !data.id) return;
+    const l = Lang.get();
+    const title = (typeof data.title === 'object' ? Lang.t(data.title) : data.title) || '';
+    const pct = Math.round((data.pct || 0) * 100);
+    const box = document.getElementById('hero-resume-card');
+    if (!box) return;
+    box.innerHTML = `
+      <a class="hero-resume-link" href="${SWRoute.href('bolum', data.id)}">
+        <span class="hr-icon">📖</span>
+        <span class="hr-text">
+          <small>${l === 'tr' ? 'Kaldığın Yerden Devam Et' : 'Continue Where You Left Off'}${pct > 0 ? ` (%${pct})` : ''}</small>
+          <strong>${esc(data.num ? `${data.num}. ` : '')}${esc(title)}</strong>
+        </span>
+        <span class="hr-arrow">→</span>
+      </a>
+    `;
+    box.hidden = false;
+  } catch (e) {}
+}
+
 applyStaticLang(Lang.get());
 renderFeatured();
+checkResume();
+document.addEventListener('langchange', () => {
+  applyStaticLang(Lang.get());
+  checkResume();
+});
 </script>
 </body>
 </html>

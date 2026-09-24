@@ -556,19 +556,28 @@ footer p {
 }
 footer small { display: block; margin-top: .5rem; font-size: .82rem; color: var(--border); font-style: italic; }
 
-/* ── SCROLL UP ──────────────────────────────────────── */
+/* ── SCROLL UP & READING PROGRESS ───────────────────── */
 .up {
   position: fixed; bottom: 2rem; right: 2rem;
-  width: 38px; height: 38px;
-  background: rgba(196,150,42,.12); border: 1px solid var(--goldd);
+  width: 44px; height: 44px;
+  background: var(--surface); border: 1px solid var(--borderl);
+  border-radius: 50%;
   display: flex; align-items: center; justify-content: center;
   cursor: pointer; opacity: 0; pointer-events: none;
-  transition: opacity .3s; text-decoration: none;
+  transition: opacity .25s ease, transform .2s ease, border-color .2s ease, box-shadow .2s ease;
+  text-decoration: none; padding: 0; font: inherit;
+  box-shadow: 0 4px 18px rgba(0,0,0,.5);
+  backdrop-filter: blur(8px);
+  z-index: 100;
 }
-.up { padding: 0; font: inherit; }
 .up.vis { opacity: 1; pointer-events: auto; }
-.up:hover { background: rgba(196,150,42,.22); }
-.up svg { width: 13px; height: 13px; stroke: var(--gold); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.up:hover {
+  transform: translateY(-2px);
+  border-color: var(--gold);
+  box-shadow: 0 6px 22px rgba(184,115,51,.25);
+}
+.up-svg { width: 42px; height: 42px; display: block; }
+.up-prog-circle { transition: stroke-dashoffset .15s ease-out; }
 
 /* ── SAYFA BAŞLIĞI (İç Sayfalar) ───────────────────── */
 .page-hero {
@@ -792,15 +801,118 @@ img { max-width: 100%; }
   color: var(--goldd); text-decoration: none;
 }
 .wk-go:hover { color: var(--gold); }
-/* Dokunmatik ekran: terim dokunmayla açılır — ipucu olarak alt çizgi KALIR,
-   kart biraz daha okunaklı ve "Maddeyi aç" bağlantısı parmakla rahat basılır. */
+
+/* ── MOBİL DOKUNMATİK ÇEKMECE (Bottom Drawer) ────────── */
+.wk-scrim {
+  position: fixed; inset: 0; z-index: 650;
+  background: rgba(0,0,0,.6); backdrop-filter: blur(2px);
+  opacity: 0; pointer-events: none; transition: opacity .25s ease;
+}
+.wk-scrim.on { opacity: 1; pointer-events: auto; }
+
+.wk-card.wk-drawer {
+  position: fixed; left: 0 !important; right: 0 !important;
+  bottom: 0 !important; top: auto !important;
+  width: 100% !important; max-width: 100% !important;
+  border-radius: 16px 16px 0 0;
+  border-width: 1px 0 0 0;
+  border-color: var(--goldd);
+  background: var(--surface);
+  padding: 1.25rem 1.4rem calc(1.4rem + env(safe-area-inset-bottom, 0px));
+  box-shadow: 0 -10px 40px rgba(0,0,0,.75);
+  transform: translateY(100%);
+  transition: transform .28s cubic-bezier(0.16, 1, 0.3, 1), opacity .2s ease;
+  z-index: 700;
+}
+.wk-card.wk-drawer.on {
+  transform: translateY(0);
+}
+.wk-card.wk-drawer::before {
+  content: ''; position: absolute; top: 7px; left: 50%; transform: translateX(-50%);
+  width: 38px; height: 4px; border-radius: 2px;
+  background: var(--borderl); opacity: .7;
+}
+
+/* Dokunmatik ekran: terim dokunmayla açılır */
 @media (hover: none), (pointer: coarse) {
-  .wk-card { width: 300px; padding: .95rem 1.05rem; }
+  .wk-card:not(.wk-drawer) { width: 300px; padding: .95rem 1.05rem; }
   .wk-body { font-size: .84rem; }
   .wk-sub { font-size: .78rem; }
   .wk-go { font-size: .85rem; padding: .55rem 0 .15rem; margin-top: .3rem; }
 }
 @media (prefers-reduced-motion: reduce) { .wk, .wk-card { transition: none; } }
+
+/* ── METİN SEÇİMİNDE HIZLI TANIM BALONU ─────────────── */
+.sw-sel-bubble {
+  position: fixed; z-index: 850;
+  opacity: 0; pointer-events: none;
+  transform: translateY(4px) scale(.95);
+  transition: opacity .15s ease, transform .15s ease;
+}
+.sw-sel-bubble.on {
+  opacity: 1; pointer-events: auto;
+  transform: translateY(0) scale(1);
+}
+.sw-sel-btn {
+  display: inline-flex; align-items: center; gap: .45rem;
+  padding: .45rem .85rem;
+  background: var(--surface);
+  border: 1px solid var(--gold);
+  border-radius: 20px;
+  color: var(--gold);
+  font-family: var(--font-display);
+  font-size: .78rem;
+  cursor: pointer;
+  box-shadow: 0 6px 20px rgba(0,0,0,.5), 0 0 10px rgba(184,115,51,.25);
+  backdrop-filter: blur(8px);
+  white-space: nowrap;
+  transition: background .18s, color .18s;
+}
+.sw-sel-btn:hover {
+  background: var(--gold);
+  color: var(--bg);
+}
+
+/* ── KALDIĞIN YERDEN DEVAM ET KARTI (Ana Sayfa) ─────── */
+.hero-resume {
+  margin-bottom: 2rem;
+  max-width: 480px; width: 92%;
+  animation: heroResumeFade .35s ease;
+}
+@keyframes heroResumeFade { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+.hero-resume-link {
+  display: flex; align-items: center; gap: .9rem;
+  background: rgba(19,26,41,.92);
+  border: 1px solid var(--gold);
+  border-radius: 6px;
+  padding: .75rem 1.15rem;
+  text-decoration: none;
+  color: var(--parch);
+  box-shadow: 0 4px 20px rgba(0,0,0,.4), 0 0 14px rgba(184,115,51,.15);
+  transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease;
+}
+.hero-resume-link:hover {
+  transform: translateY(-2px);
+  border-color: var(--goldb);
+  box-shadow: 0 6px 25px rgba(184,115,51,.3);
+}
+.hero-resume-link .hr-icon { font-size: 1.35rem; line-height: 1; }
+.hero-resume-link .hr-text { flex: 1; text-align: left; }
+.hero-resume-link .hr-text small { display: block; font-size: .72rem; color: var(--goldd); text-transform: uppercase; letter-spacing: .06em; }
+.hero-resume-link .hr-text strong { display: block; font-size: .95rem; color: var(--parchl); font-family: var(--font-display); margin-top: 1px; }
+.hero-resume-link .hr-arrow { color: var(--gold); font-size: 1.15rem; transition: transform .2s ease; }
+.hero-resume-link:hover .hr-arrow { transform: translateX(3px); }
+
+/* ── MOBİL DONANIM HIZLANDIRMASI (GPU Rasterization) ─ */
+#site-nav, .rd-bar, .lore-nav-container, .lore-nav-bar {
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+/* ── OKUYUCU ODAK MODU ──────────────────────────────── */
+body.reader.rd-focus .rd-bar { transform: translateY(-100%); }
+body.reader.rd-focus .rd-progress { opacity: 0; pointer-events: none; }
+body.reader.rd-focus .rd-main { padding-top: 2rem; }
 
 /* ── YEREL TASLAK ROZETİ ─────────────────────────────── */
 #sw-draft-badge {

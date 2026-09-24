@@ -460,6 +460,15 @@ function savePos() {
   else if (p > 0.01) map[cur.id] = Number(p.toFixed(4));
   else return;
   map.last = cur.id; lsSet(POS_KEY, map);
+  try {
+    localStorage.setItem('sw-last-read', JSON.stringify({
+      id: cur.id,
+      num: cur.num,
+      title: cur.title,
+      pct: Number(p.toFixed(3)),
+      time: Date.now()
+    }));
+  } catch (e) {}
 }
 /* Programatik atlamalar anında olsun: styles.css'teki scroll-behavior:smooth
    yazı boyutu değişirken / "Devam et"te titreme ve gecikme yaratır. */
@@ -516,8 +525,45 @@ document.addEventListener('keydown', e => {
     const first = f[0], last = f[f.length - 1];
     if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
     else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    return;
+  }
+  if (openPanel) return;
+  const tag = (document.activeElement && document.activeElement.tagName) || '';
+  if (tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT') return;
+
+  if (e.key === 'ArrowLeft') {
+    const list = chapters().filter(readable);
+    const idx = cur ? list.findIndex(c => c.id === cur.id) : -1;
+    if (idx > 0) {
+      location.href = SWRoute.href('bolum', list[idx - 1].id);
+    }
+  } else if (e.key === 'ArrowRight') {
+    const list = chapters().filter(readable);
+    const idx = cur ? list.findIndex(c => c.id === cur.id) : -1;
+    if (idx >= 0 && idx < list.length - 1) {
+      location.href = SWRoute.href('bolum', list[idx + 1].id);
+    }
+  } else if (e.key === 'f' || e.key === 'F') {
+    if (!e.ctrlKey && !e.metaKey && !e.altKey) {
+      e.preventDefault();
+      toggleFocus();
+    }
   }
 });
+
+function toggleFocus() {
+  const isFull = !!document.fullscreenElement;
+  if (!isFull) {
+    if (document.documentElement.requestFullscreen) {
+      document.documentElement.requestFullscreen().catch(() => {});
+    }
+  } else {
+    if (document.exitFullscreen) {
+      document.exitFullscreen().catch(() => {});
+    }
+  }
+  document.body.classList.toggle('rd-focus');
+}
 
 /* Ayar denetimleri */
 document.querySelectorAll('[data-pref]').forEach(g => g.addEventListener('click', e => {

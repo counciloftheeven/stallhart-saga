@@ -206,10 +206,10 @@ const SYMBOL_PATHS = {
 };
 const Loader = (() => {
   const SEEN = 'sw-intro-seen';
-  const INTRO_MIN = 1050;  /* ilk ziyaret: giriş animasyonunun süresi (ms) — styles.css .lh-intro ile uyumlu */
-  const QUICK_MIN = 500;   /* sade sürüm: asgari görünme süresi (ms) */
+  const INTRO_MIN = 650;  /* ilk ziyaret: giriş animasyonu (ms) */
+  const QUICK_MIN = 80;   /* sade sürüm: mikro-fade (<120 ms) ile anında akıcı geçiş */
   const INTRO_EVERY_PAGE = false;   /* true: her sayfa geçişinde tam giriş animasyonu */
-  const MAX_WAIT  = 9000;  /* güvenlik: ne olursa olsun kapat */
+  const MAX_WAIT  = 5000;  /* güvenlik: ne olursa olsun kapat */
   let el = null, pending = 0, done = false, shownAt = 0;
   let domReady = document.readyState !== 'loading';
   let intro = false;
@@ -238,7 +238,7 @@ const Loader = (() => {
     const node = el; el = null;
     node.classList.add('lh-out');
     document.documentElement.classList.remove('sw-loading', 'sw-boot');   /* içerik artık görünür */
-    setTimeout(() => node.remove(), 500);
+    setTimeout(() => node.remove(), 250);
   }
 
   function finish() {
@@ -269,7 +269,7 @@ const Loader = (() => {
   else settle();
   setTimeout(() => { pending = 0; domReady = true; finish(); }, MAX_WAIT);
 
-  return { track, hide };
+  return { track, hide, finish };
 })();
 
 /* İskelet: [data-skeleton="cards|rows|blocks"] işaretli, henüz boş kapları
@@ -578,8 +578,12 @@ const LivePatches = (() => {
 })();
 
 
-/* Açılış ekranı, bekleyen veri isteklerini buradan sayar. */
-function loadData(file) { return Loader.track(loadDataRaw(file).then(d => Img.ready.then(() => d))); }
+/* Açılış ekranı, bekleyen veri isteklerini buradan sayar.
+   Görsel manifestosu (Img.ready) paralel/arka planda çözülür, veri ve DOM teslimini engellemez. */
+function loadData(file) {
+  if (DataCache[file]) return Promise.resolve(DataCache[file]);
+  return Loader.track(loadDataRaw(file));
+}
 
 async function loadDataRaw(file) {
   if (DataCache[file]) return DataCache[file];
@@ -748,27 +752,41 @@ const Search = (() => {
 
   const TYPE_ICON = { karakter: 'K', bolum: 'B', sozluk: 'S', hane: 'H', alinti: 'A' };
 
+  let openFn = null, closeFn = null;
+
+  function open(initialQ) {
+    if (openFn) openFn(initialQ);
+  }
+
+  function close() {
+    if (closeFn) closeFn();
+  }
+
   function init() {
     const overlay = document.getElementById('search-overlay');
     const input   = document.getElementById('search-input');
     const results = document.getElementById('search-results');
     if (!overlay || !input || !results) return;
 
-    function open() {
+    openFn = function (initialQ) {
       overlay.classList.add('open');
+      if (typeof initialQ === 'string') {
+        input.value = initialQ;
+      }
       input.focus();
-      render('', []);
+      const curQ = input.value.trim();
+      render(curQ, query(curQ));
       buildIndex().then(() => {
         const q = input.value.trim();
         if (q) render(q, query(q));
       });
-    }
-    function close() {
+    };
+    closeFn = function () {
       overlay.classList.remove('open');
       input.value = '';
       results.innerHTML = '';
       focusIdx = -1;
-    }
+    };
     function render(q, items) {
       const l = Lang.get();
       if (!q) {
@@ -816,7 +834,7 @@ const Search = (() => {
       }
     });
 
-    document.querySelectorAll('[data-search-btn]').forEach(b => b.addEventListener('click', open));
+    document.querySelectorAll('[data-search-btn]').forEach(b => b.addEventListener('click', () => open()));
     document.addEventListener('keydown', e => {
       if ((e.ctrlKey || e.metaKey) && (e.key === 'k' || e.key === 'K')) {
         e.preventDefault();
@@ -827,7 +845,7 @@ const Search = (() => {
     overlay.addEventListener('click', e => { if (e.target === overlay) close(); });
   }
 
-  return { init, buildIndex };
+  return { init, buildIndex, open, close, query };
 })();
 
 /* ── 6. YARDIMCILAR ──────────────────────────────────────────── */
@@ -888,7 +906,11 @@ function injectScrollUp() {
   document.body.insertAdjacentHTML('beforeend',
     '<button class="up" id="scroll-up" type="button" data-tr="Yukarı çık" data-en="Scroll to top" data-i18n-attr="aria-label" aria-label="' +
     (l === 'tr' ? 'Yukarı çık' : 'Scroll to top') + '">' +
-    '<svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg></button>');
+    '<svg class="up-svg" viewBox="0 0 44 44" width="42" height="42" aria-hidden="true">' +
+    '<circle class="up-bg-circle" cx="22" cy="22" r="18" fill="none" stroke="rgba(196,150,42,.2)" stroke-width="2.5"/>' +
+    '<circle class="up-prog-circle" id="scroll-up-circle" cx="22" cy="22" r="18" fill="none" stroke="var(--gold, #C4962A)" stroke-width="2.5" stroke-dasharray="113.1" stroke-dashoffset="113.1" transform="rotate(-90 22 22)"/>' +
+    '<polyline points="15 25 22 18 29 25" fill="none" stroke="var(--parchl, #F4ECD8)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>' +
+    '</svg></button>');
 }
 
 function injectFooter() {
@@ -987,9 +1009,26 @@ function initNav() {
   }
 
   const up = document.getElementById('scroll-up');
+  const upCircle = document.getElementById('scroll-up-circle');
   if (up) {
-    window.addEventListener('scroll',
-      () => up.classList.toggle('vis', window.scrollY > 400), { passive: true });
+    let ticking = false;
+    const updateUpProgress = () => {
+      const scrollY = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const pct = docHeight > 0 ? Math.min(1, Math.max(0, scrollY / docHeight)) : 0;
+      up.classList.toggle('vis', pct >= 0.15 || scrollY > 280);
+      if (upCircle) {
+        const offset = 113.1 * (1 - pct);
+        upCircle.style.strokeDashoffset = offset.toFixed(1);
+      }
+      ticking = false;
+    };
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        requestAnimationFrame(updateUpProgress);
+        ticking = true;
+      }
+    }, { passive: true });
     up.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
   }
 
@@ -1482,20 +1521,41 @@ const Tooltip = (() => {
     const cb = c.querySelector('.wk-close-btn');
     if (cb) cb.onclick = function (ev) { ev.stopPropagation(); hideNow(); };
 
-    c.style.visibility = 'hidden';
-    c.classList.add('on');
+    const isMobile = window.innerWidth <= 640 || coarse();
+    if (isMobile) {
+      c.classList.add('wk-drawer');
+      let scrim = document.getElementById('wk-scrim');
+      if (!scrim) {
+        scrim = document.createElement('div');
+        scrim.id = 'wk-scrim';
+        scrim.className = 'wk-scrim';
+        scrim.onclick = hideNow;
+        document.body.appendChild(scrim);
+      }
+      scrim.classList.add('on');
+      c.style.left = '';
+      c.style.top = '';
+      c.style.visibility = 'visible';
+      requestAnimationFrame(() => c.classList.add('on'));
+    } else {
+      c.classList.remove('wk-drawer');
+      const scrim = document.getElementById('wk-scrim');
+      if (scrim) scrim.classList.remove('on');
+      c.style.visibility = 'hidden';
+      c.classList.add('on');
 
-    const rects = el.getClientRects();
-    const r = rects.length ? rects[0] : el.getBoundingClientRect();
-    const cw = c.offsetWidth, chh = c.offsetHeight;
-    let left = r.left + r.width / 2 - cw / 2;
-    left = Math.max(8, Math.min(left, window.innerWidth - cw - 8));
-    let top = r.top - chh - 10;
-    if (top < 8) top = r.bottom + 10;                       /* yukarıda yer yoksa alta aç */
-    top = Math.max(8, Math.min(top, window.innerHeight - chh - 8));
-    c.style.left = Math.round(left) + 'px';
-    c.style.top = Math.round(top) + 'px';
-    c.style.visibility = 'visible';
+      const rects = el.getClientRects();
+      const r = rects.length ? rects[0] : el.getBoundingClientRect();
+      const cw = c.offsetWidth, chh = c.offsetHeight;
+      let left = r.left + r.width / 2 - cw / 2;
+      left = Math.max(8, Math.min(left, window.innerWidth - cw - 8));
+      let top = r.top - chh - 10;
+      if (top < 8) top = r.bottom + 10;                       /* yukarıda yer yoksa alta aç */
+      top = Math.max(8, Math.min(top, window.innerHeight - chh - 8));
+      c.style.left = Math.round(left) + 'px';
+      c.style.top = Math.round(top) + 'px';
+      c.style.visibility = 'visible';
+    }
   }
 
   function hide() {
@@ -1504,7 +1564,14 @@ const Tooltip = (() => {
   }
   function hideNow() {
     clearTimeout(hideTimer);
-    if (card) card.classList.remove('on');
+    if (card) {
+      card.classList.remove('on');
+      if (card.classList.contains('wk-drawer')) {
+        setTimeout(() => { if (!card.classList.contains('on')) card.style.visibility = 'hidden'; }, 220);
+      }
+    }
+    const scrim = document.getElementById('wk-scrim');
+    if (scrim) scrim.classList.remove('on');
     activeEl = null;
   }
 
@@ -1706,6 +1773,129 @@ const Tooltip = (() => {
   return { init, scan, build, hide: hideNow, terms: () => terms };
 })();
 
+/* ── 9b. VERİ ÖNCEDEN YÜKLEME & BAĞLANTI SEZGİSİ (Prefetch on Hover) ── */
+const Prefetch = (() => {
+  const PREFETCH_MAP = [
+    { match: /karakter/i, files: ['characters.json', 'houses.json'] },
+    { match: /hane/i, files: ['houses.json'] },
+    { match: /bolum|oku\.html/i, files: ['chapters.json', 'book.json'] },
+    { match: /lore|evren/i, files: ['lore.json', 'geography.json'] },
+    { match: /tanri/i, files: ['lore.json'] },
+    { match: /harita/i, files: ['maps.json', 'geography.json'] },
+    { match: /soy-agaci/i, files: ['familytree.json', 'characters.json'] },
+    { match: /sozler/i, files: ['quotes.json'] }
+  ];
+  const fetched = Object.create(null);
+
+  function trigger(href) {
+    if (!href) return;
+    for (let i = 0; i < PREFETCH_MAP.length; i++) {
+      const item = PREFETCH_MAP[i];
+      if (item.match.test(href)) {
+        item.files.forEach(f => {
+          if (!fetched[f] && !DataCache[f]) {
+            fetched[f] = true;
+            loadDataRaw(f).catch(() => {});
+          }
+        });
+      }
+    }
+  }
+
+  function init() {
+    const onEnter = e => {
+      const t = e.target;
+      if (!t || !t.closest) return;
+      const a = t.closest('a, .wk, .sr-item, [data-page]');
+      if (!a) return;
+      const href = a.getAttribute('href') || a.getAttribute('data-page') || (a.dataset && a.dataset.wk ? 'karakter' : '');
+      if (href) trigger(href);
+    };
+    document.addEventListener('pointerenter', onEnter, { passive: true, capture: true });
+    document.addEventListener('touchstart', onEnter, { passive: true });
+  }
+
+  return { init, trigger };
+})();
+
+/* ── 9c. METİN SEÇİMİNDE HIZLI TANIM (Selection Lookup) ─────── */
+const SelectionLookup = (() => {
+  let bubble = null;
+  let activeText = '';
+
+  function ensureBubble() {
+    if (bubble) return bubble;
+    bubble = document.createElement('div');
+    bubble.id = 'sw-selection-bubble';
+    bubble.className = 'sw-sel-bubble';
+    bubble.innerHTML = '<button type="button" class="sw-sel-btn" id="sw-sel-search">' +
+      '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="22" y2="22"/></svg>' +
+      '<span class="sw-sel-lbl">Ansiklopedide Ara</span></button>';
+    document.body.appendChild(bubble);
+    bubble.querySelector('#sw-sel-search').addEventListener('click', e => {
+      e.stopPropagation();
+      e.preventDefault();
+      const q = activeText;
+      hide();
+      Search.open(q);
+    });
+    return bubble;
+  }
+
+  function hide() {
+    if (bubble) bubble.classList.remove('on');
+    activeText = '';
+  }
+
+  function check() {
+    const sel = window.getSelection();
+    if (!sel || sel.isCollapsed || sel.rangeCount === 0) {
+      hide();
+      return;
+    }
+    const text = sel.toString().trim();
+    if (text.length < 2 || text.length > 50) {
+      hide();
+      return;
+    }
+    const anchor = sel.anchorNode && (sel.anchorNode.nodeType === 3 ? sel.anchorNode.parentElement : sel.anchorNode);
+    if (!anchor || !anchor.closest('.book-body, .rd-article, .art-p, .lc, .cc-desc, main, article')) {
+      hide();
+      return;
+    }
+    activeText = text;
+    const range = sel.getRangeAt(0);
+    const rect = range.getBoundingClientRect();
+    if (!rect || (rect.width === 0 && rect.height === 0)) { hide(); return; }
+
+    const b = ensureBubble();
+    const l = Lang.get();
+    const cleanT = text.slice(0, 16) + (text.length > 16 ? '…' : '');
+    b.querySelector('.sw-sel-lbl').textContent = l === 'tr' ? `“${cleanT}” Ara` : `Search “${cleanT}”`;
+    b.classList.add('on');
+
+    const bw = b.offsetWidth || 150;
+    const bh = b.offsetHeight || 34;
+    let left = rect.left + rect.width / 2 - bw / 2;
+    left = Math.max(10, Math.min(left, window.innerWidth - bw - 10));
+    let top = rect.top - bh - 8;
+    if (top < 10) top = rect.bottom + 8;
+    b.style.left = Math.round(left) + 'px';
+    b.style.top = Math.round(top) + 'px';
+  }
+
+  function init() {
+    document.addEventListener('mouseup', () => setTimeout(check, 30));
+    document.addEventListener('touchend', () => setTimeout(check, 80));
+    document.addEventListener('mousedown', e => {
+      if (bubble && !bubble.contains(e.target)) hide();
+    });
+    window.addEventListener('scroll', () => { if (bubble && bubble.classList.contains('on')) hide(); }, { passive: true });
+  }
+
+  return { init, hide };
+})();
+
 /* ── 10. AÇILIŞ ──────────────────────────────────────────────── */
 function initWiki(options) {
   options = options || {};
@@ -1722,6 +1912,8 @@ function initWiki(options) {
   initFontSize();
   Search.init();
   initFaq();
+  Prefetch.init();
+  SelectionLookup.init();
 
   if (options.tooltips !== false) Tooltip.init(options.tooltipOpts);
   showDraftBadge();
@@ -2261,7 +2453,7 @@ window.Wiki = {
   LivePatches,
   Lang, Theme, FontSize, loadData, Store, Search, Tooltip, Bookmarks, ReadTracker, Book,
   initWiki, injectNav, groupClass, esc, safeImg, godImgHTML, wireGodImgs, godImgSources,
-  getBasePath, BASE_PATH, renderError, showFatal, Tags,
+  getBasePath, BASE_PATH, renderError, showFatal, Tags, Prefetch, SelectionLookup,
   Img, imgAttrs: Img.attrs, imgUrl: Img.url
 };
 
