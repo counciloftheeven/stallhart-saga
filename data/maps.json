@@ -1,0 +1,906 @@
+{
+  "version": 1,
+  "maps": [
+    {
+      "id": "imparatorluk",
+      "title": {
+        "tr": "İmparatorluk Haritası",
+        "en": "Imperial Map"
+      },
+      "desc": {
+        "tr": "Stallhart İmparatorluğu'nun eyaletleri — siyasi harita.",
+        "en": "The provinces of the Stallhart Empire — political map."
+      },
+      "image": "assets/images/SIYASI_HARITA.jpg",
+      "thumb": "assets/images/SIYASI_HARITA_onizleme.jpg",
+      "legendTitle": {
+        "tr": "Eyaletler",
+        "en": "Provinces"
+      },
+      "legend": [
+        {
+          "id": "khasinia",
+          "color": "#8A5A32",
+          "name": {
+            "tr": "Khasinia / Khasinya",
+            "en": "Khasinia / Khasinya"
+          },
+          "eyebrow": {
+            "tr": "Doğu Adası",
+            "en": "Eastern Island"
+          },
+          "capital": {
+            "tr": "Khasinya Kalesi",
+            "en": "Khasinya Fortress"
+          },
+          "ruler": {
+            "tr": "Khasin Hanesi",
+            "en": "House Khasin"
+          },
+          "desc": {
+            "tr": "I. Lun Aldris tarafından Safir Boğazı'ndaki deniz zaferinin ardından boyun eğdirilen ada. Güçlü deniz kültürü ve tarihî isyan eğilimiyle bilinir. İmparatorluğun en zorlu eyaletlerinden biridir.",
+            "en": "The island subdued by Lun Aldris I after the Sapphire Strait naval victory. Known for strong maritime culture and historical rebellious tendencies. Remains one of the empire's most challenging provinces."
+          },
+          "tags": {
+            "tr": [
+              "Deniz Kültürü",
+              "Tarihsel İsyan",
+              "Khasin Hanesi"
+            ],
+            "en": [
+              "Maritime Culture",
+              "Historical Rebellion",
+              "House Khasin"
+            ]
+          },
+          "chars": [
+            {
+              "name": "Yunghar Khasin",
+              "role": {
+                "tr": "Vali",
+                "en": "Governor"
+              },
+              "id": ""
+            }
+          ],
+          "loreId": "",
+          "kingdomId": ""
+        },
+        {
+          "id": "adamen",
+          "color": "#3A7A50",
+          "name": {
+            "tr": "Adamen",
+            "en": "Adamen"
+          },
+          "eyebrow": {
+            "tr": "Güneybatı Eyaleti",
+            "en": "Southwestern Province"
+          },
+          "capital": {
+            "tr": "Adamen Madenleri",
+            "en": "Adamen Mines"
+          },
+          "ruler": {
+            "tr": "Saert Hanesi (Cüce Vali)",
+            "en": "House Saert (Dwarf Governor)"
+          },
+          "desc": {
+            "tr": "İmparatorluğun en büyük maden yataklarına ev sahipliği yapan eyalet. Cüce Vali Gulwar Saert işçi haklarını savunur. İlk Anne inancının en güçlü biçimde yaşadığı topraklar; madencilerin ninnileri hâlâ çınlar.",
+            "en": "Province home to the empire's largest mineral deposits. Dwarf Governor Gulwar Saert advocates for miners' rights. The land where the First Mother faith survives most strongly — in miners' lullabies."
+          },
+          "tags": {
+            "tr": [
+              "Maden Yatakları",
+              "Cüce Nüfus",
+              "İlk Anne İzleri"
+            ],
+            "en": [
+              "Mineral Deposits",
+              "Dwarf Population",
+              "First Mother Traces"
+            ]
+          },
+          "chars": [
+            {
+              "name": "Gulwar Saert",
+              "role": {
+                "tr": "Cüce Vali",
+                "en": "Dwarf Governor"
+              },
+              "id": ""
+            }
+          ],
+          "loreId": "",
+          "kingdomId": ""
+        },
+        {
+          "id": "zela",
+          "color": "#2A6A85",
+          "name": {
+            "tr": "Z'ela",
+            "en": "Z'ela"
+          },
+          "eyebrow": {
+            "tr": "Batı Eyaleti",
+            "en": "Western Province"
+          },
+          "capital": {
+            "tr": "Garall Limanı ⚓",
+            "en": "Port of Garall ⚓"
+          },
+          "ruler": {
+            "tr": "Çeşitli Haneler (Carvhen, İtrez…)",
+            "en": "Various Houses (Carvhen, Itrez…)"
+          },
+          "desc": {
+            "tr": "Gümüş Yol Boğazı'nın kuzey yakasında Garall limanıyla kıtalar arası ticaretin merkezi. Eyaletin karmaşık haneler yapısı, merkezi otoritenin zayıfladığı dönemlerde ciddi baskı noktasına dönüşür.",
+            "en": "On the north bank of the Silver Way Strait, Port Garall is the center of intercontinental trade. The province's complex house structure becomes a major pressure point when central authority weakens."
+          },
+          "tags": {
+            "tr": [
+              "Garall Limanı",
+              "Deniz Ticareti",
+              "Boğaz Kontrolü"
+            ],
+            "en": [
+              "Port of Garall",
+              "Maritime Trade",
+              "Strait Control"
+            ]
+          },
+          "chars": [
+            {
+              "name": "Arba İtrez",
+              "role": {
+                "tr": "Z'ela Soylusu",
+                "en": "Z'ela Noble"
+              },
+              "id": ""
+            }
+          ],
+          "loreId": "zela",
+          "kingdomId": ""
+        },
+        {
+          "id": "galetsha",
+          "color": "#6A3D14",
+          "name": {
+            "tr": "Galetsha",
+            "en": "Galetsha"
+          },
+          "eyebrow": {
+            "tr": "Kuzey Eyaleti",
+            "en": "Northern Province"
+          },
+          "capital": {
+            "tr": "Galetsha Kalesi",
+            "en": "Galetsha Fortress"
+          },
+          "ruler": {
+            "tr": "Galet / Galetsha Hanesi",
+            "en": "House Galet / Galetsha"
+          },
+          "desc": {
+            "tr": "Sarp geçitleri ve stratejik mevzileriyle kuzeyin bekçisi. Wolrez Galet, Arathen casusu Eron Gjin ile ittifak kurarak Olinder Albea suikastını örgütledi — Erthan yayının fitilini ateşledi.",
+            "en": "Guardian of the north with treacherous passes. Wolrez Galet allied with Arathen spy Eron Gjin to orchestrate Olinder Albea's assassination — igniting the Erthan arc."
+          },
+          "tags": {
+            "tr": [
+              "Sarp Dağlar",
+              "Stratejik Geçitler",
+              "Arathen İttifakı"
+            ],
+            "en": [
+              "Rugged Mountains",
+              "Strategic Passes",
+              "Arathen Alliance"
+            ]
+          },
+          "chars": [
+            {
+              "name": "Wolrez Galet",
+              "role": {
+                "tr": "Galetsha Valisi",
+                "en": "Governor of Galetsha"
+              },
+              "id": "wolrez-galet"
+            },
+            {
+              "name": "Metron Galetsha",
+              "role": {
+                "tr": "Eski Vali (Ölü)",
+                "en": "Former Governor (Deceased)"
+              },
+              "id": ""
+            }
+          ],
+          "loreId": "galetsha",
+          "kingdomId": ""
+        },
+        {
+          "id": "highsanjak",
+          "color": "#9A7810",
+          "name": {
+            "tr": "High Sanjak / Başsancak",
+            "en": "High Sanjak / Başsancak"
+          },
+          "eyebrow": {
+            "tr": "Başkent Eyaleti",
+            "en": "Capital Province"
+          },
+          "capital": {
+            "tr": "Arava — İmparatorluk Başkenti",
+            "en": "Arava — Imperial Capital"
+          },
+          "ruler": {
+            "tr": "Stallhart Hanedanı",
+            "en": "Stallhart Dynasty"
+          },
+          "desc": {
+            "tr": "İmparatorluğun kalbi. Stallhart sarayının bulunduğu Arava şehri tüm eyaletlerin siyasi odak noktasıdır. Karabıçaklar buradan yönetilir. Rones döneminde büyüyen şehir İmloth yönetiminde derin bir çürüme yaşadı.",
+            "en": "The empire's heart. Arava, seat of the Stallhart palace, is the political focal point. The Black Claws operate from here. The city grew under Rones but fell into deep rot under Imloth."
+          },
+          "tags": {
+            "tr": [
+              "İmparatorluk Sarayı",
+              "Arava Şehri",
+              "Karabıçaklar Merkezi"
+            ],
+            "en": [
+              "Imperial Palace",
+              "City of Arava",
+              "Black Claws HQ"
+            ]
+          },
+          "chars": [
+            {
+              "name": "Zeandor Stallhart",
+              "role": {
+                "tr": "İmparator (Tahtta)",
+                "en": "Emperor (On Throne)"
+              },
+              "id": "zeandor"
+            },
+            {
+              "name": "Amadon Stallhart",
+              "role": {
+                "tr": "Eski İmparator",
+                "en": "Former Emperor"
+              },
+              "id": "amadon"
+            },
+            {
+              "name": "Hilnor Wolde",
+              "role": {
+                "tr": "Baş Danışman",
+                "en": "Chief Advisor"
+              },
+              "id": "hilnor-wolde"
+            },
+            {
+              "name": "Edun Solgar",
+              "role": {
+                "tr": "Sürgün Başvezir",
+                "en": "Exiled Grand Vizier"
+              },
+              "id": "edun-solgar"
+            }
+          ],
+          "loreId": "bassancak",
+          "kingdomId": ""
+        },
+        {
+          "id": "memanth",
+          "color": "#6A4A9A",
+          "name": {
+            "tr": "Memanth",
+            "en": "Memanth"
+          },
+          "eyebrow": {
+            "tr": "Kuzey Eyaleti",
+            "en": "Northern Province"
+          },
+          "capital": {
+            "tr": "Craber Kalesi 🏰",
+            "en": "Craber Fortress 🏰"
+          },
+          "ruler": {
+            "tr": "Sınglew Hanesi (önde gelen)",
+            "en": "House Sınglew (prominent)"
+          },
+          "desc": {
+            "tr": "Kuzey sınır hattının kritik dayanak noktası. Craber Kalesi ve Arava Garnizonu bölgenin askerî omurgasını oluşturur. Reanloth'un sabırlı seferlerle ilhak ettiği eyalet, Erthan isyanında kritik savaş alanlarına ev sahipliği yaptı.",
+            "en": "Critical anchor of the northern frontier. Craber Fortress and Arava Garrison form the military backbone. Annexed by Reanloth through patient campaigns; hosted critical battlegrounds during Erthan's rebellion."
+          },
+          "tags": {
+            "tr": [
+              "Craber Kalesi",
+              "Arava Garnizonu",
+              "Kuzey Sınırı"
+            ],
+            "en": [
+              "Craber Fortress",
+              "Arava Garrison",
+              "Northern Border"
+            ]
+          },
+          "chars": [
+            {
+              "name": "Aertas Sınglew",
+              "role": {
+                "tr": "Doğu Sınırı Komutanı",
+                "en": "Eastern Border Commander"
+              },
+              "id": "aertas-singlew"
+            }
+          ],
+          "loreId": "",
+          "kingdomId": ""
+        },
+        {
+          "id": "onneva",
+          "color": "#5A8010",
+          "name": {
+            "tr": "Onneva",
+            "en": "Onneva"
+          },
+          "eyebrow": {
+            "tr": "Doğu Eyaleti",
+            "en": "Eastern Province"
+          },
+          "capital": {
+            "tr": "Onneva Limanı ⚓",
+            "en": "Port of Onneva ⚓"
+          },
+          "ruler": {
+            "tr": "Onneva Hanesi",
+            "en": "House Onneva"
+          },
+          "desc": {
+            "tr": "Gümüş Yol Boğazı'nın güneydoğu yakasında Todfa ve Gom Ara geçiş noktalarıyla stratejik değer taşır. İmparatorluk Donanması'nın kritik güney üssüdür.",
+            "en": "On the southeastern bank of the Silver Way Strait with the crossing points Todfa and Gom Ara. Critical southern base of the Imperial Navy."
+          },
+          "tags": {
+            "tr": [
+              "Todfa Geçidi",
+              "Gom Ara",
+              "Deniz Üssü"
+            ],
+            "en": [
+              "Todfa Crossing",
+              "Gom Ara",
+              "Naval Base"
+            ]
+          },
+          "chars": [
+            {
+              "name": "Irin Onneva",
+              "role": {
+                "tr": "Eski Yüksek Rahip (Ölü)",
+                "en": "Former High Priest (Deceased)"
+              },
+              "id": ""
+            }
+          ],
+          "loreId": "",
+          "kingdomId": ""
+        },
+        {
+          "id": "solgar",
+          "color": "#9A4A10",
+          "name": {
+            "tr": "Solgar",
+            "en": "Solgar"
+          },
+          "eyebrow": {
+            "tr": "Merkez Eyaleti",
+            "en": "Central Province"
+          },
+          "capital": {
+            "tr": "Solgar Sarayı",
+            "en": "Solgar Palace"
+          },
+          "ruler": {
+            "tr": "Solgar Hanesi",
+            "en": "House Solgar"
+          },
+          "desc": {
+            "tr": "Edun Solgar'ın Zeandor tarafından sürgün edildiği eyalet. Bakırsu Vadisi bu topraklarda yer alır — Reun Solgar ordusunun imparatorluk tarihinin en ağır bozgunlarından birini yaşadığı yer.",
+            "en": "The province to which Edun Solgar was exiled by Zeandor. Bakırsu Valley lies in these lands — where Reun Solgar's army suffered one of the empire's most catastrophic defeats."
+          },
+          "tags": {
+            "tr": [
+              "Edun Solgar'ın Sürgünü",
+              "Bakırsu Vadisi",
+              "Bataklık Zenginlikleri"
+            ],
+            "en": [
+              "Edun Solgar's Exile",
+              "Bakırsu Valley",
+              "Marsh Riches"
+            ]
+          },
+          "chars": [
+            {
+              "name": "Edun Solgar",
+              "role": {
+                "tr": "Sürgün Başvezir",
+                "en": "Exiled Grand Vizier"
+              },
+              "id": "edun-solgar"
+            },
+            {
+              "name": "Reun Solgar",
+              "role": {
+                "tr": "Yenilmiş Komutan",
+                "en": "Defeated Commander"
+              },
+              "id": "reun-solgar"
+            }
+          ],
+          "loreId": "solgar",
+          "kingdomId": ""
+        },
+        {
+          "id": "seltania",
+          "color": "#158A8A",
+          "name": {
+            "tr": "Seltania / Seltanya",
+            "en": "Seltania / Seltanya"
+          },
+          "eyebrow": {
+            "tr": "Güney Eyaleti",
+            "en": "Southern Province"
+          },
+          "capital": {
+            "tr": "Seltanya Şehri",
+            "en": "City of Seltanya"
+          },
+          "ruler": {
+            "tr": "Vizelar Hanesi (önde gelen)",
+            "en": "House Vizelar (prominent)"
+          },
+          "desc": {
+            "tr": "Amadon'un iktidar üssünü inşa ettiği eyalet. Seltanya Meliki sıfatıyla Karabıçaklar'ı burada kurdu; buradan imparatorluk tahtına uzandı. Scifella'nın KS 1248–49 seferinde fethedilmişti.",
+            "en": "The province where Amadon built his power base. As Melik of Seltanya he founded the Black Claws here; from here he reached for the throne. Conquered by Scifella in KS 1248–49."
+          },
+          "tags": {
+            "tr": [
+              "Amadon'un Üssü",
+              "Karabıçaklar Kuruluşu",
+              "Güney Sınırı"
+            ],
+            "en": [
+              "Amadon's Base",
+              "Black Claws Founded",
+              "Southern Border"
+            ]
+          },
+          "chars": [
+            {
+              "name": "Amadon Stallhart",
+              "role": {
+                "tr": "Eski Melik",
+                "en": "Former Melik"
+              },
+              "id": "amadon"
+            }
+          ],
+          "loreId": "seltanya",
+          "kingdomId": ""
+        },
+        {
+          "id": "sanctuary",
+          "color": "#8A1A55",
+          "name": {
+            "tr": "The Sanctuary / Sığınak",
+            "en": "The Sanctuary"
+          },
+          "eyebrow": {
+            "tr": "Kutsal Topraklar",
+            "en": "Sacred Lands"
+          },
+          "capital": {
+            "tr": "Sığınak Şehri",
+            "en": "Sanctuary City"
+          },
+          "ruler": {
+            "tr": "Denge Konseyi",
+            "en": "Council of Balance"
+          },
+          "desc": {
+            "tr": "İmparatorluğun en kutsal toprakları. Denge Konseyi'nin ruhani otoritesinin merkezi; tapınak kompleksleri ve kutsal törenleriyle imparatorluk üzerinde güçlü bir manevi etki kurar.",
+            "en": "The most sacred lands of the empire. Spiritual authority center of the Council of Balance; exercises powerful influence through its temple complexes and holy ceremonies."
+          },
+          "tags": {
+            "tr": [
+              "Kutsal Alan",
+              "Denge Konseyi",
+              "Tapınak Kompleksi"
+            ],
+            "en": [
+              "Sacred Ground",
+              "Council of Balance",
+              "Temple Complex"
+            ]
+          },
+          "chars": [
+            {
+              "name": "Ertler Serbam",
+              "role": {
+                "tr": "Yüksek Rahip",
+                "en": "High Priest"
+              },
+              "id": ""
+            }
+          ],
+          "loreId": "denge-konseyi",
+          "kingdomId": ""
+        },
+        {
+          "id": "shelia",
+          "color": "#7A5828",
+          "name": {
+            "tr": "Shelia / Selya",
+            "en": "Shelia / Selya"
+          },
+          "eyebrow": {
+            "tr": "Güney Adası",
+            "en": "Southern Island"
+          },
+          "capital": {
+            "tr": "Selya Limanı ⚓",
+            "en": "Selya Harbor ⚓"
+          },
+          "ruler": {
+            "tr": "Selya Hanesi (Celios Selya)",
+            "en": "House Selya (Celios Selya)"
+          },
+          "desc": {
+            "tr": "Zeandor'un 9 yaşından itibaren büyüdüğü ada. Bilge eski Başvezir Celios Selya liderliğinde yarı özerk yapısını korur. Liman vinci icadı, Kör Yengeç Tavernası ve Zeandor'un olgunluk yılları bu adaya aittir.",
+            "en": "The island where Zeandor grew up from age 9. Under wise former Grand Vizier Celios Selya it maintains semi-autonomous status. The port crane, the Blind Crab Tavern, and Zeandor's formative years all belong here."
+          },
+          "tags": {
+            "tr": [
+              "Zeandor'un Yurdu",
+              "Celios'un Yönetimi",
+              "Deniz Gücü"
+            ],
+            "en": [
+              "Zeandor's Home",
+              "Celios's Rule",
+              "Naval Power"
+            ]
+          },
+          "chars": [
+            {
+              "name": "Celios Selya",
+              "role": {
+                "tr": "Selya Lordu",
+                "en": "Lord of Selya"
+              },
+              "id": "celios"
+            },
+            {
+              "name": "Liaher Selya",
+              "role": {
+                "tr": "Sessiz Fırtına",
+                "en": "The Quiet Storm"
+              },
+              "id": "liaher"
+            },
+            {
+              "name": "Elyndra Selya",
+              "role": {
+                "tr": "İlahi Yıldız",
+                "en": "Divine Star"
+              },
+              "id": "elyndra"
+            }
+          ],
+          "loreId": "selya",
+          "kingdomId": ""
+        },
+        {
+          "id": "pilkkard",
+          "color": "#5A7A95",
+          "name": {
+            "tr": "Pilkkard",
+            "en": "Pilkkard"
+          },
+          "eyebrow": {
+            "tr": "Güneydoğu Eyaleti",
+            "en": "Southeastern Province"
+          },
+          "capital": {
+            "tr": "Pilkkard Kalesi",
+            "en": "Pilkkard Fortress"
+          },
+          "ruler": {
+            "tr": "Fendrel Hanesi (önde gelen)",
+            "en": "House Fendrel (prominent)"
+          },
+          "desc": {
+            "tr": "Scifella'nın KS 1258'de fethettiği güney eyaleti. Lunrye döneminde başarısız bir kuşatmaya direnen Pilkkard, imparatorluk tarihindeki en büyük askerî yenilginin sembolü olarak kalır.",
+            "en": "The southern province conquered by Scifella in KS 1258. Pilkkard resisted a failed siege in Lunrye's reign, remaining the symbol of the greatest military defeat in imperial history."
+          },
+          "tags": {
+            "tr": [
+              "Scifella'nın Fethi",
+              "Lunrye'nin Yenilgisi",
+              "Kale Şehri"
+            ],
+            "en": [
+              "Scifella's Conquest",
+              "Lunrye's Defeat",
+              "Fortress City"
+            ]
+          },
+          "chars": [],
+          "loreId": "",
+          "kingdomId": ""
+        }
+      ]
+    },
+    {
+      "id": "dunya",
+      "title": {
+        "tr": "Dünya Haritası",
+        "en": "World Map"
+      },
+      "desc": {
+        "tr": "Kıtanın ve komşu devletlerin genel haritası.",
+        "en": "A general map of the continent and its neighbouring states."
+      },
+      "image": "",
+      "thumb": "",
+      "legendTitle": {
+        "tr": "Devletler",
+        "en": "States"
+      },
+      "legend": [
+        {
+          "id": "stallhart-empire",
+          "color": "#C4962A",
+          "name": {
+            "tr": "Stallhart İmparatorluğu",
+            "en": "Stallhart Empire"
+          },
+          "eyebrow": {
+            "tr": "İmparatorluk",
+            "en": "Empire"
+          },
+          "capital": {
+            "tr": "Arava (Başsancak)",
+            "en": "Arava (Başsancak)"
+          },
+          "ruler": {
+            "tr": "İmparator Zeandor Stallhart",
+            "en": "Emperor Zeandor Stallhart"
+          },
+          "desc": {
+            "tr": "I. Craes Stallhart tarafından KS 1144'te kurulan bu imparatorluk, kıtanın büyük bölümünü on üç eyalet aracılığıyla yönetir. Stallhart Hanedanı Kutsal Kan Doktrini'ne dayanarak ilahi yönetme hakkını savunur.",
+            "en": "Founded by Craes Stallhart I in KS 1144, this empire governs most of the continent through thirteen provinces. The Stallhart Dynasty defends its divine right to rule based on the Holy Blood Doctrine."
+          },
+          "tags": {
+            "tr": [
+              "On üç eyalet",
+              "Karabıçaklar istihbarat örgütü",
+              "Gümüş Yol Boğazı kontrolü"
+            ],
+            "en": [
+              "Thirteen provinces",
+              "Black Claws intelligence organization",
+              "Control of Silver Way Strait"
+            ]
+          },
+          "chars": [
+            {
+              "name": "Zeandor Stallhart",
+              "role": {
+                "tr": "Hükümdar",
+                "en": "Ruler"
+              },
+              "id": "zeandor"
+            }
+          ],
+          "loreId": "",
+          "kingdomId": "stallhart-empire"
+        },
+        {
+          "id": "arathen-kingdom",
+          "color": "#2A2A5C",
+          "name": {
+            "tr": "Arathen Krallığı",
+            "en": "Kingdom of Arathen"
+          },
+          "eyebrow": {
+            "tr": "Krallık",
+            "en": "Kingdom"
+          },
+          "capital": {
+            "tr": "Arathen Başkenti",
+            "en": "Arathen Capital"
+          },
+          "ruler": {
+            "tr": "Kral Leno Kridas",
+            "en": "King Leno Kridas"
+          },
+          "desc": {
+            "tr": "Doğu komşusu. Kral Leno Kridas sabırlı ve hesaplı bir yönetici; Stallhart'ı doğrudan savaşla değil suikast, istihbarat ve sihirle güçlendirilmiş savaş silahlarıyla içten çökertmeyi planlar.",
+            "en": "Eastern neighbor. King Leno Kridas is a patient and calculating ruler who plans to destroy Stallhart from within through assassination, intelligence, and magic-enhanced weapons rather than direct war."
+          },
+          "tags": {
+            "tr": [
+              "Güçlü istihbarat ağı (Eron Gjin)",
+              "Sabır ve uzun vadeli planlama",
+              "Büyü araştırması (savaş topları)"
+            ],
+            "en": [
+              "Strong intelligence network (Eron Gjin)",
+              "Patience and long-term planning",
+              "Magic research (siege cannons)"
+            ]
+          },
+          "chars": [
+            {
+              "name": "Leno Kridas",
+              "role": {
+                "tr": "Hükümdar",
+                "en": "Ruler"
+              },
+              "id": "leno-kridas"
+            }
+          ],
+          "loreId": "",
+          "kingdomId": "arathen-kingdom"
+        },
+        {
+          "id": "zelaina-empire",
+          "color": "#2E8B57",
+          "name": {
+            "tr": "Zelaina Elfin İmparatorluğu",
+            "en": "Zelaina Elven Empire"
+          },
+          "eyebrow": {
+            "tr": "İmparatorluk",
+            "en": "Empire"
+          },
+          "capital": {
+            "tr": "Bilinmiyor",
+            "en": "Unknown"
+          },
+          "ruler": {
+            "tr": "Seçimle belirlenen lider (dönemsel)",
+            "en": "Elected leader (periodic)"
+          },
+          "desc": {
+            "tr": "Batı komşusu. Binyıllardan beri seçimle yönetilen antik Elfin imparatorluğu. Uzun ömürlülükleri ve birikimli bilgelikleri onları tehlikeli diplomasi ortakları kılar. Stallhart'ın hanedan yönetimi anlayışına soğuk bakar.",
+            "en": "Western neighbor. Ancient Elven empire governed by election for millennia. Their longevity and accumulated wisdom make them dangerous diplomatic partners. Cold toward Stallhart's dynastic rule philosophy."
+          },
+          "tags": {
+            "tr": [
+              "Binyıllık deneyim",
+              "Seçimle meşruiyet",
+              "Elflerin uzun ömrü ve birikimi"
+            ],
+            "en": [
+              "Millennia of experience",
+              "Democratic legitimacy",
+              "Elven longevity and accumulated knowledge"
+            ]
+          },
+          "chars": [],
+          "loreId": "",
+          "kingdomId": "zelaina-empire"
+        },
+        {
+          "id": "garchar",
+          "color": "#8B4513",
+          "name": {
+            "tr": "Garchar",
+            "en": "Garchar"
+          },
+          "eyebrow": {
+            "tr": "Devlet",
+            "en": "State"
+          },
+          "capital": {
+            "tr": "Bilinmiyor",
+            "en": "Unknown"
+          },
+          "ruler": {
+            "tr": "İstikrarsız (çekişmeli)",
+            "en": "Unstable (contested)"
+          },
+          "desc": {
+            "tr": "Büyük güçlerin oyuncağına dönmüş küçük devlet. Hem Stallhart hem Arathen hem de Zelaina'nın nüfuz mücadelesinde tampon bölge konumunda. İç istikrarsızlığı onu sürekli dış müdahaleye açık bırakır.",
+            "en": "A small state that has become a plaything of great powers. A buffer zone in the influence struggle between Stallhart, Arathen, and Zelaina. Its internal instability leaves it perpetually open to foreign intervention."
+          },
+          "tags": {
+            "tr": [
+              "Stratejik konum (tampon bölge)"
+            ],
+            "en": [
+              "Strategic location (buffer zone)"
+            ]
+          },
+          "chars": [],
+          "loreId": "",
+          "kingdomId": "garchar"
+        },
+        {
+          "id": "orebas",
+          "color": "#556B2F",
+          "name": {
+            "tr": "Örebas",
+            "en": "Örebas"
+          },
+          "eyebrow": {
+            "tr": "Devlet",
+            "en": "State"
+          },
+          "capital": {
+            "tr": "Bilinmiyor",
+            "en": "Unknown"
+          },
+          "ruler": {
+            "tr": "Bilinmiyor",
+            "en": "Unknown"
+          },
+          "desc": {
+            "tr": "Stallhart ile diplomatik temas kuran devlet. Elçi Ellan, Bölüm I'de başkente gider; bu ziyaret imparatorlukla Örebas arasındaki hassas ilişkinin göstergesidir.",
+            "en": "A state in diplomatic contact with Stallhart. Envoy Ellan travels to the capital in Chapter I, indicating the delicate relationship between the empire and Örebas."
+          },
+          "tags": {
+            "tr": [
+              "Diplomatik denge politikası"
+            ],
+            "en": [
+              "Diplomatic balancing policy"
+            ]
+          },
+          "chars": [],
+          "loreId": "",
+          "kingdomId": "orebas"
+        },
+        {
+          "id": "burria",
+          "color": "#8B6914",
+          "name": {
+            "tr": "Burria",
+            "en": "Burria"
+          },
+          "eyebrow": {
+            "tr": "Krallık",
+            "en": "Kingdom"
+          },
+          "capital": {
+            "tr": "Bilinmiyor",
+            "en": "Unknown"
+          },
+          "ruler": {
+            "tr": "Yerel yönetim (eski haraç ödeyicisi)",
+            "en": "Local rule (former tributary)"
+          },
+          "desc": {
+            "tr": "II. Lun Aldris tarafından KS 1373'te fethedilen bölge; Rones döneminde haraca bağlandı; Elron'un pasif yönetiminde KS 1452 civarında kalıcı olarak kaybedildi. Stallhart'ın en büyük toprak kaybının simgesi.",
+            "en": "Region conquered by Lun Aldris II in KS 1373; bound in tribute under Rones; permanently lost around KS 1452 during Elron's passive reign. Symbol of Stallhart's greatest territorial loss."
+          },
+          "tags": {
+            "tr": [
+              "Tam bağımsızlığını kazandı"
+            ],
+            "en": [
+              "Achieved full independence"
+            ]
+          },
+          "chars": [],
+          "loreId": "",
+          "kingdomId": "burria"
+        }
+      ]
+    }
+  ]
+}

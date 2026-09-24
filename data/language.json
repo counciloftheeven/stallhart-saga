@@ -1,0 +1,3418 @@
+{
+  "grammar": {
+    "phonetics": {
+      "tr": "Ortak Lisan, sert ünsüz kümeleri ve uzun ünlülerle karakterize edilen bir bozkır dilidir. \"V\" ve \"Z\" sesleri saygı ekleri ve unvanlarda sık kullanılır (Va-, Ez-, Vash-).",
+      "en": ""
+    },
+    "morphology": {
+      "tr": "Sözcükler bağımsız köklerden (Alb- \"beyaz/saf\", An- \"gök\", Sa- \"çöl\") sonek birleştirmeleriyle türetilir. Unvanlar genellikle soyadına sonek olarak eklenir (örn. \"-aldris\" arşivci/şahit anlamında).",
+      "en": ""
+    },
+    "templatePhrases": [
+      {
+        "phrase": "Alvasha",
+        "meaning": {
+          "tr": "İyi akşamlar (Gölgeler iyi olsun)",
+          "en": ""
+        }
+      },
+      {
+        "phrase": "Alvheon",
+        "meaning": {
+          "tr": "Günaydın / İyi günler (İyi güneşler)",
+          "en": ""
+        }
+      },
+      {
+        "phrase": "Ez alvasen",
+        "meaning": {
+          "tr": "İyiyim",
+          "en": ""
+        }
+      },
+      {
+        "phrase": "Alvis kal te",
+        "meaning": {
+          "tr": "Senin yolun ak/iyi olsun",
+          "en": ""
+        }
+      }
+    ]
+  },
+  "dictionary": [
+    {
+      "word": "Aelenora",
+      "pos": "Özel İsim (Kadın Akraba Unvanı)",
+      "origin": "Tespit edilmemiş bileşik yapı",
+      "meaning": "Teyze (anne tarafı)",
+      "example": "Va Aelenora ez maeri hanar. (O benim annem tarafından teyzem.)"
+    },
+    {
+      "word": "Ahar (Sahra)",
+      "pos": "İsim",
+      "origin": "Bağımsız kök; birleşik isimlerdeki kök haliSa-'dır",
+      "meaning": "Çöl, kum, kurak arazi. Suyu ve merhameti olmayan ölü topraklar",
+      "example": "Ez paden Ahar, fira ohel. (Ateş gibi çölü yürüyorum.)"
+    },
+    {
+      "word": "Alb",
+      "pos": "Köken Kök",
+      "origin": "Bağımsız temel kök",
+      "meaning": "Beyaz, saf, şafak, aydınlık. Karanlığın zıddını simgeleyen ilk kök",
+      "example": "Albeana glewen. (Beyaz nehir ışıyor.)"
+    },
+    {
+      "word": "Albel",
+      "pos": "Sıfat/İsim (Renk)",
+      "origin": "Alb + -el (parlak)",
+      "meaning": "Fildişi rengi",
+      "example": "Va athor albel. (O kılıç fildişi renginde.)"
+    },
+    {
+      "word": "Albkamor",
+      "pos": "Özel İsim (Yerleşke)",
+      "origin": "Alb- + Kamor",
+      "meaning": "Ak Kale / Beyaz Hisar. Halk dilindeki evrimleşmiş söyleniş:Alvamor",
+      "example": "Ezra paden Alvamor. (Ak Kale'ye gidiyoruz.)"
+    },
+    {
+      "word": "Albmera",
+      "pos": "Özel İsim (Deniz)",
+      "origin": "Alb- + Mera →Avmera(ses evrimi)",
+      "meaning": "Ak Deniz / Beyazsu",
+      "example": "Vash viena Avmera fael. (Rüzgar Ak Deniz için geliyor.)"
+    },
+    {
+      "word": "Albor",
+      "pos": "İsim (Renk/Metal)",
+      "origin": "Alb + -or (metalik)",
+      "meaning": "Gümüş",
+      "example": "Va aldris albor edronel. (O arşivci gümüş mühürü taşıyor.)"
+    },
+    {
+      "word": "Aldris",
+      "pos": "İsim (Unvan)",
+      "origin": "Kaynaklarda etimoloji verilmemiş; bağımsız bileşik kök",
+      "meaning": "Şahit, gözcü, tarihi kaydeden kişi veya baş arşivci. Sarayın sessiz gözleridir",
+      "example": "Aldris ovas garnad. (Arşivci toplandı diye ilan etti.) --- Not: Son ek olarak soyadına eklenir:X-aldris"
+    },
+    {
+      "word": "Alvasen",
+      "pos": "Fiil Kalıbı",
+      "origin": "Alb- (iyi/saf) +ase(olmak kökü) +-n(fiil eki) → \"İyi haldeyim\"",
+      "meaning": "İyiyim",
+      "example": "Ez alvasen. (İyiyim.)"
+    },
+    {
+      "word": "Alvasha",
+      "pos": "Selamlama Kalıbı",
+      "origin": "Alb- (iyi) +Vash(rüzgar/gölge akşam) +-a",
+      "meaning": "İyi akşamlar (Gölgeler iyi olsun)",
+      "example": "Alvasha, Lar Edronvon. (İyi akşamlar, Lord Edronvon.)"
+    },
+    {
+      "word": "Alvheon",
+      "pos": "Selamlama Kalıbı",
+      "origin": "Alb- (iyi/saf) +Heon(Güneş)",
+      "meaning": "Günaydın / İyi günler (İyi güneşler)",
+      "example": "Alvheon, Anxes. (Günaydın, Yüce İmparator.)"
+    },
+    {
+      "word": "Alvolan",
+      "pos": "Bileşik İsim (Yaratık)",
+      "origin": "Alvis(Ak/Beyaz) +Wolan(Kurt)",
+      "meaning": "Akbörü / Beyazkurt",
+      "example": "Alvolan viena Zeandarn. (Akbörü Kutsal Orman'dan geliyor.)"
+    },
+    {
+      "word": "Alvro",
+      "pos": "Bileşik İsim (Yaratık/Unvan)",
+      "origin": "Alvis(Ak) +Rho-(Süvari)",
+      "meaning": "Akbeygir / Şafaksüvarisi",
+      "example": "Alvro gharan Ankal. (Şafaksüvarisi Yüce Geçit'te savaşıyor.)"
+    },
+    {
+      "word": "Alvis",
+      "pos": "Sıfat/Kök",
+      "origin": "Alb- kökünün genişlemiş biçimi",
+      "meaning": "Ak / Beyaz / Şafak; \"İyi\" anlamını da taşır",
+      "example": "Alvis kal te. (Senin yolun ak/iyi olsun.)"
+    },
+    {
+      "word": "Alvor",
+      "pos": "İsim",
+      "origin": "Alvis kökünden",
+      "meaning": "Aydınlık (isim hali)",
+      "example": "Alvor viena Zeana res. (Aydınlık saf ışıkla geliyor.)"
+    },
+    {
+      "word": "An",
+      "pos": "Köken Kök",
+      "origin": "Bağımsız temel kök",
+      "meaning": "Gök, yüce, ufuk çizgisi. İlahi yüksekliği ve tanrısal konum unvanını simgeler",
+      "example": "An- önekiyle türetilen tüm kelimeler tanrısallık ve yücelik içerir"
+    },
+    {
+      "word": "Anahtar",
+      "pos": "bkz.Vekrith(gündelik eşya) /Voras(açmak eyleminin nesneleşmiş hali) --- Not: Kaynaklarda iki farklı kelime verilmiştir (Bölüm 5'te çelişki kaydedildi). Ankal---Özel İsim (Coğrafya) / Fiil",
+      "origin": "An-(Yüce/Gök) +Kal(Yol/Geçit)",
+      "meaning": "(1) Yüce Geçit (coğrafi isim olarak); (2) Uçmak (fiil olarak)",
+      "example": "Ezra paden Angal. (Yüce Geçit'e gidiyoruz.) --- Not: Yer ismi sözlüğündeAnkal \\> Angalses evrimi kaydedilmiştir"
+    },
+    {
+      "word": "Annor",
+      "pos": "İsim (Dini/Teolojik)",
+      "origin": "An- (Gök) kökünden",
+      "meaning": "Tanrı, yüce yaratıcı. Halkın tanrısına verilen ad",
+      "example": "Annor zeana ezra. (Tanrı bizi aydınlatsın.) --- Not:Eraile semantik örtüşme için bkz. Bölüm 5, Tutarsızlık #1"
+    },
+    {
+      "word": "Anxes",
+      "pos": "İsim / Unvan (İmparatorluk)",
+      "origin": "An-(Gök/Yüce) +Xes(İmparator)",
+      "meaning": "Yüce İmparator. Tanrısal bir figür olarak görülen hükümdarlar için kullanılan en üst düzey hitap; resmi hitap, akranlar arasından çıkamaz",
+      "example": "Kalva! Anxes viena! (Destur! Yüce İmparator geliyor!) --- Not: Kısa formdaXes, tam ve törensel formdaAnxeskullanılır"
+    },
+    {
+      "word": "Anzen",
+      "pos": "İsim (Renk)",
+      "origin": "An+Zean(saf ışık)",
+      "meaning": "Menekşe rengi",
+      "example": "Va eranya anzel shel. (O meleğin zırhı menekşe renginde.)"
+    },
+    {
+      "word": "Ar",
+      "pos": "Köken Kök",
+      "origin": "Bağımsız temel kök",
+      "meaning": "Altın, soylu kan, asil. Soy aristokratik unvanlarda köken kök",
+      "example": "Arkamor glewen. (Altın Şehir parlıyor.)"
+    },
+    {
+      "word": "Aria",
+      "pos": "İsim (Soyut)",
+      "origin": "Arien(Sevmek) fiilinin saf duygusal isim hali",
+      "meaning": "Aşk",
+      "example": "Aria lith ohel. (Aşk kaya gibidir.)"
+    },
+    {
+      "word": "Arien",
+      "pos": "Fiil",
+      "origin": "Bağımsız fiil kökü",
+      "meaning": "Sevmek / Seviyorum",
+      "example": "Ez arien te. (Seni seviyorum.)"
+    },
+    {
+      "word": "Arkamor",
+      "pos": "Özel İsim (Şehir)",
+      "origin": "Ar-(Altın/Asil) +Kamor(Kale) →Arvamor(ses evrimi: k \\> g \\> v)",
+      "meaning": "Zengin Kale / Altın Şehir",
+      "example": "Rallon viena Arvamor. (Kral Altın Şehir'e geliyor.)"
+    },
+    {
+      "word": "Arnes",
+      "pos": "Bileşik İsim (Silah/Yaratık Adı)",
+      "origin": "Aron(Altın) +Es(Pençe)",
+      "meaning": "Altınpençe",
+      "example": "Arnes rakosh Arondarn. (Altınpençe Altın Ormanı'nda avlanıyor.)"
+    },
+    {
+      "word": "Arohyan",
+      "pos": "Bileşik İsim (Kozmik/Tanımsal)",
+      "origin": "Aron(Altın) +Hyanel(Sıcak/Güneş kökünden)",
+      "meaning": "Altıngüneş",
+      "example": "Arohyan viena yunghe. (Altıngüneş yarın doğacak.)"
+    },
+    {
+      "word": "Aron",
+      "pos": "İsim / Sıfat (Renk+Metal)",
+      "origin": "Ar-kökünden",
+      "meaning": "Altın, maddesel zenginlik ve kraliyet hazinesi",
+      "example": "Aron ra Veron --- gücün iki direği. (Altın ve Akıl --- gücün iki direği.)"
+    },
+    {
+      "word": "Aronda",
+      "pos": "İsim (Kolektif/Büyük Biriktirme)",
+      "origin": "Aron(Altın) çoğulu / genişlemiş biçimi",
+      "meaning": "Hazine (devasa birikim simgeler)",
+      "example": "Xes Aronda fael Imparatorluk. (İmparator hazineyi İmparatorluk için ayırdı.)"
+    },
+    {
+      "word": "Aroneth",
+      "pos": "İsim (Renk)",
+      "origin": "Aron+-eth(yumuşak)",
+      "meaning": "Kehribar rengi",
+      "example": "Ez arien Aroneth shel. (Kehribar renkli zırhı seviyorum.)"
+    },
+    {
+      "word": "Aronth",
+      "pos": "İsim (Renk)",
+      "origin": "Aron+-oth(koyu)",
+      "meaning": "Bronz rengi",
+      "example": "Athor Aronth glewen. (Bronz kılıç parlıyor.)"
+    },
+    {
+      "word": "Arondarn",
+      "pos": "Özel İsim (Orman)",
+      "origin": "Aron(Altın) +Daryn(Orman) → Arondarn (ses kısalması)",
+      "meaning": "Altın Ormanı",
+      "example": "Wolanra paden Arondarn. (Kurtlar Altın Ormanı'na gidiyor.)"
+    },
+    {
+      "word": "Arkam",
+      "pos": "İsim (Nesne)",
+      "origin": "Aron(Altın) +Kam(Kasa/Kale kök)",
+      "meaning": "Sandık",
+      "example": "Aron arkam lith ohel. (Altın sandık kaya gibi sağlam.)"
+    },
+    {
+      "word": "Arokam",
+      "pos": "İsim (Mimari)",
+      "origin": "Aron+Kamor(Kale/Ev)",
+      "meaning": "Şato",
+      "example": "Rallon arokam Arvamor. (Kral Altın Şehir'in şatosunda.)"
+    },
+    {
+      "word": "Arvol",
+      "pos": "Bileşik İsim (Yaratık)",
+      "origin": "Ahar(Çöl) +Wolan(Kurt) → Evrimleşmiş söyleniş",
+      "meaning": "Çölkurdu",
+      "example": "Arvol paden Fisa. (Çölkurdu Ateş Çölü'nde yürüyor.)"
+    },
+    {
+      "word": "Asezien",
+      "pos": "Fiil Kalıbı",
+      "origin": "As-(doğru/saf kökü) +ez+-ien(tamamlanmış eylem eki)",
+      "meaning": "Haklısın (Sen doğru oldun/söyledin)",
+      "example": "Te asezien. (Haklısın.)"
+    },
+    {
+      "word": "Athor",
+      "pos": "İsim",
+      "origin": "atkökünden; kesici ve delici anlam alanı",
+      "meaning": "Kılıç, keskin silah, ölümcül ve fiziksel saldırı",
+      "example": "Vekal ezator? (Kılıcım nerede?)"
+    },
+    {
+      "word": "Athorra",
+      "pos": "Çoğul İsim",
+      "origin": "Athor +-ra(çoğul); r ikizleşmesi kuralı uygulanır",
+      "meaning": "Kılıçlar",
+      "example": "Athorra glewendor yunghe. (Kılıçlar yarın parlayacak.)"
+    },
+    {
+      "word": "Ayazsiper",
+      "pos": "bkz.Bridgal HARF: B Bamfael---İsim / Selamlama",
+      "origin": "Bam(Darbe/Güç) +Fael(İçin/Uğruna)",
+      "meaning": "Çaba, uğruna yapılan eylem; selamlama olarak \"Kolay gelsin\"",
+      "example": "Bamfael te. (Senin çaban kolay olsun.)"
+    },
+    {
+      "word": "Bamgar",
+      "pos": "İsim (Askeri)",
+      "origin": "Bam(Balyoz kökü) +Gar(Ghar/Gazap bağlaç)",
+      "meaning": "Çarpışma / Muharebe (ikinci kullanım)",
+      "example": "Bamgar viena gealhe. (Muharebe dün başladı.)"
+    },
+    {
+      "word": "Bamar",
+      "pos": "İsim (Silah)",
+      "origin": "bamkökünden",
+      "meaning": "Balyoz, ağır savaş aleti, ezici ve zırh kırıcı darbe",
+      "example": "Bamar har kamorra. (Balyoz kaleleri yıktı.)"
+    },
+    {
+      "word": "Bamkamor",
+      "pos": "Özel İsim (Şehir)",
+      "origin": "Bamar(Balyoz) +Kamor(Kale) → ses kısalması ileBamkamor",
+      "meaning": "Balyoz Kalesi",
+      "example": "Garion viena Bamkamor. (Komutan Balyoz Kalesi'ne geliyor.)"
+    },
+    {
+      "word": "Bamrak",
+      "pos": "İsim (Silah)",
+      "origin": "Bam(Balyoz kökü) +Rak(Parçalayan)",
+      "meaning": "Balta (parçalayarak vuran anlamıyla)",
+      "example": "Ez gharan Bamrak res. (Balta ile savaşıyorum.)"
+    },
+    {
+      "word": "Barduk",
+      "pos": "İsim (Gündelik Eşya)",
+      "origin": "Bağımsız kök",
+      "meaning": "Ocak / Şömine",
+      "example": "Ezra garnad Barduk fael. (Ocak başında toplandık.)"
+    },
+    {
+      "word": "Brend",
+      "pos": "İsim (Gündelik Eşya)",
+      "origin": "Bağımsız kök",
+      "meaning": "Masa",
+      "example": "Lido Brend. (Karar masada verildi.)"
+    },
+    {
+      "word": "Bri",
+      "pos": "Köken Kök",
+      "origin": "Bağımsız temel kök; kuzey halklarının ve buzul boyların dil kökü",
+      "meaning": "Buz, soğuk, berrak",
+      "example": "Bri- önekiyle türetilen tüm kelimeler soğuk ve netlik içerir"
+    },
+    {
+      "word": "Bridgal",
+      "pos": "Bileşik İsim (Hane/Silah)",
+      "origin": "Brith(Buzul/Ayaz) +Galdor(Kalkan) → Bridgal (ses kaynaşması)",
+      "meaning": "Ayazsiper / Buzkalkan",
+      "example": "Bridgal rion gharan. (Buzkalkan birliği savaşıyor.)"
+    },
+    {
+      "word": "Brieana",
+      "pos": "Özel İsim (Nehir)",
+      "origin": "Bri-+Eana→Brivana(ses evrimi)",
+      "meaning": "Buzlu Nehir",
+      "example": "Brivana Brith ohel. (Buzlu Nehir buz gibidir.)"
+    },
+    {
+      "word": "Briknor",
+      "pos": "Özel İsim (Dağ)",
+      "origin": "Bri-+Knor→Brignor(k \\> g ötümlüleşmesi)",
+      "meaning": "Buzlu Dağ / Soğuk Tepe",
+      "example": "Ezra paden Brignor. (Buzlu Dağ'a gidiyoruz.)"
+    },
+    {
+      "word": "Brik",
+      "pos": "Köken Kök",
+      "origin": "Bağımsız temel kök",
+      "meaning": "Temel, yapıtaşı, surları oluşturan ilk taş",
+      "example": "Brik- öneki kalıcılık ve temeli simgeler"
+    },
+    {
+      "word": "Brikan",
+      "pos": "Fiil",
+      "origin": "Brik-(Temel) +-an(fiil yapım eki)",
+      "meaning": "Başlamak",
+      "example": "Kalbrik ezra. (Yola çıkıyoruz / Biz başlıyoruz.)"
+    },
+    {
+      "word": "Briklith",
+      "pos": "Özel İsim (Kaya/Dağ)",
+      "origin": "Brik-(Temel) +Lith(Kaya) →Brigleth(ses evrimi)",
+      "meaning": "Temelkaya / Kurucu Kaya",
+      "example": "Brigleth lith ohel. (Temelkaya kaya gibi sağlam.)"
+    },
+    {
+      "word": "Brith",
+      "pos": "İsim / Sıfat",
+      "origin": "Bri-kökünden",
+      "meaning": "Buz, buzul, kuzeyin dondurucu soğuğu",
+      "example": "Brith ohel va. (O buz gibidir.)"
+    },
+    {
+      "word": "Brithdarn",
+      "pos": "Özel İsim (Orman)",
+      "origin": "Brith(Buzul) +Daryn(Orman) → Brithdarn",
+      "meaning": "Buzul Ormanı",
+      "example": "Wolanra paden Brithdarn. (Kurtlar Buzul Ormanı'na gidiyor.)"
+    },
+    {
+      "word": "Bral",
+      "pos": "İsim (Renk)",
+      "origin": "Gema (Toprak) +-or(tablo dipnotuna göre; ancak fonetik olarak-alekiyle daha uyumlu)",
+      "meaning": "Kahverengi",
+      "example": "Ez arien Bral shel. (Kahverengi zırhı seviyorum.) --- Not: Etymoloji tablosunda \"Gema + -or\" yazılmış ama kelime Bral'dır; bu fonetik tutarsızlık Bölüm 5'te kayıtlıdır"
+    },
+    {
+      "word": "Cadı",
+      "pos": "bkz.Lothya Cer----Köken Kök",
+      "origin": "Bağımsız temel kök; ormanda yaşayan ve avcılığı kutsal sayan halkların kökenini simgeler",
+      "meaning": "Boynuz, avcı, orman ruhu",
+      "example": "Cer- öneki orman ve av anlam alanına ait tüm kelimelerde bulunur"
+    },
+    {
+      "word": "Cerbam",
+      "pos": "Bileşik İsim (Soy Adı/Silah)",
+      "origin": "Cer-(Boynuz) +Bam(Balyoz)",
+      "meaning": "Boynuzbalyoz (soy adı)",
+      "example": "Va Cerbam hanar. (O Boynuzbalyoz soyundan.)"
+    },
+    {
+      "word": "Crae",
+      "pos": "İsim / Kök",
+      "origin": "Cr-kökünden; ölümün en ham gösterimi",
+      "meaning": "Kemik, iskelet, etten arınmış, çıplak, ham madde (Ölüm)",
+      "example": "Crae xes! (Ölüm İmparatoru! --- infaz emri)"
+    },
+    {
+      "word": "Cradaryn",
+      "pos": "Özel İsim (Orman)",
+      "origin": "Crae(Kemik/Ölüm) +Daryn(Orman) → Cradarn",
+      "meaning": "Ölü Orman / Çıplak Ağaçlar",
+      "example": "Nador paden Cradarn. (Ölü Orman'a asla gitme.)"
+    },
+    {
+      "word": "Craegma",
+      "pos": "Özel İsim (Köy)",
+      "origin": "Crae(Ölüm) +Gema(Köy) → Craegma",
+      "meaning": "Ölüm Köyü / Kemik Kasabası (muhtemelen veba sonrası terk edilmiş)",
+      "example": "Namgema ra Craegma tod ohel. (Kayıp Köy ve Kemik Kasabası ölüm vadisindedir.)"
+    },
+    {
+      "word": "Crekor",
+      "pos": "Bileşik İsim (Coğrafya/Unvan)",
+      "origin": "Crae(Kemik) +Knor(Zirve) → Crekor",
+      "meaning": "Kemiksırt / Ölümtepesi",
+      "example": "Ezra paden Crekor tod dor. (Ölüme kadar Kemiksırt'a gidiyoruz.)"
+    },
+    {
+      "word": "Cros",
+      "pos": "İsim",
+      "origin": "Crae(Kemik) kökünün eylemsel formu",
+      "meaning": "Ölüm, ruhun bedeni terk etmesi, son nefes. En saf ölüm ifadesi",
+      "example": "Cros viena vordor. (Ölüm her zaman gelir.)"
+    },
+    {
+      "word": "Crossara",
+      "pos": "Özel İsim (Çöl)",
+      "origin": "Cros(Ölüm) +Sahra(Çöl) → Crossara (ses evrimi)",
+      "meaning": "Ölüm Çölü",
+      "example": "Ez cros naleren Crossara. (Ölüm Çölü'nü bilmiyorum.)"
+    },
+    {
+      "word": "Daran",
+      "pos": "Fiil",
+      "origin": "Bağımsız fiil kökü",
+      "meaning": "Vermek (Emir kipi: Dra; Geçmiş: Darad)",
+      "example": "Ernyar darad edor ezra. (Tanrılar bize güç verdi.)"
+    },
+    {
+      "word": "Darhan",
+      "pos": "Fiil (Bileşik)",
+      "origin": "Daran(Vermek) +Han(Can/Kök)",
+      "meaning": "Can vermek",
+      "example": "Era darhan ezra. (Era bize can verdi.)"
+    },
+    {
+      "word": "Darel",
+      "pos": "İsim (Renk)",
+      "origin": "Daryn(Orman) +-el",
+      "meaning": "Yeşil",
+      "example": "Ez arien Darel shel. (Yeşil zırhı seviyorum.)"
+    },
+    {
+      "word": "Dares",
+      "pos": "İsim",
+      "origin": "Daran(Vermek) +Es(El) → \"Verilen el\"",
+      "meaning": "Yardım / Destek",
+      "example": "Te daranes ez? (Bana yardım edebilir misin?)"
+    },
+    {
+      "word": "Darez",
+      "pos": "İsim",
+      "origin": "Daran(Vermek) +Es(El) →Daranes→ zamanlaDarez",
+      "meaning": "Yardım / Lütuf. Soyut lütuf anlamı daha ağır basar",
+      "example": "Ernyar se darezra. (Tanrılar yardımcımız olsun.)"
+    },
+    {
+      "word": "Darezra",
+      "pos": "Bileşik Form",
+      "origin": "Darez(Yardım) +Ezra(Biz) → kaynaşma ile tek kelime",
+      "meaning": "Yardımcımız (dua formu)",
+      "example": "Ernyar se darezra. (Tanrılar yardımcımız olsun.)"
+    },
+    {
+      "word": "Darvash",
+      "pos": "İsim (Renk)",
+      "origin": "Daryn+Vashkarışımı",
+      "meaning": "Deniz Mavisi (Teal)",
+      "example": "Merwyl Darvash ohel. (Deniz ejderi deniz mavisi gibidir.)"
+    },
+    {
+      "word": "Darezen",
+      "pos": "İsim (Renk)",
+      "origin": "Daryn+Zean(değerli parlaklık)",
+      "meaning": "Zümrüt rengi",
+      "example": "Ez arien Darezen lith. (Zümrüt renkli kayayı seviyorum.)"
+    },
+    {
+      "word": "Daryn",
+      "pos": "İsim / Kök",
+      "origin": "Dry-kökünden",
+      "meaning": "Ağaç, ulu orman, doğanın kendisi ve orman muhafızları",
+      "example": "Ez paden daryn. (Ormana gidiyorum.)"
+    },
+    {
+      "word": "Darynra",
+      "pos": "Çoğul İsim",
+      "origin": "Daryn +-ra",
+      "meaning": "Ormanlar",
+      "example": "Darynra nador naleren. (Ormanlar asla unutmaz.)"
+    },
+    {
+      "word": "De (-de)",
+      "pos": "Ek (Aristokratik Aidiyet)",
+      "origin": "Bağımsız ek",
+      "meaning": "\\...'den gelen, soyundan. Soy adı yapımında kullanılır",
+      "example": "Veron + de → Verond (Konseyin); Xes + de → Xesed (İmparatorun); Aeronde --- Aeron soyundan"
+    },
+    {
+      "word": "Dehşet",
+      "pos": "bkz.Zetkor Domrak---İsim (Gündelik Eşya / Alet)",
+      "origin": "Bağımsız kök",
+      "meaning": "Çekiç",
+      "example": "Ron gema Domrak res. (Demirci köyü çekiçle çalışır.)"
+    },
+    {
+      "word": "Dor",
+      "pos": "Edat",
+      "origin": "Dora(Zaman/Miras) kökünün edat hali",
+      "meaning": "Kadar / Sınır. Bir sınırı, süreyi veya miktarı belirtir",
+      "example": "Lun dor (Geceye kadar), Tod dor (Ölüme kadar), Kamor dor (Kaleye kadar)"
+    },
+    {
+      "word": "Dora",
+      "pos": "İsim / Kök",
+      "origin": "Bağımsız temel kök; zaman kavramının da kökü",
+      "meaning": "Miras, nesilden nesile aktarılan kader ve ebediyet. Gelecek zaman ekinin (-dor) kaynağıdır",
+      "example": "Dora gydor, eran nador. (Zaman döner, insan hiçbir zaman dönmez.)"
+    },
+    {
+      "word": "Doran",
+      "pos": "İsim (Unvan/Kişi)",
+      "origin": "Dora(Miras) +-an(kişi eki)",
+      "meaning": "Varis",
+      "example": "Va Doran Anxes. (O İmparatorun varisi.)"
+    },
+    {
+      "word": "Dormera",
+      "pos": "Özel İsim (Göl/Deniz)",
+      "origin": "Dora(Zaman) +Mera(Deniz) → Dormera",
+      "meaning": "Zaman Denizi / Ebediyet Gölü",
+      "example": "Dora gydor Dormera. (Zaman Denizi sürekli döner.)"
+    },
+    {
+      "word": "Dosk",
+      "pos": "İsim (Gündelik Eşya)",
+      "origin": "Bağımsız kök",
+      "meaning": "Kase / Çanak",
+      "example": "Dosk eana fael. (Kase su için.)"
+    },
+    {
+      "word": "Drenel",
+      "pos": "İsim (Renk)",
+      "origin": "Daryn+-el(parlak)",
+      "meaning": "Limon Yeşili",
+      "example": "Ez arien Drenel velk. (Limon yeşili pelerini seviyorum.)"
+    },
+    {
+      "word": "Droth",
+      "pos": "İsim (Renk)",
+      "origin": "Daryn+-oth(koyu)",
+      "meaning": "Zeytin Yeşili",
+      "example": "Va shel Droth. (O zeytin yeşili zırh taşıyor.)"
+    },
+    {
+      "word": "Duvrael",
+      "pos": "Özel İsim (Aile Terimi)",
+      "origin": "Bağımsız bileşik yapı",
+      "meaning": "İkiz",
+      "example": "Vara Duvrael hanar Edronxes. (Onlar Edronxes'in ikizleri.)"
+    },
+    {
+      "word": "Eadon",
+      "pos": "İsim Kombinasyonu",
+      "origin": "Ea-(Su) +-doneki",
+      "meaning": "İsim kombinasyonu lisasında geçen bileşik form Eamron---İsim (Nesne)--- Köken:Eam-(İçmek/Eaman) +Ron(Metal) --- Anlam: Kadeh",
+      "example": "Aron Eamron fael Rallon. (Altın kadeh kral için.)"
+    },
+    {
+      "word": "Eana",
+      "pos": "İsim / Kök",
+      "origin": "Ea-kökünden",
+      "meaning": "Su, akarsu, akışkanlık, yaşam kaynağı ve hayat suyu",
+      "example": "Heon eana. (Güneş ve su / Merhaba.)"
+    },
+    {
+      "word": "Eanash",
+      "pos": "İsim (Coğrafi)",
+      "origin": "Eana(Su) +Vash(Rüzgar/Akıp giden)",
+      "meaning": "Nehir",
+      "example": "Eanash glewen. (Nehir parlıyor.)"
+    },
+    {
+      "word": "Eandorel",
+      "pos": "İsim (Renk)",
+      "origin": "Eana(Su) +Darel(Yeşil) karışımı",
+      "meaning": "Nane Yeşili",
+      "example": "Va Eandorel shel gharan. (O nane yeşili zırhlı savaşıyor.)"
+    },
+    {
+      "word": "Eanvez",
+      "pos": "İsim (Büyü Eşyası)",
+      "origin": "Eana(Su/Sıvı) +Vez(Büyü)",
+      "meaning": "İksir",
+      "example": "Vez Eanvez fael Khaan. (Büyü iksiri büyü için.)"
+    },
+    {
+      "word": "Eanvel",
+      "pos": "İsim (Renk)",
+      "origin": "Eana(Su) +Vash(Rüzgar) karışımı",
+      "meaning": "Turkuaz",
+      "example": "Mera Eanvel ohel. (Deniz turkuaz gibidir.)"
+    },
+    {
+      "word": "Edgal",
+      "pos": "Özel İsim (Geçit)",
+      "origin": "Edkal→Edgal(k \\> g ses evrimi)",
+      "meaning": "Demir Geçidi / Aşılmaz Yol",
+      "example": "Ezra gharan Edgal. (Demir Geçidi'nde savaşıyoruz.)"
+    },
+    {
+      "word": "Edor",
+      "pos": "İsim",
+      "origin": "Edron(Çelik/İrade) kökünden; zamanla 'n' düşmüş ve 'r' vurgulanmıştır",
+      "meaning": "Güç / Kudret (soyut irade)",
+      "example": "Edor Xesed. (İmparatorun iradesiyle.)"
+    },
+    {
+      "word": "Edril",
+      "pos": "İsim (Değerli Taş)",
+      "origin": "Edron(Çelik) +Lith(Taş) → Edril",
+      "meaning": "Elmas / Kristal (\"Çelik gibi sert taş\")",
+      "example": "Ez arien Edril. (Elması seviyorum.)"
+    },
+    {
+      "word": "Edron",
+      "pos": "İsim / Ünlem",
+      "origin": "Ed-kökünden",
+      "meaning": "(1) Saf iradeyle dövülmüş demir, sarsılmaz irade, kırılmaz çelik; (2) \"Elbette\" --- \"Sözüm söz\" anlamında yemin ve kesinlik simgesi",
+      "example": "Edron. (Elbette. / Sözüm söz.)"
+    },
+    {
+      "word": "Edrohen",
+      "pos": "Fiil",
+      "origin": "Edron(Demir söz) +Ohen(Konuşmak)",
+      "meaning": "Yemin etmek",
+      "example": "Ez edrohen Te fael. (Senin için yemin ediyorum.)"
+    },
+    {
+      "word": "Edronkor",
+      "pos": "Özel İsim (Dağ)",
+      "origin": "Edron(İrade/Çelik) +Knor(Dağ) → Edronkor (ses evrimi)",
+      "meaning": "İrade Dağı / Çelik Dağı",
+      "example": "Edronkor lith ohel. (İrade Dağı kaya gibidir.)"
+    },
+    {
+      "word": "Edros",
+      "pos": "İsim",
+      "origin": "Edron(Çelik) kökünün soyut, manevi gücü temsil eden isim hali",
+      "meaning": "Güç / Kudret (ruhani güç, Edor'dan daha soyut ve manevi)",
+      "example": "Edros ernyar fael. (Tanrıların gücü için.) --- Not: Edor ve Edros arasındaki nüans farkı için bkz. Bölüm 5"
+    },
+    {
+      "word": "Edleth",
+      "pos": "Özel İsim (Kaya)",
+      "origin": "Edlith→Edleth(ses evrimi)",
+      "meaning": "Sarsılmaz Kaya / Demir Zirve",
+      "example": "Edleth lith ohel imparatorluk. (İmparatorluk sarsılmaz kaya gibidir.)"
+    },
+    {
+      "word": "El",
+      "pos": "Köken Kök",
+      "origin": "Bağımsız temel kök",
+      "meaning": "Yıldız, kozmik parıltı. Evrenin kaynağından gelen ışığı simgeler",
+      "example": "Elra glewen. (Yıldızlar ışıyor.)"
+    },
+    {
+      "word": "Eldaryn",
+      "pos": "Özel İsim (Orman)",
+      "origin": "El-(Yıldız) +Daryn(Orman) → Eldarn",
+      "meaning": "Yıldızlı Orman / Yıldız Korusu",
+      "example": "Zieli paden Eldarn. (Elf Yıldızlı Orman'a gidiyor.)"
+    },
+    {
+      "word": "Elgma",
+      "pos": "Özel İsim (Köy)",
+      "origin": "Elgema(El + Gema) →Elgma(orta ünlü yutulması)",
+      "meaning": "Yıldızlı Köy",
+      "example": "Zieli viena Elgma. (Elf Yıldızlı Köy'e geliyor.)"
+    },
+    {
+      "word": "Elglew",
+      "pos": "Selamlama Kalıbı / Bileşik",
+      "origin": "El-(Yıldız) +Glew(Parlayan)",
+      "meaning": "Yıldızların ışığı sana vursun",
+      "example": "Elglew te. (İyi şanslar.)"
+    },
+    {
+      "word": "Elis",
+      "pos": "İsim / Ünlem",
+      "origin": "El-(Yıldız) kökünden türeyen nezaket ifadesi",
+      "meaning": "Lütfen (Yıldızların hatrına)",
+      "example": "Elis, te daranes ez? (Lütfen, bana yardım edebilir misin?)"
+    },
+    {
+      "word": "Elsara",
+      "pos": "Özel İsim (Çöl)",
+      "origin": "El-(Yıldız) +Sahra(Çöl) →Elsara(ses evrimi)",
+      "meaning": "Yıldızlı Çöl / Aydınlık Çöl",
+      "example": "Elra glewen Elsara. (Yıldızlar Yıldızlı Çöl'ü aydınlatıyor.)"
+    },
+    {
+      "word": "Eraldris",
+      "pos": "Bileşik Unvan",
+      "origin": "Era+Aldris",
+      "meaning": "Era'nın Şahidi (arşivci unvanı)",
+      "example": "Va Eraldris Veron fael. (O Konsey için Era'nın Şahidi.)"
+    },
+    {
+      "word": "Era",
+      "pos": "İsim (Dini/Teolojik)",
+      "origin": "Bağımsız teolojik kök",
+      "meaning": "Tanrı, yüce yaratıcı. Dini inanç sistemindeki adıyla tek mutlak güç",
+      "example": "Era zeana va. (Era'nın Işığı onun üzerine olsun / Maşallah.) --- Not:Annorile semantik örtüşme için bkz. Bölüm 5, Tutarsızlık #1"
+    },
+    {
+      "word": "Era eana, Ahar cros",
+      "pos": "Dua Kalıbı",
+      "origin": "Era (su/hayat) veriyor, Çöl ölüm getiriyor",
+      "meaning": "Era bize merhamet et, yoksa bu felaket bizi yutacak. Kriz, kuraklık veya savaş anında edilen umutsuz yakarış. Era Zeana---Dua Kalıbı--- Anlam: Era'nın ışığı üzerine olsun. Tapınaklarda rahiplerin selamlaması veya kutsaması. Erahart---Dua Kalıbı--- Kö",
+      "example": "Erahart viena. (İnşallah gelir.)"
+    },
+    {
+      "word": "Erakal",
+      "pos": "Dua Kalıbı",
+      "origin": "Era+Kal(Yol)",
+      "meaning": "Eyvallah (Tanrının yolu)",
+      "example": "Ez eravol. Erakal. (Teşekkür ederim. Eyvallah.)"
+    },
+    {
+      "word": "Erakam",
+      "pos": "İsim (Mimari/Dini)",
+      "origin": "Era(Tanrı) +Kamor(Kale/Ev)",
+      "meaning": "Tapınak",
+      "example": "Ezra paden Erakam. (Tapınağa gidiyoruz.)"
+    },
+    {
+      "word": "Eralith",
+      "pos": "İsim (Dini Nesne)",
+      "origin": "Era(Tanrı) +Lith(Taş/Kaya)",
+      "meaning": "Sunak",
+      "example": "Ernyar garnad Eralith. (Tanrılar sunak başında toplandı.)"
+    },
+    {
+      "word": "Eralis",
+      "pos": "İsim (Soyut)",
+      "origin": "Era(Tanrı) +lis/is(Lütuf)",
+      "meaning": "Umut (\"Tanrının ışığı\" anlamıyla)",
+      "example": "Eralis viena nador. (Umut asla gelmez.) (ironi cümlesi)"
+    },
+    {
+      "word": "Eranya",
+      "pos": "İsim (Dini)",
+      "origin": "Era(Tanrı) +-nyaeki",
+      "meaning": "Melek (\"Tanrının elçisi\")",
+      "example": "Eranya zeana viena. (Melek ışıkla geliyor.)"
+    },
+    {
+      "word": "Eran",
+      "pos": "İsim",
+      "origin": "Bağımsız temel kök",
+      "meaning": "Ölümlü insan, halktan biri, destansı kahraman",
+      "example": "Eranra nador naleren. (İnsanlar asla unutmaz.)"
+    },
+    {
+      "word": "Eranir",
+      "pos": "İsim (Dini/Teolojik)",
+      "origin": "Era'nın çoğul ve mistik hali",
+      "meaning": "Tanrılar; panteondaki tüm ilahi varlıkları kapsar",
+      "example": "Eranir fael ezra. (Tanrılar bizim için.) --- Not: Ernyar ile anlamsal örtüşme için bkz. Bölüm 5"
+    },
+    {
+      "word": "Eranra",
+      "pos": "Çoğul İsim",
+      "origin": "Eran+-ra",
+      "meaning": "İnsanlar, halklar",
+      "example": "Eranra garnad kamorra. (İnsanlar kalelerde toplandı.)"
+    },
+    {
+      "word": "Erhanar",
+      "pos": "Ara Form (Etimolojik)",
+      "origin": "Era(Tanrı) +Hanar(Soy/Kan) → 'h' düşmüş, 'a' incelerekErnyarolmuştur",
+      "meaning": "Tanrı soyundan gelenler (etimolojik ara form) Ernyar---İsim (Dini/Teolojik)--- Köken:Era(Tanrı) +Hanar(Soy/Kan) → Erhanar → h düşmüş, a incelerekErnyar--- Anlam: Tanrılar (Panteon); tüm ilahi varlıkları kapsayan kolektif ad",
+      "example": "Ernyar lidofad. (Tanrılar karar verdi.)"
+    },
+    {
+      "word": "Ert",
+      "pos": "Kök / Sıfat",
+      "origin": "ertkökü",
+      "meaning": "Keskin, uyanık zihin, zeka. Silah olarak kullanılan zihni betimler",
+      "example": "Ert ohel va. (O zeka gibi keskin.)"
+    },
+    {
+      "word": "Es",
+      "pos": "İsim / Kök",
+      "origin": "eskökü",
+      "meaning": "El, pençe, bir işi başaran fiziksel eylem",
+      "example": "Eseron te. (Eline sağlık / Senin ellerin güçlü kalsın.)"
+    },
+    {
+      "word": "Eseron te",
+      "pos": "Selamlama Kalıbı--- Anlam: Eline sağlık (Senin ellerin güçlü kalsın) Esol---Sayı",
+      "origin": "Es(El/Eylem) +Sol(Bir) → fosil bileşik",
+      "meaning": "Altı (6) Esrade---Sayı--- Köken:Es+Rade→ fosil bileşik --- Anlam: Yedi (7) Estir---Sayı--- Köken:Es+Tir→ fosil bileşik --- Anlam: Sekiz (8) Estrom---Sayı--- Köken:Es+Trom→ fosil bileşik (düzeltilmiş form) --- Anlam: Dokuz (9) Eva---İsim / Kök--- Köke",
+      "example": "Eva fael daryn. (Ana orman için yaşar.)"
+    },
+    {
+      "word": "Ez",
+      "pos": "Zamir",
+      "origin": "Bağımsız temel zamir",
+      "meaning": "Ben. En saf benlik",
+      "example": "Ez alvasen. (İyiyim.)"
+    },
+    {
+      "word": "Ez alvasen",
+      "pos": "Bkz.Alvasen Ez arien te--- Bkz.Arien Ez eravol---Teşekkür Kalıbı--- Anlam: Teşekkür ederim (Ben sana Era'nın nefesini diliyorum) Ez gharan te fael---Cümle Kalıbı--- Anlam: Senin için savaşıyorum Ez lyan---Selamlama Kalıbı--- Anlam: Memnun oldum (Ben mutlu oldum) Ez naleren---Cümle Kalıbı--- Anlam: Bilmiyorum Ez nazanen---Cümle Kalıbı--- Anlam: Anlamıyorum Ezohe---Tanıtma Kalıbı",
+      "origin": "Ez(Ben) +Ohe(Yankı)",
+      "meaning": "Benim adım\\... (Benim yankım\\...)",
+      "example": "Ezohe Garion. (Benim adım Garion.)"
+    },
+    {
+      "word": "Ezra",
+      "pos": "Zamir",
+      "origin": "Ezkökünden türeyen topluluk zamiri; eski \"Mera\" yerini almıştır",
+      "meaning": "Biz",
+      "example": "Ezra gharan tod dor! (Ölüme kadar savaşırız!)"
+    },
+    {
+      "word": "Ezra alniren",
+      "pos": "Selamlama Kalıbı--- Anlam: Hoş bulduk (Biz iyi bulduk) Ezra gyan gema, dora zlan---Cümle Kalıbı--- Anlam: Eve dönelim, vakit geç Ezra vizekal---Selamlama Kalıbı--- Anlam: Görüşürüz (Bizim yollarımız kesişecek) Ezrad---Zamir + Ek",
+      "origin": "Ezra(Biz) +-d(aitlik)",
+      "meaning": "Bizim olanı / Bizden olan",
+      "example": "Vara rakad vorel ezrad. (Bizim olan her şeyi aldılar.)"
+    },
+    {
+      "word": "Ezrator",
+      "pos": "Bileşik Form",
+      "origin": "Ez(Ben) +Ator(Benim kılıcım; Ez+Athor birleşimi)",
+      "meaning": "Benim kılıcım",
+      "example": "Vekal ezator? (Kılıcım nerede?)"
+    },
+    {
+      "word": "Fael",
+      "pos": "Edat",
+      "origin": "Bamfael(Çaba) +Falar(Yapmak) köklerinin kaynaşıp isimleşmiş hali",
+      "meaning": "İçin / Uğruna. Bir eylemin kimin veya neyin uğruna yapıldığını belirtir",
+      "example": "Xes fael (İmparator için), Ezra fael (Bizim için)"
+    },
+    {
+      "word": "Falar",
+      "pos": "Fiil (Temel)",
+      "origin": "Bağımsız temel eylem fiili",
+      "meaning": "Yapmak",
+      "example": "Ve falar te? (Ne yapıyorsun sen?)"
+    },
+    {
+      "word": "Ferendal",
+      "pos": "Özel İsim (Aile Terimi)",
+      "origin": "Bağımsız bileşik yapı",
+      "meaning": "Amca (baba tarafı)",
+      "example": "Va Ferendal ez hanar. (O benim kan amcam.)"
+    },
+    {
+      "word": "Fendral",
+      "pos": "İsim (Gündelik Eşya)",
+      "origin": "Bağımsız kök",
+      "meaning": "Sabun",
+      "example": "Fendral eana fael. (Sabun su için.)"
+    },
+    {
+      "word": "Fenwyl",
+      "pos": "İsim (Gündelik Eşya)",
+      "origin": "Bağımsız kök",
+      "meaning": "Tarak",
+      "example": "Va fenwyl Albel ohel. (O tarak fildişi gibi.)"
+    },
+    {
+      "word": "Figamor",
+      "pos": "Özel İsim (Kale)",
+      "origin": "Fikamor(Fira + Kamor) →Figamor(ses evrimi)",
+      "meaning": "Ateşkale",
+      "example": "Fira viena Figamor. (Ateş Ateşkale'ye geliyor.)"
+    },
+    {
+      "word": "Fira",
+      "pos": "İsim / Kök",
+      "origin": "Fi-kökünden",
+      "meaning": "Ateş, alev, kor, savaşçı hiddeti",
+      "example": "Fira ohel ez. (Ben ateş gibiyim.)"
+    },
+    {
+      "word": "Firal",
+      "pos": "Özel İsim (Dağ) --- Evrimleşmiş",
+      "origin": "Fira Knor→Firagnor(ses evrimi)",
+      "meaning": "Ateş Dağı / Yanardağ Firath---İsim (Renk)--- Köken:Fira+-ath(sert) --- Anlam: Kızıl / Alev Kırmızısı",
+      "example": "Ez gharan Firath shel. (Alev kırmızısı zırhla savaşıyorum.)"
+    },
+    {
+      "word": "Firel",
+      "pos": "İsim (Renk)",
+      "origin": "Fira(Ateş) +-el",
+      "meaning": "Turuncu",
+      "example": "Heon Firel ohel. (Güneş turuncu gibidir.)"
+    },
+    {
+      "word": "Firgal",
+      "pos": "Bileşik İsim (Silah/Hane)",
+      "origin": "Fira(Ateş) +Galdor(Kalkan) → Firgal",
+      "meaning": "Ateşsiper / Kızılkalkan",
+      "example": "Firgal rion gharan. (Ateşsiper birliği savaşıyor.)"
+    },
+    {
+      "word": "Firneth",
+      "pos": "İsim (Renk)",
+      "origin": "Fira+-eth(soluk)",
+      "meaning": "Mercan rengi",
+      "example": "Va shel Firneth. (O mercan renkli zırh taşıyor.)"
+    },
+    {
+      "word": "Firas",
+      "pos": "İsim (Nesne)",
+      "origin": "Fira(Ateş) +-as(tutulacak şey eki)",
+      "meaning": "Meşale",
+      "example": "Ez paden Firas res. (Meşaleyle yürüyorum.)"
+    },
+    {
+      "word": "Firagnor",
+      "pos": "Özel İsim (Dağ --- Evrimleşmiş Söyleniş)",
+      "origin": "Fira Knor→Firagnor",
+      "meaning": "Ateş Dağı / Yanardağ Firper---Bileşik İsim (Silah)--- Köken:Fira(Ateş) +Peara(Mızrak) → Firper --- Anlam: Alevmızrak",
+      "example": "Ez gharan Firper res. (Alevmızrakla savaşıyorum.)"
+    },
+    {
+      "word": "Fisa",
+      "pos": "Özel İsim (Çöl --- Kısaltılmış)",
+      "origin": "Fira Sahra→Fisa(kısaltma ve yeniden analiz)",
+      "meaning": "Ateş Çölü",
+      "example": "Ez paden Fisa, cros tod. (Ateş Çölü'ne gidiyorum, ölüm yakın.)"
+    },
+    {
+      "word": "Gaelkam",
+      "pos": "İsim (Coğrafi/Mimari)",
+      "origin": "Gaelis(Eski) +Kamor(Kale) → Gaelkam",
+      "meaning": "Harabe",
+      "example": "Va paden Gaelkam. (O harabelere gidiyor.)"
+    },
+    {
+      "word": "Gaelis",
+      "pos": "Sıfat / İsim (Zaman)",
+      "origin": "Bağımsız eski kök",
+      "meaning": "Kadim / Eski",
+      "example": "Gaelis daryn glewen. (Kadim orman parlıyor.)"
+    },
+    {
+      "word": "Gaelas",
+      "pos": "İsim (Nesne/Zaman)",
+      "origin": "Gaelis(Eski) kökünün nesneleşmiş hali",
+      "meaning": "Kalıntı / Eski nesne",
+      "example": "Va gaelas edron. (O kalıntı demir gibi sağlam.)"
+    },
+    {
+      "word": "Gaehan",
+      "pos": "İsim (Soy)",
+      "origin": "Gael+Han(Kan)",
+      "meaning": "Kadim kök / Eski kan",
+      "example": "Va Gaehan Zieli. (O elf kadim soyundan.)"
+    },
+    {
+      "word": "Galan",
+      "pos": "Fiil",
+      "origin": "Galdor(Kalkan) kökünden türeyen fiil",
+      "meaning": "Korumak / Savunmak; aynı zamanda \"Sadakat\" anlamı da taşır",
+      "example": "Ez galan ezra. (Bizi koruyorum.)"
+    },
+    {
+      "word": "Galdorn",
+      "pos": "İsim (Unvan)",
+      "origin": "Galdor(Kalkan) +Ron(Demir) → Galdron",
+      "meaning": "Şövalye (\"Demir kalkan\")",
+      "example": "Galdron rion gharan Kamorra. (Şövalye birliği kalelerde savaşıyor.)"
+    },
+    {
+      "word": "Galdor",
+      "pos": "İsim / Kök",
+      "origin": "Gal-kökünden",
+      "meaning": "Kalkan, koruyucu, aşılmaz savunma ve muhafız hattı",
+      "example": "Galdor rion! (Kalkan birliği! --- savunma emri)"
+    },
+    {
+      "word": "Galdorra",
+      "pos": "Çoğul İsim",
+      "origin": "Galdor +-ra(r ikizleşmesi)",
+      "meaning": "Kalkanlar",
+      "example": "Galdorra glewen. (Kalkanlar parlıyor.)"
+    },
+    {
+      "word": "Galdornra",
+      "pos": "bkz. çoğul form Galgema---Özel İsim (Köy)",
+      "origin": "Gal-+Gema→ Galgma (ses kısalması)",
+      "meaning": "Korumalı Köy / Güvenli Yerleşke",
+      "example": "Eranra paden Galgma. (İnsanlar Korumalı Köy'e gidiyor.)"
+    },
+    {
+      "word": "Galvez",
+      "pos": "İsim (Büyü Nesnesi)",
+      "origin": "Gal(Koruma) +Vez(Büyü)",
+      "meaning": "Koruma büyüsü / Muska",
+      "example": "Ez gharan Galvez res. (Koruma büyüsüyle savaşıyorum.)"
+    },
+    {
+      "word": "Garhan",
+      "pos": "İsim (Unvan/Kişi)",
+      "origin": "Gar(Savaş/Ghar) +Han(Kan)",
+      "meaning": "Savaşçı (\"Savaş kanı taşıyan\")",
+      "example": "Garhan gharan tod dor. (Savaşçı ölüme kadar savaşıyor.)"
+    },
+    {
+      "word": "Garion",
+      "pos": "İsim (Unvan/Kişi)",
+      "origin": "Ghar(Savaş) +Rion(Birlik) → Garion",
+      "meaning": "Komutan",
+      "example": "Garion ovas. (Komutan konuştu.)"
+    },
+    {
+      "word": "Garnad",
+      "pos": "Fiil (Geçmiş)",
+      "origin": "Galdor/Galron(Topluluk kökü) fiilleşip geçmiş zaman eki alarak → Garnad",
+      "meaning": "Toplandı / Bir araya geldi",
+      "example": "Vezryon garnad. (Tavsiye divanı toplandı.)"
+    },
+    {
+      "word": "Garryon",
+      "pos": "İsim (Unvan/Birlik)",
+      "origin": "Galdor(Kalkan) +Rion(Birlik) köklerinin kaynaşıp aşınması → Garryon",
+      "meaning": "Muhafız",
+      "example": "Garryon viena Anxes. (Muhafız Yüce İmparator'la geliyor.)"
+    },
+    {
+      "word": "Geal",
+      "pos": "Sıfat (Zaman)",
+      "origin": "Gaeliskökünün kısalmış hali",
+      "meaning": "Eski / Kadim (kısalmış kullanım)",
+      "example": "Geal gema. (Eski ev.)"
+    },
+    {
+      "word": "Gealhe",
+      "pos": "Zaman Zarfı",
+      "origin": "Geal/Gaelis(Eski/Kadim) +Heon(Güneş) → \"Eski Güneş\"",
+      "meaning": "Dün",
+      "example": "Ezra gharad kamorra gealhe. (Dün kalelerde savaştık.)"
+    },
+    {
+      "word": "Gema",
+      "pos": "İsim / Kök",
+      "origin": "Ge-kökünden",
+      "meaning": "Toprak (Ana), yeryüzü, kıta, kadim temel. Hem ev hem de vatan anlamı taşır",
+      "example": "Ezra gyan gema. (Eve dönüyoruz.)"
+    },
+    {
+      "word": "Gema hanar, Era zeana",
+      "pos": "Dua/Veda Kalıbı--- Anlam: Başın sağ olsun / Cenaze vedası (Toprak kökü, Era ışığı) --- Örnek: Gema hanar, Era zeana. Ölülerin ardından söylenir. Gemara---Çoğul İsim",
+      "origin": "Gema +-ra",
+      "meaning": "Evler / Topraklar",
+      "example": "Gemara glewen. (Evler/Topraklar parlıyor.)"
+    },
+    {
+      "word": "Gemeth",
+      "pos": "İsim (Renk)",
+      "origin": "Gema+-eth(açık)",
+      "meaning": "Bej",
+      "example": "Ez arien Gemeth shel. (Bej zırhı seviyorum.)"
+    },
+    {
+      "word": "Gharda",
+      "pos": "İsim (Askeri)",
+      "origin": "Ghar(Gazap/Savaş) kökünün eylemsel uzantısı",
+      "meaning": "Çarpışma / Muharebe (birinci kullanım)",
+      "example": "Gharda viena. (Muharebe geliyor.)"
+    },
+    {
+      "word": "Gharnor",
+      "pos": "Özel İsim (Dağ --- Evrimleşmiş)",
+      "origin": "Ghar Knor→Gharnor",
+      "meaning": "Gazap Dağı",
+      "example": "Ez paden Gharnor. (Gazap Dağı'na gidiyorum.)"
+    },
+    {
+      "word": "Ghar",
+      "pos": "İsim",
+      "origin": "Önceden soyadlarında kullanılan Ghar ekinin saf isim hali",
+      "meaning": "Gazap / Öfke. Büyük gazap, şiddetli öfke",
+      "example": "Ghar va. (O öfkeli.)"
+    },
+    {
+      "word": "Gharan",
+      "pos": "Fiil",
+      "origin": "Ghar(Gazap) kökünden türeyen fiil",
+      "meaning": "Savaşmak",
+      "example": "Ezra gharan kamor. (Kalede savaşıyoruz.)"
+    },
+    {
+      "word": "Gharandor",
+      "pos": "Fiil (Gelecek)",
+      "origin": "Gharan +-dor",
+      "meaning": "Savaşacaksın (Te gharandor)",
+      "example": "Te gharandor yunghe. (Yarın savaşacaksın.)"
+    },
+    {
+      "word": "Gharohen",
+      "pos": "Fiil (Bileşik)",
+      "origin": "Ghar(Öfke) +Ohen(Konuşmak) → Gharohen",
+      "meaning": "Bağırmak",
+      "example": "Garion gharohen. (Komutan bağırıyor.)"
+    },
+    {
+      "word": "Glevez",
+      "pos": "İsim (Büyü Nesnesi)",
+      "origin": "Glew(Işık) +Vez(Büyü) → Glevez",
+      "meaning": "Işık büyüsü / Muska (tılsım)",
+      "example": "Ez gharan Glevez res. (Işık büyüsüyle savaşıyorum.)"
+    },
+    {
+      "word": "Glelith",
+      "pos": "İsim (Değerli Taş)",
+      "origin": "Glew(Işıklı) +Lith(Taş) → Glelith",
+      "meaning": "Kristal (\"Işıklı taş\")",
+      "example": "Va Glelith arien. (Kristali seviyor.)"
+    },
+    {
+      "word": "Glew",
+      "pos": "İsim / Kök",
+      "origin": "glewkökü",
+      "meaning": "Parlayan, ışıldayan, karanlıkta yol gösteren fener",
+      "example": "Lun glew. (Gece feneri / İyi geceler.)"
+    },
+    {
+      "word": "Glewen",
+      "pos": "Fiil",
+      "origin": "Glew+-en(fiil yapım eki)",
+      "meaning": "Işık saçmak / Aydınlatmak",
+      "example": "Elra glewen. (Yıldızlar ışık saçıyor.)"
+    },
+    {
+      "word": "Gleweana",
+      "pos": "Özel İsim (Nehir)",
+      "origin": "Glew-+Eana→ Glewena (ses kısalması)",
+      "meaning": "Parlayan Nehir / Işık Suyu",
+      "example": "Glewena glewen. (Parlayan Nehir parlıyor.)"
+    },
+    {
+      "word": "Glewgal",
+      "pos": "Özel İsim (Geçit --- Evrimleşmiş)",
+      "origin": "Glewkal→Glewgal(k \\> g)",
+      "meaning": "Aydınlık Geçit",
+      "example": "Ezra paden Glewgal. (Aydınlık Geçit'e gidiyoruz.)"
+    },
+    {
+      "word": "Glewleth",
+      "pos": "Özel İsim (Kaya --- Evrimleşmiş)",
+      "origin": "Glewlith→Glewleth",
+      "meaning": "Parlayankaya",
+      "example": "Glewleth glewen. (Parlayankaya ışıldıyor.)"
+    },
+    {
+      "word": "Glewon",
+      "pos": "İsim (Soyut)",
+      "origin": "Glew(Parlayan) +Onn(Onur)",
+      "meaning": "Parlak onur",
+      "example": "Va Glewon hanar. (O parlak onur soyundan.)"
+    },
+    {
+      "word": "Gyanghar",
+      "pos": "İsim (Soyut)",
+      "origin": "Gyan(Geri dönen) +Ghar(Öfke)",
+      "meaning": "İntikam",
+      "example": "Ez gharan Gyanghar fael. (İntikam için savaşıyorum.)"
+    },
+    {
+      "word": "Gydaryn",
+      "pos": "Özel İsim (Orman)",
+      "origin": "Gy-(Kaos) +Daryn→ Gydarn",
+      "meaning": "Kaotik Orman / Değişken Koru",
+      "example": "Nador paden Gydarn. (Kaotik Orman'a asla gitme.)"
+    },
+    {
+      "word": "Gydor",
+      "pos": "Zaman Zarfı",
+      "origin": "Gy(Döngü/Kaos) +Dora(Zaman) → \"Döngüsel Zaman\"",
+      "meaning": "Sürekli / Durmaksızın",
+      "example": "Tod gydor, gharan nador. (Ölüm döner, savaş bitmez.)"
+    },
+    {
+      "word": "Gygma",
+      "pos": "Özel İsim (Kasaba --- Evrimleşmiş)",
+      "origin": "Gygema→Gygma",
+      "meaning": "Kaos Kasabası",
+      "example": "Eranra viena Gygma. (İnsanlar Kaos Kasabası'na geliyor.)"
+    },
+    {
+      "word": "Gykal",
+      "pos": "İsim (Büyü/Coğrafi)",
+      "origin": "Gy(Döngü/Işınlanma) +Kal(Geçit)",
+      "meaning": "Portal / Geçit (ışınlanma anlamında)",
+      "example": "Zieli paden Gykal. (Elf portala gidiyor.)"
+    },
+    {
+      "word": "Gyleren",
+      "pos": "Fiil (Bileşik)",
+      "origin": "Gy(Geri) +Leren(Bilmek)",
+      "meaning": "Hatırlamak",
+      "example": "Ez nador gyleren. (Asla hatırlamıyorum.)"
+    },
+    {
+      "word": "Gylian",
+      "pos": "İsim / Kök",
+      "origin": "Gy-kökünden",
+      "meaning": "Kaos enerjisi, dönüşüm, kontrol edilemeyen yıkıcı büyü",
+      "example": "Gylian viena. (Kaos enerjisi geliyor.)"
+    },
+    {
+      "word": "Gylith",
+      "pos": "İsim (Nesne)",
+      "origin": "Gy(Döngü/Halka) +Lith(Taş) → Gylith",
+      "meaning": "Kolye / Taşlı halka",
+      "example": "Ez arien Gylith Edril. (Elmas kolyeyi seviyorum.)"
+    },
+    {
+      "word": "Gyron",
+      "pos": "İsim (Nesne)",
+      "origin": "Gy(Döngü/Çember) +Ron(Demir)",
+      "meaning": "Yüzük / Demir halka",
+      "example": "Ez arien Gyron Aron. (Altın yüzüğü seviyorum.)"
+    },
+    {
+      "word": "Gyvis",
+      "pos": "Sıfat (Mistik)",
+      "origin": "Gy(Kaotik) +-viseki",
+      "meaning": "Mistik / Kaotik olan",
+      "example": "Gyvis ohel daryn. (Orman gizemli gibidir.)"
+    },
+    {
+      "word": "Gyvash",
+      "pos": "Bağlaç / Sıfat",
+      "origin": "Gy(Dönüşüm) +Vash(Rüzgar) → \"Rüzgarın yön değiştirmesi\"",
+      "meaning": "Belki (Rüzgar değişirse / Belli olmaz)",
+      "example": "Gyvash viena. (Belki gelir.)"
+    },
+    {
+      "word": "Gyan",
+      "pos": "Fiil / Zarf",
+      "origin": "Bağımsız kök",
+      "meaning": "Geri dönmek / Tekrar",
+      "example": "Ezra gyan kamor. (Kaleden dönüyoruz.)"
+    },
+    {
+      "word": "Gyanhan",
+      "pos": "Fiil (Bileşik)",
+      "origin": "Gyan(Geri) +Han(Can)",
+      "meaning": "Dirilmek",
+      "example": "Rez viena, gyanhan. (Yenilmez geri döndü, dirildi.)"
+    },
+    {
+      "word": "Han",
+      "pos": "Kök / İsim",
+      "origin": "Hanarkökünün kısalmış biçimi",
+      "meaning": "Can / Kan / Kök (kısalmış bağlamlarda)",
+      "example": "Gyanhan (Dirilmek: Geri-can)"
+    },
+    {
+      "word": "Haned",
+      "pos": "İsim",
+      "origin": "Bağımsız kök",
+      "meaning": "Yara (Kanayan şey)",
+      "example": "Va haned hanar. (O kanlı yaralı.)"
+    },
+    {
+      "word": "Hanael",
+      "pos": "İsim (Renk)",
+      "origin": "Hanar+Namelkarışımı",
+      "meaning": "Macenta",
+      "example": "Ez arien Hanael shel. (Macenta zırhı seviyorum.)"
+    },
+    {
+      "word": "Hanleth",
+      "pos": "İsim (Renk)",
+      "origin": "Hanel+-eth(çok soluk)",
+      "meaning": "Somon rengi",
+      "example": "Va shel Hanleth. (O somon renkli zırh taşıyor.)"
+    },
+    {
+      "word": "Hanar",
+      "pos": "İsim / Kök",
+      "origin": "hankökünden",
+      "meaning": "Kan, soy bağı, genetik köken, kök. Ailenin dayandığı temel",
+      "example": "Aron hanar, Edron rion. (Altın kök/kan, Demir birlik.)"
+    },
+    {
+      "word": "Hanarira",
+      "pos": "Çoğul İsim",
+      "origin": "Hanar +-ira(çoğul uzantısı)",
+      "meaning": "Soylar / Kanlar",
+      "example": "Hanarira garnad. (Soylar toplandı.)"
+    },
+    {
+      "word": "Hanar Daryn",
+      "pos": "Özel İsim (Orman)",
+      "origin": "Hanar(Kan) +Daryn(Orman) → Hanardarn",
+      "meaning": "Kan Ormanı",
+      "example": "Vara rakad Hanardarn. (Onlar Kan Ormanı'nı aldılar.)"
+    },
+    {
+      "word": "Hanıron",
+      "pos": "İsim (Renk)",
+      "origin": "Hanar+Aronkarışımı",
+      "meaning": "Bakır rengi",
+      "example": "Ez arien Hanıron shel. (Bakır renkli zırhı seviyorum.)"
+    },
+    {
+      "word": "Hanfalar",
+      "pos": "Fiil (Bileşik)",
+      "origin": "Han(Kan) +Falar(Yapmak) → \"Kan-yapmak\"",
+      "meaning": "Yaralamak",
+      "example": "Athor hanfalar. (Kılıç yaralıyor.)"
+    },
+    {
+      "word": "Hanron",
+      "pos": "Bileşik İsim (Hane/Soy Adı)",
+      "origin": "Hanar(Kan) +Ron(Örs/Demir)",
+      "meaning": "Kandemiri / Kanlıörs",
+      "example": "Va Hanron hanar. (O Kandemiri soyundan.)"
+    },
+    {
+      "word": "Hantor",
+      "pos": "Bileşik İsim (Hane/Silah Adı)",
+      "origin": "Hanar(Kan) +Athor(Kılıç) → Hantor",
+      "meaning": "Kankılıç",
+      "example": "Garion gharan Hantor res. (Komutan Kankılıç ile savaşıyor.)"
+    },
+    {
+      "word": "Hanva",
+      "pos": "Bağlaç",
+      "origin": "Hanar(Kök/Temel) +Va(O/Onun) → \"Onun kökü / Onun sebebi\"",
+      "meaning": "Çünkü",
+      "example": "Ez gharan hanva te. (Senin yüzünden savaşıyorum.)"
+    },
+    {
+      "word": "Hardarn",
+      "pos": "bkz.Har Lithcoğrafi örüntüsü Har---İsim / Kök",
+      "origin": "harkökü",
+      "meaning": "Yıkım, darbe, şiddet",
+      "example": "Har viena. (Yıkım geliyor.)"
+    },
+    {
+      "word": "Harleth",
+      "pos": "Özel İsim (Kaya --- Evrimleşmiş)",
+      "origin": "Har Lith→Harlith→Harleth",
+      "meaning": "Yıkım Kayası",
+      "example": "Ezra paden Harleth. (Yıkım Kayası'na gidiyoruz.)"
+    },
+    {
+      "word": "Hart",
+      "pos": "İsim / Kök",
+      "origin": "hartkökü",
+      "meaning": "Kalp, yürek, savaşçı cesareti",
+      "example": "Hart lith ohel. (Yürek kaya gibidir.)"
+    },
+    {
+      "word": "Hartana",
+      "pos": "Özel İsim (Nehir --- Evrimleşmiş)",
+      "origin": "Hart Eana→Hartana",
+      "meaning": "Yürek Nehri",
+      "example": "Ezra gharan Hartana. (Yürek Nehri'nde savaşıyoruz.)"
+    },
+    {
+      "word": "Harvik",
+      "pos": "İsim (Gündelik Eşya)",
+      "origin": "Bağımsız kök",
+      "meaning": "Sandık / Sepet",
+      "example": "Aron harvik. (Altın sandık.)"
+    },
+    {
+      "word": "Hesk",
+      "pos": "Sayı",
+      "origin": "Bağımsız kök",
+      "meaning": "Beş (5) Henoth---İsim (Renk)--- Köken:Hanar+-oth(koyu) --- Anlam: Bordo",
+      "example": "Ez arien Henoth shel. (Bordo zırhı seviyorum.)"
+    },
+    {
+      "word": "Heon",
+      "pos": "İsim / Kök",
+      "origin": "He-kökünden",
+      "meaning": "Güneş, sıcaklık, ışık ışını",
+      "example": "Alvheon. (Günaydın / İyi güneşler.)"
+    },
+    {
+      "word": "Heon eana",
+      "pos": "Selamlama Kalıbı--- Anlam: Merhaba / Selam (Güneş ve su) --- En sıcakkanlı ve yaygın selamlama. Honena---Özel İsim (Nehir --- Evrimleşmiş)",
+      "origin": "Heoneana→Honena(çift ünlü yutulması)",
+      "meaning": "Sıcaksu / Güneşlinehir",
+      "example": "Ezra gharan Honena. (Güneşlinehir'de savaşıyoruz.)"
+    },
+    {
+      "word": "ve İ Ia",
+      "pos": "Ek (Coğrafi/Krallık)",
+      "origin": "Bağımsız krallık eki",
+      "meaning": "Diyar, ülke, egemenlik altındaki toprak",
+      "example": "Valeria --- Rüzgarın Diyarı"
+    },
+    {
+      "word": "Ilfen",
+      "pos": "İsim (Gündelik Eşya)",
+      "origin": "Bağımsız kök",
+      "meaning": "Mum",
+      "example": "Ilfen glew. (Mum parlıyor.)"
+    },
+    {
+      "word": "Ilvar",
+      "pos": "Özel İsim (Aile Terimi)",
+      "origin": "Bağımsız bileşik yapı",
+      "meaning": "Oğul",
+      "example": "Ez ilvar. (O benim oğlum.)"
+    },
+    {
+      "word": "Irungamor",
+      "pos": "Özel İsim (Kale --- Evrimleşmiş)",
+      "origin": "Irun Kamor→Irungamor",
+      "meaning": "Cüce Kalesi",
+      "example": "Irun paden Irungamor. (Cüceler Cüce Kalesi'ne gidiyor.)"
+    },
+    {
+      "word": "Irun",
+      "pos": "İsim (Irk)",
+      "origin": "Bağımsız kök",
+      "meaning": "Cüce, dağın altındaki halk, madenci. Yeraltı halklarının adı",
+      "example": "Irun gharan Ron Gema. (Cüceler Örs Köyü'nde savaşıyor.)"
+    },
+    {
+      "word": "It",
+      "pos": "Köken Kök",
+      "origin": "Bağımsız temel kök",
+      "meaning": "Boşluk, bilinmeyen, isimsiz ve kayıp olan",
+      "example": "It- öneki kaybolma ve bilinmezlik alanına aittir"
+    },
+    {
+      "word": "İhanet",
+      "pos": "bkz.Lodhart İksir--- bkz.Eanvez İntikam--- bkz.Gyanghar HARF: K Kal----Köken Kök",
+      "origin": "Bağımsız temel kök",
+      "meaning": "Yol, seyyah, sınır bekçisi",
+      "example": "Vash kal te. (Rüzgar senin yolunu açsın.)"
+    },
+    {
+      "word": "Kalbrik",
+      "pos": "Bileşik Fiil",
+      "origin": "Kal(Yol) +Brik(Başlamak)",
+      "meaning": "Yola çıkmak",
+      "example": "Ezra kalbrik yunghe. (Yarın yola çıkıyoruz.)"
+    },
+    {
+      "word": "Kaledes te",
+      "pos": "Selamlama Kalıbı--- Anlam: Geçmiş olsun (Hastalık senden geçsin) Kaldurath---Özel İsim (Aile Terimi)",
+      "origin": "Bağımsız bileşik yapı",
+      "meaning": "Dede",
+      "example": "Va Kaldurath ez hanar. (O benim dedem.)"
+    },
+    {
+      "word": "Kaldor",
+      "pos": "İsim (Sınır Kavramı)",
+      "origin": "Kal-(Yol) +Dor(Kadar/Sınır) → Kaldor (sınırların sonu)",
+      "meaning": "Sınır / Sınırın sonu Kaldrun---Özel İsim (Aile Terimi)--- Köken: Bağımsız bileşik yapı --- Anlam: Eş / Koca",
+      "example": "Va Kaldrun ez. (O benim kocam.)"
+    },
+    {
+      "word": "Kalorlar",
+      "pos": "Bileşik Unvan",
+      "origin": "Kamor(Kale) +Lar(Lord) → Kamorlar",
+      "meaning": "Kalenin Lordu",
+      "example": "Va Kamorlar Anknor. (O Anknor'un Kalenin Lordu.)"
+    },
+    {
+      "word": "Kalrak",
+      "pos": "Fiil (Bileşik)",
+      "origin": "Kal(Yol) +Rak(Av/Yakalamak)",
+      "meaning": "Kovalamak",
+      "example": "Wolanra kalrak. (Kurtlar kovalıyor.)"
+    },
+    {
+      "word": "Kalva",
+      "pos": "Emir Nidası",
+      "origin": "Kal(Yol) +Voran(Açmak) emir kipi →Kalvoran→Kalvora→Kalva!(saray muhafızı nidası)",
+      "meaning": "Destur! / Yol Verin!",
+      "example": "Kalva! Anxes viena! (Destur! Yüce İmparator geliyor!)"
+    },
+    {
+      "word": "Kalviz",
+      "pos": "İsim (Nesne)",
+      "origin": "Kal(Yol) +Viz(Görüş) → Kalviz",
+      "meaning": "Harita",
+      "example": "Ez paden Kalviz res. (Haritayla yürüyorum.)"
+    },
+    {
+      "word": "Kam",
+      "pos": "Köken Kök",
+      "origin": "Kamorkelimesinin kısalmış bileşik biçimi",
+      "meaning": "Kale, sur kökü Kamorra---Çoğul İsim--- Köken: Kamor +-ra(r ikizleşmesi) --- Anlam: Kaleler",
+      "example": "Ezra gharad kamorra gealhe. (Dün kalelerde savaştık.)"
+    },
+    {
+      "word": "Kamor",
+      "pos": "İsim / Kök",
+      "origin": "Kam-kökünden",
+      "meaning": "Kale, aşılmaz sur, hisar, sert taş duvar",
+      "example": "Kamor lith ohel. (Kale kaya gibidir.)"
+    },
+    {
+      "word": "Kazurn",
+      "pos": "Sayı (Donmuş Kelime)",
+      "origin": "Karith(100) +Zurn(10) → birleşiminden oluşmuş ama artık bağımsız donmuş kelime",
+      "meaning": "Bin (1000) Karith---Sayı--- Köken: Bağımsız kök --- Anlam: Yüz (100) Karaorman--- bkz.Lundar Karayürek--- bkz.Zinhart Kelvorit---Özel İsim (Aile Terimi)--- Köken: Bağımsız bileşik yapı --- Anlam: Üvey Kardeş",
+      "example": "Va Kelvorit ez. (O benim üvey kardeşim.)"
+    },
+    {
+      "word": "Kethis",
+      "pos": "İsim (Gündelik Eşya)",
+      "origin": "Bağımsız kök",
+      "meaning": "Bıçak (mutfak)",
+      "example": "Kethis Krel. (Sarı bıçak.)"
+    },
+    {
+      "word": "Ketrun",
+      "pos": "İsim (Giyim)",
+      "origin": "Bağımsız kök",
+      "meaning": "Çizme",
+      "example": "Ez paden Ketrun Namel res. (Siyah çizmeyle yürüyorum.)"
+    },
+    {
+      "word": "Khaan",
+      "pos": "İsim / Kök",
+      "origin": "Kha-kökünden",
+      "meaning": "Büyü, tılsım, maji, evrensel enerjinin manipülasyonu",
+      "example": "Khaan ova (Büyü hakkında). Ez naleren Khaan ova. (Büyü hakkında hiçbir şey bilmiyorum.)"
+    },
+    {
+      "word": "Khanmera",
+      "pos": "Özel İsim (Deniz --- Evrimleşmiş)",
+      "origin": "Khaan Mera→Khanmera",
+      "meaning": "Büyü Denizi",
+      "example": "Vez viena Khanmera. (Büyü Büyü Denizi'nden geliyor.)"
+    },
+    {
+      "word": "Khoralvis",
+      "pos": "Selamlama Kalıbı",
+      "origin": "Yemek/İçmek kökünden türetilmiş",
+      "meaning": "Afiyet olsun (Yediğin iyi/şifa olsun) Khorya---İsim (Mekan)--- Köken: Yemek/içmek kökünden türetilmiş --- Anlam: Han (mekan) / Yemekhane",
+      "example": "Ezra garnad Khorya. (Handa toplandık.)"
+    },
+    {
+      "word": "Knor",
+      "pos": "İsim / Kök",
+      "origin": "knorkökü",
+      "meaning": "Tepe, dumanlı zirve, dağlık kuzey bölgesi",
+      "example": "Ezra paden Knor. (Zirveye gidiyoruz.)"
+    },
+    {
+      "word": "Knorin",
+      "pos": "İsim (Mimari)",
+      "origin": "Knor(Zirve) +-in(küçültme/türev eki)",
+      "meaning": "Kule",
+      "example": "Knorin kamor. (Kalenin kulesi.)"
+    },
+    {
+      "word": "Kolesk",
+      "pos": "İsim (Gündelik Eşya)",
+      "origin": "Bağımsız kök",
+      "meaning": "Sandalye",
+      "example": "Rallon kolesk. (Kral sandalyesi / taht koltuğu.)"
+    },
+    {
+      "word": "Korvellin",
+      "pos": "Özel İsim (Aile Terimi)",
+      "origin": "Bağımsız bileşik yapı",
+      "meaning": "Yeğen",
+      "example": "Va Korvellin ez. (O benim yeğenim.)"
+    },
+    {
+      "word": "Kreana",
+      "pos": "Özel İsim (Nehir --- Evrimleşmiş)",
+      "origin": "Crae Eana→Kreana",
+      "meaning": "Kemik Nehri",
+      "example": "Crae viena Kreana. (Kemik Nehri'ne kadar.)"
+    },
+    {
+      "word": "Krel",
+      "pos": "İsim (Renk)",
+      "origin": "Bağımsız kök",
+      "meaning": "Sarı",
+      "example": "Heon Krel ohel. (Güneş sarı gibidir.)"
+    },
+    {
+      "word": "Lar",
+      "pos": "İsim (Unvan)",
+      "origin": "larkökü",
+      "meaning": "Efendi, sahip, toprak ağası, lord. Aristokratik unvan eki",
+      "example": "Va Lar kamor. (O kalenin lordu.)"
+    },
+    {
+      "word": "Las",
+      "pos": "İsim / Kök",
+      "origin": "laskökü",
+      "meaning": "Ok, hız, menzilli silah",
+      "example": "Lasra viena. (Oklar geliyor.)"
+    },
+    {
+      "word": "Lasoe",
+      "pos": "Özel İsim (Vadi --- Evrimleşmiş)",
+      "origin": "Las Ohe→Lasoe",
+      "meaning": "Ok Vadisi",
+      "example": "Lasra gharan Lasoe. (Oklar Ok Vadisi'nde savaşıyor.)"
+    },
+    {
+      "word": "Lasra",
+      "pos": "Çoğul İsim",
+      "origin": "Las +-ra",
+      "meaning": "Oklar",
+      "example": "Fira har! Lasra viena! (Ateş yıkımı! Oklar geliyor!)"
+    },
+    {
+      "word": "Lasen",
+      "pos": "İsim (Nesne/Eylemsel)",
+      "origin": "Laskökünün eylemsel isim hali",
+      "meaning": "Yay / Fırlatıcı",
+      "example": "Ez gharan Lasen res. (Yayla savaşıyorum.)"
+    },
+    {
+      "word": "Ler",
+      "pos": "İsim (Unvan)",
+      "origin": "lerkökü",
+      "meaning": "Alim, öğretici, kadim bilgiye sahip bilge",
+      "example": "Ler viena. (Bilge geliyor.)"
+    },
+    {
+      "word": "Lerkom",
+      "pos": "İsim (Nesne)",
+      "origin": "Ler(Alim/Bilge) +-kom(kutu/kap eki)",
+      "meaning": "Kitap (\"Bilgi kutusu\")",
+      "example": "Ez arien Lerkom Gaelis. (Kadim kitabı seviyorum.)"
+    },
+    {
+      "word": "Leren",
+      "pos": "Fiil",
+      "origin": "Bağımsız bilgi fiili",
+      "meaning": "Bilmek",
+      "example": "Ez naleren. (Bilmiyorum.) Wolanra nador naleren. (Kurtlar asla unutmaz.)"
+    },
+    {
+      "word": "Lido",
+      "pos": "İsim",
+      "origin": "Lith(Kaya/Değişmez) +Ohe(Söz) → Lithohe → zamanlaLido",
+      "meaning": "Karar / Hüküm. Taşa yazılmış söz",
+      "example": "Va se lido Verond. (Konseyin kararı bu.)"
+    },
+    {
+      "word": "Lidofad",
+      "pos": "Fiil (Bileşik Geçmiş)",
+      "origin": "Lido(Karar) +Fal(Yapmak kökü) +-d(geçmiş eki) → Lidofad",
+      "meaning": "Karar verdi / Hükmetti",
+      "example": "Ernyar lidofad. (Tanrılar karar verdi.)"
+    },
+    {
+      "word": "Lidozes",
+      "pos": "Emir Nidası (İmparatorluk)",
+      "origin": "Lido(Karar) +Ez(Ben) +Se(Dır) → normalde \"Va se lido ez\"; imparatorun ağzında tek kelimeye dönüşmüştür",
+      "meaning": "Hükmümdür! / Benim kararımdır!",
+      "example": "Lidozes! (Hükmümdür!)"
+    },
+    {
+      "word": "Lithan",
+      "pos": "Fiil / Unvan",
+      "origin": "Lith(Kaya) kökünden türeyen fiil",
+      "meaning": "(1) Taş gibi yere kapanmak (fiil); (2) Cüceleri tanımlamak için kullanılan alternatif isim (\"Taştan doğanlar\")",
+      "example": "Lithan Xese. (Tahta boyun eğ / İmparatora diz çök.)"
+    },
+    {
+      "word": "Lith",
+      "pos": "İsim / Kök",
+      "origin": "lithkökü",
+      "meaning": "Kaya, ebedi olan, zamanla aşınmayan",
+      "example": "Lith ohel xes ovas. (Taş gibi kesindir; İmparator konuştu.)"
+    },
+    {
+      "word": "Litvez",
+      "pos": "İsim (Büyü Nesnesi)",
+      "origin": "Lith(Taş) +Vez(Büyü) → Litvez",
+      "meaning": "Rün (taşa kazınan büyü)",
+      "example": "Va Litvez Khaan. (O büyü rünü taşıyor.)"
+    },
+    {
+      "word": "Litzel",
+      "pos": "Bileşik İsim (Hane/Zırh Adı)",
+      "origin": "Lith(Kaya) +Shel(Zırh) → Litzel (ses aşınması)",
+      "meaning": "Kayazırh / Taşkabuk",
+      "example": "Va gharan Litzel res. (Kayazırh ile savaşıyor.)"
+    },
+    {
+      "word": "Lodalse",
+      "pos": "Fiil Kalıbı",
+      "origin": "Lodal(Yalan) +Se(Olmak) → Lodalse",
+      "meaning": "Yanlışım",
+      "example": "Te asezien, ez lodalse. (Sen haklısın, ben yanlışım.)"
+    },
+    {
+      "word": "Lodal",
+      "pos": "İsim",
+      "origin": "Bağımsız kök",
+      "meaning": "Yalan",
+      "example": "Va ovas Lodal. (O yalan söylüyor.)"
+    },
+    {
+      "word": "Lodhart",
+      "pos": "İsim (Soyut)",
+      "origin": "Lodal(Yalan) +Hart(Yürek)",
+      "meaning": "İhanet",
+      "example": "Ez naleren Lodhart fael. (İhanet için bilmiyorum.) (olumsuz cümle)"
+    },
+    {
+      "word": "Lodfalar",
+      "pos": "Fiil (Bileşik)",
+      "origin": "Lodal(Yalan) +Falar(Yapmak) → \"Yalan-yapmak\"",
+      "meaning": "İhanet etmek",
+      "example": "Va lodfalar Veron. (O Konsey'e ihanet etti.)"
+    },
+    {
+      "word": "Lodrak",
+      "pos": "İsim (Unvan/Kişi Tipi)",
+      "origin": "Lodal(Yalan) +Rakan(Alan) → Lodrak",
+      "meaning": "Hırsız (\"Yalanla alan\")",
+      "example": "Lodrak paden Aronda. (Hırsız hazineye gidiyor.)"
+    },
+    {
+      "word": "Loth",
+      "pos": "İsim / Kök",
+      "origin": "lothkökü",
+      "meaning": "Tuzak, ağ, illüzyon büyüsü, örümcek",
+      "example": "Sin loth, Era galdor. (Günah tuzağı, Era kalkanı / Koruma duası.)"
+    },
+    {
+      "word": "Lothoe",
+      "pos": "Özel İsim (Vadi --- Evrimleşmiş)",
+      "origin": "Loth Ohe→Lothoe",
+      "meaning": "Tuzak Vadisi",
+      "example": "Nador paden Lothoe. (Tuzak Vadisi'ne asla gitme.)"
+    },
+    {
+      "word": "Lothya",
+      "pos": "İsim (Kişi Tipi)",
+      "origin": "Loth(Tuzak) +-ya(dişil eklenti) → \"Tuzak kuran (kadın)\"",
+      "meaning": "Cadı",
+      "example": "Lothya Gydarn gharan. (Cadı Kaotik Orman'da savaşıyor.)"
+    },
+    {
+      "word": "Lun",
+      "pos": "Köken Kök",
+      "origin": "Bağımsız temel kök",
+      "meaning": "Ay, gece, karanlık gökyüzü, gölgeler",
+      "example": "Lun glew. (Gece feneri / İyi geceler.)"
+    },
+    {
+      "word": "Luna",
+      "pos": "İsim / Uzun Form",
+      "origin": "Lun-kökünden",
+      "meaning": "Ay / Gece (tam söyleniş)",
+      "example": "Luna glewen. (Ay parlıyor.)"
+    },
+    {
+      "word": "Lunah",
+      "pos": "İsim (Renk)",
+      "origin": "Lun(Gece) +-ath(donuk) → Lunah",
+      "meaning": "Gri",
+      "example": "Va shel Lunah. (O gri zırh taşıyor.)"
+    },
+    {
+      "word": "Lundar",
+      "pos": "Bileşik İsim",
+      "origin": "Lun(Gece) +Daryn(Orman) → Lundar",
+      "meaning": "Karaorman / Gecekorusu",
+      "example": "Tosh paden Lundar. (Suikastçı Karaorman'a gidiyor.)"
+    },
+    {
+      "word": "Lundaryn",
+      "pos": "Özel İsim (Orman)",
+      "origin": "Lun-+Daryn→Lundarn(ses kısalması)",
+      "meaning": "Gölgeli Orman / Gece Ormanı Lunhan---Bileşik İsim (Hane/Soy Adı)--- Köken:Lun(Karanlık) +Hanar(Kan) --- Anlam: Karakan",
+      "example": "Va Lunhan hanar. (O Karakan soyundan.)"
+    },
+    {
+      "word": "Lunknor",
+      "pos": "Özel İsim (Dağ)",
+      "origin": "Lun-+Knor→Lunghor(ses evrimi)",
+      "meaning": "Gölgeli Dağ / Karanlık Zirve Lunoe---Özel İsim (Vadi --- Evrimleşmiş)--- Köken:Lunohe→Lunoe(-oh- \\> -oe- dönüşümü) --- Anlam: Karanlık Vadi / Gölgeli Uçurum Lunohe---Özel İsim (Vadi --- Kök Form)--- Köken:Lun-+Ohe→ Lunohe --- Anlam: Karanlık Vadi Lun",
+      "example": "Tosh gharan Lunator res. (Suikastçı Gecekılıcı ile savaşıyor.)"
+    },
+    {
+      "word": "Lundarn",
+      "pos": "Özel İsim (Orman --- Evrimleşmiş)",
+      "origin": "Lundaryn→Lundarn(-yn \\> -n kısalması)",
+      "meaning": "Gölgeli Orman Lunghor---Özel İsim (Dağ --- Evrimleşmiş)--- Köken:Lunknor→Lungnor→Lunghor--- Anlam: Gölgeli Dağ / Karanlık Zirve Lunvush---İsim (Renk)--- Köken:Lun+Vashkarışımı --- Anlam: Çivit Mavisi",
+      "example": "Ez arien Lunvush shel. (Çivit mavisi zırhı seviyorum.)"
+    },
+    {
+      "word": "Maeri",
+      "pos": "Özel İsim (Aile Terimi)",
+      "origin": "Bağımsız bileşik yapı",
+      "meaning": "Anne",
+      "example": "Ez arien Maeri. (Annemi seviyorum.)"
+    },
+    {
+      "word": "Mağara",
+      "pos": "bkz.Nalith Marendel---Özel İsim (Aile Terimi)",
+      "origin": "Bağımsız bileşik yapı",
+      "meaning": "Kayın (eşin ailesi)",
+      "example": "Va Marendel ez Kaldrun. (O benim kocamın kayın ailesinden.)"
+    },
+    {
+      "word": "Me",
+      "pos": "İsim / Kök",
+      "origin": "mekökü",
+      "meaning": "Benlik, ego, ruhun özü",
+      "example": "Va Me viena. (Ruhun özü geliyor.)"
+    },
+    {
+      "word": "Menal",
+      "pos": "İsim (Soyut)",
+      "origin": "Me(Ruh) +-aleki",
+      "meaning": "Ruhani",
+      "example": "Eranya Menal ohel. (Melek ruhani gibidir.)"
+    },
+    {
+      "word": "Menen",
+      "pos": "Fiil",
+      "origin": "Me(Ruh) +-nen(fiil eki)",
+      "meaning": "Hissetmek",
+      "example": "Ez menen Gylian. (Kaos enerjisini hissediyorum.)"
+    },
+    {
+      "word": "Mera",
+      "pos": "İsim / Kök",
+      "origin": "Mer-kökünden",
+      "meaning": "Okyanus, engin deniz, tuzlu su",
+      "example": "Khaan Mera. (Büyü Denizi.)"
+    },
+    {
+      "word": "Meranzen",
+      "pos": "İsim (Renk)",
+      "origin": "Mera+Zean(değerli parlaklık)",
+      "meaning": "Safir rengi",
+      "example": "Ez arien Meranzen gylith. (Safir kolyeyi seviyorum.)"
+    },
+    {
+      "word": "Mereval",
+      "pos": "İsim (Coğrafi)",
+      "origin": "Mera(Deniz) +Val(Diyar/Mekan eki)",
+      "meaning": "Okyanus diyarı / Deniz",
+      "example": "Ezra paden Mereval. (Deniz diyarına gidiyoruz.)"
+    },
+    {
+      "word": "Merevond",
+      "pos": "Özel İsim (Aile Terimi)",
+      "origin": "Bağımsız bileşik yapı",
+      "meaning": "Dayı (anne tarafı)",
+      "example": "Va Merevond ez hanar. (O benim anne tarafı dayım.)"
+    },
+    {
+      "word": "Mernel",
+      "pos": "İsim (Renk)",
+      "origin": "Mera(Okyanus) +-el",
+      "meaning": "Camgöbeği",
+      "example": "Ez arien Mernel shel. (Camgöbeği zırhı seviyorum.)"
+    },
+    {
+      "word": "Merwyl",
+      "pos": "Bileşik İsim (Yaratık)",
+      "origin": "Mera(Deniz) +Wyrm(Ejderha) → peltekleşerek Merwyl",
+      "meaning": "Denizejderi",
+      "example": "Merwyl viena Khanmera. (Denizejderi Büyü Denizi'nden geliyor.)"
+    },
+    {
+      "word": "Melwyn",
+      "pos": "İsim (Gündelik Eşya)",
+      "origin": "Bağımsız kök",
+      "meaning": "Bal",
+      "example": "Melwyn alvasen. (Bal iyidir.)"
+    },
+    {
+      "word": "Mogal",
+      "pos": "Sıfat / İsim",
+      "origin": "Bağımsız kök",
+      "meaning": "Büyük / Yüce (alternatif kullanım)",
+      "example": "Mogal Knor viena. (Büyük Zirve geliyor / görünüyor.)"
+    },
+    {
+      "word": "Mogar",
+      "pos": "İsim (Yaratık)",
+      "origin": "Mogal(Büyük/Yüce) sıfatının varlık bildiren isimleşmiş hali",
+      "meaning": "Dev",
+      "example": "Mogar gharan Anknor. (Dev Yüce Dağ'da savaşıyor.)"
+    },
+    {
+      "word": "Moganor",
+      "pos": "Bileşik İsim (Coğrafi)",
+      "origin": "Mogal(Büyük) +Knor(Zirve) → Moganor",
+      "meaning": "Yücetepe / Uludağ",
+      "example": "Ezra paden Moganor. (Uludağ'a gidiyoruz.)"
+    },
+    {
+      "word": "Moghart",
+      "pos": "İsim (Soyut)",
+      "origin": "Mogal(Büyük) +Hart(Yürek)",
+      "meaning": "Kibir (\"Büyük yürek\")",
+      "example": "Moghart va. (O kibirli.)"
+    },
+    {
+      "word": "Morlask",
+      "pos": "İsim (Gündelik Eşya)",
+      "origin": "Bağımsız kök",
+      "meaning": "Kilit",
+      "example": "Shelan Morlask. (Kilidi kilitle.)"
+    },
+    {
+      "word": "Movrash",
+      "pos": "İsim (Giyim)",
+      "origin": "Bağımsız kök",
+      "meaning": "Pelerin",
+      "example": "Ez paden Movrash Namel res. (Siyah pelerinle yürüyorum.)"
+    },
+    {
+      "word": "Nador",
+      "pos": "Zaman Zarfı",
+      "origin": "Na(Hiçlik) +Dora(Zaman) → \"Yok Zaman\"",
+      "meaning": "Asla",
+      "example": "Wolanra nador naleren. (Kurtlar asla unutmaz.) Ez nador naleren. (Asla unutmayacağım.)"
+    },
+    {
+      "word": "Nadora",
+      "pos": "Sıfat",
+      "origin": "Na(Yok) +Dora(Son/Zaman) → \"Sonu olmayan\"",
+      "meaning": "Uçsuz bucaksız",
+      "example": "Nadora mera. (Uçsuz bucaksız deniz.)"
+    },
+    {
+      "word": "Nagarel",
+      "pos": "İfade",
+      "origin": "Na(Yok) +Garel(Önemli/İz) → \"İz yok\"",
+      "meaning": "Sorun değil (Önemli değil)",
+      "example": "Nagarel. (Sorun değil.)"
+    },
+    {
+      "word": "Naleren",
+      "pos": "Fiil (Olumsuz)",
+      "origin": "Na(Yok) +Leren(Bilmek)",
+      "meaning": "Bilmemek / Unutmak",
+      "example": "Ez naleren. (Bilmiyorum.) Wolanra nador naleren. (Kurtlar asla unutmaz.)"
+    },
+    {
+      "word": "Nalis",
+      "pos": "İsim (Soyut)",
+      "origin": "Na(Yok) +Eralis(Umut)",
+      "meaning": "Umutsuzluk",
+      "example": "Nalis viena namgema. (Umutsuzluk Kayıp Köy'e geliyor.)"
+    },
+    {
+      "word": "Naldoran",
+      "pos": "Fiil",
+      "origin": "Bağımsız kök",
+      "meaning": "İsyan etmek",
+      "example": "Eranra naldoran Veron. (İnsanlar Konsey'e isyan ediyor.)"
+    },
+    {
+      "word": "Namel",
+      "pos": "İsim (Renk)",
+      "origin": "Namon(Hiçlik) +-el",
+      "meaning": "Siyah",
+      "example": "Tosh shel Namel. (Suikastçı siyah zırh taşıyor.)"
+    },
+    {
+      "word": "Namgema",
+      "pos": "Özel İsim (Köy)",
+      "origin": "Na-(Hiçlik) +Gema→ Namgma (ses kısalması)",
+      "meaning": "Kayıp Köy / Yok Olmuş Yerleşke",
+      "example": "Nalis viena Namgma. (Umutsuzluk Kayıp Köy'e geliyor.)"
+    },
+    {
+      "word": "Namen",
+      "pos": "İsim (Soyut)",
+      "origin": "Na(Hiçlik) +-meneki",
+      "meaning": "Hüzün / Yalnızlık (birinci kullanım)",
+      "example": "Namen viena. (Hüzün geliyor.)"
+    },
+    {
+      "word": "Naman",
+      "pos": "Fiil",
+      "origin": "Na(Hiçliğe) +-man(düşme eki)",
+      "meaning": "Düşmek",
+      "example": "Va naman peara res. (O mızrak ile düştü.)"
+    },
+    {
+      "word": "Namon",
+      "pos": "İsim / Kök",
+      "origin": "Na-kökünden",
+      "meaning": "Hiçlik, boşluk (Void), karanlık boyut, yokluk",
+      "example": "Namon xenor! (Hiçlik canavarı! --- küfür nidası)"
+    },
+    {
+      "word": "Namera",
+      "pos": "Özel İsim (Göl)",
+      "origin": "Na(Hiçlik) +Mera→ Namra (ses kısalması)",
+      "meaning": "Kayıpgöl / Boşlukdenizi",
+      "example": "Namon viena Namra. (Hiçlik Kayıpgöl'e geliyor.)"
+    },
+    {
+      "word": "Namkor",
+      "pos": "İsim (Coğrafi)",
+      "origin": "Namon(Hiçlik) +Knor(Zirve)",
+      "meaning": "Uçurum",
+      "example": "Va naman Namkor. (O uçurumdan düştü.)"
+    },
+    {
+      "word": "Namoth",
+      "pos": "İsim (Renk)",
+      "origin": "Namon+-oth(ağır)",
+      "meaning": "Kömür / Antrasit",
+      "example": "Ez arien Namoth shel. (Kömür renkli zırhı seviyorum.)"
+    },
+    {
+      "word": "Nava",
+      "pos": "Bağlaç",
+      "origin": "Na(Yokluk/Hiçlik) +Va(O) → \"O yoksa / O olmazsa\"",
+      "meaning": "Yoksa / Eğer (Koşul / Tehdit). Genelde tehditlerde kullanılır",
+      "example": "Nava, ez zethandor te. (Yoksa seni öldüreceğim.)"
+    },
+    {
+      "word": "Navol",
+      "pos": "İfade",
+      "origin": "Na(Yok) +Vol(Nefes/Ses) → \"Nefes tüketmeye değmez\"",
+      "meaning": "Bir şey değil / Ne demek!",
+      "example": "Navol. (Bir şey değil.)"
+    },
+    {
+      "word": "Nayohe",
+      "pos": "İfade",
+      "origin": "Na(Yok) +Yohe(Ses) → \"Sesi bile çıkmaz\"",
+      "meaning": "Ne demek! (öfkeli/şaşkın ret ifadesi)",
+      "example": "Nayohe! (Ne demek bu!)"
+    },
+    {
+      "word": "Nazanen",
+      "pos": "Fiil (Olumsuz)",
+      "origin": "Na(Yok) +Zanen(Anlamak)",
+      "meaning": "Anlamamak",
+      "example": "Ez nazanen. (Anlamıyorum.)"
+    },
+    {
+      "word": "Nazeth",
+      "pos": "İsim (Soyut)",
+      "origin": "Na(Yok) +Zeth(Ölüm) → \"Ölümü reddeden\"",
+      "meaning": "Ölümsüzlük",
+      "example": "Rez gharan Nazeth fael. (Yenilmez ölümsüzlük için savaşıyor.)"
+    },
+    {
+      "word": "Nazen",
+      "pos": "Fiil",
+      "origin": "Na(Hiçlik/Yok etme) +Sin(Günah) → Nasin → Nazen (yumuşama) → \"Günahı yok etmek\"",
+      "meaning": "Bağışlamak / Affetmek",
+      "example": "Naznez, ez na-vizad te. (Beni bağışla, seni görmedim.)"
+    },
+    {
+      "word": "Nazne",
+      "pos": "Fiil (Yumuşamış Form)",
+      "origin": "Na(Yokluk) +Sin(Günah) → Nasin → 'i' düşmesiyle Nazne",
+      "meaning": "Bağışlamak (yumuşamış form)",
+      "example": "Veron nazned. (Konsey seni bağışlasın.)"
+    },
+    {
+      "word": "Nazned",
+      "pos": "Fiil (Birleşik Geçmiş/Dilek)",
+      "origin": "Nazne+Te→ 'e' ve 't' yutularak → Nazned",
+      "meaning": "Bağışlasın (dilek kipi)",
+      "example": "Veron nazned. (Konsey seni bağışlasın.)"
+    },
+    {
+      "word": "Naznez",
+      "pos": "Fiil Kalıbı",
+      "origin": "Nazne+Ez(Ben) → \"Beni bağışla\"",
+      "meaning": "Beni bağışla",
+      "example": "Naznez, ez na-vizad te. (Beni bağışla, seni görmedim.)"
+    },
+    {
+      "word": "Nalith",
+      "pos": "İsim (Coğrafi/Mimari)",
+      "origin": "Namon(Boşluk) +Lith(Kaya) → Nalith",
+      "meaning": "Mağara (\"Taştaki boşluk\")",
+      "example": "Xenor paden Nalith. (Canavar mağaraya gidiyor.)"
+    },
+    {
+      "word": "Nimal",
+      "pos": "Sıfat",
+      "origin": "Ni(Aşağı kök) +-maleki",
+      "meaning": "Alt / Aşağı / Düşük",
+      "example": "Nimal gema. (Alt katman/düşük toprak.)"
+    },
+    {
+      "word": "Nimge",
+      "pos": "İsim (Coğrafi)",
+      "origin": "Nim(Aşağı) +Gema(Toprak)",
+      "meaning": "Yeraltı (\"Aşağı toprak\")",
+      "example": "Irun paden Nimge. (Cüceler yeraltına gidiyor.)"
+    },
+    {
+      "word": "Nimpaden",
+      "pos": "Fiil (Bileşik)",
+      "origin": "Nim(Aşağı) +Paden(Yürümek)",
+      "meaning": "Sürünmek (\"Aşağı yürümek\")",
+      "example": "Xenor nimpaden. (Canavar sürünüyor.)"
+    },
+    {
+      "word": "Niral",
+      "pos": "İsim (Gündelik Eşya)",
+      "origin": "Bağımsız kök",
+      "meaning": "Kaşık --- Not: Kaynaklarda \"Nirel\" olarak da geçer; Bölüm 5'te kayıt altına alınmıştır. Nirel---İsim (Gündelik Eşya)--- Köken: Bağımsız kök --- Anlam: Kaşık",
+      "example": "Nirel Dosk. (Kase kaşığı.) --- Not: Tabloda \"Nirel\" geçmektedir"
+    },
+    {
+      "word": "Niren",
+      "pos": "Fiil",
+      "origin": "Bağımsız kök",
+      "meaning": "Bulmak",
+      "example": "Ezra alniren. (Hoş bulduk / Biz iyi bulduk.)"
+    },
+    {
+      "word": "Nokveth",
+      "pos": "İsim (Gündelik Eşya)",
+      "origin": "Bağımsız kök",
+      "meaning": "Fener",
+      "example": "Ez paden Nokveth res. (Fenerle yürüyorum.)"
+    },
+    {
+      "word": "Norbam",
+      "pos": "Bileşik İsim (Hane/Silah Adı)",
+      "origin": "Knor(Dağ) +Bamar(Balyoz) → zor harfler düşerek Norbam",
+      "meaning": "Dağbalyozu",
+      "example": "Va Norbam hanar. (O Dağbalyozu soyundan.)"
+    },
+    {
+      "word": "Noras",
+      "pos": "İsim (Soyut)",
+      "origin": "Bağımsız kök",
+      "meaning": "Gurur / Onur (yüksek onur anlamı)",
+      "example": "Va Noras hanar. (O yüksek onur soyundan.)"
+    },
+    {
+      "word": "Nyvel",
+      "pos": "Özel İsim (Aile Terimi)",
+      "origin": "Bağımsız bileşik yapı",
+      "meaning": "Kız Kardeş (küçük)",
+      "example": "Va Nyvel ez. (O benim küçük kız kardeşim.)"
+    },
+    {
+      "word": "Ohe",
+      "pos": "Köken Kök",
+      "origin": "Bağımsız temel kök",
+      "meaning": "Yankı, vadi, derin uçurum",
+      "example": "Ohe viena. (Yankı geliyor.)"
+    },
+    {
+      "word": "Ohel",
+      "pos": "Edat (Benzetme)",
+      "origin": "Ohe(Yankı) +El(Yıldız/İz) → \"Onun yankısı/yansıması\"",
+      "meaning": "Gibi / Benzetme. Dilin en şiirsel yapı taşı",
+      "example": "Lith ohel. (Taş gibi.) Fira ohel. (Ateş gibi.) Wolan ohel. (Kurt gibi.)"
+    },
+    {
+      "word": "Oheval",
+      "pos": "İsim (Coğrafi)",
+      "origin": "Ohe(Yankı/Vadi) +Val(Rüzgar/Vash) → Oheval",
+      "meaning": "Yankılı yol (vadiler için)",
+      "example": "Ezra paden Oheval. (Yankılı yoldan gidiyoruz.)"
+    },
+    {
+      "word": "Ohelar",
+      "pos": "İsim (Soyut)",
+      "origin": "Ohe(Derin/Boşluk) +-lar(Lord/Ağırlık eki kökü)",
+      "meaning": "Keder / Üzüntü",
+      "example": "Ohelar viena. (Keder geliyor.)"
+    },
+    {
+      "word": "Ombrak",
+      "pos": "İsim (Gündelik Eşya)",
+      "origin": "Bağımsız kök",
+      "meaning": "Tencere / Kazan",
+      "example": "Ombrak Eana fael. (Tencere su için.)"
+    },
+    {
+      "word": "Onerhan tera",
+      "pos": "Selamlama Kalıbı--- Anlam: Sen de gör / Hep beraber (Sizlerin de ömrü aynı olsun) Onerkal---İsim",
+      "origin": "Oner(Aynı) +Kal(Yol) → \"Aynı yolu yürüyen\"",
+      "meaning": "Yoldaş",
+      "example": "Va onerkal ez. (O benim yoldaşım.)"
+    },
+    {
+      "word": "Onerkal va",
+      "pos": "İfade--- Anlam: Fark etmez (O aynı yola çıkar) Oneral---İfade",
+      "origin": "Oner(Aynı) +-aleki",
+      "meaning": "Aynen / Aynı",
+      "example": "Oneral. (Aynen.)"
+    },
+    {
+      "word": "Onn",
+      "pos": "Köken Kök",
+      "origin": "Bağımsız temel kök",
+      "meaning": "Onur, şeref, kan yemini",
+      "example": "Onn viena. (Onur geliyor/var.)"
+    },
+    {
+      "word": "Onndarn",
+      "pos": "Özel İsim (Orman)",
+      "origin": "Onn(Onur) +Daryn(Orman) → Onndarn",
+      "meaning": "Onur Ormanı",
+      "example": "Garhan gharan Onndarn. (Savaşçı Onur Ormanı'nda savaşıyor.)"
+    },
+    {
+      "word": "Or",
+      "pos": "Köken Kök",
+      "origin": "Aronkelimesinin krallık isimlendirmelerindeki kök hali",
+      "meaning": "Altın, zenginlik",
+      "example": "Or- öneki kraliyet adlarında kullanılır"
+    },
+    {
+      "word": "Ork",
+      "pos": "bkz.Gorgar Gorgar---İsim (Irk)",
+      "origin": "Gorgal(Çirkin) sıfatının isme dönüşüp sertleşmiş hali",
+      "meaning": "Ork",
+      "example": "Gorgar gharan Kamorra. (Orklar kalelerde savaşıyor.)"
+    },
+    {
+      "word": "Oskan",
+      "pos": "Fiil",
+      "origin": "Bağımsız kök",
+      "meaning": "Sormak",
+      "example": "Te na-oskan ez gyan. (Bana bir daha sorma.)"
+    },
+    {
+      "word": "Ova",
+      "pos": "Edat",
+      "origin": "Ovas(Konuşmak/Yaymak) kökünün aşınmış edat hali",
+      "meaning": "Hakkında / Dair",
+      "example": "Khaan ova. (Büyü hakkında.) Ez naleren va ova. (Onun hakkında hiçbir şey bilmiyorum.)"
+    },
+    {
+      "word": "Ovas",
+      "pos": "Fiil",
+      "origin": "Ohe(Söz) +Vash(Rüzgar/Yayılmak) → \"Sözün rüzgarla yayılması\"",
+      "meaning": "Konuşmak / Hüküm Vermek",
+      "example": "Xes ovas. (İmparator konuştu.) Veron ovas. (Konsey konuştu.)"
+    },
+    {
+      "word": "Ozz",
+      "pos": "İsim (Renk)",
+      "origin": "Bağımsız kök",
+      "meaning": "Mor",
+      "example": "Khaan Ozz ohel. (Büyü mor gibidir.)"
+    },
+    {
+      "word": "Paden",
+      "pos": "Fiil",
+      "origin": "Bağımsız temel hareket fiili",
+      "meaning": "Yürümek / Gitmek. Sessiz ilerleme anlamı taşır",
+      "example": "Ez paden daryn. (Ormana gidiyorum.)"
+    },
+    {
+      "word": "Padendor",
+      "pos": "Fiil (Gelecek)",
+      "origin": "Paden +-dor",
+      "meaning": "Yürüyeceğim / Gideceğim",
+      "example": "Ez padendor yunghe. (Yarın gideceğim.)"
+    },
+    {
+      "word": "Pearoe",
+      "pos": "Özel İsim (Vadi --- Evrimleşmiş)",
+      "origin": "Peara Ohe→Pearoe",
+      "meaning": "Mızrak Vadisi",
+      "example": "Garhan gharan Pearoe. (Savaşçı Mızrak Vadisi'nde savaşıyor.)"
+    },
+    {
+      "word": "Peara",
+      "pos": "İsim / Kök",
+      "origin": "pearkökü",
+      "meaning": "Mızrak, uzun menzilli delici güç/silah",
+      "example": "Va naman peara res. (O mızrak ile düştü.)"
+    },
+    {
+      "word": "Pendrik",
+      "pos": "İsim (Giyim/Gündelik)",
+      "origin": "Bağımsız kök",
+      "meaning": "Torba / Çanta",
+      "example": "Ez paden Pendrik res. (Çantayla yürüyorum.)"
+    },
+    {
+      "word": "Ra",
+      "pos": "Bağlaç",
+      "origin": "Tüm çoğul ve topluluk eklerinin (Ezra, Tera, Vara) kökü",
+      "meaning": "Ve / Birliktelik",
+      "example": "Fira ra Brith. (Ateş ve Buz.) Aron ra Veron --- gücün iki direği"
+    },
+    {
+      "word": "Rade",
+      "pos": "Sayı",
+      "origin": "Bağımsız kök",
+      "meaning": "İki (2) Rakosh---İsim / Kök--- Köken:-rakkökünden --- Anlam: Vahşi avcı, avını dişleyen, parçalayan yırtıcı varlık",
+      "example": "Rakosh paden Rakoshdarn. (Avcı Avcı Ormanı'na gidiyor.)"
+    },
+    {
+      "word": "Rakoshdarn",
+      "pos": "Özel İsim (Orman)",
+      "origin": "Rakosh(Avcı) +Daryn(Orman) → Rakoshdarn",
+      "meaning": "Avcı Ormanı",
+      "example": "Wolan paden Rakoshdarn. (Kurt Avcı Ormanı'na gidiyor.)"
+    },
+    {
+      "word": "Rakos",
+      "pos": "İsim (Askeri)",
+      "origin": "Rakoshkökünün kısalmış biçimi",
+      "meaning": "Saldırı (genel saldırı anlamında)",
+      "example": "Rakos viena. (Saldırı geliyor.)"
+    },
+    {
+      "word": "Rakosan",
+      "pos": "Fiil",
+      "origin": "Rakoshkökünden türeyen fiil",
+      "meaning": "Saldırmak",
+      "example": "Xenor rakosan Kamorra. (Canavar kalelere saldırıyor.)"
+    },
+    {
+      "word": "Rallongamor",
+      "pos": "Özel İsim (Şehir --- Evrimleşmiş)",
+      "origin": "Rallon Kamor→Rallongamor",
+      "meaning": "Kral Şehri / Başkent Rallon---İsim (Unvan) / Kök--- Köken:-ralkökünden --- Anlam: Kral, erkek hükümdar, baş yönetici",
+      "example": "Rallon ovas. (Kral konuştu.)"
+    },
+    {
+      "word": "Ralea",
+      "pos": "İsim (Unvan)",
+      "origin": "Ral(Kral) kökünün dişil yansıması",
+      "meaning": "Kraliçe (Tealla'nın alternatif daha dünyevi kullanımı) --- Not: Tealla ile anlam farkı için bkz. Bölüm 5. Rakad---Fiil (Geçmiş)--- Köken:Rakan(Almak) +-d(geçmiş eki) → Rakad --- Anlam: Aldılar",
+      "example": "Vara rakad vorel ezrad. (Bizim olan her şeyi aldılar.)"
+    },
+    {
+      "word": "Rakan",
+      "pos": "Fiil",
+      "origin": "Bağımsız kök",
+      "meaning": "Avlamak / Almak",
+      "example": "Ez rakan Aronda. (Hazineyi alıyorum.)"
+    },
+    {
+      "word": "Rekan",
+      "pos": "İsim",
+      "origin": "Daha önceki yargıç isminden (Scirekt) gelenRekt(Yasa) kökünün yumuşamış hali",
+      "meaning": "Karar / Hüküm. Kesin karar",
+      "example": "Rekan lido ohel. (Hüküm karar gibi kesindir.)"
+    },
+    {
+      "word": "Res",
+      "pos": "Edat",
+      "origin": "Ra(Ve/Birliktelik) +Es(El/Araç) → \"El birliği ile\"",
+      "meaning": "İle / Vasıtasıyla. Hem \"yanında olmak\" hem de \"bir araçla yapmak\" anlamını verir",
+      "example": "Athor res. (Kılıç ile.) Wolan res. (Kurtla beraber.)"
+    },
+    {
+      "word": "Rez",
+      "pos": "İsim / Kök",
+      "origin": "rezkökü",
+      "meaning": "Dirilen, direnen, yıkılmaz irade",
+      "example": "Rez gharan nador. (Yıkılmaz irade asla savaşmaktan vazgeçmez.)"
+    },
+    {
+      "word": "Rho",
+      "pos": "Köken Kök",
+      "origin": "Bağımsız temel kök (Alfabetik Dil Sözlüğü'nde geçer)",
+      "meaning": "At, süvari, hız (toh- kökünün alternatifi) --- Not: toh- ile anlam çakışması için bkz. Bölüm 5, Tutarsızlık #2. Rion---İsim / Kök--- Köken:-rionkökü --- Anlam: Takımyıldız, birlik, askeri nizam, omuz omuza savaşan lejyon",
+      "example": "Galdor rion! (Kalkan birliği!)"
+    },
+    {
+      "word": "Rionea",
+      "pos": "Özel İsim (Nehir --- Evrimleşmiş)",
+      "origin": "Rion Eana→Rionea",
+      "meaning": "Lejyon Nehri",
+      "example": "Garion gharan Rionea. (Komutan Lejyon Nehri'nde savaşıyor.)"
+    },
+    {
+      "word": "Rionra",
+      "pos": "Çoğul İsim",
+      "origin": "Rion +-ra",
+      "meaning": "Birlikler / Lejyonlar",
+      "example": "Rionra garnad. (Birlikler toplandı.)"
+    },
+    {
+      "word": "Ron",
+      "pos": "İsim / Kök",
+      "origin": "ronkökü",
+      "meaning": "Demir, örs, metal üretimi",
+      "example": "Ron gema. (Örs Köyü / Demirci kasabası.)"
+    },
+    {
+      "word": "Rones",
+      "pos": "Bileşik İsim (Hane/Unvan)",
+      "origin": "Ron(Demir) +Es(El) → Rones",
+      "meaning": "Demiryumruk / Çelikel",
+      "example": "Va Rones hanar. (O Demiryumruk soyundan.)"
+    },
+    {
+      "word": "Rongma",
+      "pos": "Özel İsim (Köy --- Evrimleşmiş)",
+      "origin": "Ron Gema→Rongma(orta ünlü yutulması)",
+      "meaning": "Örs Köyü / Demirci Kasabası Ronvez---İsim (Büyü Türü)--- Köken:Ron(Örs/İnşa) +Vez(Büyü) → Ronvez --- Anlam: Simya (\"Maddeyi dönüştürme büyüsü\")",
+      "example": "Ler gharan Ronvez res. (Bilge simya ile savaşıyor.)"
+    },
+    {
+      "word": "Rukt",
+      "pos": "İsim (Renk)",
+      "origin": "Bağımsız kök",
+      "meaning": "Kırmızı",
+      "example": "Hanar Rukt ohel. (Kan kırmızı gibidir.)"
+    },
+    {
+      "word": "Sa",
+      "pos": "Köken Kök",
+      "origin": "Ahar/Sahrakelimesinin birleşik isimlerdeki kök hali",
+      "meaning": "Kum, kuraklık",
+      "example": "Sa- öneki çöl ve kuraklık alanına aittir"
+    },
+    {
+      "word": "Sagal",
+      "pos": "Özel İsim (Geçit --- Evrimleşmiş)",
+      "origin": "Sakal→Sagal(k \\> g ses evrimi)",
+      "meaning": "Kurak Geçit / Kumgeçidi Sahra---İsim--- Köken:Sa-kökünden --- Anlam: Çöl, kum, kurak arazi (Ahar ile eşanlamlı)",
+      "example": "Ezra paden Fisa. (Ateş Çölü'ne gidiyoruz.)"
+    },
+    {
+      "word": "Salveth",
+      "pos": "İsim (Giyim)",
+      "origin": "Bağımsız kök",
+      "meaning": "Kemer",
+      "example": "Ez arien Salveth Aron. (Altın kemeri seviyorum.)"
+    },
+    {
+      "word": "Sarnith",
+      "pos": "İsim (Gündelik Eşya)",
+      "origin": "Bağımsız kök",
+      "meaning": "Tuz",
+      "example": "Sarnith Dosk. (Tuz kasesi.)"
+    },
+    {
+      "word": "Scirekt",
+      "pos": "Etimolojik Ara Form",
+      "origin": "Bağımsız eski yargıç ismi",
+      "meaning": "Yargıç (eski biçim;Rekanbu kelimeden türemiştir) Selcer---Bileşik İsim (Hane/Unvan)--- Köken:Selya(Gümüş) +Cer(Boynuz) → Selcer --- Anlam: Gümüşboynuz",
+      "example": "Va Selcer hanar. (O Gümüşboynuz soyundan.)"
+    },
+    {
+      "word": "Selwyn",
+      "pos": "Özel İsim (Aile Terimi)",
+      "origin": "Bağımsız bileşik yapı",
+      "meaning": "Kız (evlat)",
+      "example": "Va Selwyn ez. (O benim kızım.)"
+    },
+    {
+      "word": "Selya",
+      "pos": "İsim",
+      "origin": "Kadim bağımsız kök",
+      "meaning": "Gümüş",
+      "example": "Athor Selya glewen. (Gümüş kılıç parlıyor.)"
+    },
+    {
+      "word": "Seneana",
+      "pos": "Özel İsim (Nehir --- Evrimleşmiş)",
+      "origin": "Senis Eana→Seneana",
+      "meaning": "Lanetli Nehir",
+      "example": "Nador paden Seneana. (Lanetli Nehir'e asla gitme.)"
+    },
+    {
+      "word": "Senisdarn",
+      "pos": "Özel İsim (Orman --- Evrimleşmiş)",
+      "origin": "Senis Daryn→Senisdarn",
+      "meaning": "Lanetli Orman Senis---Sıfat--- Köken: Bağımsız kök --- Anlam: Kötü / Lanetli (mekan ve varlıklar için kullanılır)",
+      "example": "Ez arien va senis kamor. (Bu lanetli şehri seviyorum.)"
+    },
+    {
+      "word": "Senskamor",
+      "pos": "Özel İsim (Şehir --- Evrimleşmiş)",
+      "origin": "Senis Kamor→Senskamor",
+      "meaning": "Lanetli Şehir Ser----Köken Kök--- Köken: Bağımsız temel kök --- Anlam: Yılan, sinsi tehlike, zehir",
+      "example": "Ser viena. (Yılan geliyor / Tehlike yakın.)"
+    },
+    {
+      "word": "Serhan",
+      "pos": "Bileşik İsim (Hane/Soy Adı)",
+      "origin": "Ser(Zehir) +Hanar(Kan)",
+      "meaning": "Zehirkan",
+      "example": "Va Serhan hanar. (O Zehirkan soyundan.)"
+    },
+    {
+      "word": "Serlas",
+      "pos": "Bileşik İsim (Silah/Hane Adı)",
+      "origin": "Ser(Yılan/Zehir) +Las(Ok) → Serlas",
+      "meaning": "Zehirliok / Yılanok",
+      "example": "Ez gharan Serlas res. (Zehirliokla savaşıyorum.)"
+    },
+    {
+      "word": "Seryana",
+      "pos": "Özel İsim (Nehir --- Evrimleşmiş)",
+      "origin": "Ser Eana→Seryana",
+      "meaning": "Yılan Nehri",
+      "example": "Nador paden Seryana. (Yılan Nehri'ne asla gitme.)"
+    },
+    {
+      "word": "Shel",
+      "pos": "Köken Kök",
+      "origin": "Bağımsız temel kök",
+      "meaning": "Kabuk, zırh, bedeni koruyan dış katman",
+      "example": "Shel glewen. (Zırh parlıyor.)"
+    },
+    {
+      "word": "Shelgar",
+      "pos": "İsim (Askeri)",
+      "origin": "Shel(Kabuk/Kapatmak) +Gar(Savaş)",
+      "meaning": "Kuşatma",
+      "example": "Shelgar viena Kamorra. (Kalelere kuşatma geliyor.)"
+    },
+    {
+      "word": "Shelgamor",
+      "pos": "Özel İsim (Şehir --- Evrimleşmiş)",
+      "origin": "Shelkamor→Shelgamor(k \\> g)",
+      "meaning": "Zırhlı Şehir Shelkamor---Özel İsim (Şehir --- Kök Form)--- Köken:Shel-+Kamor--- Anlam: Zırhlı Şehir Shelan---Fiil--- Köken:Shel(Kabuk/Kilitleme) +-an(fiil eki) --- Anlam: Kilitlemek / Mühürlemek",
+      "example": "Shelan Kamor. (Kaleyi kilitle.)"
+    },
+    {
+      "word": "Silen",
+      "pos": "Fiil",
+      "origin": "Bağımsız kök",
+      "meaning": "Kulak vermek / Duymak",
+      "example": "Ez silen va. (Onu duyuyorum.)"
+    },
+    {
+      "word": "Silwen",
+      "pos": "İsim (Gündelik Eşya)",
+      "origin": "Bağımsız kök",
+      "meaning": "İğne",
+      "example": "Silwen Alb. (Beyaz iğne.)"
+    },
+    {
+      "word": "Silvane",
+      "pos": "Özel İsim (Aile Terimi)",
+      "origin": "Bağımsız bileşik yapı",
+      "meaning": "Hala (baba tarafı)",
+      "example": "Va Silvane ez hanar. (O benim baba tarafı halam.)"
+    },
+    {
+      "word": "Sin",
+      "pos": "Köken Kök",
+      "origin": "sinkökü",
+      "meaning": "Günah, yasaklı kan, lanetli soy, karanlık yol",
+      "example": "Sin loth, Era galdor. (Günah tuzağı, Era kalkanı.)"
+    },
+    {
+      "word": "Sinhar",
+      "pos": "İsim (Soyut)",
+      "origin": "Sin(Kötü) +Har(Hissetme/Acı) → Sinhar",
+      "meaning": "Nefret",
+      "example": "Sinhar ghar ohel. (Nefret gazap gibidir.)"
+    },
+    {
+      "word": "Sirella",
+      "pos": "Özel İsim (Aile Terimi)",
+      "origin": "Bağımsız bileşik yapı",
+      "meaning": "Abla (büyük kız kardeş)",
+      "example": "Va Sirella ez. (O benim ablam.)"
+    },
+    {
+      "word": "Sol",
+      "pos": "Köken Kök",
+      "origin": "Bağımsız temel kök",
+      "meaning": "Tek Güneş, yalnız lider, eşsiz otorite",
+      "example": "Sol- öneki yalnızlık ve eşsizlik alanına aittir"
+    },
+    {
+      "word": "Solgamor",
+      "pos": "Özel İsim (Kale --- Evrimleşmiş)",
+      "origin": "Solkamor→Solgamor(k \\> g)",
+      "meaning": "Yalnız Kale Solnor---Özel İsim (Dağ --- Evrimleşmiş)--- Köken:Solknor→Solnor--- Anlam: Yalnız Dağ Sol---Sayı--- Köken: Bağımsız kök --- Anlam: Bir (1) Sostend---Özel İsim (Aile Terimi)--- Köken: Bağımsız bileşik yapı --- Anlam: Üvey Ebeveyn",
+      "example": "Va Sostend ez. (O benim üvey ebeveynlerimden.)"
+    },
+    {
+      "word": "Sperik",
+      "pos": "İsim (Gündelik Eşya)",
+      "origin": "Bağımsız kök",
+      "meaning": "Kav taşı (çakmak)",
+      "example": "Ez falar Firas Sperik res. (Çakmakla meşale yakıyorum.)"
+    },
+    {
+      "word": "Te",
+      "pos": "Zamir",
+      "origin": "Bağımsız temel zamir",
+      "meaning": "Sen. Karşıdaki yansıma / yankı",
+      "example": "Ez arien te. (Seni seviyorum.)"
+    },
+    {
+      "word": "Te alvien",
+      "pos": "Selamlama Kalıbı--- Anlam: Hoş geldin (Sen iyi geldin) Te asezien---İfade--- Anlam: Haklısın (Sen doğru oldun/söyledin) Te galme---Selamlama Kalıbı--- Anlam: Kendine iyi bak (Sen ruhunu koru) Te talanhan---Selamlama Kalıbı--- Anlam: Çok yaşa (Sen uzun yaşa) Te todnam---İfade--- Anlam: Boş ver (Sen onu hiçliğe bırak) Tealla---İsim (Unvan)",
+      "origin": "teakökünden",
+      "meaning": "Kraliçe, ilahi güce sahip kadın lider, kutsal ana. (Ralea'dan farklı olarak tanrısal boyutu olan kadın lider)",
+      "example": "Tealla ovas. (Kraliçe konuştu.)"
+    },
+    {
+      "word": "Tera",
+      "pos": "Zamir",
+      "origin": "Tekökünden türeyen topluluk zamiri",
+      "meaning": "Siz. Karşımızdakilerin topluluğu",
+      "example": "Onerhan tera. (Sizlerin de ömrü aynı olsun.)"
+    },
+    {
+      "word": "Tfa",
+      "pos": "İsim (Unvan/Ek)",
+      "origin": "tfakökü",
+      "meaning": "Yeminli, kendini bir amaca adamış, tarikat üyesi",
+      "example": "Va Tfa Era. (O Era'nın yeminli mensubu.)"
+    },
+    {
+      "word": "Thessara",
+      "pos": "Özel İsim (Aile Terimi)",
+      "origin": "Bağımsız bileşik yapı",
+      "meaning": "Kuzen",
+      "example": "Va Thessara ez. (O benim kuzenim.)"
+    },
+    {
+      "word": "Tholv",
+      "pos": "Özel İsim (Aile Terimi)",
+      "origin": "Bağımsız bileşik yapı",
+      "meaning": "Erkek Kardeş (küçük)",
+      "example": "Va Tholv ez. (O benim küçük erkek kardeşim.)"
+    },
+    {
+      "word": "Threlin",
+      "pos": "İsim (Gündelik Eşya/Alet)",
+      "origin": "Bağımsız kök",
+      "meaning": "İp / Halat",
+      "example": "Ez paden Threlin res. (İple yürüyorum.)"
+    },
+    {
+      "word": "Thulem",
+      "pos": "İsim (Gündelik Eşya)",
+      "origin": "Bağımsız kök",
+      "meaning": "Yatak",
+      "example": "Ez paden Thulem. (Yatağa gidiyorum.)"
+    },
+    {
+      "word": "Tir",
+      "pos": "Sayı",
+      "origin": "Bağımsız kök",
+      "meaning": "Üç (3) Tod---İsim / Kök--- Köken:-todkökü --- Anlam: Ölüm, mutlak son, mezar",
+      "example": "Ezra gharan tod dor! (Ölüme kadar savaşırız!)"
+    },
+    {
+      "word": "Todgal",
+      "pos": "Özel İsim (Geçit --- Evrimleşmiş)",
+      "origin": "Tod Kal→Todgal(k \\> g)",
+      "meaning": "Ölüm Geçidi Todgnor---Özel İsim (Dağ --- Evrimleşmiş)--- Köken:Tod Knor→Todgnor--- Anlam: Ölüm Dağı Todmer---Bileşik İsim (Hane/Birlik Adı)--- Köken:Tod(Ölüm) +Mera(Okyanus) → Todmer --- Anlam: Ölüdeniz / Karasular",
+      "example": "Rion Todmer gharan. (Ölüdeniz birliği savaşıyor.)"
+    },
+    {
+      "word": "Todvez",
+      "pos": "Bileşik İsim (Birlik Adı)",
+      "origin": "Tod(Ölüm) +Vez/Vizen(Görüş/Yüz) → Todvez",
+      "meaning": "Ölümmaskesi / Yüzsüzler",
+      "example": "Todvez paden Tosh ohel. (Ölümmaskesi gölge gibi ilerliyor.)"
+    },
+    {
+      "word": "Toh",
+      "pos": "Köken Kök",
+      "origin": "Bağımsız temel kök",
+      "meaning": "At, süvari, hız --- Not: Rho- ile anlam çakışması için bkz. Bölüm 5, Tutarsızlık #2. Tohvaz te---Emir Nidası--- Anlam: Hadi! (Hızlı koş sen! / Acele et!)",
+      "example": "Tohvaz te! Gharan viena! (Hadi! Savaş geliyor!)"
+    },
+    {
+      "word": "Tosh",
+      "pos": "İsim / Kök",
+      "origin": "tshakökünden",
+      "meaning": "Gölge dansı, sessiz adım, karanlıkta vuran suikastçı",
+      "example": "Te paden tsha ohel. (Gölge gibi yürüyorsun.)"
+    },
+    {
+      "word": "Todnam",
+      "pos": "İfade (Bileşik)",
+      "origin": "Tod(Ölüm/Hiçlik) +Nam(Bırakmak)",
+      "meaning": "Boş ver (Hiçliğe bırak)",
+      "example": "Te todnam. (Boş ver / Sen onu hiçliğe bırak.)"
+    },
+    {
+      "word": "Toshkal",
+      "pos": "İsim (Silah)",
+      "origin": "Tosh(Suikastçı) +Kal(Kesici/Yol) → Toshkal",
+      "meaning": "Hançer",
+      "example": "Tosh gharan Toshkal res. (Suikastçı hançerle savaşıyor.)"
+    },
+    {
+      "word": "Trellik",
+      "pos": "İsim (Gündelik Eşya)",
+      "origin": "Bağımsız kök",
+      "meaning": "Merdiven",
+      "example": "Ez paden Trellik. (Merdivenden gidiyorum.)"
+    },
+    {
+      "word": "Trom",
+      "pos": "Sayı",
+      "origin": "Bağımsız kök",
+      "meaning": "Dört (4) Tshadaryn---Özel İsim (Orman)--- Köken:Tsha-+Daryn→Shadarn(Tsh- \\> Sh- kaynaşması) --- Anlam: Sessiz Koru / Gölgeli Orman Tshaknor---Özel İsim (Dağ)--- Köken:Tsha-+Knor→Shaknor(Tsh- \\> Sh-) --- Anlam: Gölgeli Dağ / Sessiz Zirve Tshame---İsim",
+      "example": "Tshame paden Lundarn. (Hayalet Gece Ormanı'nda yürüyor.)"
+    },
+    {
+      "word": "Tshaloth",
+      "pos": "İsim (Taktik)",
+      "origin": "Tsha(Gölge) +Loth(Tuzak) → Tshaloth",
+      "meaning": "Pusu",
+      "example": "Tosh falar Tshaloth. (Suikastçı pusu kuruyor.)"
+    },
+    {
+      "word": "Tshavel",
+      "pos": "İsim (Giyim)",
+      "origin": "Tsha(Gölge) +Vel/Shel(Örtü) → Tshavel",
+      "meaning": "Pelerin --- Not: Kaynaklarda \"Movrash\" da pelerin anlamında geçer; bkz. Bölüm 5. Tshohen---Fiil (Bileşik)--- Köken:Tsha(Sessiz) +Ohen(Konuşmak) → Tshohen --- Anlam: Fısıldamak",
+      "example": "Tosh tshohen. (Suikastçı fısıldıyor.)"
+    },
+    {
+      "word": "Tshanen",
+      "pos": "Fiil",
+      "origin": "Tsha(Gölge) +-nen(fiil eki) → \"Gölge olmak\"",
+      "meaning": "Saklanmak",
+      "example": "Tosh tshanen Lunoh. (Suikastçı karanlıkta saklanıyor.)"
+    },
+    {
+      "word": "ve Ü Uvel",
+      "pos": "İsim (Soyut)",
+      "origin": "Bağımsız kök",
+      "meaning": "Yalnızlık / Hüzün (ikinci kullanım; Namen ile eşanlamlı) HARF: V Va---Zamir--- Köken: Bağımsız temel zamir --- Anlam: O (he/she/it). Uzaklık, üçüncü kişi",
+      "example": "Va se lido Verond. (Konseyin kararı bu.)"
+    },
+    {
+      "word": "Vaelih",
+      "pos": "Özel İsim (Aile Terimi)",
+      "origin": "Bağımsız bileşik yapı",
+      "meaning": "Nişanlı",
+      "example": "Va Vaelih ez. (O benim nişanlım.)"
+    },
+    {
+      "word": "Vaena",
+      "pos": "Özel İsim (Nehir --- Evrimleşmiş)",
+      "origin": "Vhaeana→Vaena(Vh- \\> V-)",
+      "meaning": "Vahşinehir Vara---Zamir--- Köken:Vakökünden türeyen topluluk zamiri --- Anlam: Onlar. Uzak olanların topluluğu",
+      "example": "Vara rakad vorel ezrad. (Bizim olan her şeyi aldılar.)"
+    },
+    {
+      "word": "Vash",
+      "pos": "İsim / Kök",
+      "origin": "Va-kökünden",
+      "meaning": "Rüzgar, hava akımı, fırtına habercisi",
+      "example": "Vash kal te. (Rüzgar senin yolunu açsın / İyi yolculuklar.)"
+    },
+    {
+      "word": "Vashel",
+      "pos": "İsim (Renk)",
+      "origin": "Vash(Rüzgar/Gök) +-el",
+      "meaning": "Mavi",
+      "example": "Mera Vashel ohel. (Deniz mavi gibidir.)"
+    },
+    {
+      "word": "Vashoe",
+      "pos": "Özel İsim (Vadi --- Evrimleşmiş)",
+      "origin": "Vashohe→Vashoe(-oh- \\> -oe-)",
+      "meaning": "Rüzgarlı Vadi Vashoth---İsim (Renk)--- Köken:Vash+-oth(koyu) --- Anlam: Lacivert",
+      "example": "Ez arien Vashoth shel. (Lacivert zırhı seviyorum.)"
+    },
+    {
+      "word": "Vashnor",
+      "pos": "Özel İsim (Dağ --- Evrimleşmiş)",
+      "origin": "Vashknor→Vashnor",
+      "meaning": "Rüzgarlıtepe Vasper---Bileşik İsim (Hane/Birlik Adı)--- Köken:Vash(Rüzgar) +Peara(Mızrak) → 'sh' ve 'p' seslerinin 'sp'ye evrilmesiyle Vasper --- Anlam: Rüzgarmızrak / Fırtınamızrak",
+      "example": "Garion Vasper hanar. (Komutan Rüzgarmızrak soyundan.)"
+    },
+    {
+      "word": "Vazar",
+      "pos": "Bileşik İsim (Hane/Birlik Adı)",
+      "origin": "Vash(Rüzgar) +Har(Yıkım) → 'sh' ve 'h' kaynaşarak 'z' → Vazar",
+      "meaning": "Rüzgarkıran",
+      "example": "Va Vazar hanar. (O Rüzgarkıran soyundan.)"
+    },
+    {
+      "word": "Ve",
+      "pos": "Soru Kökü",
+      "origin": "Bağımsız soru kökü",
+      "meaning": "Ne / Hangi. Tüm soru zamirlerinin ortak başlangıcı",
+      "example": "Ve falar te? (Ne yapıyorsun sen?)"
+    },
+    {
+      "word": "Vehan",
+      "pos": "Soru Zamiri",
+      "origin": "Ve+Hanar(Kök/Temel/Sebep) → \"Hangi kökten?\"",
+      "meaning": "Neden / Niçin?",
+      "example": "Vehan te falar va? (Bunu neden yaptın?)"
+    },
+    {
+      "word": "Veheon",
+      "pos": "Soru Zamiri",
+      "origin": "Ve+Heon(Güneş) → \"Güneş nerede?\"",
+      "meaning": "Saat kaç?",
+      "example": "Veheon? (Saat kaç?)"
+    },
+    {
+      "word": "Vehanar",
+      "pos": "Soru Zamiri",
+      "origin": "Ve+Hanar(Kök/Soy/Durum) → \"Köklerin nasıl?\"",
+      "meaning": "Nasılsın?",
+      "example": "Vehanar te? (Nasılsın?)"
+    },
+    {
+      "word": "Vekal",
+      "pos": "Soru Zamiri",
+      "origin": "Ve+Kal(Yol/Geçit) → \"Yolu ne?\"",
+      "meaning": "Nerede?",
+      "example": "Vekal va? (O nerede?) Vekal ezator? (Kılıcım nerede?)"
+    },
+    {
+      "word": "Vekrith",
+      "pos": "İsim (Gündelik Eşya)",
+      "origin": "Bağımsız kök",
+      "meaning": "Anahtar --- Not: Voras kelimesi de anahtar anlamında geçer; bkz. Bölüm 5. Vedora---Soru Zamiri--- Köken:Ve+Dora(Zaman/Ebediyet) → \"Hangi zamanda?\" --- Anlam: Ne zaman?",
+      "example": "Vedora ezra garnad? (Ne zaman toplanıyoruz?)"
+    },
+    {
+      "word": "Veran",
+      "pos": "Soru Zamiri",
+      "origin": "Ve+Eran(Ölümlü insan/Kişi) → \"Hangi ölümlü?\"",
+      "meaning": "Kim?",
+      "example": "Veran viena? (Kim geliyor?) Veran te? (Sen kimsin?)"
+    },
+    {
+      "word": "Veron",
+      "pos": "İsim (Kurum)",
+      "origin": "Vez(Akıl/Gizem) +Ron(Demir) → 'z' yutularak Veron → \"Demir Akıl\"",
+      "meaning": "Konsey (yürütme organı)",
+      "example": "Veron ovas. (Konsey konuştu.) --- Not: Vezron ile anlam örtüşmesi için bkz. Bölüm 5"
+    },
+    {
+      "word": "Verond",
+      "pos": "Bileşik Form (Aristokratik)",
+      "origin": "Veron(Konsey) +-de(aidiyet eki) → Verond",
+      "meaning": "Konseyin",
+      "example": "Va se lido Verond. (Konseyin kararı bu.)"
+    },
+    {
+      "word": "Ves",
+      "pos": "Soru Zamiri",
+      "origin": "Ve+Es(El/Eylem/Seçim) → \"Hangi el? / Hangi seçenek?\"",
+      "meaning": "Hangi?",
+      "example": "Ves athor? (Hangi kılıç?) Ves kal? (Hangi yol?)"
+    },
+    {
+      "word": "Veyaron",
+      "pos": "Soru Zamiri",
+      "origin": "Ve+Aron(Altın/Değer) → \"Onun altın karşılığı ne?\"",
+      "meaning": "Ne kadar?",
+      "example": "Veyaron va? (Ne kadar?)"
+    },
+    {
+      "word": "Vez",
+      "pos": "Köken Kök",
+      "origin": "Bağımsız temel kök",
+      "meaning": "Gizem, akıl, sır, sadece inisiyelerin bildiği stratejik bilgi",
+      "example": "Vez viena. (Gizem geliyor.)"
+    },
+    {
+      "word": "Vezel",
+      "pos": "İsim",
+      "origin": "Vez(Büyü/Ruh) +-el(ek) → Vezel",
+      "meaning": "Efsunlu / Ruhani (alternatif biçim)",
+      "example": "Va Vezel ohel. (O efsunlu gibidir.)"
+    },
+    {
+      "word": "Vezdaryn",
+      "pos": "Özel İsim (Orman)",
+      "origin": "Vez-+Daryn→ Vezdarn",
+      "meaning": "Gizemli Orman / Sırlar Ormanı Vezdarn---Özel İsim (Orman --- Evrimleşmiş)--- Köken:Vezdaryn→Vezdarn--- Anlam: Gizemli Orman Vezgamor---Özel İsim (Şehir --- Evrimleşmiş)--- Köken:Vezkamor→Vesgamor(k \\> g; z \\> s bölgesel) → genelVezgamor--- Anlam: Giz",
+      "example": "Vezin gharan Khaan res. (Büyücü büyü ile savaşıyor.)"
+    },
+    {
+      "word": "Vezkal",
+      "pos": "İsim (Nesne)",
+      "origin": "Vez(Büyü) +Kal(Dal/Yol) → Vezkal",
+      "meaning": "Asa (\"Büyü ve ağaç/dal\")",
+      "example": "Vezin gharan Vezkal res. (Büyücü asa ile savaşıyor.)"
+    },
+    {
+      "word": "Vezma",
+      "pos": "İsim / Kök",
+      "origin": "Vez-kökünden",
+      "meaning": "Gizem, akıl, sır, sadece inisiyelerin bildiği stratejik bilgi",
+      "example": "Vezma viena nador. (Sır asla gelmez.)"
+    },
+    {
+      "word": "Vezron",
+      "pos": "İsim (Kurum)",
+      "origin": "Vez(Bilgelik/Akıl) +Ron(Demir/Örs) → \"Demir Bilgelik\"",
+      "meaning": "Konsey (Veron'un tam formu veya alternatif adı). \"Sarsılmaz Akıl Meclisi\" --- Not: Veron ile anlam örtüşmesi için bkz. Bölüm 5. Vezryon---İsim (Kurum)--- Köken:Vez(Akıl) +Rion(Birlik) → kaynaşarak Vezryon --- Anlam: Tavsiye Divanı / Danışma Meclisi. ",
+      "example": "Vezryon garnad. (Tavsiye divanı toplandı.)"
+    },
+    {
+      "word": "Vezroe",
+      "pos": "Özel İsim (Vadi --- Evrimleşmiş)",
+      "origin": "Vezohe→Vezoe→Vezroe(bölgesel)",
+      "meaning": "Gizemli Vadi / Sır Uçurumu Vha----Köken Kök--- Köken: Bağımsız temel kök --- Anlam: Vahşi, yırtıcı, hiçbir sınır ve yasa tanımayan",
+      "example": "Vha- öneki vahşilik ve sınırsızlık alanına aittir"
+    },
+    {
+      "word": "Vharak",
+      "pos": "Bileşik İsim (Hane/Unvan)",
+      "origin": "Vha(Vahşi) +Rak(Parçalayan) → Vharak",
+      "meaning": "Vahşidiş / Kanlıpençe",
+      "example": "Va Vharak hanar. (O Vahşidiş soyundan.)"
+    },
+    {
+      "word": "Vidarn",
+      "pos": "Özel İsim (Orman --- Evrimleşmiş)",
+      "origin": "Vhadaryn→Vadarn(Vh- \\> V-)",
+      "meaning": "Vahşi Orman Vidaknor---Özel İsim (Dağ --- Evrimleşmiş)--- Köken:Vhaknor→Vaknor(Vh- \\> V-) --- Anlam: Vahşi Dağ Vizen---Fiil--- Köken:Viz/Vize(Görüş) +-en(fiil eki) --- Anlam: Görmek",
+      "example": "Ez nador vizen te. (Seni asla görmeyeceğim.)"
+    },
+    {
+      "word": "Vize",
+      "pos": "Köken Kök",
+      "origin": "Bağımsız temel kök",
+      "meaning": "Görüş, geleceği okuyan kahin",
+      "example": "Vize Verond zrase. (Konseyin gözü üzerimizde.)"
+    },
+    {
+      "word": "Vizel",
+      "pos": "İsim",
+      "origin": "Vize+-eleki",
+      "meaning": "Kehanet / Vizyon",
+      "example": "Vize falar Vizel. (Kahin kehanette bulunuyor.)"
+    },
+    {
+      "word": "Vizekal",
+      "pos": "Bileşik İsim",
+      "origin": "Vize(Görüş) +Kal(Yol) → \"Yollar kesişecek\"",
+      "meaning": "Görüşürüz ifadesinin açıklaması",
+      "example": "Ezra vizekal. (Görüşürüz.)"
+    },
+    {
+      "word": "Vizar",
+      "pos": "Fiil",
+      "origin": "Bağımsız kök",
+      "meaning": "Aramak",
+      "example": "Ez vizar Te. (Seni arıyorum.)"
+    },
+    {
+      "word": "Viena",
+      "pos": "Fiil (Şimdiki)",
+      "origin": "Vienar→ zamanla sondaki 'r' yutularakViena",
+      "meaning": "Geliyor / Geliyor (şimdiki zaman)",
+      "example": "Anxes viena! (Yüce İmparator geliyor!)"
+    },
+    {
+      "word": "Vienar",
+      "pos": "Fiil (Kök Form)",
+      "origin": "Bağımsız fiil kökü",
+      "meaning": "Gelmek",
+      "example": "Veran viena? (Kim geliyor?)"
+    },
+    {
+      "word": "Von",
+      "pos": "İsim (Unvan) / Kök",
+      "origin": "vonkökü",
+      "meaning": "Dağlı, yüksek zirveden gelen, aristokratik kan",
+      "example": "Va Von Edronvon hanar. (O Edronvon soyundan dağ kanı taşıyan.)"
+    },
+    {
+      "word": "Vondrel",
+      "pos": "İsim (Gündelik Eşya)",
+      "origin": "Bağımsız kök",
+      "meaning": "Battaniye",
+      "example": "Ez paden Thulem Vondrel res. (Battaniyeyle yatağa gidiyorum.)"
+    },
+    {
+      "word": "Vonkamor",
+      "pos": "Özel İsim (Kale)",
+      "origin": "Von(Dağlı/Aristokrat) +Kamor→Vongamor(k \\> g)",
+      "meaning": "Dağ Kalesi / Yüksek Şehir Voras---İsim (Nesne)--- Köken:Voran(Açmak) eyleminin nesneleşmiş hali --- Anlam: Anahtar --- Not: Vekrith ile anlam çakışması için bkz. Bölüm 5. Voran---Fiil--- Köken: Bağımsız kök --- Anlam: Açmak",
+      "example": "Voran Zendal. (Kapıyı aç.)"
+    },
+    {
+      "word": "Vorel",
+      "pos": "Sıfat / İsim",
+      "origin": "Bağımsız kök",
+      "meaning": "Her şey / Dolu / Tüm",
+      "example": "Vara rakad vorel ezrad. (Bizim olan her şeyi aldılar.)"
+    },
+    {
+      "word": "Vordor",
+      "pos": "Zaman Zarfı",
+      "origin": "Vorel(Her şey/Dolu) +Dora(Zaman) → \"Bütün Zamanlar\"",
+      "meaning": "Her zaman",
+      "example": "Vordor gharan. (Her zaman savaşır.)"
+    },
+    {
+      "word": "Vorn",
+      "pos": "İsim (Gündelik Eşya)",
+      "origin": "Bağımsız kök",
+      "meaning": "Ekmek",
+      "example": "Vorn ra Sarnith. (Ekmek ve tuz.)"
+    },
+    {
+      "word": "Vyohe te",
+      "pos": "Selamlama Kalıbı--- Anlam: Ne haber? (Sende nasıl bir yankı var?) HARF: W Wol----Köken Kök",
+      "origin": "Wolankelimesinin kısalmış birleşik biçimi",
+      "meaning": "Kurt kökü Wolan---İsim / Kök--- Köken:Wol-kökünden --- Anlam: Kurt, sürü lideri, yaban, vahşi orman yırtıcısı",
+      "example": "Wolan ohel paden. (Kurt gibi yürür.)"
+    },
+    {
+      "word": "Wolanra",
+      "pos": "Çoğul İsim",
+      "origin": "Wolan +-ra",
+      "meaning": "Kurtlar",
+      "example": "Wolanra nador naleren. (Kurtlar asla unutmaz.)"
+    },
+    {
+      "word": "Woldarn",
+      "pos": "Özel İsim (Orman --- Evrimleşmiş)",
+      "origin": "Wol Daryn→Woldarn",
+      "meaning": "Kurt Ormanı / Yaban Korusu",
+      "example": "Wolanra paden Woldarn. (Kurtlar Kurt Ormanı'na gidiyor.)"
+    },
+    {
+      "word": "Wyrm",
+      "pos": "İsim / Kök",
+      "origin": "Wy-kökünden",
+      "meaning": "Ejderha, efsane, göklerin kadim ateş efendisi",
+      "example": "Wyrm ohel va. (O ejderha gibidir.)"
+    },
+    {
+      "word": "Wyrfir",
+      "pos": "Bileşik İsim",
+      "origin": "Wyrm(Ejderha) +Fira(Ateş) → Wyrfir",
+      "meaning": "Ejderateşi",
+      "example": "Wyrfir viena! (Ejderateşi geliyor!)"
+    },
+    {
+      "word": "Wyrknor",
+      "pos": "Özel İsim (Dağ --- Evrimleşmiş)",
+      "origin": "Wyrm Knor→Wyrmknor→Wyrknor",
+      "meaning": "Ejderha Dağı HARF: X Xenor---İsim / Kök--- Köken:Xe-kökünden --- Anlam: Canavar, iblis, boyutsal yırtıklardan gelen yabancı varlık",
+      "example": "Namon xenor! (Hiçlik canavarı! --- küfür nidası)"
+    },
+    {
+      "word": "Xesgma",
+      "pos": "Özel İsim (Köy --- Evrimleşmiş)",
+      "origin": "Xes Gema→Xesgma",
+      "meaning": "İmparator Köyü / Hanedan Toprakları Xeskam---İsim (Mimari)--- Köken:Xes(İmparator) +Kam(Kale kökü) → Xeskam --- Anlam: Saray",
+      "example": "Anxes paden Xeskam. (Yüce İmparator saraya gidiyor.)"
+    },
+    {
+      "word": "Xes",
+      "pos": "İsim (Unvan) / Kök",
+      "origin": "xeskökü",
+      "meaning": "İmparator, tüm kıtaya hükmeden yüce lider, kadim hükümdar",
+      "example": "Xes ovas. (İmparator konuştu.)"
+    },
+    {
+      "word": "Xesed",
+      "pos": "Bileşik Form (Aristokratik)",
+      "origin": "Xes(İmparator) +-de(aidiyet eki) → Xesed",
+      "meaning": "İmparatorun",
+      "example": "Edor Xesed. (İmparatorun iradesiyle.)"
+    },
+    {
+      "word": "Xesron",
+      "pos": "Bileşik İsim",
+      "origin": "Xes(İmparator) +Ron(Demir) → \"Hükümdar demiri\"",
+      "meaning": "Taç",
+      "example": "Anxes gharan Xesron res. (Yüce İmparator taçla savaşıyor / hükmediyor.)"
+    },
+    {
+      "word": "Yalveth",
+      "pos": "İsim (Gündelik Eşya)",
+      "origin": "Bağımsız kök",
+      "meaning": "Sürahi / Testi",
+      "example": "Yalveth Eana fael. (Sürahi su için.)"
+    },
+    {
+      "word": "Yara",
+      "pos": "İsim (Coğrafi/Siyasi)",
+      "origin": "Ral(Kral) +Dera(Topraklar) → Yara",
+      "meaning": "Krallık / Diyar (alternatif biçim) --- Not:Iaeki ile örtüşme için bkz. Bölüm 5. Yselan---İsim (Gündelik Eşya)--- Köken: Bağımsız kök --- Anlam: Ayna",
+      "example": "Ez vizen Yselan. (Aynaya bakıyorum.)"
+    },
+    {
+      "word": "Yssalin",
+      "pos": "Özel İsim (Aile Terimi)",
+      "origin": "Bağımsız bileşik yapı",
+      "meaning": "Torun",
+      "example": "Va Yssalin Kaldurath. (O Dede'nin torunudur.)"
+    },
+    {
+      "word": "Ysendra",
+      "pos": "Özel İsim (Aile Terimi)",
+      "origin": "Bağımsız bileşik yapı",
+      "meaning": "Eş / Karı",
+      "example": "Va Ysendra ez. (O benim karım.)"
+    },
+    {
+      "word": "Ymbriel",
+      "pos": "Özel İsim (Aile Terimi)",
+      "origin": "Bağımsız bileşik yapı",
+      "meaning": "Nine / Büyükanne",
+      "example": "Va Ymbriel ez hanar. (O benim büyükannem.)"
+    },
+    {
+      "word": "Yung",
+      "pos": "Köken Kök",
+      "origin": "Bağımsız temel kök",
+      "meaning": "Genç, taze kan, yeni ve enerjik soy",
+      "example": "Yung- öneki yenilik ve tazelik alanına aittir"
+    },
+    {
+      "word": "Yunghe",
+      "pos": "Zaman Zarfı",
+      "origin": "Yung(Genç/Yeni) +Heon(Gün) → \"Yeni Güneş\"",
+      "meaning": "Yarın",
+      "example": "Athorra glewendor yunghe. (Kılıçlar yarın parlayacak.)"
+    },
+    {
+      "word": "Yungema",
+      "pos": "Özel İsim (Köy)",
+      "origin": "Yung-+Gema→Yungma(orta ünlü yutulması)",
+      "meaning": "Yeni Köy / Genç Topraklar Yungena---Özel İsim (Nehir --- Evrimleşmiş)--- Köken:Yungeana→Yungena--- Anlam: Taze Su / Yeni Nehir HARF: Z Zag---İsim (Soyut)--- Köken:Zaganeyleminden türeyen --- Anlam: Zafer",
+      "example": "Zagedron te. (Tebrikler / Çelik iradeli zaferin seninledir.)"
+    },
+    {
+      "word": "Zagan",
+      "pos": "Fiil",
+      "origin": "Bağımsız kök",
+      "meaning": "Fethetmek / Kazanmak",
+      "example": "Ezra zagan kamorra. (Kaleleri fethettik.)"
+    },
+    {
+      "word": "Zagen",
+      "pos": "İsim (Kişi/Unvan)",
+      "origin": "Zagan(Fethetmek) kökünden",
+      "meaning": "Fatih",
+      "example": "Va Zagen Kamorra. (O Kalelerin Fatihi.)"
+    },
+    {
+      "word": "Zagedron te",
+      "pos": "Selamlama Kalıbı--- Anlam: Tebrikler (Çelik iradeli zaferin seninledir) Zapad---Bileşik İsim (Kişi Tipi/Unvan)",
+      "origin": "Tsha(Gölge) +Paden(Adım) → Zapad",
+      "meaning": "Gölgeadım / Sessizayak",
+      "example": "Va Zapad hanar. (O Gölgeadım soyundan.)"
+    },
+    {
+      "word": "Zaro",
+      "pos": "Bileşik İsim (Birlik Adı)",
+      "origin": "Tsha(Gölge/Sis) +Rho(Süvari) → yumuşayarak Zaro",
+      "meaning": "Sissüvari / Gölgeatlı",
+      "example": "Zaro rion gharan. (Sissüvari birliği savaşıyor.)"
+    },
+    {
+      "word": "Zaxes",
+      "pos": "Bileşik Unvan (İmparatorluk)",
+      "origin": "Zag(Zafer) +Xes(İmparator) → Zagxes → 'g' yutularakZaxes",
+      "meaning": "Fatih İmparator",
+      "example": "Zaxes ovas. (Fatih İmparator konuştu.)"
+    },
+    {
+      "word": "Zean",
+      "pos": "Köken Kök",
+      "origin": "Bağımsız temel kök",
+      "meaning": "Saf ışık, Era'nın (Tanrı'nın) kutsal nuru, ruhani aydınlanma",
+      "example": "Era zeana va. (Era'nın Işığı onun üzerine olsun.)"
+    },
+    {
+      "word": "Zeana",
+      "pos": "İsim (Dini/Kutsal)",
+      "origin": "Zean-kökünden",
+      "meaning": "Saf ışık / Era'nın kutsal nuru",
+      "example": "Gema hanar, Era zeana. (Toprak kökü, Era ışığı.)"
+    },
+    {
+      "word": "Zeandarn",
+      "pos": "Özel İsim (Orman --- Evrimleşmiş)",
+      "origin": "Zeandaryn→Zeandarn",
+      "meaning": "Kutsal Orman Zeanor---Özel İsim (Dağ --- Evrimleşmiş)--- Köken:Zeanknor→Zeanor--- Anlam: Kutsal Dağ / Nurlu Zirve Zeana (Nehir)---Özel İsim (Nehir --- Evrimleşmiş)--- Köken:Zeaneana→Zeana(çift ünlü yutulması) --- Anlam: Kutsal Nehir / Saf Işık Suyu Z",
+      "example": "Voran Zendal. (Kapıyı aç.) Kalva! Zendal voran! (Destur! Kapıyı açın!)"
+    },
+    {
+      "word": "Zetge",
+      "pos": "İsim (Coğrafi/Sıfat)",
+      "origin": "Zeth(Ölüm eylemi) +Gema(Toprak) → Zetge",
+      "meaning": "Çorak (\"Ölü toprak\")",
+      "example": "Ez paden Zetge. (Çorak topraklara gidiyorum.)"
+    },
+    {
+      "word": "Zetkam",
+      "pos": "İsim (Mimari)",
+      "origin": "Zeth(Ölüm) +Kamor(Kale) → Zetkam",
+      "meaning": "Zindan",
+      "example": "Lido va paden Zetkam. (Hüküm o zindana gitmek.)"
+    },
+    {
+      "word": "Zethan",
+      "pos": "Fiil",
+      "origin": "Bağımsız kök",
+      "meaning": "Öldürmek",
+      "example": "Ezra zethandor te. (Seni öldüreceğiz.)"
+    },
+    {
+      "word": "Zethandor",
+      "pos": "Fiil (Gelecek)",
+      "origin": "Zethan +-dor",
+      "meaning": "Öldüreceğiz",
+      "example": "Ezra zethandor te. (Seni öldüreceğiz.)"
+    },
+    {
+      "word": "Zethar",
+      "pos": "İsim (Soyut)",
+      "origin": "Zeth(Ölüm) +Har(Korku/Şiddet) → Zethar",
+      "meaning": "Korku",
+      "example": "Zethar viena. (Korku geliyor.)"
+    },
+    {
+      "word": "Zetkor",
+      "pos": "İsim (Soyut)",
+      "origin": "Zeth(Ölüm) +Khor(Yutan) → Zetkor",
+      "meaning": "Dehşet",
+      "example": "Zetkor lith ohel. (Dehşet kaya gibidir.)"
+    },
+    {
+      "word": "Zi",
+      "pos": "Köken Kök",
+      "origin": "Bağımsız temel kök",
+      "meaning": "Şimşek, saf enerji, yıldırımların yıkıcı gücü",
+      "example": "Zi- öneki hız ve elektriksel enerji alanına aittir"
+    },
+    {
+      "word": "Zielkamor",
+      "pos": "Özel İsim (Şehir)",
+      "origin": "Zieli(Elf) +Kamor(Şehir) → Zielkamor",
+      "meaning": "Elf Şehri",
+      "example": "Zieli paden Zielkamor. (Elf Elf Şehri'ne gidiyor.)"
+    },
+    {
+      "word": "Zieli",
+      "pos": "İsim (Irk)",
+      "origin": "Bağımsız kök",
+      "meaning": "Elf, yıldızların kozmik enerjisiyle beslenen zarif ve kadim ırk",
+      "example": "Zieli paden Eldaryn. (Elf Yıldızlı Orman'a gidiyor.)"
+    },
+    {
+      "word": "Zienal",
+      "pos": "Sıfat (Dini)",
+      "origin": "Zean(Kutsal) +-aleki",
+      "meaning": "Kutsal / Mukaddes",
+      "example": "Zienal Erakam. (Kutsal tapınak.)"
+    },
+    {
+      "word": "Zienlas",
+      "pos": "Bileşik İsim (Silah/Hane Adı)",
+      "origin": "Zienal(Kutsal) +Las(Ok) → Zienlas",
+      "meaning": "Kutsalok / Işıkmızrağı",
+      "example": "Eranya gharan Zienlas res. (Melek Kutsalok ile savaşıyor.)"
+    },
+    {
+      "word": "Zi Kal / Zikal",
+      "pos": "Özel İsim (Geçit)",
+      "origin": "Zi-(Şimşek) +Kal(Geçit/Yol) →Zigal(ses evrimi)",
+      "meaning": "Şimşek Geçidi / Hızlı Yol Zigal---Özel İsim (Geçit --- Evrimleşmiş)--- Köken:Zikal→Zigal(k \\> g) --- Anlam: Şimşek Geçidi Zimra---Özel İsim (Deniz --- Evrimleşmiş)--- Köken:Zimera→Zimra--- Anlam: Hızlı Deniz / Şimşekdenizi Zin----Köken Kök--- Köken:S",
+      "example": "Zindaryn (Uğursuz Koru), Zinknor (Uğursuz Dağ)"
+    },
+    {
+      "word": "Zindaryn",
+      "pos": "Özel İsim (Orman)",
+      "origin": "Zin-+Daryn→ Zindarn",
+      "meaning": "Uğursuz Koru / Kötü Orman Zindora---İfade--- Köken:Zin(Kötü) +Dora(Kader/Zaman) → \"Kötü kader\" --- Anlam: Maalesef",
+      "example": "Zindora, ez zethandor nador. (Maalesef, asla öldürmeyeceğim.) (ironi)"
+    },
+    {
+      "word": "Zinez",
+      "pos": "İfade",
+      "origin": "Zin(Günah) +Ez(Ben) → \"Günah benimdir\"",
+      "meaning": "Özür dilerim",
+      "example": "Zinez, ez na-vizad te. (Özür dilerim, seni görmedim.)"
+    },
+    {
+      "word": "Zinhart",
+      "pos": "Bileşik İsim",
+      "origin": "Zin(Kötü/Sin) +Hart(Yürek)",
+      "meaning": "Karayürek",
+      "example": "Va Zinhart hanar. (O Karayürek soyundan.)"
+    },
+    {
+      "word": "Zinknor",
+      "pos": "Özel İsim (Dağ)",
+      "origin": "Zin-+Knor→Zinghor(ses evrimi)",
+      "meaning": "Uğursuz Dağ / Lanetli Tepe Zinval---Sıfat (Dini/Kötü)--- Köken:Zin(Lanetli) +Val(Mekân/Varlık eki) --- Anlam: Lanetli (ruhani olarak)",
+      "example": "Va shel Zinval. (O lanetli zırh taşıyor.)"
+    },
+    {
+      "word": "Zinvez",
+      "pos": "İsim (Büyü Türü)",
+      "origin": "Zin(Kötü/Sin) +Vez(Büyü) → Zinvez",
+      "meaning": "Lanet",
+      "example": "Va falar Zinvez. (O lanet yapıyor.)"
+    },
+    {
+      "word": "Zinvezen",
+      "pos": "Fiil",
+      "origin": "Zinvez+-en(fiil eki)",
+      "meaning": "Lanetlemek",
+      "example": "Lothya zinvezen. (Cadı lanetliyor.)"
+    },
+    {
+      "word": "Zinrak",
+      "pos": "Bileşik İsim (İblis Türü)",
+      "origin": "Zin(Kötü) +Rak(Avcı)",
+      "meaning": "Kötü Avcı / İblis türü",
+      "example": "Zinrak viena Gydarn. (İblis avcı Kaotik Orman'dan geliyor.)"
+    },
+    {
+      "word": "Zirae",
+      "pos": "İsim / Kök",
+      "origin": "Zi-+-rae",
+      "meaning": "Şimşek hızında yapılan saldırı, odaklanmış ve kaçılamaz vuruş",
+      "example": "Zirae athor! (Şimşek kılıcı! --- savaş emri)"
+    },
+    {
+      "word": "Ziraedarn",
+      "pos": "Özel İsim (Orman)",
+      "origin": "Zirae+Daryn→ Ziraedarn",
+      "meaning": "Yıldırım Ormanı Zlan---Sıfat / Zarf--- Köken: Bağımsız kök --- Anlam: Yavaş / Geç",
+      "example": "Ezra gyan gema, dora zlan. (Eve dönelim, vakit geç.)"
+    },
+    {
+      "word": "Zlanea",
+      "pos": "Özel İsim (Nehir --- Evrimleşmiş)",
+      "origin": "Zlaneana→Zlanea(ses kısalması)",
+      "meaning": "Durgun Su / Yavaş Nehir Zrase---Bileşik Form--- Köken:Ezra(Biz) +Se(Üstünde/Dır) → Zrase --- Anlam: Bizim üstümüzde / Üzerimizde",
+      "example": "Vize Verond zrase. (Konseyin gözü üzerimizde.)"
+    }
+  ]
+}

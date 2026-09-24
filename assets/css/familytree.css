@@ -1,0 +1,61 @@
+/* ═══════════════════════════════════════════════════════════
+   familytree.css — soy ağacı SVG stilleri (soy-agaci.html + admin önizleme)
+   Tema renkleri svg'nin style="--t-…" değişkenlerinden gelir (familytree.js).
+   ═══════════════════════════════════════════════════════════ */
+
+.ft-svg { display: block; user-select: none; -webkit-user-select: none; }
+
+/* DÜĞÜMLER */
+.ft-svg .fn { cursor: pointer; }
+.ft-svg .fn rect { transition: filter .2s, stroke-width .18s; }
+.ft-svg .fn:hover rect, .ft-svg .fn.active rect { filter: brightness(1.5); }
+.ft-svg .fn.active rect { stroke-width: 2.5 !important; }
+
+/* Eski (elle çizilmiş) türler — görünümleri aynen korunur */
+.fn-hist    rect { fill: rgba(12,8,4,.85);  stroke: rgba(61,42,20,.7);   stroke-width: 1.5; }
+.fn-dec     rect { fill: rgba(36,18,18,.85); stroke: rgba(100,48,48,.75); stroke-width: 1.5; }
+.fn-alive   rect { fill: rgba(20,14,6,.85); stroke: rgba(122,92,24,.75); stroke-width: 1.5; }
+.fn-star    rect { fill: rgba(30,20,4,.9);  stroke: #C4962A;             stroke-width: 2; }
+.fn-spouse  rect { fill: rgba(14,10,6,.7);  stroke: rgba(61,42,20,.5);   stroke-width: 1; stroke-dasharray: 5 3; }
+.fn-related rect { fill: rgba(14,10,6,.65); stroke: rgba(58,42,20,.45);  stroke-width: 1; stroke-dasharray: 4 4; }
+
+/* Temaya bağlı türler (member / main) */
+.fn-member rect { fill: var(--t-fill);  stroke: var(--t-stroke);  stroke-width: 1.5; }
+.fn-main   rect { fill: var(--t-mfill); stroke: var(--t-mstroke); stroke-width: 2; }
+
+/* Düğüm metinleri */
+.node-name { font-family: var(--font-display); font-size: 12.5px; fill: #F0E6C8; text-anchor: middle; }
+.node-sub  { font-family: var(--font-display); font-style: italic; font-size: 10px; fill: #9A8870; text-anchor: middle; }
+.node-ks   { font-family: var(--font-display); font-size: 9px; fill: #7A5C18; text-anchor: middle; }
+.fn-star .node-name   { fill: #E8B84B; }
+.fn-star .node-sub    { fill: #C4962A; }
+.fn-member .node-name { fill: var(--t-name); }
+.fn-main   .node-name { fill: var(--t-mname); }
+
+/* ÇİZGİLER — eski sınıflar */
+.fl { stroke: #3D2A14; stroke-width: 1.5; fill: none; }
+.fl-dash { stroke: #3D2A14; stroke-width: 1; fill: none; stroke-dasharray: 5 4; opacity: .65; }
+.fl-selya { stroke: #5C3A7A; stroke-width: 1.5; fill: none; opacity: .7; }
+.fl-selya-dash { stroke: #5C3A7A; stroke-width: 1; fill: none; stroke-dasharray: 5 4; opacity: .45; }
+.fl-special { stroke: #C4962A; stroke-width: 1; fill: none; stroke-dasharray: 3 4; opacity: .4; }
+.msym { fill: var(--bg, #060402); stroke: #7A5C18; stroke-width: 1.5; }
+.msym-selya { fill: var(--bg, #060402); stroke: #7A3A9A; stroke-width: 1.5; }
+.anno { font-family: var(--font-display); font-style: italic; font-size: 9.5px; fill: #5C3F1E; }
+.anno-selya { font-family: var(--font-display); font-style: italic; font-size: 9.5px; fill: #6A3A8A; }
+
+/* ÇİZGİLER — otomatik mod (tema değişkenli) */
+.fl-t { stroke: var(--t-line); stroke-width: 1.5; fill: none; }
+.fl-t-dash { stroke: var(--t-dash); stroke-width: 1.2; fill: none; stroke-dasharray: 5 4; }
+.msym-t { fill: var(--bg, #060402); stroke: var(--t-msym); stroke-width: 1.5; }
+.anno-t { font-family: var(--font-display); font-style: italic; font-size: 9.5px; fill: var(--t-anno); }
+.ft-frame { fill: none; stroke: var(--t-line); stroke-width: 1; opacity: .6; }
+.lgk rect { stroke-width: 1.2; }
+
+/* MEŞRUİYET: meşru varis = altın çift çizgi; gayrimeşru / sürgün = kan kırmızısı kesikli */
+.fl-legit   { stroke: #E8B84B; stroke-width: 1.2; fill: none; }
+.fl-illegit { stroke: #A83232; stroke-width: 1.8; fill: none; stroke-dasharray: 6 4; }
+
+/* Görüntüleyici */
+.ft-view { position: relative; overflow: hidden; touch-action: none; cursor: grab; }
+.ft-view.dragging { cursor: grabbing; }
+.ft-stage { position: absolute; left: 0; top: 0; transform-origin: 0 0; will-change: transform; }

@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title data-tr="Haneler & Devletler · Stallhart Wiki" data-en="Houses & States · Stallhart Wiki">Haneler & Devletler · Stallhart Wiki</title>
+<meta name="description" content="Stallhart İmparatorluğu&#x27;nun hane ve devletleri — eyaletler, armalar, hükümdarlar ve komşu güçler." data-tr="Stallhart İmparatorluğu&#x27;nun hane ve devletleri — eyaletler, armalar, hükümdarlar ve komşu güçler." data-en="The houses and states of the Stallhart Empire — provinces, crests, rulers and neighboring powers." data-i18n-attr="content">
+<meta name="theme-color" content="#0c121f">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="The Stallhart Saga">
+<meta property="og:locale" content="tr_TR">
+<meta property="og:title" content="Haneler &amp; Devletler · Stallhart Wiki">
+<meta property="og:description" content="Stallhart İmparatorluğu&#x27;nun hane ve devletleri — eyaletler, armalar, hükümdarlar ve komşu güçler.">
+<meta property="og:image" content="assets/images/logo-stallhart.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Haneler &amp; Devletler · Stallhart Wiki">
+<meta name="twitter:description" content="Stallhart İmparatorluğu&#x27;nun hane ve devletleri — eyaletler, armalar, hükümdarlar ve komşu güçler.">
+<meta name="twitter:image" content="assets/images/logo-stallhart.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Modern+Antiqua&amp;family=IM+Fell+English:ital@0;1&amp;family=Merriweather:ital,wght@0,400;0,700;1,400&amp;display=swap">
+<link rel="stylesheet" href="assets/css/styles.css?v=3.0">
+<style>
+#h-sec{background:var(--bg)}
+
+/* Tab wrap */
+.htabs{display:flex;border-bottom:1px solid var(--border);margin-bottom:2rem}
+
+/* Province accordion */
+.prov-block{margin-bottom:1.5rem;border:1px solid var(--border)}
+.prov-header{display:flex;align-items:center;gap:1rem;padding:1rem 1.5rem;cursor:pointer;background:var(--surface);transition:background .18s;user-select:none}
+.prov-header:hover{background:rgba(24,16,7,.8)}
+.prov-color{width:12px;height:12px;border-radius:2px;flex-shrink:0}
+.prov-name{font-family:var(--font-display);font-size:1rem;color:var(--parchl);flex:1}
+.prov-theme{font-size:.72rem;color:var(--parchd);font-style:italic}
+.prov-count{font-family:var(--font-display);font-style:italic;font-size:.72rem;color:var(--goldd);flex-shrink:0}
+.prov-arrow{width:14px;height:14px;stroke:var(--goldd);fill:none;stroke-width:2;stroke-linecap:round;flex-shrink:0;transition:transform .22s}
+.prov-block.open .prov-arrow{transform:rotate(180deg)}
+.prov-body{display:none;padding:1rem 1.5rem 1.5rem;background:rgba(12,8,4,.5)}
+.prov-block.open .prov-body{display:block}
+.prov-desc{font-size:.82rem;color:var(--parchd);font-style:italic;margin-bottom:1rem;padding-left:.75rem;border-left:2px solid var(--border)}
+
+/* House grid */
+.hg{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:1px;background:var(--border)}
+.hc{background:var(--card);padding:1.25rem;position:relative;transition:background .18s}
+.hc-top-bar{height:3px;position:absolute;top:0;left:0;right:0}
+.hc:hover{background:rgba(20,14,6,.9)}
+.hc-tier{position:absolute;top:.75rem;right:.75rem;font-family:var(--font-display);font-style:italic;font-size:.62rem;padding:1px 6px;border:1px solid}
+.hc-tier.imperial{color:var(--goldb);border-color:var(--goldb)}
+.hc-tier.major{color:var(--goldd);border-color:var(--goldd)}
+.hc-tier.minor{color:var(--border);border-color:var(--border)}
+.hc-colors{display:flex;gap:3px;margin-bottom:.6rem}
+.hc-swatch{width:18px;height:10px;border-radius:2px}
+.hc-name{font-family:var(--font-display);font-size:1rem;color:var(--parchl);margin-bottom:.12rem;text-decoration:none;display:inline-block;transition:color .15s}
+.hc-name:hover{color:var(--gold);text-decoration:underline}
+.hc-more-link{display:inline-block;margin-top:.6rem;font-family:var(--font-display);font-style:italic;font-size:.74rem;color:var(--goldd);text-decoration:none}
+.hc-more-link:hover{color:var(--gold)}
+.hc-meaning{font-size:.72rem;color:var(--gold);font-style:italic;margin-bottom:.5rem}
+.hc-symbol{font-size:.75rem;color:var(--parchd);margin-bottom:.5rem}
+.hc-symbol::before{content:'⚔ ';color:var(--border)}
+.hc-desc{font-size:.8rem;color:var(--parchd);line-height:1.7;font-style:italic}
+.hc-notable{margin-top:.6rem;padding-top:.5rem;border-top:1px solid var(--border);display:flex;gap:.3rem;flex-wrap:wrap}
+.hc-char-link{font-family:var(--font-display);font-size:.68rem;color:var(--goldd);text-decoration:none;border:1px solid var(--border);padding:1px 6px;transition:.15s}
+.hc-char-link:hover{border-color:var(--goldd);color:var(--gold)}
+
+/* Search bar */
+.h-search-wrap{display:flex;align-items:center;gap:.6rem;background:var(--surface);border:1px solid var(--border);padding:.4rem 1rem;max-width:340px;margin-bottom:1.5rem}
+.h-search-wrap svg{width:14px;height:14px;flex-shrink:0;stroke:var(--goldd);fill:none;stroke-width:1.8;stroke-linecap:round}
+#h-search{flex:1;background:none;border:none;outline:none;font-family:var(--font-display);font-size:.88rem;color:var(--parchl);caret-color:var(--gold)}
+#h-search::placeholder{color:var(--parchd)}
+.h-count{font-family:var(--font-display);font-style:italic;font-size:.78rem;color:var(--parchd);margin-bottom:1rem}
+
+/* Kingdoms */
+.kg{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:1.25rem}
+.kc{background:var(--card);border:1px solid var(--border);padding:0;overflow:hidden;transition:border-color .2s}
+.kc:hover{border-color:var(--borderl)}
+.kc-head{padding:1.25rem 1.5rem 1rem;border-bottom:1px solid var(--border);position:relative}
+.kc-bar{height:3px;position:absolute;top:0;left:0;right:0}
+.kc-type{font-family:var(--font-display);font-style:italic;font-size:.65rem;color:var(--goldd);letter-spacing:.12em;margin-bottom:.3rem;text-transform:uppercase}
+.kc-name{font-family:var(--font-display);font-size:1.15rem;color:var(--parchl);margin-bottom:.15rem;line-height:1.2;transition:color .15s}
+.kc-name:hover{color:var(--gold);text-decoration:underline}
+.kc-more-link{display:inline-block;margin-top:.4rem;font-family:var(--font-display);font-style:italic;font-size:.72rem;color:var(--goldd);text-decoration:none}
+.kc-more-link:hover{color:var(--gold)}
+.kc-ruler{font-size:.78rem;color:var(--gold);font-style:italic}
+.kc-status{position:absolute;top:1.25rem;right:1.25rem;font-size:.62rem;font-family:var(--font-display);font-style:italic;padding:2px 7px;border:1px solid}
+.kc-status.active{color:#5A9A5A;border-color:#3A6A3A}
+.kc-status.contested{color:#9A7A3A;border-color:#6A5A2A}
+.kc-status.independent{color:var(--goldd);border-color:var(--goldd)}
+.kc-status.vassal{color:var(--parchd);border-color:var(--border)}
+.kc-body{padding:1rem 1.5rem 1.25rem}
+.kc-desc{font-size:.83rem;color:var(--parchd);line-height:1.78;font-style:italic;margin-bottom:.85rem}
+.kc-sl{font-family:var(--font-display);font-size:.62rem;color:var(--goldd);letter-spacing:.12em;margin-bottom:.3rem;text-transform:uppercase}
+.kc-str{list-style:none;display:flex;flex-direction:column;gap:.18rem;margin-bottom:.75rem}
+.kc-str li{font-size:.75rem;color:var(--parchd);padding-left:.9rem;position:relative}
+.kc-str li::before{content:'✦';position:absolute;left:0;color:var(--goldd);font-size:.55rem;top:.1rem}
+.kc-rels{display:flex;flex-direction:column;gap:.18rem}
+.kc-rel{font-size:.72rem;color:var(--parchd);display:flex;gap:.5rem}
+.kc-rel-name{color:var(--parchl);font-weight:400}
+.kc-ruler-link{color:var(--gold);text-decoration:none;transition:color .15s}
+.kc-ruler-link:hover{color:var(--goldb)}
+
+/* Eyalet coğrafya notları */
+.prov-geo{margin-bottom:1rem;padding:.75rem 1rem;background:rgba(184,115,51,.05);border-left:2px solid var(--goldd)}
+.prov-geo p{font-size:.78rem;color:var(--parchd);line-height:1.75;margin-bottom:.3rem}
+.prov-geo p:last-child{margin-bottom:0}
+.prov-geo strong{color:var(--goldd);font-weight:400}
+
+/* Dünya güç sıralaması tablosu (lore.html ile paylaşılan stil) */
+.cog-sub-h{font-family:var(--font-display);font-size:1.1rem;color:var(--parchl);margin:0 0 1rem}
+.tbl-wrap-lore{overflow-x:auto;border:1px solid var(--border);margin-bottom:1rem}
+.wp-table{width:100%;border-collapse:collapse;min-width:480px}
+.wp-table th{background:var(--surface);font-family:var(--font-display);font-style:italic;font-size:.72rem;color:var(--goldd);text-align:left;padding:.55rem .8rem;border-bottom:1px solid var(--border);white-space:nowrap}
+.wp-table td{padding:.5rem .8rem;border-bottom:1px solid rgba(58,47,36,.35);font-size:.82rem;color:var(--parch)}
+.wp-table tr:last-child td{border-bottom:none}
+.wp-table tr.wp-self td{color:var(--gold);font-weight:bold}
+.wp-table tr:hover td{background:rgba(184,115,51,.05)}
+
+/* Etiket filtre çipleri */
+.tag-filter-row{display:flex;gap:.4rem;flex-wrap:wrap;margin-bottom:1.25rem}
+.tag-chip{opacity:.82}
+.tag-chip.on{opacity:1;border-color:var(--goldd);color:var(--goldd);background:rgba(196,150,42,.08)}
+</style>
+<script src="assets/js/router.js?v=3.0"></script>
+</head>
+<body>
+<section id="h-sec">
+  <div class="page-hero">
+    <p class="page-hero-eye" data-tr="Stallhart Destanı · Dünya" data-en="The Stallhart Saga · World">Stallhart Destanı · Dünya</p>
+    <h1 class="page-hero-title" id="page-title">Haneler &amp; Devletler</h1>
+    <p class="page-hero-sub" id="page-sub">Soylu haneler, eyalet sembolleri ve diyarın güçleri.</p>
+  </div>
+
+  <div class="inn" style="padding:2.5rem 2rem 6rem">
+    <div class="htabs tabs-wrap" id="htabs">
+      <button class="tab-b on" id="tb-haneler">Soylu Haneler</button>
+      <button class="tab-b" id="tb-devletler">Devletler &amp; Güçler</button>
+    </div>
+
+    <!-- ── HANELER TAB ── -->
+    <div class="tab-p on" id="tab-haneler">
+      <div class="h-search-wrap">
+        <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="22" y2="22"/></svg>
+        <input type="search" id="h-search" placeholder="Hane ara…" autocomplete="off">
+      </div>
+      <div class="tag-filter-row" id="h-tag-filters"></div>
+      <div class="h-count" id="h-count"></div>
+      <div id="houses-list" data-skeleton="blocks"></div>
+    </div>
+
+    <!-- ── DEVLETLER TAB ── -->
+    <div class="tab-p" id="tab-devletler">
+      <div class="tag-filter-row" id="k-tag-filters"></div>
+      <div class="kg" id="kingdoms-grid">
+        <div style="color:var(--parchd);font-style:italic;font-size:.88rem">Yükleniyor…</div>
+      </div>
+
+      <h3 class="cog-sub-h" id="wp-h" style="margin-top:2.5rem">Dünya Güç Sıralaması</h3>
+      <div class="tbl-wrap-lore">
+        <table class="wp-table" id="wp-table">
+          <thead><tr><th>#</th><th id="wp-th-name">Devlet</th><th>Puan</th><th id="wp-th-pop">Nüfus</th><th id="wp-th-mil">Askerî Güç</th></tr></thead>
+          <tbody id="wp-tbody"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script src="assets/js/config.js?v=3.0"></script>
+<script src="assets/js/patches.js?v=3.0"></script>
+<script src="assets/js/wiki.js?v=3.0"></script>
+<script src="assets/js/community.js?v=3.0"></script>
+<script>
+const{Lang,loadData,initWiki,esc}=Wiki;
+
+let housesData=null, kingdomsData=null, hSearch='';
+let hActiveTags=new Set(), kActiveTags=new Set();
+let hTagListenerBound=false, kTagListenerBound=false;
+
+function buildTagFilters(wrapId, activeSet, allTagsArr, onToggle, boundFlagSetter, alreadyBound){
+  const l=Lang.get();
+  const wrap=document.getElementById(wrapId);
+  if(!wrap)return;
+  const present=new Set();
+  allTagsArr.forEach(tags=>(tags||[]).forEach(tg=>present.add(tg)));
+  wrap.innerHTML=Wiki.Tags.chipsHTML(activeSet,l,present);
+  if(alreadyBound)return;
+  boundFlagSetter();
+  wrap.addEventListener('click',e=>{
+    const btn=e.target.closest('[data-tag]');
+    if(!btn)return;
+    const id=btn.dataset.tag;
+    if(activeSet.has(id))activeSet.delete(id);else activeSet.add(id);
+    onToggle();
+  });
+}
+
+const TIER_LABELS={imperial:{tr:'İmparatorluk',en:'Imperial'},major:{tr:'Büyük',en:'Major'},minor:{tr:'Küçük',en:'Minor'}};
+const TYPE_LABELS={empire:{tr:'İmparatorluk',en:'Empire'},kingdom:{tr:'Krallık',en:'Kingdom'},state:{tr:'Devlet',en:'State'},'house-state':{tr:'Hane Devleti',en:'House State'}};
+const STATUS_LABELS={active:{tr:'Aktif',en:'Active'},contested:{tr:'Çekişmeli',en:'Contested'},independent:{tr:'Bağımsız',en:'Independent'},vassal:{tr:'Vassal',en:'Vassal'}};
+
+/* ── HANELER ── */
+async function renderHouses(){
+  try{
+  if(!housesData)housesData=await loadData('houses.json');
+  const l=Lang.get(),t=o=>Lang.t(o);
+  const q=hSearch.toLowerCase();
+
+  buildTagFilters('h-tag-filters',hActiveTags,
+    housesData.provinces.flatMap(p=>p.houses.map(h=>h.tags)),
+    renderHouses, ()=>{hTagListenerBound=true}, hTagListenerBound);
+
+  let totalH=0,matchH=0;
+  const html=housesData.provinces.map(prov=>{
+    const matched=prov.houses.filter(h=>(!q||h.name.toLowerCase().includes(q)||t(h.meaning).toLowerCase().includes(q)||t(h.desc).toLowerCase().includes(q))&&Wiki.Tags.matches(h.tags,hActiveTags));
+    totalH+=prov.houses.length; matchH+=matched.length;
+    if(q&&!matched.length)return'';
+    const cards=matched.map(h=>`
+      <div class="hc">
+        <div class="hc-top-bar" style="background:linear-gradient(90deg,${esc((h.colors&&h.colors[1])||(h.colors&&h.colors[0])||'var(--gold)')},${esc((h.colors&&h.colors[0])||'var(--goldd)')})"></div>
+        <span class="hc-tier ${h.tier}">${TIER_LABELS[h.tier]?.[l]||h.tier}</span>
+        <div class="hc-colors">${(h.colors||[]).map(c=>`<div class="hc-swatch" style="background:${c}"></div>`).join('')}</div>
+        <div class="hc-head">
+          ${(()=>{const b=Wiki.safeImg(h.banner);return b?`<div class="hc-flag"><img ${Wiki.imgAttrs(b,'84px')} alt="${esc(h.name)}" data-hc-flag></div>`:`<div class="hc-flag-ph" title="${l==='tr'?'Bayrak henüz yüklenmemiş':'Flag not yet uploaded'}">${esc((h.name||'?')[0])}</div>`;})()}
+          <div class="hc-head-txt">
+            <a class="hc-name" href="${SWRoute.href('hane', h.id)}">${esc(h.name)}</a>
+            <div class="hc-meaning">${esc(t(h.meaning))}</div>
+          </div>
+        </div>
+        ${Wiki.safeImg(h.banner)?'':`<div class="hc-flag-note">${l==='tr'?'Bayrak henüz yüklenmemiş':'Flag not yet uploaded'}</div>`}
+        <div class="hc-symbol">${esc(t(h.symbol||{tr:'',en:''}))}</div>
+        <div class="hc-desc">${esc(t(h.desc))}</div>
+        ${(h.memberIds||[]).length?`<a class="hc-more-link" href="${SWRoute.href('hane', h.id)}">${(h.memberIds||[]).length} ${l==='tr'?'üye →':'members →'}</a>`:''}
+      </div>`).join('');
+    return`<div class="prov-block${q?' open':''}">
+      <div class="prov-header" data-toggle>
+        <div class="prov-color" style="background:${prov.color}"></div>
+        <span class="prov-name">${esc(t(prov.name))}</span>
+        <span class="prov-theme">${esc(t(prov.theme))}</span>
+        <span class="prov-count">${matched.length} ${l==='tr'?'hane':'houses'}</span>
+        <svg class="prov-arrow" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="prov-body">
+        ${prov.flagDesc||prov.economy||prov.neighbors||prov.cities ? `
+        <div class="prov-geo">
+          ${prov.flagDesc ? `<p><strong>${l==='tr'?'Bayrak':'Flag'}:</strong> ${esc(t(prov.flagDesc))}</p>` : ''}
+          ${prov.economy ? `<p><strong>${l==='tr'?'Geçim':'Economy'}:</strong> ${esc(t(prov.economy))}</p>` : ''}
+          ${prov.neighbors ? `<p><strong>${l==='tr'?'Komşular':'Neighbors'}:</strong> ${esc(t(prov.neighbors))}</p>` : ''}
+          ${prov.cities ? `<p><strong>${l==='tr'?'Şehirler':'Cities'}:</strong> ${esc(t(prov.cities))}</p>` : ''}
+        </div>` : ''}
+        <div class="hg">${cards}</div>
+      </div>
+    </div>`;
+  }).join('');
+
+  document.getElementById('h-count').textContent=`${matchH} / ${totalH} ${l==='tr'?'hane gösteriliyor':'houses shown'}`;
+  document.getElementById('houses-list').innerHTML=html||`<p style="color:var(--parchd);font-style:italic">${l==='tr'?'Sonuç bulunamadı.':'No results found.'}</p>`;
+  Wiki.Tooltip.scan(document.getElementById('houses-list'));
+  document.querySelectorAll('#houses-list img[data-hc-flag]').forEach(im=>im.addEventListener('error',()=>{
+    const d=document.createElement('div');d.className='hc-flag-ph';d.textContent='!';d.title=l==='tr'?'Bayrak görseli yüklenemedi':'Banner failed to load';im.replaceWith(d);
+  },{once:true}));
+  }catch(err){
+    console.error('houses.json yüklenemedi:',err);
+    Wiki.renderError('houses-list',err);
+    document.getElementById('h-count').textContent='';
+  }
+}
+
+/* ── DEVLETLER ── */
+async function renderKingdoms(){
+  try{
+  if(!kingdomsData)kingdomsData=await loadData('kingdoms.json');
+  const l=Lang.get(),t=o=>Lang.t(o);
+
+  buildTagFilters('k-tag-filters',kActiveTags,
+    (kingdomsData.kingdoms||[]).map(k=>k.tags),
+    renderKingdoms, ()=>{kTagListenerBound=true}, kTagListenerBound);
+
+  document.getElementById('kingdoms-grid').innerHTML=(kingdomsData.kingdoms||[]).filter(k=>Wiki.Tags.matches(k.tags,kActiveTags)).map(k=>{
+    const relEntries=Object.entries(t(k.relations)||{});
+    return`<div class="kc">
+      <div class="kc-head">
+        <div class="kc-bar" style="background:${k.color}"></div>
+        <div class="kc-type">${TYPE_LABELS[k.type]?.[l]||k.type}</div>
+        <a class="kc-name" href="${SWRoute.href('devlet', k.id)}" style="color:inherit;text-decoration:none;display:block">${esc(t(k.name))}</a>
+        <div class="kc-ruler">${k.rulerId?`<a class="kc-ruler-link" href="${SWRoute.href('karakter', k.rulerId)}">${esc(t(k.ruler))}</a>`:esc(t(k.ruler))}</div>
+        <span class="kc-status ${k.status}">${STATUS_LABELS[k.status]?.[l]||k.status}</span>
+      </div>
+      <div class="kc-body">
+        <p class="kc-desc">${esc(t(k.desc))}</p>
+        ${k.founded?`<div class="kc-sl">${l==='tr'?'KURULUŞ':'FOUNDED'}</div><p style="font-size:.78rem;color:var(--parch);margin-bottom:.75rem">${k.founded}</p>`:''}
+        ${t(k.strengths)?.length?`<div class="kc-sl">${l==='tr'?'GÜÇLÜ YÖNLER':'STRENGTHS'}</div><ul class="kc-str">${t(k.strengths).map(s=>`<li>${esc(s)}</li>`).join('')}</ul>`:''}
+        ${relEntries.length?`<div class="kc-sl">${l==='tr'?'DIŞ İLİŞKİLER':'RELATIONS'}</div><div class="kc-rels">${relEntries.map(([k2,v])=>`<div class="kc-rel"><span class="kc-rel-name">${esc(k2.replace(/-/g,' '))}:</span><span>${esc(v)}</span></div>`).join('')}</div>`:''}
+        <a class="kc-more-link" href="${SWRoute.href('devlet', k.id)}">${l==='tr'?'Devlet sayfasına git →':'Go to state page →'}</a>
+      </div>
+    </div>`;
+  }).join('');
+
+  const wp=kingdomsData.worldPowers||[];
+  const tbody=document.getElementById('wp-tbody');
+  if(tbody){
+    tbody.innerHTML=wp.length?wp.map(w=>`
+      <tr class="${t(w.name).indexOf('Stallhart')>=0?'wp-self':''}">
+        <td>${esc(w.rank)}</td>
+        <td>${esc(t(w.name))}</td>
+        <td>${esc(w.score!=null?w.score.toFixed(2):'—')}</td>
+        <td>${esc(w.population?w.population.toLocaleString('tr-TR'):'—')}</td>
+        <td>${esc(w.military?w.military.toLocaleString('tr-TR'):'—')}</td>
+      </tr>`).join(''):`<tr><td colspan="5" style="color:var(--parchd);font-style:italic;padding:1rem">${l==='tr'?'Sıralama verisi bulunamadı.':'No ranking data found.'}</td></tr>`;
+  }
+  }catch(err){
+    console.error('kingdoms.json yüklenemedi:',err);
+    Wiki.renderError('kingdoms-grid',err);
+  }
+}
+
+/* ── PROVINCE AKORDEONU (event delegation) ── */
+document.getElementById('houses-list').addEventListener('click', e=>{
+  const header = e.target.closest('[data-toggle]');
+  if (!header) return;
+  header.parentElement?.classList.toggle('open');
+});
+
+/* ── TABS ── */
+document.getElementById('tb-haneler').addEventListener('click',function(){
+  document.querySelectorAll('#htabs .tab-b').forEach(b=>b.classList.remove('on'));
+  this.classList.add('on');
+  document.getElementById('tab-haneler').classList.add('on');
+  document.getElementById('tab-devletler').classList.remove('on');
+});
+document.getElementById('tb-devletler').addEventListener('click',function(){
+  document.querySelectorAll('#htabs .tab-b').forEach(b=>b.classList.remove('on'));
+  this.classList.add('on');
+  document.getElementById('tab-devletler').classList.add('on');
+  document.getElementById('tab-haneler').classList.remove('on');
+  renderKingdoms();
+});
+
+document.getElementById('h-search').addEventListener('input',function(){hSearch=this.value.trim();renderHouses();});
+
+function applyLang(l){
+  document.documentElement.lang=l;
+  document.getElementById('page-title').textContent=l==='tr'?'Haneler & Devletler':'Houses & States';
+  document.getElementById('page-sub').textContent=l==='tr'?'Soylu haneler, eyalet sembolleri ve diyarın güçleri.':'Noble houses, provincial symbols and powers of the realm.';
+  document.getElementById('tb-haneler').textContent=l==='tr'?'Soylu Haneler':'Noble Houses';
+  document.getElementById('tb-devletler').textContent=l==='tr'?'Devletler & Güçler':'States & Powers';
+  document.getElementById('h-search').placeholder=l==='tr'?'Hane ara…':'Search houses…';
+  document.getElementById('wp-h').textContent=l==='tr'?'Dünya Güç Sıralaması':'World Power Ranking';
+  document.getElementById('wp-th-name').textContent=l==='tr'?'Devlet':'State';
+  document.getElementById('wp-th-pop').textContent=l==='tr'?'Nüfus':'Population';
+  document.getElementById('wp-th-mil').textContent=l==='tr'?'Askerî Güç':'Military Power';
+  renderHouses();
+  renderKingdoms();
+}
+
+initWiki({onLangChange:applyLang});
+applyLang(Lang.get());
+renderKingdoms();   /* gizli sekme de baştan dolsun; bayat "Yükleniyor…" kalmasın */
+</script>
+</body>
+</html>

@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="tr" id="r">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title data-tr="Soy Ağacı — Son İmparator" data-en="Family Tree — The Last Emperor">Soy Ağacı — Son İmparator</title>
+<meta name="description" content="Stallhart hanedanının ve ilişkili hanelerin etkileşimli soy ağaçları." data-tr="Stallhart hanedanının ve ilişkili hanelerin etkileşimli soy ağaçları." data-en="Interactive family trees of the Stallhart dynasty and related houses." data-i18n-attr="content">
+<meta name="theme-color" content="#0c121f">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="The Stallhart Saga">
+<meta property="og:locale" content="tr_TR">
+<meta property="og:title" content="Soy Ağacı — Son İmparator">
+<meta property="og:description" content="Stallhart hanedanının ve ilişkili hanelerin etkileşimli soy ağaçları.">
+<meta property="og:image" content="assets/images/logo-stallhart.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Soy Ağacı — Son İmparator">
+<meta name="twitter:description" content="Stallhart hanedanının ve ilişkili hanelerin etkileşimli soy ağaçları.">
+<meta name="twitter:image" content="assets/images/logo-stallhart.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Modern+Antiqua&amp;family=IM+Fell+English:ital@0;1&amp;family=Merriweather:ital,wght@0,400;0,700;1,400&amp;display=swap">
+<link rel="stylesheet" href="assets/css/styles.css?v=3.0">
+<link rel="stylesheet" href="assets/css/familytree.css?v=3.0">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;overflow:hidden}
+body{background:var(--bg);color:var(--parch);font-family:var(--font-body);font-size:16px;display:flex;flex-direction:column;padding-top:var(--nav-h,54px)}
+::-webkit-scrollbar{width:4px;height:4px}::-webkit-scrollbar-track{background:var(--deep)}::-webkit-scrollbar-thumb{background:var(--border)}
+
+/* NAV */
+
+/* TREE TABS */
+.tree-tabs{flex-shrink:0;display:flex;background:rgba(6,4,2,.98);border-bottom:1px solid var(--border);overflow-x:auto;scrollbar-width:none}
+.tree-tabs::-webkit-scrollbar{display:none}
+.ttab{font-family:var(--font-display);font-size:.88rem;font-style:italic;color:var(--parchd);background:none;border:none;padding:.85rem 1.6rem;cursor:pointer;position:relative;transition:color .18s;white-space:nowrap;flex-shrink:0;display:flex;align-items:center;gap:.5rem}
+.ttab::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--gold);transform:scaleX(0);transition:transform .2s}
+.ttab.on{color:var(--gold)}.ttab.on::after{transform:scaleX(1)}
+.ttab:hover{color:var(--parchl)}
+.ttab-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;opacity:.85}
+
+/* MAIN LAYOUT */
+.tree-layout{flex:1;display:flex;overflow:hidden;position:relative}
+.tree-layout .ft-view{flex:1;min-width:0;height:100%}
+.ft-tools{position:absolute;top:1rem;left:1rem;display:flex;flex-direction:column;gap:2px;z-index:20}
+.ft-btn{width:34px;height:34px;background:rgba(8,5,2,.88);border:1px solid var(--border);color:var(--parchd);font-family:var(--font-display);font-size:1.05rem;line-height:1;cursor:pointer;transition:.18s;backdrop-filter:blur(4px)}
+.ft-btn:hover{border-color:var(--goldd);color:var(--gold)}
+.ft-empty{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-style:italic;color:var(--parchd);padding:2rem;text-align:center}
+
+/* Bilgi paneli eklentileri */
+.ip-badge{display:inline-block;font-family:var(--font-display);font-style:italic;font-size:.66rem;padding:.12rem .55rem;margin:0 .35rem .85rem 0;border:1px solid}
+.ip-badge.legit{color:var(--goldb);border-color:var(--goldb)}
+.ip-badge.illegit{color:var(--bloodb);border-color:var(--blood)}
+.ip-rel{display:flex;flex-wrap:wrap;gap:.3rem;margin-top:.1rem}
+.ip-rel button{font-family:var(--font-display);font-style:italic;font-size:.72rem;color:var(--goldd);background:none;border:1px solid var(--border);padding:.12rem .55rem;cursor:pointer;transition:.18s}
+.ip-rel button:hover{color:var(--gold);border-color:var(--goldd)}
+.ip-char-go{display:block;margin-top:1rem;font-family:var(--font-display);font-style:italic;font-size:.76rem;color:var(--goldd);text-decoration:none;border:1px solid var(--border);padding:.28rem .7rem;transition:.18s}
+.ip-char-go:hover{color:var(--gold);border-color:var(--goldd)}
+
+/* INFO PANEL */
+.ipanel{position:absolute;top:0;right:0;bottom:0;width:290px;background:rgba(8,5,2,.97);border-left:1px solid var(--border);transform:translateX(100%);transition:transform .28s ease;z-index:100;overflow-y:auto;backdrop-filter:blur(8px)}
+.ipanel.open{transform:translateX(0)}
+.ip-close{position:absolute;top:.9rem;right:1rem;background:none;border:none;color:var(--parchd);cursor:pointer;font-family:var(--font-display);font-size:1.3rem;z-index:10;transition:color .18s;line-height:1}
+.ip-close:hover{color:var(--gold)}
+.ip-body{padding:2rem 1.5rem}
+.ip-eye{font-family:var(--font-display);font-size:.63rem;letter-spacing:.15em;color:var(--goldd);margin-bottom:.4rem;font-style:italic}
+.ip-name{font-family:var(--font-display);font-size:1.45rem;color:var(--parchl);line-height:1.15;margin-bottom:.2rem}
+.ip-title{font-size:.82rem;font-style:italic;color:var(--gold);margin-bottom:.85rem}
+.ip-rule{width:55px;height:1px;background:linear-gradient(to right,var(--goldd),transparent);margin-bottom:.9rem}
+.ip-sl{font-family:var(--font-display);font-size:.63rem;letter-spacing:.12em;color:var(--goldd);margin-bottom:.35rem;margin-top:.85rem}
+.ip-val{font-size:.82rem;color:var(--parchd);line-height:1.75;font-style:italic}
+.ip-ks{display:inline-block;font-family:var(--font-display);font-size:.68rem;border:1px solid var(--border);padding:.15rem .55rem;color:var(--goldd);font-style:italic;margin-bottom:.85rem}
+.ip-epi{font-family:var(--font-display);font-style:italic;font-size:.75rem;color:var(--bloodb);padding-top:.75rem;border-top:1px solid var(--border);margin-top:.75rem}
+
+
+/* HINT */
+/* HINT */
+.hint-text{position:absolute;top:1rem;left:50%;transform:translateX(-50%);font-family:var(--font-display);font-style:italic;font-size:.7rem;color:var(--parchd);background:rgba(6,4,2,.78);border:1px solid var(--border);padding:.28rem .75rem;white-space:nowrap;pointer-events:none;transition:opacity 1s;z-index:10}
+.hint-text.gone{opacity:0}
+</style>
+<script src="assets/js/router.js?v=3.0"></script>
+</head>
+<body>
+
+<!-- SEKMELER (data/familytree.json'dan üretilir) -->
+<div class="tree-tabs" id="tree-tabs" role="tablist"></div>
+
+<div class="tree-layout">
+  <div class="ft-view" id="ft-view">
+    <div class="ft-stage" id="ft-stage"></div>
+    <div class="hint-text" id="hint">Sürükle: kaydır &nbsp;·&nbsp; Tekerlek: yakınlaştır &nbsp;·&nbsp; Kutuya tıkla: bilgi</div>
+    <div class="ft-tools">
+      <button class="ft-btn" id="zi" type="button" aria-label="Yakınlaştır" data-tr="Yakınlaştır" data-en="Zoom in" data-i18n-attr="aria-label">+</button>
+      <button class="ft-btn" id="zo" type="button" aria-label="Uzaklaştır" data-tr="Uzaklaştır" data-en="Zoom out" data-i18n-attr="aria-label">−</button>
+      <button class="ft-btn" id="zf" type="button" aria-label="Sığdır" title="Sığdır" data-tr="Sığdır" data-en="Fit to screen" data-i18n-attr="aria-label,title">⤢</button>
+    </div>
+    <div class="ft-empty" id="ft-empty" style="display:none"></div>
+  </div>
+
+  <!-- INFO PANEL -->
+  <div class="ipanel" id="ipanel">
+    <button class="ip-close" onclick="closeInfo()">✕</button>
+    <div class="ip-body" id="ip-body"></div>
+  </div>
+</div>
+
+<script src="assets/js/config.js?v=3.0"></script>
+<script src="assets/js/patches.js?v=3.0"></script>
+<script src="assets/js/wiki.js?v=3.0"></script>
+<script src="assets/js/community.js?v=3.0"></script>
+<script src="assets/js/familytree.js?v=3.0"></script>
+<script>
+'use strict';
+/* Dil durumu wiki.js ile ortak 'sw-lang' anahtarında tutulur (eski 'si-lang' bir kereliğine taşınır). */
+let L = (function(){
+  try{
+    const legacy = localStorage.getItem('si-lang');
+    if (legacy && !localStorage.getItem('sw-lang')) localStorage.setItem('sw-lang', legacy);
+    localStorage.removeItem('si-lang');
+    return localStorage.getItem('sw-lang') || 'tr';
+  }catch(e){ return 'tr'; }
+})();
+const FT = window.FamilyTree;
+const T = o => FT.tx(L, o);
+const esc = Wiki.esc;
+
+const NAV={home:{tr:'Ana Sayfa',en:'Home'},lore:{tr:'Evren',en:'Lore'},chars:{tr:'Karakterler',en:'Characters'},chaps:{tr:'Bölümler',en:'Chapters'},map:{tr:'Harita',en:'Map'},tree:{tr:'Soy Ağacı',en:'Family Tree'},quotes:{tr:'Sözler',en:'Words'}};
+const STATUS_LABEL = {
+  alive:{tr:'Hayatta',en:'Alive'},
+  deceased:{tr:'Hayatını Kaybetti',en:'Deceased'},
+  historical:{tr:'Tarihsel Figür',en:'Historical Figure'}
+};
+
+let TREES = [], CHARS = {}, cur = null, PZ = null, activeId = null;
+const view = document.getElementById('ft-view');
+const stage = document.getElementById('ft-stage');
+
+function applyLang(){
+  const root=document.getElementById('r'); if(root)root.lang=L;
+  ['home','lore','chars','chaps','map','tree','quotes'].forEach(k=>{const el=document.getElementById('nl-'+k);if(el)el.textContent=T(NAV[k]);});
+  document.title=(L==='tr'?'Soy Ağacı':'Family Tree')+' — Stallhart';
+  document.getElementById('hint').innerHTML = L==='tr'
+    ? 'Sürükle: kaydır &nbsp;·&nbsp; Tekerlek: yakınlaştır &nbsp;·&nbsp; Kutuya tıkla: bilgi'
+    : 'Drag: pan &nbsp;·&nbsp; Wheel: zoom &nbsp;·&nbsp; Click a box: details';
+  buildTabs();
+}
+
+/* ── SEKMELER ─────────────────────────────────────────── */
+function buildTabs(){
+  const box = document.getElementById('tree-tabs');
+  box.innerHTML = TREES.map(t =>
+    '<button class="ttab'+(cur&&cur.id===t.id?' on':'')+'" role="tab" data-tree="'+esc(t.id)+'">'+
+    '<span class="ttab-dot" style="background:'+esc(t.accent)+'"></span>'+esc(T(t.name))+'</button>').join('');
+}
+document.getElementById('tree-tabs').addEventListener('click', e=>{
+  const b = e.target.closest('.ttab'); if(!b) return;
+  const t = TREES.find(x=>x.id===b.dataset.tree); if(!t) return;
+  showTree(t, true);
+  try{ history.replaceState(null,'',SWRoute.hash('soy-agaci',t.id)); }catch(_){}
+});
+
+/* ── ÇİZİM ────────────────────────────────────────────── */
+function showTree(t, refit){
+  cur = t; activeId = null;
+  closeInfo();
+  buildTabs();
+  draw();
+  if (refit) PZ.fit();
+  /* aktif sekmeyi görünür yap */
+  const on = document.querySelector('.ttab.on'); if (on && on.scrollIntoView) on.scrollIntoView({inline:'center',block:'nearest'});
+}
+function draw(){
+  if (!cur) return;
+  const r = FT.render(cur, {lang:L, selectedId:activeId});
+  stage.innerHTML = r.svg;
+  PZ.setSize(r.w, r.h);
+  cur._boxes = r.boxes; cur._ox = r.ox||0; cur._oy = r.oy||0;
+}
+
+/* ── BİLGİ PANELİ (mini kart) ─────────────────────────── */
+function excerpt(s, n){
+  s = String(s||'').replace(/\s+/g,' ').trim();
+  if (s.length <= n) return s;
+  const cut = s.slice(0,n); const i = cut.lastIndexOf(' ');
+  return (i>n*0.6?cut.slice(0,i):cut).replace(/[.,;:\s]+$/,'')+'…';
+}
+function relBtns(ids){
+  return '<div class="ip-rel">'+ids.map(id=>{
+    const q = cur.people.find(x=>x.id===id); if(!q) return '';
+    return '<button type="button" data-go="'+esc(id)+'">'+esc(T(q.box.name)||T(q.name))+'</button>';
+  }).join('')+'</div>';
+}
+function showInfo(id){
+  const p = cur && cur.people.find(x=>x.id===id); if(!p) return;
+  activeId = id;
+  document.querySelectorAll('#ft-stage .fn').forEach(el=>el.classList.toggle('active', el.dataset.id===id));
+  const ch = p.characterId && CHARS[p.characterId] || null;
+  const name = T(p.name) || T(p.box.name);
+  const title = T(p.title) || (ch && T(ch.title)) || '';
+  const status = p.status || (ch && ch.status) || '';
+  const sl = T(STATUS_LABEL[status]) || '';
+  const desc = T(p.desc) || (ch ? excerpt(T(ch.bio), 340) : '');
+  const epi = T(p.epi) || (ch && T(ch.epi)) || '';
+  const g = FT.graph(cur);
+  const fa = p.fatherId && g.byId[p.fatherId] ? [p.fatherId] : [];
+  const mo = p.motherId && g.byId[p.motherId] ? [p.motherId] : [];
+  const other = g.parents[id].filter(x=>!fa.includes(x)&&!mo.includes(x));
+  const sp = g.spouses[id], kids = g.children[id];
+  const lbl = (tr,en)=> '<p class="ip-sl">'+(L==='tr'?tr:en)+'</p>';
+  const badge = p.legitimacy ? '<span class="ip-badge '+p.legitimacy+'">'+esc(T(FT.LEGIT_LABELS[p.legitimacy]))+'</span>' : '';
+  document.getElementById('ip-body').innerHTML =
+    '<p class="ip-eye">'+esc(T(p.family)||T(cur.name))+'</p>'+
+    '<h2 class="ip-name">'+esc(name)+'</h2>'+
+    (title?'<p class="ip-title">'+esc(title)+'</p>':'')+
+    (p.ks?'<span class="ip-ks">'+esc(T(p.ks))+'</span> ':'')+badge+
+    '<div class="ip-rule"></div>'+
+    (sl?lbl('DURUM','STATUS')+'<p class="ip-val">'+esc(sl)+'</p>':'')+
+    (desc?lbl('AÇIKLAMA','DESCRIPTION')+'<p class="ip-val">'+esc(desc)+'</p>':'')+
+    (fa.length?lbl('BABA','FATHER')+relBtns(fa):'')+
+    (mo.length?lbl('ANNE','MOTHER')+relBtns(mo):'')+
+    (other.length?lbl('EBEVEYN','PARENT')+relBtns(other):'')+
+    (sp.length?lbl('EŞ','SPOUSE')+relBtns(sp):'')+
+    (kids.length?lbl('ÇOCUKLAR','CHILDREN')+relBtns(kids):'')+
+    (epi?'<p class="ip-epi">'+esc(epi)+'</p>':'')+
+    (ch?'<a class="ip-char-go" href="'+SWRoute.href('karakter',p.characterId)+'">'+(L==='tr'?'→ Karakter sayfasına git':'→ Go to character page')+'</a>':'');
+  document.getElementById('ipanel').classList.add('open');
+}
+function closeInfo(){
+  activeId=null;
+  document.getElementById('ipanel').classList.remove('open');
+  document.querySelectorAll('#ft-stage .fn').forEach(el=>el.classList.remove('active'));
+}
+
+/* ── ETKİLEŞİM ────────────────────────────────────────── */
+view.addEventListener('click', e=>{
+  const n = e.target.closest('.fn');
+  if (n) { showInfo(n.dataset.id); return; }
+  if (!e.target.closest('.ft-tools') && !e.target.closest('#ipanel')) closeInfo();
+});
+document.getElementById('ip-body').addEventListener('click', e=>{
+  const b = e.target.closest('[data-go]'); if(!b) return;
+  const id = b.dataset.go, box = cur._boxes && cur._boxes[id];
+  showInfo(id);
+  if (box) PZ.centerOn({x:box.x-(cur._ox||0), y:box.y-(cur._oy||0), w:box.w, h:box.h});
+});
+document.getElementById('zi').onclick = ()=>PZ.zoomBy(1.25);
+document.getElementById('zo').onclick = ()=>PZ.zoomBy(0.8);
+document.getElementById('zf').onclick = ()=>PZ.fit();
+document.addEventListener('keydown', e=>{
+  if (e.key==='Escape') closeInfo();
+  else if (e.key==='+'||e.key==='=') PZ.zoomBy(1.25);
+  else if (e.key==='-') PZ.zoomBy(0.8);
+  else if (e.key==='0') PZ.fit();
+});
+setTimeout(()=>{const h=document.getElementById('hint');if(h)h.classList.add('gone');},5500);
+
+/* ── BAŞLAT ───────────────────────────────────────────── */
+PZ = FT.panzoom(view, stage, { ignore: e => !!e.target.closest('.ft-tools') });
+window.addEventListener('resize', ()=>{ if(cur) PZ.fit(); });
+
+async function init(){
+  try{
+    const [ft, chars] = await Promise.all([
+      Wiki.loadData('familytree.json'),
+      Wiki.loadData('characters.json').catch(()=>({characters:[]}))
+    ]);
+    (chars.characters||[]).forEach(c=>{ CHARS[c.id]=c; });
+    TREES = (ft.trees||[]).map(FT.normalize).sort((a,b)=>(a.order||0)-(b.order||0));
+    if (!TREES.length){
+      const em=document.getElementById('ft-empty'); em.style.display='flex';
+      em.textContent = L==='tr' ? 'Henüz soy ağacı eklenmemiş.' : 'No family trees yet.';
+      return;
+    }
+    const want = SWRoute.id('soy-agaci');   /* #/soy-agaci/<sekme>  (eski #<sekme> da okunur) */
+    showTree(TREES.find(t=>t.id===want) || TREES[0], true);
+  }catch(err){
+    console.error('Soy ağacı verisi yüklenemedi:', err);
+    Wiki.renderError && Wiki.renderError('ft-empty', err);
+    const em=document.getElementById('ft-empty'); em.style.display='flex';
+  }
+}
+
+document.addEventListener('langchange', e=>{
+  L = e.detail;
+  applyLang();
+  draw();
+  if (activeId) showInfo(activeId);
+});
+window.addEventListener('hashchange', ()=>{
+  const t = TREES.find(x=>x.id===SWRoute.id('soy-agaci'));
+  if (t && t!==cur) showTree(t, true);
+});
+
+Wiki.initWiki({ injectFooter: false });
+L = Wiki.Lang.get();
+applyLang();
+init();
+</script>
+
+</body>
+</html>

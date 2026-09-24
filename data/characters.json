@@ -1,0 +1,4374 @@
+{
+  "characters": [
+    {
+      "id": "zeandor",
+      "group": "stallhart",
+      "status": "alive",
+      "tags": [
+        "isyan",
+        "surgun",
+        "miras-veraset"
+      ],
+      "name": {
+        "tr": "Zeandor Stallhart",
+        "en": "Zeandor Stallhart"
+      },
+      "house": {
+        "tr": "İmparatorluk Hanedanı",
+        "en": "Imperial Dynasty"
+      },
+      "title": {
+        "tr": "Melik Vali → İmparator",
+        "en": "Governor King → Emperor"
+      },
+      "birth": {
+        "tr": "Başkent",
+        "en": "The Capital"
+      },
+      "alleg": {
+        "tr": "Stallhart İmparatorluğu",
+        "en": "Stallhart Empire"
+      },
+      "weapon": {
+        "tr": "Selya çeliği kılıç · Babasının mührü",
+        "en": "Selya steel sword · His father’s seal"
+      },
+      "epi": {
+        "tr": "Yarının Hükümdarı · Sürgünün Oğlu",
+        "en": "Tomorrow's Sovereign · Son of Exile"
+      },
+      "quote": {
+        "tr": "İmparatorluk bir zincirdir. Zayıf halkayı bulursun, onu koparırsın — gerisi kendiliğinden çözülür.",
+        "en": "The empire is a chain. Find the weak link, break it — the rest unravels on its own."
+      },
+      "bio": {
+        "tr": "\"Bölüm - Elçi\"de, annesinin ölümüyle aynı anda doğar. Başkent Arava'da doğmuş, dokuz yaşında sürgüne gönderildiği Selya eyaletinde büyümüştür. \"Bölüm - Öneri\"den sonra Selya Meliği (Prens-Vali) olarak atanır. Selya'da bir vinç sistemi tasarlayacak kadar mühendislik zekâsına sahiptir. Haydut çetesi liderini bizzat öldürüp kellesini başkente uyarı olarak gönderir. Erthan isyanını bastırarak birçok unvan kazanır. \"Bölüm - İmparator\" kısmında Amadon'dan sonra tahta geçer.",
+        "en": "In \"Chapter - The Envoy\" he is born at the same moment as his mother's death. Born in the capital Arava, he grew up in the Province of Selya, where he was exiled at the age of nine. After \"Chapter - The Proposal\" he is appointed Melik of Selya (Prince-Governor). He has the engineering intelligence to design a crane system in Selya. He personally kills the leader of the bandit gang and sends his head to the capital as a warning. By suppressing Erthan's rebellion he earns many titles. In the \"Chapter - The Emperor\" part he succeeds to the throne after Amadon."
+      },
+      "allies": [
+        "celios",
+        "liaher",
+        "elyndra"
+      ],
+      "enemies": [
+        "edun-solgar",
+        "reun-solgar",
+        "erthan"
+      ],
+      "chapters": [
+        "Bölüm – Muhafız",
+        "Bölüm – Karar"
+      ],
+      "image": "assets/images/characters/zeandor_stallhart01.png"
+    },
+    {
+      "id": "amadon",
+      "group": "stallhart",
+      "status": "deceased",
+      "tags": [
+        "savas",
+        "miras-veraset"
+      ],
+      "name": {
+        "tr": "Amadon Stallhart",
+        "en": "Amadon Stallhart"
+      },
+      "house": {
+        "tr": "İmparatorluk Hanedanı",
+        "en": "Imperial Dynasty"
+      },
+      "title": {
+        "tr": "Seltanya Meliki → İmparator",
+        "en": "Melik of Seltanya → Emperor"
+      },
+      "birth": {
+        "tr": "Başkent",
+        "en": "The Capital"
+      },
+      "alleg": {
+        "tr": "Stallhart İmparatorluğu",
+        "en": "Stallhart Empire"
+      },
+      "epi": {
+        "tr": "Enkazın Hükümdarı",
+        "en": "Sovereign of the Ruins"
+      },
+      "quote": {
+        "tr": "Bir imparatorluğu taştan inşa ederler. Ben onu korkudan inşa ettim.",
+        "en": "They build empires from stone. I built mine from fear."
+      },
+      "bio": {
+        "tr": "Imloth'un paranoyak kıskançlığı yüzünden Seltanya'ya sürülmüş, burada adil ve başarılı bir Melik Vali olarak halkın sevgisini kazanmıştır. Abisi Imloth'un ölüm döşeğindeki çağrısıyla başkente dönmüş; Kurultay'ı \"Yagbu\" sıfatıyla yönetip abisinin ölümüyle tahta çıkmıştır. Devraldığı un ufak olmuş imparatorluğu toparlamak için ordu bütçesini kısmış, acımasız bürokratik tasfiyelere girişmiştir. Saltanatının son yıllarında amansız bir hastalığa yakalanmıştır.",
+        "en": "Exiled to Seltanya because of Imloth's paranoid jealousy, he won the people's love there as a just and successful Governor King. Returning to the capital at his elder brother Imloth's deathbed summons, he ran the Kurultay as \"Yagbu\" and ascended the throne upon his brother's death. To rebuild the shattered empire he inherited, he cut the army budget and undertook ruthless bureaucratic purges. In the final years of his reign he was struck by a relentless illness."
+      },
+      "allies": [],
+      "enemies": [
+        "edun-solgar",
+        "erthan"
+      ],
+      "chapters": [
+        "Bölüm – Karar"
+      ],
+      "weapon": {
+        "tr": "Karabıçak hançeri · Mühürlü fermanlar",
+        "en": "Black Claw dagger · Sealed decrees"
+      },
+      "nameMeaning": {
+        "tr": "Gök Çeliği.",
+        "en": "Sky Steel."
+      },
+      "kinship": {
+        "tr": "Eşi İmparatoriçe Meryen; oğulları Prens Lunin (ölür) ve Prens Lun Aldris; yeğeni Zeandor'a karşı hem şefkat hem tehdit hisseder; başvezirleri Celios Selya, ardından Edun Solgar; en yakın dostu Hiles Vizelar (sürgüne gönderir). Dosya 3: Elron'un oğlu, Imloth'un kardeşi.",
+        "en": "His wife Empress Meryen; his sons Prince Lunin (dies) and Prince Lun Aldris; he feels both affection and threat toward his nephew Zeandor; his grand viziers Celios Selya, then Edun Solgar; his closest friend Hiles Vizelar (whom he sends into exile). File 3: Son of Elron, brother of Imloth."
+      }
+    },
+    {
+      "id": "imloth",
+      "group": "stallhart",
+      "status": "deceased",
+      "tags": [
+        "saray-entrikasi",
+        "miras-veraset"
+      ],
+      "name": {
+        "tr": "İmloth Stallhart",
+        "en": "Imloth Stallhart"
+      },
+      "house": {
+        "tr": "İmparatorluk Hanedanı",
+        "en": "Imperial Dynasty"
+      },
+      "title": {
+        "tr": "İmparator",
+        "en": "Emperor"
+      },
+      "birth": {
+        "tr": "Başkent",
+        "en": "The Capital"
+      },
+      "alleg": {
+        "tr": "Stallhart İmparatorluğu",
+        "en": "Stallhart Empire"
+      },
+      "epi": {
+        "tr": "Tembel · Derin Tuzak",
+        "en": "The Lazy · The Deep Trap"
+      },
+      "quote": {
+        "tr": "Bir imparator her şeyi bilemez. Bilen ise imparator değildir.",
+        "en": "An emperor cannot know everything. He who knows all is no emperor."
+      },
+      "bio": {
+        "tr": "KS 1451'de tahta çıktı. \"Bölüm - Elçi\" ile dâhil olur, \"Bölüm - Son Nefes\"te ölür. Devlet işlerini danışmanlarına bıraktı. Karısı Selmira'nın ölümünden sonra vicdan azabıyla çöktü. Kardeşi Amadon'a karşı derin bir kıskançlık ve paranoya besledi.",
+        "en": "He took the throne in KS 1451. He is involved with \"Chapter - The Envoy\" and dies in \"Chapter - Last Breath\". He left state affairs to his advisors. After his wife Selmira's death he collapsed under remorse. He harbored deep jealousy and paranoia toward his brother Amadon."
+      },
+      "allies": [],
+      "enemies": [],
+      "chapters": [],
+      "image": "assets/images/characters/IMLOTH_STALLHART.jpg",
+      "weapon": {
+        "tr": "İmparatorluk asası",
+        "en": "Imperial scepter"
+      },
+      "nameMeaning": {
+        "tr": "Derin Tuzak / Gölge Oyunu",
+        "en": "Deep Trap / Shadow Play"
+      },
+      "kinship": {
+        "tr": "Karısı İmparatoriçe Selmira; oğulları Zeandor, Prens Amadon; Başvezir Celios Selya. Elron'un büyük oğlu, Amadon'un ağabeyi.",
+        "en": "His wife Empress Selmira; his sons Zeandor, Prince Amadon; Grand Vizier Celios Selya. Elron's elder son, Amadon's elder brother."
+      }
+    },
+    {
+      "id": "selmira",
+      "group": "stallhart",
+      "status": "deceased",
+      "tags": [
+        "din"
+      ],
+      "name": {
+        "tr": "İmparatoriçe Selmira",
+        "en": "Empress Selmira"
+      },
+      "house": {
+        "tr": "İmparatorluk Hanedanı",
+        "en": "Imperial Dynasty"
+      },
+      "title": {
+        "tr": "İmparatoriçe",
+        "en": "Empress"
+      },
+      "birth": {
+        "tr": "Bilinmiyor",
+        "en": "Unknown"
+      },
+      "alleg": {
+        "tr": "Stallhart İmparatorluğu",
+        "en": "Stallhart Empire"
+      },
+      "epi": {
+        "tr": "",
+        "en": ""
+      },
+      "quote": {
+        "tr": "",
+        "en": ""
+      },
+      "bio": {
+        "tr": "Zeandor'u doğururken kan kaybından ölür. Halkın arasında sevilen, yetimlere ve yoksullara yardım eden dindar bir imparatoriçe olarak tarihe geçmiştir.",
+        "en": "She dies of blood loss while giving birth to Zeandor. She went down in history as a devout empress, beloved among the people, who helped orphans and the poor."
+      },
+      "allies": [],
+      "enemies": [],
+      "chapters": [
+        "Bölüm – Elçi",
+        "Bölüm – Tembellik",
+        "Bölüm – Cenaze"
+      ],
+      "image": "assets/images/characters/SELMIRA_STALLHART.jpg",
+      "weapon": {
+        "tr": "çe omuzlarına doğru yayılarak",
+        "en": "…spreading toward her shoulders"
+      },
+      "nameMeaning": {
+        "tr": "Gümüş Okyanus.",
+        "en": "Silver Ocean."
+      },
+      "kinship": {
+        "tr": "Kocası Imloth; oğlu Zeandor; kayınbiraderi Amadon'a (ima edilen) bir yakınlık besler, bu da Imloth'un kıskançlığını körükler.",
+        "en": "Her husband Imloth; her son Zeandor; she holds an (implied) closeness to her brother-in-law Amadon, which fuels Imloth's jealousy."
+      }
+    },
+    {
+      "id": "lun-aldris",
+      "group": "stallhart",
+      "status": "alive",
+      "tags": [
+        "din",
+        "saray-entrikasi",
+        "buyu-mit"
+      ],
+      "name": {
+        "tr": "Lun Aldris Stallhart",
+        "en": "Lun Aldris Stallhart"
+      },
+      "house": {
+        "tr": "İmparatorluk Hanedanı",
+        "en": "Imperial Dynasty"
+      },
+      "title": {
+        "tr": "Şehzade",
+        "en": "Crown Prince"
+      },
+      "birth": {
+        "tr": "Başkent",
+        "en": "The Capital"
+      },
+      "alleg": {
+        "tr": "Stallhart İmparatorluğu",
+        "en": "Stallhart Empire"
+      },
+      "epi": {
+        "tr": "Ay Gözcüsü · Kutsal Işığın Varisi",
+        "en": "Moonwatcher · Heir of the Sacred Light"
+      },
+      "quote": {
+        "tr": "",
+        "en": ""
+      },
+      "bio": {
+        "tr": "\"Bölüm - Yolcu\"da doğar. \"Bölüm - İmparator\"da annesiyle başkentten kaçar. Amadon'un rüyasında gördüğü \"Ay\" kehanetiyle ilişkilendirilip sahte-kutsal bir meşruiyet kazandırılan çocuk; sahte kehanetin hedefindeki isim. Dosya 3: Meryen Stallhart'ın oğlu. Saray entrikalarında geleceği üzerine hesaplar yapılan genç prens.",
+        "en": "Born in \"Chapter - The Traveler\". In \"Chapter - The Emperor\" he flees the capital with his mother. A child who, associated with the \"Moon\" prophecy Amadon saw in his dream, is given a pseudo-sacred legitimacy; the name targeted by the false prophecy. File 3: Son of Meryen Stallhart. A young prince over whose future calculations are made in palace intrigues."
+      },
+      "allies": [
+        "meryen"
+      ],
+      "enemies": [
+        "zeandor",
+        "edun-solgar"
+      ],
+      "chapters": [],
+      "image": "",
+      "weapon": {
+        "tr": "",
+        "en": ""
+      },
+      "nameMeaning": {
+        "tr": "Ay Gözcüsü",
+        "en": "Moonwatcher"
+      },
+      "kinship": {
+        "tr": "Annesi Meryen; babası Amadon. Edun Solgar'ın planlarının hedefi.",
+        "en": "His mother Meryen; his father Amadon. The target of Edun Solgar's plans."
+      }
+    },
+    {
+      "id": "meryen",
+      "group": "stallhart",
+      "status": "alive",
+      "tags": [],
+      "name": {
+        "tr": "Meryen Stallhart",
+        "en": "Meryen Stallhart"
+      },
+      "house": {
+        "tr": "İmparatorluk Hanedanı",
+        "en": "Imperial Dynasty"
+      },
+      "title": {
+        "tr": "İmparatoriçe",
+        "en": "Empress"
+      },
+      "birth": {
+        "tr": "Bilinmiyor",
+        "en": "Unknown"
+      },
+      "alleg": {
+        "tr": "Stallhart İmparatorluğu",
+        "en": "Stallhart Empire"
+      },
+      "epi": {
+        "tr": "",
+        "en": ""
+      },
+      "quote": {
+        "tr": "",
+        "en": ""
+      },
+      "bio": {
+        "tr": "Zarif yüzlü, soluk tenli, gri gözlü; zümrüt yeşili sabahlığı ve yakut kolyesiyle tanınır. Amadon'un eşi. Edun Solgar tarafından Lun Aldris'i gizlice taçlandırmak üzere manipüle edildi; başkenti terk etmek zorunda kaldı.",
+        "en": "Known by her graceful face, pale skin, gray eyes, emerald green dressing gown and ruby necklace. Wife of Amadon. She was manipulated by Edun Solgar into secretly crowning Lun Aldris; she was forced to leave the capital."
+      },
+      "allies": [
+        "lun-aldris"
+      ],
+      "enemies": [
+        "zeandor"
+      ],
+      "chapters": [],
+      "image": "",
+      "weapon": {
+        "tr": "isli ve biçimli bir yay",
+        "en": "a sooty and shapely bow"
+      },
+      "nameMeaning": {
+        "tr": "Deniz Ruhlu / Okyanusun Şifası",
+        "en": "Sea-Spirited / Healing of the Ocean"
+      }
+    },
+    {
+      "id": "craes",
+      "group": "stallhart",
+      "status": "historical",
+      "tags": [
+        "savas",
+        "din",
+        "ask",
+        "miras-veraset"
+      ],
+      "name": {
+        "tr": "I. Craes Stallhart",
+        "en": "Craes Stallhart I"
+      },
+      "house": {
+        "tr": "İmparatorluk Hanedanı",
+        "en": "Imperial Dynasty"
+      },
+      "title": {
+        "tr": "Kurucu Hakan",
+        "en": "Founder Khan"
+      },
+      "birth": {
+        "tr": "Stallhart Bozkırları",
+        "en": "Stallhart Steppes"
+      },
+      "alleg": {
+        "tr": "Stallhart İmparatorluğu",
+        "en": "Stallhart Empire"
+      },
+      "epi": {
+        "tr": "Acımasız Hakikatin Eli",
+        "en": "Hand of Ruthless Truth"
+      },
+      "quote": {
+        "tr": "Birleşik halk yenilmezdir. Toprak ise onun ödülüdür.",
+        "en": "A united people is invincible. Land is merely their reward."
+      },
+      "bio": {
+        "tr": "Stallhart Hanedanı'nın kurucusu. Paralı asker liderliğinden krallığa yükselen ilk hükümdardır. Saltanatı KS 1144--1160. Aleron esaretinde/savaşında bir gözünü kaybetmiş; bu yara yüzünden ömür boyu aksak yürümüştür. \"Kutsal Kan Doktrini\"ni ilan eden ilk kişidir.",
+        "en": "Founder of the House of Stallhart. The first ruler to rise from mercenary leadership to a kingdom. His reign was KS 1144–1160. He lost an eye in the captivity/war at Aleron; because of this wound he walked with a limp for the rest of his life. He is the first to proclaim the \"Holy Blood Doctrine\"."
+      },
+      "allies": [],
+      "enemies": [],
+      "chapters": [],
+      "image": "",
+      "weapon": {
+        "tr": "",
+        "en": ""
+      },
+      "nameMeaning": {
+        "tr": "Crae (Çıplak Gerçek) + Es (El) → Gerçeğin Eli / Acımasız Eylem.",
+        "en": "Crae (Naked Truth) + Es (Hand) → Hand of Truth / Ruthless Action."
+      },
+      "kinship": {
+        "tr": "Eşi Hillith (Amuseya Beyi'nin kızı); kızı ve halefi I. Nadima; kardeşi (Darova Muharebesi'nde ölen, adı anılmayan küçük kardeş). Kadim/Gizli Lore bölümünde \"Creas Stallhart\" (efsanevi versiyon) başlığıyla alternatif bir köken anlatısı mevcuttur; bkz. Bölüm 13.",
+        "en": "His wife Hillith (daughter of the Bey of Amuseya); his daughter and successor Nadima I; his brother (the unnamed younger brother who died at the Battle of Darova). In the Ancient/Secret Lore section there is an alternative origin narrative titled \"Creas Stallhart\" (legendary version); see Chapter 13."
+      },
+      "reignNote": {
+        "tr": "Tahta cikis: KS 1144 (Krallığın kuruluşu) --- miras yoluyla değil, birleştirme ve fetihle; KS 1136\\'da Amuseya Beyi olmuştu Olum: KS 1160 --- savaş yaralarının birikimiyle",
+        "en": "Accession: KS 1144 (founding of the Kingdom) — not by inheritance but by unification and conquest; he had become Bey of Amuseya in KS 1136. Death: KS 1160 — from the accumulation of war wounds"
+      }
+    },
+    {
+      "id": "rones",
+      "group": "stallhart",
+      "status": "historical",
+      "tags": [
+        "sinir-bolgesi"
+      ],
+      "name": {
+        "tr": "II. Rones Alvro Stallhart",
+        "en": "Rones Alvro Stallhart II"
+      },
+      "house": {
+        "tr": "İmparatorluk Hanedanı",
+        "en": "Imperial Dynasty"
+      },
+      "title": {
+        "tr": "İmparator",
+        "en": "Emperor"
+      },
+      "birth": {
+        "tr": "Başkent",
+        "en": "The Capital"
+      },
+      "alleg": {
+        "tr": "Stallhart İmparatorluğu",
+        "en": "Stallhart Empire"
+      },
+      "weapon": {
+        "tr": "",
+        "en": ""
+      },
+      "epi": {
+        "tr": "Demiryumruk",
+        "en": "Iron Fist"
+      },
+      "quote": {
+        "tr": "Disiplin imparatorluğun sütunudur. Gevşetme.",
+        "en": "Discipline is the empire's pillar. Do not loosen it."
+      },
+      "bio": {
+        "tr": "KS 1412–1441. Demir disiplin ve mutlak merkeziyetçilik. Burria'yı haraca bağladı, Arathen sınırını dondurdu. Sokaklarda yas tutularak uğurlanan nadir imparatorlardan.",
+        "en": "KS 1412–1441. Iron discipline and absolute centralism. He made Burria pay tribute and froze the Arathen border. One of the rare emperors seen off with mourning in the streets."
+      },
+      "allies": [],
+      "enemies": [],
+      "chapters": [],
+      "image": "assets/images/characters/Rones Alvro Stallhart II.PNG"
+    },
+    {
+      "id": "elron",
+      "group": "stallhart",
+      "status": "historical",
+      "tags": [
+        "savas"
+      ],
+      "name": {
+        "tr": "III. Elron Stallhart",
+        "en": "Elron Stallhart III"
+      },
+      "house": {
+        "tr": "İmparatorluk Hanedanı",
+        "en": "Imperial Dynasty"
+      },
+      "title": {
+        "tr": "İmparator",
+        "en": "Emperor"
+      },
+      "birth": {
+        "tr": "Başkent",
+        "en": "The Capital"
+      },
+      "alleg": {
+        "tr": "Stallhart İmparatorluğu",
+        "en": "Stallhart Empire"
+      },
+      "weapon": {
+        "tr": "",
+        "en": ""
+      },
+      "epi": {
+        "tr": "Sulh Düşkünü",
+        "en": "The Peace-Lover"
+      },
+      "quote": {
+        "tr": "",
+        "en": ""
+      },
+      "bio": {
+        "tr": "Garnizonları boşalttı; pasif tutumu iki oğlunu zıt yönlerde şekillendirdi. Savaş naralarından ve vergi hesaplarından nefret eden, barışçıl ve silik bir hükümdardı. Garnizonları boşaltmış; pasif tutumu oğulları Imloth ve Amadon'un tamamen zıt yönlerde şekillenmesine sebep olmuştur.",
+        "en": "He emptied the garrisons; his passive stance shaped his two sons in opposite directions. He was a peaceful and faded ruler who hated war cries and tax accounts. He had emptied the garrisons; his passive stance caused his sons Imloth and Amadon to be shaped in completely opposite directions."
+      },
+      "allies": [],
+      "enemies": [],
+      "chapters": [],
+      "image": "assets/images/characters/Elron_Stallhart3.PNG"
+    },
+    {
+      "id": "edlas",
+      "group": "arhan",
+      "status": "deceased",
+      "tags": [
+        "din",
+        "buyu-mit"
+      ],
+      "name": {
+        "tr": "Edlas Arhan",
+        "en": "Edlas Arhan"
+      },
+      "house": {
+        "tr": "Arhan Hanesi",
+        "en": "House Arhan"
+      },
+      "title": {
+        "tr": "Kont'un Oğlu · Tarikat Üyesi",
+        "en": "Count's Son · Cult Member"
+      },
+      "birth": {
+        "tr": "Arhan Malikanesi",
+        "en": "Arhan Manor"
+      },
+      "alleg": {
+        "tr": "İlk Anne Tarikatı",
+        "en": "First Mother Cult"
+      },
+      "epi": {
+        "tr": "Zihin — Erthan'ın Çekicine Karşı",
+        "en": "The Mind — Against Erthan's Hammer"
+      },
+      "quote": {
+        "tr": "Tanrılar bizi terk etmedi. Biz onları terk ettik — yasalar yoluyla.",
+        "en": "The gods did not abandon us. We abandoned them — through laws."
+      },
+      "bio": {
+        "tr": "Erthan'ı zindandan kurtarıp can borcu karşılığında sadakat kazandırdı. Babasının önünde Erthan'ın kahramanlığını kendine mal eden bir yalan söyledi. Dosya 3: Arhan hanesinin katledilmesinin ardından derin bir yıkıma uğradı; Zeren'in ölümünden sonra yasak büyülere sığınarak trajik biçimde can verdi.",
+        "en": "He rescued Erthan from the dungeon and earned his loyalty in return for a life debt. In front of his father he told a lie claiming Erthan's heroism as his own. File 3: After the massacre of House Arhan he suffered deep ruin; after Zeren's death he took refuge in forbidden magic and tragically gave his life."
+      },
+      "allies": [
+        "erthan",
+        "fihor"
+      ],
+      "enemies": [
+        "wolrez-galet"
+      ],
+      "chapters": [
+        "Bölüm – Bakır",
+        "Bölüm – Tarikat",
+        "Bölüm – Mağara"
+      ],
+      "weapon": {
+        "tr": "koyu kahverengi yaydı",
+        "en": "…dark brown bow"
+      },
+      "kinship": {
+        "tr": "Babası Kont Fihor; ağabeyi (adı net belirtilmemiş, \"Aldris\" olarak anılan kibirli komutan); yaveri Erthan; kahyası Nanon; gizli aşkı (mağarada bulunan yaralı suikastçı kadın --- Dosya 2 / ya da Dosya 3'te Zeren/Liane olarak netleştirilmiştir).",
+        "en": "His father Count Fihor; his elder brother (name not clearly given, the arrogant commander referred to as \"Aldris\"); his aide Erthan; his steward Nanon; his secret love (the wounded female assassin found in the cave — clarified as Zeren/Liane in File 2 / or File 3)."
+      }
+    },
+    {
+      "id": "fihor",
+      "group": "arhan",
+      "status": "deceased",
+      "tags": [
+        "savas",
+        "ask",
+        "suikast-casusluk"
+      ],
+      "name": {
+        "tr": "Fihor Arhan",
+        "en": "Fihor Arhan"
+      },
+      "house": {
+        "tr": "Arhan Hanesi",
+        "en": "House Arhan"
+      },
+      "title": {
+        "tr": "Kont · Askerî İstihbarat Şefi",
+        "en": "Count · Head of Military Intelligence"
+      },
+      "birth": {
+        "tr": "Arhan Malikanesi",
+        "en": "Arhan Manor"
+      },
+      "alleg": {
+        "tr": "Stallhart İmparatorluğu",
+        "en": "Stallhart Empire"
+      },
+      "epi": {
+        "tr": "Sükût Eden Baba",
+        "en": "The Silenced Father"
+      },
+      "quote": {
+        "tr": "Bilgi kılıcın keskinliğidir. Ama sevgi kılıcı köreltir.",
+        "en": "Knowledge is the blade's edge. But love blunts it."
+      },
+      "bio": {
+        "tr": "Başkomutan Olinder Albea'nın suikastını gizlice araştırmakla görevlendirildi. Sadakati yalnızca çelikle ölçen, merhametsiz bir adam; küçük oğlu Edlas'ın kitaplara düşkünlüğünden hayal kırıklığı duyar, ama Erthan olayı sonrası ona karşı gurur duymaya başlar; Başkomutan Olinder Albea'nın suikastını gizlice araştırmakla görevlendirilir.",
+        "en": "He was secretly tasked with investigating the assassination of Supreme Commander Olinder Albea. A merciless man who measures loyalty only by steel; he is disappointed by his younger son Edlas's fondness for books but begins to feel pride in him after the Erthan incident; he is secretly tasked with investigating the assassination of Supreme Commander Olinder Albea."
+      },
+      "allies": [
+        "edlas",
+        "kaelen"
+      ],
+      "enemies": [
+        "wolrez-galet"
+      ],
+      "chapters": [],
+      "image": "",
+      "weapon": {
+        "tr": "",
+        "en": ""
+      },
+      "kinship": {
+        "tr": "Oğulları Edlas (küçük) ve adı belirtilmeyen büyük oğlu (Aldris); İmparator Amadon'a doğrudan rapor veren sadakat bağı.",
+        "en": "His sons Edlas (the younger) and the unnamed elder son (Aldris); a bond of loyalty reporting directly to Emperor Amadon."
+      }
+    },
+    {
+      "id": "kaelen",
+      "group": "arhan",
+      "status": "deceased",
+      "tags": [
+        "savas"
+      ],
+      "name": {
+        "tr": "Kaelen Arhan",
+        "en": "Kaelen Arhan"
+      },
+      "house": {
+        "tr": "Arhan Hanesi",
+        "en": "House Arhan"
+      },
+      "title": {
+        "tr": "Arhan Orduları Komutanı",
+        "en": "Commander of Arhan Armies"
+      },
+      "birth": {
+        "tr": "Arhan Malikanesi",
+        "en": "Arhan Manor"
+      },
+      "alleg": {
+        "tr": "Arhan Hanesi",
+        "en": "House Arhan"
+      },
+      "epi": {
+        "tr": "",
+        "en": ""
+      },
+      "quote": {
+        "tr": "",
+        "en": ""
+      },
+      "bio": {
+        "tr": "Fihor'un büyük oğlu. 2.000 kişilik Arhan ordusuyla Galet güçlerine karşı savaştı. Galet birliğini yerle bir ettikten sonra kılıç yaralarından hayatını kaybetti.",
+        "en": "Eldest son of Fihor. He fought against the Galet forces with the 2,000-strong Arhan army. After razing the Galet force, he died of his sword wounds."
+      },
+      "allies": [
+        "fihor"
+      ],
+      "enemies": [
+        "wolrez-galet"
+      ],
+      "chapters": [],
+      "image": "",
+      "weapon": {
+        "tr": "",
+        "en": ""
+      }
+    },
+    {
+      "id": "edun-solgar",
+      "group": "solgar",
+      "status": "alive",
+      "tags": [
+        "saray-entrikasi",
+        "surgun"
+      ],
+      "name": {
+        "tr": "Edun Solgar",
+        "en": "Edun Solgar"
+      },
+      "house": {
+        "tr": "Solgar Hanesi",
+        "en": "House Solgar"
+      },
+      "title": {
+        "tr": "Başvezir",
+        "en": "Grand Vizier"
+      },
+      "birth": {
+        "tr": "Solgar Eyaleti",
+        "en": "Solgar Province"
+      },
+      "alleg": {
+        "tr": "Kendi Çıkarları",
+        "en": "Self-Interest"
+      },
+      "epi": {
+        "tr": "Engerek",
+        "en": "The Viper"
+      },
+      "quote": {
+        "tr": "İktidar, elde tutanın değil onu şekillendirenin elindedir.",
+        "en": "Power belongs not to the one who holds it, but to the one who shapes it."
+      },
+      "bio": {
+        "tr": "Tamamen kel, kalın kıvrık bıyıklı, zümrüt yeşili ipek cüppeli, yakut yüzüklü, mürekkep lekeli parmaklı. Soğukkanlı, lükse düşkün, acımasız derecede hırslı. Meryen'i Lun Aldris'i taçlandırmak üzere manipüle etti. Zeandor tarafından Solgar'a sürgün edildi.",
+        "en": "Completely bald, with a thick curled mustache, an emerald green silk robe, ruby rings, ink-stained fingers. Cold-blooded, luxury-loving, ruthlessly ambitious. He manipulated Meryen into crowning Lun Aldris. He was exiled to Solgar by Zeandor."
+      },
+      "allies": [
+        "reun-solgar"
+      ],
+      "enemies": [
+        "amadon",
+        "zeandor"
+      ],
+      "chapters": [],
+      "image": "",
+      "weapon": {
+        "tr": "rlarından şakaklara yayılan",
+        "en": "…spreading from the … to the temples"
+      },
+      "kinship": {
+        "tr": "Oğlu Reun Solgar; kuzeni Zellan; Solgar eyaletinin hanedan çıkarları. Dosya 3: Amadon Stallhart'ın Başveziri, Reun Solgar'ın hanedan reisi.",
+        "en": "His son Reun Solgar; his cousin Zellan; the dynastic interests of the Solgar province. File 3: Grand Vizier of Amadon Stallhart, head of Reun Solgar's house."
+      }
+    },
+    {
+      "id": "reun-solgar",
+      "group": "solgar",
+      "status": "alive",
+      "tags": [
+        "savas",
+        "ask",
+        "miras-veraset"
+      ],
+      "name": {
+        "tr": "Reun Solgar",
+        "en": "Reun Solgar"
+      },
+      "house": {
+        "tr": "Solgar Hanesi",
+        "en": "House Solgar"
+      },
+      "title": {
+        "tr": "Solgar Orduları Komutanı",
+        "en": "Commander of Solgar Armies"
+      },
+      "birth": {
+        "tr": "Solgar Eyaleti",
+        "en": "Solgar Province"
+      },
+      "alleg": {
+        "tr": "Solgar Hanesi",
+        "en": "House Solgar"
+      },
+      "epi": {
+        "tr": "",
+        "en": ""
+      },
+      "quote": {
+        "tr": "",
+        "en": ""
+      },
+      "bio": {
+        "tr": "Babasının gözetiminde Solgar hanedanının temsilcisi olarak saray siyasetinde yer almıştır. Babasının aksine daha temkinli/endişeli; başkentin siyasi risklerinden kaçmak ister. Dosya 3: Solgar hanedanının askeri ve siyasi kanadını temsil eden, saray dengelerinde rol alan aile üyesi.",
+        "en": "Under his father's supervision he took part in palace politics as a representative of the Solgar dynasty. Unlike his father, more cautious/anxious; he wants to escape the political risks of the capital. File 3: A family member who represents the military and political wing of the Solgar dynasty and plays a role in the palace balances."
+      },
+      "allies": [
+        "edun-solgar"
+      ],
+      "enemies": [
+        "erthan"
+      ],
+      "chapters": [],
+      "image": "",
+      "weapon": {
+        "tr": "",
+        "en": ""
+      },
+      "kinship": {
+        "tr": "Babası Edun Solgar.",
+        "en": "His father Edun Solgar."
+      }
+    },
+    {
+      "id": "celios",
+      "group": "selya",
+      "status": "alive",
+      "tags": [
+        "savas",
+        "saray-entrikasi",
+        "surgun"
+      ],
+      "name": {
+        "tr": "Celios Selya",
+        "en": "Celios Selya"
+      },
+      "house": {
+        "tr": "Selya Hanesi",
+        "en": "House Selya"
+      },
+      "title": {
+        "tr": "Selya Lordu · Zeandor'un Eğitmeni",
+        "en": "Lord of Selya · Zeandor's Mentor"
+      },
+      "birth": {
+        "tr": "Selya Adası",
+        "en": "Island of Selya"
+      },
+      "alleg": {
+        "tr": "Stallhart İmparatorluğu",
+        "en": "Stallhart Empire"
+      },
+      "epi": {
+        "tr": "Selya'nın Kart Tilkisi",
+        "en": "The Old Fox of Selya"
+      },
+      "quote": {
+        "tr": "Sürgün ceza değildir. Sürgün, savaşçıya silahlarını seçmeyi öğretir.",
+        "en": "Exile is not punishment. Exile teaches the warrior to choose their weapons."
+      },
+      "bio": {
+        "tr": "Derin çizgili yüzlü, siyah cüppeli, seyrek taranmış saçlı, kanca burunlu eski Başvezir. Zeandor'u Selya'da büyüttü; stratejiden tarihe, denizciliğe kadar her şeyi öğretti. İki eşi var: Adelis ve Lysara.",
+        "en": "The former Grand Vizier with a deeply lined face, black robes, sparsely combed hair and a hooked nose. He raised Zeandor in Selya; he taught him everything from strategy to history to seamanship. He has two wives: Adelis and Lysara."
+      },
+      "allies": [
+        "zeandor",
+        "liaher",
+        "elyndra"
+      ],
+      "enemies": [],
+      "chapters": [
+        "Bölüm – Muhafız"
+      ],
+      "image": "assets/images/characters/CELIOS_SELYA.jpg",
+      "weapon": {
+        "tr": "Başvezir mührü · Siyah cüppe",
+        "en": "Grand Vizier’s seal · Black robes"
+      },
+      "nameMeaning": {
+        "tr": "Kutsal Boynuz",
+        "en": "Sacred Horn"
+      }
+    },
+    {
+      "id": "liaher",
+      "group": "selya",
+      "status": "alive",
+      "tags": [
+        "buyu-mit"
+      ],
+      "name": {
+        "tr": "Liaher Selya",
+        "en": "Liaher Selya"
+      },
+      "house": {
+        "tr": "Selya Hanesi",
+        "en": "House Selya"
+      },
+      "title": {
+        "tr": "Celios'un Oğlu · Zeandor'un Dostu",
+        "en": "Son of Celios · Zeandor's Friend"
+      },
+      "birth": {
+        "tr": "Selya Adası",
+        "en": "Island of Selya"
+      },
+      "alleg": {
+        "tr": "Selya Hanesi",
+        "en": "House Selya"
+      },
+      "weapon": {
+        "tr": "Çift kısa kılıç",
+        "en": "Paired short swords"
+      },
+      "epi": {
+        "tr": "Sessiz Fırtına",
+        "en": "The Quiet Storm"
+      },
+      "quote": {
+        "tr": "",
+        "en": ""
+      },
+      "bio": {
+        "tr": "Zeandor'un baskın müfrezesinde ikinci kıskacı yönetir. Kör Yengeç'teki kâhinden kendi kehanetini alır. Dürüst, koruyucu, sadık; Zeandor'la kardeş gibidir; kız kardeşinin geleceğiyle ilgili derin bir kaygı taşır; Kör Yengeç'teki kâhinden kendi kehanetini de alır (\"dilsiz bir kara adam\" / bir sadakat sınavını kaybedeceği).",
+        "en": "He commands the second pincer in Zeandor's raiding detachment. He receives his own prophecy from the seer at the Blind Crab. Honest, protective, loyal; like a brother to Zeandor; he carries a deep worry about his sister's future; he also receives his own prophecy from the seer at the Blind Crab (\"a mute dark man\" / that he will fail a loyalty test)."
+      },
+      "allies": [
+        "zeandor",
+        "celios",
+        "elyndra"
+      ],
+      "enemies": [],
+      "chapters": [
+        "Bölüm – Muhafız"
+      ],
+      "image": "assets/images/characters/liaher_selya02.png"
+    },
+    {
+      "id": "elyndra",
+      "group": "selya",
+      "status": "alive",
+      "tags": [
+        "ask"
+      ],
+      "name": {
+        "tr": "Elyndra Selya",
+        "en": "Elyndra Selya"
+      },
+      "house": {
+        "tr": "Selya Hanesi",
+        "en": "House Selya"
+      },
+      "title": {
+        "tr": "Celios'un Kızı · Zeandor'un Sevgilisi",
+        "en": "Daughter of Celios · Zeandor's Lover"
+      },
+      "birth": {
+        "tr": "Selya Adası",
+        "en": "Island of Selya"
+      },
+      "alleg": {
+        "tr": "Selya Hanesi",
+        "en": "House Selya"
+      },
+      "weapon": {
+        "tr": "Yıldız işlemeli hançer",
+        "en": "Star-etched dagger"
+      },
+      "epi": {
+        "tr": "İlahi Yıldız",
+        "en": "Divine Star"
+      },
+      "quote": {
+        "tr": "",
+        "en": ""
+      },
+      "bio": {
+        "tr": "Zeandor'la aralarında yedi yıllık derin ve tehlikeli bir bağ vardır. Thaelen'den elf dili öğrenir. Zeki, sorgulayıcı, Thaelen'den elf dili öğrenir; Zeandor'la aralarında yedi yıllık derin ve tehlikeli bir bağ vardır; ailesinin bu bağı bir siyasi koz olarak kullanabileceğinden korkar.",
+        "en": "She shares a seven-year deep and dangerous bond with Zeandor. She learns the Elven language from Thaelen. Intelligent, inquisitive, she learns the Elven language from Thaelen; she shares a seven-year deep and dangerous bond with Zeandor; she fears her family may use this bond as a political card."
+      },
+      "allies": [
+        "zeandor",
+        "celios",
+        "liaher"
+      ],
+      "enemies": [],
+      "chapters": [
+        "Bölüm – Muhafız"
+      ],
+      "image": "assets/images/characters/elyndra_selya03.png"
+    },
+    {
+      "id": "erthan",
+      "group": "rebel",
+      "status": "deceased",
+      "tags": [
+        "savas",
+        "isyan"
+      ],
+      "name": {
+        "tr": "Erthan",
+        "en": "Erthan"
+      },
+      "house": {
+        "tr": "Çukurtepe · Liandryl Varisi",
+        "en": "Çukurtepe · Liandryl Heir"
+      },
+      "title": {
+        "tr": "Köylü → İsyan Lideri",
+        "en": "Peasant → Rebellion Leader"
+      },
+      "birth": {
+        "tr": "Çukurtepe Köyü",
+        "en": "Çukurtepe Village"
+      },
+      "alleg": {
+        "tr": "Halkın Adaleti",
+        "en": "People's Justice"
+      },
+      "epi": {
+        "tr": "İmparatorluğun Kâbusu · Almonth'un Oğlu",
+        "en": "The Empire's Nightmare · Son of Almonth"
+      },
+      "quote": {
+        "tr": "Adalet, güçlünün verdiği bir hediye değildir. Zayıfın aldığı bir haktır.",
+        "en": "Justice is not a gift given by the powerful. It is a right taken by the weak."
+      },
+      "bio": {
+        "tr": "Tozlu kestane saçlı, nasırlı yumruklu, meydan okuyan gözlü. Babası Almonth bir takvim yazı hatası yüzünden idam edildi. Edlas'ın ortağı olarak adaletin hizmetine koştu. İsyanı hem imparatorluğu sarstı hem de Zeandor'un yükselişini sağladı. Selrin heirloom kılıcını taşır.",
+        "en": "Dusty chestnut hair, calloused knuckles, defiant eyes. His father Almonth was executed because of a calendar writing error. As Edlas's partner he set out in the service of justice. His rebellion both shook the empire and brought about Zeandor's rise. He carries the heirloom sword Selrin."
+      },
+      "allies": [
+        "edlas"
+      ],
+      "enemies": [
+        "zeandor",
+        "reun-solgar",
+        "wolrez-galet"
+      ],
+      "chapters": [
+        "Bölüm – Yasa",
+        "Bölüm – Bakır",
+        "Bölüm – Kıyafet",
+        "Bölüm – Mağara"
+      ],
+      "image": "",
+      "weapon": {
+        "tr": "İsyan baltası",
+        "en": "Rebel axe"
+      },
+      "kinship": {
+        "tr": "Babası Almonth (idam edilir), annesi Sarya; efendisi ve dostu Edlas Arhan; atı Doru; ölen sevgilisi (kimliği net belirtilmemiş).",
+        "en": "His father Almonth (executed), his mother Sarya; his master and friend Edlas Arhan; his horse Doru; his dead lover (identity not clearly stated)."
+      }
+    },
+    {
+      "id": "almonth",
+      "group": "rebel",
+      "status": "deceased",
+      "tags": [
+        "savas",
+        "isyan"
+      ],
+      "name": {
+        "tr": "Almonth",
+        "en": "Almonth"
+      },
+      "house": {
+        "tr": "Çukurtepe",
+        "en": "Çukurtepe"
+      },
+      "title": {
+        "tr": "Savaş Gazisi",
+        "en": "War Veteran"
+      },
+      "birth": {
+        "tr": "Çukurtepe Köyü",
+        "en": "Çukurtepe Village"
+      },
+      "alleg": {
+        "tr": "Halk",
+        "en": "The People"
+      },
+      "epi": {
+        "tr": "",
+        "en": ""
+      },
+      "quote": {
+        "tr": "",
+        "en": ""
+      },
+      "bio": {
+        "tr": "Bir kâtip hatası yüzünden haksız yere idam edildi. Bu olay Erthan'ın isyanının fitilini ateşledi. Onurlu, oğluna kılıç ve hayatta kalma dersleri veren bir baba; bir kâtip hatası yüzünden haksız yere idam edilir --- Erthan'ın isyanının fitilini ateşleyen olay.",
+        "en": "He was unjustly executed because of a clerk's error. This event lit the fuse of Erthan's rebellion. An honorable father who gave his son lessons in the sword and in survival; he is unjustly executed because of a clerk's error — the event that lit the fuse of Erthan's rebellion."
+      },
+      "allies": [
+        "erthan"
+      ],
+      "enemies": [],
+      "chapters": [
+        "Bölüm – Yasa"
+      ],
+      "image": "",
+      "weapon": {
+        "tr": "",
+        "en": ""
+      },
+      "kinship": {
+        "tr": "Oğlu Erthan; eşi Sarya.",
+        "en": "His son Erthan; his wife Sarya."
+      }
+    },
+    {
+      "id": "wolrez-galet",
+      "group": "court",
+      "status": "alive",
+      "tags": [
+        "suikast-casusluk"
+      ],
+      "name": {
+        "tr": "Wolrez Galet",
+        "en": "Wolrez Galet"
+      },
+      "house": {
+        "tr": "Galet / Galetsha Hanesi",
+        "en": "House Galet / Galetsha"
+      },
+      "title": {
+        "tr": "Galetsha Valisi",
+        "en": "Governor of Galetsha"
+      },
+      "birth": {
+        "tr": "Galetsha",
+        "en": "Galetsha"
+      },
+      "alleg": {
+        "tr": "Arathen Krallığı (gizli)",
+        "en": "Arathen Kingdom (covert)"
+      },
+      "epi": {
+        "tr": "Direnen Kurt",
+        "en": "The Resisting Wolf"
+      },
+      "quote": {
+        "tr": "",
+        "en": ""
+      },
+      "bio": {
+        "tr": "Metron'un oğlu. Arathen casusu Eron Gjin ile iş birliği yaparak Olinder Albea'nın suikastını örgütledi. Fihor Arhan'ı hain ilan etti. Edlas'ın intihar patlamasından sağ kurtulan Galet, Erthan'a karşı mutlak intikam yeminine girdi.",
+        "en": "Son of Metron. In collaboration with the Arathen spy Eron Gjin he organized the assassination of Olinder Albea. He declared Fihor Arhan a traitor. Surviving Edlas's suicide explosion, Galet swore an oath of absolute vengeance against Erthan."
+      },
+      "allies": [
+        "eron-gjin"
+      ],
+      "enemies": [
+        "fihor",
+        "edlas",
+        "erthan",
+        "kaelen"
+      ],
+      "chapters": [],
+      "image": "",
+      "weapon": {
+        "tr": "",
+        "en": ""
+      },
+      "kinship": {
+        "tr": "Babası Metron Galet.",
+        "en": "His father Metron Galet."
+      }
+    },
+    {
+      "id": "aertas-singlew",
+      "group": "court",
+      "status": "alive",
+      "tags": [
+        "savas",
+        "ask",
+        "saray-entrikasi",
+        "miras-veraset"
+      ],
+      "name": {
+        "tr": "Aertas Sınglew",
+        "en": "Aertas Sınglew"
+      },
+      "house": {
+        "tr": "Sınglew Hanesi",
+        "en": "House Sınglew"
+      },
+      "title": {
+        "tr": "Doğu Sınırı Komutanı → Başkomutan",
+        "en": "Eastern Border Commander → Supreme Commander"
+      },
+      "birth": {
+        "tr": "Memanth",
+        "en": "Memanth"
+      },
+      "alleg": {
+        "tr": "Stallhart İmparatorluğu",
+        "en": "Stallhart Empire"
+      },
+      "epi": {
+        "tr": "",
+        "en": ""
+      },
+      "quote": {
+        "tr": "",
+        "en": ""
+      },
+      "bio": {
+        "tr": "Örebas elçisi Ellan ile tehlikeli bir diplomatik sınama diyaloğuna girdi. Zeandor tahta çıktığında yeni Başkomutan oldu. Örebas elçisi Ellan ile Arava yolunda tehlikeli bir diplomatik sınama diyaloğuna girer; Prens Amadon'a sadık; sadakatini asla açıkça ele vermeyen usta bir müzakereci. Dosya 3: Saray koridorlarının ipekli entrikalarından nefret eden, sınır hatlarını bükülmez iradeyle koruyan gazi asker.",
+        "en": "He entered a dangerous diplomatic testing dialogue with the Örebas envoy Ellan. When Zeandor took the throne he became the new Supreme Commander. On the road to Arava he enters a dangerous diplomatic testing dialogue with the Örebas envoy Ellan; loyal to Prince Amadon; a master negotiator who never openly reveals his loyalty. File 3: A veteran soldier who hates the silken intrigues of the palace corridors and guards the border lines with an unbending will."
+      },
+      "allies": [],
+      "enemies": [],
+      "chapters": [],
+      "image": "assets/images/characters/AERTAS_SINGLEW.jpg",
+      "weapon": {
+        "tr": "Süvari kılıcı · Sınır boynuzu",
+        "en": "Cavalry sword · Frontier horn"
+      }
+    },
+    {
+      "id": "hilnor-wolde",
+      "group": "court",
+      "status": "alive",
+      "tags": [
+        "suikast-casusluk",
+        "saray-entrikasi",
+        "miras-veraset"
+      ],
+      "name": {
+        "tr": "Hilnor Wolde",
+        "en": "Hilnor Wolde"
+      },
+      "house": {
+        "tr": "Wolde Hanesi",
+        "en": "House Wolde"
+      },
+      "title": {
+        "tr": "Baş İmparatorluk Danışmanı",
+        "en": "Chief Imperial Advisor"
+      },
+      "birth": {
+        "tr": "Başkent",
+        "en": "The Capital"
+      },
+      "alleg": {
+        "tr": "Stallhart İmparatorluğu",
+        "en": "Stallhart Empire"
+      },
+      "epi": {
+        "tr": "",
+        "en": ""
+      },
+      "quote": {
+        "tr": "",
+        "en": ""
+      },
+      "bio": {
+        "tr": "Imloth döneminde Saray Başdanışmanı. Erthan'ın saraya sızmasını araştırmakla görevlendirildi. Kelimelerle kesen bir bilici; sessizlikle konuşur, şüpheyle yönetir; Erthan'ın saraya sızmasını araştırmakla görevlendirilir. Dosya 3: İmparatorluk bürokrasisinin, arşiv ilimlerinin ve devlet hafızasının hanedanı temsilcisi; yürüyen bir kütüphane.",
+        "en": "Chief Advisor of the Palace in Imloth's time. He was tasked with investigating Erthan's infiltration of the palace. A seer who cuts with words; he speaks with silence, governs with suspicion; he is tasked with investigating Erthan's infiltration of the palace. File 3: The dynastic representative of the imperial bureaucracy, the archival sciences and the state's memory; a walking library."
+      },
+      "allies": [],
+      "enemies": [],
+      "chapters": [],
+      "image": "",
+      "weapon": {
+        "tr": "",
+        "en": ""
+      }
+    },
+    {
+      "id": "leno-kridas",
+      "group": "arathen",
+      "status": "alive",
+      "tags": [
+        "savas",
+        "ask",
+        "miras-veraset",
+        "buyu-mit"
+      ],
+      "name": {
+        "tr": "Leno Kridas",
+        "en": "Leno Kridas"
+      },
+      "house": {
+        "tr": "Kridas Hanesi",
+        "en": "House Kridas"
+      },
+      "title": {
+        "tr": "Arathen Kralı",
+        "en": "King of Arathen"
+      },
+      "birth": {
+        "tr": "Arathen",
+        "en": "Arathen"
+      },
+      "alleg": {
+        "tr": "Arathen Krallığı",
+        "en": "Arathen Kingdom"
+      },
+      "epi": {
+        "tr": "Buzun Oğlu · Sabırlı Akbaba",
+        "en": "Son of Ice · The Patient Vulture"
+      },
+      "quote": {
+        "tr": "İmparatorluklar kılıçla değil, zamanla yıkılır. Ben sadece zamanın yanında duruyorum.",
+        "en": "Empires are not destroyed by swords but by time. I simply stand beside time."
+      },
+      "bio": {
+        "tr": "Abisinin av kazasında ölümüyle beklenmedik şekilde tahta çıktı. Örebas Prensesi ile evlendi. Babasının gaddar mirasıyla boğuşan, sabrı öğrenmeye çalışan genç bir hükümdar; Stallhart'ın çöküşünü sabırla bekleyen bir stratejist; kuşatma topları için büyücülere başvuracak kadar pragmatik ve tehlikeli.",
+        "en": "He unexpectedly rose to the throne with the death of his elder brother in a hunting accident. He married an Örebas Princess. A young ruler wrestling with his father's cruel legacy, trying to learn patience; a strategist who patiently awaits the collapse of Stallhart; pragmatic and dangerous enough to turn to mages for siege cannons."
+      },
+      "allies": [
+        "eron-gjin",
+        "wolrez-galet"
+      ],
+      "enemies": [
+        "zeandor",
+        "amadon"
+      ],
+      "chapters": [],
+      "image": "",
+      "weapon": {
+        "tr": "",
+        "en": ""
+      },
+      "kinship": {
+        "tr": "Generali Derevon Kessen; danışmanı Vezir Yssa Morden; casusu Eron Gjin; Örebas Prensesi ile evlenip bir kızı olur.",
+        "en": "His general Derevon Kessen; his advisor Vizier Yssa Morden; his spy Eron Gjin; he marries an Örebas Princess and has a daughter."
+      }
+    },
+    {
+      "id": "eron-gjin",
+      "group": "arathen",
+      "status": "alive",
+      "tags": [
+        "suikast-casusluk",
+        "ittifak-diplomasi",
+        "ticaret"
+      ],
+      "name": {
+        "tr": "Eron Gjin",
+        "en": "Eron Gjin"
+      },
+      "house": {
+        "tr": "Arathen İstihbaratı",
+        "en": "Arathen Intelligence"
+      },
+      "title": {
+        "tr": "Arathen Başcasusu",
+        "en": "Arathen Master Spy"
+      },
+      "birth": {
+        "tr": "Arathen",
+        "en": "Arathen"
+      },
+      "alleg": {
+        "tr": "Arathen Krallığı",
+        "en": "Arathen Kingdom"
+      },
+      "epi": {
+        "tr": "Laklakçı",
+        "en": "The Prattler"
+      },
+      "quote": {
+        "tr": "",
+        "en": ""
+      },
+      "bio": {
+        "tr": "İnce, sıradan, unutulabilir bir yüz; görünür yaşlanma yok. İmparatorluk başkentinde kumaş tüccarı kimliğiyle faaliyet gösterdi. Olinder Albea'nın suikastını Galet ittifakı yoluyla örgütledi. Arba İtrez şantaj operasyonuyla bağlantılı.",
+        "en": "A thin, ordinary, forgettable face; no visible aging. He operated in the imperial capital under the identity of a fabric merchant. He organized Olinder Albea's assassination through the Galet alliance. Connected to the Arba İtrez blackmail operation."
+      },
+      "allies": [
+        "leno-kridas",
+        "wolrez-galet"
+      ],
+      "enemies": [
+        "amadon"
+      ],
+      "chapters": [],
+      "image": "",
+      "weapon": {
+        "tr": "",
+        "en": ""
+      },
+      "kinship": {
+        "tr": "Arba İtrez'in bağlantısı.",
+        "en": "Arba İtrez's contact."
+      }
+    },
+    {
+      "id": "zeren-liane",
+      "group": "other",
+      "status": "deceased",
+      "tags": [
+        "ask",
+        "suikast-casusluk",
+        "saray-entrikasi"
+      ],
+      "name": {
+        "tr": "Zeren / Liane",
+        "en": "Zeren / Liane"
+      },
+      "house": {
+        "tr": "Bilinmiyor",
+        "en": "Unknown"
+      },
+      "title": {
+        "tr": "Suikastçı",
+        "en": "Assassin"
+      },
+      "birth": {
+        "tr": "Bilinmiyor",
+        "en": "Unknown"
+      },
+      "alleg": {
+        "tr": "Bilinmiyor",
+        "en": "Unknown"
+      },
+      "epi": {
+        "tr": "Sessiz Avcı",
+        "en": "The Silent Hunter"
+      },
+      "quote": {
+        "tr": "",
+        "en": ""
+      },
+      "bio": {
+        "tr": "Edlas Arhan'ın aşkı. Dosya 3: Saray entrikaları ve suikast paktı içinde hayatını kaybetti; ölümü Edlas'ın zihinsel yıkımını tetikledi. Dosya 2: Keskin dilli, küstah ve kurnaz; Erthan ile ilk karşılaşmalarında kılık kıyafet üzerine tartışırlar. Dosya 3: Ölümü Edlas'ın deliliğine yol açmıştır.",
+        "en": "Edlas Arhan's love. File 3: She lost her life in palace intrigues and the assassination pact; her death triggered Edlas's mental ruin. File 2: Sharp-tongued, insolent and cunning; in their first encounters with Erthan they argue about clothing. File 3: Her death led to Edlas's madness."
+      },
+      "allies": [],
+      "enemies": [
+        "fihor",
+        "erthan"
+      ],
+      "chapters": [
+        "Bölüm – Mağara"
+      ],
+      "image": "",
+      "weapon": {
+        "tr": "",
+        "en": ""
+      },
+      "kinship": {
+        "tr": "Edlas Arhan (aşkı olduğu kişi).",
+        "en": "Edlas Arhan (the person she loves)."
+      }
+    },
+    {
+      "id": "i-nadima-stallhart",
+      "group": "stallhart",
+      "status": "historical",
+      "tags": [
+        "din",
+        "miras-veraset"
+      ],
+      "name": {
+        "tr": "İmparatoriçe I. Nadima Stallhart",
+        "en": "Empress Nadima Stallhart I"
+      },
+      "house": {
+        "tr": "Stallhart Hanedanı",
+        "en": "House Stallhart"
+      },
+      "title": {
+        "tr": "\"Anne\", \"İnancın Kraliçesi\"",
+        "en": "\"Mother\", \"Queen of the Faith\""
+      },
+      "bio": {
+        "tr": "Craes'in kızı olup imparatorluğun ilk İmparatoriçesidir. Saltanatı KS 1160--1197. Dini kademeye dayanan bir meşruiyet kurmuştur. Varis bırakmadan ölmüş, taht kardeşi Garnor'a geçmiştir.",
+        "en": "Daughter of Craes and the empire's first Empress. Her reign was KS 1160–1197. She built a legitimacy based on the religious order. She died without leaving an heir, and the throne passed to her brother Garnor."
+      },
+      "epi": {
+        "tr": "Anne",
+        "en": "Mother"
+      },
+      "alleg": {
+        "tr": "Kardeşi ve Başveziri Prens Garnor (\"Kılıcın Prensi\"); varis bırakmadı, ölümünde taht Garnor'a geçti. Babası I. Craes Stallhart.",
+        "en": "Her brother and Grand Vizier Prince Garnor (\"Prince of the Sword\"); she left no heir, and upon her death the throne passed to Garnor. Her father was Craes Stallhart I."
+      }
+    },
+    {
+      "id": "i-garnor-stallhart",
+      "group": "stallhart",
+      "status": "historical",
+      "tags": [
+        "savas",
+        "saray-entrikasi",
+        "miras-veraset"
+      ],
+      "name": {
+        "tr": "İmparator I. Garnor Stallhart",
+        "en": "Emperor Garnor Stallhart I"
+      },
+      "house": {
+        "tr": "Stallhart Hanedanı",
+        "en": "House Stallhart"
+      },
+      "title": {
+        "tr": "\"Demir Vezir\", \"Kılıcın Prensi\"",
+        "en": "\"The Iron Vizier\", \"Prince of the Sword\""
+      },
+      "bio": {
+        "tr": "Nadima'nın kardeşi ve Başveziri olarak görev yaptı. Ardından İmparator oldu (KS 1197--1204). Veraset Fermanı'nı ilan etti. Yatağında yaşlılıktan öldü.",
+        "en": "He served as Nadima's brother and Grand Vizier. He then became Emperor (KS 1197–1204). He proclaimed the Edict of Succession. He died of old age in his bed."
+      },
+      "epi": {
+        "tr": "Demir Vezir",
+        "en": "The Iron Vizier"
+      },
+      "alleg": {
+        "tr": "Üç oğlu ve bir kızı vardı (isimleri belirtilmemiş); halefi I. Lun Aldris. Kız kardeşi I. Nadima Stallhart.",
+        "en": "He had three sons and a daughter (names not given); his successor was Lun Aldris I. His sister was Nadima Stallhart I."
+      }
+    },
+    {
+      "id": "i-scifella-stallhart",
+      "group": "stallhart",
+      "status": "historical",
+      "tags": [
+        "savas",
+        "ask",
+        "miras-veraset"
+      ],
+      "name": {
+        "tr": "İmparatoriçe I. Scifella Stallhart",
+        "en": "Empress Scifella Stallhart I"
+      },
+      "house": {
+        "tr": "Stallhart Hanedanı",
+        "en": "House Stallhart"
+      },
+      "title": {
+        "tr": "\"Fatih\"",
+        "en": "\"The Conqueror\""
+      },
+      "bio": {
+        "tr": "Onneva Valisi iken KS 1242'de tahtı zaptetti. Seltanya, Selya ve Pilkard'ı fethetti; Solgar'ı evlilikle ilhak etti. Rakip kuzenini ve destekçilerini idam ettirdi.",
+        "en": "While Governor of Onneva, she seized the throne in KS 1242. She conquered Seltanya, Selya and Pilkard; annexed Solgar through marriage. She had her rival cousin and his supporters executed."
+      },
+      "epi": {
+        "tr": "Fatih",
+        "en": "The Conqueror"
+      },
+      "alleg": {
+        "tr": "Babası I. Lun Aldris Stallhart. Oğlu II. Craes (Solgarlı bir soyluyla evliliğinden).",
+        "en": "Her father was Lun Aldris Stallhart I. Her son was Craes II (from her marriage to a Solgar noble)."
+      }
+    },
+    {
+      "id": "ii-craes-stallhart",
+      "group": "stallhart",
+      "status": "historical",
+      "tags": [],
+      "name": {
+        "tr": "İmparator II. Craes Stallhart",
+        "en": "Emperor Craes Stallhart II"
+      },
+      "house": {
+        "tr": "Stallhart Hanedanı",
+        "en": "House Stallhart"
+      },
+      "title": {
+        "tr": "\"Alim\", \"Barışçıl\"",
+        "en": "\"The Scholar\", \"The Peaceful\""
+      },
+      "bio": {
+        "tr": "Saltanatı KS 1263--1275. Büyük Kütüphane'yi inşa ettirdi. Büyük Kütüphane'de hançerlenerek öldürüldü --- bir Stallhart'ın kanının ilk kez akıtıldığı an olarak tarihe geçti.",
+        "en": "His reign was KS 1263–1275. He had the Great Library built. He was stabbed to death in the Great Library — recorded in history as the first time the blood of a Stallhart was shed."
+      },
+      "epi": {
+        "tr": "Alim",
+        "en": "The Scholar"
+      },
+      "weapon": {
+        "tr": "Büyük Kütüphane'de hançerlenerek",
+        "en": "Stabbed in the Great Library"
+      },
+      "alleg": {
+        "tr": "Annesi I. Scifella Stallhart. Kuzeni ve katili Mazurekt; oğlu ve intikamcısı I. Atrion.",
+        "en": "His mother was Scifella Stallhart I. His cousin and killer was Mazurekt; his son and avenger was Atrion I."
+      }
+    },
+    {
+      "id": "mazurekt-stallhart",
+      "group": "stallhart",
+      "status": "historical",
+      "tags": [
+        "savas",
+        "ihanet",
+        "miras-veraset"
+      ],
+      "name": {
+        "tr": "Mazurekt Stallhart",
+        "en": "Mazurekt Stallhart"
+      },
+      "house": {
+        "tr": "Stallhart Hanedanı",
+        "en": "House Stallhart"
+      },
+      "title": {
+        "tr": "\"Gaspçı\"",
+        "en": "\"The Usurper\""
+      },
+      "bio": {
+        "tr": "KS 1275'te tahtı gasp etti, yaklaşık 1 yıl saltanat sürdü. Kızılçay Muharebesi'nde Galetsha ordularının ihanetine uğrayıp yenildi. Arava'dan kaçarken yakalanıp kanı akıtılmadan boğularak idam edildi.",
+        "en": "He seized the throne in KS 1275 and reigned for about a year. He was defeated at the Battle of Kızılçay, betrayed by the Galetsha armies. Caught while fleeing Arava, he was executed by strangulation without his blood being shed."
+      },
+      "epi": {
+        "tr": "Gaspçı",
+        "en": "The Usurper"
+      },
+      "alleg": {
+        "tr": "II. Craes'in kuzeni.",
+        "en": "Cousin of Craes II."
+      }
+    },
+    {
+      "id": "i-atrion-stallhart",
+      "group": "stallhart",
+      "status": "historical",
+      "tags": [
+        "isyan",
+        "surgun"
+      ],
+      "name": {
+        "tr": "İmparator I. Atrion Stallhart",
+        "en": "Emperor Atrion Stallhart I"
+      },
+      "house": {
+        "tr": "Stallhart Hanedanı",
+        "en": "House Stallhart"
+      },
+      "title": {
+        "tr": "\"Kurtarıcı\", \"Asi\"",
+        "en": "\"The Savior\", \"The Rebel\""
+      },
+      "bio": {
+        "tr": "Saltanatı KS 1275--1280. Mazurekt'e karşı isyanı yönetti. İntikam yerine affı seçti; Sürgün Fermanı ve Altın Kafes Metodunu uyguladı. Genç yaşta hastalıktan öldü.",
+        "en": "His reign was KS 1275–1280. He led the revolt against Mazurekt. He chose forgiveness over revenge; he enforced the Edict of Exile and the Golden Cage Method. He died young of illness."
+      },
+      "epi": {
+        "tr": "Kurtarıcı",
+        "en": "The Savior"
+      },
+      "alleg": {
+        "tr": "Babası II. Craes Stallhart. Oğlu ve halefi Domkha Remal.",
+        "en": "His father was Craes Stallhart II. His son and successor was Domkha Remal."
+      }
+    },
+    {
+      "id": "domkha-remal-stallhart",
+      "group": "stallhart",
+      "status": "historical",
+      "tags": [
+        "din",
+        "ask"
+      ],
+      "name": {
+        "tr": "İmparator Domkha Remal Stallhart",
+        "en": "Emperor Domkha Remal Stallhart"
+      },
+      "house": {
+        "tr": "Stallhart Hanedanı",
+        "en": "House Stallhart"
+      },
+      "title": {
+        "tr": "\"Deniz Lordu/Mareşali\"",
+        "en": "\"Sea Lord/Marshal\""
+      },
+      "bio": {
+        "tr": "Saltanatı KS 1280--1305. Donanmayı güçlendirdi. Karısının aşkı için Kutsal Kan yasalarını çiğnedi ve dini otoriteleri topluca idam ettirdi. Karısının ölümünden bir yıl sonra kederinden öldü.",
+        "en": "His reign was KS 1280–1305. He strengthened the navy. For the love of his wife he broke the Holy Blood laws and had the religious authorities executed en masse. He died of grief a year after his wife's death."
+      },
+      "epi": {
+        "tr": "Deniz Lordu/Mareşali",
+        "en": "Sea Lord/Marshal"
+      },
+      "alleg": {
+        "tr": "Babası I. Atrion Stallhart. Cariyesiyle (soylu olmayan) evlendi, oğullarını meşru varis ilan etti; oğlu ve halefi I. Merethorn.",
+        "en": "His father was Atrion Stallhart I. He married a concubine (not of noble birth) and declared his sons legitimate heirs; his son and successor was Merethorn I."
+      }
+    },
+    {
+      "id": "i-merethorn-stallhart",
+      "group": "stallhart",
+      "status": "historical",
+      "tags": [
+        "isyan",
+        "ittifak-diplomasi"
+      ],
+      "name": {
+        "tr": "İmparator I. Merethorn Stallhart",
+        "en": "Emperor Merethorn Stallhart I"
+      },
+      "house": {
+        "tr": "Stallhart Hanedanı",
+        "en": "House Stallhart"
+      },
+      "title": {
+        "tr": "\"Zalim\", \"Acımasız\"",
+        "en": "\"The Cruel\", \"The Merciless\""
+      },
+      "bio": {
+        "tr": "Saltanatı KS 1304--1344. Örebas'ı yenerek Isonwell Antlaşması'nı imzaladı. Düzmece Craes Ayaklanması'nı (1307--1309) acımasızca bastırdı; Büyük Kütüphane bu isyanda yakıldı. Prens Zilas'ı kendi elleriyle boğdurdu.",
+        "en": "His reign was KS 1304–1344. He defeated Örebas and signed the Treaty of Isonwell. He ruthlessly crushed the False Craes Uprising (1307–1309); the Great Library was burned in this revolt. He had Prince Zilas strangled with his own hands."
+      },
+      "epi": {
+        "tr": "Zalim",
+        "en": "The Cruel"
+      },
+      "alleg": {
+        "tr": "Babası Domkha Remal Stallhart. Oğlu Prens Zilas'ı kendi elleriyle boğdurdu; hayatta kalan oğlu ve halefi Reanloth.",
+        "en": "His father was Domkha Remal Stallhart. He had his son Prince Zilas strangled with his own hands; his surviving son and successor was Reanloth."
+      }
+    },
+    {
+      "id": "reanloth-stallhart",
+      "group": "stallhart",
+      "status": "historical",
+      "tags": [
+        "savas"
+      ],
+      "name": {
+        "tr": "İmparator Reanloth Stallhart",
+        "en": "Emperor Reanloth Stallhart"
+      },
+      "house": {
+        "tr": "Stallhart Hanedanı",
+        "en": "House Stallhart"
+      },
+      "title": {
+        "tr": "\"Sağır\"",
+        "en": "\"The Deaf\""
+      },
+      "bio": {
+        "tr": "Saltanatı KS 1344--1369. Megina Vadisi Felaketi'nde (1347) bir patlamayla sağır oldu. Sağırlığını gizli bir büyü/işaret diliyle silaha çevirdi. Melerya'yı fethetti; Arathen'e karşı Kızılköprü zaferini kazandı. Büyük Kütüphane'yi yeniden inşa ettirdi.",
+        "en": "His reign was KS 1344–1369. He was deafened by an explosion in the Megina Valley Disaster (1347). He turned his deafness into a weapon with a secret magic/sign language. He conquered Melerya; won the Redbridge victory against Arathen. He had the Great Library rebuilt."
+      },
+      "epi": {
+        "tr": "Sağır",
+        "en": "The Deaf"
+      },
+      "alleg": {
+        "tr": "Babası I. Merethorn Stallhart. Oğlu ve halefi II. Lun Aldris.",
+        "en": "His father was Merethorn Stallhart I. His son and successor was Lun Aldris II."
+      }
+    },
+    {
+      "id": "i-jega-cal-stallhart",
+      "group": "stallhart",
+      "status": "historical",
+      "tags": [
+        "savas",
+        "isyan"
+      ],
+      "name": {
+        "tr": "İmparator I. Jega Cal Stallhart",
+        "en": "Emperor Jega Cal Stallhart I"
+      },
+      "house": {
+        "tr": "Stallhart Hanedanı",
+        "en": "House Stallhart"
+      },
+      "title": {
+        "tr": "\"Talihsiz\"",
+        "en": "\"The Unlucky\""
+      },
+      "bio": {
+        "tr": "Saltanatı KS 1383--1388. Flosenkha Seferi sırasında Gulon'un İsyan Selamı ile başkaldırmasıyla Hibas Katliamı yaşandı. Savaş meydanında öldürüldü. Flosenkha Seferi sırasında Gulon'un İsyan Selamı ile başkaldırmasıyla Hibas Katliamı yaşandı; savaş meydanında öldürüldü.",
+        "en": "His reign was KS 1383–1388. During the Flosenkha Campaign, Gulon rose in revolt with the Salute of Rebellion, leading to the Hibas Massacre. He was killed on the battlefield. During the Flosenkha Campaign, the Hibas Massacre took place when Gulon rebelled with the Salute of Rebellion; he was killed on the battlefield."
+      },
+      "epi": {
+        "tr": "Talihsiz",
+        "en": "The Unlucky"
+      },
+      "alleg": {
+        "tr": "Babası II. Lun Aldris Stallhart. Kardeşi Gulon Stallhart'ın (Onneva Valisi) ihanetine uğradı.",
+        "en": "His father was Lun Aldris Stallhart II. He was betrayed by his brother Gulon Stallhart (Governor of Onneva)."
+      }
+    },
+    {
+      "id": "gulon-stallhart",
+      "group": "stallhart",
+      "status": "historical",
+      "tags": [
+        "savas",
+        "suikast-casusluk",
+        "saray-entrikasi",
+        "isyan"
+      ],
+      "name": {
+        "tr": "Gulon Stallhart",
+        "en": "Gulon Stallhart"
+      },
+      "house": {
+        "tr": "Stallhart Hanedanı",
+        "en": "House Stallhart"
+      },
+      "title": {
+        "tr": "",
+        "en": ""
+      },
+      "bio": {
+        "tr": "Onneva Valisi olarak görev yaptı. Kardeşi Jega Cal'a karşı isyan başlattı. Hibas'ta zafer kazandı ama başkenti ele geçiremedi; kaçtı ve hain ilan edildi. KS 1395'te muhtemelen Gölge Veziri ajanlarınca zehirlenerek öldü.",
+        "en": "He served as Governor of Onneva. He launched a revolt against his brother Jega Cal. He won at Hibas but could not take the capital; he fled and was declared a traitor. In KS 1395 he died, probably poisoned by agents of the Shadow Vizier."
+      },
+      "alleg": {
+        "tr": "Jega Cal'ın kardeşi.",
+        "en": "Brother of Jega Cal."
+      }
+    },
+    {
+      "id": "ii-nadima-stallhart",
+      "group": "stallhart",
+      "status": "historical",
+      "tags": [
+        "isyan"
+      ],
+      "name": {
+        "tr": "İmparatoriçe II. Nadima Stallhart",
+        "en": "Empress Nadima Stallhart II"
+      },
+      "house": {
+        "tr": "Stallhart Hanedanı",
+        "en": "House Stallhart"
+      },
+      "title": {
+        "tr": "\"Kış İmparatoriçesi\", Imloth'un Merhum Eşi (Dosya 3)",
+        "en": "\"The Winter Empress\", Imloth's Late Wife (File 3)"
+      },
+      "bio": {
+        "tr": "Dosya 2: Saltanatı KS 1388--1398. Gulon'un isyanını bastırdı. Arathen akınlarıyla başa çıkamadı. Dosya 3: Ölümü İmparator Imloth'un psikolojik ve siyasi çöküşünü tetiklemiştir.",
+        "en": "File 2: Her reign was KS 1388–1398. She suppressed Gulon's revolt. She could not cope with the Arathen raids. File 3: Her death triggered Emperor Imloth's psychological and political collapse."
+      },
+      "epi": {
+        "tr": "Kış İmparatoriçesi",
+        "en": "The Winter Empress"
+      },
+      "alleg": {
+        "tr": "Dosya 2: Kocası General Ekdor. Dosya 3: Imloth Stallhart'ın merhum eşi.",
+        "en": "File 2: Her husband was General Ekdor. File 3: The late wife of Imloth Stallhart."
+      }
+    },
+    {
+      "id": "ekdor",
+      "group": "stallhart",
+      "status": "historical",
+      "tags": [],
+      "name": {
+        "tr": "General Ekdor",
+        "en": "General Ekdor"
+      },
+      "house": {
+        "tr": "Stallhart Hanedanı (evlilik yoluyla)",
+        "en": "House Stallhart (by marriage)"
+      },
+      "title": {
+        "tr": "",
+        "en": ""
+      },
+      "bio": {
+        "tr": "Belirtilmemiş.",
+        "en": "Unspecified."
+      },
+      "alleg": {
+        "tr": "Eşi II. Nadima Stallhart.",
+        "en": "Husband of Nadima Stallhart II."
+      }
+    },
+    {
+      "id": "lunrye-stallhart",
+      "group": "stallhart",
+      "status": "historical",
+      "tags": [
+        "savas"
+      ],
+      "name": {
+        "tr": "Lunrye Stallhart",
+        "en": "Lunrye Stallhart"
+      },
+      "house": {
+        "tr": "Stallhart Hanedanı (gayrimeşru kol)",
+        "en": "Imperial Dynasty"
+      },
+      "title": {
+        "tr": "\"Piç Kurt\", \"Piç İmparator\"",
+        "en": "\"The Bastard Wolf\", \"The Bastard Emperor\""
+      },
+      "birth": {
+        "tr": "",
+        "en": ""
+      },
+      "alleg": {
+        "tr": "Jega Cal'ın soyundan; annesi soylu değil.",
+        "en": "Of Jega Cal's line; his mother was not of noble birth."
+      },
+      "weapon": {
+        "tr": "",
+        "en": ""
+      },
+      "epi": {
+        "tr": "Piç Kurt",
+        "en": "The Bastard Wolf"
+      },
+      "quote": {
+        "tr": "",
+        "en": ""
+      },
+      "bio": {
+        "tr": "Saltanatı KS 1398--1406. Dayırmon Zaferi'yle babasının katillerinden intikam aldı. Selya İsyanları'nı bastırdı. Gümüş Yol Denizi'ni korsanlardan temizledi. Pilkard Kuşatması'nda tek yenilgisini aldı. Hastalıktan öldü.",
+        "en": "His reign was KS 1398–1406. He avenged his father's killers with the Victory of Dayırmon. He suppressed the Selya Rebellions. He cleared the Silver Way Sea of pirates. He suffered his only defeat at the Siege of Pilkard. He died of illness."
+      },
+      "allies": [],
+      "enemies": [],
+      "chapters": [],
+      "image": "assets/images/characters/Lunrye Stallhart.PNG"
+    },
+    {
+      "id": "lunin-stallhart",
+      "group": "stallhart",
+      "status": "deceased",
+      "tags": [],
+      "name": {
+        "tr": "Prens Lunin Stallhart",
+        "en": "Prince Lunin Stallhart"
+      },
+      "house": {
+        "tr": "Stallhart Hanedanı",
+        "en": "House Stallhart"
+      },
+      "title": {
+        "tr": "",
+        "en": ""
+      },
+      "bio": {
+        "tr": "\"Bölüm - Varis\"te doğar; çocuk yaşta veba salgınında ölür. Ölümü Amadon'u derinden sarstı ve onu paranoya ve zulme sürükledi. Ölümü Amadon'u derinden sarsan, onu paranoya ve zulme sürükleyen trajedilerden biridir.",
+        "en": "Born in \"Chapter - The Heir\"; he dies as a child in the plague outbreak. His death shook Amadon deeply and drove him into paranoia and cruelty. His death is one of the tragedies that deeply shook Amadon and drove him to paranoia and cruelty."
+      },
+      "alleg": {
+        "tr": "Babası Amadon Stallhart; annesi Meryen Stallhart.",
+        "en": "His father was Amadon Stallhart; his mother was Meryen Stallhart."
+      }
+    },
+    {
+      "id": "darios-selya",
+      "group": "selya",
+      "status": "alive",
+      "tags": [],
+      "name": {
+        "tr": "Darios Selya",
+        "en": "Darios Selya"
+      },
+      "house": {
+        "tr": "Selya Hanedanı",
+        "en": "House Selya"
+      },
+      "title": {
+        "tr": "",
+        "en": ""
+      },
+      "bio": {
+        "tr": "Hikâyenin başından sonuna kadar fiilî Selya Valisi'dir. Zeandor Melik Vali olunca yönetimde ikinci plana itildi. Sert, pragmatik, kibirli ama nihayetinde babasına ve Selya'ya derinden bağlı; Zeandor'a karşı önce temkinli/rekabetçi, sonra saygılı bir tavır geliştirir; kardeşi Liaher ile Zeandor arasındaki gizli bağı henüz bilmemektedir (ima edilir).",
+        "en": "He is the de facto Governor of Selya from the beginning of the story to the end. He was pushed into the background in administration when Zeandor became Governor King. Stern, pragmatic, arrogant, but ultimately deeply devoted to his father and to Selya; he is at first wary/competitive, then respectful toward Zeandor; he does not yet know of the secret bond between his brother Liaher and Zeandor (implied)."
+      },
+      "weapon": {
+        "tr": "belirgin bir cupid yayı",
+        "en": "a prominent cupid's bow"
+      },
+      "alleg": {
+        "tr": "Babası Celios; kardeşleri Liaher ve Elyndra ve Enidres; annesi ima edilen Adelis (büyük ihtimalle); hamile bir eşi vardır (adı belirtilmemiş).",
+        "en": "His father was Celios; his siblings are Liaher, Elyndra and Enidres; his mother is implied to be Adelis (most likely); he has a pregnant wife (name not given)."
+      }
+    },
+    {
+      "id": "enidres-selya",
+      "group": "selya",
+      "status": "alive",
+      "tags": [],
+      "name": {
+        "tr": "Enidres Selya",
+        "en": "Enidres Selya"
+      },
+      "house": {
+        "tr": "Selya Hanedanı",
+        "en": "House Selya"
+      },
+      "title": {
+        "tr": "",
+        "en": ""
+      },
+      "bio": {
+        "tr": "Haydut baskınında dağın su kaynağı ve mağara yarığı bilgisini vererek stratejik öneri sunmuştur. On dört yaşında olmasına rağmen yaşından beklenmeyecek kadar soğuk ve hesapçı bir zekâya sahip; haydut baskınında stratejik öneri sunar; Selya'nın çıkarını her şeyin üstünde tutar.",
+        "en": "He offered a strategic suggestion during the bandit raid by giving knowledge of the mountain's water source and cave crevice. Although he is fourteen, he has a cold and calculating intelligence beyond his years; he offers strategic advice in the bandit raid; he puts Selya's interest above everything."
+      },
+      "weapon": {
+        "tr": "Cupid yayı",
+        "en": "Cupid's bow"
+      },
+      "alleg": {
+        "tr": "Babası Celios; kardeşleri Darios, Liaher, Elyndra.",
+        "en": "His father was Celios; his siblings are Darios, Liaher, Elyndra."
+      }
+    },
+    {
+      "id": "adelis-selya",
+      "group": "selya",
+      "status": "alive",
+      "tags": [],
+      "name": {
+        "tr": "Adelis Selya",
+        "en": "Adelis Selya"
+      },
+      "house": {
+        "tr": "Selya Hanedanı",
+        "en": "House Selya"
+      },
+      "title": {
+        "tr": "",
+        "en": ""
+      },
+      "bio": {
+        "tr": "Kadim bir Selya ailesinin kızı; hane işlerini bizzat, disiplinle yönetir (mutfak/erzak denetimi); Zeandor'un teftiş girişimini soğukkanlılıkla yönlendirir.",
+        "en": "Daughter of an ancient Selya family; she runs the household herself, with discipline (kitchen/provisions oversight); she coolly redirects Zeandor's attempt at inspection."
+      },
+      "alleg": {
+        "tr": "Kocası Celios; muhtemel çocukları arasında Darios ve Enidres sayılır (metinde net ayrım belirtilmemiş).",
+        "en": "Husband Celios; her probable children include Darios and Enidres (the text does not clearly specify)."
+      }
+    },
+    {
+      "id": "lysara-selya",
+      "group": "selya",
+      "status": "alive",
+      "tags": [
+        "ticaret"
+      ],
+      "name": {
+        "tr": "Lysara Selya",
+        "en": "Lysara Selya"
+      },
+      "house": {
+        "tr": "Selya Hanedanı",
+        "en": "House Selya"
+      },
+      "title": {
+        "tr": "",
+        "en": ""
+      },
+      "bio": {
+        "tr": "Belirtilmemiş. Batı Adaları'nın en zengin tüccar Baronu'nun kızı; limanların güvenliğini simgeler; sıcak ve pratik bir kişilik.",
+        "en": "Unspecified. Daughter of the wealthiest merchant Baron of the Western Isles; symbolizes the security of the harbors; a warm and practical personality."
+      },
+      "alleg": {
+        "tr": "Kocası Celios; muhtemel çocukları arasında Liaher ve Elyndra sayılır (metinde net ayrım belirtilmemiş).",
+        "en": "Husband Celios; her probable children include Liaher and Elyndra (the text does not clearly specify)."
+      }
+    },
+    {
+      "id": "gulwar-saert",
+      "group": "court",
+      "status": "alive",
+      "tags": [
+        "ittifak-diplomasi"
+      ],
+      "name": {
+        "tr": "Gulwar Saert",
+        "en": "Gulwar Saert"
+      },
+      "house": {
+        "tr": "Adamen Cüce Eyaleti",
+        "en": "Adamen Dwarf Province"
+      },
+      "title": {
+        "tr": "",
+        "en": ""
+      },
+      "bio": {
+        "tr": "İşçilerin hakları için İmparator Imloth ile pazarlık etmiştir. İşçilerin hakları için (ek ücret, kısaltılmış çalışma saatleri) İmparator Imloth ile pazarlık eder; kararlı ve sabırlı bir müzakereci. Dosya 3: KS 0 sonrası tılsımlı zanaatlarını kaybedip saf bilek gücüne sığınan cüce halkının ve Mermer Koridorlar protokolünün vakur temsilcisi. İmparator Imloth ve Amadon ile diplomatik temas kuran lider.",
+        "en": "He bargained with Emperor Imloth for the workers' rights. He bargains with Emperor Imloth for the workers' rights (extra pay, shortened working hours); a determined and patient negotiator. File 3: The dignified representative of the dwarven people, who, after KS 0, lost their enchanted crafts and took refuge in pure wrist strength, and of the Marble Corridors protocol. A leader who makes diplomatic contact with Emperor Imloth and Amadon."
+      }
+    },
+    {
+      "id": "metron-galet",
+      "group": "court",
+      "status": "deceased",
+      "tags": [
+        "miras-veraset"
+      ],
+      "name": {
+        "tr": "Metron Galet",
+        "en": "Metron Galet"
+      },
+      "house": {
+        "tr": "Galet Hanedanı, Galetsha",
+        "en": "House Galet, Galetsha"
+      },
+      "title": {
+        "tr": "",
+        "en": ""
+      },
+      "bio": {
+        "tr": "386 yıllık Galet Hanedanı'nı temsil etmiştir. Selmira'nın cenazesinde bulunmuştur. \"Bölüm - Şan\"dan sonra vefat etmiştir. 386 yıllık Galet Hanedanı'nın kudretli temsilcisi; Selmira'nın cenazesinde derin bir keder ve saygı sergiler; kuzeyin bakır madenlerinin (imparatorluğun can damarı) sorumlusu.",
+        "en": "He represented the 386-year-old House Galet. He attended Selmira's funeral. He passed away after \"Chapter - Glory\". The mighty representative of the 386-year-old House Galet; he displays deep grief and respect at Selmira's funeral; in charge of the northern copper mines (the empire's lifeblood)."
+      },
+      "alleg": {
+        "tr": "Oğlu ve halefi Wolrez Galet.",
+        "en": "His son and successor was Wolrez Galet."
+      }
+    },
+    {
+      "id": "ekash-triala",
+      "group": "court",
+      "status": "alive",
+      "tags": [
+        "savas",
+        "saray-entrikasi",
+        "miras-veraset",
+        "sinir-bolgesi"
+      ],
+      "name": {
+        "tr": "Ekash Triala",
+        "en": "Ekash Triala"
+      },
+      "house": {
+        "tr": "Seltanya Eyaleti",
+        "en": "Province of Seltanya"
+      },
+      "title": {
+        "tr": "",
+        "en": ""
+      },
+      "bio": {
+        "tr": "Amadon tahta çıktıktan sonra Seltanya Valisi oldu; ardından Dahiliye Veziri olarak atandı. Arathen tehdidine karşı sınır garnizonlarının zayıflatılmasından endişe duyan pragmatik bir yönetici.",
+        "en": "He became Governor of Seltanya after Amadon took the throne; then was appointed Interior Vizier. A pragmatic administrator concerned about the weakening of border garrisons against the Arathen threat."
+      }
+    },
+    {
+      "id": "shelrho-rhoven",
+      "group": "court",
+      "status": "alive",
+      "tags": [],
+      "name": {
+        "tr": "Shelrho Rhoven",
+        "en": "Shelrho Rhoven"
+      },
+      "house": {
+        "tr": "Memanth Eyaleti",
+        "en": "Province of Memanth"
+      },
+      "title": {
+        "tr": "\"Zırhlı Süvari\"",
+        "en": "\"Armored Cavalry\""
+      },
+      "bio": {
+        "tr": "Belirtilmemiş.",
+        "en": "Unspecified."
+      },
+      "epi": {
+        "tr": "Zırhlı Süvari",
+        "en": "Armored Cavalry"
+      }
+    },
+    {
+      "id": "kalrez-brekfa",
+      "group": "court",
+      "status": "deceased",
+      "tags": [
+        "saray-entrikasi",
+        "miras-veraset",
+        "sinir-bolgesi"
+      ],
+      "name": {
+        "tr": "Kalrez Brekfa",
+        "en": "Kalrez Brekfa"
+      },
+      "house": {
+        "tr": "Memanth Eyaleti / Brekfa Ailesi",
+        "en": "Province of Memanth / Brekfa Family"
+      },
+      "title": {
+        "tr": "\"Direnen Sınır\"",
+        "en": "\"The Resisting Border\""
+      },
+      "bio": {
+        "tr": "Amadon tahta çıktıktan sonra göreve geldi. \"Salgın\" bölümünde öldü. Adliye Veziri olarak da anıldığı belirtilmiştir.",
+        "en": "He took office after Amadon took the throne. He died in the \"Plague\" chapter. He is also stated to have been referred to as Justice Vizier."
+      },
+      "epi": {
+        "tr": "Direnen Sınır",
+        "en": "The Resisting Border"
+      },
+      "alleg": {
+        "tr": "Oğlu Vizeho Brekfa.",
+        "en": "His son was Vizeho Brekfa."
+      }
+    },
+    {
+      "id": "vizeho-brekfa",
+      "group": "court",
+      "status": "deceased",
+      "tags": [],
+      "name": {
+        "tr": "Vizeho Brekfa",
+        "en": "Vizeho Brekfa"
+      },
+      "house": {
+        "tr": "Memanth Eyaleti / Brekfa Ailesi",
+        "en": "Province of Memanth / Brekfa Family"
+      },
+      "title": {
+        "tr": "\"Gözcü Süvari\"",
+        "en": "\"The Watching Cavalry\""
+      },
+      "bio": {
+        "tr": "Babasının ölümünden sonra Memanth Valisi oldu.",
+        "en": "He became Governor of Memanth after his father's death."
+      },
+      "epi": {
+        "tr": "Gözcü Süvari",
+        "en": "The Watching Cavalry"
+      },
+      "alleg": {
+        "tr": "Babası Kalrez Brekfa.",
+        "en": "His father was Kalrez Brekfa."
+      }
+    },
+    {
+      "id": "cerert-onneva",
+      "group": "court",
+      "status": "alive",
+      "tags": [],
+      "name": {
+        "tr": "Cerert Onneva",
+        "en": "Cerert Onneva"
+      },
+      "house": {
+        "tr": "Onneva Eyaleti",
+        "en": "Province of Onneva"
+      },
+      "title": {
+        "tr": "\"Keskin Zekalı Avcı\"",
+        "en": "\"The Sharp-Witted Hunter\""
+      },
+      "bio": {
+        "tr": "\"Bölüm - Duvar\"dan sonra yaşlılıktan ölene kadar Onneva Valiliği yaptı.",
+        "en": "After \"Chapter - The Wall\" he served as Governor of Onneva until he died of old age."
+      },
+      "epi": {
+        "tr": "Keskin Zekalı Avcı",
+        "en": "The Sharp-Witted Hunter"
+      },
+      "alleg": {
+        "tr": "Oğlu Elglew Onneva.",
+        "en": "His son was Elglew Onneva."
+      }
+    },
+    {
+      "id": "elglew-onneva",
+      "group": "court",
+      "status": "deceased",
+      "tags": [],
+      "name": {
+        "tr": "Elglew Onneva",
+        "en": "Elglew Onneva"
+      },
+      "house": {
+        "tr": "Onneva Eyaleti",
+        "en": "Province of Onneva"
+      },
+      "title": {
+        "tr": "\"Ormandaki Yıldız Işığı\"",
+        "en": "\"Starlight in the Forest\""
+      },
+      "bio": {
+        "tr": "Babasının ölümünün ardından Onneva Valisi oldu.",
+        "en": "He became Governor of Onneva after his father's death."
+      },
+      "epi": {
+        "tr": "Ormandaki Yıldız Işığı",
+        "en": "Starlight in the Forest"
+      },
+      "alleg": {
+        "tr": "Babası Cerert Onneva.",
+        "en": "His father was Cerert Onneva."
+      }
+    },
+    {
+      "id": "alfwen",
+      "group": "court",
+      "status": "alive",
+      "tags": [
+        "sinir-bolgesi"
+      ],
+      "name": {
+        "tr": "Alfwen",
+        "en": "Alfwen"
+      },
+      "house": {
+        "tr": "Onneva Eyaleti",
+        "en": "Province of Onneva"
+      },
+      "title": {
+        "tr": "",
+        "en": ""
+      },
+      "bio": {
+        "tr": "\"Bölüm - Tehdit\" toplantısında adı geçmektedir. Doğu sınırındaki tehditlere dair endişeli ve tedbirli; sözlerini titizlikle tartan bir yönetici.",
+        "en": "His name is mentioned in the \"Chapter - The Threat\" meeting. An administrator who is anxious and cautious about threats on the eastern border; he weighs his words meticulously."
+      }
+    },
+    {
+      "id": "yunghar-khasin",
+      "group": "court",
+      "status": "alive",
+      "tags": [],
+      "name": {
+        "tr": "Yunghar Khasin",
+        "en": "Yunghar Khasin"
+      },
+      "house": {
+        "tr": "Khasinya Eyaleti / Khasin Hanedanı",
+        "en": "Province of Khasinya / House Khasin"
+      },
+      "title": {
+        "tr": "",
+        "en": ""
+      },
+      "bio": {
+        "tr": "Belirtilmemiş.",
+        "en": "Unspecified."
+      },
+      "alleg": {
+        "tr": "Zeandor'un talim hocası Khasin (Baron/eğitmen) muhtemelen bu hanedandan.",
+        "en": "Zeandor's drill instructor Khasin (Baron/tutor) is probably from this dynasty."
+      }
+    },
+    {
+      "id": "heongea-yonja",
+      "group": "court",
+      "status": "deceased",
+      "tags": [
+        "miras-veraset"
+      ],
+      "name": {
+        "tr": "Heongea Yonja",
+        "en": "Heongea Yonja"
+      },
+      "house": {
+        "tr": "Yonja Ailesi, Z'ela Eyaleti",
+        "en": "Yonja Family, Province of Z'ela"
+      },
+      "title": {
+        "tr": "\"Güneşli Toprak\"",
+        "en": "\"Sunny Land\""
+      },
+      "bio": {
+        "tr": "Öz oğlu Eraldris tarafından öldürülerek tahttan indirildi. Öz oğlu tarafından öldürülerek tahttan indirilir.",
+        "en": "He was killed and deposed by his own son Eraldris. He is killed and deposed by his own son."
+      },
+      "epi": {
+        "tr": "Güneşli Toprak",
+        "en": "Sunny Land"
+      },
+      "alleg": {
+        "tr": "Oğlu Eraldris Yonja.",
+        "en": "His son was Eraldris Yonja."
+      }
+    },
+    {
+      "id": "eraldris-yonja",
+      "group": "court",
+      "status": "deceased",
+      "tags": [
+        "isyan"
+      ],
+      "name": {
+        "tr": "Eraldris Yonja",
+        "en": "Eraldris Yonja"
+      },
+      "house": {
+        "tr": "Yonja Ailesi, Z'ela Eyaleti",
+        "en": "Yonja Family, Province of Z'ela"
+      },
+      "title": {
+        "tr": "\"Doğanın Şahidi\"",
+        "en": "\"Witness of Nature\""
+      },
+      "bio": {
+        "tr": "Amadon'un desteğiyle babasına karşı isyan başlattı. Babasını öldürerek Z'ela Valisi oldu. Amadon'un dolaylı desteğiyle kanlı bir iktidar değişimi gerçekleştiren hırslı bir vâris.",
+        "en": "He launched a revolt against his father with Amadon's support. He became Governor of Z'ela by killing his father. An ambitious heir who carried out a bloody change of power with Amadon's indirect support."
+      },
+      "epi": {
+        "tr": "Doğanın Şahidi",
+        "en": "Witness of Nature"
+      },
+      "alleg": {
+        "tr": "Babası Heongea Yonja (öldürdüğü).",
+        "en": "His father was Heongea Yonja (whom he killed)."
+      }
+    },
+    {
+      "id": "arba-itrez",
+      "group": "court",
+      "status": "deceased",
+      "tags": [
+        "savas",
+        "suikast-casusluk",
+        "miras-veraset",
+        "sinir-bolgesi"
+      ],
+      "name": {
+        "tr": "Arba İtrez",
+        "en": "Arba İtrez"
+      },
+      "house": {
+        "tr": "İtrez Ailesi (sahte), Lougat / Zela Eyaleti",
+        "en": "İtrez Family (false), Lougat / Province of Zela"
+      },
+      "title": {
+        "tr": "Gizli adı: Dravor",
+        "en": "Secret name: Dravor"
+      },
+      "bio": {
+        "tr": "Yedi yaşında ailesini Stallhart sınır seferinde kaybetti. Kayalar Arası Mektep'te casus olarak yetiştirildi. Sahte kimlikle İtrez ailesine sızdı; yaşlı çifti Solgun Sızı ile öldürüp mirası devraldı. Eron tarafından ailesi tehdit edilerek sadakate zorlandı.",
+        "en": "At seven he lost his family in a Stallhart border campaign. He was trained as a spy at the School Among the Rocks. He infiltrated the İtrez family with a false identity; he killed the elderly couple with Pale Ache and took over the inheritance. He was forced into loyalty by Eron threatening his family."
+      },
+      "alleg": {
+        "tr": "Eşi Lena İtrez (gerçek adı Tyssane, aynı mektepte yetiştirilmiş ajan); çocukları Tydor ve Elira; Arathen bağlantısı Eron Gjin; eski ustası ve sonradan ihbar ederek idam ettirdiği Albess.",
+        "en": "His wife is Lena İtrez (real name Tyssane, an agent trained at the same school); his children are Tydor and Elira; his Arathen contact is Eron Gjin; his former master, whom he later denounced and had executed, is Albess."
+      }
+    },
+    {
+      "id": "lena-itrez",
+      "group": "court",
+      "status": "alive",
+      "tags": [
+        "suikast-casusluk"
+      ],
+      "name": {
+        "tr": "Lena İtrez",
+        "en": "Lena İtrez"
+      },
+      "house": {
+        "tr": "İtrez Ailesi (sahte)",
+        "en": "İtrez Family (false)"
+      },
+      "title": {
+        "tr": "Gerçek adı: Tyssane",
+        "en": "Real name: Tyssane"
+      },
+      "bio": {
+        "tr": "Arathen'in gizli ajanı olarak aynı mektepte yetiştirilmiştir.",
+        "en": "She was trained at the same school as a secret agent of Arathen."
+      },
+      "alleg": {
+        "tr": "Kocası Arba/Dravor; çocukları Tydor ve Elira.",
+        "en": "Husband Arba/Dravor; children Tydor and Elira."
+      }
+    },
+    {
+      "id": "tydor-itrez",
+      "group": "court",
+      "status": "alive",
+      "tags": [
+        "savas"
+      ],
+      "name": {
+        "tr": "Tydor İtrez",
+        "en": "Tydor İtrez"
+      },
+      "house": {
+        "tr": "İtrez Ailesi (sahte)",
+        "en": "İtrez Family (false)"
+      },
+      "title": {
+        "tr": "",
+        "en": ""
+      },
+      "bio": {
+        "tr": "Belirtilmemiş. Babasının gölgesinde büyüyen, onay arayan, kararlı bir genç; savaş/strateji eğitimi almaktadır.",
+        "en": "Unspecified. A determined young man who grows up in his father's shadow, seeking approval; he is receiving war/strategy training."
+      },
+      "alleg": {
+        "tr": "Babası Arba İtrez (Dravor); annesi Lena İtrez (Tyssane); kız kardeşi Elira.",
+        "en": "His father is Arba İtrez (Dravor); his mother Lena İtrez (Tyssane); his sister Elira."
+      }
+    },
+    {
+      "id": "elira-itrez",
+      "group": "court",
+      "status": "alive",
+      "tags": [],
+      "name": {
+        "tr": "Elira İtrez",
+        "en": "Elira İtrez"
+      },
+      "house": {
+        "tr": "İtrez Ailesi (sahte)",
+        "en": "İtrez Family (false)"
+      },
+      "title": {
+        "tr": "",
+        "en": ""
+      },
+      "bio": {
+        "tr": "Belirtilmemiş. Meraklı, babasına sevgiyle bağlı; İmparator Amadon hakkında sorular sorar.",
+        "en": "Unspecified. Curious, affectionately attached to her father; she asks questions about Emperor Amadon."
+      },
+      "alleg": {
+        "tr": "Babası Arba İtrez (Dravor); annesi Lena İtrez (Tyssane); erkek kardeşi Tydor.",
+        "en": "Her father is Arba İtrez (Dravor); her mother Lena İtrez (Tyssane); her brother Tydor."
+      }
+    },
+    {
+      "id": "sertan",
+      "group": "court",
+      "status": "alive",
+      "tags": [
+        "savas"
+      ],
+      "name": {
+        "tr": "Vali Sertan",
+        "en": "Governor Sertan"
+      },
+      "house": {
+        "tr": "Lougat, Zela Eyaleti",
+        "en": "Lougat, Province of Zela"
+      },
+      "title": {
+        "tr": "Vali",
+        "en": "Governor"
+      },
+      "bio": {
+        "tr": "Albess'i yargılayan divanı topladı. Kelimeleri bir kılıç ustası titizliğiyle seçen, başkentin en köklü ailelerinden bir diplomat.",
+        "en": "He convened the divan that tried Albess. A diplomat from one of the capital's oldest families who chooses his words with the precision of a swordmaster."
+      }
+    },
+    {
+      "id": "albess",
+      "group": "court",
+      "status": "deceased",
+      "tags": [
+        "suikast-casusluk"
+      ],
+      "name": {
+        "tr": "Albess",
+        "en": "Albess"
+      },
+      "house": {
+        "tr": "Lougat, Zela Eyaleti",
+        "en": "Lougat, Province of Zela"
+      },
+      "title": {
+        "tr": "\"Laklakçı\" (Arathen casusu unvanı)",
+        "en": "\"The Prattler\" (Arathen spy title)"
+      },
+      "bio": {
+        "tr": "Arba tarafından ihbar edilip idam edildi. Zamanla içkiye düşüp zihni bulanan, Arba'yı tehdit edip pay istemeye başlayan bir adam; Arba tarafından ihbar edilip idam edilir --- bu ihbar aslında Arba'nın kendi sadakatini kanıtlaması için Eron tarafından kurgulanmış bir sınavdır.",
+        "en": "He was denounced by Arba and executed. A man who fell to drink over time and whose mind grew clouded, who began threatening Arba and demanding a share; he is denounced and executed by Arba — this denunciation is actually a test devised by Eron for Arba to prove his own loyalty."
+      },
+      "epi": {
+        "tr": "Laklakçı",
+        "en": "The Prattler"
+      },
+      "alleg": {
+        "tr": "Arba İtrez'in eski ustası.",
+        "en": "Arba İtrez's former master."
+      }
+    },
+    {
+      "id": "aran-lethor",
+      "group": "court",
+      "status": "alive",
+      "tags": [],
+      "name": {
+        "tr": "Aran Lethor",
+        "en": "Aran Lethor"
+      },
+      "house": {
+        "tr": "Lougat, Zela Eyaleti",
+        "en": "Lougat, Province of Zela"
+      },
+      "title": {
+        "tr": "Vali yardımcısı",
+        "en": "Deputy governor"
+      },
+      "bio": {
+        "tr": "Arba'yı acil divan toplantısına çağırdı.",
+        "en": "He summoned Arba to the emergency divan meeting."
+      }
+    },
+    {
+      "id": "zellan",
+      "group": "solgar",
+      "status": "alive",
+      "tags": [
+        "savas"
+      ],
+      "name": {
+        "tr": "Zellan",
+        "en": "Zellan"
+      },
+      "house": {
+        "tr": "Solgar Hanedanı",
+        "en": "House Solgar"
+      },
+      "title": {
+        "tr": "",
+        "en": ""
+      },
+      "bio": {
+        "tr": "Khasinya meselesini halletmek üzere güneye gönderilmesi planlandı. \"Dilinden altın, kılıcından kan damlar\" şeklinde tarif edilen, hem diplomat hem savaşçı bir adam.",
+        "en": "He was planned to be sent south to settle the Khasinya matter. A man described as \"gold drips from his tongue, blood from his sword\", both a diplomat and a warrior."
+      },
+      "alleg": {
+        "tr": "Edun Solgar'ın kuzeni.",
+        "en": "Cousin of Edun Solgar."
+      }
+    },
+    {
+      "id": "brion-triala",
+      "group": "court",
+      "status": "alive",
+      "tags": [
+        "saray-entrikasi"
+      ],
+      "name": {
+        "tr": "Brion Triala",
+        "en": "Brion Triala"
+      },
+      "house": {
+        "tr": "Triala Ailesi",
+        "en": "Triala Family"
+      },
+      "title": {
+        "tr": "Senior İmparatorluk Danışmanı",
+        "en": "Senior Imperial Advisor"
+      },
+      "bio": {
+        "tr": "Imloth döneminde kıdemli saray danışmanıdır. İç güvenlik zincirini araştırmakla görevlendirildi. Kararların yükünü taşımış, imparatorluğun siyasetini kanla yoğurmuş bir akıl; iç güvenlik zincirini araştırmakla görevlendirilir.",
+        "en": "He is the senior court advisor in Imloth's time. He was tasked with investigating the internal security chain. A mind that has borne the burden of decisions and kneaded the empire's politics with blood; he is tasked with investigating the internal security chain."
+      },
+      "weapon": {
+        "tr": "k boynun iki yanına yayılır",
+        "en": "…k spreads across both sides of the neck"
+      }
+    },
+    {
+      "id": "serat",
+      "group": "court",
+      "status": "alive",
+      "tags": [
+        "savas",
+        "saray-entrikasi"
+      ],
+      "name": {
+        "tr": "Vezir Serat",
+        "en": "Vizier Serat"
+      },
+      "house": {
+        "tr": "Belirtilmemiş",
+        "en": "Unspecified"
+      },
+      "title": {
+        "tr": "Vezir",
+        "en": "Vizier"
+      },
+      "bio": {
+        "tr": "Belirtilmemiş. Kelimeleri bir kılıç ustası titizliğiyle seçen, başkentin en köklü ailelerinden bir diplomat.",
+        "en": "Unspecified. A diplomat from one of the capital's oldest families who chooses his words with the precision of a swordmaster."
+      }
+    },
+    {
+      "id": "hiles-vizelar",
+      "group": "court",
+      "status": "alive",
+      "tags": [
+        "saray-entrikasi",
+        "surgun",
+        "miras-veraset"
+      ],
+      "name": {
+        "tr": "Hiles Vizelar",
+        "en": "Hiles Vizelar"
+      },
+      "house": {
+        "tr": "Belirtilmemiş",
+        "en": "Unspecified"
+      },
+      "title": {
+        "tr": "Belirtilmemiş. (Sonradan İç İşleri Veziri)",
+        "en": "Unspecified. (Later Vizier of Internal Affairs)"
+      },
+      "bio": {
+        "tr": "Amadon'un Seltanya döneminden beri en yakın dostuydu. Tahta çıkınca İç İşleri Veziri yapıldı. Edun Solgar'ın entrikalarına kanarak Amadon tarafından sürgüne gönderildi.",
+        "en": "He was Amadon's closest friend since his Seltanya days. When Amadon took the throne he was made Vizier of Internal Affairs. Fooled by Edun Solgar's intrigues, he was sent into exile by Amadon."
+      },
+      "alleg": {
+        "tr": "Amadon Stallhart (en yakın dostu, sonradan sürgüne gönderilir).",
+        "en": "Amadon Stallhart (his closest friend, later sent into exile)."
+      }
+    },
+    {
+      "id": "konsey-vezirleri-muhurdar-vezir",
+      "group": "court",
+      "status": "alive",
+      "tags": [
+        "savas",
+        "saray-entrikasi"
+      ],
+      "name": {
+        "tr": "Konsey Vezirleri --- Mühürdar Vezir",
+        "en": "Council Viziers — Vizier of the Seal"
+      },
+      "house": {
+        "tr": "Belirtilmemiş",
+        "en": "Unspecified"
+      },
+      "title": {
+        "tr": "Mühürdar Vezir, Başvezir",
+        "en": "Vizier of the Seal, Grand Vizier"
+      },
+      "bio": {
+        "tr": "Belirtilmemiş. 12 eyalet valisini birbirine düşürerek Merkez'in gücünü korur; asla kılıç çekmez.",
+        "en": "Unspecified. He preserves the Center's power by setting the 12 provincial governors against one another; he never draws a sword."
+      }
+    },
+    {
+      "id": "harbiye-baskomutani",
+      "group": "court",
+      "status": "alive",
+      "tags": [
+        "savas",
+        "ask",
+        "saray-entrikasi"
+      ],
+      "name": {
+        "tr": "Harbiye Başkomutanı",
+        "en": "Supreme Commander of the War Office"
+      },
+      "house": {
+        "tr": "Belirtilmemiş",
+        "en": "Unspecified"
+      },
+      "title": {
+        "tr": "Harbiye Başkomutanı, Savaş Veziri",
+        "en": "Supreme Commander of the War Office, War Vizier"
+      },
+      "bio": {
+        "tr": "Belirtilmemiş. Politikadan nefret eden sert bir asker; Hazine ve Tarım vezirleriyle sürekli bütçe kavgası eder.",
+        "en": "Unspecified. A hard soldier who hates politics; he constantly fights budget battles with the Treasury and Agriculture Viziers."
+      }
+    },
+    {
+      "id": "selith-hedar",
+      "group": "court",
+      "status": "alive",
+      "tags": [
+        "saray-entrikasi"
+      ],
+      "name": {
+        "tr": "Selith Hedar",
+        "en": "Selith Hedar"
+      },
+      "house": {
+        "tr": "Belirtilmemiş",
+        "en": "Unspecified"
+      },
+      "title": {
+        "tr": "Hazine Veziri",
+        "en": "Treasury Vizier"
+      },
+      "bio": {
+        "tr": "Belirtilmemiş. Buz gibi soğuk, duygusuz, tamamen rakamlarla düşünen bir bürokrat; parmağındaki yüzüğü sürekli çevirme alışkanlığı vardır.",
+        "en": "Unspecified. A bureaucrat who is ice-cold, emotionless, thinking entirely in numbers; he has a habit of constantly turning the ring on his finger."
+      },
+      "weapon": {
+        "tr": "çı yapmadan yumuşak yay",
+        "en": "…without making any, a soft bow"
+      }
+    },
+    {
+      "id": "valori-gekhor",
+      "group": "selya",
+      "status": "alive",
+      "tags": [
+        "saray-entrikasi"
+      ],
+      "name": {
+        "tr": "Valori Gekhor",
+        "en": "Valori Gekhor"
+      },
+      "house": {
+        "tr": "Selya bölgesi kökenli",
+        "en": "Of Selya origin"
+      },
+      "title": {
+        "tr": "Hariciye Veziri, \"Masanın gülen yılanı\" (lakap)",
+        "en": "Foreign Affairs Vizier, \"The Smiling Snake of the Table\" (nickname)"
+      },
+      "bio": {
+        "tr": "Belirtilmemiş. \"Masanın gülen yılanı\"; Selya bölgesi kökenli olmasına rağmen etkileyici bir otorite taşır; genç subay Teğmen Valen'i himaye eder.",
+        "en": "Unspecified. \"The Smiling Snake of the Table\"; although of Selya origin he carries an impressive authority; he takes the young officer Lieutenant Valen under his wing."
+      },
+      "epi": {
+        "tr": "Masanın gülen yılanı",
+        "en": "The Smiling Snake of the Table"
+      }
+    },
+    {
+      "id": "harvez-kaher",
+      "group": "court",
+      "status": "alive",
+      "tags": [
+        "saray-entrikasi",
+        "miras-veraset"
+      ],
+      "name": {
+        "tr": "Harvez Kaher",
+        "en": "Harvez Kaher"
+      },
+      "house": {
+        "tr": "Belirtilmemiş",
+        "en": "Unspecified"
+      },
+      "title": {
+        "tr": "Adliye Veziri, \"Sırların Yıkımı\"",
+        "en": "Justice Vizier, \"Ruin of Secrets\""
+      },
+      "bio": {
+        "tr": "Amadon'un tahta çıkmasıyla görevinden istifa etti.",
+        "en": "He resigned from his post when Amadon took the throne."
+      },
+      "epi": {
+        "tr": "Sırların Yıkımı",
+        "en": "Ruin of Secrets"
+      }
+    },
+    {
+      "id": "todkal-kalpear",
+      "group": "court",
+      "status": "deceased",
+      "tags": [
+        "saray-entrikasi",
+        "isyan",
+        "sinir-bolgesi"
+      ],
+      "name": {
+        "tr": "Todkal Kalpear",
+        "en": "Todkal Kalpear"
+      },
+      "house": {
+        "tr": "Belirtilmemiş",
+        "en": "Unspecified"
+      },
+      "title": {
+        "tr": "Adliye Veziri, \"Ölüm Sınırı\"",
+        "en": "Justice Vizier, \"The Boundary of Death\""
+      },
+      "bio": {
+        "tr": "Erthan ve adamlarının çıkardığı isyan sırasında öldürüldü.",
+        "en": "He was killed during the revolt raised by Erthan and his men."
+      },
+      "epi": {
+        "tr": "Ölüm Sınırı",
+        "en": "The Boundary of Death"
+      }
+    },
+    {
+      "id": "istihbarat-veziri",
+      "group": "court",
+      "status": "deceased",
+      "tags": [
+        "saray-entrikasi"
+      ],
+      "name": {
+        "tr": "İstihbarat Veziri",
+        "en": "Intelligence Vizier"
+      },
+      "house": {
+        "tr": "Belirtilmemiş",
+        "en": "Unspecified"
+      },
+      "title": {
+        "tr": "İstihbarat Veziri, Gölge Veziri",
+        "en": "Intelligence Vizier, Shadow Vizier"
+      },
+      "bio": {
+        "tr": "Gulon Stallhart'ın zehirlenmesinden sorumlu tutulur. Kurultay'da en az konuşan ama en çok korku uyandıran figür; Gulon Stallhart'ın zehirlenmesinden sorumlu tutulur.",
+        "en": "He is held responsible for the poisoning of Gulon Stallhart. The figure who speaks least in the Kurultay but inspires the most fear; he is held responsible for the poisoning of Gulon Stallhart."
+      }
+    },
+    {
+      "id": "eaviz-driya",
+      "group": "court",
+      "status": "deceased",
+      "tags": [
+        "saray-entrikasi",
+        "ticaret"
+      ],
+      "name": {
+        "tr": "Eaviz Driya",
+        "en": "Eaviz Driya"
+      },
+      "house": {
+        "tr": "Driya Ailesi",
+        "en": "Driya Family"
+      },
+      "title": {
+        "tr": "Tarım ve Lojistik Veziri, \"Pınarın Gözü\"",
+        "en": "Agriculture and Logistics Vizier, \"Eye of the Spring\""
+      },
+      "bio": {
+        "tr": "\"Bölüm - Duvar\"dan sonra vefat etti.",
+        "en": "He passed away after \"Chapter - The Wall\"."
+      },
+      "epi": {
+        "tr": "Pınarın Gözü",
+        "en": "Eye of the Spring"
+      },
+      "alleg": {
+        "tr": "Kardeşi Gealea Driya.",
+        "en": "His brother was Gealea Driya."
+      }
+    },
+    {
+      "id": "gealea-driya",
+      "group": "court",
+      "status": "deceased",
+      "tags": [
+        "saray-entrikasi",
+        "ticaret"
+      ],
+      "name": {
+        "tr": "Gealea Driya",
+        "en": "Gealea Driya"
+      },
+      "house": {
+        "tr": "Driya Ailesi",
+        "en": "Driya Family"
+      },
+      "title": {
+        "tr": "Tarım ve Lojistik Veziri, \"Kadim Pınar\"",
+        "en": "Agriculture and Logistics Vizier, \"The Ancient Spring\""
+      },
+      "bio": {
+        "tr": "Ağabeyi Eaviz'in vefatından sonra makamı devraldı.",
+        "en": "He took over the post after the death of his elder brother Eaviz."
+      },
+      "epi": {
+        "tr": "Kadim Pınar",
+        "en": "The Ancient Spring"
+      },
+      "alleg": {
+        "tr": "Ağabeyi Eaviz Driya.",
+        "en": "His elder brother was Eaviz Driya."
+      }
+    },
+    {
+      "id": "irin-onneva",
+      "group": "court",
+      "status": "deceased",
+      "tags": [
+        "din"
+      ],
+      "name": {
+        "tr": "Irin Onneva",
+        "en": "Irin Onneva"
+      },
+      "house": {
+        "tr": "Onneva Ailesi",
+        "en": "Onneva Family"
+      },
+      "title": {
+        "tr": "Mabed Yüce Rahibi",
+        "en": "High Priestess of the Mabed"
+      },
+      "bio": {
+        "tr": "\"Bölüm - Rüya\"dan önce öldü. Selmira'nın cenazesinde bulundu. İmparatorluğun dini lideri olarak kabul görür; Selmira'nın cenazesinde vakfın maddi durumunu Imloth'a hatırlatır.",
+        "en": "She died before \"Chapter - The Dream\". She attended Selmira's funeral. Regarded as the religious leader of the empire; at Selmira's funeral she reminds Imloth of the foundation's finances."
+      },
+      "alleg": {
+        "tr": "Yeğeninin kızı Serme Onneva (ondan sonra Yüce Rahibe olur).",
+        "en": "Her grand-niece Serme Onneva (who becomes High Priestess after her)."
+      }
+    },
+    {
+      "id": "ertler-serbam",
+      "group": "court",
+      "status": "deceased",
+      "tags": [
+        "din"
+      ],
+      "name": {
+        "tr": "Ertler Serbam",
+        "en": "Ertler Serbam"
+      },
+      "house": {
+        "tr": "Serbam Ailesi",
+        "en": "Serbam Family"
+      },
+      "title": {
+        "tr": "Mabed Yüce Rahibi, \"Keskin Bilge\"",
+        "en": "High Priest of the Mabed, \"The Astute Diplomat\""
+      },
+      "bio": {
+        "tr": "\"Bölüm - Rüya\"dan sonra Yüce Rahip makamına getirildi.",
+        "en": "He was raised to the office of High Priest after \"Chapter - The Dream\"."
+      },
+      "epi": {
+        "tr": "Keskin Bilge",
+        "en": "The Astute Diplomat"
+      },
+      "alleg": {
+        "tr": "Serme Onneva ile birlikte aynı anda dini liderlik yaptı (bir erkek bir kadın Yüce Rahip).",
+        "en": "He led the religious leadership simultaneously with Serme Onneva (one male and one female High Priest)."
+      }
+    },
+    {
+      "id": "serme-onneva",
+      "group": "court",
+      "status": "alive",
+      "tags": [
+        "din"
+      ],
+      "name": {
+        "tr": "Serme Onneva",
+        "en": "Serme Onneva"
+      },
+      "house": {
+        "tr": "Onneva Ailesi",
+        "en": "Onneva Family"
+      },
+      "title": {
+        "tr": "Mabed Yüce Rahibi",
+        "en": "High Priestess of the Mabed"
+      },
+      "bio": {
+        "tr": "Irin Onneva'dan sonra Yüce Rahibe oldu; Ertler Serbam ile birlikte dini liderlik yaptı. 30 yaşında Yüce Rahibe olması dikkat çekici olarak not edilmiştir.",
+        "en": "She became High Priestess after Irin Onneva; she led the religious leadership together with Ertler Serbam. It is noted as remarkable that she became High Priestess at the age of 30."
+      },
+      "alleg": {
+        "tr": "Büyük babası kardeşinin kızı olarak Irin Onneva ile akrabalık; Ertler Serbam ile birlikte eş zamanlı Yüce Rahiplik.",
+        "en": "Related to Irin Onneva as the daughter of her grandfather's brother; High Priestess simultaneously with Ertler Serbam."
+      }
+    },
+    {
+      "id": "baskomutan-olinder-albea",
+      "group": "court",
+      "status": "deceased",
+      "tags": [
+        "savas",
+        "saray-entrikasi",
+        "buyu-mit"
+      ],
+      "name": {
+        "tr": "Başkomutan Olinder Albea",
+        "en": "Supreme Commander Olinder Albea"
+      },
+      "house": {
+        "tr": "Belirtilmemiş",
+        "en": "Unspecified"
+      },
+      "title": {
+        "tr": "\"Efsanevi Başkomutan\"",
+        "en": "\"The Legendary Supreme Commander\""
+      },
+      "bio": {
+        "tr": "Uzun süre İmparatorluk Başkomutanlığı yaptı. Kılıç Geçidi töreninde Sessiz Avcı tarafından öldürüldü. Edun Solgar ve Valori Gekhor'un gizli entrikalarını fark edip kanıt toplamaktaydı.",
+        "en": "He served for a long time as Supreme Commander of the Empire. He was killed by the Silent Hunter during the Sword Pass ceremony. He had noticed the secret intrigues of Edun Solgar and Valori Gekhor and was gathering evidence."
+      },
+      "epi": {
+        "tr": "Efsanevi Başkomutan",
+        "en": "The Legendary Supreme Commander"
+      },
+      "weapon": {
+        "tr": "ğ işaret parmağında kılıç",
+        "en": "…g sword on the index finger"
+      },
+      "alleg": {
+        "tr": "Eşi Helsa; kızı Mirela (17), oğlu Dorin (8); gizli sevgilisi Liana (tavernacı); eski komutanı ve akıl hocası Hessar Vond (ölmüş, anı olarak geçer).",
+        "en": "His wife Helsa; his daughter Mirela (17), his son Dorin (8); his secret lover Liana (a tavern keeper); his former commander and mentor Hessar Vond (dead, appears as a memory)."
+      }
+    },
+    {
+      "id": "helsa",
+      "group": "court",
+      "status": "alive",
+      "tags": [],
+      "name": {
+        "tr": "Helsa",
+        "en": "Helsa"
+      },
+      "house": {
+        "tr": "Albea Ailesi",
+        "en": "Albea Family"
+      },
+      "title": {
+        "tr": "",
+        "en": ""
+      },
+      "bio": {
+        "tr": "Belirtilmemiş. Kocasının sadakatsizliğinin (Liana ile ilişkisi) farkında olup sessiz kalmayı seçen, vakur ve dayanıklı bir kadın; ailenin bütünlüğünü korumayı her şeyin üstünde tutar.",
+        "en": "Unspecified. A dignified and resilient woman who is aware of her husband's infidelity (his affair with Liana) yet chooses silence; she holds preserving the family's integrity above all else."
+      },
+      "alleg": {
+        "tr": "Kocası Olinder Albea; kızı Mirela; oğlu Dorin.",
+        "en": "Husband Olinder Albea; daughter Mirela; son Dorin."
+      }
+    },
+    {
+      "id": "mirela",
+      "group": "court",
+      "status": "alive",
+      "tags": [
+        "ask",
+        "ticaret"
+      ],
+      "name": {
+        "tr": "Mirela",
+        "en": "Mirela"
+      },
+      "house": {
+        "tr": "Albea Ailesi",
+        "en": "Albea Family"
+      },
+      "title": {
+        "tr": "",
+        "en": ""
+      },
+      "bio": {
+        "tr": "Belirtilmemiş. Gizlice bir tüccar ailesinin (Orven Vane'in) oğluna gönül vermiştir; babasından bu ilişkiyi saklar.",
+        "en": "Unspecified. She has secretly lost her heart to the son of a merchant family (Orven Vane's); she hides this relationship from her father."
+      },
+      "alleg": {
+        "tr": "Babası Olinder Albea; annesi Helsa; kardeşi Dorin.",
+        "en": "Father Olinder Albea; mother Helsa; brother Dorin."
+      }
+    },
+    {
+      "id": "dorin",
+      "group": "court",
+      "status": "alive",
+      "tags": [
+        "savas",
+        "ask"
+      ],
+      "name": {
+        "tr": "Dorin",
+        "en": "Dorin"
+      },
+      "house": {
+        "tr": "Albea Ailesi",
+        "en": "Albea Family"
+      },
+      "title": {
+        "tr": "",
+        "en": ""
+      },
+      "bio": {
+        "tr": "Belirtilmemiş. Babası gibi asker olma hayaliyle yanan, saf ve sevecen bir çocuk.",
+        "en": "Unspecified. An innocent and affectionate boy burning with the dream of becoming a soldier like his father."
+      },
+      "alleg": {
+        "tr": "Babası Olinder Albea; annesi Helsa; kız kardeşi Mirela.",
+        "en": "Father Olinder Albea; mother Helsa; sister Mirela."
+      }
+    },
+    {
+      "id": "liana",
+      "group": "court",
+      "status": "alive",
+      "tags": [
+        "buyu-mit"
+      ],
+      "name": {
+        "tr": "Liana",
+        "en": "Liana"
+      },
+      "house": {
+        "tr": "Belirtilmemiş",
+        "en": "Unspecified"
+      },
+      "title": {
+        "tr": "",
+        "en": ""
+      },
+      "bio": {
+        "tr": "Belirtilmemiş. Batı koylarından bir balıkçı köyünden geldiğine, kocasını fırtınalı denizde kaybettiğine dair bir efsaneyle anılır (doğruluğu belirsiz); Olinder'in tüm yükünü sessizce dinleyen, ona hesap sormayan bir sığınak.",
+        "en": "Unspecified. Known through a legend (its truth uncertain) that she came from a fishing village on the western bays and lost her husband in a stormy sea; a refuge who silently listens to all of Olinder's burden and never holds him to account."
+      },
+      "alleg": {
+        "tr": "Gizli sevgilisi Olinder Albea.",
+        "en": "Secret lover of Olinder Albea."
+      }
+    },
+    {
+      "id": "derevon-kessen",
+      "group": "arathen",
+      "status": "alive",
+      "tags": [
+        "savas",
+        "ask"
+      ],
+      "name": {
+        "tr": "General Derevon Kessen",
+        "en": "General Derevon Kessen"
+      },
+      "house": {
+        "tr": "Arathen Krallığı",
+        "en": "Kingdom of Arathen"
+      },
+      "title": {
+        "tr": "General",
+        "en": "General"
+      },
+      "bio": {
+        "tr": "Leno'nun çocukluğundan beri onunla birlikte; babasından kalma tek güvendiği adam. Sabrı öğütleyen, tecrübeli bir asker; Leno'ya babasının da gençliğinde aynı sabırsızlığı yaşadığını hatırlatır.",
+        "en": "With Leno since his childhood; the only man he trusts, inherited from his father. An experienced soldier who counsels patience; he reminds Leno that his father too had experienced the same impatience in his youth."
+      },
+      "alleg": {
+        "tr": "Leno Kridas (generali olduğu kral).",
+        "en": "Leno Kridas (the king whose general he is)."
+      }
+    },
+    {
+      "id": "rean-certfa",
+      "group": "court",
+      "status": "deceased",
+      "tags": [],
+      "name": {
+        "tr": "Rean Certfa",
+        "en": "Rean Certfa"
+      },
+      "house": {
+        "tr": "Belirtilmemiş",
+        "en": "Unspecified"
+      },
+      "title": {
+        "tr": "Saray Muhafızları Başkomutanı, ardından Başkomutan",
+        "en": "Commander of the Palace Guards, later Supreme Commander"
+      },
+      "bio": {
+        "tr": "Olinder Albea'nın ölümünden sonra Başkomutan olarak atandı. Selmira'nın cenaze töreninde Galetsha Valisi'ni karşıladı. Arava'nın tozlu yollarından saray mermerlerine tırmanmış, soylu olmayan bir adam; sarayın \"ait olmayan adam\" fısıltılarına aldırmaz.",
+        "en": "He was appointed Supreme Commander after the death of Olinder Albea. At Selmira's funeral ceremony he greeted the Governor of Galetsha. A man of non-noble birth who climbed from the dusty roads of Arava to the palace marble; he ignores the palace's whispers of \"the man who does not belong\"."
+      },
+      "weapon": {
+        "tr": "Cupid yayı",
+        "en": "Cupid's bow"
+      }
+    },
+    {
+      "id": "arabis",
+      "group": "court",
+      "status": "alive",
+      "tags": [
+        "savas"
+      ],
+      "name": {
+        "tr": "Komutan Arabis",
+        "en": "Commander Arabis"
+      },
+      "house": {
+        "tr": "Belirtilmemiş",
+        "en": "Unspecified"
+      },
+      "title": {
+        "tr": "Komutan",
+        "en": "Commander"
+      },
+      "bio": {
+        "tr": "Belirtilmemiş. Tedbirli, sadık; Amadon'un başkente dönüş yolunda güvenliğini titizlikle planlar.",
+        "en": "Unspecified. Cautious, loyal; he meticulously plans Amadon's security on his way back to the capital."
+      }
+    },
+    {
+      "id": "valen",
+      "group": "court",
+      "status": "alive",
+      "tags": [],
+      "name": {
+        "tr": "Teğmen Valen",
+        "en": "Lieutenant Valen"
+      },
+      "house": {
+        "tr": "Belirtilmemiş",
+        "en": "Unspecified"
+      },
+      "title": {
+        "tr": "Teğmen",
+        "en": "Lieutenant"
+      },
+      "bio": {
+        "tr": "Valori Gekhor'un himayesinde yükselen genç subay. Olinder'le av sahnesinde bir bilgelik dersi aldı. Başlangıçta Olinder Albea'nın \"temkinli\" nizamını korkaklık sayar; av sahnesinde Olinder'in geçmiş derslerini dinleyip ona derin bir saygı duymaya başlar.",
+        "en": "A young officer rising under the patronage of Valori Gekhor. He received a lesson in wisdom from Olinder in the hunting scene. At first he regards Olinder Albea's \"cautious\" order as cowardice; in the hunting scene he listens to Olinder's past lessons and comes to hold deep respect for him."
+      },
+      "alleg": {
+        "tr": "Hariciye Nazırı Valori Gekhor'un himayesi.",
+        "en": "Under the patronage of Foreign Minister Valori Gekhor."
+      }
+    },
+    {
+      "id": "miran",
+      "group": "selya",
+      "status": "alive",
+      "tags": [],
+      "name": {
+        "tr": "Miran",
+        "en": "Miran"
+      },
+      "house": {
+        "tr": "Selya tersanesi",
+        "en": "Selya shipyard"
+      },
+      "title": {
+        "tr": "",
+        "en": ""
+      },
+      "bio": {
+        "tr": "Zeandor'un vinç çiziminin başkentteki gerçek bir teknolojinin hatırası olduğunu ilk fark etti. Zeandor'un çiziminin başkentteki gerçek bir teknolojinin hatırası olduğunu ilk fark eden zeki zanaatkâr.",
+        "en": "The first to notice that Zeandor's crane drawing was the memory of a real technology in the capital. A clever craftsman who was the first to notice that Zeandor's drawing was the memory of a real technology in the capital."
+      }
+    },
+    {
+      "id": "zylan-kamno",
+      "group": "other",
+      "status": "deceased",
+      "tags": [],
+      "name": {
+        "tr": "Zylan Kamno",
+        "en": "Zylan Kamno"
+      },
+      "house": {
+        "tr": "Belirtilmemiş",
+        "en": "Unspecified"
+      },
+      "title": {
+        "tr": "Saray Baş Kalfası",
+        "en": "Chief Palace Steward"
+      },
+      "bio": {
+        "tr": "\"Salgın\" bölümünden sonra vefat etti. \"Salgın\" bölümünden sonra vefat eder; disiplinli, soğuk ama nazik olmayan bir protokol adamı.",
+        "en": "He passed away after the \"Plague\" chapter. He passes away after the \"Plague\" chapter; a disciplined, cold, but not kind protocol man."
+      }
+    },
+    {
+      "id": "rehor",
+      "group": "other",
+      "status": "alive",
+      "tags": [],
+      "name": {
+        "tr": "Rehor",
+        "en": "Rehor"
+      },
+      "house": {
+        "tr": "Belirtilmemiş",
+        "en": "Unspecified"
+      },
+      "title": {
+        "tr": "Saray Hekimi",
+        "en": "Palace Physician"
+      },
+      "bio": {
+        "tr": "Belirtilmemiş. İmparatora verdiği ilaçların içeriğini gizlemekten çekinen, ihtiyatlı bir hekim; Edun Solgar'ın kuşkularına maruz kalır.",
+        "en": "Unspecified. A cautious physician who shrinks from concealing the contents of the medicines he gives the Emperor; he is exposed to Edun Solgar's suspicions."
+      }
+    },
+    {
+      "id": "ebe-eadan",
+      "group": "other",
+      "status": "alive",
+      "tags": [],
+      "name": {
+        "tr": "Ebe Eadan",
+        "en": "Midwife Eadan"
+      },
+      "house": {
+        "tr": "Belirtilmemiş",
+        "en": "Unspecified"
+      },
+      "title": {
+        "tr": "Ebe, Saray Baş Ebesi",
+        "en": "Midwife, Chief Palace Midwife"
+      },
+      "bio": {
+        "tr": "Selmira'nın doğumunu yönetti; Zeandor'u doğurttuysa da Selmira'yı kurtaramadı. Yılların deneyimiyle sakin; Zeandor'u doğurtur ama Selmira'yı kurtaramaz.",
+        "en": "She managed Selmira's delivery; though she delivered Zeandor she could not save Selmira. Calm with years of experience; she delivers Zeandor but cannot save Selmira."
+      },
+      "alleg": {
+        "tr": "Yardımcıları: Líane, Mereid, Dairin.",
+        "en": "Her assistants: Líane, Mereid, Dairin."
+      }
+    },
+    {
+      "id": "l-ane",
+      "group": "other",
+      "status": "alive",
+      "tags": [],
+      "name": {
+        "tr": "Líane",
+        "en": "Líane"
+      },
+      "house": {
+        "tr": "Belirtilmemiş",
+        "en": "Unspecified"
+      },
+      "title": {
+        "tr": "",
+        "en": ""
+      },
+      "bio": {
+        "tr": "Belirtilmemiş. Eğitimi yeni tamamlanmış, endişeli ama kararlı bir genç kız.",
+        "en": "Unspecified. A young girl who has only just completed her training, anxious but determined."
+      }
+    },
+    {
+      "id": "mereid",
+      "group": "other",
+      "status": "alive",
+      "tags": [],
+      "name": {
+        "tr": "Mereid",
+        "en": "Mereid"
+      },
+      "house": {
+        "tr": "Belirtilmemiş",
+        "en": "Unspecified"
+      },
+      "title": {
+        "tr": "",
+        "en": ""
+      },
+      "bio": {
+        "tr": "Belirtilmemiş. Selmira'yı doğum sırasında fiziksel olarak destekler.",
+        "en": "Unspecified. She physically supports Selmira during the birth."
+      }
+    },
+    {
+      "id": "dairin",
+      "group": "other",
+      "status": "alive",
+      "tags": [],
+      "name": {
+        "tr": "Dairin",
+        "en": "Dairin"
+      },
+      "house": {
+        "tr": "Belirtilmemiş",
+        "en": "Unspecified"
+      },
+      "title": {
+        "tr": "",
+        "en": ""
+      },
+      "bio": {
+        "tr": "Belirtilmemiş. Boynunda bir muska taşır, dua fısıldar; bebeğin çıkışını kolaylaştıran hassas bir şifacı.",
+        "en": "Unspecified. She wears an amulet at her neck and whispers prayers; a delicate healer who eases the baby's coming."
+      }
+    },
+    {
+      "id": "thaelen",
+      "group": "other",
+      "status": "alive",
+      "tags": [],
+      "name": {
+        "tr": "Thaelen",
+        "en": "Thaelen"
+      },
+      "house": {
+        "tr": "Elf Soyu",
+        "en": "Elven Lineage"
+      },
+      "title": {
+        "tr": "Selya'daki Elf Dil Öğretmeni",
+        "en": "Elven Language Teacher in Selya"
+      },
+      "bio": {
+        "tr": "Belirtilmemiş. Yüzyıllar önce öğrendiği eski, aristokratik bir Stallhart lehçesiyle konuşur; insan zaman algısına kayıtsız, kibirli ve mesafeli; Zeandor'a karşı da aynı soğuk protokolü uygular. Dosya 3: İnsanların geçici hırslarına karşı üstten ve mesafeli tutum.",
+        "en": "Unspecified. He speaks an old, aristocratic Stallhart dialect learned centuries ago; indifferent to the human sense of time, arrogant and distant; he applies the same cold protocol to Zeandor. File 3: A superior and distant attitude toward humans' fleeting ambitions."
+      }
+    },
+    {
+      "id": "elian",
+      "group": "selya",
+      "status": "alive",
+      "tags": [],
+      "name": {
+        "tr": "Elian",
+        "en": "Elian"
+      },
+      "house": {
+        "tr": "Selya Konağı",
+        "en": "Selya Manor"
+      },
+      "title": {
+        "tr": "Kalfa/hizmetkâr",
+        "en": "Head servant/servant"
+      },
+      "bio": {
+        "tr": "Belirtilmemiş. Zeandor'un limanı teftiş etme emrini Adelis'e ileten, tedirgin ama görevine bağlı bir hizmetkâr.",
+        "en": "Unspecified. An uneasy but duty-bound servant who conveys Zeandor's order to inspect the harbor to Adelis."
+      }
+    },
+    {
+      "id": "metnor",
+      "group": "other",
+      "status": "alive",
+      "tags": [],
+      "name": {
+        "tr": "Metnor",
+        "en": "Metnor"
+      },
+      "house": {
+        "tr": "Amadon Ailesi",
+        "en": "Amadon Family"
+      },
+      "title": {
+        "tr": "Seyis",
+        "en": "Groom"
+      },
+      "bio": {
+        "tr": "Belirtilmemiş. Amadon'un çocukluğundan beri ona at binmeyi öğretmiş, ona derin bir sevgi ve saygı besleyen yaşlı bir hizmetkâr.",
+        "en": "Unspecified. An old servant who has taught Amadon to ride since his childhood and holds deep love and respect for him."
+      },
+      "alleg": {
+        "tr": "Amadon Stallhart (efendisi).",
+        "en": "Amadon Stallhart (his master)."
+      }
+    },
+    {
+      "id": "nanon",
+      "group": "arhan",
+      "status": "alive",
+      "tags": [],
+      "name": {
+        "tr": "Nanon",
+        "en": "Nanon"
+      },
+      "house": {
+        "tr": "Arhan Ailesi",
+        "en": "Arhan Family"
+      },
+      "title": {
+        "tr": "Kahya",
+        "en": "Steward"
+      },
+      "bio": {
+        "tr": "Erthan hakkında araştırma yaptı. Hiçbir vahşete irkilmeyen, hiçbir trajediye üzülmeyen soğukkanlı bir hizmetkâr; Erthan hakkında araştırma yapar.",
+        "en": "He researched Erthan. A cool-headed servant who flinches at no brutality and grieves at no tragedy; he researches Erthan."
+      },
+      "alleg": {
+        "tr": "Edlas Arhan (efendisi).",
+        "en": "Edlas Arhan (his master)."
+      }
+    },
+    {
+      "id": "zylan",
+      "group": "selya",
+      "status": "alive",
+      "tags": [],
+      "name": {
+        "tr": "Zylan",
+        "en": "Zylan"
+      },
+      "house": {
+        "tr": "Selya Tersanesi (Saray Baş Kalfası Zylan Kamno'dan farklı bir karakterdir)",
+        "en": "Selya Shipyard (a different character from Chief Palace Steward Zylan Kamno)"
+      },
+      "title": {
+        "tr": "Marangoz Ustası",
+        "en": "Master Carpenter"
+      },
+      "bio": {
+        "tr": "Zeandor'un vinç çizimini ilk ciddiye aldı. Zeandor'un vinç çizimini ilk ciddiye alan usta; deneyimli ve dikkatli.",
+        "en": "The first to take Zeandor's crane drawing seriously. A master who first took Zeandor's crane drawing seriously; experienced and careful."
+      }
+    },
+    {
+      "id": "sessiz-avci",
+      "group": "other",
+      "status": "deceased",
+      "tags": [
+        "savas",
+        "suikast-casusluk"
+      ],
+      "name": {
+        "tr": "Sessiz Avcı",
+        "en": "The Silent Hunter"
+      },
+      "house": {
+        "tr": "Belirtilmemiş",
+        "en": "Unspecified"
+      },
+      "title": {
+        "tr": "\"Sessiz Avcı\"",
+        "en": "\"The Silent Hunter\""
+      },
+      "bio": {
+        "tr": "Başkomutan Olinder Albea'yı Kılıç Geçidi töreninde ok ile öldürdü. Soğukkanlı, titiz, duygusuz bir profesyonel; kim tarafından tutulduğu gizli (muhtemelen Edun Solgar/Valori Gekhor çevresi ima edilir); haftalar süren bir hazırlıkla suikastı gerçekleştirir.",
+        "en": "He killed Supreme Commander Olinder Albea with an arrow at the Sword Pass ceremony. A cold-blooded, meticulous, unfeeling professional; who hired him is secret (the circle of Edun Solgar/Valori Gekhor is implied); he carries out the assassination after weeks of preparation."
+      },
+      "epi": {
+        "tr": "Sessiz Avcı",
+        "en": "The Silent Hunter"
+      },
+      "weapon": {
+        "tr": "an Olinder Albea'yı Kılıç",
+        "en": "…an Olinder Albea, Sword"
+      }
+    },
+    {
+      "id": "ellan",
+      "group": "other",
+      "status": "alive",
+      "tags": [],
+      "name": {
+        "tr": "Elçi Ellan",
+        "en": "Envoy Ellan"
+      },
+      "house": {
+        "tr": "Örebas Krallığı",
+        "en": "Kingdom of Örebas"
+      },
+      "title": {
+        "tr": "Elçi",
+        "en": "Envoy"
+      },
+      "bio": {
+        "tr": "Aertas Sınglew ile tehlikeli bir diplomatik diyalog yaşadı. Kral Kjizma ve Prenses Veyra arasında sıkışıp ikisine de mahrem bilgi taşıyan bir konuma düştü.",
+        "en": "He had a dangerous diplomatic exchange with Aertas Sınglew. Caught between King Kjizma and Princess Veyra, he has come to hold a position in which he carries confidential information to both."
+      },
+      "alleg": {
+        "tr": "Kral Kjizma (efendisi); Prenses Veyra (gizli görevlendirici).",
+        "en": "King Kjizma (his master); Princess Veyra (his secret commissioner)."
+      }
+    },
+    {
+      "id": "yssa-morden",
+      "group": "arathen",
+      "status": "alive",
+      "tags": [
+        "ask",
+        "saray-entrikasi",
+        "ittifak-diplomasi"
+      ],
+      "name": {
+        "tr": "Vezir Yssa Morden",
+        "en": "Vizier Yssa Morden"
+      },
+      "house": {
+        "tr": "Arathen Krallığı",
+        "en": "Kingdom of Arathen"
+      },
+      "title": {
+        "tr": "Vezir",
+        "en": "Vizier"
+      },
+      "bio": {
+        "tr": "Örebas ile evlilik yoluyla ittifak kurmayı önerdi. Örebas ile evlilik yoluyla ittifak kurmayı öneren kurnaz bir diplomat; gençliğinde Örebas sarayı tarafından reddedilmiş bir geçmişi vardır (dedikodu).",
+        "en": "He proposed an alliance with Örebas through marriage. A cunning diplomat who proposed an alliance with Örebas through marriage; he has a past (rumor) of having been rejected by the Örebas court in his youth."
+      },
+      "alleg": {
+        "tr": "Leno Kridas (danışmanı olduğu kral).",
+        "en": "Leno Kridas (the king whose advisor he is)."
+      }
+    },
+    {
+      "id": "orebas-krali-kjizma",
+      "group": "arathen",
+      "status": "alive",
+      "tags": [
+        "ask"
+      ],
+      "name": {
+        "tr": "Örebas Kralı Kjizma",
+        "en": "King Kjizma of Örebas"
+      },
+      "house": {
+        "tr": "Örebas Krallığı",
+        "en": "Kingdom of Örebas"
+      },
+      "title": {
+        "tr": "Kral",
+        "en": "King"
+      },
+      "bio": {
+        "tr": "Stallhart ile Arathen arasında dengeyi koruyan siyasi manevraları yürüttü. Stallhart ile Arathen arasında dengeyi koruyan kurnaz bir kral; Ellan'ı bilinçli olarak \"öngörülemez\" bir elçi olarak Stallhart'a gönderir; kızının evlilik teklifini bir siyasi taş gibi değerlendirir.",
+        "en": "He carried out the political maneuvers that kept the balance between Stallhart and Arathen. A cunning king who keeps the balance between Stallhart and Arathen; he deliberately sends Ellan to Stallhart as an \"unpredictable\" envoy; he weighs the marriage proposal for his daughter like a political stone."
+      },
+      "alleg": {
+        "tr": "Kızı Prenses Veyra; baş danışmanı Orveth; elçisi Ellan.",
+        "en": "His daughter Princess Veyra; chief advisor Orveth; envoy Ellan."
+      }
+    },
+    {
+      "id": "veyra",
+      "group": "arathen",
+      "status": "alive",
+      "tags": [
+        "ask"
+      ],
+      "name": {
+        "tr": "Prenses Veyra",
+        "en": "Princess Veyra"
+      },
+      "house": {
+        "tr": "Örebas Krallığı",
+        "en": "Kingdom of Örebas"
+      },
+      "title": {
+        "tr": "Prenses",
+        "en": "Princess"
+      },
+      "bio": {
+        "tr": "Leno Kridas'ın evlilik teklifini değerlendirmek için Ellan'ı gizlice görevlendirdi. Kendi kaderi üzerinde söz hakkı olmadığından öfkeli; Leno Kridas'ın evlilik teklifini kendi gözlemleriyle değerlendirmek için Ellan'ı gizlice görevlendirir; babasının aksine duygularını gizlemeyen, doğrudan bir karakter.",
+        "en": "She secretly commissioned Ellan to evaluate Leno Kridas's marriage proposal. Furious that she has no say over her own fate; she secretly commissions Ellan to evaluate Leno Kridas's marriage proposal through her own observations; unlike her father, a direct character who does not hide her feelings."
+      },
+      "alleg": {
+        "tr": "Babası Kjizma; sadık muhafızı Calden.",
+        "en": "Her father Kjizma; her loyal guard Calden."
+      }
+    },
+    {
+      "id": "calden",
+      "group": "arathen",
+      "status": "alive",
+      "tags": [],
+      "name": {
+        "tr": "Calden",
+        "en": "Calden"
+      },
+      "house": {
+        "tr": "Örebas Krallığı",
+        "en": "Kingdom of Örebas"
+      },
+      "title": {
+        "tr": "",
+        "en": ""
+      },
+      "bio": {
+        "tr": "Üç kıştır Veyra'ya doğrudan bağlı olarak görev yapıyor. Üç kıştır Veyra'ya doğrudan bağlı; sessiz, güvenilir, sorgusuz sadakat gösterir.",
+        "en": "He has served in direct attachment to Veyra for three winters. Bound directly to Veyra for three winters; silent, trustworthy, shows unquestioning loyalty."
+      },
+      "alleg": {
+        "tr": "Prenses Veyra (koruduğu prenses).",
+        "en": "Princess Veyra (the princess he protects)."
+      }
+    },
+    {
+      "id": "orveth",
+      "group": "arathen",
+      "status": "alive",
+      "tags": [
+        "saray-entrikasi"
+      ],
+      "name": {
+        "tr": "Orveth",
+        "en": "Orveth"
+      },
+      "house": {
+        "tr": "Örebas Krallığı",
+        "en": "Kingdom of Örebas"
+      },
+      "title": {
+        "tr": "Baş Danışman",
+        "en": "Chief Advisor"
+      },
+      "bio": {
+        "tr": "Ellan'ı limanda karşıladı. Ölçülü, hiçbir haberi ham haliyle krala ulaştırmayan tedbirli bir saray adamı.",
+        "en": "He greeted Ellan at the harbor. A measured, cautious courtier who delivers no piece of news to the king in its raw form."
+      },
+      "alleg": {
+        "tr": "Kral Kjizma (danışmanı olduğu kral).",
+        "en": "King Kjizma (the king whose advisor he is)."
+      }
+    },
+    {
+      "id": "sarya",
+      "group": "rebel",
+      "status": "deceased",
+      "tags": [
+        "isyan"
+      ],
+      "name": {
+        "tr": "Sarya",
+        "en": "Sarya"
+      },
+      "house": {
+        "tr": "Liandryl/Erthan Ailesi",
+        "en": "Liandryl/Erthan Family"
+      },
+      "title": {
+        "tr": "",
+        "en": ""
+      },
+      "bio": {
+        "tr": "Kocasının ölümünden sonra oğlu Erthan ile birlikte Arava'ya, Selya Konağı'na sığındı. Kocasının ölümüyle yıkılan, oğlunun tehlikeli yoluna dair derin bir korku taşıyan bir anne.",
+        "en": "After her husband's death she took refuge in Arava, at the Selya Manor, with her son Erthan. A mother shattered by her husband's death, carrying a deep fear about her son's dangerous path."
+      },
+      "alleg": {
+        "tr": "Kocası Almonth; oğlu Erthan.",
+        "en": "Husband Almonth; son Erthan."
+      }
+    },
+    {
+      "id": "valer",
+      "group": "rebel",
+      "status": "alive",
+      "tags": [
+        "isyan",
+        "ticaret"
+      ],
+      "name": {
+        "tr": "Baron Valer",
+        "en": "Baron Valer"
+      },
+      "house": {
+        "tr": "Çukurtepe",
+        "en": "Çukurtepe"
+      },
+      "title": {
+        "tr": "Baron",
+        "en": "Baron"
+      },
+      "bio": {
+        "tr": "Erthan'a kefalet mühürü verdi; hasadın üçte birini ve sonra tüm toprakları talep etti; Erthan'ın ailesini ekonomik olarak sömürdü. Açgözlü, merhametsiz bir feodal bey; Erthan'ın ailesini ekonomik olarak sömürür, sonunda tüm topraklarını gasp eder.",
+        "en": "He gave Erthan the surety seal; demanded a third of the harvest and then all the lands; he exploited Erthan's family economically. A greedy, merciless feudal lord; he exploits Erthan's family economically and finally seizes all their lands."
+      },
+      "alleg": {
+        "tr": "Kızı Elara Valer.",
+        "en": "His daughter Elara Valer."
+      }
+    },
+    {
+      "id": "elara-valer",
+      "group": "rebel",
+      "status": "alive",
+      "tags": [
+        "isyan"
+      ],
+      "name": {
+        "tr": "Elara Valer",
+        "en": "Elara Valer"
+      },
+      "house": {
+        "tr": "Valer Ailesi, Çukurtepe",
+        "en": "Valer Family, Çukurtepe"
+      },
+      "title": {
+        "tr": "",
+        "en": ""
+      },
+      "bio": {
+        "tr": "Erthan'ı saraydan kaçırmasına yardım etti. Erthan'a gizlice yardım eden, babasının zulmüne rağmen vicdanlı bir genç kadın; Erthan'ı saraydan kaçırmasına yardım eder.",
+        "en": "She helped Erthan escape from the palace. A young woman who secretly helps Erthan, conscientious despite her father's cruelty; she helps Erthan escape from the palace."
+      },
+      "alleg": {
+        "tr": "Babası Baron Valer.",
+        "en": "Her father Baron Valer."
+      }
+    },
+    {
+      "id": "kara-hodrev",
+      "group": "rebel",
+      "status": "deceased",
+      "tags": [
+        "savas",
+        "isyan"
+      ],
+      "name": {
+        "tr": "Kara Hodrev",
+        "en": "Kara Hodrev"
+      },
+      "house": {
+        "tr": "Belirtilmemiş",
+        "en": "Unspecified"
+      },
+      "title": {
+        "tr": "Karagöl Çetesi Lideri",
+        "en": "Leader of the Karagöl Gang"
+      },
+      "bio": {
+        "tr": "Zeandor tarafından bizzat öldürüldü; kellesi başkente uyarı niteliğinde gönderildi. Köylülere ve kervanlara acımasızca saldıran bir haydut; Zeandor tarafından bizzat öldürülür; kellesi başkente uyarı niteliğinde gönderilir.",
+        "en": "He was killed personally by Zeandor; his head was sent to the capital as a warning. A bandit who ruthlessly attacked villagers and caravans; he is killed personally by Zeandor; his head is sent to the capital as a warning."
+      },
+      "weapon": {
+        "tr": "yanağında derin bir kılıç",
+        "en": "a deep sword on his cheek"
+      }
+    },
+    {
+      "id": "linroth-briktod",
+      "group": "selya",
+      "status": "alive",
+      "tags": [],
+      "name": {
+        "tr": "Baron Linroth Briktod",
+        "en": "Baron Linroth Briktod"
+      },
+      "house": {
+        "tr": "Selya (liman/tersane)",
+        "en": "Selya (port/shipyard)"
+      },
+      "title": {
+        "tr": "Baron",
+        "en": "Baron"
+      },
+      "bio": {
+        "tr": "Limanın vinç sistemini inşa ettirdi. Başlangıçta Zeandor'un fikirlerini küçümser, sonra onun mühendislik zekâsına derin saygı duyar; limanın vinç sistemini inşa ettiren usta yönetici.",
+        "en": "He had the harbor's crane system built. At first he belittles Zeandor's ideas, then comes to hold deep respect for his engineering intelligence; a master administrator who had the harbor's crane system built."
+      },
+      "alleg": {
+        "tr": "Adelis'in ailesinden (Zeandor'un kayınbiraderi/akrabası).",
+        "en": "From Adelis's family (Zeandor's brother-in-law/relative)."
+      }
+    },
+    {
+      "id": "orven-vane",
+      "group": "other",
+      "status": "alive",
+      "tags": [
+        "ticaret"
+      ],
+      "name": {
+        "tr": "Orven Vane",
+        "en": "Orven Vane"
+      },
+      "house": {
+        "tr": "Belirtilmemiş",
+        "en": "Unspecified"
+      },
+      "title": {
+        "tr": "",
+        "en": ""
+      },
+      "bio": {
+        "tr": "Belirtilmemiş. Kibirli, parayla ölçen bir tüccar; Olinder Albea ile fiyat konusunda çatışır.",
+        "en": "Unspecified. An arrogant merchant who measures everything in money; he clashes with Olinder Albea over price."
+      }
+    },
+    {
+      "id": "dirdar-poenta",
+      "group": "other",
+      "status": "alive",
+      "tags": [],
+      "name": {
+        "tr": "Dirdar Poenta",
+        "en": "Dirdar Poenta"
+      },
+      "house": {
+        "tr": "Belirtilmemiş",
+        "en": "Unspecified"
+      },
+      "title": {
+        "tr": "",
+        "en": ""
+      },
+      "bio": {
+        "tr": "\"Bölüm - Tehdit\" divan toplantısında denizcilik konularını değerlendirdi. Durgun denizden hoşlanmayan, sürekli teyakkuzda bir denizci ruhu.",
+        "en": "He assessed maritime matters at the \"Chapter - The Threat\" divan meeting. A seafarer's spirit that dislikes still seas, constantly on alert."
+      }
+    },
+    {
+      "id": "roya-tavyth",
+      "group": "other",
+      "status": "alive",
+      "tags": [
+        "savas",
+        "saray-entrikasi",
+        "sinir-bolgesi"
+      ],
+      "name": {
+        "tr": "Roya Tavyth",
+        "en": "Roya Tavyth"
+      },
+      "house": {
+        "tr": "Belirtilmemiş",
+        "en": "Unspecified"
+      },
+      "title": {
+        "tr": "Komutan/Danışman",
+        "en": "Commander/Advisor"
+      },
+      "bio": {
+        "tr": "\"Bölüm - Tehdit\" divan toplantısında sınır durumunu raporladı. Sınırdaki huzursuzluğu ve köylerin kaybolan halkını doğrudan, sert bir dille rapor eder.",
+        "en": "He reported the border situation at the \"Chapter - The Threat\" divan meeting. He reports the unrest on the border and the vanishing people of the villages directly, in harsh words."
+      }
+    },
+    {
+      "id": "merkos-dryme",
+      "group": "other",
+      "status": "alive",
+      "tags": [
+        "savas",
+        "ask",
+        "sinir-bolgesi"
+      ],
+      "name": {
+        "tr": "Merkos Dryme",
+        "en": "Merkos Dryme"
+      },
+      "house": {
+        "tr": "Belirtilmemiş",
+        "en": "Unspecified"
+      },
+      "title": {
+        "tr": "Komutan",
+        "en": "Commander"
+      },
+      "bio": {
+        "tr": "Belirtilmemiş. Doğu sınırının yanmak üzere olduğunu, hızlı hareket edilmesi gerektiğini savunan aceleci ama kararlı bir asker.",
+        "en": "Unspecified. A hasty but resolute soldier who argues that the eastern border is about to burn and that swift action is needed."
+      }
+    },
+    {
+      "id": "ilwen-khasin",
+      "group": "other",
+      "status": "alive",
+      "tags": [
+        "saray-entrikasi"
+      ],
+      "name": {
+        "tr": "Ilwen Khasin",
+        "en": "Ilwen Khasin"
+      },
+      "house": {
+        "tr": "Khasin Hanedanı",
+        "en": "House Khasin"
+      },
+      "title": {
+        "tr": "Genç Danışman",
+        "en": "Young Advisor"
+      },
+      "bio": {
+        "tr": "Belirtilmemiş. Stratejilerin hâlâ belirsizlik içinde yüzdüğünü sorgulayan analitik bir zihin; Merkos Dryme ile birlikte gece hayatına (Thander Bölgesi tavernaları) dalar.",
+        "en": "Unspecified. An analytical mind questioning that strategies are still swimming in uncertainty; he plunges into nightlife (the taverns of the Thander District) with Merkos Dryme."
+      }
+    },
+    {
+      "id": "khasin",
+      "group": "other",
+      "status": "alive",
+      "tags": [],
+      "name": {
+        "tr": "Khasin",
+        "en": "Khasin"
+      },
+      "house": {
+        "tr": "Khasinya Eyaleti / Khasin Hanedanı",
+        "en": "Province of Khasinya / House Khasin"
+      },
+      "title": {
+        "tr": "Saray Talim Hocası",
+        "en": "Palace Drill Instructor"
+      },
+      "bio": {
+        "tr": "Zeandor'un burnundaki asimetrik çıkıntının kaynağı olan darbeyi vurdu.",
+        "en": "He struck the blow that is the source of the asymmetrical ridge on Zeandor's nose."
+      },
+      "weapon": {
+        "tr": "kırbaç ve kılıç",
+        "en": "whip and sword"
+      },
+      "alleg": {
+        "tr": "Zeandor'un eski talim hocası.",
+        "en": "Zeandor's former drill instructor."
+      }
+    },
+    {
+      "id": "rikan-berkov",
+      "group": "other",
+      "status": "alive",
+      "tags": [
+        "savas",
+        "ask"
+      ],
+      "name": {
+        "tr": "Komutan Rikan Berkov",
+        "en": "Commander Rikan Berkov"
+      },
+      "house": {
+        "tr": "Berkov Hanesi (Dosya 3)",
+        "en": "House Berkov (File 3)"
+      },
+      "title": {
+        "tr": "Elit Lejyon Komutanı (Dosya 3)",
+        "en": "Elite Legion Commander (File 3)"
+      },
+      "bio": {
+        "tr": "Bakırsu Vadisi'nde Erthan karşısında afalladı; askeri tecrübesizliği ortaya çıktı. Bakırsu Vadisi'nde Erthan karşısında afallamış ve askeri tecrübesizliği yüzüne vurulmuştur.",
+        "en": "He was flustered before Erthan in the Bakırsu Valley; his military inexperience was exposed. In the Bakırsu Valley he was flustered before Erthan and his military inexperience was thrown in his face."
+      },
+      "weapon": {
+        "tr": "ak ve işlemeli elit zırh",
+        "en": "…ak and embroidered elite armor"
+      },
+      "alleg": {
+        "tr": "Amadon Stallhart'ın hususi güvenlik amiri.",
+        "en": "Amadon Stallhart's personal security chief."
+      }
+    },
+    {
+      "id": "yunghar-hezin",
+      "group": "other",
+      "status": "alive",
+      "tags": [
+        "isyan"
+      ],
+      "name": {
+        "tr": "Yunghar Hezin",
+        "en": "Yunghar Hezin"
+      },
+      "house": {
+        "tr": "Hezin Hanedanı (Dosya 3)",
+        "en": "House Hezin (File 3)"
+      },
+      "title": {
+        "tr": "\"Taze Öfke / Genç Gazap\", Sabık Galetsha Valisi (Dosya 3)",
+        "en": "\"Fresh Wrath / Young Fury\", Former Governor of Galetsha (File 3)"
+      },
+      "bio": {
+        "tr": "Arhan hanesini kalleşçe katlettirdi. Bakırsu isyanının ana hedefi haline geldi. İşçilerin haklarını gasp eden, halkı ağır vergilerle ezen gaddar vali; Arhan hanesinin düşmanı.",
+        "en": "He had House Arhan treacherously slaughtered. He became the main target of the Bakırsu revolt. A cruel governor who usurped the workers' rights and crushed the people with heavy taxes; enemy of House Arhan."
+      },
+      "epi": {
+        "tr": "Taze Öfke / Genç Gazap",
+        "en": "Fresh Wrath / Young Fury"
+      },
+      "alleg": {
+        "tr": "Arhan hanesinin düşmanı.",
+        "en": "Enemy of House Arhan."
+      }
+    },
+    {
+      "id": "alim-elara",
+      "group": "other",
+      "status": "alive",
+      "tags": [],
+      "name": {
+        "tr": "Alim Elara",
+        "en": "Alim Elara"
+      },
+      "house": {
+        "tr": "Büyük Kütüphane / Vakanüvislik Kurumu (Dosya 3)",
+        "en": "Great Library / Chronicler Institution (File 3)"
+      },
+      "title": {
+        "tr": "Alim, Vakanüvis ve Tarihçi Bilge (Dosya 3)",
+        "en": "Scholar, Chronicler and Sage Historian (File 3)"
+      },
+      "bio": {
+        "tr": "İmparatorluk Ortak Lisanı Ansiklopedisi ve Mutlak Sükûn felsefi metinlerini derledi.",
+        "en": "He compiled the Encyclopedia of the Imperial Common Language and the philosophical texts of Absolute Serenity."
+      }
+    },
+    {
+      "id": "creas-stallhart",
+      "group": "other",
+      "status": "historical",
+      "tags": [
+        "ihanet"
+      ],
+      "name": {
+        "tr": "Creas Stallhart",
+        "en": "Creas Stallhart"
+      },
+      "house": {
+        "tr": "Stallhart (efsanevi köken)",
+        "en": "Stallhart (legendary origin)"
+      },
+      "title": {
+        "tr": "",
+        "en": ""
+      },
+      "bio": {
+        "tr": "Bir düello sırasında Rion tarafından arkadan bıçaklanarak öldürüldü. Sorumluluk sahibi, ağırbaşlı, karizmatik; öz kardeşi Zean'ın kıskançlığına ve kan kardeşi Rion'un ihanetine kurban gider --- bir düello sırasında Rion tarafından arkadan bıçaklanarak öldürülür.",
+        "en": "He was stabbed in the back by Rion during a duel and died. Responsible, dignified, charismatic; he falls victim to the jealousy of his own brother Zean and the betrayal of his blood brother Rion — he is stabbed in the back by Rion during a duel and killed."
+      },
+      "alleg": {
+        "tr": "Kardeşi Zean; kan kardeşi Rion/Velmor; eşi Hillith (Amuseya Beyi'nin kızı); kızı Nadima.",
+        "en": "His brother Zean; blood brother Rion/Velmor; his wife Hillith (daughter of the Bey of Amuseya); his daughter Nadima."
+      }
+    },
+    {
+      "id": "zean-stallhart",
+      "group": "other",
+      "status": "historical",
+      "tags": [
+        "miras-veraset",
+        "buyu-mit"
+      ],
+      "name": {
+        "tr": "Zean Stallhart",
+        "en": "Zean Stallhart"
+      },
+      "house": {
+        "tr": "Stallhart (efsanevi köken)",
+        "en": "Stallhart (legendary origin)"
+      },
+      "title": {
+        "tr": "\"Sahte Creas\"",
+        "en": "\"False Creas\""
+      },
+      "bio": {
+        "tr": "Ağabeyinin ölümünden sonra onun kimliğine büründü. Rion'u öldürüp intikam aldı. Beş yıllık inzivanın ardından \"dönen kral\" efsanesini yaratıp tahtı gasp etti. Uçurumdan düşünce bir gözünü kaybetti.",
+        "en": "After his brother's death he assumed his identity. He killed Rion and took revenge. After five years of seclusion he created the legend of the \"returning king\" and usurped the throne. He lost an eye when he fell from the cliff."
+      },
+      "epi": {
+        "tr": "Sahte Creas",
+        "en": "False Creas"
+      },
+      "alleg": {
+        "tr": "Ağabeyi Creas; Kraliçe Hillith ile gizli bir pakt; gizli sevgilisi Tyrae; \"kızı\" olarak tanıtılan Nadima aslında Creas'ın kızıdır.",
+        "en": "His elder brother Creas; a secret pact with Queen Hillith; his secret lover Tyrae; Nadima, presented as his \"daughter\", is actually Creas's daughter."
+      }
+    },
+    {
+      "id": "rion",
+      "group": "other",
+      "status": "historical",
+      "tags": [
+        "ask",
+        "miras-veraset"
+      ],
+      "name": {
+        "tr": "Rion",
+        "en": "Rion"
+      },
+      "house": {
+        "tr": "Nýrdal Krallığı",
+        "en": "Kingdom of Nýrdal"
+      },
+      "title": {
+        "tr": "Gerçek adı: Velmor, Nýrdal Prensi",
+        "en": "Real name: Velmor, Prince of Nýrdal"
+      },
+      "bio": {
+        "tr": "Creas'ı arkadan bıçaklayarak öldürdü. Zean tarafından öldürüldü (ancak aslında uçurumdan düşüp sağ kalmış; sonradan bulunamamıştır). Trajik bir figür; hem tahtını hem köydeki ailesini hem de aşkını kaybeder; sonunda Creas'ı arkadan bıçaklayarak öldürür (\"Çünkü o benim kardeşim\" diyerek); Zean tarafından öldürülür (aslında uçurumdan düşüp sağ kalır, sonradan bulunmaz).",
+        "en": "He killed Creas by stabbing him in the back. He was killed by Zean (but actually fell from the cliff and survived; he was never found afterward). A tragic figure; he loses his throne, his family in the village and his love; in the end he kills Creas by stabbing him in the back (saying \"Because he is my brother\"); killed by Zean (actually falls from the cliff and survives, later not found)."
+      },
+      "alleg": {
+        "tr": "Öz abisi Kral Seranth; kan kardeşleri Creas ve Zean; aşkı Tyrae (Zean'ı seçer, Rion'u reddeder).",
+        "en": "His own elder brother King Seranth; blood brothers Creas and Zean; his love Tyrae (she chooses Zean, rejects Rion)."
+      }
+    },
+    {
+      "id": "kalbhor-stallhart",
+      "group": "other",
+      "status": "historical",
+      "tags": [
+        "savas",
+        "ask"
+      ],
+      "name": {
+        "tr": "Kalbhor Stallhart",
+        "en": "Kalbhor Stallhart"
+      },
+      "house": {
+        "tr": "Stallhart (efsanevi köken)",
+        "en": "Stallhart (legendary origin)"
+      },
+      "title": {
+        "tr": "",
+        "en": ""
+      },
+      "bio": {
+        "tr": "Paralı asker grubunu kurdu. Muhtemelen oğlu Zean tarafından zehirlenerek öldürüldü (kanıtlanmamış). Açgözlü, hırslı; muhtemelen Zean tarafından zehirlenerek öldürülmüştür (kanıtlanmamış şüphe).",
+        "en": "He founded the mercenary band. He was probably poisoned to death by his son Zean (unproven). Greedy, ambitious; probably poisoned to death by Zean (an unproven suspicion)."
+      },
+      "alleg": {
+        "tr": "Oğulları Creas ve Zean.",
+        "en": "His sons Creas and Zean."
+      }
+    },
+    {
+      "id": "hillith",
+      "group": "other",
+      "status": "historical",
+      "tags": [],
+      "name": {
+        "tr": "Hillith",
+        "en": "Hillith"
+      },
+      "house": {
+        "tr": "Amuseya / Stallhart (evlilik yoluyla)",
+        "en": "Amuseya / Stallhart (by marriage)"
+      },
+      "title": {
+        "tr": "Kraliçe",
+        "en": "Queen"
+      },
+      "bio": {
+        "tr": "Kocasının katilinin kimliğini ilk bakışta anladı. Zean ile karanlık bir pakt kurdu. Kocasının katilinin kimliğini ilk bakışta anlayan keskin zekâlı bir kraliçe; kızı Nadima'nın geleceğini güvence altına almak için Zean ile karanlık bir pakt kurar; hikâyenin en zeki ve tehlikeli oyuncularından biri olarak tarif edilir.",
+        "en": "She understood the identity of her husband's killer at first glance. She formed a dark pact with Zean. A sharp-witted queen who understood her husband's killer's identity at first glance; she forms a dark pact with Zean to secure her daughter Nadima's future; described as one of the story's cleverest and most dangerous players."
+      },
+      "alleg": {
+        "tr": "Kocası Creas; sonradan Zean ile pakt; kızı Nadima (aslında Creas'ın kızıdır).",
+        "en": "Her husband Creas; later a pact with Zean; her daughter Nadima (actually Creas's daughter)."
+      }
+    },
+    {
+      "id": "tyrae",
+      "group": "other",
+      "status": "historical",
+      "tags": [
+        "ask"
+      ],
+      "name": {
+        "tr": "Tyrae",
+        "en": "Tyrae"
+      },
+      "house": {
+        "tr": "Stallhart paralı asker grubu",
+        "en": "Stallhart mercenary band"
+      },
+      "title": {
+        "tr": "Okçu",
+        "en": "Archer"
+      },
+      "bio": {
+        "tr": "Zean'ı seçti; Zean'ın gizli sevgilisi olarak kaldı; ondan hamile kaldı. Hem Zean'a hem Rion'a aşkı olan bir kadın; Zean'ı seçer; sonradan Zean'ın gizli sevgilisi olarak kalır; ondan hamile kalır.",
+        "en": "She chose Zean; she remained Zean's secret lover; she became pregnant by him. A woman who has love for both Zean and Rion; she chooses Zean; later remains Zean's secret lover; she becomes pregnant by him."
+      },
+      "alleg": {
+        "tr": "Zean Stallhart (seçtiği aşkı); Rion (reddettiği).",
+        "en": "Zean Stallhart (the love she chose); Rion (the one she rejected)."
+      }
+    },
+    {
+      "id": "seranth",
+      "group": "other",
+      "status": "historical",
+      "tags": [],
+      "name": {
+        "tr": "Kral Seranth",
+        "en": "King Seranth"
+      },
+      "house": {
+        "tr": "Nýrdal Krallığı",
+        "en": "Kingdom of Nýrdal"
+      },
+      "title": {
+        "tr": "Kral",
+        "en": "King"
+      },
+      "bio": {
+        "tr": "Creas ile düellosunda kolunu kaybetti. Sonunda hayalet ağrılarına dayanamayıp kendini astı. Kardeşini öldürteceğine dair fısıltılarla anılan bir kral; Creas ile düellosunda kolunu kaybeder; sonunda hayalet ağrılarına dayanamayıp kendini asar.",
+        "en": "He lost his arm in his duel with Creas. In the end, unable to bear his phantom pains, he hanged himself. A king remembered with whispers that he would have his brother killed; he loses his arm in his duel with Creas; in the end, unable to bear his phantom pains, he hangs himself."
+      },
+      "alleg": {
+        "tr": "Kardeşi Rion/Velmor.",
+        "en": "His brother Rion/Velmor."
+      }
+    },
+    {
+      "id": "ii-remal-stallhart",
+      "group": "stallhart",
+      "status": "alive",
+      "tags": [
+        "isyan"
+      ],
+      "name": {
+        "tr": "İmparator II. Remal Stallhart",
+        "en": "Emperor Remal Stallhart II"
+      },
+      "house": {
+        "tr": "Stallhart Hanedanı",
+        "en": "House Stallhart"
+      },
+      "title": {
+        "tr": "",
+        "en": ""
+      },
+      "bio": {
+        "tr": "İç isyanlar, vergi krizleri ve bütçe darboğazlarıyla boğuşmuş tarihi imparatorluk hükümdarı.",
+        "en": "A historical imperial ruler struggling with internal revolts, tax crises and budget bottlenecks."
+      },
+      "weapon": {
+        "tr": "Geleneksel saray zırhları",
+        "en": "Traditional palace armor"
+      },
+      "alleg": {
+        "tr": "Stallhart hanedanı geçmiş dönem hükümdarı.",
+        "en": "A former-era sovereign of the Stallhart dynasty."
+      }
+    }
+  ]
+}

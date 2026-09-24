@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title data-tr="Tanrı · Stallhart Wiki" data-en="God · Stallhart Wiki">Tanrı · Stallhart Wiki</title>
+<meta name="description" content="Stallhart evreninin tanrılarından birinin adı, rolü, tarafı ve karşı kutbu." data-tr="Stallhart evreninin tanrılarından birinin adı, rolü, tarafı ve karşı kutbu." data-en="The name, role, faction and counter-pole of one of the gods of the Stallhart universe." data-i18n-attr="content">
+<meta name="theme-color" content="#0c121f">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="The Stallhart Saga">
+<meta property="og:locale" content="tr_TR">
+<meta property="og:title" content="Tanrı · Stallhart Wiki">
+<meta property="og:description" content="Stallhart evreninin tanrılarından birinin adı, rolü, tarafı ve karşı kutbu.">
+<meta property="og:image" content="assets/images/logo-stallhart.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Tanrı · Stallhart Wiki">
+<meta name="twitter:description" content="Stallhart evreninin tanrılarından birinin adı, rolü, tarafı ve karşı kutbu.">
+<meta name="twitter:image" content="assets/images/logo-stallhart.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Modern+Antiqua&amp;family=IM+Fell+English:ital@0;1&amp;family=Merriweather:ital,wght@0,400;0,700;1,400&amp;display=swap">
+<link rel="stylesheet" href="assets/css/styles.css?v=3.0">
+<style>
+body{background:var(--bg)}
+.wiki-layout{max-width:1100px;margin:0 auto;padding:6rem 2rem 4rem;display:grid;grid-template-columns:1fr 300px;gap:2.5rem;align-items:start}
+@media(max-width:800px){.wiki-layout{grid-template-columns:1fr;padding:5rem 1.25rem 3rem}}
+
+.breadcrumb{display:flex;align-items:center;gap:.5rem;font-size:.78rem;color:var(--parchd);margin-bottom:1.5rem;font-family:var(--font-display);font-style:italic;flex-wrap:wrap}
+.breadcrumb a{color:var(--goldd);text-decoration:none;transition:color .15s}
+.breadcrumb a:hover{color:var(--gold)}
+.breadcrumb span{color:var(--border)}
+
+.art-eyebrow{font-family:var(--font-display);font-style:italic;font-size:.7rem;letter-spacing:.15em;color:var(--goldd);margin-bottom:.4rem;text-transform:uppercase}
+.art-title{font-family:var(--font-display);font-size:clamp(1.8rem,3vw,2.6rem);color:var(--parchl);line-height:1.15;margin-bottom:.25rem}
+.art-subtitle{font-size:.9rem;color:var(--gold);font-style:italic;margin-bottom:.85rem}
+.art-tags{display:flex;flex-wrap:wrap;gap:.35rem;margin-bottom:1.25rem}
+.art-tag{font-family:var(--font-display);font-size:.68rem;padding:.18rem .55rem;border:1px solid var(--border);color:var(--parchd);font-style:italic;text-decoration:none;transition:.15s}
+.art-tag:hover{border-color:var(--goldd);color:var(--parchl)}
+.art-tag.status{border-color:var(--g-accent,var(--goldd));color:var(--g-accent,var(--goldd))}
+
+.toc{background:var(--surface);border:1px solid var(--border);padding:.9rem 1.1rem;margin-bottom:1.5rem}
+.toc-title{font-family:var(--font-display);font-size:.75rem;color:var(--goldd);margin-bottom:.5rem;font-style:italic;letter-spacing:.06em}
+.toc-list{list-style:none;display:flex;flex-direction:column;gap:.2rem}
+.toc-list a{font-family:var(--font-display);font-size:.78rem;color:var(--goldd);text-decoration:none;transition:color .15s}
+.toc-list a:hover{color:var(--gold)}
+
+.art-h2{font-family:var(--font-display);font-size:1.3rem;color:var(--parchl);margin:2rem 0 .8rem;padding-top:.4rem;border-top:1px solid var(--border);scroll-margin-top:70px}
+.art-h2:first-of-type{border-top:none;margin-top:0}
+.art-p{font-size:.94rem;line-height:1.9;color:var(--parch);margin-bottom:1rem}
+.art-p.muted{color:var(--parchd);font-style:italic;font-size:.85rem}
+
+/* Tanrı amblemi */
+.g-emblem-wrap{
+  display:flex;align-items:center;gap:1.5rem;
+  padding:1.5rem;margin-bottom:1.75rem;
+  background:linear-gradient(160deg, rgba(0,0,0,.15), rgba(0,0,0,.4)), var(--g-accent, var(--goldd));
+  border:1px solid var(--border);position:relative;overflow:hidden;
+}
+.g-emblem-wrap::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(115deg, rgba(255,255,255,.05) 0 2px, transparent 2px 8px);pointer-events:none}
+.g-emblem{
+  width:84px;height:84px;flex-shrink:0;position:relative;border-radius:50%;
+  background:rgba(0,0,0,.35);border:2px solid rgba(244,236,216,.55);
+  display:flex;align-items:center;justify-content:center;overflow:hidden;
+  font-family:var(--font-display);font-size:1.9rem;color:var(--parchl);
+}
+.g-emblem img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0;z-index:1}
+.g-emblem-text{position:relative;font-size:.86rem;line-height:1.7;color:rgba(244,236,216,.92);font-style:italic}
+.g-emblem-text strong{display:block;font-style:normal;font-family:var(--font-display);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(244,236,216,.6);margin-bottom:.3rem}
+
+.not-found{padding:4rem 1rem;text-align:center}
+.not-found h2{font-family:var(--font-display);font-size:1.6rem;color:var(--parchl);margin-bottom:.75rem}
+.not-found a{color:var(--goldd);text-decoration:none;font-family:var(--font-display);font-style:italic}
+
+/* Yan panel */
+.gib{background:var(--surface);border:1px solid var(--border);padding:1.1rem 1.25rem;margin-bottom:1.25rem}
+.gib-head{font-family:var(--font-display);font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;font-style:italic;color:var(--g-accent,var(--goldd));margin-bottom:.85rem;padding-bottom:.6rem;border-bottom:1px solid var(--border)}
+.gib-rows{display:flex;flex-direction:column;gap:.55rem}
+.gib-row{display:flex;flex-direction:column;gap:.1rem}
+.gib-k{font-family:var(--font-display);font-size:.68rem;letter-spacing:.06em;text-transform:uppercase;color:var(--parchd)}
+.gib-v{font-size:.85rem;color:var(--parchl)}
+.gib-v a{color:var(--goldd);text-decoration:none}
+.gib-v a:hover{color:var(--gold)}
+.gib-v.undoc{color:var(--parchd);font-style:italic}
+
+.pair-card{display:flex;align-items:center;gap:.8rem;text-decoration:none;padding:.7rem;border:1px solid var(--border);transition:.15s}
+.pair-card:hover{border-color:var(--goldd);background:rgba(196,150,42,.06)}
+.pair-emblem-sm{width:46px;height:46px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:1.1rem;border:1px solid var(--border);background:var(--deep);color:var(--parchl);overflow:hidden;position:relative}
+.pair-emblem-sm img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0}
+.pair-info .p-epithet{font-family:var(--font-display);font-size:.9rem;color:var(--parchl)}
+.pair-info .p-name{font-size:.74rem;color:var(--parchd);font-style:italic}
+
+.etym-box{background:var(--deep);border:1px solid var(--border);padding:1rem 1.2rem;margin-bottom:1rem}
+.etym-word{font-family:var(--font-display);font-size:1.15rem;color:var(--parchl);margin-bottom:.2rem}
+.etym-origin{font-size:.78rem;color:var(--goldd);font-style:italic;margin-bottom:.5rem}
+.etym-meaning{font-size:.88rem;color:var(--parch)}
+
+.skel{background:linear-gradient(90deg,var(--surface) 25%,var(--deep) 50%,var(--surface) 75%);background-size:200% 100%;animation:skelShine 1.4s ease-in-out infinite}
+@keyframes skelShine{0%{background-position:200% 0}100%{background-position:-200% 0}}
+.skel-line{height:14px;border-radius:2px;margin-bottom:.6rem}
+</style>
+<script src="assets/js/router.js?v=3.0"></script>
+</head>
+<body>
+
+<div class="wiki-layout" id="wiki-root">
+  <div id="content-main">
+    <div class="skel skel-line" style="width:40%"></div>
+    <div class="skel skel-line" style="width:70%;height:32px;margin-bottom:1rem"></div>
+    <div class="skel skel-line" style="width:100%"></div>
+    <div class="skel skel-line" style="width:95%"></div>
+    <div class="skel skel-line" style="width:88%"></div>
+  </div>
+  <div id="content-side">
+    <div class="skel" style="height:280px"></div>
+  </div>
+</div>
+
+<script src="assets/js/config.js?v=3.0"></script>
+<script src="assets/js/patches.js?v=3.0"></script>
+<script src="assets/js/wiki.js?v=3.0"></script>
+<script src="assets/js/community.js?v=3.0"></script>
+<script>
+'use strict';
+const { Lang, loadData, initWiki, esc } = Wiki;
+/* Görsel yardımcıları: wiki.js eski/önbellekteyse veya yüklenemediyse sayfa çökmez, baş harf rozeti kalır */
+const godImg = g => { try { return typeof Wiki.godImgHTML === 'function' ? Wiki.godImgHTML(g) : ''; } catch (e) { return ''; } };
+const wireImgs = el => { try { if (el && typeof Wiki.wireGodImgs === 'function') Wiki.wireGodImgs(el); } catch (e) {} };
+
+/* ── Denge çiftleri ───────────────────────────────────
+   tanrilar.html içindeki ROWS ile birebir aynı tutulmalı.
+   Hakim↔İsyan ve Avcı↔İhtiras editoryal tamamlamadır (bkz. tanrilar.html notu). */
+const PAIRS = [
+  ['veleris', 'lodvez'], ['lidros', 'naldor'], ['gydor', 'nazeth'],
+  ['lomera', 'garator'], ['brikon', 'vazmer'], ['raxes', 'hardir'],
+  ['eanhar', 'zetus']
+];
+function pairOf(id) {
+  for (const [a, b] of PAIRS) { if (a === id) return b; if (b === id) return a; }
+  return null;
+}
+
+const FACTION_LABEL = {
+  order:   { tr: 'Düzen Fraksiyonu — "Demir Yumruk"', en: 'Order Faction — "Iron Fist"' },
+  kaos:    { tr: 'Kaos Fraksiyonu — "Zincirsiz Ateş"', en: 'Chaos Faction — "Unchained Fire"' },
+  neutral: { tr: 'Tarafsız', en: 'Neutral' }
+};
+const FACTION_COLOR = { order: '#7d4e22', kaos: '#8b0000', neutral: '#5a4632' };
+
+/* ── Editoryal ek bilgiler ─────────────────────────────
+   Sembol: yalnızca DİNLER arşivinde açıkça bir görsel tarif
+   geçen tanrılar için dolduruldu; uydurma yok. */
+const SYMBOLS = {
+  eanhar: { tr: 'Damlayan su damlası', en: '' },
+  lomera: { tr: 'Dalgalı çizgi', en: '' },
+  gydor:  { tr: 'Küçük bir saat', en: '' },
+  raxes:  { tr: 'Açık el işareti (imparatorluk mührü ve resmî selamda kullanılır)', en: '' }
+};
+
+let allGods = {};
+let langDict = [];
+
+function getGodId() {
+  return SWRoute.id('tanri');    /* #/tanri/<id>  (eski ?id= ve #<id> da okunur) */
+}
+
+async function init() {
+  try {
+    const [lore, language] = await Promise.all([
+      loadData('lore.json'), loadData('language.json').catch(() => null)
+    ]);
+    (lore.gods || []).forEach(g => { allGods[g.id] = g; });
+    langDict = (language && language.dictionary) || [];
+    render();
+  } catch (err) {
+    console.error('Tanrı verisi yüklenemedi:', err);
+    Wiki.renderError('content-main', err);
+    const side = document.getElementById('content-side');
+    if (side) side.innerHTML = '';
+  }
+}
+
+/* language.json sözlüğünde tanrının gerçek ismiyle başlayan bir kök var mı diye bakar. */
+function findEtymology(trueName) {
+  const norm = s => (s || '').toLowerCase().replace(/[^a-zçğıöşü]/gi, '');
+  const target = norm(trueName);
+  if (!target) return null;
+  return langDict.find(e => norm(e.word).indexOf(target) === 0) || null;
+}
+
+function render() {
+  const l = Lang.get(), t = o => Lang.t(o);
+  const id = getGodId();
+  const g = allGods[id];
+  const und = l === 'tr' ? 'Henüz belirtilmemiş' : 'Not yet specified';
+
+  if (!id || !g) {
+    document.getElementById('content-main').innerHTML = `
+      <div class="not-found">
+        <h2>${l === 'tr' ? 'Tanrı Bulunamadı' : 'God Not Found'}</h2>
+        <p style="color:var(--parchd);font-style:italic">${l === 'tr' ? 'Aradığın tanrı Denge Konseyi\'nde kayıtlı değil.' : 'The god you are looking for is not recorded in the Council of Balance.'}</p>
+        <br><a href="tanrilar.html">← ${l === 'tr' ? 'Denge Konseyi\'ne Dön' : 'Back to the Council of Balance'}</a>
+      </div>`;
+    document.getElementById('content-side').innerHTML = '';
+    document.title = '404 · Stallhart Wiki';
+    return;
+  }
+
+  const epithetTr = t(g.epithet) || g.trueName;
+  const epithetEn = (g.epithet && g.epithet.en) ? g.epithet.en : '';
+  document.title = `${epithetTr} · Stallhart Wiki`;   /* düz metin */
+  document.documentElement.lang = l;
+
+  const wrap = document.getElementById('wiki-root');
+  if (wrap) wrap.style.setProperty('--g-accent', FACTION_COLOR[g.faction] || '#7d4e22');
+
+  const factionLabel = (FACTION_LABEL[g.faction] || {})[l] || g.faction;
+  /* Sembol tarifi: önce lore.json (admin panelinden düzenlenir), yoksa eski yerleşik tablo */
+  const symbol = (g.symbol && (t(g.symbol) || g.symbol.tr)) || (SYMBOLS[id] && t(SYMBOLS[id])) || '';
+  const etym = findEtymology(g.trueName);
+  const partnerId = id === 'galdra' ? null : pairOf(id);
+  const partner = partnerId ? allGods[partnerId] : null;
+
+  const mainHTML = `
+    <div>
+      <nav class="breadcrumb">
+        <a href="index.html">${l === 'tr' ? 'Ana Sayfa' : 'Home'}</a><span>›</span>
+        <a href="tanrilar.html">${l === 'tr' ? 'Denge Konseyi' : 'Council of Balance'}</a><span>›</span>
+        <strong style="color:var(--parchl)">${esc(epithetTr)}</strong>
+      </nav>
+
+      <div class="art-eyebrow">${l === 'tr' ? 'Konsey Tanrısı' : 'Council Deity'}</div>
+      <h1 class="art-title">${esc(epithetTr)}</h1>
+      <p class="art-subtitle">${esc(g.trueName)}${epithetEn ? ` · "${esc(epithetEn)}"` : ''}</p>
+
+      <div class="art-tags">
+        <span class="art-tag status">${esc(factionLabel)}</span>
+        ${symbol ? `<span class="art-tag">${l === 'tr' ? 'Sembol' : 'Symbol'}: ${esc(symbol)}</span>` : ''}
+      </div>
+
+      <div class="toc">
+        <div class="toc-title">📜 ${l === 'tr' ? 'İçindekiler' : 'Contents'}</div>
+        <ul class="toc-list">
+          <li><a href="#gorev">1. ${l === 'tr' ? 'Görevi & Rolü' : 'Role'}</a></li>
+          <li><a href="#psikoloji">2. ${l === 'tr' ? 'Psikoloji & Tapınım' : 'Psychology & Worship'}</a></li>
+          <li><a href="#ritüel">3. ${l === 'tr' ? 'Ritüel & Bağlantılar' : 'Ritual & Connections'}</a></li>
+          <li><a href="#dil">4. ${l === 'tr' ? 'Dilbilimsel Köken' : 'Linguistic Origin'}</a></li>
+        </ul>
+      </div>
+
+      <div class="g-emblem-wrap">
+        <div class="g-emblem">${godImg(g)}<span>${esc((g.trueName || '?').trim()[0] || '?')}</span></div>
+        <div class="g-emblem-text">
+          <strong>${l === 'tr' ? 'Sembol' : 'Symbol'}</strong>
+          ${symbol ? esc(symbol) : und}
+        </div>
+      </div>
+
+      <h2 class="art-h2" id="gorev">${l === 'tr' ? 'Görevi & Rolü' : 'Role'}</h2>
+      <p class="art-p">${esc(t(g.role)) || und}</p>
+
+      <h2 class="art-h2" id="psikoloji">${l === 'tr' ? 'Psikoloji & Tapınım Biçimi' : 'Psychology & Worship'}</h2>
+      <p class="art-p">${esc(t(g.psychology)) || und}</p>
+
+      <h2 class="art-h2" id="ritüel">${l === 'tr' ? 'Ritüel & Bağlantılar' : 'Ritual & Connections'}</h2>
+      <p class="art-p">${esc(t(g.ritual)) || und}</p>
+
+      <h2 class="art-h2" id="dil">${l === 'tr' ? 'Dilbilimsel Köken' : 'Linguistic Origin'}</h2>
+      ${etym ? `
+      <div class="etym-box">
+        <div class="etym-word">${esc(etym.word)}</div>
+        <div class="etym-origin">${esc(etym.origin || '')}</div>
+        <div class="etym-meaning">${esc(etym.meaning || '')}</div>
+      </div>
+      <p class="art-p muted">${l === 'tr' ? 'Konsey dilinin sözlüğünden otomatik eşleşme — ismin kendisi değil, aynı kökü paylaşan bir kayıt olabilir.' : 'Automatic match from the language dictionary — may share a root rather than being the exact name entry.'}</p>`
+      : `<p class="art-p muted">${und}</p>`}
+    </div>`;
+
+  const sideHTML = `
+    <div class="gib">
+      <div class="gib-head">${l === 'tr' ? 'Hızlı Bilgi' : 'Quick Facts'}</div>
+      <div class="gib-rows">
+        <div class="gib-row"><span class="gib-k">${l === 'tr' ? 'Gerçek İsim' : 'True Name'}</span><span class="gib-v">${esc(g.trueName)}</span></div>
+        <div class="gib-row"><span class="gib-k">${l === 'tr' ? 'Epitet (TR)' : 'Epithet (TR)'}</span><span class="gib-v">${esc(t(g.epithet)) || und}</span></div>
+        <div class="gib-row"><span class="gib-k">${l === 'tr' ? 'Epitet (EN)' : 'Epithet (EN)'}</span><span class="gib-v${epithetEn ? '' : ' undoc'}">${epithetEn ? esc(epithetEn) : und}</span></div>
+        <div class="gib-row"><span class="gib-k">${l === 'tr' ? 'Fraksiyon' : 'Faction'}</span><span class="gib-v" style="color:var(--g-accent)">${esc(factionLabel)}</span></div>
+        <div class="gib-row"><span class="gib-k">${l === 'tr' ? 'Sembol' : 'Symbol'}</span><span class="gib-v${symbol ? '' : ' undoc'}">${symbol ? esc(symbol) : und}</span></div>
+      </div>
+    </div>
+
+    <div class="gib">
+      <div class="gib-head">${id === 'galdra' ? (l === 'tr' ? 'Konum' : 'Position') : (l === 'tr' ? 'Dengeleyici Karşı Kutup' : 'Balancing Counterpart')}</div>
+      ${id === 'galdra'
+        ? `<p class="art-p muted" style="margin:0">${l === 'tr' ? 'Denge Konseyi\'nin tarafsız bekçisi — Daire\'nin tam merkezinde durur, belirli bir karşı kutbu yoktur.' : "The neutral guardian of the Council of Balance — stands at the exact center of the Circle, with no specific counterpart."}</p>`
+        : partner
+          ? `<a class="pair-card" href="${SWRoute.href('tanri', partnerId)}">
+               <div class="pair-emblem-sm">${godImg(partner)}<span>${esc((partner.trueName || '?').trim()[0] || '?')}</span></div>
+               <div class="pair-info">
+                 <div class="p-epithet">${esc(t(partner.epithet) || partner.trueName)}</div>
+                 <div class="p-name">${esc(partner.trueName)}</div>
+               </div>
+             </a>`
+          : `<p class="art-p muted" style="margin:0">${und}</p>`
+      }
+    </div>
+
+    <div class="gib">
+      <div class="gib-head">${l === 'tr' ? 'Daire' : 'Circle'}</div>
+      <a href="tanrilar.html" class="art-tag" style="display:inline-block">${l === 'tr' ? '← Denge Konseyi\'ne Dön' : '← Back to the Council'}</a>
+    </div>`;
+
+  document.getElementById('content-main').innerHTML = mainHTML;
+  document.getElementById('content-side').innerHTML = sideHTML;
+  Wiki.Tooltip.scan(document.getElementById('content-main'));
+  wireImgs(document.getElementById('content-main'));
+  wireImgs(document.getElementById('content-side'));
+}
+
+SWRoute.canonicalize();   /* ?id=… → #/tanri/… */
+SWRoute.watch();          /* başka maddeye geçilirse sayfa yeniden yüklenir */
+initWiki({ onLangChange: render });
+init();
+</script>
+</body>
+</html>

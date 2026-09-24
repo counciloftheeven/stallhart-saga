@@ -1,0 +1,120 @@
+/* ═══════════════════════════════════════════════════════════════
+   STALLHART WIKI — KURULTAY (Forum) Stilleri
+   forum.html · forum-kategori.html · forum-konu.html ortak dosyası.
+   Site paletini (styles.css değişkenleri) kullanır, sabit renk yok.
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ── Düzen: içerik + kenar çubuğu ─────────────────────── */
+.fr-layout { display: grid; grid-template-columns: 1fr 300px; gap: 2.5rem; align-items: start; }
+@media (max-width: 900px) { .fr-layout { grid-template-columns: 1fr; } }
+
+/* ── Kırıntı (breadcrumb) ──────────────────────────────── */
+.fr-crumb { font-family: var(--font-display); font-style: italic; font-size: .78rem; color: var(--parchd); margin-bottom: 1.25rem; }
+.fr-crumb a { color: var(--goldd); text-decoration: none; }
+.fr-crumb a:hover { color: var(--gold); text-decoration: underline; }
+.fr-crumb span { margin: 0 .3rem; }
+
+/* ── Araç çubuğu ───────────────────────────────────────── */
+.fr-toolbar { display: flex; gap: .75rem; flex-wrap: wrap; align-items: center; justify-content: space-between; margin-bottom: 1.5rem; }
+.fr-toolbar-l { display: flex; gap: .75rem; flex-wrap: wrap; align-items: center; flex: 1; }
+.fr-search-wrap {
+  display: flex; align-items: center; gap: .6rem; flex: 1; min-width: 180px; max-width: 340px;
+  background: var(--surface); border: 1px solid var(--border); padding: .5rem 1rem;
+}
+.fr-search-wrap svg { width: 14px; height: 14px; flex-shrink: 0; stroke: var(--goldd); fill: none; stroke-width: 1.8; stroke-linecap: round; }
+.fr-search-wrap input { flex: 1; background: none; border: none; outline: none; font-family: var(--font-display); font-size: .88rem; color: var(--parchl); caret-color: var(--gold); }
+.fr-search-wrap input::placeholder { color: var(--parchd); }
+.fr-sort {
+  font-family: var(--font-display); font-size: .8rem; color: var(--parchd); background: var(--surface);
+  border: 1px solid var(--border); padding: .5rem .7rem; cursor: pointer;
+}
+
+/* ── Bölüm başlığı ─────────────────────────────────────── */
+.fr-h { font-family: var(--font-display); font-weight: 400; font-size: 1.2rem; color: var(--parchl); margin: 2.5rem 0 1.1rem; display: flex; align-items: baseline; gap: .6rem; }
+.fr-h:first-child { margin-top: 0; }
+.fr-h small { font-family: var(--font-body); font-style: italic; font-size: .76rem; color: var(--parchd); }
+
+/* ── Kategori kartları ─────────────────────────────────── */
+.fc-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1px; background: var(--border); }
+.fc { background: var(--card); padding: 1.15rem 1.25rem; display: flex; gap: .9rem; text-decoration: none; transition: background .18s; position: relative; }
+.fc:hover { background: rgba(20,14,6,.9); }
+.fc-ic {
+  flex-shrink: 0; width: 42px; height: 42px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  background: rgba(184,115,51,.12); border: 1px solid var(--borderl); color: var(--gold);
+}
+.fc-ic svg { width: 20px; height: 20px; stroke: currentColor; fill: none; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+.fc-body { flex: 1; min-width: 0; }
+.fc-name { font-family: var(--font-display); font-size: 1rem; color: var(--parchl); margin-bottom: .25rem; }
+.fc-desc { font-size: .78rem; color: var(--parchd); line-height: 1.55; }
+.fc-meta { display: flex; gap: 1rem; font-size: .72rem; color: var(--goldd); font-style: italic; margin-top: .55rem; }
+.fc-meta b { color: var(--parchl); font-style: normal; font-family: var(--font-display); }
+.fc-lock { position: absolute; top: .9rem; right: .9rem; color: var(--parchd); }
+.fc-lock svg { width: 13px; height: 13px; stroke: currentColor; fill: none; stroke-width: 1.8; }
+
+/* ── Konu listesi ──────────────────────────────────────── */
+.ft-list { border: 1px solid var(--border); }
+.ft-row { display: flex; align-items: center; gap: .9rem; padding: .85rem 1.1rem; border-bottom: 1px solid var(--border); text-decoration: none; transition: background .15s; }
+.ft-row:last-child { border-bottom: none; }
+.ft-row:hover { background: rgba(184,115,51,.05); }
+.ft-main { flex: 1; min-width: 0; }
+.ft-title { font-family: var(--font-display); font-size: .92rem; color: var(--parchl); margin-bottom: .2rem; display: flex; align-items: center; gap: .5rem; flex-wrap: wrap; }
+.ft-title .ft-lock-i, .ft-title .ft-pin-i { width: 12px; height: 12px; stroke: var(--parchd); fill: none; stroke-width: 2; flex-shrink: 0; }
+.ft-title .ft-pin-i { stroke: var(--gold); fill: var(--gold); }
+.ft-dot { display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: var(--bloodb); flex-shrink: 0; }
+.ft-row.ft-unread .ft-title { color: var(--parchl); font-weight: bold; }
+.ft-sub { font-size: .74rem; color: var(--parchd); font-style: italic; }
+.ft-sub b { color: var(--goldd); font-style: normal; }
+.ft-tag { font-family: var(--font-display); font-size: .62rem; letter-spacing: .06em; text-transform: uppercase; padding: 0 .45rem; border: 1px solid var(--goldd); color: var(--goldd); flex-shrink: 0; }
+.ft-tag.duyuru { border-color: var(--bloodb); color: var(--bloodb); background: rgba(139,0,0,.08); }
+.ft-stats { flex-shrink: 0; text-align: center; width: 58px; font-size: .78rem; color: var(--parch); }
+.ft-stats small { display: block; font-size: .64rem; color: var(--parchd); font-style: italic; }
+.ft-last { flex-shrink: 0; width: 108px; font-size: .68rem; color: var(--parchd); text-align: right; line-height: 1.5; font-style: italic; }
+@media (max-width: 640px) { .ft-stats, .ft-last { display: none; } .ft-row { padding: .75rem .85rem; } }
+
+/* ── Sayfalama ─────────────────────────────────────────── */
+.fr-pager { display: flex; justify-content: center; align-items: center; gap: .6rem; margin-top: 1.5rem; }
+.fr-pager button { font-family: var(--font-display); font-size: .82rem; color: var(--parchd); background: none; border: 1px solid var(--border); padding: .4rem .9rem; cursor: pointer; transition: .15s; }
+.fr-pager button:hover:not(:disabled) { border-color: var(--goldd); color: var(--gold); }
+.fr-pager button:disabled { opacity: .4; cursor: not-allowed; }
+.fr-pager span { font-size: .78rem; color: var(--parchd); font-style: italic; }
+
+/* ── Kenar çubuğu ──────────────────────────────────────── */
+.fr-side-box { border: 1px solid var(--border); background: var(--card); padding: 1.1rem 1.25rem; margin-bottom: 1.5rem; }
+.fr-side-h { font-family: var(--font-display); font-size: .85rem; letter-spacing: .06em; color: var(--goldd); text-transform: uppercase; font-style: italic; margin-bottom: .9rem; }
+.fr-stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: .8rem; text-align: center; }
+.fr-stat b { display: block; font-family: var(--font-display); font-size: 1.3rem; color: var(--parchl); }
+.fr-stat span { font-size: .68rem; color: var(--parchd); font-style: italic; }
+.fr-top-list { list-style: none; display: flex; flex-direction: column; gap: .7rem; }
+.fr-top-item { display: flex; align-items: center; gap: .6rem; }
+.fr-top-item .n { font-family: var(--font-display); color: var(--parchl); font-size: .84rem; flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.fr-top-item .p { font-size: .7rem; color: var(--goldd); font-style: italic; flex-shrink: 0; }
+.fr-rules { list-style: none; display: flex; flex-direction: column; gap: .55rem; font-size: .8rem; }
+.fr-rules a { color: var(--parchd); text-decoration: none; display: flex; align-items: center; gap: .5rem; transition: color .15s; }
+.fr-rules a:hover { color: var(--gold); }
+.fr-rules svg { width: 13px; height: 13px; stroke: var(--goldd); fill: none; stroke-width: 1.8; flex-shrink: 0; }
+
+/* ── "Yeni konu" düğmesi ───────────────────────────────── */
+.fr-newbtn { display: inline-flex; align-items: center; gap: .5rem; }
+.fr-newbtn svg { width: 15px; height: 15px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; }
+
+/* ── Konu detayı (forum-konu.html) ─────────────────────── */
+.fk-head { border: 1px solid var(--border); background: var(--card); padding: 1.5rem 1.75rem; margin-bottom: 2rem; }
+.fk-tags { display: flex; align-items: center; gap: .6rem; margin-bottom: .7rem; flex-wrap: wrap; }
+.fk-title { font-family: var(--font-display); font-size: 1.6rem; color: var(--parchl); line-height: 1.25; margin-bottom: .9rem; }
+.fk-meta { display: flex; align-items: center; gap: .7rem; font-size: .8rem; color: var(--parchd); font-style: italic; margin-bottom: 1.2rem; }
+.fk-meta b { color: var(--parchl); font-style: normal; font-family: var(--font-display); }
+.fk-body { font-size: .95rem; line-height: 1.85; color: var(--parch); white-space: pre-wrap; overflow-wrap: anywhere; }
+.fk-mod { display: flex; gap: .5rem; flex-wrap: wrap; margin-top: 1.3rem; padding-top: 1.1rem; border-top: 1px dashed var(--border); }
+.fk-mod-btn { font-family: var(--font-display); font-size: .78rem; color: var(--parchd); background: none; border: 1px solid var(--border); padding: .35rem .8rem; cursor: pointer; transition: .15s; }
+.fk-mod-btn:hover { border-color: var(--goldd); color: var(--gold); }
+.fk-mod-btn.on { border-color: var(--gold); color: var(--gold); background: rgba(196,150,42,.08); }
+.fk-mod-btn.danger:hover { border-color: var(--bloodb); color: var(--bloodb); }
+.fk-locked-note { display: flex; align-items: center; gap: .5rem; font-size: .82rem; color: var(--goldd); font-style: italic; background: rgba(184,115,51,.08); border: 1px dashed var(--goldd); padding: .7rem 1rem; margin-bottom: 2rem; }
+.fk-locked-note svg { width: 15px; height: 15px; stroke: currentColor; fill: none; stroke-width: 1.8; flex-shrink: 0; }
+
+/* ── Yeni konu formu (sw-modal içinde) ─────────────────── */
+.fr-newform .sw-in[data-body] { min-height: 8rem; }
+
+/* ── Kilitli konu: yalnızca yanıt formunu gizle, geçmiş okunabilir kalır ── */
+.fk-locked .dv-compose { display: none; }
+

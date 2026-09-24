@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title data-tr="Harita · Stallhart Wiki" data-en="Map · Stallhart Wiki">Harita · Stallhart Wiki</title>
+<meta name="description" content="Stallhart İmparatorluğu&#x27;nun etkileşimli haritaları — yakınlaştır, gez, işaretlere tıkla." data-tr="Stallhart İmparatorluğu&#x27;nun etkileşimli haritaları — yakınlaştır, gez, işaretlere tıkla." data-en="Interactive maps of the Stallhart Empire — zoom, pan, click on markers." data-i18n-attr="content">
+<meta name="theme-color" content="#0c121f">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="The Stallhart Saga">
+<meta property="og:locale" content="tr_TR">
+<meta property="og:title" content="Harita · Stallhart Wiki">
+<meta property="og:description" content="Stallhart İmparatorluğu&#x27;nun etkileşimli haritaları — yakınlaştır, gez, işaretlere tıkla.">
+<meta property="og:image" content="assets/images/logo-stallhart.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Harita · Stallhart Wiki">
+<meta name="twitter:description" content="Stallhart İmparatorluğu&#x27;nun etkileşimli haritaları — yakınlaştır, gez, işaretlere tıkla.">
+<meta name="twitter:image" content="assets/images/logo-stallhart.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Modern+Antiqua&amp;family=IM+Fell+English:ital@0;1&amp;family=Merriweather:ital,wght@0,400;0,700;1,400&amp;display=swap">
+<link rel="stylesheet" href="assets/css/styles.css?v=3.0">
+<link rel="stylesheet" href="assets/css/harita.css?v=3.0">
+<script src="assets/js/router.js?v=3.0"></script>
+</head>
+<body class="mp-page">
+
+<!-- v16: Harita artık doğrudan açılmaz. Önce sekmeler (İmparatorluk / Dünya …)
+     ve harita kartları gelir; harita seçilince görüntüleyici açılır.
+     Sekmeler, görsel ve lejant data/maps.json'dan gelir; yönetim panelinde
+     Haritalar bölümünden yeni sekme + PNG eklenebilir. -->
+<main class="mp" id="mp">
+
+  <header class="mp-bar" id="mp-bar">
+    <button class="mp-home" id="mp-home" type="button" aria-label="Haritalar">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+      <span id="mp-home-t">Haritalar</span>
+    </button>
+    <div class="mp-tabs" id="mp-tabs" role="tablist" aria-label="Haritalar"></div>
+  </header>
+
+  <!-- Açılış: harita seçimi -->
+  <section class="mp-landing" id="mp-landing">
+    <div class="mp-lead">
+      <div class="mp-eyebrow" id="mp-eyebrow">Stallhart Destanı</div>
+      <h1 class="mp-h1" id="mp-h1">Haritalar</h1>
+      <p class="mp-sub" id="mp-sub">Görüntülemek istediğiniz haritayı bir sekmeden ya da aşağıdaki kartlardan seçin.</p>
+      <span class="mp-rule"></span>
+    </div>
+    <div class="mp-cards" id="mp-cards"><div class="mp-empty-all"><span class="sw-loading">Haritalar yükleniyor</span></div></div>
+  </section>
+
+  <!-- Görüntüleyici -->
+  <section class="mp-view" id="mp-view" hidden>
+    <div class="map-outer" id="outer" tabindex="0" role="application" aria-label="İnteraktif harita">
+
+      <div class="map-inner" id="inner">
+        <div class="map-wrap" id="wrap"><img id="map-img" alt="" decoding="async" hidden></div>
+      </div>
+
+      <div class="map-state" id="map-state" hidden>
+        <div class="map-state-box" id="map-state-box"></div>
+      </div>
+
+      <div class="toolbar" id="toolbar" data-ui>
+        <button class="tb" id="zoom-in" type="button" title="Yakınlaştır" aria-label="Yakınlaştır"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+        <button class="tb" id="zoom-out" type="button" title="Uzaklaştır" aria-label="Uzaklaştır"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+        <button class="tb" id="zoom-reset" type="button" title="Görünümü sığdır" aria-label="Görünümü sığdır"><svg viewBox="0 0 24 24"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-3.5"/></svg></button>
+        <button class="tb" id="leg-toggle" type="button" title="Lejant" aria-label="Lejant" aria-pressed="false" aria-controls="legend"><svg viewBox="0 0 24 24"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><circle cx="3.5" cy="6" r="1"/><circle cx="3.5" cy="12" r="1"/><circle cx="3.5" cy="18" r="1"/></svg></button>
+      </div>
+
+      <div class="hint" id="hint" data-ui>—</div>
+      <div class="zbadge" id="zbadge" data-ui>%100</div>
+
+      <aside class="legend" id="legend" data-ui aria-label="Lejant">
+        <div class="legend-head">
+          <div class="legend-title" id="leg-title">Lejant</div>
+          <button class="legend-x" id="leg-close" type="button" aria-label="Lejantı kapat"><svg viewBox="0 0 24 24"><line x1="5" y1="5" x2="19" y2="19"/><line x1="19" y1="5" x2="5" y2="19"/></svg></button>
+        </div>
+        <div class="legend-list" id="leg-items"></div>
+      </aside>
+
+      <aside class="ipanel" id="ipanel" data-ui aria-label="Ayrıntı">
+        <div class="ip-header">
+          <button class="ip-close" id="ip-close" type="button" aria-label="Kapat" data-tr="Kapat" data-en="Close" data-i18n-attr="aria-label"><svg viewBox="0 0 24 24"><line x1="5" y1="5" x2="19" y2="19"/><line x1="19" y1="5" x2="5" y2="19"/></svg></button>
+          <div class="ip-eye" id="ip-eye"></div>
+          <div class="ip-color-bar" id="ip-color-bar"></div>
+          <h2 class="ip-name" id="ip-name"></h2>
+          <p class="ip-capital" id="ip-capital"></p>
+        </div>
+        <div class="ip-body" id="ip-body"></div>
+      </aside>
+
+    </div>
+  </section>
+
+</main>
+
+<script src="assets/js/config.js?v=3.0"></script>
+<script src="assets/js/patches.js?v=3.0"></script>
+<script src="assets/js/wiki.js?v=3.0"></script>
+<script src="assets/js/community.js?v=3.0"></script>
+<script src="assets/js/harita.js?v=3.0"></script>
+</body>
+</html>

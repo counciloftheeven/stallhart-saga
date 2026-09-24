@@ -1,0 +1,2289 @@
+{
+  "houses": [
+    {
+      "id": "stallhart",
+      "label": {
+        "tr": "İmparatorluk Hanedanı",
+        "en": "Imperial Dynasty"
+      },
+      "color": "#C4962A"
+    },
+    {
+      "id": "arhan",
+      "label": {
+        "tr": "Arhan Hanesi",
+        "en": "House Arhan"
+      },
+      "color": "#8B4513"
+    },
+    {
+      "id": "solgar",
+      "label": {
+        "tr": "Solgar Hanesi",
+        "en": "House Solgar"
+      },
+      "color": "#5C1A1A"
+    },
+    {
+      "id": "selya",
+      "label": {
+        "tr": "Selya Hanesi",
+        "en": "House Selya"
+      },
+      "color": "#1A3A5C"
+    },
+    {
+      "id": "rebel",
+      "label": {
+        "tr": "İsyancılar",
+        "en": "Rebels"
+      },
+      "color": "#3A2A1A"
+    },
+    {
+      "id": "court",
+      "label": {
+        "tr": "Saray / Valiler",
+        "en": "Court / Governors"
+      },
+      "color": "#2A3A2A"
+    },
+    {
+      "id": "arathen",
+      "label": {
+        "tr": "Arathen Krallığı",
+        "en": "Arathen Kingdom"
+      },
+      "color": "#1A1A3A"
+    },
+    {
+      "id": "other",
+      "label": {
+        "tr": "Diğer",
+        "en": "Other"
+      },
+      "color": "#3A3A3A"
+    }
+  ],
+  "events": [
+    {
+      "ks": "~0",
+      "type": "ruler",
+      "name": {
+        "tr": "Stallhart Boyları Dönemi",
+        "en": "Era of Stallhart Clans"
+      },
+      "desc": {
+        "tr": "Birleşmemiş bozkır kabileleri. Stallhart atalarının savaş ve ittifak döngüsü.",
+        "en": "Ununited steppe clans. The cycle of war and alliance among Stallhart ancestors."
+      },
+      "id": "ev-0-ruler-0",
+      "tags": [
+        "soylu"
+      ]
+    },
+    {
+      "ks": "1137",
+      "type": "war",
+      "name": {
+        "tr": "Eyyros Seferi: Birleşme ve İlk Fetih",
+        "en": "Eyyros Campaign: Unification and the First Conquest"
+      },
+      "desc": {
+        "tr": "Otorite boşluğunu gören Craes, dağınık beylikleri sancağı altında birleştirmeye başladı. Bu yeni gücün ilk sınavı, gaddar Kral Theron'un yönettiği komşu Eyyros Krallığı'ndan geldi. Craes'in \\~7.000 kişilik Birleşik Beylikler Ordusu, Theron'un \\~5.000 kişilik ordusuyla Gümüş Nehir Geçidi'nde karşılaştı. Theron, Craes'in ordusunu dar bir geçitte pusuya düşürmeyi planladı; Craes bu planı öngörerek ordusunun küçük bir kısmını yem olarak sürdü ve ana kuvvetiyle kanatlardan saldırarak Eyyros ordusunu ",
+        "en": "Seeing the power vacuum, Craes began to unite the scattered principalities under his banner. The first test of this new power came from the neighboring Kingdom of Eyyros, ruled by the cruel King Theron. Craes's ~7,000-strong United Principalities Army met Theron's ~5,000-strong army at the Silver River Ford. Theron planned to ambush Craes's army in a narrow pass; foreseeing this, Craes sent a small part of his army forward as bait and, attacking from the flanks with his main force, the Eyyros army"
+      },
+      "id": "ev-eyyros-seferi-birlesme-ve-i-lk-fetih-0",
+      "tags": [
+        "askeri"
+      ],
+      "ruler": "I. CRAES STALLHART"
+    },
+    {
+      "ks": "1139",
+      "type": "war",
+      "name": {
+        "tr": "İlk Nýrdal Savaşı ve Darova Felaketi",
+        "en": "First Nýrdal War and the Darova Disaster"
+      },
+      "desc": {
+        "tr": "Craes'in birleşik gücü, doğudaki NýrdalKrallığı için göz ardı edilemez bir tehdit oldu. \\~10.000 kişilik Stallhart ordusu, \\~15.000 kişilik, ağır zırhlı ve tecrübeli Nýrdal ordusuyla Darova'nın çamurlu ovalarında karşılaştı. Savaşın en kritik anında Craes'in küçük kardeşi, ordunun sol kanadını komuta ederken öldürüldü; bu, o kanadın tamamen çökmesine yol açtı. Stallhart ordusu ezici bir yenilgiye uğradı; kardeşinin cansız bedeninin başında savaşmaya devam eden Craes, kılıcı kırık bir hâlde esir ",
+        "en": "Craes's united power became a threat the Nýrdal Kingdom to the east could not ignore. The ~10,000-strong Stallhart army met the ~15,000-strong, heavily armored and experienced Nýrdal army on the muddy plains of Darova. At the most critical moment of the battle, Craes's younger brother was killed while commanding the army's left wing, causing that flank to collapse entirely. The Stallhart army suffered a crushing defeat; Craes, who kept fighting over his brother's lifeless body, was taken prisoner, his sword broken, a captive"
+      },
+      "id": "ev-i-lk-n-rdal-savasi-ve-darova-felaketi-1",
+      "tags": [
+        "askeri"
+      ],
+      "ruler": "I. CRAES STALLHART"
+    },
+    {
+      "ks": "1144",
+      "type": "ruler",
+      "name": {
+        "tr": "İmparatorluğun Kuruluşu",
+        "en": "Founding of the Empire"
+      },
+      "desc": {
+        "tr": "I. Craes Stallhart tüm boyları bir bayrak altında birleştirdi ve imparatorluğu kurdu.",
+        "en": "Craes Stallhart I united all clans under a single banner and founded the empire."
+      },
+      "id": "ev-1144-ruler-1",
+      "tags": [
+        "soylu"
+      ]
+    },
+    {
+      "ks": "1144",
+      "type": "religious",
+      "name": {
+        "tr": "Kutsal Kaçış ve Krallığın Doğuşu",
+        "en": "The Sacred Escape and the Birth of the Kingdom"
+      },
+      "desc": {
+        "tr": "Beş yılın sonunda Craes, tek gözlü ama kırılmamış bir iradeyle geri döndü. Kurtuluşunu şöyle anlattı: \"Tanrılar bana yardım etti. Avcı, zindanın yolunu gösterdi. Yaralarımı iyileştirmek için kendi kanından bana içirdi!\" Bu ilan, Stallhart kanının artık yalnızca soylu değil kutsal olduğunun manifestosu --- \"Kutsal Kan Doktrini\" --- oldu ve otoritesinin temelini oluşturdu. Muhalifleri ya yeni dine biat etti ya kılıçla susturuldu. KS 1144'te Stallhart Krallığı resmen kuruldu; bu tarih aynı zamanda ",
+        "en": "After five years, Craes returned, one-eyed but with an unbroken will. He told the story of his deliverance thus: \"The gods helped me. The Hunter showed me the way out of the dungeon. To heal my wounds, he made me drink of his own blood!\" This proclamation became the manifesto that Stallhart blood was now not merely noble but sacred — the \"Holy Blood Doctrine\" — and formed the foundation of his authority. His opponents either swore allegiance to the new faith or were silenced by the sword. In KS 1144 the Stallhart Kingdom was formally founded; this date was also"
+      },
+      "id": "ev-kutsal-kacis-ve-kralligin-dogusu-2",
+      "tags": [
+        "mitolojik"
+      ],
+      "ruler": "I. CRAES STALLHART"
+    },
+    {
+      "ks": "1145",
+      "type": "religious",
+      "name": {
+        "tr": "Kutsal Kan Doktrini İlanı",
+        "en": "Proclamation of the Holy Blood Doctrine"
+      },
+      "desc": {
+        "tr": "Craes esaretten döndükten sonra Stallhart soyunun ilahi kandan geldiğini ilan etti; hanedanın yönetme hakkını tanrısal zemine oturttu.",
+        "en": "Upon returning from captivity, Craes declared the Stallhart bloodline descends from divine blood, placing the dynasty's right to rule on sacred ground."
+      },
+      "id": "ev-1145-religious-2",
+      "tags": [
+        "mitolojik"
+      ]
+    },
+    {
+      "ks": "1205",
+      "type": "war",
+      "name": {
+        "tr": "Kardeşin Gölgesi Savaşı --- Seltanya Seferleri",
+        "en": "War of the Brother's Shadow — The Seltanya Campaigns"
+      },
+      "desc": {
+        "tr": "Tek bir büyük meydan muharebesiyle değil, onlarca yıl süren sayısız kanlı sınır çatışması, kale kuşatması ve yıpratma harekâtıyla geçen bir savaştı; kesin bir zafer asla kazanılamadı. Önemli çatışmalar: Beyaz Geçit Pususu (KS 1208, Seltanya ordusu pusuya düşürüldü ama ağır kayıplarla geri çekilmeyi başardı); Zelen Kalesi Kuşatması (KS 1215, aylarca kuşatıldı ama ele geçirilemedi --- bu başarısızlık stratejisini değiştirmesine yol açtı). Karada kesin zafer kazanamayacağını anlayan Lun Aldris, dik",
+        "en": "It was a war fought not through a single great pitched battle but through decades of countless bloody border clashes, fortress sieges and wars of attrition; a decisive victory was never won. Notable engagements: the Ambush at the White Pass (KS 1208, where the Seltanya army was ambushed but managed to withdraw with heavy losses); the Siege of Zelen Fortress (KS 1215, besieged for months but never taken — this failure led him to change his strategy). Realizing he could not win a decisive victory on land, Lun Aldris"
+      },
+      "id": "ev-kardesin-golgesi-savasi-seltanya-seferle-9",
+      "tags": [
+        "askeri"
+      ],
+      "ruler": "I. LUN ALDRIS STALLHART"
+    },
+    {
+      "ks": "1211",
+      "type": "ruler",
+      "name": {
+        "tr": "Gom Ara'nın İlhakı: Güneye İniş",
+        "en": "The Annexation of Gom Ara: The Descent South"
+      },
+      "desc": {
+        "tr": "Askeri çıkmazdan bunalan Lun Aldris, güneydeki zengin Gom Ara bölgesini hedef aldı. \\~15.000 kişilik reformlu Stallhart ordusu, casusları sayesinde önceden öğrendiği bir pusu planını boşa çıkararak şafak vakti Yoren Nehri'nin sığ bir geçidinden karşıya geçip \\~9.000 kişilik dağınık Gom Ara beyliklerini birkaç saat içinde dağıttı (Yoren Meydan Muharebesi). Bölge hızla ilhak edildi; bu zafer, yeni başkent Arava'nın inşası için gerekli zenginliği sağladı.",
+        "en": "Exasperated by the military deadlock, Lun Aldris set his sights on the wealthy Gom Ara region to the south. His ~15,000-strong reformed Stallhart army, foiling an ambush plan learned in advance through its spies, crossed a shallow ford of the Yoren River at dawn and scattered the ~9,000 disorganized Gom Ara principalities within a few hours (the Battle of Yoren Field). The region was quickly annexed; this victory provided the wealth needed to build the new capital, Arava."
+      },
+      "id": "ev-gom-ara-nin-i-lhaki-guneye-i-nis-10",
+      "tags": [
+        "soylu"
+      ],
+      "ruler": "I. LUN ALDRIS STALLHART"
+    },
+    {
+      "ks": "1219",
+      "type": "war",
+      "name": {
+        "tr": "Vlaupson Fethi: Şehirlerin Düşüşü",
+        "en": "The Conquest of Vlaupson: The Fall of the Cities"
+      },
+      "desc": {
+        "tr": "Batı sınırındaki zengin ama askeri olarak zayıf Vlaupson Şehir Devletleri, Seltanya ile sık sık ittifak kuruyordu. Lun Aldris, ilk kez kurduğu mühendislik birliklerini kullanarak en büyük şehir Vlaup Prme'ı kuşattı; kuşatma kuleleri ve mancınıklarla haftalarca dövülen surlarda açılan gedikten yapılan genel taarruzla şehir düştü ve yağmalandı. Vlaupson Şehir Devletleri KS 1219'da birer birer fethedildi.",
+        "en": "The wealthy but militarily weak Vlaupson City-States on the western border frequently allied with Seltanya. Using the engineering corps he had established for the first time, Lun Aldris besieged the largest city, Vlaup Prme; after weeks of battering by siege towers and catapults, a general assault through a breach in the walls took the city, which was sacked. The Vlaupson City-States were conquered one by one in KS 1219."
+      },
+      "id": "ev-vlaupson-fethi-sehirlerin-dususu-11",
+      "tags": [
+        "askeri"
+      ],
+      "ruler": "I. LUN ALDRIS STALLHART"
+    },
+    {
+      "ks": "1224",
+      "type": "war",
+      "name": {
+        "tr": "Safir Boğazı Deniz Zaferi",
+        "en": "Sapphire Strait Naval Victory"
+      },
+      "desc": {
+        "tr": "I. Lun Aldris Khasinya'yı deniz seferiyle boyun eğdirdi.",
+        "en": "Lun Aldris I subdued Khasinya through a decisive naval campaign."
+      },
+      "id": "ev-1224-war-3",
+      "tags": [
+        "askeri"
+      ]
+    },
+    {
+      "ks": "1224",
+      "type": "war",
+      "name": {
+        "tr": "Khasinya Deniz Savaşı: Donanmanın Zaferi",
+        "en": "The Khasinya Naval War: Triumph of the Fleet"
+      },
+      "desc": {
+        "tr": "Ada devleti Khasinya'nın korsanları yeni ticaret yollarını tehdit ediyordu. \\~60 parçalık yeni Stallhart donanması, dar Safir Boğazı'nda kurulan bir pusuyu öngörerek filosunun bir kısmını yem olarak sürdü, ardından ana filo boğazın iki ucunu kapatarak \\~100 parçalık Khasinya filosunu sistematik olarak yok etti. Bu ezici zafer, Stallhart İmparatorluğu'nu ilk kez ciddi bir deniz gücü olarak haritaya koydu --- reformlarının en büyük başarısı.",
+        "en": "The pirates of the island state of Khasinya were threatening the new trade routes. Anticipating an ambush set in the narrow Sapphire Strait, the new ~60-ship Stallhart navy sent part of its fleet forward as bait, then the main fleet sealed both ends of the strait and systematically destroyed the ~100-ship Khasinya fleet. This crushing victory put the Stallhart Empire on the map as a serious naval power for the first time — the greatest success of his reforms."
+      },
+      "id": "ev-khasinya-deniz-savasi-donanmanin-zaferi-12",
+      "tags": [
+        "askeri"
+      ],
+      "ruler": "I. LUN ALDRIS STALLHART"
+    },
+    {
+      "ks": "1242",
+      "type": "crisis",
+      "name": {
+        "tr": "Taht İçin Yürüyüş: Arava'nın Zaptı",
+        "en": "March on the Throne: The Seizure of Arava"
+      },
+      "desc": {
+        "tr": "Scifella tereddüt etmeden kendisine sadık disiplinli Onneva Eyalet Ordusu'nu toplayarak başkent Arava'ya yıldırım hızıyla yürüdü. Kuzeni ve destekçileri hâlâ taç giyme törenini planlarken şehre vardı; ani gelişi tam bir şok yarattı ve herhangi bir askeri direniş yaşanmadan şehir kontrol altına alındı --- bir meydan muharebesi değil, kusursuz bir askeri darbe. İlk icraatı taht odasına değil zindana inmek oldu: rakibi kuzenini ve destekçisi tüm soyluları ipek kordonlarla boğdurttu. Bu, bir Stallha",
+        "en": "Without hesitation, Scifella gathered the disciplined Onneva Provincial Army loyal to her and marched on the capital, Arava, at lightning speed. She reached the city while her cousin and his supporters were still planning the coronation ceremony; her sudden arrival caused total shock and the city was brought under control without any military resistance — not a pitched battle but a flawless military coup. Her first act was to go down not to the throne room but to the dungeon: she had her rival cousin and all the nobles who supported him strangled with silk cords. This was a"
+      },
+      "id": "ev-taht-i-cin-yuruyus-arava-nin-zapti-13",
+      "tags": [
+        "soylu"
+      ],
+      "ruler": "SCIFELLA STALLHART"
+    },
+    {
+      "ks": "1248",
+      "type": "war",
+      "name": {
+        "tr": "Seltanya'nın Fethi",
+        "en": "Conquest of Seltanya"
+      },
+      "desc": {
+        "tr": "Scifella güney karaları imparatorluğa kattı; KS 1249'a kadar süren sefer tamamlandı.",
+        "en": "Scifella added the southern lands to the empire; the campaign completed by KS 1249."
+      },
+      "id": "ev-1248-war-4",
+      "tags": [
+        "askeri"
+      ]
+    },
+    {
+      "ks": "1258",
+      "type": "war",
+      "name": {
+        "tr": "Pilkard'ın Fethi",
+        "en": "Conquest of Pilkard"
+      },
+      "desc": {
+        "tr": "Scifella Pilkard adasını ele geçirerek imparatorluk sınırlarını batıya genişletti.",
+        "en": "Scifella captured Pilkard island, expanding imperial borders westward."
+      },
+      "id": "ev-1258-war-5",
+      "tags": [
+        "askeri"
+      ]
+    },
+    {
+      "ks": "1275",
+      "type": "war",
+      "name": {
+        "tr": "Kızılçay Muharebesi",
+        "en": "The Battle of Kızılçay"
+      },
+      "desc": {
+        "tr": "II\\. Craes'in en büyük oğlu Prens Atrion ve kardeşleri, babalarının katiline biat etmeyi reddederek Atrion'u meşru lider ilan ettiler ve isyan bayrağını açtılar. Mazurekt'in \\~40.000 kişilik Başkent Ordusu, Atrion'un babasına sadık eyaletlerden topladığı \\~30.000 kişilik Meşruiyet Ordusu'yla Kızılçay Köyü'nde karşılaştı. Mazurekt'in ordusu üstünlük sağlamışken, savaşın kaderini sadakat belirledi: Mazurekt'in saflarındaki Galetsha Orduları, kutsal kanı akıtan bir adama hizmet etmenin lanetini dah",
+        "en": "Prince Atrion, the eldest son of Craes II, and his brothers refused to swear allegiance to their father's killer, declared Atrion the legitimate leader and raised the banner of revolt. Mazurekt's ~40,000-strong Capital Army met the ~30,000-strong Legitimacy Army that Atrion had raised from the provinces loyal to his father at Kızılçay Village. While Mazurekt's army held the upper hand, loyalty decided the fate of the battle: the Galetsha Armies in Mazurekt's ranks, even the curse of serving a man who shed sacred blood"
+      },
+      "id": "ev-kizilcay-muharebesi-18",
+      "tags": [
+        "askeri",
+        "siyasi"
+      ],
+      "ruler": "MAZUREKT STALLHART"
+    },
+    {
+      "ks": "1275",
+      "type": "war",
+      "name": {
+        "tr": "Merhamet Hamlesi: İç Savaşın Küllerini Temizlemek",
+        "en": "Act of Mercy: Cleansing the Ashes of the Civil War"
+      },
+      "desc": {
+        "tr": "Herkesin beklediğinin aksine Atrion, Gaspçı'nın tüm soyunu ve destekçilerini idam etmek yerine affetti. Bu bir zayıflık değil derin bir siyasi zekânın ürünüydü: aynı kanı bir intikam uğruna dökerek Gaspçı'nın günahını tekrarlayamazdı. Devletin kilit noktalarına iç savaşta omuz omuza savaştığı kardeşlerini ve sadık lordlarını getirerek gücünü kansız pekiştirdi.",
+        "en": "Contrary to everyone's expectations, Atrion pardoned the Usurper's entire line and supporters instead of executing them. This was not weakness but the product of deep political intelligence: he could not repeat the Usurper's sin by shedding the same blood in the name of revenge. By placing the brothers who had fought shoulder to shoulder with him in the civil war and his loyal lords in the state's key posts, he consolidated his power without bloodshed."
+      },
+      "id": "ev-merhamet-hamlesi-i-c-savasin-kullerini-t-20",
+      "tags": [
+        "askeri"
+      ],
+      "ruler": "I. ATRİON STALLHART"
+    },
+    {
+      "ks": "1285",
+      "type": "war",
+      "name": {
+        "tr": "Büyük Deniz Savaşı: Galantha'nın Diz Çöküşü",
+        "en": "The Great Naval Battle: The Kneeling of Galantha"
+      },
+      "desc": {
+        "tr": "Artan deniz gücü zengin ticaret devleti Galantha'yı rahatsız etti; ticaret yolu anlaşmazlığı tarihin en büyük deniz savaşlarından birine dönüştü. Galantha'nın 120'den fazla gemilik ticaret filosu sayısal üstünlüğüyle abordaja (gemiye çıkma) çalışırken, Remal'in \\~80 gemilik ağır zırhlı ve top gücü yüksek donanması Tuzlu Gözyaşı Denizi'nde menzile girmeden ateş açarak Galantha filosunun büyük kısmını batırdı ya da teslim aldı. Bu ezici zafer sonrası denizci halklar Remal'e \"Domkha\" (Deniz Lordu) ",
+        "en": "The growing naval power disturbed the wealthy trading state of Galantha; a trade-route dispute turned into one of the greatest naval battles in history. While Galantha's trading fleet of more than 120 ships tried to board with its numerical superiority, Remal's ~80-ship heavily armored, cannon-heavy navy opened fire on the Sea of Salty Tears before the enemy came within range, sinking or capturing most of the Galantha fleet. After this crushing victory the seafaring peoples gave Remal the title \"Domkha\" (Sea Lord)"
+      },
+      "id": "ev-buyuk-deniz-savasi-galantha-nin-diz-coku-24",
+      "tags": [
+        "askeri",
+        "siyasi"
+      ],
+      "ruler": "REMAL STALLHART"
+    },
+    {
+      "ks": "1300",
+      "type": "war",
+      "name": {
+        "tr": "Memanth'ın İlhakı",
+        "en": "Annexation of Memanth"
+      },
+      "desc": {
+        "tr": "Reanloth küçük kademeli seferlerle Memanth'ı imparatorluğa kattı.",
+        "en": "Reanloth annexed Memanth through patient small campaigns."
+      },
+      "id": "ev-1300-war-6",
+      "tags": [
+        "askeri"
+      ]
+    },
+    {
+      "ks": "1306",
+      "type": "war",
+      "name": {
+        "tr": "Örebas Seferi: İmparatorluğun Zirvesi",
+        "en": "The Örebas Campaign: The Empire's Zenith"
+      },
+      "desc": {
+        "tr": "İmparatorluğun gücünü ve kendi otoritesini perçinlemek isteyen Merethorn, zengin ve kibirli komşu Örebas Krallığı'na savaş ilan etti. \\~35.000 kişilik Stallhart ordusu, \\~25.000 kişilik Örebas ordusuyla Alyoren Muharebesi'nde karşılaştı; Merethorn sahte bir geri çekilme manevrasıyla Örebas hatlarını tuzağa çekip kanatlardan çembere aldı. Zafer tartışmasız Stallhart'ın oldu. Savaşın sonunda imzalanan Isonwell Antlaşması bir barış metni değil bir esaret belgesiydi: Örebas topraklarının bir kısmını",
+        "en": "Wishing to cement the empire's power and his own authority, Merethorn declared war on the wealthy and arrogant neighboring Kingdom of Örebas. The ~35,000-strong Stallhart army met the ~25,000-strong Örebas army at the Battle of Alyoren; Merethorn lured the Örebas lines into a trap with a feigned retreat and encircled them from the flanks. The victory was indisputably Stallhart's. The Treaty of Isonwell signed at the end of the war was not a peace text but a document of servitude: part of the Örebas territory"
+      },
+      "id": "ev-orebas-seferi-i-mparatorlugun-zirvesi-26",
+      "tags": [
+        "askeri"
+      ],
+      "ruler": "I. MERETHORN STALLHART"
+    },
+    {
+      "ks": "1347",
+      "type": "war",
+      "name": {
+        "tr": "İlk Sefer: Megina Vadisi Felaketi",
+        "en": "The First Campaign: The Megina Valley Disaster"
+      },
+      "desc": {
+        "tr": "İmparatorluğun zayıf anını kollayan Melerya Devleti savaş ilan etti. Reanloth, babasının gölgesinden kurtulmak için ordusunun başına bizzat geçti. \\~30.000 kişilik kendine aşırı güvenen Stallhart çıkarma ordusu, \\~15.000 kişilik Melerya savunma güçlerinin dar Megina Vadisi'nde döşediği, o güne dek görülmemiş basınçla tetiklenen patlayıcı tuzaklarla karşılaştı. Bir patlama, bizzat İmparator'un komuta tepesinin yakınında gerçekleşti; Reanloth hayatta kaldı ama kulak zarları parçalandı ve dünyası s",
+        "en": "The State of Melerya, watching for a moment of imperial weakness, declared war. Reanloth personally took command of his army to escape his father's shadow. The overconfident ~30,000-strong Stallhart landing army ran into explosive traps of unprecedented pressure-triggered design, laid by ~15,000 Melerya defenders in the narrow Megina Valley. One blast occurred near the Emperor's own command hill; Reanloth survived but his eardrums were shattered and his world"
+      },
+      "id": "ev-i-lk-sefer-megina-vadisi-felaketi-29",
+      "tags": [
+        "askeri"
+      ],
+      "ruler": "REANLOTH STALLHART"
+    },
+    {
+      "ks": "1356",
+      "type": "war",
+      "name": {
+        "tr": "Arathen Savaşı: Kızılköprü Muharebesi",
+        "en": "The Arathen War: The Battle of Redbridge"
+      },
+      "desc": {
+        "tr": "Reanloth, ağabeyi Zilas'ın ölümüne neden olan komplonun arkasındaki gölge olduğuna inandığı Arathen Krallığı ile yüzleşti. \\~40.000 kişilik tecrübeli Stallhart ordusu, \\~30.000 kişilik hafif zırhlı Arathen akıncılarının Kızılköprü yakınlarında kurduğu pusuyu öngörerek ana kuvvetiyle dağların etrafından dolanıp düşmanı arkadan vurdu; pusu kurmaya çalışan Arathen akıncıları iki ateş arasında ezici bir yenilgiye uğradı. Bu, yıllarca sürecek Arathen savaşının ilk ve en önemli zaferiydi.",
+        "en": "Reanloth confronted the Kingdom of Arathen, which he believed to be the shadow behind the plot that caused the death of his elder brother Zilas. The ~40,000-strong veteran Stallhart army, anticipating the ambush set near Redbridge by ~30,000 lightly armored Arathen raiders, circled around the mountains with its main force and struck the enemy from behind; the Arathen raiders who had tried to set the ambush were crushed between two fires. This was the first and most important victory of the Arathen war that would last for years."
+      },
+      "id": "ev-arathen-savasi-kizilkopru-muharebesi-31",
+      "tags": [
+        "askeri"
+      ],
+      "ruler": "REANLOTH STALLHART"
+    },
+    {
+      "ks": "1373",
+      "type": "war",
+      "name": {
+        "tr": "Burria'nın Fethi",
+        "en": "Conquest of Burria"
+      },
+      "desc": {
+        "tr": "II. Lun Aldris Burria'yı fethetti; imparatorluk en geniş sınırlarına ulaştı.",
+        "en": "Lun Aldris II conquered Burria; the empire reached its maximum territorial extent."
+      },
+      "id": "ev-1373-war-7",
+      "tags": [
+        "askeri"
+      ]
+    },
+    {
+      "ks": "1373",
+      "type": "war",
+      "name": {
+        "tr": "Son Fetih: Burria Seferi",
+        "en": "The Last Conquest: The Burria Campaign"
+      },
+      "desc": {
+        "tr": "İmparatorluğun güneydoğu sınırındaki son direniş noktası Burria Krallığı, \"İkili Taht Paktı\" yönetim sistemi yüzünden içten bölünmüştü. \\~50.000 kişilik devasa Stallhart ordusu, Burria'nın Kral ile Prens arasında bölünmüş, koordinesiz \\~20.000 kişilik iki gücüyle karşılaştı. Lun Aldris, ajanları aracılığıyla Prens'e tarafsız kalması karşılığında prensliğini koruma vaadinde bulunarak Kral'ı yalnız bıraktı. İkiz Tepe Geçidi Muharebesi'nde Kral'ın ordusu dağıldı; ardından Lun Aldris vaadini hiçe sa",
+        "en": "Burria, the last point of resistance on the empire's southeastern border, was internally divided by its \"Dual Throne Pact\" system of rule. The huge ~50,000-strong Stallhart army faced Burria's two uncoordinated forces of ~20,000 in total, split between the King and the Prince. Through his agents, Lun Aldris promised the Prince he would keep his principality in exchange for staying neutral, leaving the King alone. The King's army was shattered at the Battle of Twin Hills Pass; then Lun Aldris disregarded his promise"
+      },
+      "id": "ev-son-fetih-burria-seferi-32",
+      "tags": [
+        "askeri"
+      ],
+      "ruler": "II. LUN ALDRİS STALLHART"
+    },
+    {
+      "ks": "1388",
+      "type": "war",
+      "name": {
+        "tr": "Flosenkha Seferi ve İhanet",
+        "en": "The Flosenkha Campaign and Betrayal"
+      },
+      "desc": {
+        "tr": "Jega'nın gözü yalnızca savunmada değildi; kendi fetih efsanesini yazmak istiyordu. Tahta çıktıktan beş yıl sonra, batıdaki tampon devlet Flosenkha Hanedanlığı'na, Arathen'e cüretkâr mesajlar yolladığı gerekçesiyle bir sefer düzenlemeye karar verdi. Taç Diyarı ve Galetsha ordularından oluşan \\~40.000 kişilik bir öncü kuvvetle yola çıkıp Malenia açıklarında ordugâh kurdu; Batı Ordularından (Selya, Seltanya) \\~40.000 asker daha yola çıkmıştı --- plan, 90.000'i aşan bir orduyla Flosenkha'yı ezmekti.",
+        "en": "Jega's eye was not only on defense; he wanted to write his own legend of conquest. Five years after taking the throne, he decided to launch a campaign against the Flosenkha Dynasty, the buffer state to the west, on the grounds that it had sent audacious messages to Arathen. Setting out with a ~40,000-strong vanguard made up of the Crown Land and Galetsha armies, he made camp off Malenia; another ~40,000 troops from the Western Armies (Selya, Seltanya) had set out as well — the plan was to crush Flosenkha with an army exceeding 90,000."
+      },
+      "id": "ev-flosenkha-seferi-ve-i-hanet-35",
+      "tags": [
+        "askeri"
+      ],
+      "ruler": "I. JEGA CAL STALLHART"
+    },
+    {
+      "ks": "~1390",
+      "type": "religious",
+      "name": {
+        "tr": "İlk Anne İnancının Yasaklanması",
+        "en": "Banning of the First Mother Faith"
+      },
+      "desc": {
+        "tr": "Denge Konseyi kararıyla İlk Anne inancı imparatorluk genelinde yasaklandı. İnananlar yeraltına çekildi; Üç Yapraklı Yonca sembolü yasadışı ilan edildi.",
+        "en": "By Denge Konseyi decree, the First Mother faith was banned empire-wide. Believers went underground; the Three-Leafed Clover symbol was declared illegal."
+      },
+      "id": "ev-1390-religious-8",
+      "tags": [
+        "mitolojik"
+      ]
+    },
+    {
+      "ks": "1406",
+      "type": "ruler",
+      "name": {
+        "tr": "II. Remal Tahta Çıktı",
+        "en": "Remal II Ascends"
+      },
+      "desc": {
+        "tr": "Büyük Kan Fermanı'nı çıkardı. KS 1412'de tapınak ritüelinin ardından gizemli biçimde hayatını kaybetti — olası zehirlenme.",
+        "en": "Issued the Great Blood Edict. Died mysteriously in KS 1412 after a temple ritual — possible poisoning."
+      },
+      "id": "ev-1406-ruler-9",
+      "tags": [
+        "soylu"
+      ]
+    },
+    {
+      "ks": "1412",
+      "type": "ruler",
+      "name": {
+        "tr": "Rones Demiryumruk Tahta Çıktı",
+        "en": "Rones Iron Fist Ascends"
+      },
+      "desc": {
+        "tr": "KS 1412–1441. Demir disiplin ve mutlak merkeziyetçilik. Burria'yı haraca bağladı, Arathen sınırını dondurdu.",
+        "en": "KS 1412–1441. Iron discipline, absolute centralism. Bound Burria in tribute, froze the Arathen border."
+      },
+      "id": "ev-1412-ruler-10",
+      "tags": [
+        "soylu"
+      ]
+    },
+    {
+      "ks": "1441",
+      "type": "ruler",
+      "name": {
+        "tr": "Elron Sulhsever Tahta Çıktı",
+        "en": "Elron the Peace-Lover Ascends"
+      },
+      "desc": {
+        "tr": "Eyalet kontrollerini gevşetti, Burria'yı kalıcı olarak kaybetti. Taşranın özerkleşmesinin kapılarını araladı. İmloth ve Amadon'un babasıdır.",
+        "en": "Loosened provincial controls, permanently lost Burria. Opened the door to provincial autonomy. Father of Imloth and Amadon."
+      },
+      "id": "ev-1441-ruler-11",
+      "tags": [
+        "soylu"
+      ]
+    },
+    {
+      "ks": "1450",
+      "type": "crisis",
+      "name": {
+        "tr": "Burria'nın Kesin Kaybı",
+        "en": "Definitive Loss of Burria"
+      },
+      "desc": {
+        "tr": "Elron döneminin en büyük toprak kaybı. Güney sınır baskısı kalıcı hâle geldi.",
+        "en": "The greatest territorial loss of Elron's reign. Southern border pressure became permanent."
+      },
+      "id": "ev-1450-crisis-12",
+      "tags": [
+        "soylu"
+      ]
+    },
+    {
+      "ks": "1452",
+      "type": "ruler",
+      "name": {
+        "tr": "İmloth Tahta Çıktı",
+        "en": "Imloth Ascends"
+      },
+      "desc": {
+        "tr": "\"Tembel\" lakaplı pasif hükümdar. Paranoya ve suçluluk içinde yönetimden koptu. İmparatorluk bu dönemde fiilî çürüme evresine girdi.",
+        "en": "The \"Lazy\" — passive ruler consumed by paranoia and guilt. The empire entered its true era of rot."
+      },
+      "id": "ev-1452-ruler-13",
+      "tags": [
+        "soylu"
+      ]
+    },
+    {
+      "ks": "1458",
+      "type": "crisis",
+      "name": {
+        "tr": "Amadon Karabıçaklar'ı Kurdu",
+        "en": "Amadon Founds the Black Claws"
+      },
+      "desc": {
+        "tr": "Amadon Seltanya Meliki sıfatıyla imparatorluk genelinde faaliyet gösterecek gizli istihbarat örgütünü kurdu.",
+        "en": "Amadon, as Melik of Seltanya, established the secret intelligence organization that would operate empire-wide."
+      },
+      "id": "ev-1458-crisis-14",
+      "tags": [
+        "soylu"
+      ]
+    },
+    {
+      "ks": "1463",
+      "type": "ruler",
+      "name": {
+        "tr": "Amadon İktidara Geldi",
+        "en": "Amadon Seizes Power"
+      },
+      "desc": {
+        "tr": "Çürüyen saray dengelerini altüst ederek tahta çıktı. İlk yıllar: idari tasfiyeler, Hiles Vizelar'ın sürgünü.",
+        "en": "Upending the rotting palace balances, Amadon ascended the throne. Early years: administrative purges, exile of Hiles Vizelar."
+      },
+      "id": "ev-1463-ruler-15",
+      "tags": [
+        "soylu"
+      ]
+    },
+    {
+      "ks": "1465",
+      "type": "crisis",
+      "name": {
+        "tr": "Büyük Veba",
+        "en": "The Great Plague"
+      },
+      "desc": {
+        "tr": "İmparatorluk merkezini ve kuzey eyaletlerini kasıp kavuran büyük salgın. Amadon tahtta kaldı.",
+        "en": "A great epidemic that swept through the imperial center and northern provinces. Amadon held the throne."
+      },
+      "id": "ev-1465-crisis-16",
+      "tags": [
+        "soylu"
+      ]
+    },
+    {
+      "ks": "1467",
+      "type": "crisis",
+      "name": {
+        "tr": "Lunin'in Ölümü",
+        "en": "Death of Lunin"
+      },
+      "desc": {
+        "tr": "Amadon'un büyük oğlu Lunin vebadan hayatını kaybetti. Bu kayıp imparatoru daha da karanlıklaştırdı.",
+        "en": "Amadon's firstborn Lunin died of plague. This loss pushed the emperor further into darkness."
+      },
+      "id": "ev-1467-crisis-17",
+      "tags": [
+        "soylu"
+      ]
+    },
+    {
+      "ks": "1470",
+      "type": "ruler",
+      "name": {
+        "tr": "Lun Aldris'in Doğumu",
+        "en": "Birth of Lun Aldris"
+      },
+      "desc": {
+        "tr": "Amadon'un küçük oğlu Lun Aldris dünyaya geldi. Yanlış kehanet onun etrafında büyüyecekti.",
+        "en": "Amadon's younger son Lun Aldris was born. A false prophecy would grow around him."
+      },
+      "id": "ev-1470-ruler-18",
+      "tags": [
+        "soylu"
+      ]
+    },
+    {
+      "ks": "1472",
+      "type": "crisis",
+      "name": {
+        "tr": "Zeandor'un Sürgünü",
+        "en": "Zeandor's Exile"
+      },
+      "desc": {
+        "tr": "9 yaşındaki Zeandor Selya'ya sürgün edildi. Bilge Celios'un yanında olgunlaşacaktı.",
+        "en": "9-year-old Zeandor was exiled to Selya, where he would come of age under the wise Celios."
+      },
+      "id": "ev-1472-crisis-19",
+      "tags": [
+        "soylu"
+      ]
+    },
+    {
+      "ks": "1479",
+      "type": "war",
+      "name": {
+        "tr": "Olinder Albea Suikastı",
+        "en": "Assassination of Olinder Albea"
+      },
+      "desc": {
+        "tr": "Baş Komutan Olinder Albea, Arathen casusu Eron Gjin ve Wolrez Galet'in ortak planıyla suikaste kurban gitti. Erthan yayının fitilini ateşledi.",
+        "en": "Supreme Commander Olinder Albea was assassinated through the joint plan of Eron Gjin and Wolrez Galet. It ignited the Erthan arc."
+      },
+      "id": "ev-1479-war-20",
+      "tags": [
+        "askeri"
+      ]
+    },
+    {
+      "ks": "1480",
+      "type": "war",
+      "name": {
+        "tr": "Erthan'ın İsyanının Başlangıcı",
+        "en": "Beginning of Erthan's Rebellion"
+      },
+      "desc": {
+        "tr": "Erthan ve Edlas Arhan liderliğinde halk isyanı kuzey eyaletlerinde alevlendi.",
+        "en": "Popular rebellion under Erthan and Edlas Arhan erupted across the northern provinces."
+      },
+      "id": "ev-1480-war-21",
+      "tags": [
+        "askeri"
+      ]
+    },
+    {
+      "ks": "1481",
+      "type": "war",
+      "name": {
+        "tr": "Bakırsu Vadisi Pususu",
+        "en": "Bakırsu Valley Ambush"
+      },
+      "desc": {
+        "tr": "Reun Solgar'ın ordusu vadide pusuya düşürüldü; imparatorluğun en ağır bozgunlarından biri.",
+        "en": "Reun Solgar's army was ambushed in the valley — one of the empire's heaviest recorded defeats."
+      },
+      "id": "ev-1481-war-22",
+      "tags": [
+        "askeri"
+      ]
+    },
+    {
+      "ks": "1491",
+      "type": "ruler",
+      "name": {
+        "tr": "Zeandor Tahta Çıktı",
+        "en": "Zeandor Ascends the Throne"
+      },
+      "desc": {
+        "tr": "Amadon'un mühürlü fermanları Zeandor'u halef belirledi. Erthan'ın isyanı bastırıldı; bir şehit yaratıldı. İmparatorluğun son imparatoru.",
+        "en": "Amadon's sealed edicts named Zeandor as successor. Erthan's rebellion was crushed; a martyr was made. The last emperor."
+      },
+      "id": "ev-1491-ruler-23",
+      "tags": [
+        "soylu"
+      ]
+    },
+    {
+      "ks": "1146-1148",
+      "type": "war",
+      "name": {
+        "tr": "İkinci NýrdalSavaşı: Kurucu'nun İntikamı",
+        "en": "Second Nýrdal War: The Founder's Revenge"
+      },
+      "desc": {
+        "tr": "İlk emri intikamdı. \"Kutsal Kan Doktrini\" ile motive olmuş \\~18.000 kişilik ordusuyla, Darova'dan ders çıkararak bu kez vur-kaç taktikleri ve hızlı süvari manevralarıyla Flesontya'yı (\\~16.000 asker) yordu ve ikmal hatlarını kesti. Haftalarca süren yıpratma savaşının ardından Aleron Ovası'nda son kez karşılaştılar. Craes, bizzat yönettiği bir süvari hücumuyla NýrdalKralı'nı öldürdü; Nýrdalordusu tamamen yok edildi, krallıkları ilhak edildi. Zafer pahalıya mal oldu: ayağından aldığı yara onu haya",
+        "en": "His first order was vengeance. With his ~18,000-strong army motivated by the \"Holy Blood Doctrine\", having learned from Darova, he this time wore down Flesontya (~16,000 troops) with hit-and-run tactics and rapid cavalry maneuvers and cut its supply lines. After weeks of attrition warfare they met one last time on the Aleron Plain. Craes killed the Nýrdal King with a cavalry charge he led himself; the Nýrdal army was completely destroyed and their kingdom annexed. The victory came at a high price: the wound he took to his foot"
+      },
+      "id": "ev-i-kinci-n-rdalsavasi-kurucu-nun-i-ntikam-3",
+      "tags": [
+        "askeri"
+      ],
+      "ruler": "I. CRAES STALLHART"
+    },
+    {
+      "ks": "1157-1160",
+      "type": "war",
+      "name": {
+        "tr": "Eretay Savunması: Son Direniş",
+        "en": "Defense of Eretay: The Last Stand"
+      },
+      "desc": {
+        "tr": "Craes'in yaşlandığı söylentileri üzerine doğudaki Eretay Krallığı saldırıya geçti ve ilk meydan muharebelerini kazanarak ilerledi. Stallhart Krallığı, muhtemelen bir kale kuşatması ya da stratejik bir geçitte, son bir direnişle Eretay ordusunu ağır kayıplarla geri püskürttü. Bu zafer, Kurucu Kral'ın son gücünü de tüketti. Yıllardır biriktirdiği sayısız muharebe yarasına yenik düşen I. Craes Stallhart, KS 1160'ta hayata gözlerini yumdu.",
+        "en": "On rumors that Craes was growing old, the Kingdom of Eretay to the east attacked and advanced, winning the first pitched battles. The Stallhart Kingdom, probably in a fortress siege or at a strategic pass, threw back the Eretay army with heavy losses in a final stand. This victory drained the last of the Founding King's strength. Succumbing to the countless battle wounds he had accumulated over the years, Craes Stallhart I closed his eyes on life in KS 1160."
+      },
+      "id": "ev-eretay-savunmasi-son-direnis-4",
+      "tags": [
+        "askeri"
+      ],
+      "ruler": "I. CRAES STALLHART"
+    },
+    {
+      "ks": "1161-1163",
+      "type": "war",
+      "name": {
+        "tr": "Nadima-Garnor Sessiz İç Savaşı",
+        "en": "The Silent Civil War of Nadima and Garnor"
+      },
+      "desc": {
+        "tr": "Zafer, kardeşler arasına barış değil iktidar mücadelesi getirdi. Nadima gücünü \"Kutsal Kan Doktrini\"nden, halkın barış özleminden ve Dini Kademe'nin desteğinden alıyordu; Garnor ise ordusundan, Memanth ve Solgar gibi askeri eyaletlerin valilerinden ve zaferin şöhretinden. Bu iç savaş meydanlarda değil Divan koridorlarında, fısıltılar ve kararnamelerle yürütüldü. Ordu Garnor'a sadıktı ama kutsal İmparatoriçe'ye kılıç çekmekten lanetlenecek kadar korkuyordu. KS 1163'te kırılgan bir barış sağlandı:",
+        "en": "Victory brought not peace but a struggle for power between the siblings. Nadima drew her strength from the \"Holy Blood Doctrine\", the people's longing for peace and the support of the Religious Order; Garnor from his army, from the governors of military provinces like Memanth and Solgar, and from the fame of victory. This civil war was fought not on battlefields but in the corridors of the Divan, through whispers and decrees. The army was loyal to Garnor but feared, to the point of being cursed, to draw a sword against the holy Empress. In KS 1163 a fragile peace was reached:"
+      },
+      "id": "ev-nadima-garnor-sessiz-i-c-savasi-5",
+      "tags": [
+        "askeri",
+        "siyasi"
+      ],
+      "ruler": "I. NADİMA STALLHART"
+    },
+    {
+      "ks": "1197-1204",
+      "type": "ruler",
+      "name": {
+        "tr": "Galetsha'nın Bastırılması",
+        "en": "The Suppression of Galetsha"
+      },
+      "desc": {
+        "tr": "İlk işi babasının yarım bıraktığı bir hesabı kapatmak oldu: kuzeydeki zengin maden yataklarına sahip asi Galetsha bölgesi hâlâ imparatorluğun böğründeki bir dikendi. Gençliğindeki gibi bizzat ordunun başına geçmedi; en güvendiği komutanlarını gönderdi. Xora ve Exagna beyliklerinin direnişi kısa ve kanlı oldu; Galetsha'nın madenleri kısa sürede imparatorluk hazinesine akmaya başladı.",
+        "en": "His first task was to settle an account his father had left unfinished: the rebellious region of Galetsha, with its rich mineral deposits in the north, was still a thorn in the empire's side. Unlike in his youth, he did not take command of the army himself; he sent his most trusted commanders. The resistance of the principalities of Xora and Exagna was short and bloody; the mines of Galetsha soon began to flow into the imperial treasury."
+      },
+      "id": "ev-galetsha-nin-bastirilmasi-7",
+      "tags": [
+        "soylu"
+      ],
+      "ruler": "GARNOR STALLHART"
+    },
+    {
+      "ks": "1248-1249",
+      "type": "war",
+      "name": {
+        "tr": "Büyük Savaş: Seltanya'nın Fethi",
+        "en": "The Great War: The Conquest of Seltanya"
+      },
+      "desc": {
+        "tr": "Saltanatını kanla sağlamlaştıran Scifella'nın bir zafere ihtiyacı vardı. Gözünü, büyük amcasının kızı Zelen'in soyunun hüküm sürdüğü Seltanya Krallığı'na dikti. Seltanya başkentini hem karadan hem de babasının inşa ettirdiği donanmayı kullanarak denizden kuşattı; tam 86 gün süren kuşatmanın ardından KS 1249 güzünde Seltanya'nın son kralı diz çöktü. Bu zaferle imparatorluk ona \"Fatih\" unvanını verdi.",
+        "en": "Scifella, who had consolidated her reign with blood, needed a victory. She set her sights on the Kingdom of Seltanya, ruled by the line of Zelen, the daughter of her great-uncle. She besieged the Seltanya capital both by land and by sea using the navy her father had built; after a siege that lasted a full 86 days, the last king of Seltanya knelt in the autumn of KS 1249. With this victory the empire granted her the title \"the Conqueror\"."
+      },
+      "id": "ev-buyuk-savas-seltanya-nin-fethi-14",
+      "tags": [
+        "askeri"
+      ],
+      "ruler": "SCIFELLA STALLHART"
+    },
+    {
+      "ks": "1263-1275",
+      "type": "war",
+      "name": {
+        "tr": "Alimin Saltanatı: Barış Dönemi",
+        "en": "The Scholar's Reign: An Age of Peace"
+      },
+      "desc": {
+        "tr": "Metinlerde hükümdarlığı boyunca büyük bir savaş yaşanmadığı açıkça belirtilir. Savaş naraları yerine başkent Arava'nın karşı kıyısında mermer ve bilgelikten oluşan devasa Büyük Kütüphane'yi inşa ettirdi. Generallerin ve savaş lordlarının yerini himayesindeki sanatçılar, filozoflar ve tarihçiler aldı --- sarayı bir kışladan çok bir akademiye dönüştürdü. Ordular yerine ticaret kervanları yola çıktı; zengin Galantha Ada Devletleri ile yapılan anlaşmalarla hazine zenginleşti.",
+        "en": "The texts state explicitly that no major war occurred during his reign. Instead of war cries, he had the vast Great Library, made of marble and wisdom, built on the opposite bank from the capital, Arava. Artists, philosophers and historians under his patronage replaced generals and warlords — he turned the palace more into an academy than a barracks. Trade caravans set out instead of armies; the treasury grew rich through agreements with the wealthy Galantha Island States."
+      },
+      "id": "ev-alimin-saltanati-baris-donemi-16",
+      "tags": [
+        "askeri"
+      ],
+      "ruler": "II. CRAES STALLHART"
+    },
+    {
+      "ks": "1307-1309",
+      "type": "war",
+      "name": {
+        "tr": "Başkent İsyanı: Düzmece Craes Ayaklanması",
+        "en": "The Capital Revolt: The False Craes Uprising"
+      },
+      "desc": {
+        "tr": "İmparatorluk zirvedeyken kâbus başkentin kalbinde başladı: Kurucu Craes'in kayıp soyundan geldiğini iddia eden sahte bir Craes, din temelli bir isyan başlattı. Arathen'in bu isyanı önleyici saldırı olarak organize ettiği ve mağlup Örebas'ın vergilerini geciktirmek için finanse ettiği fısıldanıyordu. İki yıl süren acımasız bir şehir gerillasıydı; imparatorluğun tüm gücüne rağmen bastırılamadı. Bu kaosun en büyük trajedisi, II. Craes'in kurduğu Büyük Kütüphane'nin fanatiklerce ateşe verilmesi oldu",
+        "en": "While the empire was at its peak, a nightmare began in the heart of the capital: a false Craes, claiming descent from the lost line of the Founder Craes, launched a religion-based revolt. It was whispered that Arathen had organized this revolt as a preemptive strike and financed it to delay the taxes of the defeated Örebas. It was a brutal urban guerrilla war lasting two years; despite the full might of the empire, it could not be suppressed. The greatest tragedy of this chaos was the burning of the Great Library founded by Craes II by fanatics"
+      },
+      "id": "ev-baskent-i-syani-duzmece-craes-ayaklanmas-27",
+      "tags": [
+        "askeri",
+        "siyasi"
+      ],
+      "ruler": "I. MERETHORN STALLHART"
+    },
+    {
+      "ks": "1470-1471",
+      "type": "ruler",
+      "name": {
+        "tr": "Büyük Salgın / Kıtasal Kıyamet",
+        "en": "The Great Plague / Continental Apocalypse"
+      },
+      "desc": {
+        "tr": "Amadon'un döneminde tüm kıtayı vuran bir veba salgını yaşandı; oğlu Prens Lunin bu salgında hayatını kaybetti (\"Bölüm - Vefat\").",
+        "en": "A plague that struck the entire continent occurred during Amadon's reign; his son Prince Lunin lost his life in this epidemic (\"Chapter - The Passing\")."
+      },
+      "id": "ev-buyuk-salgin-kitasal-kiyamet-48",
+      "tags": [
+        "soylu"
+      ],
+      "ruler": "İMPARATOR AMADON STALLHART"
+    },
+    {
+      "ks": "?",
+      "type": "war",
+      "name": {
+        "tr": "Dini Reform, Anıt ve Fetihler",
+        "en": "Religious Reform, Monument and Conquests"
+      },
+      "desc": {
+        "tr": "Nadima tüm enerjisini inanca yöneltti: \"Konsey Tanrıları\" dininin kurallarını standartlaştırdı, eski tapınakları restore ettirdi, yenilerini inşa ettirerek Dini Kademe'yi devletin en önemli kurumlarından biri hâline getirdi. Babası için başkentte devasa bir anıt inşa ettirdi --- hem bir sevgi hem de zekice bir siyasi hamle, \"Kutsal Kan\" meşruiyetini günlük olarak halka hatırlatan. Garnor, Başvezir olarak ordunun başında sefere çıktı; Zela Beyliği gibi küçük direniş noktaları imparatorluğa katıld",
+        "en": "Nadima directed all her energy to faith: she standardized the rules of the \"Council Gods\" religion, had old temples restored and new ones built, making the Religious Order one of the state's most important institutions. She had a colossal monument built in the capital for her father — both an act of love and a shrewd political move, reminding the people daily of the legitimacy of the \"Holy Blood\". Garnor, as Grand Vizier, set out on campaign at the head of the army; small points of resistance such as the Principality of Zela were joined to the empire"
+      },
+      "id": "ev-dini-reform-anit-ve-fetihler-6",
+      "tags": [
+        "askeri",
+        "siyasi"
+      ],
+      "ruler": "I. NADİMA STALLHART"
+    },
+    {
+      "ks": "?",
+      "type": "war",
+      "name": {
+        "tr": "Veraset Fermanı",
+        "en": "The Edict of Succession"
+      },
+      "desc": {
+        "tr": "Garnor'un asıl mirası kılıçla değil mürekkeple yazıldı. Üç erkek ve bir kız evlat babası olarak, kendi çocuklarının Nadima ile yaşadığı sessiz iç savaşın yankılarını tekrarlamasını önlemeye yemin etti. Veraset Fermanı'nı ilan etti: artık en büyük evladın hakkı yalnızca yaşla değil liyakatle de ölçülecekti. Bir varis, 16 yaşını doldurduktan sonra bir eyalete vali (Şad/Melik) olarak atanacak, orada yöneticilik ve komutanlık tecrübesi kazanacaktı. İmparator öldüğünde, bu şartı yerine getiren en büy",
+        "en": "Garnor's true legacy was written not with the sword but with ink. As the father of three sons and a daughter, he vowed to prevent his own children from repeating the echoes of the silent civil war he had lived through with Nadima. He proclaimed the Edict of Succession: from now on the eldest child's right would be measured not by age alone but also by merit. After turning 16, an heir would be appointed governor (Shad/Melik) of a province, where they would gain experience in administration and command. When the Emperor died, the eldest who had met this condition"
+      },
+      "id": "ev-veraset-fermani-8",
+      "tags": [
+        "askeri"
+      ],
+      "ruler": "GARNOR STALLHART"
+    },
+    {
+      "ks": "?",
+      "type": "war",
+      "name": {
+        "tr": "Diğer Seferler: Genişlemenin Devamı",
+        "en": "Other Campaigns: The Continuation of Expansion"
+      },
+      "desc": {
+        "tr": "Selya Deniz Seferi (KS 1253): yeni donanmasıyla Selya Eyaleti'ni fethetti, denizlerdeki hakimiyeti pekiştirdi. Solgar'ın İlhakı (KS 1254): zengin Solgar Devleti'nin yaşlı lideriyle siyasi bir evlilik yaparak, tek bir ok atmadan Solgar'ı miras yoluyla imparatorluğa kattı --- gaddarlığı kadar zekasının da bir kanıtı. Pilkard Adası'nın Zaptı (KS 1258): stratejik öneme sahip adayı ele geçirerek ticaret yolları ve donanma üsleri üzerinde tam kontrol sağladı.",
+        "en": "Selya Naval Campaign (KS 1253): with her new navy she conquered the Province of Selya, consolidating her dominance of the seas. Annexation of Solgar (KS 1254): through a political marriage to the elderly leader of the wealthy State of Solgar, she added Solgar to the empire by inheritance without firing a single arrow — proof of her intelligence as much as her ruthlessness. Seizure of Pilkard Island (KS 1258): by capturing the strategically important island she gained full control over trade routes and naval bases."
+      },
+      "id": "ev-diger-seferler-genislemenin-devami-15",
+      "tags": [
+        "askeri"
+      ],
+      "ruler": "SCIFELLA STALLHART"
+    },
+    {
+      "ks": "?",
+      "type": "war",
+      "name": {
+        "tr": "İç Çatışma: Kırık Kalkan",
+        "en": "Internal Conflict: The Broken Shield"
+      },
+      "desc": {
+        "tr": "II\\. Craes'in karşılaştığı asıl savaş meydanlarda değil Divan koridorlarında ve halkın zihnindeydi. Annesi Fatih Scifella'nın Solgarlı bir soyluyla evlenmesi sonucu, damarlarında Solgar kanı taşıması meşruiyetini baltalayan en büyük sorundu. Divan'ın muhafazakâr üyeleri, ordu generalleri ve Dini Kademe onu \"yarım bir Stallhart\" olarak görüyordu; bu, Kurucu'nun \"Kutsal Kan Doktrini\"ne bir ihanet olarak kabul ediliyordu. Bir babadan değil Fatih İmparatoriçe olan annesinden iktidarı devralmış olmas",
+        "en": "The real battle Craes II faced was fought not on battlefields but in the corridors of the Divan and in the minds of the people. As a result of his mother, Scifella the Conqueror, marrying a Solgar noble, carrying Solgar blood in his veins was the greatest problem undermining his legitimacy. The conservative members of the Divan, the army generals and the Religious Order saw him as a \"half Stallhart\"; this was regarded as a betrayal of the Founder's \"Holy Blood Doctrine\". Having inherited power not from a father but from his mother, the Conqueror Empress"
+      },
+      "id": "ev-i-c-catisma-kirik-kalkan-17",
+      "tags": [
+        "askeri",
+        "siyasi"
+      ],
+      "ruler": "II. CRAES STALLHART"
+    },
+    {
+      "ks": "?",
+      "type": "war",
+      "name": {
+        "tr": "Arava Kuşatması ve Gaspçı'nın Sonu",
+        "en": "The Siege of Arava and the End of the Usurper"
+      },
+      "desc": {
+        "tr": "Kızılçay zaferi Atrion'u bir kurtarıcıya dönüştürdü; Solgar, Galetsha ve Onneva orduları onun sancağı altında birleşerek başkent Arava'yı kuşattı. Haftalar süren kuşatma ve açlığın ardından başkent halkı, tanrıların gazabının kutsal kanı döken bu adam yüzünden başlarına geldiğine inanarak isyan etti. Ne ordusunun ne halkının desteğine sahip olan Mazurekt, gece karanlığında limandan bir gemiyle kaçmaya çalıştı ama Atrion'un sadık donanması tarafından denizde yakalandı. Yargılaması kısa sürdü; \"Ku",
+        "en": "The victory at Kızılçay turned Atrion into a savior; the armies of Solgar, Galetsha and Onneva united under his banner and besieged the capital, Arava. After weeks of siege and hunger, the people of the capital rose up, believing that the wrath of the gods had fallen on them because of this man who had shed sacred blood. Mazurekt, who had the support of neither his army nor his people, tried to flee by ship from the harbor in the darkness of night but was caught at sea by Atrion's loyal navy. His trial was short"
+      },
+      "id": "ev-arava-kusatmasi-ve-gaspci-nin-sonu-19",
+      "tags": [
+        "askeri",
+        "siyasi"
+      ],
+      "ruler": "MAZUREKT STALLHART"
+    },
+    {
+      "ks": "?",
+      "type": "war",
+      "name": {
+        "tr": "Reform Savaşları: Gelecekteki Krizleri Önlemek",
+        "en": "The Reform Wars: Preventing Future Crises"
+      },
+      "desc": {
+        "tr": "Sürgün Fermanı: taht için tehlike oluşturabilecek uzak kuzenlerin/rakiplerin, kanları dökülmeden imparatorluk dışına ya da müttefik krallıklara gönderilmesini yasalaştırdı. Altın Kafes Metodu: daha yakın ve tehlikeli görülen hanedan üyeleri için başkent yakınında konforlu ama sıkı korunan malikanelerde \"misafir edilme\" sistemi getirdi. Bu yasaları ilk olarak affettiği Mazurekt'in soyu üzerinde uyguladı --- onları öldürmek yerine dağıtarak veya Altın Kafeslere yerleştirerek tehdidi kansız ortadan",
+        "en": "Edict of Exile: he legislated that distant cousins/rivals who might pose a danger to the throne be sent out of the empire or to allied kingdoms without spilling their blood. Golden Cage Method: for dynasty members deemed closer and more dangerous, he introduced a system of being \"hosted\" in comfortable but tightly guarded manors near the capital. He first applied these laws to the line of Mazurekt, whom he had pardoned — instead of killing them, by dispersing them or placing them in Golden Cages he eliminated the threat bloodlessly"
+      },
+      "id": "ev-reform-savaslari-gelecekteki-krizleri-on-21",
+      "tags": [
+        "askeri"
+      ],
+      "ruler": "I. ATRİON STALLHART"
+    },
+    {
+      "ks": "?",
+      "type": "war",
+      "name": {
+        "tr": "İnanç Krizinin Bastırılması",
+        "en": "The Suppression of the Faith Crisis"
+      },
+      "desc": {
+        "tr": "Gaspçı'nın eylemleri ve II. Craes'in \"lekeli\" kanı hakkındaki propaganda, muhafazakâr bölgelerde dini kargaşaya yol açmıştı. Atrion topyekûn ordu göndermek yerine güç ve diplomasiyi birleştirdi: saygın rahipleri isyancı bölgelere göndererek halkı teskin etti, aynı zamanda bu bölgelerin yakınına sadık bir Lejyon yerleştirerek gözdağı verdi. Bu birleşik strateji isyanların büyük bir savaşa dönüşmeden sona ermesini sağladı.",
+        "en": "The Usurper's actions and the propaganda about Craes II's \"tainted\" blood had caused religious turmoil in conservative regions. Instead of sending a total army, Atrion combined force and diplomacy: he calmed the people by sending respected priests to the rebellious regions while at the same time intimidating them by stationing a loyal Legion near those regions. This combined strategy ensured that the revolts ended without turning into a major war."
+      },
+      "id": "ev-i-nanc-krizinin-bastirilmasi-22",
+      "tags": [
+        "askeri",
+        "siyasi"
+      ],
+      "ruler": "I. ATRİON STALLHART"
+    },
+    {
+      "ks": "?",
+      "type": "war",
+      "name": {
+        "tr": "Kıyıların Pasifize Edilmesi: Khasinya Ablukası",
+        "en": "Pacifying the Coasts: The Khasinya Blockade"
+      },
+      "desc": {
+        "tr": "Remal'in ilk hedefi donanmayı bir kıyı savunma gücü olmaktan çıkarıp açık denizlerin efendisi hâline getirmekti. Khasinya adasındaki isyanlar bu yeni gücü test etmek için fırsat sundu. On binlerce asker göndermek yerine \\~40 gemilik hızlı bir abluka filosu ve \\~2.000 kişilik elit deniz piyadesiyle adanın limanlarını kuşattı; erzak sıkıntısına sürüklenen \\~5.000 kişilik isyancı kuvvete karşı casuslarının tespit ettiği kaleye gece baskını düzenlendi, isyancı liderler yok edildi. Lidersiz kalan isy",
+        "en": "Remal's first goal was to turn the navy from a coastal defense force into the master of the open seas. The revolts on the island of Khasinya offered an opportunity to test this new force. Instead of sending tens of thousands of soldiers, he besieged the island's ports with a fast ~40-ship blockade fleet and ~2,000 elite marines; against the ~5,000-strong rebel force driven into food shortage, a night raid was launched on the fortress located by his spies, and the rebel leaders were destroyed. The leaderless rebels"
+      },
+      "id": "ev-kiyilarin-pasifize-edilmesi-khasinya-abl-23",
+      "tags": [
+        "askeri",
+        "siyasi"
+      ],
+      "ruler": "REMAL STALLHART"
+    },
+    {
+      "ks": "?",
+      "type": "war",
+      "name": {
+        "tr": "Aşk ve Tiranlık: İç Cephedeki Savaş",
+        "en": "Love and Tyranny: The War on the Home Front"
+      },
+      "desc": {
+        "tr": "Yüzlerce yıllık geleneği yıkarak soylu bir kadın yerine saraydaki cariyelerinden biriyle evlendi ve bu birliktelikten doğan oğullarını, yasaların \"piç\" saydığı statüye rağmen meşru varisler ilan etti. Bu, Dini Kademe'nin öfkesini ateşledi. Rahipler \"Kutsal Kan Doktrini\"nin lekelendiğini vaaz etmeye başlayınca Remal, kendisine karşı çıkan tüm dini otoriteleri, rahipleri ve alimleri Büyük Tasfiye ile topluca idam ettirdi ve Mabed'in yeni liderine oğullarının kanının meşru olduğunu ilan eden zorunl",
+        "en": "Breaking a centuries-old tradition, he married one of the palace concubines instead of a noblewoman, and declared the sons born of this union legitimate heirs despite the status the laws deemed \"bastard\". This ignited the wrath of the Religious Order. When the priests began to preach that the \"Holy Blood Doctrine\" had been defiled, Remal had all the religious authorities, priests and scholars who opposed him executed en masse in the Great Purge, and to the new leader of the Mabed (Temple) he declared a compulsory"
+      },
+      "id": "ev-ask-ve-tiranlik-i-c-cephedeki-savas-25",
+      "tags": [
+        "askeri"
+      ],
+      "ruler": "REMAL STALLHART"
+    },
+    {
+      "ks": "?",
+      "type": "crisis",
+      "name": {
+        "tr": "İbretlik Ceza ve Prens Zilas'ın Ölümü",
+        "en": "The Exemplary Punishment and the Death of Prince Zilas"
+      },
+      "desc": {
+        "tr": "Merethorn, bir daha kimsenin böyle bir cürette bulunamaması için sahte Craes'in ve yüzlerce isyancının kafasını kestirip başkent surlarına çaktırdı; aylarca orada çürümeye bırakıldı. Saltanatının ilerleyen döneminde, kendi büyük oğlu Prens Zilas'ı bizzat boğdurarak hanedanın meşruiyetini kendi elleriyle lekeledi.",
+        "en": "So that no one would ever dare such an act again, Merethorn had the false Craes and hundreds of rebels beheaded and their heads impaled on the capital's walls; they were left to rot there for months. Later in his reign, he had his own eldest son, Prince Zilas, strangled in person, staining the dynasty's legitimacy with his own hands."
+      },
+      "id": "ev-i-bretlik-ceza-ve-prens-zilas-in-olumu-28",
+      "tags": [
+        "soylu",
+        "siyasi"
+      ],
+      "ruler": "I. MERETHORN STALLHART"
+    },
+    {
+      "ks": "?",
+      "type": "war",
+      "name": {
+        "tr": "İntikam Seferleri: Sessizliğin Uyanışı",
+        "en": "Campaigns of Vengeance: The Awakening of Silence"
+      },
+      "desc": {
+        "tr": "Sessizlik onu zayıflatmak yerine dikkatini dağıtan tüm sesleri ortadan kaldırdı ve zihnini intikama odakladı. Yıllarını uyum sağlamaya, imparatorluğu yönetmeye ve ordusunu yeniden yapılandırmaya adadı. Melerya'nın Fethi (KS 1351): yenilenmiş donanmasıyla geri dönüp bu kez vadiye saldırmak yerine kuzey kıyılarını ablukaya alarak çıkarma harekâtlarıyla fethetti --- tuzakları etkisiz hale getirerek düşmanı kendi kurallarıyla yendi.",
+        "en": "Silence did not weaken him; it eliminated all the noise that distracted him and focused his mind on vengeance. He devoted his years to adapting, governing the empire and rebuilding his army. Conquest of Melerya (KS 1351): returning with his renewed navy, this time instead of attacking the valley he blockaded the northern coasts and conquered by landing operations — he defeated the enemy by its own rules, neutralizing the traps."
+      },
+      "id": "ev-i-ntikam-seferleri-sessizligin-uyanisi-30",
+      "tags": [
+        "askeri"
+      ],
+      "ruler": "REANLOTH STALLHART"
+    },
+    {
+      "ks": "?",
+      "type": "religious",
+      "name": {
+        "tr": "\"Yeter\" Fermanı ve İmparatorluğun Zirvesi",
+        "en": "The \"Enough\" Edict and the Empire's Zenith"
+      },
+      "desc": {
+        "tr": "Haritadaki bu muazzam güç Lun Aldris'i gururla değil derin bir endişeyle doldurdu. Bir imparatorluğun taşıyabileceğinden fazla ağırlık altında ezilebileceğini görerek tarihte bir ilki gerçekleştirdi ve \"Yeter\" dedi --- sınırların daha fazla genişlememesi gerektiğini ilan etti. Bu zirve döneminde imparatorluk şu eyaletlerden oluşuyordu: Selya, Mabed, Solgar, Seltanya, Zela, Adamen, Burria, Onneva, Galetsha, Memanth, Khasinya, Pilkard ve merkezdeki Taç Diyarı. Kuzeyden güneye kırk günlük, doğudan ",
+        "en": "This immense power on the map filled Lun Aldris not with pride but with deep concern. Seeing that an empire could be crushed under more weight than it could bear, he did something unprecedented in history and said \"Enough\" — he declared that the borders should expand no further. At this zenith the empire consisted of the following provinces: Selya, Mabed, Solgar, Seltanya, Zela, Adamen, Burria, Onneva, Galetsha, Memanth, Khasinya, Pilkard and the Crown Land at the center. A forty-day journey from north to south, from east"
+      },
+      "id": "ev-yeter-fermani-ve-i-mparatorlugun-zirvesi-33",
+      "tags": [
+        "mitolojik"
+      ],
+      "ruler": "II. LUN ALDRİS STALLHART"
+    },
+    {
+      "ks": "?",
+      "type": "ruler",
+      "name": {
+        "tr": "Altın Çağ ve Çöküşün Tohumları",
+        "en": "The Golden Age and the Seeds of Collapse"
+      },
+      "desc": {
+        "tr": "Hayatının geri kalanını fetihle değil sanat ve bilimle geçirdi; imparatorluğun en parlak alimlerini, şairlerini ve sanatçılarını yetiştirdi --- kendisi de lirik şiirleriyle tanınan bir şairdi. Ancak o şiirler yazarken Taç Diyarı'nın merkezi gücü uzak eyaletlere ulaştığında zayıflıyordu; valiler artık başkentin memurları değil kendi topraklarının küçük kralları gibi davranmaya, kendi ordularını kendilerine sadakatle bağlamaya başlamıştı.",
+        "en": "He spent the rest of his life not in conquest but in art and science; he cultivated the empire's most brilliant scholars, poets and artists — he himself was a poet known for his lyric poems. But while he wrote those poems, the central power of the Crown Land weakened when it reached the distant provinces; governors had begun to act not as officials of the capital but as petty kings of their own lands, binding their own armies to themselves in loyalty."
+      },
+      "id": "ev-altin-cag-ve-cokusun-tohumlari-34",
+      "tags": [
+        "soylu"
+      ],
+      "ruler": "II. LUN ALDRİS STALLHART"
+    },
+    {
+      "ks": "?",
+      "type": "war",
+      "name": {
+        "tr": "Hibas Katliamı ve İmparatorun Düşüşü",
+        "en": "The Hibas Massacre and the Fall of the Emperor"
+      },
+      "desc": {
+        "tr": "Hazırlıksız yakalanan Jega'nın sadık birlikleri ile Gulon'un isyancı ordusu Hibas Köyü yakınlarında kanlı bir çarpışmaya girdi; \\~10.000 asker o gün can verdi. Jega, geriye kalanları toplamak için başkente çekilmeye çalıştı, ancak Gulon'un eniştesi General Kalberan, ordunun bir kanadıyla gizlice ayrılıp geri çekilme yolunu kesmişti. İki ordu arasında sıkışan Jega'nın birlikleri tamamen yok edildi; savaş meydanında I. Jega Cal ve Başveziri katledildi.",
+        "en": "Jega's loyal troops, caught unprepared, and Gulon's rebel army fought a bloody clash near Hibas Village; ~10,000 soldiers died that day. Jega tried to retreat to the capital to gather the remnants, but Gulon's brother-in-law General Kalberan had secretly split off with one wing of the army and cut off the line of retreat. Trapped between the two armies, Jega's troops were completely destroyed; on the battlefield Jega Cal I and his Grand Vizier were slain."
+      },
+      "id": "ev-hibas-katliami-ve-i-mparatorun-dususu-36",
+      "tags": [
+        "askeri",
+        "siyasi"
+      ],
+      "ruler": "I. JEGA CAL STALLHART"
+    },
+    {
+      "ks": "?",
+      "type": "war",
+      "name": {
+        "tr": "Gulon'un Kuşatması ve Sonu",
+        "en": "Gulon's Siege and End"
+      },
+      "desc": {
+        "tr": "Gulon başkenti kuşattığında, artık yorgun bir orduyla meşru bir imparatoriçenin savunduğu aşılmaz duvarlarla karşılaştı; kuşatma başarısız oldu. Bu sırada doğudaki Arathen Krallığı bu iç savaşı tanrıların bir lütfu olarak görüp ordu toplamaya başladı. Gulon bitap düşmüş ordusuyla doğuya kaçtı ama beklediği desteği bulamadı; \"Hain\" ilan edilip her yerde arandı. Önce Örebas'a, ardından ironik biçimde Jega'nın savaş açtığı Flosenkha'ya sığındı. Orada esir hayatı yaşadı ve Nadima'nın tahta çıkışında",
+        "en": "When Gulon besieged the capital, he now faced, with a weary army, the impregnable walls defended by a legitimate empress; the siege failed. Meanwhile the Kingdom of Arathen to the east, seeing this civil war as a gift from the gods, began to raise an army. Gulon fled east with his exhausted army but did not find the support he expected; he was declared a \"Traitor\" and hunted everywhere. He took refuge first in Örebas, then, ironically, in Flosenkha, on which Jega had waged war. There he lived as a captive, and at Nadima's accession to the throne"
+      },
+      "id": "ev-gulon-un-kusatmasi-ve-sonu-37",
+      "tags": [
+        "askeri"
+      ],
+      "ruler": "II. NADİMA STALLHART"
+    },
+    {
+      "ks": "?",
+      "type": "crisis",
+      "name": {
+        "tr": "Kış İmparatoriçesi'nin Mücadelesi",
+        "en": "The Struggle of the Winter Empress"
+      },
+      "desc": {
+        "tr": "II\\. Nadima'nın saltanatı, adından da anlaşılacağı gibi soğuk ve zorlu geçti. Bir kadın olduğu için askeri kademenin tam desteğini asla kazanamadı. Arathen, imparatorluğun doğu topraklarına acımasız akınlar başlattı. Nadima'nın bu çok cepheli krizi yönetememesi, generaller arasında onun \"zayıf\" olduğu ve imparatorluğu felakete sürüklediği fısıltılarını başlattı.",
+        "en": "The reign of Nadima II was, as her name suggests, cold and harsh. Because she was a woman, she never won the full support of the military ranks. Arathen launched merciless raids into the empire's eastern lands. Nadima's inability to manage this multi-front crisis started whispers among the generals that she was \"weak\" and was dragging the empire to disaster."
+      },
+      "id": "ev-kis-i-mparatoricesi-nin-mucadelesi-38",
+      "tags": [
+        "soylu"
+      ],
+      "ruler": "II. NADİMA STALLHART"
+    },
+    {
+      "ks": "?",
+      "type": "crisis",
+      "name": {
+        "tr": "Selya İsyanları",
+        "en": "The Selya Rebellions"
+      },
+      "desc": {
+        "tr": "II\\. Nadima'nın batıdan gelmesi ve donanmanın kalbi olan Selya Eyaleti'nin \"Piç İmparator\"un otoritesini tanımayı reddetmesiyle başlayan isyanları bastırmak için ordularını güneye yönlendirdi. Selys Limanı'ndaki milliyetçi soylular Lunrye'nin zayıf meşruiyetini fırsat bildi. Lunrye, Arathen'e karşı kullandığı acımasız hız ve sürpriz baskın taktiklerini bu kez kendi halkına karşı uyguladı; isyan liderlerini hızla yakalayıp idam ettirdi, ancak Selyalıların kalbini asla kazanamadı --- sadece korkul",
+        "en": "To suppress the revolts that began when Nadima II came from the west and the Province of Selya, the heart of the navy, refused to recognize the authority of the \"Bastard Emperor\", he directed his armies south. The nationalist nobles in the Port of Selys saw Lunrye's weak legitimacy as an opportunity. Lunrye applied the ruthless speed and surprise-raid tactics he had used against Arathen, this time against his own people; he quickly captured and executed the rebel leaders but never won the hearts of the Selyans — only feared"
+      },
+      "id": "ev-selya-i-syanlari-39",
+      "tags": [
+        "soylu",
+        "siyasi"
+      ],
+      "ruler": "LUNRYE STALLHART"
+    },
+    {
+      "ks": "?",
+      "type": "war",
+      "name": {
+        "tr": "Gümüş Yol Denizi'nin Temizliği",
+        "en": "Clearing the Silver Way Sea"
+      },
+      "desc": {
+        "tr": "İç savaşın yarattığı otorite boşluğu, Stallhart ile Melerya ve Galantha arasındaki ana ticaret yolu olan Gümüş Yol Denizi'ni bir korsan cennetine çevirmişti. Lunrye, yıllardır limanlarda çürüyen gemileri yeniden düzenleyerek denize sürdü ve korsanların üs olarak kullandığı küçük adaları tek tek \"temizleyerek\" deniz ticaretini yeniden güvenli hâle getirdi --- askeri olduğu kadar ekonomik bir zafer.",
+        "en": "The power vacuum created by the civil war had turned the Silver Way Sea, the main trade route between Stallhart and Melerya and Galantha, into a pirate haven. Lunrye put back to sea the ships that had been rotting in harbors for years after refitting them, and cleared the small islands the pirates used as bases one by one, making maritime trade safe again — as much an economic victory as a military one."
+      },
+      "id": "ev-gumus-yol-denizi-nin-temizligi-40",
+      "tags": [
+        "askeri"
+      ],
+      "ruler": "LUNRYE STALLHART"
+    },
+    {
+      "ks": "?",
+      "type": "war",
+      "name": {
+        "tr": "Pilkard Kuşatması (Başarısızlık)",
+        "en": "The Siege of Pilkard (Failure)"
+      },
+      "desc": {
+        "tr": "Düzeni sağladıktan sonra gücünü pekiştirmek için stratejik Pilkard Adası'nı kuşattı. Ancak bu, askeri dehasının sınırlarını gösteren bir ders oldu: kara savaşının hızlı taktiklerinde usta olan Lunrye, uzun ve yıpratıcı bir deniz kuşatmasında sabrının ve kaynaklarının sınırlarını aştı. Pilkard'ın sarp kayalıkları ve inatçı savunması karşısında ordusu ağır kayıplar verdi; Lunrye saltanatının tek büyük askeri yenilgisini kabul ederek kuşatmayı kaldırmak zorunda kaldı.",
+        "en": "After establishing order, he besieged the strategic Island of Pilkard to consolidate his power. But this became a lesson showing the limits of his military genius: Lunrye, a master of the fast tactics of land warfare, exceeded the limits of his patience and resources in a long and wearing naval siege. Faced with Pilkard's steep cliffs and stubborn defense, his army suffered heavy losses; Lunrye was forced to lift the siege, admitting the only major military defeat of his reign."
+      },
+      "id": "ev-pilkard-kusatmasi-basarisizlik-41",
+      "tags": [
+        "askeri"
+      ],
+      "ruler": "LUNRYE STALLHART"
+    },
+    {
+      "ks": "?",
+      "type": "ruler",
+      "name": {
+        "tr": "Büyük Kan Fermanı (Resmî Anlatı: \"Şüphenin Mührü\")",
+        "en": "The Great Blood Edict (Official Narrative: \"The Seal of Suspicion\")"
+      },
+      "desc": {
+        "tr": "İmparatorluk Yıllıkları'na göre, II. Remal tacı giydiği ilk gün, Stallhart soyunun her unvandan ve dünyevi güçten üstün olduğunu beyan eden Büyük Kan Fermanı'nı ilan etti. Altı kış süren tavizsiz saltanatında, saray divanındaki \"yabancı tesirleri\" ve \"soysuz danışmanları\" birer birer temizlediği; bu nizamın hanedanın meşruiyetini göğe uzanan bir anıt gibi tarihe kazıdığı yazılıdır. ***Saray Mahzenlerindeki Gerçek: \"Şüphenin Hükmü ve Lekeli Şecereler\"*** Saray mahzenlerindeki el yazmasına göre is",
+        "en": "According to the Imperial Annals, on the first day he wore the crown, Remal II proclaimed the Great Blood Edict, declaring the Stallhart line superior to every title and worldly power. It is written that during his uncompromising six-winter reign he purged the \"foreign influences\" and \"base-born advisors\" of the palace divan one by one, and that this order inscribed the dynasty's legitimacy into history like a monument reaching to the heavens. ***The Truth in the Palace Vaults: \"The Verdict of Suspicion and Tainted Genealogies\"*** According to the manuscript in the palace vaults,"
+      },
+      "id": "ev-buyuk-kan-fermani-resm-anlati-suphenin-m-42",
+      "tags": [
+        "soylu"
+      ],
+      "ruler": "II. REMAL STALLHART"
+    },
+    {
+      "ks": "?",
+      "type": "crisis",
+      "name": {
+        "tr": "Merkezi Otoritenin Zirvesi",
+        "en": "The Zenith of Central Authority"
+      },
+      "desc": {
+        "tr": "Eyalet valilerinin merkeze başkaldırma cüretini kıran, vergileri eksiksiz toplayıp hazineyi altın akçelerle dolduran odur. Onun devrinde ne Arathen casusları sınır boylarında sinsi adımlar atabildi ne de Galetsha'nın madenlerinde bir işçi isyanı filizlenebildi. Heybetli varlığı ve tebaasını ezen otoritesi sebebiyle ona \"Demiryumruk\" lakabı verildi --- gücün tek bir odağa toplandığı nizamın son temsilcisiydi.",
+        "en": "It was he who broke the governors' audacity to rebel against the center, collected taxes in full and filled the treasury with gold coins. In his time neither Arathen spies could take stealthy steps along the frontier nor could a workers' revolt sprout in the mines of Galetsha. Because of his imposing presence and his authority that crushed his subjects, he was given the epithet \"Iron Fist\" — he was the last representative of the order in which power was gathered in a single focus."
+      },
+      "id": "ev-merkezi-otoritenin-zirvesi-43",
+      "tags": [
+        "soylu",
+        "siyasi"
+      ],
+      "ruler": "II. RONES ALVRO STALLHART"
+    },
+    {
+      "ks": "?",
+      "type": "religious",
+      "name": {
+        "tr": "Taşranın Bedeli (Lougat Beyi'nin Gizli Notları)",
+        "en": "The Price of the Provinces (Secret Notes of the Bey of Lougat)"
+      },
+      "desc": {
+        "tr": "Saray ozanlarının ilahilerinde bu otuz yıl bir saadet devri gibi anlatılsa da, taşranın sırtına yüklenen ezici külfeti Lougat gibi eyaletler yaşadı: başkent hazinesini doldurmak için tarladaki buğday, ahırdaki inek, madendeki cevher toplanıyor; hak arayan her ses askeri nizamın mızraklarıyla susturuluyordu. Valiler, halkı koruyan liderler olmaktan çıkıp sarayın vergi memurlarına dönüştürülmüştü. İmparatorluk dışarıdan aşılmaz bir kaya gibi dursa da, bu ihtişam halkın kırılan kemikleri üzerinde y",
+        "en": "Although the court bards' hymns described these thirty years as an age of bliss, it was provinces like Lougat that bore the crushing burden placed on the backs of the countryside: to fill the capital's treasury, wheat in the field, cows in the barn and ore in the mine were being collected; every voice seeking its rights was silenced by the spears of the military order. Governors had ceased to be leaders protecting the people and had been turned into the palace's tax officials. Although the empire stood from the outside like an impregnable rock, this splendor rose upon the broken bones of the people"
+      },
+      "id": "ev-tasranin-bedeli-lougat-beyi-nin-gizli-no-44",
+      "tags": [
+        "mitolojik",
+        "siyasi"
+      ],
+      "ruler": "II. RONES ALVRO STALLHART"
+    },
+    {
+      "ks": "?",
+      "type": "ruler",
+      "name": {
+        "tr": "Gevşeyen Dizginler ve Sulh Yanılgısı",
+        "en": "Loosened Reins and the Delusion of Peace"
+      },
+      "desc": {
+        "tr": "On bir kış süren saltanatı boyunca sınır uyuşmazlıklarında sürekli taviz verdi; garnizonları boşalttı, askerleri kışlalara mahkûm etti. Bu durum, Adamen ve Galetsha gibi güçlü eyalet valilerinin merkeze karşı pervasızlaşmasına, kendi bağımsızlık iştahlarını kabartmasına zemin hazırladı. Devleti yönetme yükünü kendi omuzlarından atıp Hilnor Wolde gibi kurnaz bürokratların ellerine bırakması, saray entrikalarının önünü açtı. Bu etkisiz dönem, oğulları Imloth ve Amadon'un devralacağı enkazın zemini",
+        "en": "Throughout his eleven-winter reign he constantly made concessions in border disputes; he emptied the garrisons and confined soldiers to barracks. This laid the groundwork for powerful provincial governors such as Adamen and Galetsha to grow reckless toward the center and to whet their own appetite for independence. Casting the burden of governing off his own shoulders into the hands of cunning bureaucrats like Hilnor Wolde opened the way for palace intrigues. This ineffectual period was the ground of the wreckage his sons Imloth and Amadon would inherit"
+      },
+      "id": "ev-gevseyen-dizginler-ve-sulh-yanilgisi-45",
+      "tags": [
+        "soylu"
+      ],
+      "ruler": "III. ELRON STALLHART"
+    },
+    {
+      "ks": "?",
+      "type": "war",
+      "name": {
+        "tr": "İki Oğlun Zıt Yolu",
+        "en": "The Two Sons' Opposite Paths"
+      },
+      "desc": {
+        "tr": "Elron, taht odasının ağırlığı altında ezilen narin ve yorgun bir ruha sahipti; savaş naralarından, harbiye raporlarından, vergi hesaplarından nefret ederdi. Arava Sarayı'nın kuytu bahçelerinde huzur aramayı yeğlerdi. Bu silik duruşu, saray koridorlarında büyüyen iki oğlunun karakterini tamamen zıt yönlerde biçimlendirdi: büyük oğlu Imloth, babasının etkisizliğini izledikçe gücü kapalı kapılar ardındaki fısıltılarda aradı, odalara kapanıp hareketsizlikle gövdesini büyüttü; küçük oğlu Amadon ise b",
+        "en": "Elron had a delicate and weary soul crushed under the weight of the throne room; he hated war cries, war-ministry reports and tax accounts. He preferred to seek peace in the secluded gardens of Arava Palace. This faded stance shaped the characters of his two sons, who grew up in the palace corridors, in completely opposite directions: his elder son Imloth, as he watched his father's ineffectiveness, sought power in whispers behind closed doors, shut himself in rooms and grew his body through inactivity; his younger son Amadon, on the other hand,"
+      },
+      "id": "ev-i-ki-oglun-zit-yolu-46",
+      "tags": [
+        "askeri"
+      ],
+      "ruler": "III. ELRON STALLHART"
+    },
+    {
+      "ks": "?",
+      "type": "religious",
+      "name": {
+        "tr": "Taşranın Cüreti",
+        "en": "The Audacity of the Provinces"
+      },
+      "desc": {
+        "tr": "Adamen Valiliği'nden Galetsha'ya gönderilen gizli bir mektup, dönemin ruhunu özetler: \"Demiryumruk nihayet toprağa girdi ve yerine geçen Elron, babasının bıraktığı gölgenin onda biri bile etmez\\... Elron, sarayında nane kokulu sulh şarapları içerken, biz burada kendi surlarımızı tahkim edeceğiz, kılıçlarımızı bileyeceğiz. Başkentin dizginlerini gevşetmesi, taşranın kendi nizamını kurması için tanrıların bize sunduğu bir lütuftur.\"",
+        "en": "A secret letter sent from the Governorship of Adamen to Galetsha sums up the spirit of the age: \"The Iron Fist has finally entered the earth, and Elron, who takes his place, is not worth even a tenth of the shadow his father left… While Elron drinks his mint-scented wines of peace in his palace, we here will fortify our own walls and sharpen our swords. That he has loosened the capital's reins is a favor the gods have offered us so that the provinces may establish their own order.\""
+      },
+      "id": "ev-tasranin-cureti-47",
+      "tags": [
+        "mitolojik"
+      ],
+      "ruler": "III. ELRON STALLHART"
+    },
+    {
+      "ks": "?",
+      "type": "crisis",
+      "name": {
+        "tr": "Trajedilerin Birikimi ve Tirana Dönüşüm",
+        "en": "The Accumulation of Tragedies and the Turn to Tyranny"
+      },
+      "desc": {
+        "tr": "Gençliğinde adil ve sabırlı bir vali olan Amadon, tahta çıktıktan sonra paranoya, hastalık ve art arda gelen trajedilerle (oğlu Lunin'in ölümü, Başkomutan Olinder Albea'nın suikastı, en yakın dostu Hiles Vizelar'ın \"ihaneti\" üzerine onu sürgüne göndermesi) yavaş yavaş bir tirana dönüştü. Yeğeni Zeandor'u hem korumak hem bastırmak arasında sürekli gidip geldi.",
+        "en": "Amadon, who in his youth had been a just and patient governor, after taking the throne was gradually turned into a tyrant by paranoia, illness and successive tragedies (the death of his son Lunin, the assassination of Supreme Commander Olinder Albea, his sending his closest friend Hiles Vizelar into exile over his \"betrayal\"). He constantly swung between protecting and suppressing his nephew Zeandor."
+      },
+      "id": "ev-trajedilerin-birikimi-ve-tirana-donusum-49",
+      "tags": [
+        "soylu"
+      ],
+      "ruler": "İMPARATOR AMADON STALLHART"
+    },
+    {
+      "ks": "?",
+      "type": "crisis",
+      "name": {
+        "tr": "Selya Dönemi ve İlk Askeri Operasyonlar",
+        "en": "The Selya Period and the First Military Operations"
+      },
+      "desc": {
+        "tr": "Karagöl Çetesi Baskını (KS 1476), Zeandor'un Selya'daki ilk askeri operasyonuydu. Aynı yıl Kont Fihor Arhan'ın idamı (KS 1476) ve Olinder Albea'nın suikastı (KS 1476) gerçekleşti.",
+        "en": "The Karagöl Gang Raid (KS 1476) was Zeandor's first military operation in Selya. The execution of Count Fihor Arhan (KS 1476) and the assassination of Olinder Albea (KS 1476) took place in the same year."
+      },
+      "id": "ev-selya-donemi-ve-i-lk-askeri-operasyonlar-50",
+      "tags": [
+        "soylu"
+      ],
+      "ruler": "İMPARATOR ZEANDOR STALLHART"
+    },
+    {
+      "ks": "?",
+      "type": "war",
+      "name": {
+        "tr": "Erthan İsyanı ve Bakırsu Uzlaşması",
+        "en": "Erthan's Rebellion and the Bakırsu Compromise"
+      },
+      "desc": {
+        "tr": "KS 1477'de Solgar ordusunun Fısıltı/Vadi Pususu'nda yenilgiye uğramasının ardından Erthan \"Meşru Vali\" ilan edildi. Zeandor, isyanı savaşsız çözen gizli bir anlaşmayla --- Bakırsu Uzlaşması (KS 1477) --- Erthan ile bir uzlaşmaya vardı. Bu isyanı bastırırken yaveri Erthan ile tanıştılar.",
+        "en": "After the Solgar army was defeated in the Whisper/Valley Ambush in KS 1477, Erthan was proclaimed the \"Legitimate Governor\". Zeandor reached an accord with Erthan through a secret agreement that resolved the rebellion without war — the Bakırsu Compromise (KS 1477). While putting down this rebellion, they met his adjutant Erthan."
+      },
+      "id": "ev-erthan-i-syani-ve-bakirsu-uzlasmasi-51",
+      "tags": [
+        "askeri",
+        "siyasi"
+      ],
+      "ruler": "İMPARATOR ZEANDOR STALLHART"
+    },
+    {
+      "ks": "?",
+      "type": "war",
+      "name": {
+        "tr": "Taht ve Sonrası: İmparatorluğun Son Yılları",
+        "en": "The Throne and Beyond: The Empire's Final Years"
+      },
+      "desc": {
+        "tr": "KS 1480'de amcası Amadon'dan sonra tahta çıktı (\"Bölüm - İmparator\"). Erthan isyanını bastırarak \"Gerçek Varis\", \"Yarının Hükümdarı\", \"Hak Edilen Prens\" unvanlarını kazandı. Kör Yengeç Tavernası'ndaki kör kâhinden \"bir domuz tarafından deşileceği\" kehanetini aldı ve bunu reddetti. KS 1487'de Arathen Krallığı'nın Stallhart'a karşı seferi başladı. KS 1490'da Seltanya, KS 1491'de Solgaria ve Onneva bağımsızlıklarını ilan etti; KS 1491'de Stallhart İmparatorluğu resmen yıkıldı ve Moloz Çağı başladı.",
+        "en": "In KS 1480 he took the throne after his uncle Amadon (\"Chapter - The Emperor\"). By suppressing Erthan's rebellion he earned the titles \"True Heir\", \"Sovereign of Tomorrow\" and \"The Rightful Prince\". At the Blind Crab Tavern he received from the blind seer the prophecy that he would be \"gutted by a pig\" and rejected it. In KS 1487 the Kingdom of Arathen's campaign against Stallhart began. In KS 1490 Seltanya, and in KS 1491 Solgaria and Onneva declared their independence; in KS 1491 the Stallhart Empire was formally destroyed and the Age of Rubble began."
+      },
+      "id": "ev-taht-ve-sonrasi-i-mparatorlugun-son-yill-52",
+      "tags": [
+        "askeri",
+        "siyasi"
+      ],
+      "ruler": "İMPARATOR ZEANDOR STALLHART"
+    }
+  ],
+  "glossary": [
+    {
+      "id": "bakırsu-vadisi",
+      "type": "geo",
+      "term": {
+        "tr": "Bakırsu Vadisi",
+        "en": "Bakırsu Valley"
+      },
+      "def": {
+        "tr": "Kuzeyde stratejik değeri yüksek vadi. Reun Solgar ordusunun pusuya düşürüldüğü yer.",
+        "en": "A strategically vital valley in the north. Site of Reun Solgar's catastrophic ambush."
+      }
+    },
+    {
+      "id": "baskomutan",
+      "type": "military",
+      "term": {
+        "tr": "Başkomutan",
+        "en": "Supreme Commander"
+      },
+      "def": {
+        "tr": "İmparatorluk ordularının en üst komutanı. Olinder Albea bu unvanı taşıyan son büyük komutandır.",
+        "en": "The highest commander of imperial armies. Olinder Albea was the last great holder of this title."
+      }
+    },
+    {
+      "id": "bassancak",
+      "type": "geo",
+      "term": {
+        "tr": "Başsancak",
+        "en": "Başsancak"
+      },
+      "def": {
+        "tr": "İmparatorluğun başkent eyaleti. İmparatorluk sarayı ve tüm yönetim merkezi burada yer alır.",
+        "en": "The empire's capital province. The imperial palace and all administrative centers are located here."
+      }
+    },
+    {
+      "id": "basvezir",
+      "type": "title",
+      "term": {
+        "tr": "Başvezir",
+        "en": "Grand Vizier"
+      },
+      "def": {
+        "tr": "İmparatorun birinci yardımcısı ve sarayın en yetkili sivil ismi.",
+        "en": "The emperor's first aide and the most authoritative civilian figure at court."
+      }
+    },
+    {
+      "id": "denge-konseyi",
+      "type": "religious",
+      "term": {
+        "tr": "Denge Konseyi",
+        "en": "Council of Balance"
+      },
+      "def": {
+        "tr": "Stallhart İmparatorluğu'nun resmî dinî kurumu. Kaos ve Düzen arasındaki dengeyi koruma ilkesine dayanır.",
+        "en": "The official religious institution of the Stallhart Empire. Based on the principle of preserving balance between Chaos and Order."
+      }
+    },
+    {
+      "id": "eyalet",
+      "type": "political",
+      "term": {
+        "tr": "Eyalet",
+        "en": "Province"
+      },
+      "def": {
+        "tr": "İmparatorluğun idari bölünme birimi. Her eyalet bir Melik, Vali ya da Kont tarafından yönetilir.",
+        "en": "The administrative unit of the empire. Each province is governed by a Melik, Vali, or Count."
+      }
+    },
+    {
+      "id": "galetsha",
+      "type": "geo",
+      "term": {
+        "tr": "Galetsha",
+        "en": "Galetsha"
+      },
+      "def": {
+        "tr": "Kuzeydoğu eyaleti. Galet/Galetsha Hanesi'nin hâkim olduğu stratejik bölge. Dağlık, sarp geçitler.",
+        "en": "The northeastern province. Strategic region dominated by House Galet/Galetsha. Mountainous, with treacherous passes."
+      }
+    },
+    {
+      "id": "gylian-sihri",
+      "type": "magic",
+      "term": {
+        "tr": "Gylian Sihrî",
+        "en": "Gylian Magic"
+      },
+      "def": {
+        "tr": "Kaos tanrılarından ilham alan, yıkım ve düzensizlik güçlerine çağrı yapan en tehlikeli sihir dalı. Kesinlikle yasaktır.",
+        "en": "The most dangerous branch of magic, invoking forces of destruction inspired by the Chaos gods. Strictly forbidden."
+      }
+    },
+    {
+      "id": "gumus-yol-bogazi",
+      "type": "geo",
+      "term": {
+        "tr": "Gümüş Yol Boğazı",
+        "en": "Silver Way Strait"
+      },
+      "def": {
+        "tr": "Kıtayı doğu-batı olarak ikiye bölen stratejik su yolu. En dar geçit noktaları: Garall (Z'ela) ve Todfa/Gom Ara (Başsancak/Onneva).",
+        "en": "The strategic strait dividing the continent east-west. Narrowest crossing points: Garall (Z'ela) and Todfa/Gom Ara (Başsancak/Onneva)."
+      }
+    },
+    {
+      "id": "ilk-anne",
+      "type": "religious",
+      "term": {
+        "tr": "İlk Anne",
+        "en": "First Mother"
+      },
+      "def": {
+        "tr": "İmparatorluk tarafından yasaklanmış kadim inanç sistemi. Üç Yapraklı Yonca sembolüyle tanınır; madenlerde ve gizli el yazmalarıyla yaşamaya devam eder.",
+        "en": "Ancient belief system banned by the empire. Recognized by the Three-Leafed Clover symbol; continues in mines and secret manuscripts."
+      }
+    },
+    {
+      "id": "karabicaklar",
+      "type": "political",
+      "term": {
+        "tr": "Karabıçaklar",
+        "en": "Black Claws"
+      },
+      "def": {
+        "tr": "Amadon Stallhart'ın kurduğu imparatorluk gizli polis teşkilatı. Muhalifleri, sihir kullanıcılarını ve yasak inanç mensuplarını takip eder.",
+        "en": "The imperial secret police founded by Amadon Stallhart. Tracks dissidents, magic users, and members of banned faiths."
+      }
+    },
+    {
+      "id": "khasinya",
+      "type": "geo",
+      "term": {
+        "tr": "Khasinya",
+        "en": "Khasinya"
+      },
+      "def": {
+        "tr": "Doğu adası. Güçlü deniz kültürü ve isyan tarihiyle bilinen eyalet. Khasin Hanesi hâkimdir.",
+        "en": "Eastern island province. Known for its strong maritime culture and history of rebellion. Dominated by House Khasin."
+      }
+    },
+    {
+      "id": "khaan",
+      "type": "magic",
+      "term": {
+        "tr": "Khaan",
+        "en": "Khaan"
+      },
+      "def": {
+        "tr": "En eski bilinen sihir biçimi. Ruhsal enerjiyi doğrudan bedenden çekerek güce dönüştürür; uygulayıcının bedenini tüketen yasak sihir.",
+        "en": "The oldest known form of magic. Converts spiritual energy drawn directly from the body into power; forbidden magic that gradually consumes the practitioner."
+      }
+    },
+    {
+      "id": "ks-takvimi",
+      "type": "political",
+      "term": {
+        "tr": "KS Takvimi",
+        "en": "KS Calendar"
+      },
+      "def": {
+        "tr": "\"Kuruluş Senesi\" anlamına gelir. I. Craes'in imparatorluğu kurduğu yıl sıfır kabul edilir. Tüm olaylar bu takvime göre tarihlendirilir.",
+        "en": "Stands for \"Founding Year.\" The year Craes I founded the empire is taken as year zero. All events are dated by this calendar."
+      }
+    },
+    {
+      "id": "kutsal-kan-doktrini",
+      "type": "religious",
+      "term": {
+        "tr": "Kutsal Kan Doktrini",
+        "en": "Holy Blood Doctrine"
+      },
+      "def": {
+        "tr": "I. Craes tarafından ilan edilen ilke: Stallhart soyu tanrısal bir kandan gelmektedir. Bu soy ilahi bir yönetme hakkına sahiptir.",
+        "en": "The doctrine proclaimed by Craes I: the Stallhart bloodline descends from divine blood and holds a sacred right to rule."
+      }
+    },
+    {
+      "id": "loth-sihri",
+      "type": "magic",
+      "term": {
+        "tr": "Loth Sihrî",
+        "en": "Loth Magic"
+      },
+      "def": {
+        "tr": "Algıyı ve gerçekliğin görünümünü manipüle eden illüzyon ve gizleme sihrî. Yasak olmasına rağmen en sık izlerde rastlanan türdür.",
+        "en": "Illusion and concealment magic manipulating perception and the appearance of reality. Despite being forbidden, it is the most commonly encountered type in the field."
+      }
+    },
+    {
+      "id": "melik",
+      "type": "title",
+      "term": {
+        "tr": "Melik",
+        "en": "Melik"
+      },
+      "def": {
+        "tr": "Eyalet düzeyindeki yönetici unvanı. İmparatora bağlı en üst taşra yöneticisi.",
+        "en": "A governing title at the provincial level. The highest provincial administrator reporting directly to the emperor."
+      }
+    },
+    {
+      "id": "selrin",
+      "type": "military",
+      "term": {
+        "tr": "Selrin",
+        "en": "Selrin"
+      },
+      "def": {
+        "tr": "Erthan'ın taşıdığı aile yadigârı kılıç. Liandryl soyundan gelen ve babası Almonth'tan devralınan heirloom silah.",
+        "en": "The heirloom sword carried by Erthan. Passed down through the Liandryl lineage, inherited from his father Almonth."
+      }
+    },
+    {
+      "id": "selya",
+      "type": "geo",
+      "term": {
+        "tr": "Selya",
+        "en": "Selya"
+      },
+      "def": {
+        "tr": "Batı adası. Bilge vali Celios Selya'nın yönetiminde yarı özerk bir yapı sürdürür. Zeandor'un büyüdüğü toprak.",
+        "en": "The western island province. Maintains a semi-autonomous structure under the wise lord Celios Selya. The land where Zeandor came of age."
+      }
+    },
+    {
+      "id": "seltanya",
+      "type": "geo",
+      "term": {
+        "tr": "Seltanya",
+        "en": "Seltanya"
+      },
+      "def": {
+        "tr": "İmparatorluğun güney eyaleti. Amadon'un Melik olarak yönettiği ve iktidarını pekiştirdiği topraklar.",
+        "en": "The empire's southern province. The land where Amadon ruled as Melik and consolidated his power base."
+      }
+    },
+    {
+      "id": "solgar",
+      "type": "geo",
+      "term": {
+        "tr": "Solgar",
+        "en": "Solgar"
+      },
+      "def": {
+        "tr": "Güneydoğu eyaleti. Edun Solgar'ın Zeandor tarafından sürgün edildiği toprak.",
+        "en": "The southeastern province. The land to which Edun Solgar was exiled by Zeandor."
+      }
+    },
+    {
+      "id": "uc-yaprakli-yonca",
+      "type": "religious",
+      "term": {
+        "tr": "Üç Yapraklı Yonca",
+        "en": "Three-Leafed Clover"
+      },
+      "def": {
+        "tr": "İlk Anne inancının sembolü. Gizlice taşınan ya da el yazmalarına saklanan bu işaret, yasak inancın simgesidir.",
+        "en": "The symbol of the First Mother faith. Secretly carried or hidden in manuscripts, this mark is the sign of the forbidden belief."
+      }
+    },
+    {
+      "id": "zela",
+      "type": "geo",
+      "term": {
+        "tr": "Z'ela",
+        "en": "Z'ela"
+      },
+      "def": {
+        "tr": "Batı eyaleti. Gümüş Yol Boğazı'nın kuzey yakasında stratejik konumuyla öne çıkar. Garall limanı kıtalar arası geçişin merkezi.",
+        "en": "The western province. Notable for its strategic position on the north bank of the Silver Way Strait. The port of Garall is the center of intercontinental crossings."
+      }
+    },
+    {
+      "id": "harbiye-baskomutani",
+      "type": "political",
+      "term": {
+        "tr": "Harbiye Başkomutanı (Savaş Veziri)",
+        "en": "Supreme Commander of the War Office (War Vizier)"
+      },
+      "def": {
+        "tr": "120.000-140.000 kişilik imparatorluk ordusunun, topçu bataryalarının ve hudut lejyonlarının tek hakimi; stratejik planlamayı yürütür.",
+        "en": "Sole master of the 120,000–140,000-strong imperial army, its artillery batteries and the frontier legions; conducts strategic planning."
+      }
+    },
+    {
+      "id": "hazine-veziri",
+      "type": "political",
+      "term": {
+        "tr": "Hazine / Maliye Veziri",
+        "en": "Treasury / Finance Vizier"
+      },
+      "def": {
+        "tr": "Vergi toplama, maden imtiyazları, ekonomik denge ve devlet hazinesinin yönetiminden sorumludur; savaşların finansmanına ve eyalet vergilerine karar verir.",
+        "en": "Responsible for tax collection, mining concessions, economic balance and the management of the state treasury; decides on the financing of wars and provincial taxes."
+      }
+    },
+    {
+      "id": "hariciye-veziri",
+      "type": "political",
+      "term": {
+        "tr": "Hariciye Veziri",
+        "en": "Foreign Affairs Vizier"
+      },
+      "def": {
+        "tr": "Dış ilişkiler, yabancı elçiler, diplomatik temaslar, antlaşmalar ve ittifaklardan sorumludur; küçük tampon krallıkları altın veya tehditle imparatorluğa bağlar.",
+        "en": "Responsible for foreign relations, foreign envoys, diplomatic contacts, treaties and alliances; binds small buffer kingdoms to the empire with gold or threats."
+      }
+    },
+    {
+      "id": "dahiliye-veziri",
+      "type": "political",
+      "term": {
+        "tr": "Dahiliye Veziri",
+        "en": "Interior Vizier"
+      },
+      "def": {
+        "tr": "Eyaletlerin iç işleyişi, valilerin sadakati ve eyalet yönetimleriyle koordineli iç güvenlikten sorumludur; şehir muhafızlarını ve altyapı ağlarını yönetir.",
+        "en": "Responsible for the internal workings of the provinces, the loyalty of governors and internal security in coordination with provincial administrations; manages the city guards and infrastructure networks."
+      }
+    },
+    {
+      "id": "adliye-veziri",
+      "type": "political",
+      "term": {
+        "tr": "Adliye Veziri (İmparatorluk Başyargıcı)",
+        "en": "Justice Vizier (Imperial Chief Justice)"
+      },
+      "def": {
+        "tr": "Adalet mekanizmasının, kanunların yazılmasının ve cezaların infazının en üst düzey denetçisi; imparatorluk ailesi ve divanı hariç tüm vatandaşlar üzerinde yargılama yetkisine sahiptir.",
+        "en": "Highest supervisor of the justice mechanism, the writing of laws and the execution of sentences; holds jurisdiction over all citizens except the imperial family and the divan."
+      }
+    },
+    {
+      "id": "istihbarat-veziri",
+      "type": "political",
+      "term": {
+        "tr": "İstihbarat Veziri (Gölge Veziri)",
+        "en": "Intelligence Vizier (Shadow Vizier)"
+      },
+      "def": {
+        "tr": "İç ve dış casusluk, sabotaj, şantaj ve fısıltı ağının yöneticisi; olası isyanları raporlar, yabancı devletleri izler.",
+        "en": "Manager of the domestic and foreign espionage, sabotage, blackmail and whisper network; reports on possible revolts and monitors foreign states."
+      }
+    },
+    {
+      "id": "tarim-lojistik-veziri",
+      "type": "political",
+      "term": {
+        "tr": "Tarım ve Lojistik Veziri",
+        "en": "Agriculture and Logistics Vizier"
+      },
+      "def": {
+        "tr": "Tarımsal üretim, hasat mevsimleri, erzak ambarları ve köylülerin mahsul dağıtımının yönetiminden sorumludur; ordunun erzak ihtiyacını karşılar.",
+        "en": "Responsible for managing agricultural production, harvest seasons, provision granaries and the distribution of the peasants' crops; meets the army's provision needs."
+      }
+    },
+    {
+      "id": "ilk-anne-kultu-gls",
+      "type": "religious",
+      "term": {
+        "tr": "İlk Anne Kültü",
+        "en": "Cult of the First Mother"
+      },
+      "def": {
+        "tr": "Konsey tanrılarını reddetmeyen ama \"tanrılardan önceki\" bir ilahi anneye odaklanan yasak yeraltı dini. Sembolü üç yapraklı yoncadır.",
+        "en": "A forbidden underground religion that does not reject the Council gods but focuses on a divine mother \"before the gods\". Its symbol is the three-leafed clover."
+      }
+    },
+    {
+      "id": "ordo-fraksiyonu",
+      "type": "religious",
+      "term": {
+        "tr": "Ordo Fraksiyonu",
+        "en": "Order Faction"
+      },
+      "def": {
+        "tr": "\"Demir Yumruk\" olarak bilinen tanrısal ittifak; Hakim, Mimar ve Saatçi'den oluşur, mutlak düzeni vaaz eder.",
+        "en": "A divine alliance known as the \"Iron Fist\"; composed of the Adjudicator, the Architect and the Watchmaker, it preaches absolute order."
+      }
+    },
+    {
+      "id": "kaos-fraksiyonu",
+      "type": "religious",
+      "term": {
+        "tr": "Kaos Fraksiyonu",
+        "en": "Chaos Faction"
+      },
+      "def": {
+        "tr": "\"Zincirsiz Ateş\" olarak bilinen tanrısal ittifak; Harp, İhtiras ve Desise'den oluşur, mutlak anarşiyi vaaz eder.",
+        "en": "A divine alliance known as \"Unchained Fire\"; composed of the Strife, the Desire and the Deceiver, it preaches absolute anarchy."
+      }
+    }
+  ],
+  "gods": [
+    {
+      "id": "galdra",
+      "epithet": {
+        "tr": "Muhafız",
+        "en": "The Protector"
+      },
+      "trueName": "Galdra",
+      "faction": "neutral",
+      "tags": [
+        "savas",
+        "din",
+        "buyu-mit"
+      ],
+      "role": {
+        "tr": "Tanrılar arası savaşın evreni parçalamasını engelleyen, tarafsız kalmaya yemin etmiş mutlak savunma varlığı; evrenin çatısı Crae'nin bekçisi.",
+        "en": "The absolute defensive being, sworn to neutrality, who prevents war between the gods from shattering the universe; the keeper of Crae, the framework of the cosmos."
+      },
+      "psychology": {
+        "tr": "Ne Düzen'e ne Kaos'a meyleder; varlığı bir yargı değil bir denge noktasıdır. İnananları onu affetmeyen, sadece dayanan bir güç olarak tarif eder. Tarafsızlığı roman boyunca hiç bozulmaz; bu ilahi kayıtsızlık, karakterlerin yalvardığı ama cevap alamadığı sahnelerde en acı biçimiyle hissedilir.",
+        "en": "Leaning neither toward Order nor Chaos, its existence is not a judgment but a point of balance. Believers describe it as a force that does not forgive, only endures. Its neutrality is never broken throughout the novel; this divine indifference is felt in its most bitter form in the scenes where characters plead but receive no answer."
+      },
+      "ritual": {
+        "tr": "Zırh kuşanmadan önce yapılan yemine konu olur. \"Muhafız gibi dur\" ifadesi askeri terminolojide \"pozisyon bırakma\" anlamında kullanılır.",
+        "en": "It is the subject of the oath taken before donning armor. The phrase \"Stand like the Protector\" is used in military terminology to mean \"do not abandon your post\"."
+      },
+      "symbol": {
+        "tr": "",
+        "en": ""
+      },
+      "image": "assets/images/gods/galdra.png"
+    },
+    {
+      "id": "nazeth",
+      "epithet": {
+        "tr": "Zeval",
+        "en": "The Oblivion"
+      },
+      "trueName": "Nazeth",
+      "faction": "neutral",
+      "tags": [
+        "buyu-mit"
+      ],
+      "role": {
+        "tr": "Entropinin cisimleşmiş hâli; her şeyin kaçınılmaz sonu.",
+        "en": "Entropy made flesh; the inevitable end of all things."
+      },
+      "psychology": {
+        "tr": "Kutsanmaktan çok susulan bir isimdir; adı ağza alınmadan önce bile bir sessizlik payı bırakılır. Ölüm törenlerinde resmi olarak anılsa da vakanüvisler onun adını yazmaktan önce kalemi kaldırıp bir an bekler. Sadece \"son\" değil, \"anlamsız son\"un tanrısıdır --- bu yüzden intihar edenler onun lanetine uğradığına inanılır.",
+        "en": "More than being blessed, it is a name that is kept silent; even before the name is spoken, a portion of silence is left. Though officially invoked in death ceremonies, chroniclers lift their pens and wait a moment before writing his name. He is the god not merely of \"the end\" but of \"the meaningless end\" — which is why those who take their own lives are believed to fall under his curse."
+      },
+      "ritual": {
+        "tr": "Cenaze ritüellerinde adı en son söylenir. Kül rengi cüppeli rahipler ölüm döşeğinde eşlik eder; zaten Maraz rahipleriyle çakışan bu rol, iki tanrı arasındaki \"kimin toprakları\" anlaşmazlığının teolojik yansımasıdır.",
+        "en": "In funeral rites his name is spoken last. Priests in ash-colored robes accompany the deathbed; this role, which already overlaps with that of the priests of Blight, is the theological reflection of the \"whose lands are they\" dispute between the two gods."
+      },
+      "symbol": {
+        "tr": "",
+        "en": ""
+      },
+      "image": "assets/images/gods/nazeth.png"
+    },
+    {
+      "id": "gydor",
+      "epithet": {
+        "tr": "Saatçi",
+        "en": "The Watchmaker"
+      },
+      "trueName": "Gydor",
+      "faction": "order",
+      "tags": [
+        "din",
+        "saray-entrikasi",
+        "buyu-mit"
+      ],
+      "role": {
+        "tr": "Zamanı koruyan, tarihi kayıt altına alan hafıza tanrısı.",
+        "en": "God of memory who preserves time and records history."
+      },
+      "psychology": {
+        "tr": "Vakayinameci rahiplerin koruyucusudur; unutmayı bir günah, hatırlamayı bir ibadet sayar. Konsey'in \"arşivci\" sıfatı taşıyan tek tanrısıdır. İnsanlığın teknolojik çöküşünden sonra geriye kalan bilgileri koruduğuna inanılır. Zeval'le dengeleyici çiftidir: Zeval'in getirdiği sonun, Saatçi sayesinde hafızaya dönüştüğü inancı yaygındır.",
+        "en": "Patron of the chronicler priests; he counts forgetting as a sin and remembering as worship. He is the only god of the Council to bear the title of \"archivist\". He is believed to preserve the knowledge left over after humanity's technological collapse. He is the balancing pair of Ruin: it is widely believed that the end Ruin brings is turned into memory thanks to the Timekeeper."
+      },
+      "ritual": {
+        "tr": "Kütüphanelerin, mahkemelerin ve tarih arşivlerinin kapısı açılırken Saatçi'nin adı anılır. Yeminler \"Saatçi'nin gözü önünde\" diye başlar. Resmi belgelerin köşesine küçük bir saat sembolü işlenir.",
+        "en": "The Watchmaker's name is invoked when the doors of libraries, courts and history archives are opened. Oaths begin \"Before the Watchmaker's eye\". A small clock symbol is embroidered at the corner of official documents."
+      },
+      "symbol": {
+        "tr": "Küçük bir saat",
+        "en": "A small clock"
+      },
+      "image": "assets/images/gods/gydor.png"
+    },
+    {
+      "id": "naldor",
+      "epithet": {
+        "tr": "İsyan",
+        "en": "The Rebellion"
+      },
+      "trueName": "Naldor",
+      "faction": "kaos",
+      "tags": [
+        "din",
+        "saray-entrikasi",
+        "isyan",
+        "buyu-mit"
+      ],
+      "role": {
+        "tr": "Otoriteyi tanımayan, kaotik özgürlüğü temsil eden tanrı.",
+        "en": "God who does not recognize authority, representing chaotic freedom."
+      },
+      "psychology": {
+        "tr": "Erthan'ın isyanı gibi kanlı kalkışmalarda halkın fısıltı arasında andığı, resmi mabetlerde adı geçmesi bile hoş karşılanmayan bir varlıktır. Resmi Konsey teolojisinde \"gerekli ama tehlikeli\" bir denge unsuru sayılır; tamamen bastırılırsa denge bozulur, çok yayılırsa yıkım gelir. Bu belirsiz statü, İsyan rahipliğinin fiilen yasak olduğu ama dinin içinden tamamen çıkarılamadığı paradoks durumu doğurur.",
+        "en": "In bloody uprisings like Erthan's rebellion, a being invoked by the people in whispers, whose name is unwelcome even to be mentioned in official temples. In official Council theology he is regarded as a \"necessary but dangerous\" element of balance; if entirely suppressed, balance is broken; if he spreads too much, destruction comes. This ambiguous status creates a paradox in which the priesthood of the Rebellion is effectively forbidden but cannot be entirely removed from the religion."
+      },
+      "ritual": {
+        "tr": "Yeraltı kültleri İsyan adına gizli ayin düzenler. İsyan Selamı --- bir soylu ya da askerin imparator selamını kendisi yaparak darbe ilan etmesi --- bu tanrının adıyla ilgilidir; bu yüzden İsyan Selamı hem siyasi hem dini bir ihlal sayılır.",
+        "en": "Underground cults hold secret rites in the name of the Rebellion. The Salute of the Rebellion — a noble or soldier declaring a coup by performing the imperial salute himself — is connected with this god's name; therefore the Salute of the Rebellion is considered both a political and a religious violation."
+      },
+      "symbol": {
+        "tr": "",
+        "en": ""
+      },
+      "image": "assets/images/gods/naldor.png"
+    },
+    {
+      "id": "lidros",
+      "epithet": {
+        "tr": "Hakim",
+        "en": "The Adjudicator"
+      },
+      "trueName": "Lidros",
+      "faction": "order",
+      "tags": [
+        "savas",
+        "din",
+        "buyu-mit"
+      ],
+      "role": {
+        "tr": "Yasa, yargı ve toplumsal nizamın koruyucusu tanrı.",
+        "en": "God who guards law, justice and social order."
+      },
+      "psychology": {
+        "tr": "İmparatorluk mahkemelerinin yeminlerinde adı geçer. Kutsal Kan Doktrini'nin meşruiyet zemininde ona atıf yapılır: \"Lidros'un gözünde tüm kanlar eşit değildir; Era'nın damlaları daha ağır basar.\" Arathen Krallığı ise tam tersini savunur: \"Lidros, zengin ile fakiri eşit tutar\" ilkesini anayasal zemine oturtmuştur. Bu iki Hakim yorumu, Stallhart-Arathen ideolojik savaşının teolojik özüdür.",
+        "en": "His name appears in the oaths of the imperial courts. The Holy Blood Doctrine cites him on its legitimacy ground: \"In Lidros's eyes not all blood is equal; the drops of Era weigh heavier.\" The Kingdom of Arathen, by contrast, defends the opposite: it has set the principle \"Lidros holds rich and poor equal\" on a constitutional foundation. These two interpretations of the Judge are the theological core of the Stallhart–Arathen ideological war."
+      },
+      "ritual": {
+        "tr": "Yargılamalar öncesinde Hakim'in heykelinin önüne mühürlü belgeler bırakılır. Mahkeme salonlarının tavan fresklerinde daima Hakim sembolü bulunur.",
+        "en": "Before trials, sealed documents are left before the statue of the Adjudicator. The ceiling frescoes of courtrooms always bear the symbol of the Adjudicator."
+      },
+      "symbol": {
+        "tr": "",
+        "en": ""
+      },
+      "image": "assets/images/gods/lidros.png"
+    },
+    {
+      "id": "garator",
+      "epithet": {
+        "tr": "Harp",
+        "en": "The Strife"
+      },
+      "trueName": "Garator",
+      "faction": "kaos",
+      "tags": [
+        "savas",
+        "ask",
+        "saray-entrikasi",
+        "buyu-mit"
+      ],
+      "role": {
+        "tr": "Savaşın, kanın ve orduların tanrısı.",
+        "en": "God of war, blood and armies."
+      },
+      "psychology": {
+        "tr": "Askerlerin sefer öncesi andığı, komutanların zafer sonrası şükran sunduğu bir isimdir. Konsey içindeki Kaos Fraksiyonu'nun en güçlü temsilcisidir: Yasak Parşömenler'e göre Harp, İhtiras ve Desise --- bu üçlü \"Zincirsiz Ateş\" olarak anılır ve her türlü kuralın yok edilmesi için mücadele eder. Sükun ile birlikte en sık birlikte anılan çifttir; savaş duaları ile ateşkes duaları zaman zaman aynı törende art arda okunur.",
+        "en": "A name invoked by soldiers before campaigns and to which commanders offer thanks after victory. He is the strongest representative of the Chaos Faction within the Council: according to the Forbidden Scrolls, the Strife, Greed and Guile — this trio is known as \"Unchained Fire\" and strives for the destruction of all rules. He is the pair most often mentioned together with Serenity; war prayers and ceasefire prayers are at times recited one after the other in the same ceremony."
+      },
+      "ritual": {
+        "tr": "Sefer öncesi: kılıç ve kalkan Garator heykeline değdirilir. Zafer sonrası: ele geçirilen şehirde ilk ateşlenen fener Harp adına yakarılır. Ölmüş askerlerin kalkanları tapınağa asılır.",
+        "en": "Before a campaign: sword and shield are touched to the statue of Garator. After victory: the first lantern lit in a captured city is lit in the Strife's name. The shields of fallen soldiers are hung in the temple."
+      },
+      "symbol": {
+        "tr": "",
+        "en": ""
+      },
+      "image": "assets/images/gods/garator.png"
+    },
+    {
+      "id": "lomera",
+      "epithet": {
+        "tr": "Sükun",
+        "en": "Serenity"
+      },
+      "trueName": "Lomera",
+      "faction": "order",
+      "tags": [
+        "savas",
+        "din",
+        "surgun",
+        "buyu-mit"
+      ],
+      "role": {
+        "tr": "Savaşı dindiren, mutlak huzuru temsil eden tanrıça.",
+        "en": "Goddess who quells war, representing absolute peace."
+      },
+      "psychology": {
+        "tr": "Harp'in karşı kutbu sayılır; ateşkes törenlerinde onun adına şarap dökülür. Dini ritüellerde en sık kadın sesinin tercih edildiği tanrıdır. Sürgün edilenlere, tutsaklara ve çaresizlere \"Lomera'nın huzuru seninle olsun\" dilenir. İmparatoriçe Selmira ve I. Nadima gibi halkın sevdiği imparatoriçeler Lomera ile özdeşleştirilmiştir.",
+        "en": "Considered the opposite pole of War; wine is poured in her name at ceasefire ceremonies. She is the god for whom a woman's voice is most often preferred in religious rituals. To the exiled, the captive and the helpless, \"May the peace of Lomera be with you\" is wished. Beloved empresses of the people such as Empress Selmira and Nadima I are identified with Lomera."
+      },
+      "ritual": {
+        "tr": "Hastaneler ve doğum odaları kapılarına Lomera sembolü (dalgalı çizgi) çizilir. Yas törenleri ve cenaze duaları Lomera adıyla açılır.",
+        "en": "The symbol of Lomera (a wavy line) is drawn on the doors of hospitals and birthing rooms. Mourning ceremonies and funeral prayers open with Lomera's name."
+      },
+      "symbol": {
+        "tr": "Dalgalı çizgi",
+        "en": "Wavy line"
+      },
+      "image": "assets/images/gods/lomera.png"
+    },
+    {
+      "id": "lodvez",
+      "epithet": {
+        "tr": "Desise",
+        "en": "The Deceiver"
+      },
+      "trueName": "Lodvez",
+      "faction": "kaos",
+      "tags": [
+        "suikast-casusluk",
+        "miras-veraset",
+        "buyu-mit"
+      ],
+      "role": {
+        "tr": "İllüzyon, tuzak ve zihinsel manipülasyon tanrısı.",
+        "en": "God of illusion, traps and mental manipulation."
+      },
+      "psychology": {
+        "tr": "Loth büyüsünün kökeninde onun izi vardır; bu yüzden Loth kullanan Edlas gibi figürler bilmeden onun mirasını taşır. Resmi panteon onu tam olarak dışlamaz çünkü \"yanılsamanın ve tuzağın bile denge içinde bir yeri vardır\" teolojik argümanı geçerlidir --- ama ona açıkça tapan kişiler şüpheyle karşılanır. Casuslar, aktörler ve pazarcılar gayri resmi olarak Desise'ye bağlıdır.",
+        "en": "The trace of the Deceiver lies at the origin of Loth magic; therefore figures like Edlas who use Loth unknowingly carry his legacy. The official pantheon does not entirely exclude him because the theological argument that \"even illusion and the trap have a place in balance\" holds — but people who openly worship him are met with suspicion. Spies, actors and peddlers are unofficially bound to the Deceiver."
+      },
+      "ritual": {
+        "tr": "Gölge Veziri'nin ofisinin kapısı üzerinde Desise'ye ait bir sembol bulunduğu söylenir --- bu dedikodunun ne kadarı doğru, ne kadarı kasıtlı yayılan bir efsanedir belirsizdir.",
+        "en": "It is said that a symbol belonging to the Deceiver is on the door of the Shadow Vizier's office — how much of this gossip is true and how much a deliberately spread legend is uncertain."
+      },
+      "symbol": {
+        "tr": "",
+        "en": ""
+      },
+      "image": "assets/images/gods/lodvez.png"
+    },
+    {
+      "id": "veleris",
+      "epithet": {
+        "tr": "Bilge",
+        "en": "The Sage"
+      },
+      "trueName": "Veleris",
+      "faction": "order",
+      "tags": [
+        "buyu-mit"
+      ],
+      "role": {
+        "tr": "Hakikati ortaya çıkaran, Desise'nin oyunlarına kanmayan tek zihin.",
+        "en": "The only mind that reveals the truth and is not fooled by Guile's games."
+      },
+      "psychology": {
+        "tr": "Kütüphanelerin ve vakayinamecilerin koruyucusu sayılır. Büyük Kütüphane'nin iki kez yıkılıp yeniden inşa edilmesi ona atfedilen bir direniş efsanesine dönüşmüştür: \"Bilge'nin ışığı yanmaya devam eder, fanatikler ne kadar ateş yakarsa yakılsın.\" II. Craes'in kurduğu kütüphane ateşe verildiğinde ve Reanloth tarafından yeniden inşa edildiğinde her iki olayda da Veleris adı anılmıştır.",
+        "en": "Regarded as the guardian of libraries and chroniclers. The Great Library being destroyed twice and rebuilt has become a legend of resistance attributed to him: \"The Sage's light keeps burning, however much fire the fanatics light.\" When the library founded by Craes II was set on fire and when it was rebuilt by Reanloth, Veleris's name was invoked on both occasions."
+      },
+      "ritual": {
+        "tr": "Alimler çalışmaya başlarken \"Veleris'in ışığını ister gibi\" mumlarını yakarlar. Kütüphanelerde Veleris heykeli kapı önünde durur. Mahkemelerde tanıklar \"Veleris önünde\" yemin eder.",
+        "en": "Scholars light their candles at the start of work \"as if asking for Veleris's light\". In libraries the statue of Veleris stands at the door. In courts, witnesses swear \"before Veleris\"."
+      },
+      "symbol": {
+        "tr": "",
+        "en": ""
+      },
+      "image": "assets/images/gods/veleris.png"
+    },
+    {
+      "id": "vazmer",
+      "epithet": {
+        "tr": "Tufan",
+        "en": "Deluge"
+      },
+      "trueName": "Vazmer",
+      "faction": "neutral",
+      "tags": [
+        "buyu-mit"
+      ],
+      "role": {
+        "tr": "Deprem, sel ve fırtına yoluyla yıkımı getiren tanrı.",
+        "en": "God who brings destruction through earthquake, flood and storm."
+      },
+      "psychology": {
+        "tr": "Denizcilerin en çok korktuğu, en çok yalvardığı isimdir. Merenler'in kadim felaketiyle de bağdaştırılır. Denizci halk, fırtınadan önce mavi bir mendil denize atar; bu, Vazmer'in öfkesini bir kurban karşılığında yatıştırma ritüelidir. Mimar ile birlikte \"yıkan ile yapan\" çifti olarak anılır; deprem sonrası törenlerde her ikisinin adı da geçer: önce Tufan'a öfkesi için özür, sonra Mimar'a yeniden inşa için dua.",
+        "en": "The name seafarers fear most and plead to most. He is also associated with the ancient catastrophe of the Merens. Before a storm, seafaring folk throw a blue handkerchief into the sea; this is a ritual to appease Vazmer's wrath in exchange for a sacrifice. Together with the Architect he is referred to as the pair \"the one who destroys and the one who builds\"; after earthquakes both names are spoken in ceremonies: first an apology to the Deluge for his wrath, then a prayer to the Architect for rebuilding."
+      },
+      "ritual": {
+        "tr": "Deniz seferleri öncesinde Vazmer tapınağına adak bırakılır. Fırtınada gemi batarsa hayatta kalanlar \"Tufan'ın bağışladığı canlar\" sayılır.",
+        "en": "Offerings are left at the temple of Vazmer before sea voyages. If a ship sinks in a storm, the survivors are counted as \"the lives the Deluge forgave\"."
+      },
+      "symbol": {
+        "tr": "",
+        "en": ""
+      },
+      "image": "assets/images/gods/vazmer.png"
+    },
+    {
+      "id": "brikon",
+      "epithet": {
+        "tr": "Mimar",
+        "en": "The Architect"
+      },
+      "trueName": "Brikon",
+      "faction": "order",
+      "tags": [
+        "buyu-mit"
+      ],
+      "role": {
+        "tr": "İnşa ve dirençli yapıların tanrısı.",
+        "en": "God of construction and resilient structures."
+      },
+      "psychology": {
+        "tr": "Tersane ve kale ustalarının koruyucu piridir. Adamen cücelerinin en çok saydığı tanrıdır; yeraltı tünellerinin ve kale duvarlarının her köşe taşına Brikon'un sembolü kazınır. \"Mimar'ın temeli\" ifadesi kalıcı ve güvenilir anlamında deyim olarak kullanılır.",
+        "en": "Patron of shipyard and fortress craftsmen. He is the god most revered by the dwarves of Adamen; Brikon's symbol is carved into every cornerstone of underground tunnels and fortress walls. The phrase \"the Architect's foundation\" is used as an idiom meaning lasting and reliable."
+      },
+      "ritual": {
+        "tr": "Yeni bir bina inşasına başlarken temel taşına Brikon'un sembolü kazınır. Kale yapımları Mimar rahibinin duasıyla başlar.",
+        "en": "When beginning the construction of a new building, Brikon's symbol is carved into the foundation stone. Fortress construction begins with the prayer of the Architect's priest."
+      },
+      "symbol": {
+        "tr": "",
+        "en": ""
+      },
+      "image": "assets/images/gods/brikon.png"
+    },
+    {
+      "id": "zetus",
+      "epithet": {
+        "tr": "Maraz",
+        "en": "The Blight"
+      },
+      "trueName": "Zetus",
+      "faction": "kaos",
+      "tags": [
+        "din",
+        "buyu-mit"
+      ],
+      "role": {
+        "tr": "Hastalık ve acılı ölümün tanrısı.",
+        "en": "God of disease and agonizing death."
+      },
+      "psychology": {
+        "tr": "Kül rengi cüppeli rahipleri ölüm döşeklerinde eşlik eder; veba dönemlerinde adı en çok anılan tanrıdır. Resmi teolojide \"hastalık, denge için gereklidir; Maraz'ın dokunuşu olmadan dünya çürür\" argümanı sürdürülür. Amadon'un oğlu Lunin'in veba salgınında ölümünden sonra sarayda \"Maraz'ın laneti mi, Hekim'in suskunluğu mu?\" tartışması çıkmıştır. Halk tarafından korkulur ama nefret edilmez --- o da doğal düzenin parçasıdır.",
+        "en": "His priests in ash-colored robes accompany deathbeds; he is the god whose name is most invoked in plague times. Official theology maintains the argument that \"disease is necessary for balance; without the touch of the Blight the world rots\". After Amadon's son Lunin died in the plague outbreak, a debate broke out in the palace: \"The Blight's curse, or the Healer's silence?\" He is feared by the people but not hated — he too is part of the natural order."
+      },
+      "ritual": {
+        "tr": "Salgın dönemlerinde Maraz tapınaklarına kalabalık akar --- hem uzak tutması hem de \"acısız götürmesi\" için dua edilir. Veba kurbanlarının cenazeleri Maraz rahiplerince yıkanır.",
+        "en": "In times of epidemic, crowds flow into the temples of the Blight — they pray both that he keep away and that he take \"without pain\". The funerals of plague victims are washed by the priests of the Blight."
+      },
+      "symbol": {
+        "tr": "",
+        "en": ""
+      },
+      "image": "assets/images/gods/zetus.png"
+    },
+    {
+      "id": "eanhar",
+      "epithet": {
+        "tr": "Hekim",
+        "en": "The Healer"
+      },
+      "trueName": "Eanhar",
+      "faction": "neutral",
+      "tags": [
+        "buyu-mit"
+      ],
+      "role": {
+        "tr": "Şifa ve yaşamın tanrısı.",
+        "en": "God of healing and life."
+      },
+      "psychology": {
+        "tr": "Ebelerin ve saray hekimlerinin duasında adı geçer; Maraz'ın karşı kutbudur. Ölüm töreninde Maraz adı anıldıktan hemen sonra \"ama Eanhar bir gün daha bahşetti\" cümlesi söylenir. Doğum odalarında en önce Hekim'e dua edilir; sonra Lomera. İmparatoriçe Selmira doğumda can verdiğinde saray hekimi \"Eanhar geri çevirmişti, Zeval talep etti\" diyerek özür dilemiştir.",
+        "en": "His name appears in the prayers of midwives and palace physicians; he is the opposite pole of Blight. At a death ceremony, right after Blight's name is mentioned, the sentence \"but Eanhar granted one more day\" is spoken. In birthing rooms the Healer is prayed to first; then Lomera. When Empress Selmira died in childbirth, the palace physician apologized, saying \"Eanhar had turned death away; Ruin demanded her\"."
+      },
+      "ritual": {
+        "tr": "Her hastane odası kapısına Eanhar sembolü (damlayan su) çizilir. Şifacılar mesleğe girişte Eanhar adına yemin eder.",
+        "en": "The symbol of Eanhar (a dripping drop of water) is drawn on the door of every hospital room. Healers swear an oath in Eanhar's name upon entering the profession."
+      },
+      "symbol": {
+        "tr": "Damlayan su damlası",
+        "en": "A dripping drop of water"
+      },
+      "image": "assets/images/gods/eanhar.png"
+    },
+    {
+      "id": "hardir",
+      "epithet": {
+        "tr": "İhtiras",
+        "en": "The Desire"
+      },
+      "trueName": "Hardir",
+      "faction": "kaos",
+      "tags": [
+        "saray-entrikasi",
+        "buyu-mit"
+      ],
+      "role": {
+        "tr": "Doyumsuzluğu ve tüketen arzuyu temsil eden tanrı.",
+        "en": "God representing insatiability and consuming desire."
+      },
+      "psychology": {
+        "tr": "Sarayın entrika ve ihtiras dolu koridorlarında resmen anılmasa da fiilen en çok hüküm süren isimdir. Resmi mabetlerde adından kaçınılır ama hiç kimse İhtiras'ın varlığını inkâr edemez. \"Hardir'in pençesi seni yakaladı\" ifadesi bir kişinin hırsına yenik düşmesi için kullanılan bir deyimdir. Mazurekt'in, Gulon'un ve II. Nadima dönemindeki saray entrikacılarının Hardir tarafından ele geçirildiği söylenir.",
+        "en": "Though not officially named in the palace's corridors of intrigue and ambition, he is in practice the name that reigns the most. His name is avoided in official temples, yet no one can deny the existence of the Desire. \"Hardir's claw has caught you\" is an idiom used for a person who has succumbed to his ambition. Mazurekt, Gulon and the palace schemers of Nadima II's era are said to have been taken over by Hardir."
+      },
+      "ritual": {
+        "tr": "Gizli İhtiras ritüelleri var mı bilinmez --- ama saray şarap mahzenlerinde, gizli buluşmalarda ve sabaha karşı yanan mum ışığında Hardir'in adı sıkça fısıldanır.",
+        "en": "Whether secret rituals of the Desire exist is unknown — but Hardir's name is often whispered in the palace wine cellars, at secret meetings and in the candlelight burning toward dawn."
+      },
+      "symbol": {
+        "tr": "",
+        "en": ""
+      },
+      "image": "assets/images/gods/hardir.png"
+    },
+    {
+      "id": "raxes",
+      "epithet": {
+        "tr": "Avcı",
+        "en": "The Hunter"
+      },
+      "trueName": "Raxes",
+      "faction": "neutral",
+      "tags": [
+        "din",
+        "buyu-mit"
+      ],
+      "role": {
+        "tr": "Denge, doğa ve iz sürmenin tanrısı; İmparatorluk protokolünün en görünür ilahi referansı.",
+        "en": "God of balance, nature and tracking; the most visible divine reference of imperial protocol."
+      },
+      "psychology": {
+        "tr": "İmparator selamının (\"Tanrıların İşareti\") yöneldiği tanrı; her resmi selamda hükümdarın eli ona işaret eder. Bu nedenle Raxes, sıradan bir doğa tanrısından çok \"imparatorluk otoritesinin ilahi onayını\" simgeleyen bir figüre dönüşmüştür. Av törenleri resmi dini törenler olarak düzenlenebilir; II. Remal'in av partisinde ölümü, Raxes'in \"adil şahitliği\" için de yorumlanmıştır.",
+        "en": "The god toward whom the imperial salute (\"Sign of the Gods\") is directed; at every official salute the sovereign's hand points to him. For this reason Raxes has turned from an ordinary nature god into a figure symbolizing \"the divine approval of imperial authority\". Hunting ceremonies can be held as official religious ceremonies; Remal II's death in a hunting party has also been interpreted as Raxes's \"just witness\"."
+      },
+      "ritual": {
+        "tr": "Av seferleri öncesinde Raxes'e dua edilir. İmparatorluk mühründe Avcı'nın el sembolü bulunur. Her resmi belgenin sağ köşesine Raxes işareti basılır. > **BÖLÜM 5: KONSEYİN İÇ HİYERARŞİSİ VE FRAKSIYONLAR** Resmi teoloji Konsey'i birleşik bir kurul olarak sunar. Ancak Yasak Parşömenler ve bazı gizli din adamı yazmaları, Konsey'in içinde iki ana fraksiyonun var olduğunu ortaya koyar.",
+        "en": "Raxes is prayed to before hunting expeditions. The imperial seal bears the Hunter's hand symbol. The Raxes mark is stamped on the right corner of every official document. > **CHAPTER 5: THE COUNCIL'S INTERNAL HIERARCHY AND FACTIONS** Official theology presents the Council as a unified body. However, the Forbidden Scrolls and some secret clergy manuscripts reveal that two main factions exist within the Council."
+      },
+      "symbol": {
+        "tr": "Açık el işareti (imparatorluk mührü ve resmî selamda kullanılır)",
+        "en": "Open hand sign (used on the imperial seal and in the official salute)"
+      },
+      "image": "assets/images/gods/raxes.png"
+    }
+  ],
+  "factions": [
+    {
+      "id": "order",
+      "name": {
+        "tr": "Ordo Fraksiyonu — \"Demir Yumruk\"",
+        "en": "Order Faction — \"Iron Fist\""
+      },
+      "members": [
+        "Hakim (Lidros)",
+        "Mimar (Brikon)",
+        "Saatçi (Gydor)"
+      ],
+      "belief": {
+        "tr": "İnsanlığın özgür iradesi bir hatadır; tek çözüm mutlak düzen altında yönetilen köleleştirilmiş bir barıştır.",
+        "en": "Humanity's free will is a mistake; the only solution is an enslaved peace governed under absolute order."
+      },
+      "imperialTie": {
+        "tr": "Stallhart'ın Kutsal Kan Doktrini bu fraksiyonun teolojik zeminini kullanır; imparatorluk hiyerarşisi Lidros'un iradesinin yeryüzüne yansıması olarak sunulur.",
+        "en": "Stallhart's Holy Blood Doctrine uses this faction's theological ground; the imperial hierarchy is presented as the earthly reflection of Lidros's will."
+      }
+    },
+    {
+      "id": "kaos",
+      "name": {
+        "tr": "Kaos Fraksiyonu — \"Zincirsiz Ateş\"",
+        "en": "Chaos Faction — \"Unchained Fire\""
+      },
+      "members": [
+        "Harp (Garator)",
+        "İhtiras (Hardir)",
+        "Desise (Lodvez)"
+      ],
+      "belief": {
+        "tr": "Her türlü kuralın yok edildiği, yıkıma ve bencilliğin tatminine yol açacak mutlak bir anarşi.",
+        "en": "An absolute anarchy in which every kind of rule is destroyed, leading to ruin and the gratification of selfishness."
+      },
+      "imperialTie": {
+        "tr": "Stallhart meşruiyetiyle çelişir; Erthan'ın isyanında ve tarihsel köylü kalkışmalarında halkın bu tanrıları andığı söylenir.",
+        "en": "It contradicts Stallhart's legitimacy; the people are said to invoke these gods in Erthan's rebellion and in historical peasant uprisings."
+      }
+    }
+  ],
+  "cults": [
+    {
+      "id": "ilk-anne-kultu",
+      "name": {
+        "tr": "İlk Anne Kültü",
+        "en": "Cult of the First Mother"
+      },
+      "status": {
+        "tr": "Yasak sapkınlık; bulunduranlar idam edilebilir.",
+        "en": "Forbidden heresy; those found possessing it may be executed."
+      },
+      "symbol": {
+        "tr": "Üç Yapraklı Yonca — ninni ve türkülere gizlenmiş kod sembol.",
+        "en": "Three-Leafed Clover — a code symbol hidden in lullabies and folk songs."
+      },
+      "desc": {
+        "tr": "Konsey tanrılarını tamamen reddetmez; onun yerine \"tanrılardan önceki\" bir ilahi anneye, Denge Ağacı'nın gerçek koruyucusuna odaklanır. En yaygın olduğu gruplar: Galetsha madencileri, köylü sınıfı ve bazı alt kademe Mabed novisleri.",
+        "en": "It does not entirely reject the Council gods; instead it focuses on a divine mother \"before the gods\", the true guardian of the Tree of Balance. The groups among which it is most widespread: Galetsha miners, the peasant class and some lower-ranking Mabed novices."
+      }
+    }
+  ]
+}

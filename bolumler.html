@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Stallhart Destanı — Bölüm Listesi" data-tr="Stallhart Destanı — Bölüm Listesi" data-en="The Stallhart Saga — Chapter List" data-i18n-attr="content">
+<title data-tr="Bölümler · Stallhart Wiki" data-en="Chapters · Stallhart Wiki">Bölümler · Stallhart Wiki</title>
+<meta name="theme-color" content="#0c121f">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="The Stallhart Saga">
+<meta property="og:locale" content="tr_TR">
+<meta property="og:title" content="Bölümler · Stallhart Wiki">
+<meta property="og:description" content="Stallhart Destanı — Bölüm Listesi">
+<meta property="og:image" content="assets/images/logo-stallhart.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Bölümler · Stallhart Wiki">
+<meta name="twitter:description" content="Stallhart Destanı — Bölüm Listesi">
+<meta name="twitter:image" content="assets/images/logo-stallhart.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Modern+Antiqua&amp;family=IM+Fell+English:ital@0;1&amp;family=Merriweather:ital,wght@0,400;0,700;1,400&amp;display=swap">
+<link rel="stylesheet" href="assets/css/styles.css?v=3.0">
+<style>
+#bolumler-sec { background: var(--bg); }
+
+/* Arc başlıkları */
+.arc-header {
+  display: flex; align-items: center; gap: 1rem;
+  padding: 1.25rem 2rem; background: var(--deep);
+  border: 1px solid var(--border); border-bottom: none;
+  margin-top: 2rem;
+}
+.arc-header:first-of-type { margin-top: 0; }
+.arc-num {
+  font-family: var(--font-display); font-style: italic;
+  font-size: .72rem; color: var(--goldd); letter-spacing: .12em;
+  flex-shrink: 0;
+}
+.arc-name {
+  font-family: var(--font-display);
+  font-size: 1rem; color: var(--parchl);
+}
+.arc-count {
+  margin-left: auto; font-family: var(--font-display);
+  font-style: italic; font-size: .72rem; color: var(--parchd);
+}
+
+/* Bölüm satırı (genişletilmiş) */
+.ci {
+  position: relative;
+  cursor: pointer;
+}
+.ci-status {
+  position: absolute; left: 0; top: 0; bottom: 0;
+  width: 3px;
+}
+.ci-status.read { background: var(--goldd); }
+.ci-status.unread { background: transparent; }
+
+.ci-check {
+  margin-left: auto; display: flex; align-items: center;
+  gap: .4rem; flex-shrink: 0; padding-top: .3rem;
+}
+.read-btn {
+  background: none; border: 1px solid var(--border);
+  color: var(--parchd); font-size: .7rem; padding: 3px 8px;
+  cursor: pointer; transition: .15s;
+  font-family: var(--font-display); font-style: italic;
+  white-space: nowrap;
+}
+.read-btn:hover { border-color: var(--goldd); color: var(--gold); }
+.read-btn.read-done {
+  border-color: var(--goldd); color: var(--goldd);
+  background: rgba(196,150,42,.07);
+}
+
+/* İlk satır metni */
+.ci-first-line {
+  font-size: .78rem; color: rgba(154,136,112,.55);
+  font-style: italic; margin-top: .5rem;
+  border-left: 1px solid var(--border); padding-left: .75rem;
+}
+
+/* İlerleme çubuğu */
+.progress-wrap {
+  background: var(--surface); border: 1px solid var(--border);
+  padding: 1rem 1.5rem; margin-bottom: 2rem;
+  display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap;
+}
+.progress-bar-outer {
+  flex: 1; min-width: 120px; height: 4px;
+  background: var(--border); border-radius: 2px; overflow: hidden;
+}
+.progress-bar-inner {
+  height: 100%; background: var(--gold);
+  border-radius: 2px; transition: width .4s ease;
+}
+.progress-text {
+  font-family: var(--font-display); font-style: italic;
+  font-size: .82rem; color: var(--parchd); white-space: nowrap;
+}
+.progress-pct {
+  font-size: 1.1rem; color: var(--gold);
+  font-family: var(--font-display);
+}
+.reset-btn {
+  background: none; border: 1px solid var(--border);
+  color: var(--parchd); font-size: .72rem; padding: 3px 8px;
+  cursor: pointer; transition: .15s;
+  font-family: var(--font-display); font-style: italic;
+}
+.reset-btn:hover { border-color: var(--bloodb); color: var(--bloodb); }
+
+/* Arc filtresi */
+.arc-filters { display: flex; gap: .5rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
+
+/* Kilitli */
+.ci.dim .ci-n  { color: var(--borderl); }
+.ci.dim .ci-v  { color: var(--border); }
+.ci.dim .ci-first-line { display: none; }
+.locked-badge {
+  font-size: .68rem; font-family: var(--font-display);
+  font-style: italic; color: var(--goldd); margin-left: .5rem;
+}
+
+/* Devam et kartı */
+.resume-card {
+  display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; margin-bottom: 1.6rem; padding: 1rem 1.3rem;
+  background: var(--surface); border: 1px solid var(--gold);
+}
+.resume-card .rc-t { flex: 1; min-width: 12rem; }
+.resume-card .rc-k { font-family: var(--font-display); font-style: italic; font-size: .8rem; color: var(--goldd); }
+.resume-card .rc-n { font-family: var(--font-display); font-size: 1.15rem; color: var(--parchl); }
+.resume-card .rc-p { font-size: .8rem; color: var(--parchd); }
+.rc-btn {
+  display: inline-block; padding: .55rem 1.1rem; border: 1px solid var(--gold); color: var(--gold); text-decoration: none;
+  font-family: var(--font-display); font-size: .95rem; min-height: 40px; background: none;
+}
+.rc-btn:hover { background: rgba(184,115,51,.14); }
+.ci-link { color: inherit; text-decoration: none; }
+.ci-link:hover { color: var(--gold); }
+.ci-min { margin-left: .6rem; font-family: var(--font-body); font-style: italic; font-size: .72rem; color: var(--parchd); }
+/* Özet alanı bazı bölümlerde çok uzun olabilir — listede 3 satırla sınırla */
+.ci-d { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+.ci-first-line { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+@media (max-width: 640px) { .ci-check { flex-wrap: wrap; } }
+</style>
+<script src="assets/js/router.js?v=3.0"></script>
+</head>
+<body>
+
+<section id="bolumler-sec">
+  <div class="page-hero">
+    <p class="page-hero-eye" data-tr="Stallhart Destanı · Cilt I" data-en="The Stallhart Saga · Vol. I">Stallhart Destanı · Cilt I</p>
+    <h1 class="page-hero-title" id="page-title">Bölümler</h1>
+    <p class="page-hero-sub" id="page-sub">Devam eden roman — çevrimiçi oku, kaldığın yerden devam et.</p>
+  </div>
+
+  <div class="inn" style="padding: 2.5rem 2rem 6rem;">
+
+    <div id="resume-slot"></div>
+
+    <!-- İlerleme çubuğu -->
+    <div class="progress-wrap" id="progress-wrap">
+      <div class="progress-pct" id="progress-pct">0%</div>
+      <div class="progress-bar-outer">
+        <div class="progress-bar-inner" id="progress-bar" style="width:0%"></div>
+      </div>
+      <span class="progress-text" id="progress-text">0 / 0 bölüm okundu</span>
+      <button class="reset-btn" id="reset-btn">Sıfırla</button>
+    </div>
+
+    <!-- Arc filtresi -->
+    <div class="arc-filters" id="arc-filters">
+      <button class="f-btn on" data-arc="all" id="farcall">Tüm Yaylar</button>
+    </div>
+
+    <!-- Bölüm listesi -->
+    <div id="chapters-list" data-skeleton="rows"></div>
+
+  </div>
+</section>
+
+<script src="assets/js/config.js?v=3.0"></script>
+<script src="assets/js/patches.js?v=3.0"></script>
+<script src="assets/js/wiki.js?v=3.0"></script>
+<script src="assets/js/community.js?v=3.0"></script>
+<script>
+const { Lang, loadData, initWiki, ReadTracker, esc } = Wiki;
+
+let chapData   = null;
+let bookData   = { chapters: {} };
+let activeArc  = 'all';
+
+/* ── VERİ ────────────────────────────────────────── */
+async function init() {
+  try {
+    chapData = await loadData('chapters.json');
+    try { bookData = (await loadData('book.json')) || { chapters: {} }; } catch (e) { bookData = { chapters: {} }; }
+    buildArcFilters();
+    applyLang(Lang.get());   /* renderChapters + renderProgress içeride */
+  } catch (err) {
+    console.error('chapters.json yüklenemedi:', err);
+    Wiki.renderError('chapters-list', err);
+  }
+}
+
+/* ── ARC FİLTRELERİ ──────────────────────────────── */
+function buildArcFilters() {
+  const l   = Lang.get();
+  const bar = document.getElementById('arc-filters');
+  /* GUARD: Eğer arcs yoksa chapters'dan türet */
+  const arcs = chapData.arcs || [...new Set(chapData.chapters.map(c=>c.arc).filter(Boolean))].sort((a,b)=>a-b).map(id=>({id,name:{tr:'Yay '+id,en:'Arc '+id}}));
+  arcs.forEach(arc => {
+    const btn = document.createElement('button');
+    btn.className = 'f-btn';
+    btn.dataset.arc = arc.id;
+    btn.textContent = Lang.t(arc.name);
+    btn.id = 'farc' + arc.id;
+    bar.appendChild(btn);
+  });
+  bar.addEventListener('click', e => {
+    const btn = e.target.closest('[data-arc]');
+    if (!btn) return;
+    document.querySelectorAll('[data-arc]').forEach(b => b.classList.remove('on'));
+    btn.classList.add('on');
+    activeArc = btn.dataset.arc === 'all' ? 'all' : parseInt(btn.dataset.arc);
+    renderChapters();
+  });
+}
+
+/* ── BÖLÜMLER ─────────────────────────────────────── */
+const clean = v => { v = String(v || '').trim(); return v === '—' ? '' : v; };
+function bookEntry(ch) { return (bookData && bookData.chapters && bookData.chapters[String(ch.id)]) || null; }
+function chText(ch) {
+  const e = bookEntry(ch); if (!e || !e.text) return '';
+  return String(e.text.tr || '').trim() ? String(e.text.tr) : String(e.text.en || '');
+}
+function readable(ch) { return !!(ch.free && chText(ch).trim()); }
+function mins(ch) {
+  /* wiki.js eski/önbellekteyse liste yine de açılsın */
+  try { if (Wiki.Book) return Wiki.Book.minutes(chText(ch)); } catch (e) {}
+  return Math.max(1, Math.round(chText(ch).split(/\s+/).length / 200));
+}
+
+function renderChapters() {
+  if (!chapData) return;
+  const l = Lang.get();
+  const t = obj => Lang.t(obj);
+
+  const filtered = chapData.chapters.filter(ch =>
+    activeArc === 'all' || ch.arc === activeArc
+  );
+
+  /* Yaylara göre grupla */
+  const byArc = {};
+  filtered.forEach(ch => {
+    if (!byArc[ch.arc]) byArc[ch.arc] = [];
+    byArc[ch.arc].push(ch);
+  });
+
+  let html = '';
+  Object.entries(byArc).forEach(([arcId, chapters]) => {
+    const arc = (chapData.arcs||[]).find(a => a.id === parseInt(arcId));
+    const openCount = chapters.filter(readable).length;
+    html += `
+      <div class="arc-header">
+        <span class="arc-num">${l === 'tr' ? 'YAY' : 'ARC'} ${arcId}</span>
+        <span class="arc-name">${esc(t(arc?.name || {tr:'—',en:'—'}))}</span>
+        <span class="arc-count">${openCount} / ${chapters.length} ${l === 'tr' ? 'bölüm okunabilir' : 'chapters readable'}</span>
+      </div>
+      <div class="cl">
+        ${chapters.map(ch => renderChapter(ch, l, t)).join('')}
+      </div>`;
+  });
+
+  document.getElementById('chapters-list').innerHTML = html;
+  /* Özet metinlerindeki özel adlar (.ci-d): sayfa ilk kez ya da süzgeçle yeniden çizildiğinde de taranır */
+  Wiki.Tooltip.scan(document.getElementById('chapters-list'));
+}
+
+function renderChapter(ch, l, t) {
+  const isRead = ReadTracker.has('ch-' + ch.id);
+  const ok = readable(ch);
+  const href = SWRoute.href('bolum', ch.id);
+  const syn = clean(t(ch.synopsis)), pov = clean(t(ch.pov));
+
+  return `
+    <div class="ci${ok ? '' : ' dim'}" id="bolum-${ch.id}" ${ok ? `data-href="${href}"` : ''} style="padding-left:2.5rem;">
+      <div class="ci-status ${isRead ? 'read' : 'unread'}"></div>
+      <div class="ci-v">
+        ${esc(Lang.eraTag(ch.ks || ''))} ${ch.arc ? `${ch.ks ? '· ' : ''}${l === 'tr' ? 'Yay' : 'Arc'} ${ch.arc}` : ''}
+      </div>
+      <div>
+        <div class="ci-n">
+          ${ok ? `<a class="ci-link" href="${href}">${esc(ch.num)}. ${esc(t(ch.title))}</a>` : `${esc(ch.num)}. ${esc(t(ch.title))}`}
+          ${ok ? `<span class="ci-min">≈ ${mins(ch)} ${l === 'tr' ? 'dk' : 'min'}</span>` : `<span class="locked-badge">${l === 'tr' ? '(yakında)' : '(coming soon)'}</span>`}
+        </div>
+        ${ok ? `
+          ${syn ? `<div class="ci-d">${esc(syn)}</div>` : ''}
+          ${ch.firstLine && clean(ch.firstLine) ? `<div class="ci-first-line">"${esc(ch.firstLine)}"</div>` : ''}
+          ${(ch.tags||[]).length ? `<div class="ci-tags">${ch.tags.map(tg=>`<span class="ci-tag">#${esc(tg)}</span>`).join('')}</div>` : ''}
+        ` : `<div class="ci-d" style="color:var(--border);font-style:italic">
+          ${l === 'tr' ? 'Bu bölüm henüz yayınlanmadı.' : 'This chapter has not been published yet.'}</div>`}
+      </div>
+      <div class="ci-check">
+        ${pov ? `<div class="ci-p" style="margin-right:.5rem">${esc(pov)}</div>` : ''}
+        ${ok ? `
+          <button class="read-btn ${isRead ? 'read-done' : ''}" data-rid="ch-${ch.id}">
+            ${isRead
+              ? (l === 'tr' ? '✓ Okundu' : '✓ Read')
+              : (l === 'tr' ? 'Okunmadı' : 'Unread')}
+          </button>
+          <a class="rbtn" href="${href}" style="font-size:.72rem;padding:.3rem .8rem;text-decoration:none">${l === 'tr' ? 'Oku →' : 'Read →'}</a>` : ''}
+      </div>
+    </div>`;
+}
+
+/* ── DEVAM ET KARTI ───────────────────────────────── */
+function renderResume() {
+  const slot = document.getElementById('resume-slot');
+  if (!chapData || !slot) return;
+  const l = Lang.get(), t = o => Lang.t(o);
+  let pos = {};
+  try { pos = JSON.parse(localStorage.getItem('sw-reader-pos') || '{}') || {}; } catch (e) {}
+  const list = chapData.chapters.filter(readable).sort((a, b) => a.id - b.id);
+  if (!list.length) { slot.innerHTML = ''; return; }
+  const last = list.find(c => c.id === pos.last);
+  let target = null, kicker = '', note = '';
+  if (last && pos[last.id] > 0.03 && pos[last.id] < 0.96) {
+    target = last; kicker = l === 'tr' ? 'Kaldığın yerden devam et' : 'Continue reading';
+    note = '%' + Math.round(pos[last.id] * 100);
+  } else {
+    target = list.find(c => !ReadTracker.has('ch-' + c.id)) || null;
+    if (target) kicker = (ReadTracker.has('ch-' + list[0].id) || Object.keys(pos).length)
+      ? (l === 'tr' ? 'Sıradaki bölüm' : 'Next chapter') : (l === 'tr' ? 'Okumaya başla' : 'Start reading');
+  }
+  if (!target) { slot.innerHTML = ''; return; }
+  slot.innerHTML = `
+    <div class="resume-card">
+      <div class="rc-t"><div class="rc-k">${esc(kicker)}</div>
+        <div class="rc-n">${esc(target.num)}. ${esc(t(target.title))}</div>
+        ${note ? `<div class="rc-p">${esc(note)}</div>` : ''}</div>
+      <a class="rc-btn" href="${SWRoute.href('bolum', target.id)}">${l === 'tr' ? 'Oku →' : 'Read →'}</a>
+    </div>`;
+}
+
+/* ── İLERLEME ─────────────────────────────────────── */
+function renderProgress() {
+  if (!chapData) return;
+  const l = Lang.get();
+  const free = chapData.chapters.filter(readable);
+  const read = free.filter(c => ReadTracker.has('ch-' + c.id));
+  const pct  = free.length ? Math.round((read.length / free.length) * 100) : 0;
+
+  document.getElementById('progress-pct').textContent  = pct + '%';
+  document.getElementById('progress-bar').style.width  = pct + '%';
+  document.getElementById('progress-text').textContent =
+    `${read.length} / ${free.length} ${l === 'tr' ? 'bölüm okundu' : 'chapters read'}`;
+  renderResume();
+}
+
+/* ── SIFIRLA ──────────────────────────────────────── */
+/* Bölüm listesi: okuma modu + oku/okunmadı düğmeleri — kart listesi
+   her filtre/dil değişiminde yeniden oluşsa da tek delegasyon
+   listener'ı kapsayıcıya bağlı kaldığı için tıklama kaybı olmaz. */
+document.getElementById('chapters-list').addEventListener('click', e => {
+  /* Satırın boş bir yerine tıklamak bölümü açar (bağlantı/düğmeler kendi işini yapar) */
+  const row = e.target.closest('.ci[data-href]');
+  if (row && !e.target.closest('a, button')) { location.href = row.dataset.href; return; }
+
+  const trackBtn = e.target.closest('.read-btn');
+  if (trackBtn) {
+    e.stopPropagation();
+    const l = Lang.get();
+    const id = trackBtn.dataset.rid;
+    if (ReadTracker.has(id)) {
+      ReadTracker.unmark(id);
+      trackBtn.textContent = l === 'tr' ? 'Okunmadı' : 'Unread';
+      trackBtn.classList.remove('read-done');
+      trackBtn.closest('.ci')?.querySelector('.ci-status')?.classList.replace('read', 'unread');
+    } else {
+      ReadTracker.mark(id);
+      trackBtn.textContent = l === 'tr' ? '✓ Okundu' : '✓ Read';
+      trackBtn.classList.add('read-done');
+      trackBtn.closest('.ci')?.querySelector('.ci-status')?.classList.replace('unread', 'read');
+    }
+    renderProgress();
+  }
+});
+
+document.getElementById('reset-btn').addEventListener('click', () => {
+  const l = Lang.get();
+  const msg = l === 'tr'
+    ? 'Tüm okuma ilerlemesi silinecek. Emin misin?'
+    : 'All reading progress will be deleted. Are you sure?';
+  if (!confirm(msg)) return;
+  localStorage.removeItem('sw-read');
+  localStorage.removeItem('sw-reader-pos');
+  renderChapters();
+  renderProgress();
+});
+
+/* ── DİL ─────────────────────────────────────────── */
+function applyLang(l) {
+  document.documentElement.lang = l;
+  document.getElementById('page-title').textContent =
+    l === 'tr' ? 'Bölümler' : 'Chapters';
+  document.getElementById('page-sub').textContent =
+    l === 'tr' ? 'Devam eden roman — okunan bölümleri takip et.'
+               : 'Ongoing novel — track your reading progress.';
+  document.getElementById('farcall').textContent =
+    l === 'tr' ? 'Tüm Yaylar' : 'All Arcs';
+  document.getElementById('reset-btn').textContent =
+    l === 'tr' ? 'Sıfırla' : 'Reset';
+
+  if (chapData) {
+    renderChapters();
+    renderProgress();
+  }
+}
+
+initWiki({ onLangChange: applyLang });
+init();
+</script>
+
+</body>
+</html>

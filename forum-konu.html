@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title data-tr="Kurultay · Stallhart Wiki" data-en="The Kurultay · Stallhart Wiki">Kurultay · Stallhart Wiki</title>
+<meta name="description" content="Stallhart Destanı Kurultay — konu ve yanıtlar." data-tr="Stallhart Destanı Kurultay — konu ve yanıtlar." data-en="The Stallhart Saga Kurultay — thread and replies." data-i18n-attr="content">
+<meta name="theme-color" content="#0c121f">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="The Stallhart Saga">
+<meta property="og:locale" content="tr_TR" data-tr="tr_TR" data-en="en_US" data-i18n-attr="content">
+<meta property="og:title" content="Kurultay · Stallhart Wiki">
+<meta property="og:description" content="Stallhart Destanı Kurultay — konu ve yanıtlar.">
+<meta property="og:image" content="assets/images/logo-stallhart.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Kurultay · Stallhart Wiki">
+<meta name="twitter:description" content="Stallhart Destanı Kurultay — konu ve yanıtlar.">
+<meta name="twitter:image" content="assets/images/logo-stallhart.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Modern+Antiqua&family=IM+Fell+English:ital@0;1&family=Merriweather:ital,wght@0,400;0,700;1,400&display=swap">
+<link rel="stylesheet" href="assets/css/styles.css?v=3.0">
+<link rel="stylesheet" href="assets/css/kurultay.css?v=3.0">
+<style>#frt-sec { background: var(--bg); min-height: 60vh; }</style>
+<script src="assets/js/router.js?v=3.0"></script>
+</head>
+<body>
+
+<section id="frt-sec">
+  <div class="inn" style="padding:2.5rem 2rem 6rem;max-width:900px">
+    <p class="fr-crumb">
+      <a href="forum.html">Kurultay</a><span>›</span>
+      <a href="forum-kategori.html?kat=" id="fr-crumb-cat">…</a><span>›</span>
+      <strong id="fr-crumb-cur">…</strong>
+    </p>
+
+    <div id="fk-content"><p style="padding:2rem 0;color:var(--parchd);font-style:italic">Yükleniyor…</p></div>
+
+    <div id="fk-locked-note" class="fk-locked-note" hidden>
+      <svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="9" rx="1"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>
+      <span id="l-locked-msg">Bu konu kilitlendi; yeni yanıt eklenemez, geçmiş yanıtlar okunabilir.</span>
+    </div>
+
+    <div id="kurultay-mount"></div>
+  </div>
+</section>
+
+<script src="assets/js/config.js?v=3.0"></script>
+<script src="assets/js/patches.js?v=3.0"></script>
+<script src="assets/js/wiki.js?v=3.0"></script>
+<script src="assets/js/community.js?v=3.0"></script>
+<script src="assets/js/kurultay.js?v=3.0"></script>
+<script>
+const { Lang, initWiki, esc } = Wiki;
+const K = Kurultay;
+const C = Wiki.Community;
+
+const threadId = new URLSearchParams(location.search).get('id') || '';
+let thread = null, cat = null;
+
+function fkHeadHTML(l) {
+  const prof = thread.profiles || { username: '?', avatar: 'initial' };
+  return `
+    <div class="fk-head">
+      <div class="fk-tags">
+        <span class="ft-tag${thread.category_id === 'duyuru' ? ' duyuru' : ''}">${esc(K.catLabel(cat, l))}</span>
+        ${thread.is_pinned ? `<span class="ft-tag" style="border-color:var(--gold);color:var(--gold)">${l === 'tr' ? 'Sabitlenmiş' : 'Pinned'}</span>` : ''}
+        ${thread.is_locked ? `<span class="ft-tag">${l === 'tr' ? 'Kilitli' : 'Locked'}</span>` : ''}
+      </div>
+      <h1 class="fk-title">${esc(l === 'tr' ? thread.title : (thread.title_en || thread.title))}</h1>
+      <div class="fk-meta">
+        ${C.util.avatarHTML(prof, 'sm')}
+        <span><b>${esc(prof.username)}</b> · ${esc(C.util.fmtDate ? C.util.fmtDate(thread.created_at) : '')}</span>
+        <span>·</span>
+        <span>${thread.view_count || 0} ${l === 'tr' ? 'görüntülenme' : 'views'}</span>
+      </div>
+      <div class="fk-body">${esc(l === 'tr' ? thread.body : (thread.body_en || thread.body))}</div>
+      <div id="fk-mod"></div>
+    </div>`;
+}
+
+function renderMod(l) {
+  const st = C.getState();
+  const box = document.getElementById('fk-mod');
+  if (!box) return;
+  const isOwner = st.user && thread.user_id === st.user.id;
+  if (!st.isAdmin && !isOwner) { box.innerHTML = ''; return; }
+  let html = '<div class="fk-mod">';
+  if (st.isAdmin) {
+    html += `<button class="fk-mod-btn${thread.is_pinned ? ' on' : ''}" data-act="pin">${thread.is_pinned ? (l === 'tr' ? '📌 Sabitlemeyi kaldır' : '📌 Unpin') : (l === 'tr' ? '📌 Sabitle' : '📌 Pin')}</button>`;
+    html += `<button class="fk-mod-btn${thread.is_locked ? ' on' : ''}" data-act="lock">${thread.is_locked ? (l === 'tr' ? '🔓 Kilidi aç' : '🔓 Unlock') : (l === 'tr' ? '🔒 Kilitle' : '🔒 Lock')}</button>`;
+  }
+  html += `<button class="fk-mod-btn danger" data-act="delete">${l === 'tr' ? '🗑 Konuyu sil' : '🗑 Delete thread'}</button>`;
+  html += '</div>';
+  box.innerHTML = html;
+  box.querySelector('[data-act="pin"]')?.addEventListener('click', () => toggleFlag('pin'));
+  box.querySelector('[data-act="lock"]')?.addEventListener('click', () => toggleFlag('lock'));
+  box.querySelector('[data-act="delete"]').addEventListener('click', doDelete);
+}
+
+async function toggleFlag(field) {
+  const l = Lang.get();
+  try {
+    await K.setFlag(thread.id, field, field === 'pin' ? !thread.is_pinned : !thread.is_locked);
+    if (field === 'pin') thread.is_pinned = !thread.is_pinned; else thread.is_locked = !thread.is_locked;
+    render(l);
+  } catch (e) { C.util.toast((C.util.mapErr ? C.util.mapErr(e) : e.message), true); }
+}
+
+async function doDelete() {
+  const l = Lang.get();
+  const st = C.getState();
+  const ok = await C.util.confirmBox(l === 'tr' ? 'Bu konuyu silmek istediğine emin misin?' : 'Delete this thread?', l === 'tr' ? 'Sil' : 'Delete', true);
+  if (!ok) return;
+  try {
+    await K.deleteThread(thread.id, st.isAdmin);
+    C.util.toast(l === 'tr' ? 'Konu silindi.' : 'Thread deleted.');
+    location.href = 'forum-kategori.html?kat=' + encodeURIComponent(thread.category_id);
+  } catch (e) { C.util.toast((C.util.mapErr ? C.util.mapErr(e) : e.message), true); }
+}
+
+function render(l) {
+  document.getElementById('fk-content').innerHTML = fkHeadHTML(l);
+  renderMod(l);
+
+  document.getElementById('fr-crumb-cat').href = 'forum-kategori.html?kat=' + encodeURIComponent(cat.id);
+  document.getElementById('fr-crumb-cat').textContent = K.catLabel(cat, l);
+  document.getElementById('fr-crumb-cur').textContent = l === 'tr' ? thread.title : (thread.title_en || thread.title);
+
+  const mount = document.getElementById('kurultay-mount');
+  mount.classList.toggle('fk-locked', !!thread.is_locked);
+  const note = document.getElementById('fk-locked-note');
+  note.hidden = !thread.is_locked;
+  document.getElementById('l-locked-msg').textContent = l === 'tr'
+    ? 'Bu konu kilitlendi; yeni yanıt eklenemez, geçmiş yanıtlar okunabilir.'
+    : 'This thread is locked — no new replies, past replies stay readable.';
+
+  C.mountComments('kurultay-mount', { type: 'forum_thread', id: thread.id, title: thread.title });
+
+  document.title = (l === 'tr' ? thread.title : (thread.title_en || thread.title)) + ' · Kurultay · Stallhart Wiki';
+}
+
+function applyLang(l) {
+  document.documentElement.lang = l;
+  if (thread) render(l);
+}
+
+(async function boot() {
+  if (!threadId) {
+    const l0 = Lang.get();
+    document.getElementById('fk-content').innerHTML = `<p style="padding:2rem 0;color:var(--parchd);font-style:italic">${l0 === 'tr' ? 'Konu bulunamadı.' : 'Thread not found.'} <a href="forum.html" style="color:var(--gold)">${l0 === 'tr' ? "Kurultay'a dön" : 'Back to the Kurultay'}</a>.</p>`;
+    initWiki({}); return;
+  }
+  const [cats, t] = await Promise.all([K.fetchCategories(), K.fetchThread(threadId)]);
+  if (!t) {
+    const l0 = Lang.get();
+    document.getElementById('fk-content').innerHTML = `<p style="padding:2rem 0;color:var(--parchd);font-style:italic">${l0 === 'tr' ? 'Konu bulunamadı ya da kaldırılmış.' : 'This thread was not found or was removed.'} <a href="forum.html" style="color:var(--gold)">${l0 === 'tr' ? "Kurultay'a dön" : 'Back to the Kurultay'}</a>.</p>`;
+    initWiki({}); return;
+  }
+  thread = t; cat = K.catById(t.category_id) || cats.find(c => c.id === t.category_id);
+
+  /* Görüntülenme: oturum başına bir kez say */
+  try {
+    const seenKey = 'kurultay-viewed-' + threadId;
+    if (!sessionStorage.getItem(seenKey)) { K.bumpView(threadId); sessionStorage.setItem(seenKey, '1'); thread.view_count = (thread.view_count || 0) + 1; }
+  } catch (e) {}
+  K.markRead(threadId);
+
+  initWiki({ onLangChange: applyLang });
+  render(Lang.get());
+})();
+</script>
+</body>
+</html>

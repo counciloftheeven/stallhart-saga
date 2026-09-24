@@ -1,0 +1,2191 @@
+{
+ "version": 1,
+ "trees": [
+  {
+   "id": "imperial",
+   "order": 1,
+   "name": {
+    "tr": "İmparatorluk Hanedanı",
+    "en": "Imperial Dynasty"
+   },
+   "houseId": "stallhart",
+   "theme": "imperial",
+   "accent": "#C4962A",
+   "edgeMode": "manual",
+   "canvas": {
+    "w": 1100,
+    "h": 680
+   },
+   "caption": null,
+   "decor": {
+    "before": [
+     {
+      "tag": "line",
+      "attrs": {
+       "x1": "550",
+       "y1": "82",
+       "x2": "550",
+       "y2": "108",
+       "class": "fl"
+      }
+     },
+     {
+      "tag": "line",
+      "attrs": {
+       "x1": "550",
+       "y1": "164",
+       "x2": "550",
+       "y2": "192",
+       "class": "fl-dash"
+      }
+     },
+     {
+      "tag": "text",
+      "attrs": {
+       "x": "554",
+       "y": "186",
+       "class": "anno"
+      },
+      "text": {
+       "tr": "↓ Nadima, Scifella, Reanloth, Lun Aldrisler, Domkha, Lunrye, II.Remal",
+       "en": "↓ Nadima, Scifella, Reanloth, the Lun Aldrises, Domkha, Lunrye, Remal II"
+      }
+     },
+     {
+      "tag": "line",
+      "attrs": {
+       "x1": "550",
+       "y1": "268",
+       "x2": "550",
+       "y2": "296",
+       "class": "fl"
+      }
+     },
+     {
+      "tag": "polyline",
+      "attrs": {
+       "points": "550,352 550,372 248,372 248,388",
+       "class": "fl"
+      }
+     },
+     {
+      "tag": "polyline",
+      "attrs": {
+       "points": "550,372 852,372 852,388",
+       "class": "fl"
+      }
+     },
+     {
+      "tag": "line",
+      "attrs": {
+       "x1": "164",
+       "y1": "416",
+       "x2": "176",
+       "y2": "416",
+       "class": "fl",
+       "style": "stroke:#7A5C18;stroke-width:1.5"
+      }
+     },
+     {
+      "tag": "polygon",
+      "attrs": {
+       "points": "170,411 176,416 170,421 164,416",
+       "class": "msym"
+      }
+     },
+     {
+      "tag": "line",
+      "attrs": {
+       "x1": "928",
+       "y1": "416",
+       "x2": "940",
+       "y2": "416",
+       "class": "fl",
+       "style": "stroke:#7A5C18;stroke-width:1.5"
+      }
+     },
+     {
+      "tag": "polygon",
+      "attrs": {
+       "points": "934,411 940,416 934,421 928,416",
+       "class": "msym"
+      }
+     },
+     {
+      "tag": "line",
+      "attrs": {
+       "x1": "248",
+       "y1": "444",
+       "x2": "248",
+       "y2": "504",
+       "class": "fl"
+      }
+     },
+     {
+      "tag": "polyline",
+      "attrs": {
+       "points": "852,444 852,474 726,474 726,504",
+       "class": "fl"
+      }
+     },
+     {
+      "tag": "polyline",
+      "attrs": {
+       "points": "852,474 896,474 896,504",
+       "class": "fl"
+      }
+     }
+    ],
+    "after": [
+     {
+      "tag": "g",
+      "attrs": {
+       "transform": "translate(20,630)"
+      },
+      "children": [
+       {
+        "tag": "rect",
+        "attrs": {
+         "x": "0",
+         "y": "0",
+         "width": "12",
+         "height": "10",
+         "fill": "rgba(12,8,4,.85)",
+         "stroke": "rgba(61,42,20,.7)",
+         "stroke-width": "1.2"
+        }
+       },
+       {
+        "tag": "text",
+        "attrs": {
+         "x": "16",
+         "y": "9",
+         "class": "anno"
+        },
+        "text": {
+         "tr": "Tarihsel",
+         "en": "Historical"
+        }
+       },
+       {
+        "tag": "rect",
+        "attrs": {
+         "x": "72",
+         "y": "0",
+         "width": "12",
+         "height": "10",
+         "fill": "rgba(36,18,18,.85)",
+         "stroke": "rgba(100,48,48,.75)",
+         "stroke-width": "1.2"
+        }
+       },
+       {
+        "tag": "text",
+        "attrs": {
+         "x": "88",
+         "y": "9",
+         "class": "anno"
+        },
+        "text": {
+         "tr": "Hayatını Kaybetti",
+         "en": "Deceased"
+        }
+       },
+       {
+        "tag": "rect",
+        "attrs": {
+         "x": "196",
+         "y": "0",
+         "width": "12",
+         "height": "10",
+         "fill": "rgba(20,14,6,.85)",
+         "stroke": "rgba(122,92,24,.75)",
+         "stroke-width": "1.2"
+        }
+       },
+       {
+        "tag": "text",
+        "attrs": {
+         "x": "212",
+         "y": "9",
+         "class": "anno"
+        },
+        "text": {
+         "tr": "Hayatta",
+         "en": "Alive"
+        }
+       },
+       {
+        "tag": "rect",
+        "attrs": {
+         "x": "264",
+         "y": "0",
+         "width": "12",
+         "height": "10",
+         "fill": "rgba(30,20,4,.9)",
+         "stroke": "#C4962A",
+         "stroke-width": "2"
+        }
+       },
+       {
+        "tag": "text",
+        "attrs": {
+         "x": "280",
+         "y": "9",
+         "class": "anno"
+        },
+        "text": {
+         "tr": "Ana Karakter",
+         "en": "Main Character"
+        }
+       },
+       {
+        "tag": "rect",
+        "attrs": {
+         "x": "362",
+         "y": "0",
+         "width": "12",
+         "height": "10",
+         "fill": "rgba(14,10,6,.7)",
+         "stroke": "rgba(61,42,20,.5)",
+         "stroke-width": "1",
+         "stroke-dasharray": "4 3"
+        }
+       },
+       {
+        "tag": "text",
+        "attrs": {
+         "x": "378",
+         "y": "9",
+         "class": "anno"
+        },
+        "text": {
+         "tr": "Eş",
+         "en": "Spouse"
+        }
+       }
+      ]
+     },
+     {
+      "tag": "rect",
+      "attrs": {
+       "x": "6",
+       "y": "6",
+       "width": "1088",
+       "height": "668",
+       "fill": "none",
+       "stroke": "#3D2A14",
+       "stroke-width": "1.5"
+      }
+     },
+     {
+      "tag": "text",
+      "attrs": {
+       "x": "550",
+       "y": "660",
+       "text-anchor": "middle",
+       "class": "anno",
+       "font-size": "9",
+       "letter-spacing": "3"
+      },
+      "text": {
+       "tr": "STALLHART HANEDANI — İMPARATORLUK SOY AĞACI",
+       "en": "HOUSE STALLHART — IMPERIAL FAMILY TREE"
+      }
+     }
+    ]
+   },
+   "people": [
+    {
+     "id": "craes",
+     "kind": "hist",
+     "x": 478,
+     "y": 24,
+     "w": 144,
+     "h": 58,
+     "ty": [
+      22,
+      37,
+      50
+     ],
+     "box": {
+      "name": {
+       "tr": "I. Craes Stallhart",
+       "en": "Craes Stallhart I"
+      },
+      "sub": {
+       "tr": "Kurucu Hakan",
+       "en": "Founder Khan"
+      },
+      "note": {
+       "tr": "KS 1144 →",
+       "en": "KS 1144 →"
+      }
+     },
+     "name": {
+      "tr": "I. Craes Stallhart",
+      "en": "Craes Stallhart I"
+     },
+     "family": {
+      "tr": "Stallhart Hanedanı",
+      "en": "Stallhart Dynasty"
+     },
+     "title": {
+      "tr": "Kurucu Hakan",
+      "en": "Founder Khan"
+     },
+     "ks": "KS 1144",
+     "status": "historical",
+     "epi": {
+      "tr": "Acımasız Hakikatin Eli",
+      "en": "Hand of Ruthless Truth"
+     },
+     "desc": {
+      "tr": "İmparatorluğun kurucusu. Boyları tek bayrak altında birleştirdi. Esaretten döndükten sonra Kutsal Kan Doktrini'ni ilan etti.",
+      "en": "Empire's founder. United clans under one banner. Proclaimed the Holy Blood Doctrine upon returning from captivity."
+     },
+     "characterId": "craes",
+     "fatherId": null,
+     "motherId": null,
+     "spouseIds": [],
+     "childrenIds": [],
+     "generation": 0,
+     "legitimacy": "",
+     "dx": 0,
+     "dy": 0,
+     "links": []
+    },
+    {
+     "id": "rones",
+     "kind": "hist",
+     "x": 478,
+     "y": 212,
+     "w": 144,
+     "h": 56,
+     "ty": [
+      21,
+      36,
+      49
+     ],
+     "box": {
+      "name": {
+       "tr": "Rones Alvro",
+       "en": "Rones Alvro"
+      },
+      "sub": {
+       "tr": "Demiryumruk",
+       "en": "Iron Fist"
+      },
+      "note": {
+       "tr": "KS 1412–1441",
+       "en": "KS 1412–1441"
+      }
+     },
+     "name": {
+      "tr": "Rones Alvro Stallhart",
+      "en": "Rones Alvro Stallhart"
+     },
+     "family": {
+      "tr": "Stallhart Hanedanı",
+      "en": "Stallhart Dynasty"
+     },
+     "title": {
+      "tr": "İmparator",
+      "en": "Emperor"
+     },
+     "ks": "KS 1412–1441",
+     "status": "historical",
+     "epi": {
+      "tr": "Demiryumruk",
+      "en": "Iron Fist"
+     },
+     "desc": {
+      "tr": "Otuz yıllık demir disiplin. Burria'yı haraca bağladı. Sokaklarda yas tutularak uğurlanan nadir imparatorlardan.",
+      "en": "Thirty years of iron discipline. Bound Burria in tribute. One of the rare emperors mourned in the streets."
+     },
+     "characterId": "rones",
+     "fatherId": null,
+     "motherId": null,
+     "spouseIds": [],
+     "childrenIds": [
+      "elron"
+     ],
+     "generation": 1,
+     "legitimacy": "",
+     "dx": 0,
+     "dy": 0,
+     "links": []
+    },
+    {
+     "id": "elron",
+     "kind": "hist",
+     "x": 478,
+     "y": 296,
+     "w": 144,
+     "h": 56,
+     "ty": [
+      21,
+      36,
+      49
+     ],
+     "box": {
+      "name": {
+       "tr": "III. Elron Stallhart",
+       "en": "Elron Stallhart III"
+      },
+      "sub": {
+       "tr": "Sulh Düşkünü",
+       "en": "The Peace-Lover"
+      },
+      "note": {
+       "tr": "KS 1441–1452",
+       "en": "KS 1441–1452"
+      }
+     },
+     "name": {
+      "tr": "III. Elron Stallhart",
+      "en": "Elron Stallhart III"
+     },
+     "family": {
+      "tr": "Stallhart Hanedanı",
+      "en": "Stallhart Dynasty"
+     },
+     "title": {
+      "tr": "İmparator",
+      "en": "Emperor"
+     },
+     "ks": "KS 1441–1452",
+     "status": "historical",
+     "epi": {
+      "tr": "Sulh Düşkünü",
+      "en": "The Peace-Lover"
+     },
+     "desc": {
+      "tr": "Pasif, sulhsever. Burria'yı kalıcı olarak kaybetti. İmloth ve Amadon'un babasıdır.",
+      "en": "Passive, peace-loving. Permanently lost Burria. Father of Imloth and Amadon."
+     },
+     "characterId": "elron",
+     "fatherId": "rones",
+     "motherId": null,
+     "spouseIds": [],
+     "childrenIds": [
+      "imloth",
+      "amadon"
+     ],
+     "generation": 2,
+     "legitimacy": "",
+     "dx": 0,
+     "dy": 0,
+     "links": []
+    },
+    {
+     "id": "selmira",
+     "kind": "spouse",
+     "x": 14,
+     "y": 388,
+     "w": 150,
+     "h": 56,
+     "ty": [
+      21,
+      36,
+      49
+     ],
+     "box": {
+      "name": {
+       "tr": "Selmira ✝",
+       "en": "Selmira ✝"
+      },
+      "sub": {
+       "tr": "İmparatoriçe",
+       "en": "Empress"
+      },
+      "note": {
+       "tr": "? – KS 1481",
+       "en": "? – KS 1481"
+      }
+     },
+     "name": {
+      "tr": "Selmira Stallhart ✝",
+      "en": "Selmira Stallhart ✝"
+     },
+     "family": {
+      "tr": "Stallhart Hanedanı",
+      "en": "Stallhart Dynasty"
+     },
+     "title": {
+      "tr": "İmparatoriçe · İmloth'un Eşi",
+      "en": "Empress · Wife of Imloth"
+     },
+     "ks": "? – KS 1481",
+     "status": "deceased",
+     "epi": {
+      "tr": "Gümüş Okyanus",
+      "en": "Silver Ocean"
+     },
+     "desc": {
+      "tr": "Uzun boylu, porselen tenli, bakır kızıl örülü saçlı. Halkın gönlünde en sevilen imparatoriçe. Zeandor'u dünyaya getirirken hayatını kaybetti.",
+      "en": "Tall, porcelain-skinned, copper-red braided hair. Most beloved empress. Died delivering Zeandor."
+     },
+     "characterId": "selmira",
+     "fatherId": null,
+     "motherId": null,
+     "spouseIds": [
+      "imloth"
+     ],
+     "childrenIds": [
+      "zeandor"
+     ],
+     "generation": 3,
+     "legitimacy": "",
+     "dx": 0,
+     "dy": 0,
+     "links": []
+    },
+    {
+     "id": "imloth",
+     "kind": "dec",
+     "x": 176,
+     "y": 388,
+     "w": 144,
+     "h": 56,
+     "ty": [
+      21,
+      36,
+      49
+     ],
+     "box": {
+      "name": {
+       "tr": "İmloth Stallhart",
+       "en": "Imloth Stallhart"
+      },
+      "sub": {
+       "tr": "Tembel · İmparator",
+       "en": "The Lazy · Emperor"
+      },
+      "note": {
+       "tr": "KS 1452 – ?",
+       "en": "KS 1452 – ?"
+      }
+     },
+     "name": {
+      "tr": "İmloth Stallhart",
+      "en": "Imloth Stallhart"
+     },
+     "family": {
+      "tr": "Stallhart Hanedanı",
+      "en": "Stallhart Dynasty"
+     },
+     "title": {
+      "tr": "İmparator",
+      "en": "Emperor"
+     },
+     "ks": "KS 1452–?",
+     "status": "deceased",
+     "epi": {
+      "tr": "Tembel · Derin Tuzak",
+      "en": "The Lazy · Deep Trap"
+     },
+     "desc": {
+      "tr": "Şişman, kel, apodik gözlü. Paranoya ve suçluluk içinde boğuldu. Amadon'un ağabeyi, Zeandor'un babasıdır.",
+      "en": "Obese, bald, apathetic eyes. Consumed by paranoia and guilt. Amadon's older brother, Zeandor's father."
+     },
+     "characterId": "imloth",
+     "fatherId": "elron",
+     "motherId": null,
+     "spouseIds": [
+      "selmira"
+     ],
+     "childrenIds": [
+      "zeandor"
+     ],
+     "generation": 3,
+     "legitimacy": "",
+     "dx": 0,
+     "dy": 0,
+     "links": []
+    },
+    {
+     "id": "amadon",
+     "kind": "dec",
+     "x": 780,
+     "y": 388,
+     "w": 144,
+     "h": 56,
+     "ty": [
+      21,
+      36,
+      49
+     ],
+     "box": {
+      "name": {
+       "tr": "Amadon Stallhart",
+       "en": "Amadon Stallhart"
+      },
+      "sub": {
+       "tr": "Enkazın Hükümdarı",
+       "en": "Sovereign of the Ruins"
+      },
+      "note": {
+       "tr": "Melik → İmparator",
+       "en": "Melik → Emperor"
+      }
+     },
+     "name": {
+      "tr": "Amadon Stallhart",
+      "en": "Amadon Stallhart"
+     },
+     "family": {
+      "tr": "Stallhart Hanedanı",
+      "en": "Stallhart Dynasty"
+     },
+     "title": {
+      "tr": "Seltanya Meliki → İmparator",
+      "en": "Melik of Seltanya → Emperor"
+     },
+     "ks": "KS 1463–?",
+     "status": "deceased",
+     "epi": {
+      "tr": "Enkazın Hükümdarı",
+      "en": "Sovereign of the Ruins"
+     },
+     "desc": {
+      "tr": "Zekâsı ve kararlılığıyla çürüyen imparatorluğu yeniden ayağa kaldırdı. Karabıçaklar'ın kurucusu. Paranoyasına yenik düştü.",
+      "en": "His intellect revived the crumbling empire. Founded the Black Claws. Eventually succumbed to paranoia."
+     },
+     "characterId": "amadon",
+     "fatherId": "elron",
+     "motherId": null,
+     "spouseIds": [
+      "meryen"
+     ],
+     "childrenIds": [
+      "lunin",
+      "lun-aldris"
+     ],
+     "generation": 3,
+     "legitimacy": "",
+     "dx": 0,
+     "dy": 0,
+     "links": []
+    },
+    {
+     "id": "meryen",
+     "kind": "spouse",
+     "x": 940,
+     "y": 388,
+     "w": 146,
+     "h": 56,
+     "ty": [
+      21,
+      36,
+      49
+     ],
+     "box": {
+      "name": {
+       "tr": "Meryen Stallhart",
+       "en": "Meryen Stallhart"
+      },
+      "sub": {
+       "tr": "İmparatoriçe",
+       "en": "Empress"
+      },
+      "note": {
+       "tr": "Sürgünde",
+       "en": "In exile"
+      }
+     },
+     "name": {
+      "tr": "Meryen Stallhart",
+      "en": "Meryen Stallhart"
+     },
+     "family": {
+      "tr": "Stallhart Hanedanı",
+      "en": "Stallhart Dynasty"
+     },
+     "title": {
+      "tr": "İmparatoriçe · Amadon'un Eşi",
+      "en": "Empress · Amadon's Wife"
+     },
+     "ks": {
+      "tr": "Sürgünde",
+      "en": "In exile"
+     },
+     "status": "alive",
+     "epi": {
+      "tr": "",
+      "en": ""
+     },
+     "desc": {
+      "tr": "Zarif yüzlü, soluk tenli, gri gözlü. Edun Solgar tarafından Lun Aldris'i gizlice taçlandırmak üzere manipüle edildi.",
+      "en": "Elegant features, pale skin, gray eyes. Manipulated by Edun Solgar into secretly crowning Lun Aldris."
+     },
+     "characterId": "meryen",
+     "fatherId": null,
+     "motherId": null,
+     "spouseIds": [
+      "amadon"
+     ],
+     "childrenIds": [
+      "lunin",
+      "lun-aldris"
+     ],
+     "generation": 3,
+     "legitimacy": "",
+     "dx": 0,
+     "dy": 0,
+     "links": []
+    },
+    {
+     "id": "zeandor",
+     "kind": "star",
+     "x": 176,
+     "y": 504,
+     "w": 144,
+     "h": 62,
+     "ty": [
+      22,
+      37,
+      52
+     ],
+     "box": {
+      "name": {
+       "tr": "Zeandor Stallhart",
+       "en": "Zeandor Stallhart"
+      },
+      "sub": {
+       "tr": "Yarının Hükümdarı",
+       "en": "Sovereign of Tomorrow"
+      },
+      "note": {
+       "tr": "KS 1481 → ✦",
+       "en": "KS 1481 → ✦"
+      }
+     },
+     "name": {
+      "tr": "Zeandor Stallhart",
+      "en": "Zeandor Stallhart"
+     },
+     "family": {
+      "tr": "Stallhart Hanedanı",
+      "en": "Stallhart Dynasty"
+     },
+     "title": {
+      "tr": "Melik Vali → İmparator",
+      "en": "Governor King → Emperor"
+     },
+     "ks": "KS 1481 →",
+     "status": "alive",
+     "epi": {
+      "tr": "Yarının Hükümdarı · Sürgünün Oğlu",
+      "en": "Tomorrow's Sovereign · Son of Exile"
+     },
+     "desc": {
+      "tr": "9 yaşında Selya'ya sürgün edilen Zeandor, bilge Celios'un yanında olgunlaştı. Erthan isyanını bastırarak tahta çıktı.",
+      "en": "Exiled to Selya at age 9, came of age under wise Celios. Ascended the throne after quelling Erthan's rebellion."
+     },
+     "characterId": "zeandor",
+     "fatherId": "imloth",
+     "motherId": "selmira",
+     "spouseIds": [],
+     "childrenIds": [],
+     "generation": 4,
+     "legitimacy": "",
+     "dx": 0,
+     "dy": 0,
+     "links": []
+    },
+    {
+     "id": "lunin",
+     "kind": "dec",
+     "x": 654,
+     "y": 504,
+     "w": 144,
+     "h": 62,
+     "ty": [
+      22,
+      37,
+      52
+     ],
+     "box": {
+      "name": {
+       "tr": "Lunin Stallhart ✝",
+       "en": "Lunin Stallhart ✝"
+      },
+      "sub": {
+       "tr": "Şehzade",
+       "en": "Crown Prince"
+      },
+      "note": {
+       "tr": "Vebada hayatını kaybetti",
+       "en": "Died of the plague"
+      }
+     },
+     "name": {
+      "tr": "Lunin Stallhart ✝",
+      "en": "Lunin Stallhart ✝"
+     },
+     "family": {
+      "tr": "Stallhart Hanedanı",
+      "en": "Stallhart Dynasty"
+     },
+     "title": {
+      "tr": "Şehzade",
+      "en": "Crown Prince"
+     },
+     "ks": "? – KS 1467",
+     "status": "deceased",
+     "epi": {
+      "tr": "Ayın Oğlu",
+      "en": "Son of the Moon"
+     },
+     "desc": {
+      "tr": "Amadon'un büyük oğlu. Büyük Veba'da hayatını kaybetti. Bu kayıp Amadon'un karanlıklaşmasını hızlandırdı.",
+      "en": "Amadon's firstborn. Died in the Great Plague. This loss accelerated Amadon's descent into darkness."
+     },
+     "fatherId": "amadon",
+     "motherId": "meryen",
+     "spouseIds": [],
+     "childrenIds": [],
+     "generation": 4,
+     "legitimacy": "",
+     "dx": 0,
+     "dy": 0,
+     "links": []
+    },
+    {
+     "id": "lun-aldris",
+     "kind": "alive",
+     "x": 824,
+     "y": 504,
+     "w": 144,
+     "h": 62,
+     "ty": [
+      22,
+      37,
+      52
+     ],
+     "box": {
+      "name": {
+       "tr": "Lun Aldris",
+       "en": "Lun Aldris"
+      },
+      "sub": {
+       "tr": "Ay Gözcüsü",
+       "en": "Moonwatcher"
+      },
+      "note": {
+       "tr": "Sürgünde",
+       "en": "In exile"
+      }
+     },
+     "name": {
+      "tr": "Lun Aldris Stallhart",
+      "en": "Lun Aldris Stallhart"
+     },
+     "family": {
+      "tr": "Stallhart Hanedanı",
+      "en": "Stallhart Dynasty"
+     },
+     "title": {
+      "tr": "Şehzade",
+      "en": "Crown Prince"
+     },
+     "ks": {
+      "tr": "KS 1470 → Sürgünde",
+      "en": "KS 1470 → In exile"
+     },
+     "status": "alive",
+     "epi": {
+      "tr": "Ay Gözcüsü · Kutsal Işığın Varisi",
+      "en": "Moonwatcher · Heir of the Sacred Light"
+     },
+     "desc": {
+      "tr": "Amadon'un küçük oğlu. Edun Solgar tarafından gizlice taçlandırıldı. Meryen ile birlikte başkenti terk etti.",
+      "en": "Amadon's younger son. Secretly crowned by Edun Solgar. Fled the capital with Meryen."
+     },
+     "characterId": "lun-aldris",
+     "fatherId": "amadon",
+     "motherId": "meryen",
+     "spouseIds": [],
+     "childrenIds": [],
+     "generation": 4,
+     "legitimacy": "",
+     "dx": 0,
+     "dy": 0,
+     "links": []
+    }
+   ]
+  },
+  {
+   "id": "selya",
+   "order": 2,
+   "name": {
+    "tr": "Selya Hanesi",
+    "en": "House Selya"
+   },
+   "houseId": "",
+   "theme": "selya",
+   "accent": "#7A3A9A",
+   "edgeMode": "manual",
+   "canvas": {
+    "w": 1280,
+    "h": 440
+   },
+   "caption": null,
+   "decor": {
+    "before": [
+     {
+      "tag": "line",
+      "attrs": {
+       "x1": "174",
+       "y1": "62",
+       "x2": "204",
+       "y2": "62",
+       "class": "fl-selya-dash"
+      }
+     },
+     {
+      "tag": "text",
+      "attrs": {
+       "x": "187",
+       "y": "56",
+       "class": "anno-selya",
+       "font-size": "8",
+       "text-anchor": "middle"
+      },
+      "text": {
+       "tr": "Enişte",
+       "en": "Brother-in-law"
+      }
+     },
+     {
+      "tag": "line",
+      "attrs": {
+       "x1": "360",
+       "y1": "62",
+       "x2": "372",
+       "y2": "62",
+       "class": "fl-selya"
+      }
+     },
+     {
+      "tag": "polygon",
+      "attrs": {
+       "points": "366,57 372,62 366,67 360,62",
+       "class": "msym-selya"
+      }
+     },
+     {
+      "tag": "line",
+      "attrs": {
+       "x1": "372",
+       "y1": "62",
+       "x2": "560",
+       "y2": "62",
+       "class": "fl-selya"
+      }
+     },
+     {
+      "tag": "line",
+      "attrs": {
+       "x1": "760",
+       "y1": "62",
+       "x2": "772",
+       "y2": "62",
+       "class": "fl-selya"
+      }
+     },
+     {
+      "tag": "polygon",
+      "attrs": {
+       "points": "766,57 772,62 766,67 760,62",
+       "class": "msym-selya"
+      }
+     },
+     {
+      "tag": "line",
+      "attrs": {
+       "x1": "772",
+       "y1": "62",
+       "x2": "1010",
+       "y2": "62",
+       "class": "fl-selya"
+      }
+     },
+     {
+      "tag": "line",
+      "attrs": {
+       "x1": "466",
+       "y1": "62",
+       "x2": "466",
+       "y2": "138",
+       "class": "fl-selya"
+      }
+     },
+     {
+      "tag": "line",
+      "attrs": {
+       "x1": "108",
+       "y1": "138",
+       "x2": "668",
+       "y2": "138",
+       "class": "fl-selya"
+      }
+     },
+     {
+      "tag": "line",
+      "attrs": {
+       "x1": "108",
+       "y1": "138",
+       "x2": "108",
+       "y2": "218",
+       "class": "fl-selya"
+      }
+     },
+     {
+      "tag": "line",
+      "attrs": {
+       "x1": "288",
+       "y1": "138",
+       "x2": "288",
+       "y2": "218",
+       "class": "fl-selya"
+      }
+     },
+     {
+      "tag": "line",
+      "attrs": {
+       "x1": "468",
+       "y1": "138",
+       "x2": "468",
+       "y2": "218",
+       "class": "fl-selya"
+      }
+     },
+     {
+      "tag": "line",
+      "attrs": {
+       "x1": "648",
+       "y1": "138",
+       "x2": "648",
+       "y2": "218",
+       "class": "fl-selya"
+      }
+     },
+     {
+      "tag": "line",
+      "attrs": {
+       "x1": "1091",
+       "y1": "88",
+       "x2": "1091",
+       "y2": "120",
+       "class": "fl-selya-dash"
+      }
+     },
+     {
+      "tag": "text",
+      "attrs": {
+       "x": "1091",
+       "y": "134",
+       "class": "anno-selya",
+       "text-anchor": "middle",
+       "font-size": "8.5"
+      },
+      "text": {
+       "tr": "Kayıtlı Çocuk Yok",
+       "en": "No Recorded Children"
+      }
+     },
+     {
+      "tag": "path",
+      "attrs": {
+       "d": "M 545,276 Q 545,310 650,310 Q 760,310 760,276",
+       "stroke": "#C4962A",
+       "stroke-width": "0.8",
+       "fill": "none",
+       "stroke-dasharray": "3 4",
+       "opacity": "0.35"
+      }
+     },
+     {
+      "tag": "text",
+      "attrs": {
+       "x": "653",
+       "y": "308",
+       "class": "anno",
+       "font-size": "8",
+       "text-anchor": "middle",
+       "style": "fill:#7A5C18"
+      },
+      "text": {
+       "tr": "❤ Gizli İlişki (Zeandor)",
+       "en": "❤ Secret Affair (Zeandor)"
+      }
+     }
+    ],
+    "after": [
+     {
+      "tag": "g",
+      "attrs": {
+       "transform": "translate(20,390)"
+      },
+      "children": [
+       {
+        "tag": "rect",
+        "attrs": {
+         "x": "0",
+         "y": "0",
+         "width": "12",
+         "height": "10",
+         "fill": "rgba(28,15,40,.9)",
+         "stroke": "rgba(175,110,210,.8)",
+         "stroke-width": "1.8"
+        }
+       },
+       {
+        "tag": "text",
+        "attrs": {
+         "x": "16",
+         "y": "9",
+         "class": "anno-selya"
+        },
+        "text": {
+         "tr": "Ana Figür",
+         "en": "Main Figure"
+        }
+       },
+       {
+        "tag": "rect",
+        "attrs": {
+         "x": "92",
+         "y": "0",
+         "width": "12",
+         "height": "10",
+         "fill": "rgba(18,10,28,.85)",
+         "stroke": "rgba(122,58,154,.6)",
+         "stroke-width": "1.5"
+        }
+       },
+       {
+        "tag": "text",
+        "attrs": {
+         "x": "108",
+         "y": "9",
+         "class": "anno-selya"
+        },
+        "text": {
+         "tr": "Selya Hanesi",
+         "en": "House Selya"
+        }
+       },
+       {
+        "tag": "rect",
+        "attrs": {
+         "x": "210",
+         "y": "0",
+         "width": "12",
+         "height": "10",
+         "fill": "rgba(14,10,6,.7)",
+         "stroke": "rgba(61,42,20,.5)",
+         "stroke-width": "1",
+         "stroke-dasharray": "4 3"
+        }
+       },
+       {
+        "tag": "text",
+        "attrs": {
+         "x": "226",
+         "y": "9",
+         "class": "anno-selya"
+        },
+        "text": {
+         "tr": "Eş",
+         "en": "Spouse"
+        }
+       },
+       {
+        "tag": "rect",
+        "attrs": {
+         "x": "250",
+         "y": "0",
+         "width": "12",
+         "height": "10",
+         "fill": "rgba(14,10,6,.65)",
+         "stroke": "rgba(58,42,20,.45)",
+         "stroke-width": "1",
+         "stroke-dasharray": "4 4"
+        }
+       },
+       {
+        "tag": "text",
+        "attrs": {
+         "x": "266",
+         "y": "9",
+         "class": "anno-selya"
+        },
+        "text": {
+         "tr": "İlişkili Figür",
+         "en": "Associated Figure"
+        }
+       }
+      ]
+     },
+     {
+      "tag": "rect",
+      "attrs": {
+       "x": "6",
+       "y": "6",
+       "width": "1268",
+       "height": "428",
+       "fill": "none",
+       "stroke": "#5C3A7A",
+       "stroke-width": "1",
+       "opacity": ".4"
+      }
+     },
+     {
+      "tag": "text",
+      "attrs": {
+       "x": "640",
+       "y": "424",
+       "text-anchor": "middle",
+       "class": "anno-selya",
+       "font-size": "9",
+       "letter-spacing": "3"
+      },
+      "text": {
+       "tr": "SELYA HANESİ — SOY AĞACI",
+       "en": "HOUSE SELYA — FAMILY TREE"
+      }
+     }
+    ]
+   },
+   "people": [
+    {
+     "id": "linroth",
+     "kind": "related",
+     "x": 20,
+     "y": 34,
+     "w": 154,
+     "h": 56,
+     "ty": [
+      21,
+      36,
+      48
+     ],
+     "box": {
+      "name": {
+       "tr": "Linroth Briktod",
+       "en": "Linroth Briktod"
+      },
+      "sub": {
+       "tr": "Liman Baronu",
+       "en": "Port Baron"
+      },
+      "note": {
+       "tr": "Celios'un Eniştesi",
+       "en": "Celios's Brother-in-Law"
+      }
+     },
+     "nameFill": "#9A8870",
+     "name": {
+      "tr": "Baron Linroth Briktod",
+      "en": "Baron Linroth Briktod"
+     },
+     "family": {
+      "tr": "Briktod Hanesi · Selya İlişkili",
+      "en": "House Briktod · Selya Associate"
+     },
+     "title": {
+      "tr": "Liman ve Tersane Baronu · Celios'un Eniştesi",
+      "en": "Port & Shipyard Baron · Celios's Brother-in-Law"
+     },
+     "ks": "",
+     "status": "alive",
+     "epi": {
+      "tr": "",
+      "en": ""
+     },
+     "desc": {
+      "tr": "İri, fıçı gövdeli yapısıyla tanınan; kırmızı saçlı ve sakallı. Selya'nın liman ve tersane işlerini yönetir. Celios'un eniştesidir (Adelis'in erkek kardeşi).",
+      "en": "Known for his large barrel-shaped build; red hair and beard. Manages Selya's port and shipyard operations. Celios's brother-in-law (Adelis's brother)."
+     },
+     "fatherId": null,
+     "motherId": null,
+     "spouseIds": [],
+     "childrenIds": [],
+     "generation": 0,
+     "legitimacy": "",
+     "dx": 0,
+     "dy": 0,
+     "links": [
+      {
+       "to": "adelis",
+       "label": {
+        "tr": "Enişte",
+        "en": "Brother-in-law"
+       }
+      }
+     ]
+    },
+    {
+     "id": "adelis",
+     "kind": "spouse",
+     "x": 204,
+     "y": 34,
+     "w": 156,
+     "h": 56,
+     "ty": [
+      21,
+      36,
+      48
+     ],
+     "box": {
+      "name": {
+       "tr": "Adelis Selya",
+       "en": "Adelis Selya"
+      },
+      "sub": {
+       "tr": "1. Eş · Gümüş Saçlı",
+       "en": "1st Wife · Silver-Haired"
+      },
+      "note": {
+       "tr": "Anne: Darios, Liaher, Elyndra, Enidres",
+       "en": "Mother of: Darios, Liaher, Elyndra, Enidres"
+      }
+     },
+     "nameFill": "#D4C0F0",
+     "name": {
+      "tr": "Adelis Selya",
+      "en": "Adelis Selya"
+     },
+     "family": {
+      "tr": "Selya Hanesi · 1. Eş",
+      "en": "House Selya · 1st Wife"
+     },
+     "title": {
+      "tr": "Celios'un Birinci Eşi",
+      "en": "Celios's First Wife"
+     },
+     "ks": "",
+     "status": "alive",
+     "epi": {
+      "tr": "",
+      "en": ""
+     },
+     "desc": {
+      "tr": "Gümüş saçlı, zarif, vakur. Darios, Liaher, Elyndra ve Enidres'in annesidir (proje kaydından).",
+      "en": "Silver-haired, delicate, dignified. Mother of Darios, Liaher, Elyndra, and Enidres (per project records)."
+     },
+     "fatherId": null,
+     "motherId": null,
+     "spouseIds": [
+      "celios"
+     ],
+     "childrenIds": [
+      "darios",
+      "liaher",
+      "elyndra",
+      "enidres"
+     ],
+     "generation": 0,
+     "legitimacy": "",
+     "dx": 0,
+     "dy": 0,
+     "links": []
+    },
+    {
+     "id": "celios",
+     "kind": "main",
+     "x": 560,
+     "y": 28,
+     "w": 200,
+     "h": 68,
+     "ty": [
+      24,
+      40,
+      55
+     ],
+     "box": {
+      "name": {
+       "tr": "Celios Selya",
+       "en": "Celios Selya"
+      },
+      "sub": {
+       "tr": "Selya Lordu · Zeandor'un Hocası",
+       "en": "Lord of Selya · Zeandor's Tutor"
+      },
+      "note": {
+       "tr": "Kart Tilki",
+       "en": "The Old Fox"
+      }
+     },
+     "nameSize": 14,
+     "name": {
+      "tr": "Celios Selya",
+      "en": "Celios Selya"
+     },
+     "family": {
+      "tr": "Selya Hanesi",
+      "en": "House Selya"
+     },
+     "title": {
+      "tr": "Selya Lordu · Zeandor'un Eğitmeni",
+      "en": "Lord of Selya · Zeandor's Mentor"
+     },
+     "ks": {
+      "tr": "Aktif",
+      "en": "Active"
+     },
+     "status": "alive",
+     "epi": {
+      "tr": "Selya'nın Kart Tilkisi",
+      "en": "The Old Fox of Selya"
+     },
+     "desc": {
+      "tr": "Derin çizgili yüzlü, siyah cüppeli, kanca burunlu eski Başvezir. Zeandor'u Selya'da büyüttü. İki eşi var: Adelis ve Lysara.",
+      "en": "Former Grand Vizier with deeply lined face, black robes, hooked nose. Raised Zeandor in Selya. Has two wives: Adelis and Lysara."
+     },
+     "characterId": "celios",
+     "fatherId": null,
+     "motherId": null,
+     "spouseIds": [
+      "adelis",
+      "lysara"
+     ],
+     "childrenIds": [
+      "darios",
+      "liaher",
+      "elyndra",
+      "enidres"
+     ],
+     "generation": 0,
+     "legitimacy": "",
+     "dx": 0,
+     "dy": 0,
+     "links": []
+    },
+    {
+     "id": "lysara",
+     "kind": "spouse",
+     "x": 1010,
+     "y": 34,
+     "w": 162,
+     "h": 56,
+     "ty": [
+      21,
+      36,
+      48
+     ],
+     "box": {
+      "name": {
+       "tr": "Lysara Selya",
+       "en": "Lysara Selya"
+      },
+      "sub": {
+       "tr": "2. Eş · Altın Tenli",
+       "en": "2nd Wife · Golden-Skinned"
+      },
+      "note": {
+       "tr": "Kayıtlı Çocuk Yok",
+       "en": "No Recorded Children"
+      }
+     },
+     "nameFill": "#D4C0F0",
+     "name": {
+      "tr": "Lysara Selya",
+      "en": "Lysara Selya"
+     },
+     "family": {
+      "tr": "Selya Hanesi · 2. Eş",
+      "en": "House Selya · 2nd Wife"
+     },
+     "title": {
+      "tr": "Celios'un İkinci Eşi",
+      "en": "Celios's Second Wife"
+     },
+     "ks": "",
+     "status": "alive",
+     "epi": {
+      "tr": "",
+      "en": ""
+     },
+     "desc": {
+      "tr": "Altın tenli, keskin kahverengi gözlü, genç görünümlü. Kayıtlı çocuğu bulunmamaktadır.",
+      "en": "Golden-skinned, sharp brown eyes, youthful appearance. No listed children in current records."
+     },
+     "fatherId": null,
+     "motherId": null,
+     "spouseIds": [
+      "celios"
+     ],
+     "childrenIds": [],
+     "generation": 0,
+     "legitimacy": "",
+     "dx": 0,
+     "dy": 0,
+     "links": []
+    },
+    {
+     "id": "darios",
+     "kind": "member",
+     "x": 30,
+     "y": 218,
+     "w": 156,
+     "h": 58,
+     "ty": [
+      21,
+      36,
+      50
+     ],
+     "box": {
+      "name": {
+       "tr": "Darios Selya",
+       "en": "Darios Selya"
+      },
+      "sub": {
+       "tr": "Büyük Oğul · Fiilî Vali",
+       "en": "Eldest Son · De Facto Governor"
+      },
+      "note": {
+       "tr": "Selya Yöneticisi",
+       "en": "Ruler of Selya"
+      }
+     },
+     "nameFill": "#D4C0F0",
+     "name": {
+      "tr": "Darios Selya",
+      "en": "Darios Selya"
+     },
+     "family": {
+      "tr": "Selya Hanesi",
+      "en": "House Selya"
+     },
+     "title": {
+      "tr": "Selya'nın Fiilî Valisi · Büyük Oğul",
+      "en": "De Facto Governor · Eldest Son"
+     },
+     "ks": "",
+     "status": "alive",
+     "epi": {
+      "tr": "",
+      "en": ""
+     },
+     "desc": {
+      "tr": "Uzun boylu, kaslı, koyu siyah saçlı, dört dörtlük çeneli. Hesapçı gözleri vardır. Zeandor Melik Vali olunca yönetimde ikinci plana itildi.",
+      "en": "Tall, muscular, thick dark hair, square jaw. Calculating eyes. Pushed to second position when Zeandor became Governor King."
+     },
+     "fatherId": "celios",
+     "motherId": "adelis",
+     "spouseIds": [],
+     "childrenIds": [],
+     "generation": 1,
+     "legitimacy": "",
+     "dx": 0,
+     "dy": 0,
+     "links": []
+    },
+    {
+     "id": "liaher",
+     "kind": "member",
+     "x": 210,
+     "y": 218,
+     "w": 156,
+     "h": 58,
+     "ty": [
+      21,
+      36,
+      50
+     ],
+     "box": {
+      "name": {
+       "tr": "Liaher Selya",
+       "en": "Liaher Selya"
+      },
+      "sub": {
+       "tr": "Sessiz Fırtına",
+       "en": "The Quiet Storm"
+      },
+      "note": {
+       "tr": "Zeandor'un Dostu",
+       "en": "Zeandor's Friend"
+      }
+     },
+     "nameFill": "#D4C0F0",
+     "name": {
+      "tr": "Liaher Selya",
+      "en": "Liaher Selya"
+     },
+     "family": {
+      "tr": "Selya Hanesi",
+      "en": "House Selya"
+     },
+     "title": {
+      "tr": "Zeandor'un En Yakın Dostu",
+      "en": "Zeandor's Closest Friend"
+     },
+     "ks": "",
+     "status": "alive",
+     "epi": {
+      "tr": "Sessiz Fırtına",
+      "en": "The Quiet Storm"
+     },
+     "desc": {
+      "tr": "Köşeli çeneli, derin gözlü, koyu güneş yanığı tenli, kestane saçlı. Burnunda antrenman kazasından hafif bir sol sapma var. Elyndra'nın ağabeyidir.",
+      "en": "Angular jaw, deep-set eyes, dark sun-tanned skin, chestnut hair. Slight leftward nose curve from a training accident. Elyndra's older brother."
+     },
+     "characterId": "liaher",
+     "fatherId": "celios",
+     "motherId": "adelis",
+     "spouseIds": [],
+     "childrenIds": [],
+     "generation": 1,
+     "legitimacy": "",
+     "dx": 0,
+     "dy": 0,
+     "links": []
+    },
+    {
+     "id": "elyndra",
+     "kind": "member",
+     "x": 390,
+     "y": 218,
+     "w": 156,
+     "h": 58,
+     "ty": [
+      21,
+      36,
+      50
+     ],
+     "box": {
+      "name": {
+       "tr": "Elyndra Selya",
+       "en": "Elyndra Selya"
+      },
+      "sub": {
+       "tr": "İlahi Yıldız",
+       "en": "Divine Star"
+      },
+      "note": {
+       "tr": "Zeandor'un Sevgilisi ❤",
+       "en": "Zeandor's Lover ❤"
+      }
+     },
+     "nameFill": "#D4C0F0",
+     "name": {
+      "tr": "Elyndra Selya",
+      "en": "Elyndra Selya"
+     },
+     "family": {
+      "tr": "Selya Hanesi",
+      "en": "House Selya"
+     },
+     "title": {
+      "tr": "Zeandor'un Gizli Sevgilisi",
+      "en": "Zeandor's Secret Lover"
+     },
+     "ks": "",
+     "status": "alive",
+     "epi": {
+      "tr": "İlahi Yıldız · Yıldız Işığının Mirası",
+      "en": "Divine Star · Heritage of Starlight"
+     },
+     "desc": {
+      "tr": "Buğday/zeytinsi esmer ten, kehribar/altın-kahve iri badem gözler, kalın koyu kaşlar, uzun dalgalı koyu saçlar. Zeandor ile 7 yıllık derin ve tehlikeli bir bağ. Thaelen'den Elf dili öğreniyor.",
+      "en": "Olive-toned skin, large almond amber/golden-brown eyes, thick dark brows, long wavy dark hair. A deep and dangerous 7-year bond with Zeandor. Studies Elvish under Thaelen."
+     },
+     "characterId": "elyndra",
+     "fatherId": "celios",
+     "motherId": "adelis",
+     "spouseIds": [],
+     "childrenIds": [],
+     "generation": 1,
+     "legitimacy": "",
+     "dx": 0,
+     "dy": 0,
+     "links": []
+    },
+    {
+     "id": "enidres",
+     "kind": "member",
+     "x": 570,
+     "y": 218,
+     "w": 156,
+     "h": 58,
+     "ty": [
+      21,
+      36,
+      50
+     ],
+     "box": {
+      "name": {
+       "tr": "Enidres Selya",
+       "en": "Enidres Selya"
+      },
+      "sub": {
+       "tr": "Genç Oğul (Adelis'ten)",
+       "en": "Youngest Son (by Adelis)"
+      },
+      "note": {
+       "tr": "Tıknaz · Hesapçı",
+       "en": "Stocky · Calculating"
+      }
+     },
+     "nameFill": "#D4C0F0",
+     "name": {
+      "tr": "Enidres Selya",
+      "en": "Enidres Selya"
+     },
+     "family": {
+      "tr": "Selya Hanesi",
+      "en": "House Selya"
+     },
+     "title": {
+      "tr": "Celios'un Genç Oğlu (Adelis'ten)",
+      "en": "Celios's Younger Son (from Adelis)"
+     },
+     "ks": "",
+     "status": "alive",
+     "epi": {
+      "tr": "Çelik İradeli Diriliş",
+      "en": "Steel-Willed Resurrection"
+     },
+     "desc": {
+      "tr": "Tıknaz, ağırbaşlı, esmer, siyah düz saçlı. Bakışları huysuz ve hesapçıdır. Proje dosyasında \"Adelis'ten\" olarak kayıtlıdır.",
+      "en": "Stocky, sober, dark-skinned, straight black hair. Grumpy and calculating gaze. Recorded as \"from Adelis\" in the project file."
+     },
+     "fatherId": "celios",
+     "motherId": "adelis",
+     "spouseIds": [],
+     "childrenIds": [],
+     "generation": 1,
+     "legitimacy": "",
+     "dx": 0,
+     "dy": 0,
+     "links": []
+    }
+   ]
+  },
+  {
+   "id": "solgar",
+   "order": 3,
+   "name": {
+    "tr": "Solgar Hanesi",
+    "en": "House Solgar"
+   },
+   "houseId": "",
+   "theme": "custom",
+   "accent": "#3E8E6A",
+   "edgeMode": "auto",
+   "canvas": {
+    "w": 0,
+    "h": 0
+   },
+   "caption": {
+    "tr": "SOLGAR HANESİ — SOY AĞACI",
+    "en": "HOUSE SOLGAR — FAMILY TREE"
+   },
+   "decor": {
+    "before": [],
+    "after": []
+   },
+   "people": [
+    {
+     "id": "edun-solgar",
+     "kind": "main",
+     "box": {
+      "name": {
+       "tr": "Edun Solgar",
+       "en": "Edun Solgar"
+      },
+      "sub": {
+       "tr": "Başvezir · Engerek",
+       "en": "Grand Vizier · The Viper"
+      },
+      "note": {
+       "tr": "Solgar hanedan reisi",
+       "en": "Head of House Solgar"
+      }
+     },
+     "name": {
+      "tr": "Edun Solgar",
+      "en": "Edun Solgar"
+     },
+     "family": {
+      "tr": "Solgar Hanesi",
+      "en": "House Solgar"
+     },
+     "title": {},
+     "ks": "",
+     "status": "alive",
+     "epi": {},
+     "desc": {},
+     "fatherId": null,
+     "motherId": null,
+     "spouseIds": [],
+     "childrenIds": [
+      "reun-solgar"
+     ],
+     "generation": null,
+     "legitimacy": "",
+     "dx": 0,
+     "dy": 0,
+     "links": [],
+     "characterId": "edun-solgar"
+    },
+    {
+     "id": "reun-solgar",
+     "kind": "member",
+     "box": {
+      "name": {
+       "tr": "Reun Solgar",
+       "en": "Reun Solgar"
+      },
+      "sub": {
+       "tr": "Solgar Orduları Komutanı",
+       "en": "Commander of the Solgar Armies"
+      },
+      "note": {
+       "tr": "Edun'un oğlu",
+       "en": "Edun's son"
+      }
+     },
+     "name": {
+      "tr": "Reun Solgar",
+      "en": "Reun Solgar"
+     },
+     "family": {
+      "tr": "Solgar Hanesi",
+      "en": "House Solgar"
+     },
+     "title": {},
+     "ks": "",
+     "status": "alive",
+     "epi": {},
+     "desc": {},
+     "fatherId": "edun-solgar",
+     "motherId": null,
+     "spouseIds": [],
+     "childrenIds": [],
+     "generation": null,
+     "legitimacy": "",
+     "dx": 0,
+     "dy": 0,
+     "links": [],
+     "characterId": "reun-solgar"
+    },
+    {
+     "id": "zellan",
+     "kind": "related",
+     "box": {
+      "name": {
+       "tr": "Zellan",
+       "en": "Zellan"
+      },
+      "sub": {
+       "tr": "Kuzen",
+       "en": "Cousin"
+      },
+      "note": {
+       "tr": "Edun'un kuzeni",
+       "en": "Edun's cousin"
+      }
+     },
+     "name": {
+      "tr": "Zellan",
+      "en": "Zellan"
+     },
+     "family": {
+      "tr": "Solgar Hanesi",
+      "en": "House Solgar"
+     },
+     "title": {},
+     "ks": "",
+     "status": "alive",
+     "epi": {},
+     "desc": {},
+     "fatherId": null,
+     "motherId": null,
+     "spouseIds": [],
+     "childrenIds": [],
+     "generation": null,
+     "legitimacy": "",
+     "dx": 0,
+     "dy": 0,
+     "links": [
+      {
+       "to": "edun-solgar",
+       "label": {
+        "tr": "Kuzen",
+        "en": "Cousin"
+       }
+      }
+     ],
+     "characterId": "zellan"
+    }
+   ]
+  },
+  {
+   "id": "arhan",
+   "order": 4,
+   "name": {
+    "tr": "Arhan Hanesi",
+    "en": "House Arhan"
+   },
+   "houseId": "",
+   "theme": "custom",
+   "accent": "#B24A4A",
+   "edgeMode": "auto",
+   "canvas": {
+    "w": 0,
+    "h": 0
+   },
+   "caption": {
+    "tr": "ARHAN HANESİ — SOY AĞACI",
+    "en": "HOUSE ARHAN — FAMILY TREE"
+   },
+   "decor": {
+    "before": [],
+    "after": []
+   },
+   "people": [
+    {
+     "id": "fihor",
+     "kind": "main",
+     "box": {
+      "name": {
+       "tr": "Fihor Arhan",
+       "en": "Fihor Arhan"
+      },
+      "sub": {
+       "tr": "Kont · Askerî İstihbarat Şefi",
+       "en": "Count · Head of Military Intelligence"
+      },
+      "note": {
+       "tr": "Sükût Eden Baba",
+       "en": "The Silent Father"
+      }
+     },
+     "name": {
+      "tr": "Fihor Arhan",
+      "en": "Fihor Arhan"
+     },
+     "family": {
+      "tr": "Arhan Hanesi",
+      "en": "House Arhan"
+     },
+     "title": {},
+     "ks": "",
+     "status": "deceased",
+     "epi": {},
+     "desc": {},
+     "fatherId": null,
+     "motherId": null,
+     "spouseIds": [],
+     "childrenIds": [
+      "kaelen",
+      "edlas"
+     ],
+     "generation": null,
+     "legitimacy": "",
+     "dx": 0,
+     "dy": 0,
+     "links": [],
+     "characterId": "fihor"
+    },
+    {
+     "id": "kaelen",
+     "kind": "dec",
+     "box": {
+      "name": {
+       "tr": "Kaelen Arhan",
+       "en": "Kaelen Arhan"
+      },
+      "sub": {
+       "tr": "Büyük Oğul",
+       "en": "Elder Son"
+      },
+      "note": {
+       "tr": "Arhan Orduları Komutanı",
+       "en": "Commander of the Arhan Armies"
+      }
+     },
+     "name": {
+      "tr": "Kaelen Arhan",
+      "en": "Kaelen Arhan"
+     },
+     "family": {
+      "tr": "Arhan Hanesi",
+      "en": "House Arhan"
+     },
+     "title": {},
+     "ks": "",
+     "status": "deceased",
+     "epi": {},
+     "desc": {},
+     "fatherId": "fihor",
+     "motherId": null,
+     "spouseIds": [],
+     "childrenIds": [],
+     "generation": null,
+     "legitimacy": "",
+     "dx": 0,
+     "dy": 0,
+     "links": [],
+     "characterId": "kaelen"
+    },
+    {
+     "id": "edlas",
+     "kind": "dec",
+     "box": {
+      "name": {
+       "tr": "Edlas Arhan",
+       "en": "Edlas Arhan"
+      },
+      "sub": {
+       "tr": "Küçük Oğul · Tarikat Üyesi",
+       "en": "Younger Son · Cult Member"
+      },
+      "note": {
+       "tr": "Zihin",
+       "en": "The Mind"
+      }
+     },
+     "name": {
+      "tr": "Edlas Arhan",
+      "en": "Edlas Arhan"
+     },
+     "family": {
+      "tr": "Arhan Hanesi",
+      "en": "House Arhan"
+     },
+     "title": {},
+     "ks": "",
+     "status": "deceased",
+     "epi": {},
+     "desc": {},
+     "fatherId": "fihor",
+     "motherId": null,
+     "spouseIds": [],
+     "childrenIds": [],
+     "generation": null,
+     "legitimacy": "",
+     "dx": 0,
+     "dy": 0,
+     "links": [],
+     "characterId": "edlas"
+    }
+   ]
+  },
+  {
+   "id": "galet",
+   "order": 5,
+   "name": {
+    "tr": "Galet Hanesi",
+    "en": "House Galet"
+   },
+   "houseId": "galetsha-h",
+   "theme": "custom",
+   "accent": "#B08A2E",
+   "edgeMode": "auto",
+   "canvas": {
+    "w": 0,
+    "h": 0
+   },
+   "caption": {
+    "tr": "GALET HANESİ — SOY AĞACI",
+    "en": "HOUSE GALET — FAMILY TREE"
+   },
+   "decor": {
+    "before": [],
+    "after": []
+   },
+   "people": [
+    {
+     "id": "metron-galet",
+     "kind": "main",
+     "box": {
+      "name": {
+       "tr": "Metron Galet",
+       "en": "Metron Galet"
+      },
+      "sub": {
+       "tr": "Galet Hanedanı Reisi",
+       "en": "Head of House Galet"
+      },
+      "note": {
+       "tr": "386 yıllık hanedan",
+       "en": "386-year dynasty"
+      }
+     },
+     "name": {
+      "tr": "Metron Galet",
+      "en": "Metron Galet"
+     },
+     "family": {
+      "tr": "Galet / Galetsha Hanesi",
+      "en": "House Galet / Galetsha"
+     },
+     "title": {},
+     "ks": "",
+     "status": "deceased",
+     "epi": {},
+     "desc": {},
+     "fatherId": null,
+     "motherId": null,
+     "spouseIds": [],
+     "childrenIds": [
+      "wolrez-galet"
+     ],
+     "generation": null,
+     "legitimacy": "",
+     "dx": 0,
+     "dy": 0,
+     "links": [],
+     "characterId": "metron-galet"
+    },
+    {
+     "id": "wolrez-galet",
+     "kind": "member",
+     "box": {
+      "name": {
+       "tr": "Wolrez Galet",
+       "en": "Wolrez Galet"
+      },
+      "sub": {
+       "tr": "Galetsha Valisi",
+       "en": "Governor of Galetsha"
+      },
+      "note": {
+       "tr": "Direnen Kurt",
+       "en": "The Resisting Wolf"
+      }
+     },
+     "name": {
+      "tr": "Wolrez Galet",
+      "en": "Wolrez Galet"
+     },
+     "family": {
+      "tr": "Galet / Galetsha Hanesi",
+      "en": "House Galet / Galetsha"
+     },
+     "title": {},
+     "ks": "",
+     "status": "alive",
+     "epi": {},
+     "desc": {},
+     "fatherId": "metron-galet",
+     "motherId": null,
+     "spouseIds": [],
+     "childrenIds": [],
+     "generation": null,
+     "legitimacy": "",
+     "dx": 0,
+     "dy": 0,
+     "links": [],
+     "characterId": "wolrez-galet"
+    }
+   ]
+  }
+ ]
+}

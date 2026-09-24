@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="tr" id="r">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Stallhart Destanı — Son İmparator, Türkçe dark fantasy epik roman">
+<title>The Stallhart Saga</title>
+<meta name="theme-color" content="#0c121f">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="The Stallhart Saga">
+<meta property="og:locale" content="tr_TR">
+<meta property="og:title" content="The Stallhart Saga">
+<meta property="og:description" content="Stallhart Destanı — Son İmparator, Türkçe dark fantasy epik roman">
+<meta property="og:image" content="assets/images/logo-stallhart.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="The Stallhart Saga">
+<meta name="twitter:description" content="Stallhart Destanı — Son İmparator, Türkçe dark fantasy epik roman">
+<meta name="twitter:image" content="assets/images/logo-stallhart.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Modern+Antiqua&amp;family=IM+Fell+English:ital@0;1&amp;family=Merriweather:ital,wght@0,400;0,700;1,400&amp;display=swap">
+<link rel="stylesheet" href="assets/css/styles.css?v=3.0">
+<style>
+/* ── İNDEX'E ÖZEL STİLLER ─────────────────────────── */
+.hero {
+  min-height: 100vh; display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  text-align: center; padding: 80px 2rem 5rem;
+  position: relative; overflow: hidden;
+}
+.hero::before {
+  content: ''; position: absolute; inset: 0; z-index: -1;
+  background: radial-gradient(ellipse 60% 48% at 50% 32%, rgba(196,150,42,.12), transparent 70%);
+  pointer-events: none;
+}
+.hero::after {
+  content: ''; position: absolute; bottom: 0; left: 0; right: 0;
+  height: 200px; background: linear-gradient(to bottom, transparent, var(--bg));
+  pointer-events: none;
+}
+.hero-seal { width: 148px; height: 148px; margin-bottom: 2.5rem; }
+.seal-ring { animation: rot 40s linear infinite; transform-origin: 100px 100px; }
+@keyframes rot { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) { .seal-ring { animation: none; } }
+.hero-eye {
+  font-family: var(--font-display); font-style: italic;
+  font-size: .82rem; letter-spacing: .2em;
+  color: var(--goldd); margin-bottom: 2rem;
+  text-shadow: 0 0 14px rgba(196,150,42,.22);
+}
+picture { display: contents; } /* <picture> yerleşimi bozmasın */
+.hero-logo {
+  width: 1000px; max-width: 92vw; height: auto; margin-bottom: 2.5rem;
+  display: block; filter: brightness(1.08) drop-shadow(0 0 18px rgba(196,150,42,.12));
+  transition: filter var(--theme-transition-duration, .35s) ease;
+}
+/* Logo gümüş/açık tonlarda çizildiği için ışık modunun parşömen
+   zemininde zor seçilir — renkleri tersine çevrilip koyulaştırılır. */
+html[data-theme="light"] .hero-logo {
+  filter: invert(1) brightness(.92) drop-shadow(0 0 14px rgba(138,90,30,.15));
+}
+.hero-q {
+  max-width: 500px; font-size: 1rem; font-style: italic;
+  color: var(--parchd); line-height: 1.88; margin-bottom: 2.5rem;
+  border-left: 2px solid var(--border); padding-left: 1.25rem; text-align: left;
+}
+.hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
+
+/* Evren */
+#evren { background: var(--deep); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.tab-p { display: none; }
+.tab-p.on { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+@media (max-width: 640px) { .tab-p.on { grid-template-columns: 1fr; } }
+
+/* Karakterler (önizleme) */
+#karakterler { background: var(--bg); }
+.chars-more {
+  margin-top: 2rem; text-align: center;
+}
+
+/* Bölümler (önizleme) */
+#bolumler { background: var(--deep); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.chapters-more { margin-top: 1.5rem; text-align: center; }
+
+/* Harita önizleme */
+#harita { background: var(--bg); }
+.map-w { border: 1px solid var(--border); overflow: hidden; background: var(--deep); }
+.map-w img { display: block; width: 100%; height: auto; }
+.map-btn-wrap { margin-top: 1.5rem; }
+
+/* SSS */
+#sss { background: var(--deep); border-top: 1px solid var(--border); }
+
+/* Ekran dışındaki bölümlerin yerleşim/boyama işi görünene kadar ertelenir */
+#evren, #karakterler, #bolumler, #harita, #sss { content-visibility: auto; contain-intrinsic-size: auto 720px; }
+</style>
+<script src="assets/js/router.js?v=3.0"></script>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <svg class="hero-seal" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <g class="seal-ring">
+      <circle cx="100" cy="100" r="96" fill="none" stroke="#5C3F1E" stroke-width=".8"/>
+      <line x1="100" y1="5" x2="100" y2="16" stroke="#C4962A" stroke-width="1.5" transform="rotate(0 100 100)"/>
+      <line x1="100" y1="5" x2="100" y2="11" stroke="#7A5C18" stroke-width="1" transform="rotate(15 100 100)"/>
+      <line x1="100" y1="5" x2="100" y2="11" stroke="#7A5C18" stroke-width="1" transform="rotate(30 100 100)"/>
+      <line x1="100" y1="5" x2="100" y2="16" stroke="#C4962A" stroke-width="1.5" transform="rotate(45 100 100)"/>
+      <line x1="100" y1="5" x2="100" y2="11" stroke="#7A5C18" stroke-width="1" transform="rotate(60 100 100)"/>
+      <line x1="100" y1="5" x2="100" y2="11" stroke="#7A5C18" stroke-width="1" transform="rotate(75 100 100)"/>
+      <line x1="100" y1="5" x2="100" y2="16" stroke="#C4962A" stroke-width="1.5" transform="rotate(90 100 100)"/>
+      <line x1="100" y1="5" x2="100" y2="11" stroke="#7A5C18" stroke-width="1" transform="rotate(105 100 100)"/>
+      <line x1="100" y1="5" x2="100" y2="11" stroke="#7A5C18" stroke-width="1" transform="rotate(120 100 100)"/>
+      <line x1="100" y1="5" x2="100" y2="16" stroke="#C4962A" stroke-width="1.5" transform="rotate(135 100 100)"/>
+      <line x1="100" y1="5" x2="100" y2="11" stroke="#7A5C18" stroke-width="1" transform="rotate(150 100 100)"/>
+      <line x1="100" y1="5" x2="100" y2="11" stroke="#7A5C18" stroke-width="1" transform="rotate(165 100 100)"/>
+      <line x1="100" y1="5" x2="100" y2="16" stroke="#C4962A" stroke-width="1.5" transform="rotate(180 100 100)"/>
+      <line x1="100" y1="5" x2="100" y2="11" stroke="#7A5C18" stroke-width="1" transform="rotate(195 100 100)"/>
+      <line x1="100" y1="5" x2="100" y2="11" stroke="#7A5C18" stroke-width="1" transform="rotate(210 100 100)"/>
+      <line x1="100" y1="5" x2="100" y2="16" stroke="#C4962A" stroke-width="1.5" transform="rotate(225 100 100)"/>
+      <line x1="100" y1="5" x2="100" y2="11" stroke="#7A5C18" stroke-width="1" transform="rotate(240 100 100)"/>
+      <line x1="100" y1="5" x2="100" y2="11" stroke="#7A5C18" stroke-width="1" transform="rotate(255 100 100)"/>
+      <line x1="100" y1="5" x2="100" y2="16" stroke="#C4962A" stroke-width="1.5" transform="rotate(270 100 100)"/>
+      <line x1="100" y1="5" x2="100" y2="11" stroke="#7A5C18" stroke-width="1" transform="rotate(285 100 100)"/>
+      <line x1="100" y1="5" x2="100" y2="11" stroke="#7A5C18" stroke-width="1" transform="rotate(300 100 100)"/>
+      <line x1="100" y1="5" x2="100" y2="16" stroke="#C4962A" stroke-width="1.5" transform="rotate(315 100 100)"/>
+      <line x1="100" y1="5" x2="100" y2="11" stroke="#7A5C18" stroke-width="1" transform="rotate(330 100 100)"/>
+      <line x1="100" y1="5" x2="100" y2="11" stroke="#7A5C18" stroke-width="1" transform="rotate(345 100 100)"/>
+    </g>
+    <circle cx="100" cy="100" r="78" fill="rgba(196,150,42,.03)" stroke="#3D2A14" stroke-width="1"/>
+    <g stroke="#C4962A" stroke-width=".7" opacity=".45">
+      <line x1="100" y1="24" x2="100" y2="40" transform="rotate(0 100 100)"/>
+      <line x1="100" y1="24" x2="100" y2="40" transform="rotate(30 100 100)"/>
+      <line x1="100" y1="24" x2="100" y2="40" transform="rotate(60 100 100)"/>
+      <line x1="100" y1="24" x2="100" y2="40" transform="rotate(90 100 100)"/>
+      <line x1="100" y1="24" x2="100" y2="40" transform="rotate(120 100 100)"/>
+      <line x1="100" y1="24" x2="100" y2="40" transform="rotate(150 100 100)"/>
+      <line x1="100" y1="24" x2="100" y2="40" transform="rotate(180 100 100)"/>
+      <line x1="100" y1="24" x2="100" y2="40" transform="rotate(210 100 100)"/>
+      <line x1="100" y1="24" x2="100" y2="40" transform="rotate(240 100 100)"/>
+      <line x1="100" y1="24" x2="100" y2="40" transform="rotate(270 100 100)"/>
+      <line x1="100" y1="24" x2="100" y2="40" transform="rotate(300 100 100)"/>
+      <line x1="100" y1="24" x2="100" y2="40" transform="rotate(330 100 100)"/>
+    </g>
+    <circle cx="100" cy="100" r="50" fill="rgba(196,150,42,.05)" stroke="#C4962A" stroke-width="1"/>
+    <path d="M76,118 L76,93 L86,104 L100,83 L114,104 L124,93 L124,118 Z"
+          fill="none" stroke="#C4962A" stroke-width="1.5" stroke-linejoin="round"/>
+    <line x1="73" y1="118" x2="127" y2="118" stroke="#C4962A" stroke-width="1.5"/>
+    <circle cx="100" cy="102" r="2.5" fill="#C4962A"/>
+  </svg>
+  <p class="hero-eye" id="hero-eye">Stallhart Destanı · Cilt I</p>
+  <picture><source type="image/webp"
+    srcset="assets/images/logo-stallhart-480w.webp 480w, assets/images/logo-stallhart-960w.webp 960w, assets/images/logo-stallhart.webp 1400w"
+    sizes="(max-width: 1086px) 92vw, 1000px">
+  <img src="assets/images/logo-stallhart.png" class="hero-logo"
+       width="1400" height="506" decoding="async" fetchpriority="high"
+       alt="The Stallhart Saga" id="hero-logo"
+       onerror="var s=this.previousElementSibling;if(s&&s.tagName==='SOURCE'){s.remove();this.src=this.getAttribute('src');}else{this.style.display='none';var f=document.getElementById('hero-title-fallback');if(f){f.classList.remove('sr-only');f.style.display='block';}}"></picture>
+  <!-- Logo görseli görsel olarak "The Stallhart Saga" başlığını taşıyor (alt metni de bunu içeriyor),
+       ama arama motorlarının sayfada gerçek bir metinsel <h1> görmesi için bu başlık her zaman
+       DOM'da tutuluyor — sr-only ile sadece görsel olarak gizleniyor (display:none değil).
+       Logo yüklenemezse onerror ile görünür hale gelip yedek başlık olarak devreye giriyor. -->
+  <h1 id="hero-title-fallback" class="sr-only" data-tr="Stallhart Destanı — Son İmparator" data-en="The Stallhart Saga — The Last Emperor" style="font-family:var(--font-display); font-size:clamp(2rem,5vw,3.5rem); color:var(--parchl); margin-bottom:2.5rem; letter-spacing:.05em;">
+    Stallhart Destanı — Son İmparator
+  </h1>
+  <blockquote class="hero-q" id="hero-q">
+    "İmparatorluklar taştan değil, itaatten inşa edilir.<br>
+    Ve itaat, her zaman bir günün gelip çatacağını bilir."
+  </blockquote>
+  <div class="hero-ctas">
+    <a href="#bolumler" class="btn-g" id="cta1">Bölümleri Oku</a>
+    <a href="karakterler.html" class="btn-o" id="cta2">Karakterler</a>
+  </div>
+</section>
+
+<!-- EVREN -->
+<section id="evren">
+  <div class="inn">
+    <div class="sec-h">
+      <h2 class="sec-t" id="ev-title">Evren</h2>
+      <p class="sec-s" id="ev-sub">Stallhart İmparatorluğu'nun tarihi, coğrafyası, inançları ve yasaları.</p>
+      <span class="rule"></span>
+    </div>
+    <div class="tabs tabs-wrap">
+      <button class="tab-b on" id="tb-cog" data-tr="Coğrafya" data-en="Geography">Coğrafya</button>
+      <button class="tab-b" id="tb-din" data-tr="Din &amp; İnanç" data-en="Faith &amp; Religion">Din &amp; İnanç</button>
+      <button class="tab-b" id="tb-sih" data-tr="Sihir" data-en="Magic">Sihir</button>
+      <button class="tab-b" id="tb-siy" data-tr="Siyaset" data-en="Politics">Siyaset</button>
+    </div>
+    <!-- Coğrafya -->
+    <div class="tab-p on" id="tab-cog">
+      <div class="lc"><h3 data-tr="Stallhart İmparatorluğu" data-en="The Stallhart Empire">Stallhart İmparatorluğu</h3><p data-tr="Gümüş Yol Boğazı ile ikiye ayrılan kıtanın büyük bölümüne hükmeden Stallhart İmparatorluğu, onlarca eyaleti bünyesinde barındırır. Başkent Başsancak topraklarında yer alır." data-en="Ruling most of the continent split by the Silver Way strait, the Stallhart Empire holds dozens of provinces. The capital sits in the Başsancak province.">Gümüş Yol Boğazı ile ikiye ayrılan kıtanın büyük bölümüne hükmeden Stallhart İmparatorluğu, onlarca eyaleti bünyesinde barındırır. Başkent Başsancak topraklarında yer alır.</p></div>
+      <div class="lc"><h3 data-tr="Gümüş Yol Boğazı" data-en="The Silver Way">Gümüş Yol Boğazı</h3><p data-tr="Kıtanın en stratejik su yolu. Kuzeyde Garall (Z'ela) ile güneyde Todfa ve Gom Ara arasında uzanan bu boğaz, doğuyla batı arasındaki ticareti ve askerî hareketliliği belirler." data-en="The continent's most strategic waterway. Stretching from Garall (Z'ela) in the north to Todfa and Gom Ara in the south, this strait governs trade and military movement between east and west.">Kıtanın en stratejik su yolu. Kuzeyde Garall (Z'ela) ile güneyde Todfa ve Gom Ara arasında uzanan bu boğaz, doğuyla batı arasındaki ticareti ve askerî hareketliliği belirler.</p></div>
+      <div class="lc"><h3 data-tr="Kuzey Eyaletleri" data-en="The Northern Provinces">Kuzey Eyaletleri</h3><p data-tr="Galetsha ve Memanth, imparatorluğun sert kuzey sınırlarını oluştururlar. Sarp dağlar, ormanlar ve geçit vermez vadilerle dolu bu topraklar askerî stratejinin merkezindedir." data-en="Galetsha and Memanth form the empire's harsh northern frontier. Covered in steep mountains, forests and impassable valleys, this land is central to military strategy.">Galetsha ve Memanth, imparatorluğun sert kuzey sınırlarını oluştururlar. Sarp dağlar, ormanlar ve geçit vermez vadilerle dolu bu topraklar askerî stratejinin merkezindedir.</p></div>
+      <div class="lc"><h3 data-tr="Adalar &amp; Güney" data-en="Islands &amp; South">Adalar &amp; Güney</h3><p data-tr="Selya, Khasinya ve Pilkard adaları deniz gücünün temelidir. Selya stratejik konumuyla öne çıkar; bilge Celios Selya'nın yönetiminde yarı özerk bir yapı sürdürür." data-en="The islands of Selya, Khasinya and Pilkard are the foundation of naval power. Selya stands out for its strategic position, maintaining a semi-autonomous structure under the wise Celios Selya.">Selya, Khasinya ve Pilkard adaları deniz gücünün temelidir. Selya stratejik konumuyla öne çıkar; bilge Celios Selya'nın yönetiminde yarı özerk bir yapı sürdürür.</p></div>
+    </div>
+    <!-- Din -->
+    <div class="tab-p" id="tab-din">
+      <div class="lc sp"><h3 data-tr="Denge Konseyi" data-en="The Council of Balance">Denge Konseyi</h3><p data-tr="İmparatorluğun resmî dini Denge Konseyi öğretisi, Kaos ve Düzen tanrıları arasındaki denge ilkesine dayanır. Kaos tanrıları: Nazeth, Naldor, Garator, Lodvez, Vazmer, Zetus, Hardir. Düzen tanrıları: Gydor, Lidros, Lomera, Veleris, Brikon, Eanhar, Raxes. Tarafsız Galdra tüm inançların üzerindedir." data-en="The empire's official religion, the doctrine of the Council of Balance, rests on the principle of balance between the gods of Chaos and Order. Chaos gods: Nazeth, Naldor, Garator, Lodvez, Vazmer, Zetus, Hardir. Order gods: Gydor, Lidros, Lomera, Veleris, Brikon, Eanhar, Raxes. The neutral Galdra stands above all faiths.">İmparatorluğun resmî dini Denge Konseyi öğretisi, Kaos ve Düzen tanrıları arasındaki denge ilkesine dayanır. Kaos tanrıları: Nazeth, Naldor, Garator, Lodvez, Vazmer, Zetus, Hardir. Düzen tanrıları: Gydor, Lidros, Lomera, Veleris, Brikon, Eanhar, Raxes. Tarafsız Galdra tüm inançların üzerindedir.</p></div>
+      <div class="lc"><h3 data-tr="İlk Anne İnancı" data-en="The First Mother Faith">İlk Anne İnancı</h3><p data-tr="Yasak İlk Anne inancı yüzyıllar önce yasaklanmıştır. Üç Yapraklı Yonca sembolüyle tanınan bu inanç; madenlerde, ninnilerde ve gizli el yazmalarıyla yaşamaya devam eder." data-en="The forbidden First Mother faith was outlawed centuries ago. Known by the Three-Leafed Clover symbol, this faith survives in mines, lullabies and secret manuscripts.">Yasak İlk Anne inancı yüzyıllar önce yasaklanmıştır. Üç Yapraklı Yonca sembolüyle tanınan bu inanç; madenlerde, ninnilerde ve gizli el yazmalarıyla yaşamaya devam eder.</p></div>
+      <div class="lc"><h3 data-tr="Kutsal Kan Doktrini" data-en="The Holy Blood Doctrine">Kutsal Kan Doktrini</h3><p data-tr="Kurucu Craes Stallhart, esaretten döndükten sonra Stallhart soyunun ilahi kandan geldiğini ilan etti. Arathen Krallığı bu iddiayı küfür olarak reddeder." data-en="Founder Craes Stallhart, after returning from captivity, proclaimed that the Stallhart bloodline descended from divine blood. The Kingdom of Arathen rejects this claim as blasphemy.">Kurucu Craes Stallhart, esaretten döndükten sonra Stallhart soyunun ilahi kandan geldiğini ilan etti. Arathen Krallığı bu iddiayı küfür olarak reddeder.</p></div>
+    </div>
+    <!-- Sihir -->
+    <div class="tab-p" id="tab-sih">
+      <div class="lc"><h3 data-tr="Khaan" data-en="Khaan">Khaan</h3><p data-tr="En eski bilinen sihir biçimi. Ruhsal enerjiyi doğrudan bedenden çekerek güce dönüştürür; uygulayıcı ne kadar ileri giderse bedeni o kadar tükenir. Mutlak yasak." data-en="The oldest known form of magic. It draws spiritual energy directly from the body and converts it into power; the further a practitioner goes, the more their body is consumed. Absolutely forbidden.">En eski bilinen sihir biçimi. Ruhsal enerjiyi doğrudan bedenden çekerek güce dönüştürür; uygulayıcı ne kadar ileri giderse bedeni o kadar tükenir. Mutlak yasak.</p></div>
+      <div class="lc"><h3 data-tr="Loth İllüzyon Sihrî" data-en="Loth Illusion Magic">Loth İllüzyon Sihrî</h3><p data-tr="Algıyı ve gerçekliğin görünümünü manipüle eden Loth sihrî, yanılsama ve gizleme sanatıdır. En sık izlerde bulunan yasak sihir türüdür." data-en="Manipulating perception and the appearance of reality, Loth magic is the art of illusion and concealment. It is the most commonly traced form of forbidden magic.">Algıyı ve gerçekliğin görünümünü manipüle eden Loth sihrî, yanılsama ve gizleme sanatıdır. En sık izlerde bulunan yasak sihir türüdür.</p></div>
+      <div class="lc"><h3 data-tr="Gylian Kaos Sihrî" data-en="Gylian Chaos Magic">Gylian Kaos Sihrî</h3><p data-tr="Kaos tanrılarından ilham alan Gylian sihrî, yıkım güçlerine çağrı yapan en tehlikeli daldır. Denge Konseyi tarafından şeytani kabul edilir." data-en="Inspired by the Chaos gods, Gylian magic is the most dangerous branch, calling upon forces of destruction. It is considered demonic by the Council of Balance.">Kaos tanrılarından ilham alan Gylian sihrî, yıkım güçlerine çağrı yapan en tehlikeli daldır. Denge Konseyi tarafından şeytani kabul edilir.</p></div>
+      <div class="lc"><h3 data-tr="Yasağın Sebebi" data-en="The Reason for the Ban">Yasağın Sebebi</h3><p data-tr="Sihir hiyerarşik iktidarı tehdit eder. Doğuştan güçlü olan biri, soy veya toprak hakkı olmaksızın iktidar talep edebilir. Karabıçaklar bu yasağın yürütücüsüdür." data-en="Magic threatens hierarchical power. Someone born powerful could claim authority without lineage or land rights. The Black Claws enforce this ban.">Sihir hiyerarşik iktidarı tehdit eder. Doğuştan güçlü olan biri, soy veya toprak hakkı olmaksızın iktidar talep edebilir. Karabıçaklar bu yasağın yürütücüsüdür.</p></div>
+    </div>
+    <!-- Siyaset -->
+    <div class="tab-p" id="tab-siy">
+      <div class="lc"><h3 data-tr="Kuruluş &amp; Hanedan" data-en="Founding &amp; Dynasty">Kuruluş &amp; Hanedan</h3><p data-tr="Stallhart İmparatorluğu KS 1144'te kuruldu. Hanedan çöküşü Rones (demir disiplin) → Elron (pasiflik) → İmloth (çürüme) seyriyle açıklanır." data-en="The Stallhart Empire was founded in KS 1144. The dynasty's decline is explained through the arc of Rones (iron discipline) → Elron (passivity) → Imloth (rot).">Stallhart İmparatorluğu KS 1144'te kuruldu. Hanedan çöküşü Rones (demir disiplin) → Elron (pasiflik) → İmloth (çürüme) seyriyle açıklanır.</p></div>
+      <div class="lc"><h3 data-tr="Eyalet Valileri" data-en="Provincial Governors">Eyalet Valileri</h3><p data-tr="Her biri bir Melik, Vali ya da Kont tarafından yönetilen eyaletler, merkezi otorite zayıfladıkça fiilen yarı özerk hale gelir ve iç çatışmanın tohumunu eker." data-en="Each governed by a Governor King, a Governor or a Count, the provinces become effectively semi-autonomous as central authority weakens, sowing the seeds of internal conflict.">Her biri bir Melik, Vali ya da Kont tarafından yönetilen eyaletler, merkezi otorite zayıfladıkça fiilen yarı özerk hale gelir ve iç çatışmanın tohumunu eker.</p></div>
+      <div class="lc"><h3 data-tr="Yabancı Güçler" data-en="Foreign Powers">Yabancı Güçler</h3><p data-tr="Batıda Zelaina Elfin İmparatorluğu binyıllardan beri seçimle yönetilir. Doğuda Arathen Krallığı imparatorluğu içten çökertmeye kararlıdır. Garchar ise büyük güçlerin oyuncağına dönmüştür." data-en="To the west, the Zelaina Elven Empire has been ruled by election for millennia. To the east, the Kingdom of Arathen is determined to collapse the empire from within. Garchar, meanwhile, has become a plaything of the great powers.">Batıda Zelaina Elfin İmparatorluğu binyıllardan beri seçimle yönetilir. Doğuda Arathen Krallığı imparatorluğu içten çökertmeye kararlıdır. Garchar ise büyük güçlerin oyuncağına dönmüştür.</p></div>
+      <div class="lc"><h3 data-tr="Karabıçaklar" data-en="The Black Claws">Karabıçaklar</h3><p data-tr="Amadon Stallhart'ın kurduğu gizli polis. Muhalifleri, sihir kullanıcılarını ve yasak inanç mensuplarını takip eder. İmparatorluğun en korku salıcı kurumlarından biridir." data-en="The secret police founded by Amadon Stallhart. They track dissidents, magic users and members of forbidden faiths. One of the empire's most feared institutions.">Amadon Stallhart'ın kurduğu gizli polis. Muhalifleri, sihir kullanıcılarını ve yasak inanç mensuplarını takip eder. İmparatorluğun en korku salıcı kurumlarından biridir.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURED KARAKTERLER -->
+<section id="karakterler">
+  <div class="inn">
+    <div class="sec-h">
+      <h2 class="sec-t" id="chars-title">Öne Çıkan Karakterler</h2>
+      <p class="sec-s" id="chars-sub">Stallhart Destanı'nın kilit isimleri.</p>
+      <span class="rule"></span>
+    </div>
+    <div class="cg" id="featured-chars">
+      <!-- wiki.js ile JSON'dan yüklenir -->
+      <div style="color:var(--parchd); font-style:italic; font-size:.88rem;">Yükleniyor…</div>
+    </div>
+    <div class="chars-more">
+      <a href="karakterler.html" class="btn-o" id="chars-all-btn">Tüm Karakterler</a>
+    </div>
+  </div>
+</section>
+
+<!-- BÖLÜMLER ÖNİZLEME -->
+<section id="bolumler">
+  <div class="inn">
+    <div class="sec-h">
+      <h2 class="sec-t" id="chaps-title">Son Bölümler</h2>
+      <p class="sec-s" id="chaps-sub">Stallhart Destanı Cilt I — devam eden roman.</p>
+      <span class="rule"></span>
+    </div>
+    <div class="cl" id="featured-chapters">
+      <div style="padding:1.5rem 2rem; color:var(--parchd); font-style:italic; font-size:.88rem;">Yükleniyor…</div>
+    </div>
+    <div class="chapters-more">
+      <a href="bolumler.html" class="btn-o" id="chaps-all-btn">Tüm Bölümler</a>
+    </div>
+  </div>
+</section>
+
+<!-- HARİTA ÖNİZLEME -->
+<section id="harita">
+  <div class="inn">
+    <div class="sec-h">
+      <h2 class="sec-t" data-tr="İmparatorluk Haritası" data-en="Empire Map">İmparatorluk Haritası</h2>
+      <p class="sec-s" data-tr="Stallhart İmparatorluğu'nun siyasi haritası." data-en="Political map of the Stallhart Empire.">Stallhart İmparatorluğu'nun siyasi haritası.</p>
+      <span class="rule"></span>
+    </div>
+    <div class="map-w">
+      <picture><source type="image/webp" srcset="assets/images/SIYASI_HARITA_onizleme.webp">
+      <img src="assets/images/SIYASI_HARITA_onizleme.jpg" width="1800" height="1325"
+           loading="lazy" decoding="async"
+           alt="Stallhart İmparatorluğu Haritası" id="map-preview" data-tr="Stallhart İmparatorluğu Haritası" data-en="Map of the Stallhart Empire" data-i18n-attr="alt"
+           onerror="var s=this.previousElementSibling;if(s&&s.tagName==='SOURCE'){s.remove();this.src=this.getAttribute('src');}else{var w=this.closest('.map-w');if(w)w.innerHTML='&lt;p style=&quot;padding:3rem;text-align:center;color:var(--parchd);font-style:italic&quot;&gt;Harita görseli bulunamadı.&lt;/p&gt;';}"></picture>
+    </div>
+    <div class="map-btn-wrap">
+      <a href="harita.html" class="btn-o" data-tr="İnteraktif Haritayı Aç" data-en="Open Interactive Map">İnteraktif Haritayı Aç</a>
+    </div>
+  </div>
+</section>
+
+<!-- SSS -->
+<section id="sss">
+  <div class="inn">
+    <div class="sec-h">
+      <h2 class="sec-t" id="fq-title">Sıkça Sorulan Sorular</h2>
+      <p class="sec-s" id="fq-sub">Evren hakkında en çok merak edilenler.</p>
+      <span class="rule"></span>
+    </div>
+    <div class="faq">
+      <div class="fi">
+        <div class="fq"><span data-tr="Stallhart Destanı ne tür bir hikâye?" data-en="What kind of story is the Stallhart Saga?">Stallhart Destanı ne tür bir hikâye?</span>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </div>
+        <div class="fb2"><p data-tr="Bir imparatorluğun çöküşünü üç kuşaktan anlatan Türkçe dark fantasy destanıdır. George R.R. Martin'in etkisiyle şekillenmiş; saray entrikası, askerî çatışma, dinî siyaset ve karakter odaklı trajedileri bir arada barındıran çok ciltlik bir roman projesinin ilk kitabıdır." data-en="It is a Turkish-language dark fantasy saga telling the fall of an empire across three generations. Shaped by the influence of George R.R. Martin, it is the first book of a multi-volume novel project blending court intrigue, military conflict, religious politics and character-driven tragedy.">Bir imparatorluğun çöküşünü üç kuşaktan anlatan Türkçe dark fantasy destanıdır. George R.R. Martin'in etkisiyle şekillenmiş; saray entrikası, askerî çatışma, dinî siyaset ve karakter odaklı trajedileri bir arada barındıran çok ciltlik bir roman projesinin ilk kitabıdır.</p></div>
+      </div>
+      <div class="fi">
+        <div class="fq"><span data-tr="İmparatorlukta sihir neden yasak?" data-en="Why is magic forbidden in the empire?">İmparatorlukta sihir neden yasak?</span>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </div>
+        <div class="fb2"><p data-tr="Sihir hiyerarşik iktidarı tehdit eder. Doğuştan güçlü olan biri, soy veya toprak hakkı olmaksızın iktidar talep edebilir. Khaan, Loth ve Gylian olmak üzere üç sihir okulu vardır; hepsi kesinlikle yasaklanmıştır. Karabıçaklar yasağın yürütücüsüdür." data-en="Magic threatens hierarchical power. Someone born powerful could claim authority without lineage or land rights. There are three schools of magic — Khaan, Loth and Gylian — all strictly forbidden. The Black Claws enforce this ban.">Sihir hiyerarşik iktidarı tehdit eder. Doğuştan güçlü olan biri, soy veya toprak hakkı olmaksızın iktidar talep edebilir. Khaan, Loth ve Gylian olmak üzere üç sihir okulu vardır; hepsi kesinlikle yasaklanmıştır. Karabıçaklar yasağın yürütücüsüdür.</p></div>
+      </div>
+      <div class="fi">
+        <div class="fq"><span data-tr="İlk Anne inancı nedir ve neden tehlikeli?" data-en="What is the First Mother faith, and why is it dangerous?">İlk Anne inancı nedir ve neden tehlikeli?</span>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </div>
+        <div class="fb2"><p data-tr="İmparatorluktan önceki kadim bir inanç sistemidir. Üç Yapraklı Yonca sembolüyle tanınır. İnananlara göre hiçbir insan diğerinden daha kutsal değildir — bu fikir Stallhart'ın Kutsal Kan Doktriniyle doğrudan çatışır." data-en="It is an ancient belief system predating the empire, recognized by the Three-Leafed Clover symbol. Believers hold that no person is more sacred than another — an idea that directly conflicts with Stallhart's Holy Blood Doctrine.">İmparatorluktan önceki kadim bir inanç sistemidir. Üç Yapraklı Yonca sembolüyle tanınır. İnananlara göre hiçbir insan diğerinden daha kutsal değildir — bu fikir Stallhart'ın Kutsal Kan Doktriniyle doğrudan çatışır.</p></div>
+      </div>
+      <div class="fi">
+        <div class="fq"><span data-tr="Zeandor nasıl imparator oldu?" data-en="How did Zeandor become emperor?">Zeandor nasıl imparator oldu?</span>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </div>
+        <div class="fb2"><p data-tr="Amadon'un ölüm döşeğinde yazdığı mühürlü fermanlar Zeandor'u halef belirledi. Ancak bu yükseliş Erthan'ın isyanını bastırmasıyla mümkün oldu. İronik olan şu: Erthan'ın isyanı hem Amadon ve Edun Solgar'ın meşruiyetini yerle bir etti hem de Zeandor'un tahta çıkış zeminini hazırladı." data-en="Amadon's sealed decrees, written on his deathbed, named Zeandor as heir. But this rise was only possible through his suppression of Erthan's rebellion. Ironically, Erthan's rebellion both shattered Amadon and Edun Solgar's legitimacy and paved the ground for Zeandor's ascent to the throne.">Amadon'un ölüm döşeğinde yazdığı mühürlü fermanlar Zeandor'u halef belirledi. Ancak bu yükseliş Erthan'ın isyanını bastırmasıyla mümkün oldu. İronik olan şu: Erthan'ın isyanı hem Amadon ve Edun Solgar'ın meşruiyetini yerle bir etti hem de Zeandor'un tahta çıkış zeminini hazırladı.</p></div>
+      </div>
+      <div class="fi">
+        <div class="fq"><span data-tr="Arathen neden Stallhart'a karşı?" data-en="Why is Arathen against Stallhart?">Arathen neden Stallhart'a karşı?</span>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </div>
+        <div class="fb2"><p data-tr="Arathen, Stallhart'ın Kutsal Kan Doktrini'ni küfür olarak reddeder. Kral Leno Kridas sabırlı ve hesaplı; yıllar içinde istihbarat, suikast ve sihirle güçlendirilmiş savaş topu geliştirme yoluyla imparatorluğu içten çökertmeyi planlar." data-en="Arathen rejects Stallhart's Holy Blood Doctrine as blasphemy. King Leno Kridas is patient and calculating; over the years he plans to collapse the empire from within through espionage, assassination and the development of magic-enhanced siege cannons.">Arathen, Stallhart'ın Kutsal Kan Doktrini'ni küfür olarak reddeder. Kral Leno Kridas sabırlı ve hesaplı; yıllar içinde istihbarat, suikast ve sihirle güçlendirilmiş savaş topu geliştirme yoluyla imparatorluğu içten çökertmeyi planlar.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- wiki.js -->
+<script src="assets/js/config.js?v=3.0"></script>
+<script src="assets/js/patches.js?v=3.0"></script>
+<script src="assets/js/wiki.js?v=3.0"></script>
+<script src="assets/js/community.js?v=3.0"></script>
+<script>
+const { Lang, loadData, initWiki, groupClass, esc } = Wiki;
+
+/* Wiki'yi başlat — nav, arama, altbilgi ve dil düğmesi burada kuruluyor */
+initWiki({ onLangChange: () => { applyStaticLang(Lang.get()); renderFeatured(); } });
+
+/* Logo ve harita önizlemesi: WebP → orijinal → metin/uyarı düşüşü, <img>'in
+   satır-içi onerror'unda yapılır (betik yüklenmeden gelen hataları da yakalar). */
+
+/* Tab sistemi */
+(function() {
+  const tabs = ['cog','din','sih','siy'];
+  tabs.forEach((id, i) => {
+    document.getElementById('tb-' + id).addEventListener('click', function() {
+      document.querySelectorAll('.tab-b').forEach(b => b.classList.remove('on'));
+      document.querySelectorAll('.tab-p').forEach(p => p.classList.remove('on'));
+      this.classList.add('on');
+      document.getElementById('tab-' + id).classList.add('on');
+    });
+  });
+})();
+
+/* Sabit metinlerin dil karşılıkları */
+const STATIC_TEXT = {
+  'hero-eye':   { tr: 'Stallhart Destanı · Cilt I', en: 'The Stallhart Saga · Vol. I' },
+  'cta1':       { tr: 'Bölümleri Oku', en: 'Read the Chapters' },
+  'cta2':       { tr: 'Karakterler', en: 'Characters' },
+  'ev-title':   { tr: 'Evren', en: 'The World' },
+  'ev-sub':     { tr: 'Stallhart İmparatorluğu\'nun tarihi, coğrafyası, inançları ve yasaları.',
+                  en: 'History, geography, faiths and laws of the Stallhart Empire.' },
+  'fq-title':   { tr: 'Sıkça Sorulan Sorular', en: 'Frequently Asked Questions' },
+  'fq-sub':     { tr: 'Evren hakkında en çok merak edilenler.', en: 'The most common questions about the world.' }
+};
+function applyStaticLang(l) {
+  document.documentElement.lang = l;
+  Object.keys(STATIC_TEXT).forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.textContent = STATIC_TEXT[id][l];
+  });
+  document.title = l === 'tr' ? 'The Stallhart Saga' : 'The Stallhart Saga';
+  const desc = l === 'tr'
+    ? 'Stallhart Destanı — Son İmparator, Türkçe dark fantasy epik roman'
+    : 'The Stallhart Saga — The Last Emperor, a dark fantasy epic';
+  const md = document.querySelector('meta[name="description"]'); if (md) md.setAttribute('content', desc);
+  const ogd = document.querySelector('meta[property="og:description"]'); if (ogd) ogd.setAttribute('content', desc);
+  const ogl = document.querySelector('meta[property="og:locale"]'); if (ogl) ogl.setAttribute('content', l === 'tr' ? 'tr_TR' : 'en_US');
+}
+
+/* Öne çıkan karakterler — JSON'dan ilk 6 protagonist */
+const FEATURED_IDS = ['zeandor','amadon','erthan','edlas','celios','leno-kridas'];
+
+async function renderFeatured() {
+  const l = Lang.get();
+  const t = obj => Lang.t(obj);
+
+  /* Başlıklar */
+  document.getElementById('chars-title').textContent  = l === 'tr' ? 'Öne Çıkan Karakterler' : 'Featured Characters';
+  document.getElementById('chars-sub').textContent    = l === 'tr' ? 'Stallhart Destanı\'nın kilit isimleri.' : 'The key figures of the Stallhart Saga.';
+  document.getElementById('chaps-title').textContent  = l === 'tr' ? 'Son Bölümler' : 'Latest Chapters';
+  document.getElementById('chaps-sub').textContent    = l === 'tr' ? 'Stallhart Destanı Cilt I — devam eden roman.' : 'The Stallhart Saga Vol. I — ongoing novel.';
+  document.getElementById('chars-all-btn').textContent = l === 'tr' ? 'Tüm Karakterler →' : 'All Characters →';
+  document.getElementById('chaps-all-btn').textContent = l === 'tr' ? 'Tüm Bölümler →' : 'All Chapters →';
+
+  try {
+    /* Karakterler */
+    const cData = await loadData('characters.json');
+    const featured = cData.characters.filter(c => FEATURED_IDS.includes(c.id));
+    const sortOrder = FEATURED_IDS.reduce((a,id,i) => (a[id]=i, a), {});
+    featured.sort((a,b) => (sortOrder[a.id]||0) - (sortOrder[b.id]||0));
+
+    document.getElementById('featured-chars').innerHTML = featured.map(c => `
+      <a class="cc ${groupClass(c.group)}" href="${SWRoute.href('karakter', c.id)}">
+        <div class="cc-dot ${c.status}"></div>
+        <p class="cc-house">${esc(t(c.house))}</p>
+        <h3 class="cc-name">${esc(t(c.name))}</h3>
+        <p class="cc-role">${esc(t(c.title))}</p>
+        <p class="cc-desc">${esc(t(c.bio).substring(0,120))}…</p>
+        ${t(c.epi) ? `<span class="cc-epi">${esc(t(c.epi))}</span>` : ''}
+      </a>
+    `).join('');
+
+    /* Bölümler — ilk 4 */
+    const bData = await loadData('chapters.json');
+    const first4 = bData.chapters.slice(0, 4);
+    document.getElementById('featured-chapters').innerHTML = first4.map(ch => `
+      <div class="ci${!ch.free ? ' dim' : ''}" id="bolum-${ch.id}">
+        <div class="ci-v">${esc(Lang.eraTag(ch.ks))}</div>
+        <div>
+          <div class="ci-n">${esc(ch.num)}. ${esc(t(ch.title))}${!ch.free ? ' <span style="font-size:.7rem;color:var(--goldd);font-style:italic">(kilitli)</span>' : ''}</div>
+          <div class="ci-d">${esc(t(ch.synopsis).substring(0,140))}…</div>
+        </div>
+        <div class="ci-p">${esc(t(ch.pov))}</div>
+      </div>
+    `).join('');
+
+    Wiki.Tooltip.scan(document.getElementById('featured-chars'));
+    Wiki.Tooltip.scan(document.getElementById('featured-chapters'));
+  } catch(e) {
+    console.error('Veri yüklenemedi:', e);
+    Wiki.renderError('featured-chars', e);
+    document.getElementById('featured-chapters').innerHTML = '';
+  }
+}
+
+applyStaticLang(Lang.get());
+renderFeatured();
+</script>
+</body>
+</html>

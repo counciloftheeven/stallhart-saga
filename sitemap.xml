@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Stallhart Wiki — sitemap.xml
+  NOT: <loc> adresleri göreli değil, mutlak olmalıdır (arama motorları
+  göreli sitemap adreslerini kabul etmez). Site adresi belli olunca
+  aşağıdaki BASE_URL yerine gerçek adresi yazıp bu dosyayı yayınlayın
+  (örn. https://kullanici-adi.github.io/depo-adi/).
+-->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>BASE_URL/</loc><priority>1.0</priority></url>
+  <url><loc>BASE_URL/oku.html</loc><priority>0.9</priority></url>
+  <url><loc>BASE_URL/bolumler.html</loc><priority>0.8</priority></url>
+  <url><loc>BASE_URL/karakterler.html</loc><priority>0.8</priority></url>
+  <url><loc>BASE_URL/karakter-sablon.html</loc><priority>0.6</priority></url>
+  <url><loc>BASE_URL/haneler.html</loc><priority>0.8</priority></url>
+  <url><loc>BASE_URL/hane-detay.html</loc><priority>0.6</priority></url>
+  <url><loc>BASE_URL/krallik-detay.html</loc><priority>0.6</priority></url>
+  <url><loc>BASE_URL/tanrilar.html</loc><priority>0.7</priority></url>
+  <url><loc>BASE_URL/tanri-detay.html</loc><priority>0.5</priority></url>
+  <url><loc>BASE_URL/harita.html</loc><priority>0.7</priority></url>
+  <url><loc>BASE_URL/soy-agaci.html</loc><priority>0.6</priority></url>
+  <url><loc>BASE_URL/lore.html</loc><priority>0.7</priority></url>
+  <url><loc>BASE_URL/sozler.html</loc><priority>0.6</priority></url>
+  <url><loc>BASE_URL/forum.html</loc><priority>0.6</priority></url>
+  <url><loc>BASE_URL/forum-kategori.html</loc><priority>0.4</priority></url>
+  <url><loc>BASE_URL/forum-konu.html</loc><priority>0.4</priority></url>
+</urlset>

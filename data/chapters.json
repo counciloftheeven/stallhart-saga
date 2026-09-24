@@ -1,0 +1,335 @@
+{
+  "arcs": [
+    {
+      "id": 1,
+      "name": {
+        "tr": "Çöküş",
+        "en": "The Fall"
+      }
+    },
+    {
+      "id": 2,
+      "name": {
+        "tr": "Yükseliş",
+        "en": "The Rise"
+      }
+    }
+  ],
+  "chapters": [
+    {
+      "id": 1,
+      "arc": 1,
+      "free": true,
+      "num": "I",
+      "ks": "KS 1481 Öncesi",
+      "title": {
+        "tr": "Çamur",
+        "en": "Mud"
+      },
+      "pov": {
+        "tr": "Aertas Sınglew · Ellan · İmparator Imloth · Erthan",
+        "en": "Aertas Sınglew · Ellan · Emperor Imloth · Erthan"
+      },
+      "synopsis": {
+        "tr": "Güneşin varlığı hissedilse de solgun ışığı bulutların ardında kayboluyordu. İnce ince ama ısrarla yağan yağmur, toprağı kesif ve yapışkan bir balçığa dönüştürmüş, yolları geçilmez kılmıştı. Ufuk çizgisi, yoğun sisin ve yağmur perdesinin ardında silinmiş, eski kaya yollar çukur ve derin tekerlek izleriyle delik deşik olmuştu. Çevredeki ağaçlar, ıslak ve çıplak dallarını birbirine çarparken, rüzgâr onları uğursuz bir fısıltıyla sarsıyordu. İmparatorluğun iç bölgelerinden doğuya uzanan bu yol, bir zamanlar ticaretin kalbi olsa da artık bir bataklıktan farksızdı.\nKonvoy, balçığa bata çıka ilerliyordu. Atların nal sesleri boğuk ve derinden geliyordu; arabaların tekerlekleri, her çukura saplandığında devrilme tehlikesiyle sarsılıyordu. Aniden bir arabanın tekerleği, suyla dolu bir çukura gömüldü ve orada kaldı. Arabacılardan biri küfürler savurup dizginleri gererken, iki hafif zırhlı muhafız hemen yardıma koştu. Biri omuz vererek tekerleği yerinden oynatmaya çalışırken, diğeri paslı bir manivela ile arabayı kaldırmak için uğraştı. Yağmur, pusa ve demir plakaların üzerinde cılız bir melodi çalıyor, nefesler buğulu havada görünmez lanetler gibi dans ediyordu. Her başarısız deneme, insanların sabrını biraz daha törpülüyor, umutlarının altındaki inatçı çamur kadar baskınlaştırıyordu. Sonunda atlar bir kez daha komutla gerildi; tekerlek inatla bir an durdu, sonra sarsılarak balçıktan sıyrıldı. Araba, sanki ruhu boşaltılmış bir yaratık gibi, hantal adımlarla yoluna devam etti.\nKonvoyun önünde ilerleyen muhafızlar, loşluklar içinde kaybolan koyu pelerinlerini omuzlarına sımsıkı dolamış, elleri tetikteydi. Kılıçlarının kabzaları, gri ışıkta donuk bir tehdit gibi parlıyordu. Sessizlikleri, sıradan bir disiplinin değil, içlerinde taşıdıkları korkunun ve hazır bekleyen şiddetin göstergesiydi. Gözleri sürekli çevrede gezinirken, dudakları mühürlü kalıyordu — çünkü bu yol, yalnızca fiziki tehlikelerle değil, görünmeyen şeylerle de doluydu.\nKonvoyun merkezinde, kasvetin tam ortasında, görkemli bir kapalı araba ilerliyordu. Gövdesi koyu şarap kırmızısına boyanmış, üzerindeki altın işlemeler, kararan hava altında bile parlıyordu. Arabanın yan yüzünde, imparatorluğun amblemi işlenmişti: kalkan biçimindeki arma, eğilmez bir mirasın soğuk ama ihtişamlı ifadesi.\nAmblemin ortasında, dört eşit parçaya bölünmüş bir desen vardı. Sol üst ve sağ alt köşeler zifiri karartılara bürünmüştü; öyle bir siyahlık ki, içine bakan gözler kendi yansımasını bile kaybedebilirdi. Sağ üst ve sol alt köşelerse saf beyazla bezenmişti — ama bu saflık, içinden taşan bir aydınlıktan değil, ölüler diyarının soğuk mermerlerinden gelen bir donukluktan ibaretti. Merkezde ise aynı desenin küçük bir yankısı duruyordu; sanki karşıtlık bir denge değil, köklü bir öğretiydi — zifir ile aydınlık, doğumla ölüm, umutla çürüme arasında durmaksızın savrulan sonsuz bir sarkaç.\nKalkanın tepesindeki altın taç, Tanrıların değil, tanrılaşmış kağanların simgesiydi; egemenlik yalnızca kılıçla değil, zamanla da mühürlenmişti. Yanlarını saran sarmaşık motifleri, hanedanın köklü geçmişini fısılduyor; altın yeşiline çalan o yapraklar, yüzyıllar öncesinden kalan bir ağacın hâlâ yeşerdiğini, ama meyvesinin artık zehirle dolu olduğunu haber veriyordu.\nÖrebas Elçisi, ince ve uzun bedenini koyu lacivert kaftanının içinde dimdik tutuyordu; o duruşta asaletle birlikte, çatışmalarla örülmüş bir hayatın yükü vardı. Kaftanın üzerine işlenmiş altın desenler, bir zamanlar parlaklıklarıyla göz alan süslemelerken, şimdi yolun çamuruna ve yağmurun acımasızlığına boyun eğmiş, yıpranmış ve solmuşlardı. Yine de üzerindeki ihtişam, Ellan Bey’in kim olduğunu ve kim olmadığını yüksek sesle haykırıyordu. \nElçi Ellan’ın uzun parmakları, ellerinin arasında kenetlenmişti; zarif ama kemikli yapısı, tıpkı onun düşüncelerinde olduğu gibi bir gerilim taşıyordu. Gözleri dışarıda, camın ötesinde kaybolmuş gibiydi — bir yandan sisle örtülmüş manzarayı izliyor, diğer yandan kendi zihninin zifiri koridorlarında yankılanan düşüncelerle savaşıyordu. \nYüzü, görkemli ve soğuk bir maskeyi andırıyordu. Geniş alın çizgileri, onu gençliğin ötesine taşıyan bir bilgelik değil, muazzam sorumlulukların bıraktığı izler gibiydi. Yüz hatları, özellikle de kemerli burnu ve belirgin elmacık kemikleri, arabaya sinmiş loşluklar arasında heykelsi bir sertlik kazanıyordu. Gözleri koyuydu; derinliklerinde, konuşulmamış yeminler ve bir zamanlar verilmiş ama unutulmamış kararlar titreşiyordu. Dudakları inceydi ve belli belirsiz bir gerginlikle kapanmıştı — ne dua eder gibiydi, ne de lanet okur gibi; sanki iki uç arasında sıkışmıştı. \nBoynundaki zincir kolyeler, sıradan bir süs olmaktan çok uzak, sanki bir inancın ya da eski bir bağlılığın sembolüydü. Metalin soğukluğu, tenine her dokunuşta geçmişin yükünü hatırlatıyor gibiydi. Giydiği koyu bordo iç cübbe, dış kaftanın altında koyu bir kan gibi süzülüyor, varlığıyla bir soylu rahibin mi, yoksa bir mahkûm kralın mı önümüzde oturduğunu sorgulatıyordu. Örebas Krallığı, yüzyıllardır ayakta duran bir güçtü. Kıtanın büyük bankaları burada toplanmış, altın rezervleri yüzyıllar boyunca burada birikerek yalnızca kendi ekonomisini değil, diğer krallıkların ticaretini de kontrol eder hale gelmişti. İmparatorluk bile, bu zenginliğin farkında olarak Örebas ile ilişkilerini dikkatle yürütüyordu. Ancak şimdi, imparatorlukta esen soğuk rüzgârlar, eski müttefikleri bile temkinli olmaya zorluyordu. \nElçinin karşısında oturan kişi, İmparatorluk sınır muhafızları komutanlarından Aertas Sınglew’di. İmparatorluğun doğu sınır muhafızlarının başkomutanı olan Aertas, heybetli varlığıyla loşluğu delip geçiyordu. Kafası tıraşlıydı; pürüzsüz, ama yara izleriyle bezeli derisi, meşum bir geçmişin sessiz tanıklığını taşıyordu. Çene hattı sert, elmacık kemikleri belirgindi ve gözleri... Gözleri, sönmemiş bir savaşın külleriyle doluydu; delici bir mavi değil, derin bir kurşuni karaltıydı o bakışlar — duvarların bile kaçındığı bir leke. Kaşlarının arasındaki kırışıklık, yıllarca süren tetikte bekleyişin ve gecikmiş uykuların iziydi. Dudaklarının kenarında, ne tam bir öfke ne de acı vardı; yalnızca sessiz bir kabulleniş, savaşın doğurdu her biri fırtına görmüş hatların taşıdığı soğuk bilgelik. \nÜzerindeki zırh, sanki demir değil de loşluktan dövülmüştü. Üzerine geçirdiği kalın pelerin, kabartma desenli derin siyahlıkla işlenmiş, omuzlarında zincirle sabitlenmişti. Boynunda asılı duran kalın demir zincir, ortasında antik bir mühür taşıyordu — pasla karışık bir kudretin simgesi. Zırhı çizik içindeydi ama hiçbiri onu zayıf göstermiyordu; aksine, her çizik Aertas’ın hayatta kalmışlığını, her darbe onun daha da sertleşmiş oluşunu anlatıyordu.\nSınır muhafızları, İmparatorluğun sınırlarını korumaktan sorumluydu. Aertas ise İmparatorluğun tüm doğu sınırının başkomutanıydı. İmparatorluğun doğu sınırı; komşusu ve en eski düşmanı Arathen Krallığı’nın bulunduğu yerdi. Arathen ve İmparatorluk, yüzyıllardır süregelen savaşlarla birbirlerine kinle bağlanmışlardı. Her barış anlaşması, eninde sonunda ihlal edilmiş, her ateşkes, yeni bir savaşın habercisi olmuştu. Doğu sınırındaki bu hiç bitmeyen kan davası, her sınır muhafızına derin bir savaşçılık mirası bırakmıştı. \nAertas, elçiyi uzun süre inceledikten sonra nihayet sessizliği böldü. Sesi, yıllarca emekle sertleşmiş bir duvar ustasının çekici kadar vakur ve ölçülüydü:\n\"Böyle bir havada yola revan olmak, elçim, ancak aciliyeti olanların yazgısıdır. Dilerim bu zorlu yolculuk, zahmetinize değer.\" \nEllan, kısa bir süre sessiz kaldı, gözleri hâlâ dışarıda, yağmurun is rengi perdelerinde kaybolmuştu. Sonra, yüzüne zorlama bir tebessüm yerleştirerek başını çevirdi:\n\"Elçilerin yazgısı da budur, Komutan Aertas. Havanın insafına kalmış yolculuklar ve bilinmeze giden yollar...\"\n\"Pek endişeli görünüyorsunuz, Ellan Bey,\" dedi komutan; bu sefer sesi kalın ve tok çıkmıştı. \"Şayet imparatorluk yollarına aşina değilseniz, bu ıssızlık gözünüzü korkutabilir. Lakin müsterih olun, huzura varana dek canınız bana emanettir.\"\nElçi başını hafifçe çevirdi, yüzündeki zorlama gülümseme tekrar belirdi. \"Örebas’ta yollar daha kuru ve rüzgâr daha yumuşak,\" dedi kısık bir sesle. \"Lakin benim endişem yolun çilesi değil. İmparatorunuzun sert mizaçlı biri olduğunu işittim. Bugün getirdiğim haberlerin, Yüce Kağan tarafından nasıl karşılanacağı meçhul.\"\nAertas başını eğerek hafifçe iç çekti. \"İmparator Imloth, büyük bir fatihin torunu olabilir ama siyasetten anladığı söylenemez.\" Sesi neredeyse fısıltı düzeyindeydi. \"Ancak, bir imparatorluk sadece bir adamın bilgeliğiyle değil, gelenekleriyle ve onun etrafındaki konseyle ayakta kalır. Sarayda layıkıyla ağırlanacağınızdan hiç şüphem yok.\" \nBir an sessizlik oldu, ardından Ellan dikkatle sordu: \"İmparatoriçe nasıl? Söylentilere göre hamilelik süreci gayet olumlu ilerliyormuş.\" \nKomutan Aertas başını salladı. \"Evet, imparatoriçenin doğumuna az kaldı. Saray, yeni veliahtin gelişiyle çalkalanıyor. Taht yıllardır bir veliaht bekliyordu.\" \nElçi başını salladı. \"Düzenin sağlanması için bir veliahtin olması her zaman önemlidir. Fakat duyduğuma göre Arathen Krallığı huzursuzluk çıkarmaya başladı. İmparatorluk, eski gücünden uzak olmalı ki, onlar da sınırlarını genişletme cesareti buluyor.\" \nAertas gözlerini daralttı. \"Arathen Krallığı, uzun zamandır gözetimimiz altında. Ancak dediğiniz gibi, İmparatorluk eski kudretinden uzakta. Yüz yıl önceki gibi tek bir emirle orduları harekete geçirecek güce sahip değiliz. Gerçi şu an diyardaki hiçbir krallık böyle bir durumda değil. Ama bu, onların bizi hafife alabileceği anlamına da gelmez.\" \nBu sırada durmuş konvoy tekrar hareket etmeye başladı. İki adam da pencereden bir anlığına dışarı baktılar. Ardından Elçi Ellan dikkatle sordu: \"Taht bir veliaht istiyor dediniz, yanlış mı anladım?\"\nAertas kafa salladı. \"Doğru duydunuz. Bildiğiniz gibi imparatoriçemiz yakın bir zamanda doğum yapacak. Eğer bir erkek evlat doğarsa, İmparator Kağan, oğlunun veliaht olmasını istiyor.\" \nEllan kaşlarını çattı. \"Lakin bildiğim kadarıyla imparatorun genç ve başarılı bir kardeşi var. Melik olarak yakın zamanda bizzat isyanları bastırması için görevlendirilmişti.\" \nAertas derin bir nefes aldı, sonra gözlerini elçiye dikerek konuştu: \"Haklısınız. Ama İmparator için Prens Amadon bir varis değil, bir tehdittir.\" \nElçi dikkat kesildi. Aertas devam etti: \"Her yönetici kendi oğlunun tahta geçmesini ister. Ancak Prens Amadon halkın gözünde bir kahraman, özellikle de askerlerin ve soyluların birçoğu onu destekliyor. Eğer İmparator Kağan bir erkek varis sahibi olmazsa, Amadon’un tahta çıkmasını isteyenlerin sesi daha da yükselecek.\" \nEllan başını sallayarak düşüncelere daldı. \"Yani Prens Amadon’u bu taht oyunundan çıkaracak tek şey, doğrudan imparatorun kanından gelen bir erkek veliaht…\"\nAertas sertçe başını eğdi. \"Aynen öyle. İmparatoriçenin doğumu bu yüzden yazgı tayin edicidir. Eğer bir oğul dünyaya gelirse, Prens Amadon’un şansı büyük ölçüde azalır. Yoksa... İmparatorluk zaten zor bir süreçteyken, bir iç savaşın eşiğine sürüklenebilir.\"\nYağmurun ritmik sesi, at arabasının tahtalarına vurmaya devam ederken, konvoy başkente doğru ilerliyordu. Havanın nemi, deri zırhların üzerine ince bir sis gibi çökmüş, toprak yolun kokusu ıslak yapraklarla karışmıştı. Yolculuğun sonu yaklaşırken, tahtın geleceği de loşluklar arasından yavaş yavaş şekilleniyordu.\nElçi, sessizliği ilk bozan taraf oldu. Sesinde, bir komutanın bu kadar açık sözlü olmasına yönelik hafif bir alay gizliydi. \"Bu kıymetli bilgileri benim gibi bir yabancıyla neden paylaşıyorsunuz, komutan?\"\nAertas, bu doğrudan soruyu bekliyormuş gibi hafif bir sırıtışla başını iki yana salladı. Cevap vermek yerine, elçinin blöfünü gördü.\n\"Kıymetli bilgiler mi, Elçi Ellan? Ben yalnızca yolculuğun bariz zorluklarından ve herkesin bildiği saray heyecanından bahsettim.\" Duraksadı, gözlerini elçinin üzerine dikti. \"Asıl kıymetli bilgilere sahip olan sizsiniz gibi görünüyor. Örebas Kralı’nın da bu meseleleri yakından takip ettiğini ve müttefik arayışında olduğunu herkesin bildiği malumdur.\"\nElçi, Aertas'ın yemi yutmadığını, aksine karşı bir hamle yaptığını fark etti. Gözlerinde belirgin bir zekânın parıltısı belirdi. Kurnaz bir tilki gibi başını yana eğdi. Madem komutan \"fısıltıları\" kabul ediyordu, o da oyunu bir adım ileri taşıyacaktı.\n\"Her krallık müttefik arar, komutan. Tıpkı her askerin güçlü bir lider araması gibi.\" Sesi, tatlı bir zehir misali sinsice akıyordu. \"Ve duyduğumuz fısıltılar, imparatorluğunun sınırlarının başıboş olmasından çok, bizzat tahtın ardındaki zayıflıkla ilgili. Askeri kanadın bu durumdan rahatsız olduğunu duymak... şaşırtıcı değil.\"\nAertas’ın gözleri kısıldı. Elçi, ordunun huzursuz olduğunu açıkça ima etmişti. Komutan, Prens Amadon'u destekliyordu ve bu, aradığı fırsattı. Elçinin ne kadar ileri gidebileceğini test etmeliydi. \n\"Bizim için yalnızca imparatorluğun bütünlüğü önemlidir, Sayın Ellan. Güçlü bir bütünlük.\" 'Güçlü' kelimesini bastırarak söyledi. \"Sarayda yankılanan fısıltılar... diyelim ki 'alternatif' bir gelecekten bahsediyorsa... Örebas'ın zenginliğinin bu 'alternatif' geleceği ne kadar ciddiyetle destekleyeceğini merak ederiz doğrusu.\"\nArabadaki hava, bir anda soğuk bir bıçağın sırtına dönüşmüştü. Aertas, blöf görerek rest çekmişti. Bu artık bir istihbarat toplama gezisi değil, bir ittifak ve rıza sınamasıydı.\nElçi, bu askerin oyunun kurallarını bildiğini ve açıkları yakalamakta usta olduğunu anladı. Komutan saf değildi; bir piyon değil, oyuncuydu. Ellan, bu tehlikeli oyundan hemen çıkmalı ve konuyu tekrar güvenli bir alana çekmeliydi.\n\"Sizin için derken, askeri kanattan mı bahsediyorsunuz?\" diye sordu, kaşlarını hafifçe kaldırarak. Konuyu Aertas’ın üzerine yıkmaya çalıştı. \"Eğer öyleyse, şimdiden namı herkes tarafından bilinen Prens Amadon'un tahta çıkması sizin için daha kıymetli değil midir?\"\nAertas, elçinin doğrudan sorusundan nasıl kaçındığını fark etti. Örebas, henüz kartlarını açmaya niyetli değildi. O halde, komutan da kendi kapılarını kapatmalıydı.\nOturduğu koltuktan hafifçe geriye yaslandı. Derin bir nefes alarak başını hafifçe eğdi, gözlerini elçiden bir an olsun ayırmadan konuştu.\n\"Sayın Elçi, siz benim sadakatimi sorguluyorsunuz,\" dedi, sesine kararlı bir ton katarak. \"Lakin imparatorluk askerleri yüzyıllardır imparatorlarına sadık kalmışlardır. Prens Amadon bir kahramandır, evet. Ama İmparator Imloth bizim imparatorumuzdur. Örebas Kralı'nın 'müttefik arayışının' bu sadakati sınamaya kalkışması... akıllıca olmaz.\" \nSözleri bittiğinde arabada kısa bir sessizlik oluştu. Elçi, bu konuşmadan kendisi için bir pay çıkarmaya çalıştı ancak Aertas’ın temkinli tavrı ve üstü kapalı tehdidi her ihtimali kapatıyordu. Bilgi alamamış, üstüne bir de kendini tehlikeli bir pozisyona sokmuştu. İçinde, planlarının suya düştüğüne dair belirgin bir his belirdi. Artık bu muhabbetin devam etmeyeceğini ve etse bile ona yararlı hiçbir bilginin gelmeyeceğini anlamıştı.\nYüzüne yapmacık bir tebessüm yerleştirerek koltuğundan doğruldu, hafifçe başını eğdi.\n\"İzninizle,\" dedi, sesi nazik ama içinde hafif bir hüsran barındırıyordu. \"Yol beni çok yordu. Biraz uyumak isterim. İmparatorluk sarayına yorgun çıkmak hiç akıllıca olmaz. Diğer arabaya geçerek biraz istirahat etmek isterim.\"\nAertas, elçinin bu bahane ile konuşmayı bitirmek istemesini görmezden gelerek başını hafifçe salladı.\n\"O halde iyi istirahatler dilerim, Sayın Elçi.\"\nElçi, pelerininin ucunu düzeltip kapıya yöneldiğinde, Aertas onun sırtını izledi. Düşünceleri, yaklaşan fırtınanın habercisi gibiydi. İmparatorluk gerçekten de bir mum gibi eriyordu ve bu tür adamlar, alevin son kıvılcımına kadar etrafında dönüp duracaktı.\nAt arabası Örebas elçisinin kendi arabasına geçmesinden sonra tekrar harekete geçti. Konvoy, blok döşeli yolda hantal adımlarla ilerlerken, ufukta başkentin görkemli surları sislerin arasından gözükmeye başlamıştı.\nBaşkent Arava, imparatorluğun atan kalbi, ihtişamın ve sefaletin aynı mermer bloklar üzerinde yükseldiği devasa bir labirentti. Nehrin kıyılarından ağır ağır yükselen sabah pusu, şehrin ahşap çatılarının arasına sinsi birer yılan gibi süzülüyor; güneşin zayıf hüzmeleri, sis tabakasının içinde solgun altın parçaları misali kırılıyordu. Dar ve dolambaçlı sokaklarda yankı bulup çınlayan tapınak çanları, sabah uykusunu hoyratça bölen boğuk bir uğultuya dönüşmüştü. Fırınların isli bacalarından yükselen taze ekmek kokusu, rıhtımlardan gelen yosunlu ve çamurlu su kokusuna karışıyor; pazar yerine mal taşıyan hantal arabaların tekerlek gıcırtıları, hanönlerinde toplanan kalabalığın mırıltılarıyla birleşiyordu. \nŞehir, asırlar boyunca yamalı bir bohça gibi genişlemişti. Bazı mahalleler, kurucu hükümdarların iradesini yansıtan düzgün blok binalarıyla asalet sergilerken, alt tabakanın sığındığı rıhtım boyları ve çamurlu varoşlar, yabancı diyarlardan gelen baharatların, tütsülerin ve çürümüş rüyaların kokusuyla nefes alıyordu. Nehir kıyısındaki liman, koca bir imparatorluğun zenginliğini emen devasa bir girdap gibi durmaksızın çalışıyor; uzak eyaletlerden gelen büyük gemilerin ahşap gövdeleri iskelelere vurdukça tok bir ses çıkarıyordu. \nFakat Arava’daki hiçbir yapı, imparatorluk sarayının heybetini gölgelemeye yetmezdi. Suyun hemen kenarında yükselen muhkem surlar, sabah pusu altında bile bakanın yüreğine yılgınlık salacak bir cüretle göğe uzanıyordu. Altın yaldızlı kuleler, sis perdesinin arkasında meşum birer nöbetçi gibi parıldarken, devasa mermer sütunlar gri gökyüzünün kütlesine tek başına meydan okuyordu. Sarayı şehre bağlayan kemerli köprüler yalnızca birer geçit değil, aynı zamanda birer uyarıydı: Buraya adım atan herkes, tahtın bükülmez iradesine boyun eğmek zorundaydı. \nO sabah sarayın avlusunda alışılmadık bir hareketlilik, tekinsiz bir uğultu vardı.\nÇünkü bugün, Halk Günüydü. \nİmparatorluğun ilk yıllarında, bölünmüş hanlıkları tek bayrak altında toplayan İlteriş Kağan döneminden kalan bu köklü gelenek, tebaanın dertlerini doğrudan hükümdara anlatabilmesi için tasarlanmıştı. Ne var ki, zamanın acımasız çarkları arasında bu soylu uygulama da anlamını yitirmiş, içi boşaltılmış bir formaliteye, saray tiyatrosunun donuk bir sahnesine dönüşmüştü. Artık yalnızca başkentin ayrıcalıklı tüccarları, nüfuzlu ailelerin gölgesindeki kişiler ve saray bürokrasisinin filtresinden geçebilen sınırlı sayıda insan imparatorun huzuruna çıkma lütfuna erişebiliyordu. \nBüyük taht salonunun yüksek tavanları altında, İmparator Imloth Stallhart, geniş ve işlemeli tahtına hantal bir kütle gibi yaslanmış oturuyordu. Gençlik yıllarında savaş meydanlarında bükülmez cesaretiyle nam salmış olan bu adam, şimdilerde o eski muharip kimliğini saray odalarının ipek döşemeleri arasında eritmiş, hareketsizliğin getirdiği hantal bir ağırlığa teslim olmuştu. İri yapılı gövdesi, kaslarından ziyade rahat bir yaşamın sunduğu külfetli jurnali taşıyordu. Kelliği, alnını olduğundan daha geniş ve heybetli gösteriyor; pürüzsüz cildi, hususi yağlarla sürekli bakıma alındığını açıkça ele veriyordu. Ancak onun asıl dünyasını ele veren yer, gözleriydi: Bakışlarında eski delici ışıltıdan eser kalmamıştı; kayıtsız, yorgun ve etrafındaki her şeye karşı derin bir şüpheyle bakan bir çift koyu halkadan ibaretti. \nOnun hemen sol yanında, duruşundaki asaletle salondaki karaltıları dağıtan İmparatoriçe Selmira oturuyordu. Zarif, uzun boylu bir kadındı; yüz hatları mermerden yontulmuş bir heykel kadar keskin ama mizaç olarak bir o kadar yumuşak bir ifadeye sahiptir. Cildi, şamdanların cansız alevleri altında bile parıldayan porselen misali pürüzsüzdü. Uzun, titizlikle örülmüş kızıl saçları, omzundan aşağıya bakır bir zincir gibi dökülüyordu. Bakışlarındaki zekâ, etrafındaki soyluların sahte tebessümlerini anında sezecek kadar bileyisliydi; ancak bu bileyisli zekânın altında, halkına karşı duyduğu derin bir şefkat de gizliydi.\nSelmira, sarayın fildişi kulelerinde oturup dünyayı seyretmekle yetinen kadınlardan değildi. Sokaklara iner, yetimlerin bakımını üstlenir, tapınaklara cömert bağışlar yapar, fukaranın sofrasına ekmek ulaştırırdı. Denge Konseyi tanrılarına olan ulvi inancı, onun bu yardımseverliğini biçimlendiren en muhkem sütunuydu. Saray koridorlarındaki bazı zehirli diller, onun bu iyiliklerini yalnızca tahtın halk gözündeki yerini muhkemleştirmek için yapılan kurnazca bir gölge oyunu olarak nitelendirse de, Arava sokaklarındaki fukara onun adı geçtiğinde dualarını eksik etmezdi. \nBugün, Selmira'nın çehresi her zamankinden daha solgundu. Genişleyen karnı, pembe ipek giysisinin altından iyice belirginleşmiş, oturuşuna ve hareketlerine belirgin bir yük eklemişti. Hamileliğinin son günlerinde, sancıların eşiğinde olmasına rağmen saray görevlerinden uzak kalmayı reddetmiş, bu önemli günde kocasının yanında yerini almıştı. İnce uzun parmaklarını koruyucu bir refleksle karnının üzerine koyarken, gözlerinde hem bir annenin titizliği hem de yaklaşan yazgının getirdiği o ezici yorgunluk okunuyordu. \nSalonun masif ahşap kapıları aralandı ve muhafızlar ilk fâniyi içeri aldı.\nİçeri ilk giren kişi, beli yılların ve toprağın ezici yüküyle bükülmüş yaşlı bir çiftçiydi. Adamın elleri nasırdan kalın bir kabuk bağlamış, yüzü güneş yanıkları ve derin yarıklarla adeta antik bir haritaya dönmüştü. Üzerindeki keten tunik, sökükleri ve yamalarıyla fakirliğin bükülmez belgesi gibiydi. Adımlarını sürükleyerek ilerledi, tahtın basamaklarına birkaç fersah kala titrek bir hareketle diz çöktü ve başını mermer zemine doğru eğerek biat selamı verdi.\nKırık dökük, heyecandan ve yılgınlıktan titreyen bir sesle konuştu:\n“Majesteleri… Malumunuz, tarlalarımızı hârûç böcekleri istila etti. Mahsullerimiz daha yeşermeden kurudu, toprağın bereketi ziyan oldu. Vergileri ödeyemez, ambarları dolduramaz hale geldik… Eğer yüce iradeniz bize biraz daha zaman tanırsa…”\nİmparator Imloth, adamın sözleri bittiğinde gözlerini hafifçe kıstı. Her yıl, her eyaletten benzer şikayetleri duymaktan bıkmıştı. Onun gözünde devletin çarkları altınla dönerdi ve verginin ertelenmesi, muhkem idarenin gevşemesi demekti. Doğrudan bir reddedişle halkın tepkisini çekmek istemediğinden, parmaklarını tahtın kolçağında gezdirerek düşünceli bir sessizliğe gömüldü; kararı ertelemek, onun en mahir olduğu gölge oyunuydu. \nAncak Selmira, kocasının bu kayıtsız sükûtunu gördüğünde hiç tereddüt etmeden öne eğildi ve tok, emin bir sesle konuştu:\n“Başkent tahıl ambarları, son aldığımız raporlara göre ağzına kadar dolu. Sayın Başsancak tarım memuriyetine derhal mühürlü bir ferman gönderilsin; bu köyün vergileri önümüzdeki yaza dek tehir edilsin ve en azından bu çetin kışı atlatabilmeleri için hazineden tahıl desteği sağlansın.”\nImloth, karısının bu ani ve otoriter çıkışıyla oturduğu yerde hafifçe kıpırdandı. Selmira’nın pratik zekasına ve halkın nabzını tutma becerisine içten içe hayran olsa da, hiyerarşinin çiğnenmesinden, kendi iradesinin gölgede kalmasından hoşnut olmamıştı. Alnındaki ince bir damar hafifçe seğirdi. Tarım memurlarına danışmadan, bütçe dengelerini tartmadan verilen bu karar, onun mutlak otoritesine indirilmiş ince bir darbeydi. Yine de, tebaanın ve saray soylularının önünde imparatoriçeyle münakaşaya girmeyi azametine yediremedi.\n“Öyle olsun,” dedi, sesi salonun taş sütunları arasında soğuk bir akis bırakarak kararın kesinliğini mühürledi. \nYaşlı adam minnettar dualar mırıldanarak, gözlerindeki yaşları tuniğinin yenine silerek salonu terk etti. Ancak onun bıraktığı dingin hava, bir sonraki davetsiz misafirin içeri girmesiyle anında dağılacaktı.\nSalonun oymalı ceviz kapılarından içeri fırtına öncesi bir tekinsizlik sızdı. Kalabalığı dirsekleriyle hoyratça yara yara ilerleyen genç bir adam, muhafızların şaşkın bakışları arasında salonun merkezine doğru adımladı. Üzerindeki kirli tunik, çamura ve toza bulanmış çizmeleri, günlerdir durmaksızın yol aldığını haykırıyordu. Saçları darmadağındı; fakat bu hırpalanmış görünüşün altında, salondaki soyluları ürküten bambaşka bir şey vardı: Gözleri... Korkunun zıddı olan ve meydan okuyan bir iradenin kıvılcımlarıyla yanan koyu renk gözler. \nBu genç, ezilmişliğe boyun eğmeyenlerin, bir zinciri kırmak üzere olanların o hoyrat duruşuna sahipti. Onun pervasız adımları mermer zemine her vurduğunda, ipek cübbeli soylular arasında tedirgin bir fısıltı dalgası yayıldı. \nİmparatorluk Başdanışmanı Hilnor Wolde, parşömen tomarlarının arkasından bu davetsiz misafiri izlerken kaşlarını inceltti. Solgun, kemikli parmakları elindeki onaylı kabul listesini buruştururcasına kavramıştı. Gözlerini hızla satırlar arasında gezdirdi. Listede yok, diye geçirdi içinden. Gırtlağında beliren o hızlı nabız atışı, içindeki kontrol kaybı korkusunu ele veriyordu. Bu sefil köylü, dış avludaki iki bölük muhafızı, Arınma Salonu'ndaki sorgu kademesini aşıp taht odasına kadar nasıl bu kadar pervasızca gelebilmişti?\nHilnor, soğukkanlılığını korumaya çalışarak oturduğu sandalyede dikleşti. Salonun loş nişlerinde bekleyen muhafız komutanına kilitlendi bakışları. Sağ elinin işaret parmağını, kucağındaki tahta kolçak üzerine sessizce iki kez tıklattı; bu, eller kılıç kabzasına, tetikte olun demekti.\nTahtında yarı uzanmış halde duran İmparator Imloth ise, olan biteni kısılan göz kapaklarının ardından izliyordu. Altın ipliklerle işlenmiş gece mavisi cübbesinin içinde kıpırdamadan otururken, çenesinin ucundaki küçük bir kasın seğirmesi içindeki hiddeti ele veriyordu. Bu pejmürde yabancı, onun kusursuz ve steril evreninde açılmış kirli bir yaraydı. Burnunu hafifçe kırıştırdı; dudaklarının kenarı acı bir meyveyi ısırmış gibi aşağı doğru büküldü. Böylesine sıradan bir mahlûkun, onun soluduğu havayı paylaşarak sarayın kutsal mermerlerine çamurlu çizmeleriyle basması tahammül edilemez bir hakaretti. Onun gözünde kıyafet, tahta sunulan ilk selamdı; ve bu genç adam, selam vermeyi açıkça reddediyordu. \nGenç adam, tahtın birkaç adım önünde durduğunda nefes alışverişi henüz düzene girmemişti. Göğsü hafifçe inip kalkıyordu. Ellerini iki yana sarkıtmıştı ama parmakları farkında olmadan bükülüp açılıyordu; içindeki bastırılmış öfke dalgası, bükülmez bir bent gibi zorlanıyordu.\nDoğrudan İmparator Imloth’un gözlerine dikti bakışlarını. Sesi, sarayın yüksek kemerlerinde hoyrat bir kırbaç gibi patladı:\n“Babam Almonth, köy ağasının askerleri tarafından haksız yere zindana atıldı! Bir köylü olarak doğduğumuz için mi adalet bizden esirgeniyor, Yüce Kağan?”\nSalona kurşuni bir sessizlik çöktü. Birkaç danışman dehşetle başını kaldırırken, ağır zırhlı muhafızlardan biri, bu küstahlığın cezasını kılıç kabzasıyla vermek üzere hızla ileri atıldı. Ancak Selmira, elini hafifçe kaldırarak muhafızı tek bir hareketle durdurdu. \nİmparatoriçe, gözlerini genç adama sabitleyerek hafifçe öne eğildi. Dudaklarının kenarında belli belirsiz bir kıvrım vardı; bu ne bir tebessüm ne de bir alaydı; yalnızca yılların getirdiği soğukkanlı bir meraktı. Salonun havasını zehirleyen gerginliğe rağmen, sesi bir ipek kadar yumuşak ama içinde gizli bir delici kuvvet taşıyordu: \n“İsminiz nedir, beyim?” diye sordu. \nSözleri, kadife perdelerin arasından süzülen rüzgâr kadar dingin ama derinlikliydi; sanki yalnızca cevabı değil, o cevabın arkasındaki ruhu da tartıyordu. \nGenç adam, göğsü inip kalkarken bile duruşunu bozmadı. Gözlerini bir an bile kaçırmadan tahtta oturan hükümdara bakmayı sürdürdü. Çehresi günlerin yorgunluğuyla çökmüş, elmacık kemiklerinin altında koyu karaltılar uzanmıştı; fakat yüz hatlarında kırılmaz bir gurur okunuyordu. \n“Ben, Çukurtepe köyünden Almonth’un oğlu Erthan,” dedi. \nSesi beklenmedik bir kuvvet taşıyordu; taş duvarlara çarpıp geri dönen akis, salondaki soylular arasında görünmez bir ürküntü dalgası yarattı.\nCüppesi yerleri süpüren yaşlı danışman Hilnor, hemen yardımcısının uzattığı koyu deri kaplı sicil defterini açtı. Parmakları sayfalar arasında telaşla gezindi; parşömenin hoyrat hışırtısı, salondaki fısıltıların üzerine tırmandı. Sarayda saatler gibi kusursuz işleyen o sahte düzenin içinde yaşanan bu küçük gecikme, herkesin sinir uçlarını gergin bir tel gibi çekiyordu.\nAdamın sicilini bulmak birkaç dakika aldı. Bu süre zarfında muhafızlar, Erthan’ın etrafında içgüdüsel bir çember oluşturmuştu; elleri kılıç kabzalarında, tek bir emre bakıyorlardı.\nDanışman Hilnor nihayet başını kaldırdı. Gözlüğünü burnunun ucundan yukarı itti, sesi pürüzlü ve yorgundu:\n“Majesteleri... Kayıtlar burada. Almonth adındaki şahıs, hırsızlık ithamıyla yargılanmış. Fakat...” Dudaklarını ısırdı, parşömendeki satırları yeniden inceledi. “İfadeler son derece çelişkili görünüyor. Şahitlerin anlattıkları birbirini tutmuyor.”\nKimi soylular başlarını çevirip birbirlerine baktılar; yaldızlı ipeklerin içinde bir huzursuzluk kıpırdandı. Imloth, derin bir nefes alarak genç adama döndü. Halkın bu küçük, sefil dertleri artık onun dimağını uyandırmaya yetmiyordu; fakat bu kıvılcımın salonda daha büyük bir yangına dönüşmesini istemedi. Sert ama bir hükümdar azametiyle konuştu:\n“Eğer babanın suçsuz olduğuna inanıyorsan, sana tam bir haftalık süre veriyorum. Bu süre zarfında onun suçsuzluğuna kefil olacak, saray nizamınca tanınan bir bey ya da soylu bulup karşıma getireceksin. İşte o zaman davası, bizzat benim şahsi hakimlerim tarafından yeniden tetkik edilecek. Benim hükmümde kimse adaletsizliğe uğramaz. Tanrılar tarafından kutsanmış bir hükümdarım ve adalet benim gölgemde şekillenir.” \nErthan bir an duraksadı, gözlerinde şüphe ve öfkenin karışımı bir karaltı dalgalandı. Parmakları istemsizce bükülüp yumruk halini alırken, dudakları titredi; sanki tahtın yüzüne haykırmak istediği zehirli kelimeler vardı ama onları zorlukla yuttu. Bir anlığına, imparatora doğrudan meydan okumak ile sessizce geri çekilmek arasındaki o ölümcül sınırda salındı. Sonunda, göğsünü kabartan derin bir nefes aldı ve başını hafifçe eğdi. Dizlerinin milimlik bükülüşü bir teslimiyet değil, içindeki fırtınayı zoraki bir dizginleme hareketiydi. \nArkasını dönüp salonun devasa kapılarına doğru yürüdüğünde, omuzlarındaki o ezici gerginlik tüm salona sirayet etti. Kapıya attığı her adımda, geride bıraktığı umutsuzluk ve hınç, saray mermerlerine kazınan silinmez birer leke gibiydi. \nGenç adam muhafızların nezaretinde salondan çıkarıldığında, ardında gerilmiş bir yay gibi tehlikeli bir sükût bıraktı. Taş sütunların arasına sinmiş olan uğultular, loş köşelerde ürkekçe kıvrılıp yok oldu.\nİmparator Imloth, başını çevirmeden yalnızca sağ elini kaldırdı; bu, bağırmadan da mutlak öfkeyi ifade eden, sükûnetle kesen hükümdar işaretiydi. Parmakları içe doğru kıvrıldığında, saray danışmanları loş köşelerden sessizce öne fırladılar.\nİlk adımı atan Brion Triala oldu. Yaşı altmışı devirmiş olmasına rağmen heybetli gövdesinden bir şey kaybetmemişti; omuzları geniş, çizgileri derindi. Uzun ve dalgalı kül grisi saçları sırtına dökülüyordu. Sakalı yağlı merhemlerle taranmış, nizamlıydı ama araya giren ak teller gizlenemezdi. Çehresi, dağ geçitlerinde kırılmış kaya yığınları gibi sert çizgilerle örülmüştü. Bordo işlemeli cübbesinin omuzlarından aşağıya siyah kürkler sarkıyor, kumaşın tok dokusu her hareketinde hafifçe hışırdıyordu. Gözleri derin ve pusluydu; ama o pusun arkasında, her an avını gözleyen donuk bir zekânın kıpırtıları seziliyordu.\nHemen arkasından Saray Başdanışmanı Hilnor Wolde belirdi. Brion’un aksine narin, ince uzun bir yapısı vardı; mermer sütunların arasında bir siluet kadar sessiz ilerliyordu. Yüzü solgun, kaşları ince birer bileyis taşı gibi belirgindi. Dudakları hep bir komplonun, gizli bir fermanın eşiğindeymiş gibi kıpırdardı. Koyu kestane rengi gözleri durmaksızın etrafı tarıyor, her küçük ayrıntıyı zihnindeki deftere kaydediyordu. Cübbesi gri ve siyahın solgun tonlarındaydı; fakat yakasındaki gümüş mühür, saray bürokrasisindeki ezici ağırlığını ilan ediyordu. Üzerine sinmiş olan parşömen, mürekkep ve eski kitapların o küflü kokusu, salondaki ağır tütsü kokusunu delip geçiyordu.\nİkisi de tahtın birkaç adım önünde durup başlarını saygıyla eğdiler.\nImloth, onları bir süre sessizce süzdü. Yüzündeki donuk maskenin altında, tahtını tehdit eden o görünmez çatlakların huzursuzluğu kaynıyordu. Sesi, alçak ama odadaki oksijeni emen bir tonla yükseldi:\n“Nasıl oldu bu?”\nBrion başını hafifçe kaldırdı; doğrudan imparatorun gözlerine bakmak yerine boşluğa odaklandı; bu, suçluluğun saray usulüydü:\n“Majesteleri… İsim resmi kabul listesinde kesinlikle yoktu. Ancak içeriden, muhafız kademesinden veya bürokrasiden birinin ona destek vermiş olması mutlak bir ihtimaldir. Protokol zinciri kasıtlı olarak kırılmış.” \nHilnor, söz kesmemek için bir an bekledi, ardından pürüzsüz bir tonla araya girdi:\n“Bu sıradan bir güvenlik ihmali değil, efendimiz. Arkasında güçlü bir iradenin gölgesi olmasa, hiçbir köylü bu kapılardan canlı geçemez. Bu cesaret, sarayın duvarlarının düşündüğümüzden daha ince olduğunu gösteriyor bize.” \nImloth yerinden kıpırdamadı, ancak parmak uçları tahtın ahşap kolçağına daha sert gömüldü:\n“Halk günlerinin ehemmiyetini bilirsiniz,” dedi, sesi zifiri bir dehlizden gelir gibi boğuktu. “Hazırlık, nizam ve azamet. Her şey mutlak kontrol altında görünmeli. Bugün, biri bu cilalı nizamın ortasına pis bir taş fırlattı. O taşın hangi elden çıktığını bulun ve bana getirin.”\nBrion başını eğdi: “Emredersiniz. İç güvenlik bağlarını bizzat gözden geçireceğim.” \nHilnor ise gözlerindeki o hareketli karaltıyı gizlemeden ekledi:\n“Ben de o gencin geçmişini, Çukurtepe’deki köklerini kazıyacağım. Eğer bu işin ucu düşündüğümüz o alternatif geleceğe uzanıyorsam…” Durdu ve gözlerini tahtın arkasındaki ipek perdelere dikti. \nİmparator başını geriye yasladı, salonun boğucu atmosferinde avizelerin demir zincirleri çıtırdayarak sallandı. Derin bir nefes alıp tek bir kelimeyle görüşmeyi bitirdi: \n“Başlayın.” \nVe bu sözle birlikte danışmanlar gölgelerin içinde kaybolurken, sarayın damarlarında dolaşan o sahte sessizlik, yerini yaklaşan kanlı bir fırtınanın fısıltılarına bırakmaya başlamıştı bile.",
+        "en": "Örebas envoy Ellan plays a dangerous political chess game with Commander Aertas Sınglew on the muddy road to the capital, tension rising with every convoy step. Meanwhile, young soldier Erthan forces his way into the imperial palace to plead for his unjustly imprisoned father, confronting the Emperor and leaving the throne room in a charged silence."
+      },
+      "firstLine": "Puslu bulutlar gökyüzünü tamamen esir almıştı.",
+      "tags": []
+    },
+    {
+      "id": 2,
+      "arc": 1,
+      "free": true,
+      "num": "II",
+      "title": {
+        "tr": "Elçi",
+        "en": "The Envoy"
+      },
+      "pov": {
+        "tr": "İmparator Imloth · İmparatoriçe Selmira · Ellan",
+        "en": "Emperor Imloth · Empress Selmira · Ellan"
+      },
+      "ks": "KS 1481 Öncesi",
+      "synopsis": {
+        "tr": "İmparator Imloth, sarayının loş odalarında haritalar üzerine eğilirken İmparatoriçe Selmira içeri girer; veliaht meselesi üzerine sert bir tartışma alevlenir. O gece Selmira doğum sancılarıyla masaya uzanır; diplomatik yemekte ise Örebas Elçisi Ellan imparatoriçeye dair acı haberi alır.",
+        "en": "Emperor Imloth pores over maps in his dim study when Empress Selmira enters; a fierce clash over succession ignites between them. That same night, Selmira is laid on the birthing table in agony, while envoy Ellan receives the devastating news of the Empress's condition at the diplomatic dinner."
+      },
+      "firstLine": "Güneşin son soluk ışıkları, imparatorluk sarayının efsunlu kubbelerinde mat yansımalar bırakarak çekilirken, göğün derinliklerinden süzülen gece mermer sütunların arasına usulca yayılıyordu.",
+      "tags": []
+    },
+    {
+      "id": 3,
+      "arc": 1,
+      "free": true,
+      "num": "III",
+      "title": {
+        "tr": "Tembellik",
+        "en": "Sloth"
+      },
+      "pov": {
+        "tr": "İmparatoriçe Selmira · Ebe Eadan · Edlas Arhan",
+        "en": "Empress Selmira · Midwife Eadan · Edlas Arhan"
+      },
+      "ks": "KS 1481 Öncesi",
+      "synopsis": {
+        "tr": "Doğum masasında can mücadelesi veren İmparatoriçe Selmira, İmparator'un bir türlü gelmeyen adımlarını bekler. Ebe Eadan'ın çelik elleri altında geceyi geçiren imparatoriçe, sarayın en yalnız odasında kaderi ve iktidarı yeniden sorgular. Edlas Arhan ise koridorlarda bu ağır geceyi kaydederek Arhan hanedanı için hesap yapar.",
+        "en": "Empress Selmira fights for her life on the birthing table, awaiting footsteps that never come. Enduring the night under the iron hands of midwife Eadan, she questions fate and power in the palace's loneliest room. Edlas Arhan observes from the corridors, quietly calculating for the Arhan dynasty."
+      },
+      "firstLine": "İmparatoriçe Selmira, titreyen sesiyle sarayın yüksek mermer örgüleri arasında çınlayan bir feryat kopardı.",
+      "tags": []
+    },
+    {
+      "id": 4,
+      "arc": 1,
+      "free": true,
+      "num": "IV",
+      "title": {
+        "tr": "Cenaze",
+        "en": "Funeral"
+      },
+      "pov": {
+        "tr": "İmparator Imloth · Edlas Arhan",
+        "en": "Emperor Imloth · Edlas Arhan"
+      },
+      "ks": "KS 1481",
+      "synopsis": {
+        "tr": "İmparatoriçe Selmira'nın ölümü şafakla birlikte başkente ilan edilir; çığırtkanların sesi sokaklara dolar, halk uğursuz bir şok içinde donar kalır. Saray, yas perdesinin altında kaynayan güç hesaplarıyla çalkalanır. İmparator Imloth, tahtı değil karısının boş minderini seçerek çöküşün ilk işaretini verir. Edlas Arhan bu kaotik tabloda konumunu ölçer.",
+        "en": "The death of Empress Selmira is proclaimed to the capital at dawn; criers' voices pour into the streets as the people freeze in ominous shock. The palace seethes beneath its mourning veil with power calculations. Emperor Imloth, choosing his wife's empty cushion over his throne, signals the first crack in his reign. Edlas Arhan measures his position in the chaos."
+      },
+      "firstLine": "Şafağın solgun parmakları başkentin yüksek kulelerine dokunduğunda, gökyüzü taze bir yara gibi gri ve morun huzursuz tonlarına bürünmüştü.",
+      "tags": []
+    },
+    {
+      "id": 5,
+      "arc": 1,
+      "free": true,
+      "num": "V",
+      "title": {
+        "tr": "Hırsızlar",
+        "en": "Thieves"
+      },
+      "pov": {
+        "tr": "Erthan · Edlas Arhan",
+        "en": "Erthan · Edlas Arhan"
+      },
+      "ks": "KS 1481",
+      "synopsis": {
+        "tr": "İmparator'un sarayından çıkalı üç gündür Erthan, babasına kefil bulabilmek için başkentin tüm soylu kapılarını aşındırmıştır; her seferinde yüzüne kapanan kapıların sesiyle büyüdü bu şehir. Başkent, imparatoriçenin yasıyla kaynayan ve adaletin en az rastlanan mücevher olduğu bir bataklığa dönmüştür. Edlas Arhan ise Arhan hanedanı adına kendi sessiz hırsızlığını sürdürür.",
+        "en": "Three days since leaving the Emperor's palace, Erthan has worn his knuckles raw on every noble door in the capital, each one shutting in his face. The city has become a swamp seething under the Empress's mourning, where justice is the rarest jewel. Meanwhile, Edlas Arhan pursues his own quiet theft on behalf of House Arhan."
+      },
+      "firstLine": "İmparator'un o buz kesmiş, sesleri soğutan kabul salonundan çıkalı üç gün olmuştu.",
+      "tags": []
+    },
+    {
+      "id": 6,
+      "arc": 1,
+      "free": true,
+      "num": "VI",
+      "title": {
+        "tr": "Kefil",
+        "en": "The Guarantor"
+      },
+      "pov": {
+        "tr": "Erthan · Sarya",
+        "en": "Erthan · Sarya"
+      },
+      "ks": "KS 1481",
+      "synopsis": {
+        "tr": "Erthan köyüne geri döner; annesini Almonth'un tutuklanışından bu yana sararan, solgun, harap bulur. Gerçeği bir yalanla cilalayıp umut verir; sonra Baron Valer'in kapısını çalar. Valer kefil olmayı kabul eder; ama bu karanlık adamın verdiği sözün bedeli henüz bilinmemektedir.",
+        "en": "Erthan returns to his village to find his mother Sarya pale and hollowed since Almonth's arrest. He polishes the truth into a lie to give her hope, then knocks on Baron Valer's door. Valer agrees to stand as guarantor — but the price of this dark man's word is yet unknown."
+      },
+      "firstLine": "\"Geldim ana,\" dedi Erthan.",
+      "tags": []
+    },
+    {
+      "id": 7,
+      "arc": 1,
+      "free": true,
+      "num": "VII",
+      "title": {
+        "tr": "Ulak",
+        "en": "The Messenger"
+      },
+      "pov": {
+        "tr": "Amadon Stallhart · Edlas Arhan · Reun Solgar",
+        "en": "Amadon Stallhart · Edlas Arhan · Reun Solgar"
+      },
+      "ks": "KS 1481",
+      "synopsis": {
+        "tr": "Güz fırtınasıyla sarsılan Seltanya'da Amadon Stallhart, yüksek hisarında stratejik hesaplarını yapar. Akıllı ve soğukkanlı Melik Vali, ağabeyinin sarayından gelen ulağı beklemekte; Reun Solgar da bu kritik buluşmada sahneye çıkmaktadır. İmparatorluğun çöküşü bir takvim meselesine dönüşmüş, Amadon kendisini miras almaya hazırlamaktadır.",
+        "en": "In storm-lashed Seltanya, Amadon Stallhart makes his strategic calculations from his high fortress. The shrewd, cold-blooded Melik Vali awaits a messenger from his brother's palace, while Reun Solgar enters the picture at this critical juncture. The empire's collapse has become a matter of timing, and Amadon is preparing himself to inherit it."
+      },
+      "firstLine": "Güz, Seltanya topraklarına merhamet nedir bilmeden inmişti.",
+      "tags": []
+    },
+    {
+      "id": 8,
+      "arc": 1,
+      "free": true,
+      "num": "VIII",
+      "title": {
+        "tr": "Cüce Kral",
+        "en": "The Dwarf King"
+      },
+      "pov": {
+        "tr": "İmparator Imloth · Wolrez Galet · Amadon Stallhart",
+        "en": "Emperor Imloth · Wolrez Galet · Amadon Stallhart"
+      },
+      "ks": "KS 1481",
+      "synopsis": {
+        "tr": "Adamen Eyaleti'nden Cüce Valisi Gulwar Saert, imparatorluk sarayına taziye ziyaretine gelir; ancak bu karşılaşma siyasi bir hesaplaşmaya dönüşmektedir. Acılı ve yorgun İmparator Imloth, eski bir müttefikiyle tahtının geleceğini dolaylı bir dille konuşur. Amadon'un Seltanya'dan uzandırdığı gölge ise bu sahnede de hissedilir.",
+        "en": "Dwarf Vali Gulwar Saert arrives from Adamen Province for a condolence visit, but the encounter turns into a veiled political reckoning. A grief-worn Emperor Imloth speaks in oblique terms of his throne's future with an old ally. Amadon's shadow, stretching from Seltanya, makes itself felt even in this scene."
+      },
+      "firstLine": "Sarayın bazalt döşeli avlusunda çınlayan ağır adımlar, mekânın üzerindeki ölü sükûneti bir kılıç darbesi gibi yardı.",
+      "tags": []
+    },
+    {
+      "id": 9,
+      "arc": 1,
+      "free": false,
+      "num": "IX",
+      "title": {
+        "tr": "Süt Anne",
+        "en": "The Wet Nurse"
+      },
+      "pov": {
+        "tr": "Celios Selya · İmparator Imloth",
+        "en": "Celios Selya · Emperor Imloth"
+      },
+      "ks": "KS 1481",
+      "synopsis": {
+        "tr": "—",
+        "en": "—"
+      },
+      "firstLine": "—",
+      "tags": []
+    },
+    {
+      "id": 10,
+      "arc": 1,
+      "free": true,
+      "num": "X",
+      "title": {
+        "tr": "Akbaba",
+        "en": "The Vulture"
+      },
+      "pov": {
+        "tr": "Amadon Stallhart · Reun Solgar · Leno Kridas",
+        "en": "Amadon Stallhart · Reun Solgar · Leno Kridas"
+      },
+      "ks": "KS 1481",
+      "synopsis": {
+        "tr": "Arathen'in genç ve acımasız Kralı Leno Kridas, imparatorluğun çöküşünü haritaları üzerinde hesaplar; tahtını kanıyla kazanmış bu adam için zayıflık hiçbir zaman af konusu değildir. Amadon Stallhart Arathen'e gelir ve güç dengelerini kökünden sarsacak bir ittifak teklifinde bulunur. Reun Solgar bu tehlikeli görüşmelerde kritik bir konumda durur.",
+        "en": "Arathen's young and ruthless King Leno Kridas calculates the empire's collapse over his maps; for this man who won his throne in blood, weakness is never a matter for forgiveness. Amadon Stallhart arrives in Arathen with an alliance offer that will shake power to its foundations. Reun Solgar stands in a critical position within these dangerous negotiations."
+      },
+      "firstLine": "Arathen'in taht odası, Stallhart sarayının o cilalı, altın yaldızlı ihtişamından kasıtlı bir meydan okumayla uzaktı.",
+      "tags": []
+    },
+    {
+      "id": 11,
+      "arc": 1,
+      "free": true,
+      "num": "XI",
+      "title": {
+        "tr": "Hata",
+        "en": "The Mistake"
+      },
+      "pov": {
+        "tr": "Erthan · Edlas Arhan",
+        "en": "Erthan · Edlas Arhan"
+      },
+      "ks": "KS 1481",
+      "synopsis": {
+        "tr": "İğneada Ormanı'ndaki kanlı pusudan yara bere içinde kurtulan Erthan, Baron Valer'in mühürlü belgesini babasının zindan idaresine yetiştirmek için başkente geri döner. Ama kapıdaki nöbetçiler yolunu keser; açgözlü bir geçiş harcı dayatılır ve bu sabah yapılan tek bir hata, beklenmedik ve ağır sonuçlar doğuracaktır. Edlas Arhan ise bu gelişmeleri uzaktan izler.",
+        "en": "Erthan returns to the capital battered from the bloody ambush in İğneada Forest, carrying Baron Valer's sealed document for the prison administration. But guards block his path and extort a passage fee; a single mistake made that morning will have unexpected and grave consequences. Edlas Arhan watches the developments from a distance."
+      },
+      "firstLine": "Doru'nun ciğerleri, yırtık bir demirci körüğü misali hırıldıyordu.",
+      "tags": []
+    },
+    {
+      "id": 12,
+      "arc": 1,
+      "free": true,
+      "num": "XII",
+      "ks": "",
+      "title": {
+        "tr": "Yalan",
+        "en": "The Lie"
+      },
+      "pov": {
+        "tr": "",
+        "en": ""
+      },
+      "synopsis": {
+        "tr": "",
+        "en": ""
+      },
+      "firstLine": "Şafağın ilk soluğu, Arhan Hanesinin sığınağına sızdığında gökyüzü henüz yıkanmamış bir yara gibi gri ve donuktu.",
+      "tags": []
+    },
+    {
+      "id": 13,
+      "arc": 1,
+      "free": true,
+      "num": "XIII",
+      "ks": "",
+      "title": {
+        "tr": "Vazgeçiş",
+        "en": "Giving Up"
+      },
+      "pov": {
+        "tr": "",
+        "en": ""
+      },
+      "synopsis": {
+        "tr": "",
+        "en": ""
+      },
+      "firstLine": "Ufuk çizgisi, çürümeye yüz tutmuş bir meyvenin morluğuyla çalkalanıyordu.",
+      "tags": []
+    },
+    {
+      "id": 14,
+      "arc": 1,
+      "free": true,
+      "num": "XIV",
+      "ks": "",
+      "title": {
+        "tr": "Dönüş",
+        "en": "The Return"
+      },
+      "pov": {
+        "tr": "",
+        "en": ""
+      },
+      "synopsis": {
+        "tr": "",
+        "en": ""
+      },
+      "firstLine": "Örebas limanına süzülen ticaret teknesinin pruvasından bakıldığında, başkentin silueti evvela sisli bir karaltı, ardından kireç badanalı evl",
+      "tags": []
+    },
+    {
+      "id": 15,
+      "arc": 1,
+      "free": true,
+      "num": "XV",
+      "ks": "",
+      "title": {
+        "tr": "Altavar",
+        "en": "Altavar"
+      },
+      "pov": {
+        "tr": "",
+        "en": ""
+      },
+      "synopsis": {
+        "tr": "",
+        "en": ""
+      },
+      "firstLine": "Ellan şehri yürüyerek öğrenmek istedi.",
+      "tags": []
+    }
+  ]
+}

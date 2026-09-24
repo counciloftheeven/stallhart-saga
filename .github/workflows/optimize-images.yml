@@ -1,0 +1,58 @@
+# Depoya (assets/images altına) yeni PNG/JPG eklendiğinde ya da değiştirildiğinde
+# WebP + küçük boyutlu sürümlerini otomatik üretir ve depoya işler.
+#
+# ORİJİNAL DOSYALAR DEĞİŞMEZ; JSON'lardaki yollar (.png/.jpg) aynen kalır.
+# Site, assets/images/manifest.json sayesinde WebP karşılığı olan görsellerde
+# otomatik WebP + srcset kullanır (bkz. scripts/optimize-images.py).
+#
+# Kurulum gerekmez. Elle çalıştırmak için: Actions → "Görselleri optimize et" → Run workflow
+# (Tüm görselleri sıfırdan yeniden üretmek için "force" kutusunu işaretleyin.)
+name: Görselleri optimize et
+
+on:
+  push:
+    branches: [main, master]
+    paths:
+      - 'assets/images/**'
+      - 'scripts/optimize-images.py'
+  workflow_dispatch:
+    inputs:
+      force:
+        description: 'Tüm görselleri yeniden üret'
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: optimize-images
+  cancel-in-progress: false
+
+jobs:
+  optimize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Pillow kur
+        run: pip install pillow
+
+      - name: WebP sürümlerini üret
+        run: python3 scripts/optimize-images.py ${{ inputs.force && '--force' || '' }}
+
+      - name: Değişiklik varsa depoya işle
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/images
+          if git diff --cached --quiet; then
+            echo "Yeni ya da değişen görsel yok."
+          else
+            git commit -m "chore: görselleri optimize et (WebP + srcset) [skip ci]"
+            git push
+          fi

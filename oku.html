@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="description" content="Stallhart Destanı — çevrimiçi okuma" data-tr="Stallhart Destanı — çevrimiçi okuma" data-en="The Stallhart Saga — read online" data-i18n-attr="content">
+<title data-tr="Oku · Stallhart Destanı" data-en="Read · The Stallhart Saga">Oku · Stallhart Destanı</title>
+<meta name="theme-color" content="#0c121f">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="The Stallhart Saga">
+<meta property="og:locale" content="tr_TR">
+<meta property="og:title" content="Oku · Stallhart Destanı">
+<meta property="og:description" content="Stallhart Destanı — çevrimiçi okuma">
+<meta property="og:image" content="assets/images/logo-stallhart.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Oku · Stallhart Destanı">
+<meta name="twitter:description" content="Stallhart Destanı — çevrimiçi okuma">
+<meta name="twitter:image" content="assets/images/logo-stallhart.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Modern+Antiqua&amp;family=IM+Fell+English:ital@0;1&amp;family=Merriweather:ital,wght@0,400;0,700;1,400&amp;display=swap">
+<link rel="stylesheet" href="assets/css/styles.css?v=3.0">
+<style>
+/* ═══ OKUYUCU ═══════════════════════════════════════════════
+   Site menüsü gizlenir; okumaya odaklı ince bir üst çubuk kullanılır.
+   Renkler site temasından gelir ("Site teması"); Açık / Sepya / Koyu
+   seçenekleri aynı değişkenleri yalnızca bu sayfada geçersiz kılar. */
+body.reader { font-size: 16px; --rd-bar-h: 52px; --rd-width: 40rem; }
+body.reader #site-nav, body.reader nav.site-nav { display: none !important; }
+body.reader.rt-light, body.reader.rt-sepia, body.reader.rt-dark { background-image: none; }
+body.reader.rt-light {
+  --bg:#f7f1e1; --deep:#ece0c3; --surface:#fbf6e9; --border:#d5c69f; --borderl:#b79f68;
+  --gold:#8a5a1e; --goldb:#6b4415; --goldd:#ad7a34; --parch:#2f2519; --parchl:#160f08; --parchd:#6a5a43; --bloodb:#7a1010;
+}
+body.reader.rt-sepia {
+  --bg:#efe1c0; --deep:#e3d2a9; --surface:#f5e9cd; --border:#d0bb8a; --borderl:#b09562;
+  --gold:#8b5a1c; --goldb:#6d4512; --goldd:#a87a34; --parch:#43331f; --parchl:#241a0d; --parchd:#75613f; --bloodb:#7a1010;
+}
+body.reader.rt-dark {
+  --bg:#0f0d0b; --deep:#0a0908; --surface:#171412; --border:#3a2f24; --borderl:#5a4632;
+  --gold:#b87333; --goldb:#d89455; --goldd:#7d4e22; --parch:#d9cdb4; --parchl:#f4ecd8; --parchd:#9c9081; --bloodb:#8b0000;
+}
+
+.rd-skip { position: absolute; left: -9999px; top: 0; background: var(--surface); color: var(--parchl); padding: .5rem .8rem; z-index: 999; }
+.rd-skip:focus { left: .5rem; top: .5rem; }
+
+/* Üst çubuk */
+.rd-bar {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 60; height: calc(var(--rd-bar-h) + env(safe-area-inset-top, 0px));
+  padding: env(safe-area-inset-top, 0px) max(.6rem, env(safe-area-inset-right, 0px)) 0 max(.6rem, env(safe-area-inset-left, 0px));
+  display: flex; align-items: center; gap: .35rem;
+  background: var(--bg); border-bottom: 1px solid var(--border);
+  transition: transform .25s ease;
+}
+.rd-bar.hide { transform: translateY(-100%); }
+.rd-bar-title {
+  flex: 1; min-width: 0; text-align: center; font-family: var(--font-display); font-size: .95rem;
+  color: var(--parchd); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; padding: 0 .4rem;
+}
+.rd-btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: .4rem; min-height: 40px; min-width: 40px;
+  padding: 0 .7rem; background: none; border: 1px solid transparent; border-radius: 3px; cursor: pointer;
+  font-family: var(--font-display); font-size: .88rem; color: var(--parch); text-decoration: none; white-space: nowrap;
+}
+.rd-btn:hover, .rd-btn[aria-expanded="true"] { border-color: var(--borderl); color: var(--parchl); }
+.rd-btn:focus-visible, .rd-pill:focus-visible, .rd-seg button:focus-visible, .rd-nav a:focus-visible, .rd-toc-item:focus-visible {
+  outline: 2px solid var(--gold); outline-offset: 2px;
+}
+.rd-btn svg { width: 18px; height: 18px; flex-shrink: 0; }
+.rd-aa { font-family: var(--font-display); font-size: 1.25rem; line-height: 1; }
+.rd-aa small { font-size: .8rem; }
+.rd-progress { position: fixed; left: 0; right: 0; top: calc(var(--rd-bar-h) + env(safe-area-inset-top, 0px)); height: 2px; z-index: 61; background: transparent; transition: transform .25s ease; }
+.rd-progress i { display: block; height: 100%; width: 100%; background: var(--gold); transform: scaleX(0); transform-origin: left; }
+.rd-bar.hide + .rd-progress { transform: translateY(calc(-1 * (var(--rd-bar-h) + env(safe-area-inset-top, 0px)))); }
+
+/* Makale */
+.rd-main { padding: calc(var(--rd-bar-h) + env(safe-area-inset-top, 0px) + 2.2rem) 1.25rem 5rem; }
+.rd-article { max-width: var(--rd-width); margin: 0 auto; }
+.rd-head { margin-bottom: 2.2rem; padding-bottom: 1.4rem; border-bottom: 1px solid var(--border); }
+.rd-eyebrow { font-family: var(--font-display); font-style: italic; font-size: .92rem; color: var(--goldd); margin-bottom: .6rem; }
+.rd-h1 { font-family: var(--font-display); font-weight: 400; font-size: clamp(1.9rem, 6vw, 2.6rem); line-height: 1.15; color: var(--parchl); }
+.rd-num { color: var(--gold); margin-right: .15em; }
+.rd-meta { margin-top: .8rem; font-size: .86rem; line-height: 1.6; color: var(--parchd); }
+.rd-notice { margin: 0 0 1.6rem; padding: .7rem .9rem; font-size: .84rem; line-height: 1.6; color: var(--parchd); border: 1px dashed var(--borderl); }
+.rd-state { text-align: center; padding: 3rem 0 2rem; }
+.rd-state h1 { font-family: var(--font-display); font-weight: 400; font-size: 1.6rem; color: var(--parchl); margin-bottom: .8rem; }
+.rd-state p { color: var(--parchd); font-style: italic; margin-bottom: 1.4rem; }
+.rd-loading { color: var(--parchd); font-style: italic; padding: 3rem 0; text-align: center; }
+
+.rd-end { margin-top: 3rem; padding-top: 1.6rem; border-top: 1px solid var(--border); }
+.rd-fin { text-align: center; font-family: var(--font-display); font-style: italic; color: var(--goldd); margin-bottom: 1.6rem; }
+.rd-soon { text-align: center; font-size: .84rem; color: var(--parchd); font-style: italic; margin: -.6rem 0 1.4rem; }
+.rd-nav { display: grid; grid-template-columns: 1fr 1fr; gap: .8rem; }
+.rd-nav a {
+  display: block; padding: .8rem 1rem; text-decoration: none; border: 1px solid var(--border); background: var(--surface);
+  color: var(--parch); border-radius: 3px; min-height: 64px;
+}
+.rd-nav a:hover { border-color: var(--gold); }
+.rd-nav a small { display: block; font-size: .76rem; color: var(--parchd); margin-bottom: .2rem; }
+.rd-nav a span { font-family: var(--font-display); font-size: 1.02rem; color: var(--parchl); line-height: 1.3; }
+.rd-nav .next { text-align: right; grid-column: 2; }
+.rd-nav .prev { grid-column: 1; }
+.rd-pill {
+  display: inline-block; padding: .6rem 1.1rem; border: 1px solid var(--gold); color: var(--gold); background: none;
+  border-radius: 3px; font-family: var(--font-display); font-size: .95rem; cursor: pointer; text-decoration: none;
+}
+.rd-pill:hover { background: rgba(184,115,51,.12); }
+
+/* Kaldığın yerden devam */
+.rd-resume {
+  position: fixed; left: 50%; transform: translateX(-50%); bottom: calc(1rem + env(safe-area-inset-bottom, 0px)); z-index: 55;
+  width: min(92vw, 30rem); display: flex; align-items: center; gap: .6rem; flex-wrap: wrap; justify-content: center;
+  padding: .7rem .9rem; background: var(--surface); border: 1px solid var(--gold); border-radius: 4px;
+  font-size: .88rem; color: var(--parch); box-shadow: 0 6px 24px rgba(0,0,0,.35);
+}
+.rd-resume[hidden] { display: none; }
+.rd-resume .rd-pill { padding: .4rem .8rem; font-size: .85rem; }
+
+/* Paneller (masaüstünde yan kart, mobilde alt sayfa) */
+.rd-scrim { position: fixed; inset: 0; z-index: 70; background: rgba(0,0,0,.45); }
+.rd-scrim[hidden], .rd-sheet[hidden] { display: none; }
+.rd-sheet {
+  position: fixed; z-index: 71; top: calc(var(--rd-bar-h) + env(safe-area-inset-top, 0px) + 6px); right: max(.6rem, env(safe-area-inset-right, 0px));
+  width: min(22rem, calc(100vw - 1.2rem)); max-height: calc(100vh - var(--rd-bar-h) - 1.5rem); overflow-y: auto;
+  background: var(--surface); border: 1px solid var(--borderl); border-radius: 4px; padding: 1rem 1.1rem 1.2rem;
+  box-shadow: 0 10px 34px rgba(0,0,0,.4); overscroll-behavior: contain;
+}
+.rd-sheet-l { right: auto; left: max(.6rem, env(safe-area-inset-left, 0px)); width: min(24rem, calc(100vw - 1.2rem)); }
+.rd-sheet h2 { font-family: var(--font-display); font-weight: 400; font-size: 1.15rem; color: var(--parchl); margin-bottom: .9rem; display: flex; align-items: center; justify-content: space-between; }
+.rd-x { background: none; border: 0; color: var(--parchd); font-size: 1.3rem; line-height: 1; cursor: pointer; min-width: 36px; min-height: 36px; }
+.rd-x:hover { color: var(--parchl); }
+.rd-row { margin-bottom: 1.05rem; }
+.rd-row > label, .rd-row > .rd-lab { display: block; font-size: .82rem; color: var(--parchd); margin-bottom: .4rem; }
+.rd-row output { color: var(--parch); margin-left: .3rem; }
+.rd-size { display: flex; align-items: center; gap: .5rem; }
+.rd-size input[type=range] { flex: 1; accent-color: var(--gold); min-height: 32px; }
+.rd-size button { min-width: 40px; min-height: 40px; background: none; border: 1px solid var(--border); color: var(--parch); border-radius: 3px; cursor: pointer; font-family: var(--font-display); }
+.rd-size button:hover { border-color: var(--gold); }
+.rd-seg { display: flex; border: 1px solid var(--border); border-radius: 3px; overflow: hidden; }
+.rd-seg button {
+  flex: 1; min-height: 40px; padding: .3rem .4rem; background: none; border: 0; border-right: 1px solid var(--border);
+  color: var(--parch); cursor: pointer; font-size: .82rem; font-family: var(--font-body);
+}
+.rd-seg button:last-child { border-right: 0; }
+.rd-seg button[aria-pressed="true"] { background: var(--gold); color: var(--bg); }
+.rd-themes { display: grid; grid-template-columns: repeat(4, 1fr); gap: .4rem; }
+.rd-themes button { min-height: 52px; border: 2px solid var(--border); border-radius: 3px; cursor: pointer; font-size: .74rem; padding: .2rem; }
+.rd-themes button[aria-pressed="true"] { border-color: var(--gold); box-shadow: 0 0 0 1px var(--gold); }
+.rd-themes .t-auto  { background: linear-gradient(135deg, #f4ecd8 50%, #121212 50%); color: #888; }
+.rd-themes .t-light { background: #f7f1e1; color: #2f2519; }
+.rd-themes .t-sepia { background: #efe1c0; color: #43331f; }
+.rd-themes .t-dark  { background: #0f0d0b; color: #d9cdb4; }
+.rd-reset { background: none; border: 0; color: var(--parchd); text-decoration: underline; cursor: pointer; font-size: .82rem; padding: .3rem 0; }
+
+.rd-toc-list { list-style: none; }
+.rd-toc-item { display: flex; align-items: baseline; gap: .6rem; padding: .6rem .5rem; text-decoration: none; color: var(--parch); border-bottom: 1px solid var(--border); font-size: .92rem; line-height: 1.4; }
+.rd-toc-item:hover { background: rgba(184,115,51,.1); }
+.rd-toc-item .n { font-family: var(--font-display); color: var(--gold); min-width: 2.6rem; }
+.rd-toc-item .st { margin-left: auto; font-size: .76rem; color: var(--parchd); white-space: nowrap; }
+.rd-toc-item[aria-current="true"] { background: rgba(184,115,51,.14); }
+.rd-toc-item.off { color: var(--parchd); font-style: italic; pointer-events: none; }
+
+@media (max-width: 640px) {
+  .rd-main { padding-left: 1rem; padding-right: 1rem; }
+  .rd-lbl { display: none; }
+  .rd-nav { grid-template-columns: 1fr; }
+  .rd-nav .next, .rd-nav .prev { grid-column: 1; text-align: left; }
+  .rd-sheet, .rd-sheet-l {
+    top: auto; left: 0; right: 0; bottom: 0; width: 100%; max-height: 82vh; border-radius: 12px 12px 0 0; border-width: 1px 0 0;
+    padding-bottom: calc(1.2rem + env(safe-area-inset-bottom, 0px));
+  }
+}
+@media (prefers-reduced-motion: reduce) { .rd-bar, .rd-progress { transition: none; } html { scroll-behavior: auto; } }
+</style>
+<script src="assets/js/router.js?v=3.0"></script>
+</head>
+<body class="reader">
+<a class="rd-skip" href="#rd-article" id="rd-skip">İçeriğe geç</a>
+
+<header class="rd-bar" id="rd-bar">
+  <a class="rd-btn" id="rd-back" href="bolumler.html">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
+    <span class="rd-lbl" id="l-back">Bölümler</span>
+  </a>
+  <button class="rd-btn" id="rd-toc-btn" type="button" aria-haspopup="dialog" aria-controls="rd-toc" aria-expanded="false">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg>
+    <span class="rd-lbl" id="l-toc">İçindekiler</span>
+  </button>
+  <div class="rd-bar-title" id="rd-bar-title"></div>
+  <button class="rd-btn" id="rd-set-btn" type="button" aria-haspopup="dialog" aria-controls="rd-set" aria-expanded="false" aria-label="Okuma ayarları">
+    <span class="rd-aa" aria-hidden="true">A<small>a</small></span>
+  </button>
+</header>
+<div class="rd-progress" aria-hidden="true"><i id="rd-prog"></i></div>
+
+<main class="rd-main" id="rd-main">
+  <article class="rd-article" id="rd-article" tabindex="-1"><div class="rd-loading">Yükleniyor…</div></article>
+  <!-- Divan Tartışması (yorumlar) — bölümün altında; assets/js/community-divan.js doldurur -->
+  <div id="divan-mount"></div>
+</main>
+<noscript><p style="padding:6rem 1.5rem;text-align:center">Okuyucu için JavaScript gerekli.</p></noscript>
+
+<div class="rd-resume" id="rd-resume" hidden role="status"></div>
+<div class="rd-scrim" id="rd-scrim" hidden></div>
+
+<!-- Okuma ayarları -->
+<section class="rd-sheet" id="rd-set" role="dialog" aria-modal="true" aria-labelledby="rd-set-h" hidden>
+  <h2 id="rd-set-h"><span id="l-set">Okuma ayarları</span><button class="rd-x" type="button" data-close aria-label="Kapat" data-tr="Kapat" data-en="Close" data-i18n-attr="aria-label">×</button></h2>
+  <div class="rd-row"><label for="rd-size-r"><span id="l-size">Yazı boyutu</span><output id="rd-size-o"></output></label>
+    <div class="rd-size"><button type="button" id="rd-size-m" aria-label="Küçült">A−</button>
+      <input type="range" id="rd-size-r" min="15" max="26" step="1">
+      <button type="button" id="rd-size-p" aria-label="Büyüt">A+</button></div></div>
+  <div class="rd-row"><span class="rd-lab" id="l-font">Yazı tipi</span>
+    <div class="rd-seg" data-pref="font">
+      <button type="button" data-val="serif" style="font-family:var(--font-body)">Klasik</button>
+      <button type="button" data-val="book" style="font-family:'IM Fell English',Georgia,serif">Kitap</button>
+      <button type="button" data-val="sans" style="font-family:system-ui,sans-serif">Sade</button></div></div>
+  <div class="rd-row"><span class="rd-lab" id="l-lh">Satır aralığı</span>
+    <div class="rd-seg" data-pref="lh">
+      <button type="button" data-val="1.6" data-k="tight">Sıkı</button>
+      <button type="button" data-val="1.85" data-k="normal">Normal</button>
+      <button type="button" data-val="2.1" data-k="loose">Ferah</button></div></div>
+  <div class="rd-row"><span class="rd-lab" id="l-width">Sütun genişliği</span>
+    <div class="rd-seg" data-pref="width">
+      <button type="button" data-val="narrow" data-k="narrow">Dar</button>
+      <button type="button" data-val="normal" data-k="normal">Normal</button>
+      <button type="button" data-val="wide" data-k="wide">Geniş</button></div></div>
+  <div class="rd-row"><span class="rd-lab" id="l-align">Hizalama</span>
+    <div class="rd-seg" data-pref="align">
+      <button type="button" data-val="left" data-k="left">Sola</button>
+      <button type="button" data-val="justify" data-k="justify">İki yana</button></div></div>
+  <div class="rd-row"><span class="rd-lab" id="l-theme">Tema</span>
+    <div class="rd-themes" data-pref="theme">
+      <button type="button" class="t-auto" data-val="auto" data-k="auto">Site</button>
+      <button type="button" class="t-light" data-val="light" data-k="light">Açık</button>
+      <button type="button" class="t-sepia" data-val="sepia" data-k="sepia">Sepya</button>
+      <button type="button" class="t-dark" data-val="dark" data-k="dark">Koyu</button></div></div>
+  <button class="rd-reset" type="button" id="rd-reset">Varsayılana dön</button>
+</section>
+
+<!-- İçindekiler -->
+<section class="rd-sheet rd-sheet-l" id="rd-toc" role="dialog" aria-modal="true" aria-labelledby="rd-toc-h" hidden>
+  <h2 id="rd-toc-h"><span id="l-toc2">İçindekiler</span><button class="rd-x" type="button" data-close aria-label="Kapat" data-tr="Kapat" data-en="Close" data-i18n-attr="aria-label">×</button></h2>
+  <ul class="rd-toc-list" id="rd-toc-list"></ul>
+</section>
+
+<script src="assets/js/config.js?v=3.0"></script>
+<script src="assets/js/patches.js?v=3.0"></script>
+<script src="assets/js/wiki.js?v=3.0"></script>
+<script src="assets/js/community.js?v=3.0"></script>
+<script>
+(function () {
+'use strict';
+const { Lang, loadData, initWiki, ReadTracker, esc, Book, Tooltip } = Wiki;
+
+/* ── Metinler ─────────────────────────────────────────────── */
+const I18N = {
+  tr: { back: 'Bölümler', toc: 'İçindekiler', set: 'Okuma ayarları', size: 'Yazı boyutu', font: 'Yazı tipi', lh: 'Satır aralığı',
+        width: 'Sütun genişliği', align: 'Hizalama', theme: 'Tema', reset: 'Varsayılana dön', skip: 'İçeriğe geç',
+        tight: 'Sıkı', normal: 'Normal', loose: 'Ferah', narrow: 'Dar', wide: 'Geniş', left: 'Sola', justify: 'İki yana',
+        auto: 'Site', light: 'Açık', sepia: 'Sepya', dark: 'Koyu', serif: 'Klasik', book: 'Kitap', sans: 'Sade',
+        pov: 'Anlatıcı', min: 'dk okuma', words: 'kelime', arc: 'Yay', end: 'Bölüm sonu',
+        prev: 'Önceki bölüm', next: 'Sonraki bölüm', soon: 'yakında', read: '✓ okundu', now: 'şu an',
+        locked: 'Bu bölüm henüz yayınlanmadı.', empty: 'Bu bölümün metni henüz eklenmedi.', nf: 'Bölüm bulunamadı.',
+        toList: 'Bölüm listesine dön', enNote: 'Bu bölümün İngilizce çevirisi henüz yok; Türkçe metin gösteriliyor.',
+        resume: 'Kaldığın yerden devam et', go: 'Devam et', restart: 'Baştan', fail: 'Bölüm verisi yüklenemedi. Sayfayı yenileyin.',
+        skipTo: 'Sonraki yayında olan bölüm', pending: 'henüz yayında değil' },
+  en: { back: 'Chapters', toc: 'Contents', set: 'Reading settings', size: 'Text size', font: 'Typeface', lh: 'Line spacing',
+        width: 'Column width', align: 'Alignment', theme: 'Theme', reset: 'Reset to defaults', skip: 'Skip to content',
+        tight: 'Tight', normal: 'Normal', loose: 'Airy', narrow: 'Narrow', wide: 'Wide', left: 'Left', justify: 'Justified',
+        auto: 'Site', light: 'Light', sepia: 'Sepia', dark: 'Dark', serif: 'Classic', book: 'Book', sans: 'Plain',
+        pov: 'POV', min: 'min read', words: 'words', arc: 'Arc', end: 'End of chapter',
+        prev: 'Previous chapter', next: 'Next chapter', soon: 'soon', read: '✓ read', now: 'now',
+        locked: 'This chapter has not been published yet.', empty: 'The text of this chapter has not been added yet.', nf: 'Chapter not found.',
+        toList: 'Back to chapter list', enNote: 'The English translation of this chapter is not available yet; showing the Turkish text.',
+        resume: 'Continue where you left off', go: 'Continue', restart: 'Start over', fail: 'Chapter data could not be loaded. Please refresh.',
+        skipTo: 'Next published chapter', pending: 'not published yet' }
+};
+const T = k => (I18N[Lang.get()] || I18N.tr)[k] || I18N.tr[k] || k;
+
+/* ── Tercihler (bozuk/eksik değerlerde sessizce varsayılana döner) ── */
+const PREF_KEY = 'sw-reader-prefs', POS_KEY = 'sw-reader-pos';
+const DEFAULTS = { size: 18, font: 'serif', lh: 1.85, width: 'normal', align: 'left', theme: 'auto' };
+const WIDTHS = { narrow: '33rem', normal: '40rem', wide: '50rem' };
+const FONTS = {
+  serif: { css: 'var(--font-body)', scale: 1 },
+  book:  { css: "'IM Fell English', Georgia, 'Times New Roman', serif", scale: 1.13 },
+  sans:  { css: "system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif", scale: .97 }
+};
+function lsGet(k) { try { return JSON.parse(localStorage.getItem(k) || 'null'); } catch (e) { return null; } }
+function lsSet(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} }
+function sanitize(p) {
+  const o = Object.assign({}, DEFAULTS, p && typeof p === 'object' ? p : {});
+  o.size = Math.min(26, Math.max(15, Math.round(Number(o.size)) || DEFAULTS.size));
+  if (!FONTS[o.font]) o.font = DEFAULTS.font;
+  o.lh = [1.6, 1.85, 2.1].indexOf(Number(o.lh)) >= 0 ? Number(o.lh) : DEFAULTS.lh;
+  if (!WIDTHS[o.width]) o.width = DEFAULTS.width;
+  if (['left', 'justify'].indexOf(o.align) < 0) o.align = DEFAULTS.align;
+  if (['auto', 'light', 'sepia', 'dark'].indexOf(o.theme) < 0) o.theme = DEFAULTS.theme;
+  return o;
+}
+let prefs = sanitize(lsGet(PREF_KEY));
+
+function applyPrefs() {
+  const b = document.body, f = FONTS[prefs.font];
+  b.style.setProperty('--bk-size', (prefs.size * f.scale).toFixed(1) + 'px');
+  b.style.setProperty('--bk-font', f.css);
+  b.style.setProperty('--bk-lh', String(prefs.lh));
+  b.style.setProperty('--bk-align', prefs.align);
+  b.style.setProperty('--rd-width', WIDTHS[prefs.width]);
+  ['light', 'sepia', 'dark'].forEach(t => b.classList.toggle('rt-' + t, prefs.theme === t));
+  document.getElementById('rd-size-r').value = prefs.size;
+  document.getElementById('rd-size-o').textContent = prefs.size + ' px';
+  document.querySelectorAll('[data-pref]').forEach(g => {
+    const key = g.dataset.pref;
+    g.querySelectorAll('button').forEach(btn => btn.setAttribute('aria-pressed', String(String(prefs[key]) === btn.dataset.val)));
+  });
+}
+function setPref(k, v) { prefs = sanitize(Object.assign({}, prefs, { [k]: v })); lsSet(PREF_KEY, prefs); applyPrefs(); }
+
+/* ── Durum ─────────────────────────────────────────────────── */
+let chapData = null, book = null, cur = null;
+const $ = id => document.getElementById(id);
+
+function chapterId() {
+  const n = parseInt(SWRoute.id('bolum'), 10);   /* #/bolum/<n>  (eski ?b=<n> ve #bolum-<n> da okunur) */
+  return isNaN(n) ? null : n;
+}
+function entry(ch) { return ch && book && book.chapters ? book.chapters[String(ch.id)] : null; }
+function textOf(ch) {
+  const e = entry(ch); if (!e || !e.text) return { text: '', fallback: false };
+  const tr = String(e.text.tr || ''), en = String(e.text.en || '');
+  if (Lang.get() === 'en') return en.trim() ? { text: en, fallback: false } : { text: tr, fallback: !!tr.trim() };
+  return { text: tr.trim() ? tr : en, fallback: false };
+}
+function readable(ch) { return !!(ch && ch.free && textOf(ch).text.trim()); }
+const chapters = () => (chapData.chapters || []).slice().sort((a, b) => a.id - b.id);
+const clean = s => { s = String(s || '').trim(); return s === '—' ? '' : s; };
+
+/* ── Çizim ─────────────────────────────────────────────────── */
+function stateHTML(title, msg) {
+  return '<div class="rd-state"><h1>' + esc(title) + '</h1><p>' + esc(msg) + '</p>' +
+    '<a class="rd-pill" href="bolumler.html">' + esc(T('toList')) + '</a></div>';
+}
+
+function render(keepPct) {
+  const art = $('rd-article'), l = Lang.get(), id = chapterId();
+  document.documentElement.lang = l;
+  cur = id == null ? null : chapters().find(c => c.id === id) || null;
+  hideResume();
+
+  const divan = on => { if (!window.Wiki.Community) return; if (on) Wiki.Community.mountComments('divan-mount', { type: 'chapter', id: cur.id, title: cur.num + '. ' + Lang.t(cur.title) }); else Wiki.Community.unmountComments('divan-mount'); };
+
+  if (!cur) {
+    divan(false);
+    art.innerHTML = stateHTML(T('nf'), '');
+    $('rd-bar-title').textContent = ''; document.title = 'Oku · Stallhart Destanı';
+    buildToc(); return;
+  }
+  const title = Lang.t(cur.title), label = cur.num + '. ' + title;
+  $('rd-bar-title').textContent = label;
+  document.title = label + ' · Stallhart Destanı';
+  buildToc();
+
+  if (!cur.free) { divan(false); art.innerHTML = stateHTML(label, T('locked')); return; }
+  const tx = textOf(cur);
+  if (!tx.text.trim()) { divan(false); art.innerHTML = stateHTML(label, T('empty')); return; }
+
+  const arc = (chapData.arcs || []).find(a => a.id === cur.arc);
+  const pov = clean(Lang.t(cur.pov));
+  const w = Book.words(tx.text), mins = Book.minutes(tx.text);
+  const list = chapters().filter(readable);
+  const idx = list.findIndex(c => c.id === cur.id);
+  const prev = idx > 0 ? list[idx - 1] : null, next = idx >= 0 && idx < list.length - 1 ? list[idx + 1] : null;
+  const gap = chapters().find(c => c.id > cur.id && !readable(c) && (!next || c.id < next.id));
+
+  const eyebrow = [arc ? Lang.t(arc.name) : '', cur.arc ? T('arc') + ' ' + cur.arc : '', Lang.eraTag(cur.ks)].filter(Boolean).join(' · ');
+  const meta = [pov ? T('pov') + ': ' + pov : '', mins + ' ' + T('min'), w.toLocaleString(l === 'en' ? 'en-US' : 'tr-TR') + ' ' + T('words')].filter(Boolean);
+  const card = (c, cls, lab) => '<a class="' + cls + '" href="' + SWRoute.href('bolum', c.id) + '"><small>' + esc(lab) + '</small><span>' +
+    esc(c.num + '. ' + Lang.t(c.title)) + '</span></a>';
+
+  art.innerHTML =
+    '<header class="rd-head">' + (eyebrow ? '<p class="rd-eyebrow">' + esc(eyebrow) + '</p>' : '') +
+    '<h1 class="rd-h1"><span class="rd-num">' + esc(cur.num) + '.</span> ' + esc(title) + '</h1>' +
+    '<p class="rd-meta">' + esc(meta.join(' · ')) + '</p></header>' +
+    (tx.fallback ? '<p class="rd-notice">' + esc(T('enNote')) + '</p>' : '') +
+    '<div class="book-body" id="rd-body">' + Book.render(tx.text, { images: entry(cur).images || {} }) + '</div>' +
+    '<footer class="rd-end"><p class="rd-fin">— ' + esc(T('end')) + ' —</p>' +
+    (gap ? '<p class="rd-soon">' + esc(gap.num + '. ' + Lang.t(gap.title) + ' — ' + T('pending')) + '</p>' : '') +
+    '<div class="rd-nav" role="navigation" aria-label="' + esc(T('toc')) + '">' +
+    (prev ? card(prev, 'prev', '← ' + T('prev')) : '') + (next ? card(next, 'next', T('next') + ' →') : '') + '</div></footer>';
+
+  /* Otomatik bağlantılar: karakter / hane / yer / tanrı / olay adları bölümde ilk geçtikleri yerde
+     işaretlenir; dokununca (fareyle: üzerine gelince) mini bilgi kartı açılır. */
+  if (Tooltip) { Tooltip.hide(); Tooltip.scan($('rd-body')); }
+
+  divan(true);
+  if (typeof keepPct === 'number') restore(keepPct);
+  else { jump(0); offerResume(); }
+  onScroll();
+}
+
+function buildToc() {
+  const list = $('rd-toc-list'); if (!list || !chapData) return;
+  list.innerHTML = chapters().map(c => {
+    const ok = readable(c), here = cur && c.id === cur.id;
+    const st = here ? T('now') : ReadTracker.has('ch-' + c.id) ? T('read') : ok ? '' : T('soon');
+    return '<li>' + (ok
+      ? '<a class="rd-toc-item" href="' + SWRoute.href('bolum', c.id) + '"' + (here ? ' aria-current="true"' : '') + '>'
+      : '<span class="rd-toc-item off">') +
+      '<span class="n">' + esc(c.num) + '.</span><span>' + esc(Lang.t(c.title)) + '</span><span class="st">' + esc(st) + '</span>' +
+      (ok ? '</a>' : '</span>') + '</li>';
+  }).join('');
+}
+
+function applyLabels() {
+  const set = (id, k) => { const el = $(id); if (el) el.textContent = T(k); };
+  set('l-back', 'back'); set('l-toc', 'toc'); set('l-toc2', 'toc'); set('l-set', 'set'); set('l-size', 'size'); set('l-font', 'font');
+  set('l-lh', 'lh'); set('l-width', 'width'); set('l-align', 'align'); set('l-theme', 'theme'); set('rd-reset', 'reset'); set('rd-skip', 'skip');
+  document.querySelectorAll('[data-pref] button[data-k]').forEach(b => { b.textContent = T(b.dataset.k); });
+  document.querySelector('[data-pref="font"]').querySelectorAll('button').forEach(b => { b.textContent = T(b.dataset.val); });
+  $('rd-toc-btn').setAttribute('aria-label', T('toc')); $('rd-back').setAttribute('aria-label', T('back'));
+  $('rd-set-btn').setAttribute('aria-label', T('set'));
+}
+
+/* ── Kaydırma: ilerleme çizgisi, konum kaydı, okundu işareti ── */
+/* v16: Yorum alanı makalenin ALTINDA olduğundan ilerleme, sayfanın tamamı değil
+   makalenin sonuna (rd-end) kadar ölçülür; yorumlar uzasa/yüklense bile
+   "okundu" işareti, kaldığın yer ve ilerleme çizgisi değişmez. */
+function scrollSpan() {
+  const art = $('rd-article');
+  const end = art ? art.getBoundingClientRect().bottom + window.scrollY : document.documentElement.scrollHeight;
+  return Math.max(0, end - window.innerHeight);
+}
+function pct() {
+  const max = scrollSpan();
+  return max > 0 ? Math.min(1, Math.max(0, window.scrollY / max)) : 0;
+}
+let saveT = null, lastY = 0;
+function onScroll() {
+  const p = pct();
+  $('rd-prog').style.transform = 'scaleX(' + p.toFixed(4) + ')';
+  const y = window.scrollY, bar = $('rd-bar');
+  if (!anyOpen()) {
+    if (y > lastY + 8 && y > 240) bar.classList.add('hide');
+    else if (y < lastY - 8 || y < 120) bar.classList.remove('hide');
+  }
+  lastY = y;
+  if (!cur || !readable(cur)) return;
+  clearTimeout(saveT); saveT = setTimeout(savePos, 450);
+}
+function savePos() {
+  if (!cur || !readable(cur)) return;
+  const p = pct(), map = lsGet(POS_KEY) || {};
+  if (p >= 0.97) { ReadTracker.mark('ch-' + cur.id); map[cur.id] = 1; }
+  else if (p > 0.01) map[cur.id] = Number(p.toFixed(4));
+  else return;
+  map.last = cur.id; lsSet(POS_KEY, map);
+}
+/* Programatik atlamalar anında olsun: styles.css'teki scroll-behavior:smooth
+   yazı boyutu değişirken / "Devam et"te titreme ve gecikme yaratır. */
+function jump(y) {
+  const el = document.documentElement, prev = el.style.scrollBehavior;
+  el.style.scrollBehavior = 'auto'; window.scrollTo(0, Math.max(0, y)); el.style.scrollBehavior = prev;
+}
+function restore(p) {
+  jump(p * scrollSpan());
+}
+function hideResume() { const r = $('rd-resume'); r.hidden = true; r.innerHTML = ''; }
+function offerResume() {
+  const map = lsGet(POS_KEY) || {}, p = cur ? Number(map[cur.id]) : 0;
+  if (!(p > 0.03 && p < 0.96)) return;
+  const r = $('rd-resume');
+  r.innerHTML = '<span>' + esc(T('resume')) + ' (' + Math.round(p * 100) + '%)</span>' +
+    '<button class="rd-pill" type="button" id="rs-go">' + esc(T('go')) + '</button>' +
+    '<button class="rd-pill" type="button" id="rs-no" style="border-color:var(--border);color:var(--parchd)">' + esc(T('restart')) + '</button>';
+  r.hidden = false;
+  $('rs-go').onclick = () => { restore(p); hideResume(); };
+  $('rs-no').onclick = () => { const m = lsGet(POS_KEY) || {}; delete m[cur.id]; lsSet(POS_KEY, m); hideResume(); };
+  setTimeout(() => { if (!r.hidden) hideResume(); }, 15000);
+}
+window.addEventListener('scroll', onScroll, { passive: true });
+window.addEventListener('resize', onScroll, { passive: true });
+document.addEventListener('visibilitychange', () => { if (document.hidden) savePos(); });
+window.addEventListener('pagehide', savePos);
+
+/* ── Paneller (odak yönetimi, Esc, dışarı tıklama) ─────────── */
+let openPanel = null, opener = null;
+const anyOpen = () => !!openPanel;
+function open(panelId, btn) {
+  close();
+  const p = $(panelId); p.hidden = false; $('rd-scrim').hidden = false;
+  btn.setAttribute('aria-expanded', 'true'); openPanel = p; opener = btn;
+  $('rd-bar').classList.remove('hide');
+  const f = p.querySelector('button:not([data-close]), a, input'); (f || p.querySelector('[data-close]')).focus();
+}
+function close() {
+  if (!openPanel) return;
+  openPanel.hidden = true; $('rd-scrim').hidden = true;
+  if (opener) { opener.setAttribute('aria-expanded', 'false'); opener.focus(); }
+  openPanel = null; opener = null;
+}
+$('rd-set-btn').addEventListener('click', e => (openPanel && openPanel.id === 'rd-set') ? close() : open('rd-set', e.currentTarget));
+$('rd-toc-btn').addEventListener('click', e => (openPanel && openPanel.id === 'rd-toc') ? close() : open('rd-toc', e.currentTarget));
+$('rd-scrim').addEventListener('click', close);
+document.querySelectorAll('[data-close]').forEach(b => b.addEventListener('click', close));
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape' && openPanel) { e.preventDefault(); close(); return; }
+  if (e.key === 'Tab' && openPanel) {           /* odak panelin içinde kalsın */
+    const f = Array.from(openPanel.querySelectorAll('button, a[href], input')).filter(x => !x.disabled && x.offsetParent !== null);
+    if (!f.length) return;
+    const first = f[0], last = f[f.length - 1];
+    if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+    else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+  }
+});
+
+/* Ayar denetimleri */
+document.querySelectorAll('[data-pref]').forEach(g => g.addEventListener('click', e => {
+  const b = e.target.closest('button[data-val]'); if (!b) return;
+  const v = b.dataset.val; setPref(g.dataset.pref, g.dataset.pref === 'lh' ? Number(v) : v);
+  if (g.dataset.pref === 'size') return;
+  keepPosition();
+}));
+function keepPosition() { const p = pct(); requestAnimationFrame(() => restore(p)); }
+$('rd-size-r').addEventListener('input', e => { const p = pct(); setPref('size', e.target.value); restore(p); });
+$('rd-size-m').addEventListener('click', () => { const p = pct(); setPref('size', prefs.size - 1); restore(p); });
+$('rd-size-p').addEventListener('click', () => { const p = pct(); setPref('size', prefs.size + 1); restore(p); });
+$('rd-reset').addEventListener('click', () => { prefs = sanitize(null); lsSet(PREF_KEY, prefs); applyPrefs(); keepPosition(); });
+
+/* ── Başlat ────────────────────────────────────────────────── */
+if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+SWRoute.canonicalize();   /* ?b=3 → #/bolum/3 */
+SWRoute.watch();          /* başka bölüme geçilirse okuyucu temiz durumla yeniden yüklenir */
+applyPrefs(); applyLabels();
+initWiki({ injectFooter: false, tooltipOpts: { newTab: true, once: true }, onLangChange: () => {
+  applyLabels();
+  if (chapData) { const p = pct(); render(p); }
+} });
+
+(async function init() {
+  try {
+    const res = await Promise.all([loadData('chapters.json'), loadData('book.json')]);
+    chapData = res[0]; book = res[1] || { chapters: {} };
+    if (!Array.isArray(chapData.chapters)) throw new Error('chapters.json bozuk');
+    render();
+  } catch (err) {
+    console.error('Okuyucu verisi yüklenemedi:', err);
+    $('rd-article').innerHTML = stateHTML(T('fail'), '');
+  }
+})();
+})();
+</script>
+</body>
+</html>

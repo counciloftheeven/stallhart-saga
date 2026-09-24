@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="robots" content="noindex,nofollow">
+<title>Yönetim Paneli · Stallhart Wiki</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#0c121f">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Modern+Antiqua&amp;family=IM+Fell+English:ital@0;1&amp;family=Merriweather:ital,wght@0,400;0,700;1,400&amp;display=swap">
+<link rel="stylesheet" href="assets/css/styles.css?v=3.0">
+<link rel="stylesheet" href="assets/css/admin.css?v=3.0">
+<link rel="stylesheet" href="assets/css/familytree.css?v=3.0">
+<script src="assets/js/router.js?v=3.0"></script>
+</head>
+<body class="admin">
+
+<!-- ══ GİRİŞ ══════════════════════════════════════════════ -->
+<div class="login-wrap" id="login">
+  <form class="login-box" id="login-form">
+    <h1 class="login-title">Yönetim Paneli</h1>
+    <p class="login-sub">Stallhart Destanı wiki içerik yönetimi. Bu panel yalnızca bu tarayıcıda çalışır.</p>
+
+    <div class="f-row">
+      <label class="f-label" for="pw">Parola</label>
+      <input type="password" id="pw" class="f-input" autocomplete="current-password" placeholder="••••••••">
+      <div class="f-error" id="login-err"></div>
+      <div class="f-hint">Varsayılan parola: <code>stallhart</code> — giriş yaptıktan sonra
+        <strong>Veri &amp; Yayın</strong> bölümünden değiştirin.</div>
+    </div>
+
+    <div class="btn-row">
+      <button type="submit" class="abtn primary">Giriş Yap</button>
+      <a class="abtn" href="index.html">← Siteye dön</a>
+    </div>
+  </form>
+</div>
+
+<!-- ══ PANEL ══════════════════════════════════════════════ -->
+<div class="admin-shell" id="shell" style="display:none">
+
+  <nav class="side" aria-label="Panel menüsü">
+    <a class="side-brand" href="index.html">Stallhart ↗</a>
+
+    <button class="side-item on" data-view="dash" type="button">Pano</button>
+    <button class="side-item" data-view="chars" type="button">Karakterler</button>
+    <button class="side-item" data-view="houses" type="button">Haneler</button>
+    <button class="side-item" data-view="trees" type="button">Soy Ağaçları</button>
+    <button class="side-item" data-view="kingdoms" type="button">Devletler</button>
+    <button class="side-item" data-view="gods" type="button">Tanrılar</button>
+    <button class="side-item" data-view="chapters" type="button">Bölümler</button>
+    <button class="side-item" data-view="events" type="button">Tarih Şeridi</button>
+    <button class="side-item" data-view="glossary" type="button">Sözlük</button>
+    <button class="side-item" data-view="quotes" type="button">Sözler</button>
+    <button class="side-item" data-view="media" type="button">Görsel &amp; Medya</button>
+    <button class="side-item" data-view="maps" type="button">Haritalar</button>
+    <button class="side-item" data-view="geo" type="button">Coğrafya</button>
+    <button class="side-item" data-view="language" type="button">Ortak Lisan</button>
+    <button class="side-item" data-view="data" type="button">Veri &amp; Yayın</button>
+
+    <!-- v16: Topluluk modülleri — yalnızca config.js doldurulduysa görünür -->
+    <div class="side-sep" data-community hidden>Topluluk</div>
+    <button class="side-item" data-view="suggestions" data-community hidden type="button">Öneriler<span class="side-badge" id="sugg-badge" hidden></span></button>
+    <button class="side-item" data-view="comments" data-community hidden type="button">Yorumlar</button>
+    <button class="side-item" data-view="users" data-community hidden type="button">Kullanıcılar</button>
+
+    <div class="side-foot">
+      <div id="draft-state" style="font-size:.7rem;font-style:italic;color:var(--parchd);line-height:1.6;margin-bottom:.6rem"></div>
+      <div class="btn-row" style="margin-bottom:.5rem">
+        <button class="theme-btn" type="button" data-theme-btn aria-label="Tema değiştir"></button>
+        <button class="abtn sm" id="logout" type="button">Çıkış</button>
+      </div>
+    </div>
+  </nav>
+
+  <main class="main">
+    <div class="page-head">
+      <div>
+        <h1 class="page-h1" id="page-h1">Pano</h1>
+        <p class="page-desc" id="page-desc"></p>
+      </div>
+      <button class="abtn primary" id="add-btn" type="button" style="display:none">+ Yeni Ekle</button>
+    </div>
+
+    <div id="view"></div>
+  </main>
+</div>
+
+<!-- ══ DÜZENLEME ÇEKMECESİ ═══════════════════════════════ -->
+<div class="drawer-back" id="drawer-back"></div>
+<aside class="drawer" id="drawer" role="dialog" aria-modal="true" aria-labelledby="drawer-title">
+  <div class="drawer-head">
+    <h2 class="drawer-title" id="drawer-title">Düzenle</h2>
+    <button class="abtn sm" id="drawer-close" type="button" aria-label="Kapat">✕</button>
+  </div>
+  <div class="drawer-body" id="drawer-body"></div>
+  <div class="drawer-foot">
+    <button class="abtn" id="drawer-cancel" type="button">Vazgeç</button>
+    <button class="abtn primary" id="drawer-save" type="button">Kaydet</button>
+  </div>
+</aside>
+
+<!-- ══ ONAY ══════════════════════════════════════════════ -->
+<div class="confirm-back" id="confirm-back">
+  <div class="confirm-box" role="alertdialog" aria-modal="true">
+    <h3 class="confirm-t" id="confirm-t"></h3>
+    <p class="confirm-m" id="confirm-m"></p>
+    <div class="btn-row" style="justify-content:flex-end">
+      <button class="abtn" id="confirm-no" type="button">Vazgeç</button>
+      <button class="abtn danger" id="confirm-yes" type="button">Evet, devam et</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast-wrap" id="toasts" aria-live="polite"></div>
+
+<script src="assets/js/config.js?v=3.0"></script>
+<script src="assets/js/patches.js?v=3.0"></script>
+<script src="assets/js/wiki.js?v=3.0"></script>
+<script src="assets/js/community.js?v=3.0"></script>
+<script src="assets/js/familytree.js?v=3.0"></script>
+<script src="assets/js/admin.js?v=3.0"></script>
+<script src="assets/js/admin-book.js?v=3.0"></script>
+<script src="assets/js/admin-maps.js?v=3.0"></script>
+<script src="assets/js/admin-community.js?v=3.0"></script>
+</body>
+</html>
