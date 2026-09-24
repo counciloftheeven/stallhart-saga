@@ -398,6 +398,24 @@ function render() {
   const bannerSrc = Wiki.safeImg(h.banner);
   const motto = t(h.motto) || (h.motto && typeof h.motto === 'object' ? (h.motto.tr || h.motto.en || '') : '');
 
+  /* Sayfa Üstveri Senkronizasyonu (Page Metadata Sync) */
+  const houseTitle = `${h.name} ${l === 'tr' ? 'Hanesi' : 'House'} · Stallhart Wiki`;
+  document.title = houseTitle;
+  const houseDesc = motto
+    ? `${h.name} ${l === 'tr' ? 'Hanesi' : 'House'} — “${motto}”. ${t(h.meaning) || t(h.origin) || t(h.desc) || ''}`.trim()
+    : `${h.name} ${l === 'tr' ? 'Hanesi' : 'House'}. ${t(h.meaning) || t(h.origin) || t(h.desc) || ''}`.trim();
+
+  const metaDesc = document.querySelector('meta[name="description"]');
+  if (metaDesc) metaDesc.setAttribute('content', houseDesc);
+  const ogTitle = document.querySelector('meta[property="og:title"]');
+  if (ogTitle) ogTitle.setAttribute('content', houseTitle);
+  const ogDesc = document.querySelector('meta[property="og:description"]');
+  if (ogDesc) ogDesc.setAttribute('content', houseDesc);
+  const twTitle = document.querySelector('meta[name="twitter:title"]');
+  if (twTitle) twTitle.setAttribute('content', houseTitle);
+  const twDesc = document.querySelector('meta[name="twitter:description"]');
+  if (twDesc) twDesc.setAttribute('content', houseDesc);
+
   /* Hane Tarihçesi & Kronikleri */
   const houseEvents = loreEvents.filter(e => {
     const r = (e.ruler || '').toLowerCase();
@@ -453,6 +471,16 @@ function render() {
           ${bannerSrc
             ? `<div class="hcb-flag-frame"><img class="hc-banner-img" data-zoom ${Wiki.imgAttrs(bannerSrc,'(max-width:700px) 60vw, 260px',{eager:true})} alt="${esc(h.name)} — ${l === 'tr' ? 'bayrak' : 'banner'}"></div>`
             : bannerPlaceholder(l, h.name)}
+          <button type="button" class="hcb-share-btn" id="hcb-share-btn" aria-label="${l === 'tr' ? 'Haneyi Paylaş' : 'Share House'}" title="${l === 'tr' ? 'Sayfayı Paylaş' : 'Share'}">
+            <svg class="hcb-share-icon" viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="18" cy="5" r="3"></circle>
+              <circle cx="6" cy="12" r="3"></circle>
+              <circle cx="18" cy="19" r="3"></circle>
+              <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+              <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+            </svg>
+            <span class="hcb-share-text">${l === 'tr' ? 'Paylaş' : 'Share'}</span>
+          </button>
         </div>
         <div>
           <div class="art-eyebrow">${l === 'tr' ? 'Hane Maddesi' : 'House Article'}</div>
@@ -676,8 +704,65 @@ function bannerPlaceholder(l, name, failed) {
   return `<div class="hcb-ph"><span class="hcb-ph-glyph">${esc((name || '?').trim()[0] || '?')}</span><span>${msg}</span></div>`;
 }
 
-/* Bayrağa tıklayınca tam ekran */
+/* Sancak Paylaşımı (Native Share API) */
+async function triggerHouseShare(btn) {
+  const metaTitle = document.querySelector('meta[property="og:title"]')?.getAttribute('content')
+    || document.querySelector('meta[name="twitter:title"]')?.getAttribute('content')
+    || document.title;
+  const metaText = document.querySelector('meta[name="description"]')?.getAttribute('content')
+    || document.querySelector('meta[property="og:description"]')?.getAttribute('content')
+    || '';
+  const metaUrl = window.location.href;
+
+  const shareData = {
+    title: metaTitle,
+    text: metaText,
+    url: metaUrl
+  };
+
+  const l = Lang.get();
+
+  if (navigator.share && (!navigator.canShare || navigator.canShare(shareData))) {
+    try {
+      await navigator.share(shareData);
+      return;
+    } catch (err) {
+      if (err && err.name === 'AbortError') return;
+      console.warn('Native share error, falling back:', err);
+    }
+  }
+
+  // Fallback: Linki panoya kopyala
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    try {
+      await navigator.clipboard.writeText(metaUrl);
+      if (btn) {
+        const orig = btn.innerHTML;
+        btn.classList.add('hcb-copied');
+        btn.innerHTML = `
+          <svg class="hcb-share-icon" viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+          <span class="hcb-share-text">${l === 'tr' ? 'Kopyalandı' : 'Copied'}</span>
+        `;
+        setTimeout(() => {
+          btn.innerHTML = orig;
+          btn.classList.remove('hcb-copied');
+        }, 2200);
+      }
+    } catch (clipErr) {
+      console.warn('Clipboard write error:', clipErr);
+    }
+  }
+}
+
+/* Bayrağa tıklayınca tam ekran ve Paylaş buton kontrolü */
 document.addEventListener('click', e => {
+  const shareBtn = e.target.closest && e.target.closest('.hcb-share-btn');
+  if (shareBtn) {
+    e.preventDefault();
+    e.stopPropagation();
+    triggerHouseShare(shareBtn);
+    return;
+  }
   const im = e.target.closest && e.target.closest('img[data-zoom]');
   if (!im) return;
   const lb = document.createElement('div');
