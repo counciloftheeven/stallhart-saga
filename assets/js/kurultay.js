@@ -193,7 +193,7 @@ function threadRowHTML(t, l, opts) {
         esc(l === 'tr' ? t.title : (t.title_en || t.title)) +
         (opts.showCat !== false && cat ? '<span class="ft-tag' + (t.category_id === 'duyuru' ? ' duyuru' : '') + '">' + esc(catLabel(cat, l)) + '</span>' : '') +
       '</span>' +
-      '<span class="ft-sub">' + (l === 'tr' ? 'Açan' : 'by') + ' <b>' + esc(prof.username) + '</b></span>' +
+      '<span class="ft-sub">' + (l === 'tr' ? 'Açan' : 'by') + ' <b>' + esc(prof.username) + '</b>' + (prof.favorite_house && C ? ' ' + C.util.crestBadge(prof.favorite_house) : '') + '</span>' +
     '</span>' +
     '<span class="ft-stats">' + (t.reply_count || 0) + '<small>' + (l === 'tr' ? 'cevap' : 'replies') + '</small></span>' +
     '<span class="ft-stats">' + (t.view_count || 0) + '<small>' + (l === 'tr' ? 'görünt.' : 'views') + '</small></span>' +

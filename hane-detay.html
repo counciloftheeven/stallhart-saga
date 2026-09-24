@@ -4,18 +4,22 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title data-tr="Hane · Stallhart Wiki" data-en="House · Stallhart Wiki">Hane · Stallhart Wiki</title>
-<meta name="description" content="Stallhart Destanı&#x27;ndaki bir hanenin tarihi, arması, üyeleri ve bağlı olduğu eyalet." data-tr="Stallhart Destanı&#x27;ndaki bir hanenin tarihi, arması, üyeleri ve bağlı olduğu eyalet." data-en="The history, crest, members and province of a house in the Stallhart Saga." data-i18n-attr="content">
+<meta name="description" content="Stallhart Destanı'ndaki bir hanenin tarihi, arması, üyeleri ve bağlı olduğu eyalet." data-tr="Stallhart Destanı'ndaki bir hanenin tarihi, arması, üyeleri ve bağlı olduğu eyalet." data-en="The history, crest, members and province of a house in the Stallhart Saga." data-i18n-attr="content">
 <meta name="theme-color" content="#0c121f">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="The Stallhart Saga">
 <meta property="og:locale" content="tr_TR">
 <meta property="og:title" content="Hane · Stallhart Wiki">
-<meta property="og:description" content="Stallhart Destanı&#x27;ndaki bir hanenin tarihi, arması, üyeleri ve bağlı olduğu eyalet.">
+<meta property="og:description" content="Stallhart Destanı'ndaki bir hanenin tarihi, arması, üyeleri ve bağlı olduğu eyalet.">
 <meta property="og:image" content="assets/images/logo-stallhart.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Hane · Stallhart Wiki">
-<meta name="twitter:description" content="Stallhart Destanı&#x27;ndaki bir hanenin tarihi, arması, üyeleri ve bağlı olduğu eyalet.">
+<meta name="twitter:description" content="Stallhart Destanı'ndaki bir hanenin tarihi, arması, üyeleri ve bağlı olduğu eyalet.">
 <meta name="twitter:image" content="assets/images/logo-stallhart.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="apple-touch-icon" href="assets/images/logo-stallhart.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Modern+Antiqua&amp;family=IM+Fell+English:ital@0;1&amp;family=Merriweather:ital,wght@0,400;0,700;1,400&amp;display=swap">
@@ -40,15 +44,15 @@ body{background:var(--bg)}
 
 .toc{background:var(--surface);border:1px solid var(--border);padding:.9rem 1.1rem;margin-bottom:1.5rem}
 .toc-title{font-family:var(--font-display);font-size:.75rem;color:var(--goldd);margin-bottom:.5rem;font-style:italic;letter-spacing:.06em}
-.toc-list{list-style:none;display:flex;flex-direction:column;gap:.2rem}
+.toc-list{list-style:none;display:flex;flex-direction:column;gap:.25rem}
 .toc-list a{font-family:var(--font-display);font-size:.78rem;color:var(--goldd);text-decoration:none;transition:color .15s}
 .toc-list a:hover{color:var(--gold)}
 
-.art-h2{font-family:var(--font-display);font-size:1.3rem;color:var(--parchl);margin:2rem 0 .8rem;padding-top:.4rem;border-top:1px solid var(--border);scroll-margin-top:70px}
+.art-h2{font-family:var(--font-display);font-size:1.3rem;color:var(--parchl);margin:2.5rem 0 .8rem;padding-top:.5rem;border-top:1px solid var(--border);scroll-margin-top:70px}
 .art-h2:first-of-type{border-top:none;margin-top:0}
 .art-p{font-size:.94rem;line-height:1.9;color:var(--parch);margin-bottom:1rem}
 
-/* Hane amblemi — gerçek logo görseli olmadığından renk + sembol metniyle üretilir */
+/* Hane amblemi */
 .sigil{
   width:140px;height:160px;margin:0 auto 1.25rem;position:relative;
   clip-path:polygon(50% 0%,100% 22%,100% 70%,50% 100%,0% 70%,0% 22%);
@@ -73,18 +77,201 @@ body{background:var(--bg)}
 .hib-v a{color:var(--goldd);text-decoration:none}
 .hib-v a:hover{color:var(--gold)}
 
-/* Üyeler ızgarası */
-.member-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:1rem;margin-top:1rem}
-.member-card{background:var(--surface);border:1px solid var(--border);padding:.9rem;text-decoration:none;display:block;transition:.18s}
-.member-card:hover{border-color:var(--house-accent,var(--goldd));transform:translateY(-2px)}
-.member-thumb{width:100%;aspect-ratio:1;object-fit:cover;background:var(--deep);border:1px solid var(--border);margin-bottom:.6rem;display:block}
-.member-thumb-ph{width:100%;aspect-ratio:1;background:var(--deep);border:1px solid var(--border);margin-bottom:.6rem;display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:1.6rem;color:var(--house-accent,var(--goldd))}
-.member-name{font-family:var(--font-display);font-size:.9rem;color:var(--parchl);line-height:1.3}
-.member-title{font-size:.72rem;color:var(--parchd);font-style:italic;margin-top:.2rem}
-.member-status{display:inline-block;width:6px;height:6px;border-radius:50%;margin-right:.35rem}
-.member-status.alive{background:var(--gold)}
-.member-status.deceased{background:var(--bloodb)}
-.member-status.historical{background:var(--parchd)}
+/* ── KİLİT FİGÜRLER .cc GRID YAPISI ────────────────── */
+.cc-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill, minmax(260px, 1fr));
+  gap:1.25rem;
+  margin-top:1rem;
+}
+.cc-grid .cc{
+  margin:0;
+  text-decoration:none;
+  padding:1.35rem;
+  transition:all .2s ease;
+}
+.cc-grid .cc:hover{
+  transform:translateY(-2px);
+  border-color:var(--house-accent,var(--gold));
+  box-shadow:0 8px 20px rgba(0,0,0,.4);
+}
+
+/* ── TARİHÇE & KRONİKLER GRID YAPISI ───────────────── */
+.house-history-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill, minmax(280px, 1fr));
+  gap:1.25rem;
+  margin-top:1rem;
+}
+.house-history-card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:4px;
+  padding:1.25rem;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  transition:all .2s ease;
+  position:relative;
+}
+.house-history-card:hover{
+  border-color:var(--house-accent,var(--goldd));
+  transform:translateY(-2px);
+  box-shadow:0 8px 20px rgba(0,0,0,.35);
+}
+.hh-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:.5rem;
+  margin-bottom:.45rem;
+}
+.hh-ks{
+  font-family:var(--font-display);
+  font-size:.88rem;
+  color:var(--gold);
+  font-weight:bold;
+}
+.hh-type{
+  font-family:var(--font-display);
+  font-size:.68rem;
+  padding:.15rem .45rem;
+  border:1px solid var(--border);
+  border-radius:3px;
+  color:var(--parchd);
+}
+.hh-title{
+  font-family:var(--font-display);
+  font-size:1.05rem;
+  color:var(--parchl);
+  margin-bottom:.25rem;
+  line-height:1.25;
+}
+.hh-ruler{
+  font-size:.76rem;
+  color:var(--goldd);
+  font-style:italic;
+  margin-bottom:.5rem;
+}
+.hh-desc{
+  font-size:.84rem;
+  line-height:1.65;
+  color:var(--parch);
+  margin-bottom:.85rem;
+}
+.hh-link{
+  font-family:var(--font-display);
+  font-size:.75rem;
+  color:var(--gold);
+  text-decoration:none;
+  display:inline-flex;
+  align-items:center;
+  gap:.3rem;
+  transition:color .15s ease;
+  margin-top:auto;
+}
+.hh-link:hover{
+  color:var(--goldb);
+}
+
+/* ── İLGİLİ BÖLÜMLER GRID YAPISI ───────────────────── */
+.house-chapters-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill, minmax(280px, 1fr));
+  gap:1.25rem;
+  margin-top:1rem;
+}
+.house-chapter-card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:4px;
+  padding:1.25rem;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  text-decoration:none;
+  transition:all .2s ease;
+}
+.house-chapter-card:hover{
+  border-color:var(--house-accent,var(--gold));
+  transform:translateY(-2px);
+  box-shadow:0 8px 22px rgba(0,0,0,.4);
+}
+.hch-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:.5rem;
+  margin-bottom:.4rem;
+}
+.hch-num{
+  font-family:var(--font-display);
+  font-size:.78rem;
+  color:var(--goldb);
+  letter-spacing:.05em;
+}
+.hch-ks{
+  font-size:.72rem;
+  color:var(--parchd);
+  font-style:italic;
+}
+.hch-title{
+  font-family:var(--font-display);
+  font-size:1.15rem;
+  color:var(--parchl);
+  margin-bottom:.35rem;
+}
+.hch-pov{
+  font-size:.78rem;
+  color:var(--goldd);
+  margin-bottom:.5rem;
+  font-style:italic;
+}
+.hch-synopsis{
+  font-size:.82rem;
+  line-height:1.6;
+  color:var(--parchd);
+  margin-bottom:.85rem;
+}
+.hch-cta{
+  font-family:var(--font-display);
+  font-size:.76rem;
+  color:var(--gold);
+  display:inline-flex;
+  align-items:center;
+  gap:.3rem;
+  margin-top:auto;
+}
+.house-chapter-card:hover .hch-cta{
+  color:var(--goldb);
+}
+
+/* ── EVREN ANSİKLOPEDİSİ KÖPRÜLERİ ─────────────────── */
+.house-lore-links{
+  display:grid;
+  grid-template-columns:repeat(auto-fill, minmax(240px, 1fr));
+  gap:1rem;
+  margin-top:1rem;
+}
+.house-lore-link-card{
+  background:var(--surface);
+  border:1px solid var(--border);
+  padding:1rem 1.15rem;
+  border-radius:4px;
+  text-decoration:none;
+  display:flex;
+  align-items:center;
+  gap:.75rem;
+  transition:all .2s ease;
+}
+.house-lore-link-card:hover{
+  border-color:var(--goldd);
+  background:rgba(184,115,51,.08);
+  transform:translateY(-2px);
+}
+.hl-icon{font-size:1.3rem;flex-shrink:0}
+.hl-title{font-family:var(--font-display);font-size:.88rem;color:var(--parchl);line-height:1.2}
+.hl-sub{font-size:.74rem;color:var(--parchd);font-style:italic;margin-top:.15rem}
 
 .not-found{padding:4rem 1rem;text-align:center}
 .not-found h2{font-family:var(--font-display);font-size:1.6rem;color:var(--parchl);margin-bottom:.75rem}
@@ -121,6 +308,8 @@ const { Lang, loadData, initWiki, esc } = Wiki;
 
 let allHouses = {};   // id -> {house, province}
 let allChars  = {};
+let loreEvents= [];
+let allChapters = [];
 
 const TIER_LABEL = {
   imperial: { tr: 'İmparatorluk Hanedanı', en: 'Imperial Dynasty' },
@@ -128,25 +317,33 @@ const TIER_LABEL = {
   minor:    { tr: 'Küçük Soylu Hane',        en: 'Minor Noble House' },
   client:   { tr: 'Bağımlı Hane',            en: 'Vassal House' },
 };
-const STATUS_LABEL = {
-  alive: { tr: 'Yaşıyor', en: 'Alive' },
-  deceased: { tr: 'Hayatını Kaybetti', en: 'Deceased' },
-  historical: { tr: 'Tarihsel', en: 'Historical' },
-};
 
 function getHouseId() {
-  return SWRoute.id('hane');     /* #/hane/<id>  (eski ?id= ve #<id> da okunur) */
+  return SWRoute.id('hane');
+}
+
+function yerSlug(name) {
+  if (window.Wiki && Wiki.Book) return Wiki.Book.slug(name);
+  const map = { 'ı':'i','İ':'i','ş':'s','Ş':'s','ğ':'g','Ğ':'g','ü':'u','Ü':'u','ö':'o','Ö':'o','ç':'c','Ç':'c' };
+  return String(name || '').replace(/[ıİşŞğĞüÜöÖçÇ]/g, m => map[m]).toLowerCase().trim().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '').substring(0, 60);
 }
 
 async function init() {
   try {
-    const [housesData, charsData] = await Promise.all([
-      loadData('houses.json'), loadData('characters.json')
+    const [housesData, charsData, loreData, chaptersData] = await Promise.all([
+      loadData('houses.json'),
+      loadData('characters.json'),
+      loadData('lore.json').catch(() => ({ events: [] })),
+      loadData('chapters.json').catch(() => ({ chapters: [] }))
     ]);
+
     (housesData?.provinces || []).forEach(prov => {
       (prov.houses || []).forEach(h => { allHouses[h.id] = { house: h, province: prov }; });
     });
     (charsData?.characters || []).forEach(c => { allChars[c.id] = c; });
+    loreEvents  = (loreData && loreData.events) || [];
+    allChapters = (chaptersData && chaptersData.chapters) || [];
+
     render();
   } catch (err) {
     console.error('Hane verisi yüklenemedi:', err);
@@ -174,17 +371,74 @@ function render() {
   }
 
   const h = entry.house, prov = entry.province;
-  document.title = `${h.name} · Stallhart Wiki`;   /* düz metin */
+  document.title = `${h.name} · Stallhart Wiki`;
   document.documentElement.lang = l;
 
   const accent = (h.colors && h.colors[1]) || (h.colors && h.colors[0]) || '#b87333';
   const wrap = document.getElementById('wiki-root');
   if (wrap) wrap.style.setProperty('--house-accent', accent);
 
-  const members = (h.memberIds || []).map(mid => allChars[mid]).filter(Boolean);
+  /* Hane Üyeleri */
+  const memberIdSet = new Set(h.memberIds || []);
+  const members = [];
+  (h.memberIds || []).forEach(mid => {
+    if (allChars[mid]) members.push(allChars[mid]);
+  });
+  // Grup veya hane adı eşleşen diğer karakterleri de ekle
+  Object.values(allChars).forEach(c => {
+    if (memberIdSet.has(c.id)) return;
+    const hNameMatch = c.house && (t(c.house).toLowerCase().includes(h.name.toLowerCase()));
+    const grpMatch   = c.group && c.group.toLowerCase() === h.id.toLowerCase();
+    if (hNameMatch || grpMatch) {
+      members.push(c);
+      memberIdSet.add(c.id);
+    }
+  });
+
   const bannerSrc = Wiki.safeImg(h.banner);
-  /* Motto: seçili dilde boşsa diğer dile düş (admin'de EN boş bırakılabiliyor) */
   const motto = t(h.motto) || (h.motto && typeof h.motto === 'object' ? (h.motto.tr || h.motto.en || '') : '');
+
+  /* Hane Tarihçesi & Kronikleri */
+  const houseEvents = loreEvents.filter(e => {
+    const r = (e.ruler || '').toLowerCase();
+    const nameTr = (e.name?.tr || '').toLowerCase();
+    const descTr = (e.desc?.tr || '').toLowerCase();
+    const hLow = h.name.toLowerCase();
+    const hIdLow = h.id.toLowerCase();
+
+    if (r.includes(hLow) || nameTr.includes(hLow) || descTr.includes(hLow)) return true;
+    if (hIdLow === 'stallhart' && (e.type === 'ruler' || r.includes('stallhart'))) return true;
+    // Hane üyelerinden biri geçiyorsa
+    return members.some(m => {
+      const mName = t(m.name).toLowerCase();
+      return mName.length > 3 && (nameTr.includes(mName) || descTr.includes(mName) || r.includes(mName));
+    });
+  });
+
+  /* İlgili Bölümler */
+  const memberNameSet = members.map(m => t(m.name).toLowerCase());
+  const memberChaptersSet = new Set();
+  members.forEach(m => {
+    (m.chapters || []).forEach(chTitle => memberChaptersSet.add(String(chTitle).toLowerCase()));
+  });
+
+  const relatedChapters = allChapters.filter(ch => {
+    const pov = (t(ch.pov) || '').toLowerCase();
+    const syn = (t(ch.synopsis) || '').toLowerCase();
+    const title = (t(ch.title) || '').toLowerCase();
+    const hLow = h.name.toLowerCase();
+
+    if (pov.includes(hLow) || syn.includes(hLow)) return true;
+    if (memberChaptersSet.has(title) || memberChaptersSet.has('bölüm – ' + title) || memberChaptersSet.has('bölüm - ' + title)) return true;
+    return memberNameSet.some(mn => mn.length > 3 && (pov.includes(mn) || syn.includes(mn)));
+  });
+
+  const typeLabels = {
+    ruler:    l === 'tr' ? '👑 Hükümdar'  : '👑 Ruler',
+    war:      l === 'tr' ? '⚔️ Savaş'     : '⚔️ War',
+    crisis:   l === 'tr' ? '🔥 Kriz'      : '🔥 Crisis',
+    religious:l === 'tr' ? '⚖️ Dinî Olay' : '⚖️ Religious'
+  };
 
   const mainHTML = `
     <div>
@@ -195,7 +449,7 @@ function render() {
       </nav>
 
       <div class="house-crest-wrap">
-        <div class="hcb-flag" style="--banner-c2:${esc((h.colors && h.colors[1]) || (h.colors && h.colors[0]) || '#b87333')}">
+        <div class="hcb-flag house-crest-banner" style="--banner-c2:${esc(accent)}">
           ${bannerSrc
             ? `<div class="hcb-flag-frame"><img class="hc-banner-img" data-zoom ${Wiki.imgAttrs(bannerSrc,'(max-width:700px) 60vw, 260px',{eager:true})} alt="${esc(h.name)} — ${l === 'tr' ? 'bayrak' : 'banner'}"></div>`
             : bannerPlaceholder(l, h.name)}
@@ -211,6 +465,7 @@ function render() {
       <div class="art-tags">
         <a href="haneler.html" class="art-tag major">${esc(t(prov.name))}</a>
         <span class="art-tag">${esc((TIER_LABEL[h.tier] || TIER_LABEL.minor)[l])}</span>
+        ${(h.tags || []).map(tg => `<span class="art-tag">#${esc(tg)}</span>`).join('')}
       </div>
 
       <div class="toc">
@@ -218,13 +473,18 @@ function render() {
         <ul class="toc-list">
           <li><a href="#koken">1. ${l === 'tr' ? 'Köken & Tarihçe' : 'Origin & History'}</a></li>
           <li><a href="#semboller">2. ${l === 'tr' ? 'Semboller & Renkler' : 'Symbols & Colors'}</a></li>
-          ${members.length ? `<li><a href="#uyeler">3. ${l === 'tr' ? 'Hane Üyeleri' : 'House Members'}</a></li>` : ''}
+          <li><a href="#kilit-figurler">3. ${l === 'tr' ? 'Kilit Figürler' : 'Key Figures'} (${members.length})</a></li>
+          <li><a href="#tarihce">4. ${l === 'tr' ? 'Hane Tarihçesi & Kronikler' : 'House Chronicles'} (${houseEvents.length})</a></li>
+          <li><a href="#bolumler">5. ${l === 'tr' ? 'İlgili Bölümler & Kayıtlar' : 'Related Chapters'} (${relatedChapters.length})</a></li>
+          <li><a href="#ansiklopedi">6. ${l === 'tr' ? 'Evren Ansiklopedisi Bağlantısı' : 'World Encyclopedia'}</a></li>
         </ul>
       </div>
 
+      <!-- 1. KÖKEN -->
       <h2 class="art-h2" id="koken">${l === 'tr' ? 'Köken & Tarihçe' : 'Origin & History'}</h2>
       <p class="art-p">${esc(t(h.origin) || t(h.desc) || (l === 'tr' ? 'Bu hane hakkında ayrıntılı kayıt bulunmuyor.' : 'No detailed record exists for this house.'))}</p>
 
+      <!-- 2. SEMBOLLER -->
       <h2 class="art-h2" id="semboller">${l === 'tr' ? 'Semboller & Renkler' : 'Symbols & Colors'}</h2>
       <div class="sigil">
         <div class="sigil-inner">${esc(t(h.symbol) || h.name)}</div>
@@ -235,18 +495,138 @@ function render() {
         ${(h.colors || []).map(c => `<div class="swatch" style="background:${esc(c)}" title="${esc(c)}"></div>`).join('')}
       </div>
 
+      <!-- 3. KİLİT FİGÜRLER (.cc GRID YAPISI) -->
+      <h2 class="art-h2" id="kilit-figurler">${l === 'tr' ? 'Kilit Figürler' : 'Key Figures'} (${members.length})</h2>
+      <p class="art-p" style="font-size:.86rem;color:var(--parchd);margin-bottom:.5rem">
+        ${l === 'tr'
+          ? `${esc(h.name)} hanedanının kaderini tayin eden, savaşlarda ve saray meclislerinde öne çıkan şahsiyetler:`
+          : `Prominent figures determining the destiny of House ${esc(h.name)} across wars and imperial councils:`}
+      </p>
+
       ${members.length ? `
-      <h2 class="art-h2" id="uyeler">${l === 'tr' ? 'Hane Üyeleri' : 'House Members'} (${members.length})</h2>
-      <div class="member-grid">
-        ${members.map(m => `
-          <a class="member-card" href="${SWRoute.href('karakter', m.id)}">
-            ${m.image
-              ? `<img class="member-thumb" ${Wiki.imgAttrs(m.image,'(max-width:600px) 45vw, 220px')} alt="" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'member-thumb-ph',textContent:'${esc((t(m.name) || '?')[0])}'}))">`
-              : `<div class="member-thumb-ph">${esc((t(m.name) || '?')[0])}</div>`}
-            <div class="member-name"><span class="member-status ${esc(m.status || '')}"></span>${esc(t(m.name))}</div>
-            <div class="member-title">${esc(t(m.title) || '')}</div>
-          </a>`).join('')}
-      </div>` : `<p class="art-p" style="color:var(--parchd);font-style:italic">${l === 'tr' ? 'Bu haneye bağlı adı geçen bir karakter kaydı bulunmuyor.' : 'No named characters are recorded for this house.'}</p>`}
+      <div class="cc-grid" id="house-figures-grid">
+        ${members.map(m => {
+          const bio = t(m.bio) || '';
+          return `
+            <a class="cc ${esc(h.id)}" href="${SWRoute.href('karakter', m.id)}" role="article" title="${esc(t(m.name))}">
+              <div class="cc-dot ${esc(m.status || 'alive')}"></div>
+              <p class="cc-house">${esc(t(m.house) || h.name)}</p>
+              <h3 class="cc-name">${esc(t(m.name))}</h3>
+              <p class="cc-role">${esc(t(m.title) || '')}</p>
+              <p class="cc-desc">${esc(bio.substring(0, 130))}${bio.length > 130 ? '…' : ''}</p>
+              ${t(m.epi) ? `<span class="cc-epi">${esc(t(m.epi))}</span>` : ''}
+            </a>`;
+        }).join('')}
+      </div>` : `
+        <div style="background:var(--surface);border:1px dashed var(--border);padding:1.5rem;text-align:center;color:var(--parchd);font-style:italic;margin-top:1rem">
+          ${l === 'tr' ? 'Bu haneye bağlı doğrudan kayıtlı bir karakter bulunmuyor.' : 'No named characters recorded directly for this house.'}
+        </div>`}
+
+      <!-- 4. TARİHÇE & KRONİKLER -->
+      <h2 class="art-h2" id="tarihce">${l === 'tr' ? 'Hane Tarihçesi & Kronikler' : 'House Chronicles & Milestones'}</h2>
+      <p class="art-p" style="font-size:.86rem;color:var(--parchd);margin-bottom:.5rem">
+        ${l === 'tr'
+          ? 'Evren Ansiklopedisi kayıtlarında hanenin adı geçen dönüm noktaları, fetihler ve krizler:'
+          : 'Milestones, conquests and historical crises of this house recorded in the World Encyclopedia:'}
+      </p>
+
+      <div class="house-history-grid">
+        ${houseEvents.length ? houseEvents.map(e => `
+          <div class="house-history-card lc ${esc(e.type || '')}">
+            <div>
+              <div class="hh-head">
+                <span class="hh-ks">KS ${esc(e.ks)}</span>
+                <span class="hh-type">${esc(typeLabels[e.type] || e.type)}</span>
+              </div>
+              <h4 class="hh-title">${esc(t(e.name))}</h4>
+              ${e.ruler ? `<div class="hh-ruler">${l === 'tr' ? 'Lider / Hükümdar: ' : 'Ruler / Leader: '} ${esc(e.ruler)}</div>` : ''}
+              <p class="hh-desc">${esc(t(e.desc))}</p>
+            </div>
+            <a href="lore.html#/evren/${esc(e.id || '')}" class="hh-link">
+              <span>${l === 'tr' ? 'Kronikte Gör' : 'View in Chronicle'}</span>
+              <span>→</span>
+            </a>
+          </div>
+        `).join('') : `
+          <div class="house-history-card lc" style="grid-column:1/-1">
+            <div class="hh-head">
+              <span class="hh-ks">KS ~1144</span>
+              <span class="hh-type">${l === 'tr' ? 'Arşiv Kaydı' : 'Archive Record'}</span>
+            </div>
+            <h4 class="hh-title">${esc(h.name)} — ${l === 'tr' ? 'Hane Kökeni' : 'House Roots'}</h4>
+            <p class="hh-desc">${esc(t(h.origin) || t(h.desc) || '')}</p>
+            <a href="lore.html#/evren/tarih" class="hh-link">
+              <span>${l === 'tr' ? 'İmparatorluk Tarih Çizelgesi' : 'Imperial Timeline'}</span>
+              <span>→</span>
+            </a>
+          </div>
+        `}
+      </div>
+
+      <!-- 5. İLGİLİ BÖLÜMLER -->
+      <h2 class="art-h2" id="bolumler">${l === 'tr' ? 'İlgili Bölümler & Edebi Kayıtlar' : 'Related Chapters & Literary Records'}</h2>
+      <p class="art-p" style="font-size:.86rem;color:var(--parchd);margin-bottom:.5rem">
+        ${l === 'tr'
+          ? 'Bu hanenin üyelerinin doğrudan bakış açısı (POV) sunduğu veya olayların merkezinde yer aldığı kitap bölümleri:'
+          : 'Novel chapters where members of this house feature as POV characters or central actors:'}
+      </p>
+
+      <div class="house-chapters-grid">
+        ${relatedChapters.length ? relatedChapters.map(ch => `
+          <a class="house-chapter-card" href="${SWRoute.href('bolum', ch.id)}">
+            <div>
+              <div class="hch-head">
+                <span class="hch-num">${l === 'tr' ? 'Bölüm ' : 'Chapter '} ${esc(ch.num || ch.id)}</span>
+                <span class="hch-ks">${esc(ch.ks || '')}</span>
+              </div>
+              <h4 class="hch-title">${esc(t(ch.title))}</h4>
+              ${t(ch.pov) ? `<div class="hch-pov"><strong>POV:</strong> ${esc(t(ch.pov))}</div>` : ''}
+              <p class="hch-synopsis">${esc(t(ch.synopsis) ? t(ch.synopsis).substring(0, 130) + '…' : '')}</p>
+            </div>
+            <div class="hch-cta">
+              <span>${l === 'tr' ? 'Bölümü Oku' : 'Read Chapter'}</span>
+              <span>→</span>
+            </div>
+          </a>
+        `).join('') : `
+          <div style="background:var(--surface);border:1px dashed var(--border);padding:1.5rem;text-align:center;color:var(--parchd);font-style:italic;grid-column:1/-1">
+            ${l === 'tr' ? 'Bu hanenin şahsiyetleri henüz açılan ilk cilt bölümlerinde doğrudan odak noktası olmamıştır; gelecek fasıllarda yer alacaktır.' : 'Figures from this house have not yet been the primary POV focus in the first published volume.'}
+          </div>
+        `}
+      </div>
+
+      <!-- 6. EVREN ANSİKLOPEDİSİ KÖPRÜLERİ -->
+      <h2 class="art-h2" id="ansiklopedi">${l === 'tr' ? 'Evren Ansiklopedisi Bağlantısı' : 'World Encyclopedia Links'}</h2>
+      <div class="house-lore-links">
+        <a href="lore.html#/evren/yer-${yerSlug(t(prov.name))}" class="house-lore-link-card">
+          <span class="hl-icon">🗺️</span>
+          <div>
+            <div class="hl-title">${esc(t(prov.name))}</div>
+            <div class="hl-sub">${l === 'tr' ? 'Coğrafya & Eyalet Rehberi' : 'Geography & Province Guide'}</div>
+          </div>
+        </a>
+        <a href="lore.html#/evren/dunya" class="house-lore-link-card">
+          <span class="hl-icon">🏛️</span>
+          <div>
+            <div class="hl-title">${l === 'tr' ? 'Dünya Güç Sıralaması' : 'World Power Ranking'}</div>
+            <div class="hl-sub">${l === 'tr' ? 'Askerî & Nüfus Dengesi' : 'Military & Population Balance'}</div>
+          </div>
+        </a>
+        <a href="lore.html#/evren/din" class="house-lore-link-card">
+          <span class="hl-icon">⚖️</span>
+          <div>
+            <div class="hl-title">${l === 'tr' ? 'Denge Konseyi & Din' : 'Council of Balance & Faith'}</div>
+            <div class="hl-sub">${l === 'tr' ? 'İmparatorluk Teolojisi' : 'Imperial Theology'}</div>
+          </div>
+        </a>
+        <a href="harita.html#/harita/imparatorluk/${yerSlug(t(prov.name))}" class="house-lore-link-card">
+          <span class="hl-icon">🧭</span>
+          <div>
+            <div class="hl-title">${l === 'tr' ? 'Siyasi Harita' : 'Political Map'}</div>
+            <div class="hl-sub">${esc(t(prov.name))} ${l === 'tr' ? 'Konumu' : 'Location'}</div>
+          </div>
+        </a>
+      </div>
     </div>`;
 
   const sideHTML = `
@@ -259,7 +639,9 @@ function render() {
         <div class="hib-row"><span class="hib-k">${l === 'tr' ? 'Anlam' : 'Meaning'}</span><span class="hib-v">${esc(t(h.meaning))}</span></div>
         <div class="hib-row"><span class="hib-k">${l === 'tr' ? 'Sembol' : 'Symbol'}</span><span class="hib-v">${esc(t(h.symbol))}</span></div>
         ${t(h.motto) ? `<div class="hib-row"><span class="hib-k">${l === 'tr' ? 'Motto' : 'Motto'}</span><span class="hib-v">"${esc(t(h.motto))}"</span></div>` : ''}
-        <div class="hib-row"><span class="hib-k">${l === 'tr' ? 'Üye Sayısı' : 'Members'}</span><span class="hib-v">${members.length}</span></div>
+        <div class="hib-row"><span class="hib-k">${l === 'tr' ? 'Kilit Figürler' : 'Key Figures'}</span><span class="hib-v">${members.length}</span></div>
+        <div class="hib-row"><span class="hib-k">${l === 'tr' ? 'Kronik Olayı' : 'Events'}</span><span class="hib-v">${houseEvents.length}</span></div>
+        <div class="hib-row"><span class="hib-k">${l === 'tr' ? 'Geçtiği Bölüm' : 'Chapters'}</span><span class="hib-v">${relatedChapters.length}</span></div>
       </div>
     </div>`;
 
@@ -267,13 +649,24 @@ function render() {
   document.getElementById('content-side').innerHTML = sideHTML;
   Wiki.Tooltip.scan(document.getElementById('content-main'));
 
-  /* Bayrak yolu bozuksa kırık ikon yerine yer tutucu */
+  /* Bayrak yüklendiğinde parıltı (glow), yolu bozuksa kırık ikon yerine yer tutucu */
   const bi = document.querySelector('#content-main img.hc-banner-img');
-  if (bi) bi.addEventListener('error', () => {
-    const holder = document.createElement('div');
-    holder.innerHTML = bannerPlaceholder(l, h.name, true);
-    bi.closest('.hcb-flag-frame').replaceWith(holder.firstChild);
-  }, { once: true });
+  if (bi) {
+    const frame = bi.closest('.hcb-flag-frame');
+    const onImgReady = () => {
+      if (frame) frame.classList.add('hcb-loaded');
+    };
+    if (bi.complete && bi.naturalHeight !== 0) {
+      onImgReady();
+    } else {
+      bi.addEventListener('load', onImgReady, { once: true });
+    }
+    bi.addEventListener('error', () => {
+      const holder = document.createElement('div');
+      holder.innerHTML = bannerPlaceholder(l, h.name, true);
+      if (frame) frame.replaceWith(holder.firstChild);
+    }, { once: true });
+  }
 }
 
 function bannerPlaceholder(l, name, failed) {
@@ -283,7 +676,7 @@ function bannerPlaceholder(l, name, failed) {
   return `<div class="hcb-ph"><span class="hcb-ph-glyph">${esc((name || '?').trim()[0] || '?')}</span><span>${msg}</span></div>`;
 }
 
-/* Bayrağa tıklayınca tam ekran (bir kez bağlanır) */
+/* Bayrağa tıklayınca tam ekran */
 document.addEventListener('click', e => {
   const im = e.target.closest && e.target.closest('img[data-zoom]');
   if (!im) return;
@@ -300,8 +693,8 @@ document.addEventListener('click', e => {
   document.body.appendChild(lb);
 });
 
-SWRoute.canonicalize();   /* ?id=… → #/hane/… */
-SWRoute.watch();          /* başka maddeye geçilirse sayfa yeniden yüklenir */
+SWRoute.canonicalize();
+SWRoute.watch();
 initWiki({ onLangChange: render });
 init();
 </script>

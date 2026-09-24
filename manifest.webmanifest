@@ -1,0 +1,44 @@
+{
+  "id": "/",
+  "start_url": "/",
+  "scope": "/",
+  "name": "The Stallhart Saga",
+  "short_name": "Stallhart",
+  "description": "Stallhart Destanı — Son İmparator, Türkçe dark fantasy epik roman ve evren ansiklopedisi.",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "theme_color": "#0c121f",
+  "background_color": "#0c121f",
+  "icons": [
+    {
+      "src": "assets/images/logo-stallhart-240w.webp",
+      "sizes": "240x240",
+      "type": "image/webp",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/images/logo-stallhart.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/images/logo-stallhart.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/images/logo-stallhart.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "assets/images/logo-stallhart.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}

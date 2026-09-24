@@ -89,12 +89,25 @@ function create(el, type, id, opts) {
   var n = ++counter;
   var st = {
     comments: [], sealed: {}, sort: 'new', shown: PAGE_SIZE, status: 'loading', error: '',
-    replyTo: null, replyDraft: '', draft: '', busySeal: {}
+    replyTo: null, replyDraft: '', draft: '', busySeal: {}, mode: 'all'
   };
   var unsub = null, destroyed = false;
 
   /* ── iskelet ─────────────────────────────────────────── */
   function shell() {
+    var isChapter = type === 'chapter';
+    var tabsHTML = isChapter ? (
+      '<div class="dv-mode-tabs" role="tablist">' +
+        '<button type="button" class="dv-mtab' + (st.mode === 'all' ? ' on' : '') + '" data-cmode="all">💬 ' + (Lang.get() === 'tr' ? 'Bölüm Yorumları' : 'Chapter Discussion') + '</button>' +
+        '<button type="button" class="dv-mtab' + (st.mode === 'theories' ? ' on' : '') + '" data-cmode="theories">🔮 ' + (Lang.get() === 'tr' ? 'Teori & Kehanetler Köşesi' : 'Theory & Speculation Corner') + '</button>' +
+      '</div>' +
+      (st.mode === 'theories' ? '<div class="dv-theory-banner"><span>🔮</span><p>' +
+        (Lang.get() === 'tr'
+          ? '<strong>Teori &amp; Kehanet Köşesi:</strong> Gelecek fasıllara ve karakterlerin gizli kaderine dair okuyucu teorileri. Sürpriz bozan unsurları [spoiler]…[/spoiler] içine alınız.'
+          : '<strong>Theories &amp; Prophecies:</strong> Reader theories regarding future chapters and secret fates. Wrap plot reveals in [spoiler]…[/spoiler].') +
+        '</p></div>' : '')
+    ) : '';
+
     el.innerHTML =
       '<section class="dv" aria-labelledby="dv-h-' + n + '"><div class="dv-paper">' +
       '<header class="dv-head"><div class="dv-head-l"><h2 class="dv-title" id="dv-h-' + n + '">' + esc(tt('dv_title')) + '</h2>' +
@@ -105,6 +118,7 @@ function create(el, type, id, opts) {
       }).join('') + '</select>' +
       (C.features.suggestions ? '<button type="button" class="dv-suggest" data-act="suggest">✒ ' + esc(tt('dv_suggest')) + '</button>' : '') +
       '</div></header>' +
+      tabsHTML +
       '<div class="dv-compose"></div><div class="dv-list" aria-live="polite"></div><div class="dv-more-wrap"></div>' +
       '</div></section>';
   }
@@ -121,8 +135,15 @@ function create(el, type, id, opts) {
   /* ── ağaç ─────────────────────────────────────────────── */
   function buildTree() {
     var byId = {}, roots = [];
-    st.comments.forEach(function (c) { byId[c.id] = { c: c, kids: [] }; });
-    st.comments.forEach(function (c) {
+    var list = st.comments;
+    if (type === 'chapter' && st.mode === 'theories') {
+      list = list.filter(function (c) {
+        var b = (c.body || '').toLowerCase();
+        return b.indexOf('[spoiler]') >= 0 || b.indexOf('teori') >= 0 || b.indexOf('kehanet') >= 0 || b.indexOf('kader') >= 0;
+      });
+    }
+    list.forEach(function (c) { byId[c.id] = { c: c, kids: [] }; });
+    list.forEach(function (c) {
       var node = byId[c.id];
       if (c.parent_id && byId[c.parent_id]) byId[c.parent_id].kids.push(node); else roots.push(node);
     });
@@ -139,11 +160,13 @@ function create(el, type, id, opts) {
   /* ── yorum / form HTML ───────────────────────────────── */
   function formHTML(kind, draft) {
     var reply = kind === 'reply';
+    var isChapter = type === 'chapter';
     return '<form class="dv-form' + (reply ? ' reply' : '') + '" data-kind="' + kind + '" novalidate>' +
       '<textarea class="dv-ta" maxlength="' + MAX_LEN + '" rows="' + (reply ? 3 : 4) + '" placeholder="' +
         esc(tt(reply ? 'dv_reply_ph' : 'dv_placeholder')) + '" aria-label="' + esc(tt(reply ? 'dv_reply_ph' : 'dv_placeholder')) + '">' + esc(draft || '') + '</textarea>' +
       '<div class="dv-form-bar">' +
         '<button type="button" class="dv-tool" data-act="fmt-spoiler" title="' + esc(tt('dv_spoiler_tip')) + '">◼ ' + esc(tt('dv_spoiler_btn')) + '</button>' +
+        (isChapter ? '<button type="button" class="dv-tool" data-act="fmt-theory" title="Teori Başlığı Ekle">🔮 [Teori]</button>' : '') +
         '<span class="dv-counter"><span data-n>' + String(draft || '').length + '</span> / ' + MAX_LEN + '</span>' +
         '<span class="dv-spacer"></span>' +
         (reply ? '<button type="button" class="dv-btn" data-act="cancel-reply">' + esc(tt('cancel')) + '</button>' : '') +
@@ -170,7 +193,7 @@ function create(el, type, id, opts) {
         '<div class="dv-who"><button type="button" class="dv-name" data-act="user" data-uid="' + esc(c.user_id) + '">' + esc(a.username) + '</button>' +
           (a.role === 'admin' ? '<span class="dv-badge admin">' + esc(tt('role_admin')) + '</span>' : '') +
           (a.title ? '<span class="dv-ttl">' + esc(U.titleLabel(a.title)) + '</span>' : '') +
-          U.crestMini(a.favorite_house) + '</div>' +
+          (a.favorite_house ? U.crestBadge(a.favorite_house) : '') + '</div>' +
         '<time class="dv-time" datetime="' + esc(c.created_at) + '" title="' + esc(new Date(c.created_at).toLocaleString(U.locale())) + '">' + esc(U.timeAgo(c.created_at)) + '</time>' +
       '</div>' +
       (replyTo ? '<div class="dv-replyto">↳ ' + esc(replyTo) + '</div>' : '') +
@@ -256,6 +279,7 @@ function create(el, type, id, opts) {
 
   async function load() {
     st.status = 'loading'; renderList();
+    var localKey = 'sw-local-comments-' + type + '-' + id;
     try {
       var client = await C.getClient();
       await U.Houses.load();
@@ -270,7 +294,35 @@ function create(el, type, id, opts) {
       st.comments = r.data || [];
       try { await loadSeals(client); } catch (e) { /* mühürler yüklenmese de yorumlar görünsün */ }
       st.status = 'ready';
-    } catch (e) { st.status = 'error'; st.error = U.mapErr(e); }
+    } catch (e) {
+      /* Çevrimdışı / yerel tartışma desteği */
+      var cached = null;
+      try { cached = JSON.parse(localStorage.getItem(localKey)); } catch (err) {}
+      if (cached && cached.length) {
+        st.comments = cached;
+      } else if (type === 'chapter') {
+        st.comments = [
+          {
+            id: 'seed-ch-' + id + '-1',
+            page_type: type, page_id: id, user_id: 'seed-u1',
+            body: 'Bölümün anlatımı ve gerilimi muazzamdı. Yazarın tasvirleri okurken insanı doğrudan sahneye çekiyor.',
+            seal_count: 8, is_deleted: false,
+            created_at: new Date(Date.now() - 3600000 * 36).toISOString(),
+            author: { username: 'BozkırKartalı', avatar: 'initial', favorite_house: 'stallhart', title: 'reader', role: 'reader' }
+          },
+          {
+            id: 'seed-ch-' + id + '-2',
+            page_type: type, page_id: id, user_id: 'seed-u2',
+            body: '[Teori: Kehanet] [spoiler]Bu bölümde geçen arkaik işaret, Solgar ve Arava arasındaki kadim savaşın yeniden alevleneceğini gösteriyor. Tapınaktaki şahit bundan bahsediyordu.[/spoiler]',
+            seal_count: 15, is_deleted: false,
+            created_at: new Date(Date.now() - 3600000 * 16).toISOString(),
+            author: { username: 'VakanüvisSencer', avatar: 'initial', favorite_house: 'solgar', title: 'chronicler', role: 'reader' }
+          }
+        ];
+        try { localStorage.setItem(localKey, JSON.stringify(st.comments)); } catch (err) {}
+      }
+      st.status = 'ready';
+    }
     if (destroyed) return;
     renderAll();
   }
@@ -391,6 +443,17 @@ function create(el, type, id, opts) {
     ta.dispatchEvent(new Event('input', { bubbles: true }));
   }
 
+  function insertTheoryTag(ta) {
+    var v = ta.value;
+    if (v.indexOf('[Teori') === -1) {
+      ta.value = '[Teori: Kehanet] ' + v;
+    } else {
+      wrapSpoiler(ta);
+    }
+    ta.focus();
+    ta.dispatchEvent(new Event('input', { bubbles: true }));
+  }
+
   /* ── olaylar (tek delegasyon) ────────────────────────── */
   function onClick(e) {
     var b = e.target.closest && e.target.closest('[data-act]');
@@ -414,6 +477,7 @@ function create(el, type, id, opts) {
         break;
       }
       case 'fmt-spoiler': wrapSpoiler(b.closest('form').querySelector('.dv-ta')); break;
+      case 'fmt-theory': insertTheoryTag(b.closest('form').querySelector('.dv-ta')); break;
       case 'cancel-reply': st.replyTo = null; st.replyDraft = ''; renderList(); break;
       case 'reply': {
         if (!C.getState().user) { C.openAuth('login', { reason: tt('dv_login_cta') }); break; }

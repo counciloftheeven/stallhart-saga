@@ -366,6 +366,20 @@ function crestMini(houseId) {
   return '<span class="sw-crest-mini" title="' + esc(h.name) + '" style="--c1:' + esc(c[0]) + ';--c2:' + esc(c[1]) + '"></span>';
 }
 
+/* Hane Rozeti: küçük sancak + hane adı + motto sloganı */
+function crestBadge(houseId, opts) {
+  var h = Houses.get(houseId);
+  if (!h) return '';
+  var c = houseColors(houseId);
+  var motto = Lang.t(h.motto);
+  var tip = esc(h.name) + (motto ? ' — “' + esc(motto) + '”' : '');
+  var showMotto = !opts || opts.showMotto !== false;
+  return '<span class="sw-house-badge" title="' + tip + '" style="--c1:' + esc(c[0]) + ';--c2:' + esc(c[1]) + '">' +
+    '<span class="sw-crest-mini"></span><span class="sw-hb-name">' + esc(h.name) + '</span>' +
+    (motto && showMotto ? '<span class="sw-hb-motto">“' + esc(motto) + '”</span>' : '') +
+    '</span>';
+}
+
 /* Büyük arma (profil modalında): sancak + sembol harfi */
 function crestBig(houseId) {
   var h = Houses.get(houseId);
@@ -641,9 +655,10 @@ function renderNav() {
   if (S.user) {
     var p = S.profile || { username: String(S.user.email || '?').split('@')[0] };
     var isAdmin = p.role === 'admin';
+    var badgeHTML = p.favorite_house ? crestBadge(p.favorite_house) : '';
     html = '<div class="nav-user' + (wasOpen ? ' open' : '') + '">' +
       '<button type="button" class="nav-user-btn" data-act="menu" aria-haspopup="menu" aria-expanded="' + wasOpen + '">' +
-        avatarHTML(p, 'sm') + '<span class="nu-name">' + esc(p.username) + '</span></button>' +
+        avatarHTML(p, 'sm') + '<span class="nu-name">' + esc(p.username) + '</span>' + badgeHTML + '</button>' +
       '<div class="nav-user-menu" role="menu">' +
         '<div class="num-head"><strong>' + esc(p.username) + '</strong><small>' +
           esc(isAdmin ? tt('role_admin') : (titleLabel(p.title) || tt('role_member'))) + '</small></div>' +
@@ -782,14 +797,19 @@ function renderProfile(rec, c) {
     '<div class="sw-pf-head">' +
       '<div class="sw-pf-av">' + avatarHTML(p, 'xl') + '</div>' +
       '<div class="sw-pf-id">' +
-        '<h2 class="sw-h">' + esc(p.username) + '</h2>' +
+        '<div class="sw-pf-name-row" style="display:flex;align-items:center;gap:.6rem;flex-wrap:wrap;margin-bottom:.2rem">' +
+          '<h2 class="sw-h">' + esc(p.username) + '</h2>' +
+          (p.favorite_house ? crestBadge(p.favorite_house, { showMotto: true }) : '') +
+        '</div>' +
         '<div class="sw-pf-role"><span class="sw-badge' + (isAdmin ? ' admin' : '') + '">' + esc(roleLabel(p.role)) + '</span>' +
           (p.title ? '<em>' + esc(titleLabel(p.title)) + '</em>' : '') + '</div>' +
         '<div class="sw-pf-meta">' + esc(tt('joined', { date: fmtDate(p.created_at) })) + '</div>' +
         '<div class="sw-pf-stats"><span><b>' + c.total + '</b> ' + esc(tt('stat_comments')) + '</span>' +
           (c.self ? '<span><b>' + c.suggs.length + '</b> ' + esc(tt('stat_sugg')) + '</span>' : '') + '</div>' +
       '</div>' +
-      (h ? '<div class="sw-pf-crest">' + crestBig(h.id) + '<small>' + esc(h.name) + '</small></div>' : '') +
+      (h ? '<div class="sw-pf-crest">' + crestBig(h.id) + '<div class="sw-pf-hinfo"><strong class="sw-pf-hname">' + esc(h.name) + '</strong>' +
+        (h.motto ? '<span class="sw-pf-hmotto">“' + esc(Lang.t(h.motto)) + '”</span>' : '') +
+        (h.province ? '<small class="sw-pf-hprov">' + esc(Lang.t(h.province)) + '</small>' : '') + '</div></div>' : '') +
     '</div>' +
     (c.self && p.is_banned ? '<div class="sw-err">' + esc(tt('banned_note')) + '</div>' : '');
 
@@ -997,7 +1017,7 @@ Object.assign(API, {
   ensureCSS: injectCSS,
   loadModule: loadModule,
   util: {
-    esc: esc, tt: tt, mapErr: mapErr, avatarHTML: avatarHTML, crestMini: crestMini, crestBig: crestBig,
+    esc: esc, tt: tt, mapErr: mapErr, avatarHTML: avatarHTML, crestMini: crestMini, crestBadge: crestBadge, crestBig: crestBig,
     houseColors: houseColors, titleLabel: titleLabel, roleLabel: roleLabel, fmtDate: fmtDate, timeAgo: timeAgo,
     slugify: slugify, toast: toast, confirmBox: confirmBox, Modal: Modal, Houses: Houses,
     pageLabel: pageLabel, pageUrl: pageUrl, typeLabel: typeLabel, TARGETS: TARGETS, ctxFor: ctxFor, TITLES: TITLES, AVATARS: AVATARS, ICONS: ICONS, sleep: sleep,

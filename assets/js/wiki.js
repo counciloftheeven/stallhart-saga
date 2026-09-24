@@ -1072,14 +1072,15 @@ const Tooltip = (() => {
     '.hc-desc, .kc-desc, .modal-bio, .tl-desc, .q-text, .lc p, .book-body p';
 
   const KIND = {
-    karakter: { tr: 'Karakter', en: 'Character', rank: 1 },
-    devlet:   { tr: 'Devlet',   en: 'State',     rank: 2 },
-    yer:      { tr: 'Yer',      en: 'Place',     rank: 3 },
-    hane:     { tr: 'Hane',     en: 'House',     rank: 4 },
-    tanri:    { tr: 'Tanrı',    en: 'God',       rank: 5 },
-    grup:     { tr: 'Topluluk', en: 'Faction',   rank: 6 },
-    olay:     { tr: 'Olay',     en: 'Event',     rank: 7 },
-    sozluk:   { tr: 'Sözlük',   en: 'Glossary',  rank: 8 }
+    karakter: { tr: 'Karakter', en: 'Character', rank: 1, icon: '👤' },
+    devlet:   { tr: 'Devlet',   en: 'State',     rank: 2, icon: '👑' },
+    yer:      { tr: 'Yer & Kale', en: 'Place',   rank: 3, icon: '🏰' },
+    hane:     { tr: 'Hane',     en: 'House',     rank: 4, icon: '🛡️' },
+    tanri:    { tr: 'Tanrı',    en: 'God',       rank: 5, icon: '⚡' },
+    grup:     { tr: 'Topluluk', en: 'Faction',   rank: 6, icon: '⚔️' },
+    olay:     { tr: 'Tarihî Olay', en: 'Event',  rank: 7, icon: '📜' },
+    unvan:    { tr: 'Unvan & Makam', en: 'Title', rank: 8, icon: '⚜️' },
+    sozluk:   { tr: 'Vakanüvis Dipnotu', en: 'Chronicler Note', rank: 9, icon: '✒️' }
   };
   const GLS_TYPE = {
     geo: { tr: 'Coğrafya', en: 'Geography' }, title: { tr: 'Unvan', en: 'Title' },
@@ -1166,8 +1167,8 @@ const Tooltip = (() => {
       const en = Lang.get() === 'en';
 
       /* ── Karakterler ── */
-      const pre = await Promise.all(['characters.json', 'houses.json', 'kingdoms.json', 'geography.json', 'lore.json'].map(load));
-      const charData = pre[0] || {}, hd = pre[1] || {}, kd = pre[2] || {}, geo = pre[3] || {}, lore = pre[4] || {};
+      const pre = await Promise.all(['characters.json', 'houses.json', 'kingdoms.json', 'geography.json', 'lore.json', 'language.json'].map(load));
+      const charData = pre[0] || {}, hd = pre[1] || {}, kd = pre[2] || {}, geo = pre[3] || {}, lore = pre[4] || {}, langData = pre[5] || {};
       const chars = charData.characters || [];
       /* Betimleme metinlerinde küçük harfle de geçen sözcükler ortak sözcüktür
          ("Sessiz Avcı" → "Sessiz", "Hazine Veziri" → "Veziri"): bunlardan takma ad üretme. */
@@ -1356,6 +1357,39 @@ const Tooltip = (() => {
         });
       });
 
+      /* ── Ortak Lisan & Vakanüvis Sözlüğü (Unvanlar, Arkaik Terimler) ── */
+      (langData.dictionary || []).forEach(w => {
+        const word = tt(w.word);
+        if (!word || word.length < 3) return;
+        const vs = nameVariants(word);
+        const cleanWord = vs[0] || word;
+        const isTitle = /unvan|title|makam|komutan|vezir|muhafız/i.test(w.pos || '');
+        const rec = {
+          uid: 'lisan:' + Book.slug(cleanWord),
+          kind: isTitle ? 'unvan' : 'sozluk',
+          title: cleanWord,
+          sub: [w.pos, w.origin ? (en ? 'Origin: ' : 'Köken: ') + w.origin : ''].filter(Boolean).join(' · '),
+          body: snip(w.meaning + (w.example ? ' — “' + w.example + '”' : ''), 190),
+          cs: false,
+          url: url(R.href('evren', 'dil'))
+        };
+        vs.forEach(v => addPrimary(v, rec));
+      });
+      (langData.grammar && langData.grammar.templatePhrases || []).forEach(p => {
+        const ph = tt(p.phrase);
+        if (!ph || ph.length < 3) return;
+        const rec = {
+          uid: 'lisan:kalip:' + Book.slug(ph),
+          kind: 'sozluk',
+          title: ph,
+          sub: en ? 'Common Tongue Phrase' : 'Ortak Lisan Kalıp İfade',
+          body: snip(tt(p.meaning), 170),
+          cs: false,
+          url: url(R.href('evren', 'dil'))
+        };
+        addPrimary(ph, rec);
+      });
+
       const map = prim;
       aliasList.forEach(a => { if (!map[a[0]]) map[a[0]] = a[1]; });
       terms = map;
@@ -1384,14 +1418,24 @@ const Tooltip = (() => {
     activeEl = el;
     const l = Lang.get() === 'en' ? 'en' : 'tr';
     const c = ensureCard();
+    const kInfo = KIND[rec.kind] || KIND.sozluk;
+    const kLabel = kInfo[l] || kInfo.tr;
+    const kIcon = kInfo.icon || '📜';
+
     c.innerHTML =
-      '<div class="wk-kind">' + esc(KIND[rec.kind][l]) +
-      (rec.status ? '<span class="wk-dot ' + esc(rec.status) + '"></span>' : '') + '</div>' +
+      '<div class="wk-top-bar">' +
+        '<span class="wk-kind">' + kIcon + ' ' + esc(kLabel) +
+        (rec.status ? '<span class="wk-dot ' + esc(rec.status) + '"></span>' : '') + '</span>' +
+        '<button type="button" class="wk-close-btn" aria-label="' + (l === 'en' ? 'Close' : 'Kapat') + '">✕</button>' +
+      '</div>' +
       '<div class="wk-title">' + esc(rec.title) + '</div>' +
       (rec.sub ? '<div class="wk-sub">' + esc(rec.sub) + '</div>' : '') +
       (rec.body ? '<div class="wk-body">' + esc(rec.body) + '</div>' : '') +
-      '<a class="wk-go" href="' + esc(rec.url) + '"' + (opts.newTab ? ' target="_blank" rel="noopener"' : '') + '>' +
-      (l === 'tr' ? 'Maddeyi aç →' : 'Open article →') + '</a>';
+      (rec.url ? '<div class="wk-footer"><a class="wk-go" href="' + esc(rec.url) + '"' + (opts.newTab ? ' target="_blank" rel="noopener"' : '') + '>' +
+      (l === 'tr' ? 'Ansiklopedide Aç →' : 'Open in Encyclopedia →') + '</a></div>' : '');
+
+    const cb = c.querySelector('.wk-close-btn');
+    if (cb) cb.onclick = function (ev) { ev.stopPropagation(); hideNow(); };
 
     c.style.visibility = 'hidden';
     c.classList.add('on');
@@ -1564,9 +1608,12 @@ const Tooltip = (() => {
     const rec = terms && terms[el.dataset.wk];
     if (!rec) return;
     e.preventDefault(); e.stopPropagation();
-    if (coarse()) {
-      if (card && card.classList.contains('on') && activeEl === el) hideNow(); else show(el);
-    } else go(rec, e);
+    /* Okumayı bölmeden minik dipnot kartını aç/kapat */
+    if (card && card.classList.contains('on') && activeEl === el) {
+      hideNow();
+    } else {
+      show(el);
+    }
   }
 
   function init(o) {
@@ -1633,6 +1680,7 @@ function initWiki(options) {
 
   if (options.tooltips !== false) Tooltip.init(options.tooltipOpts);
   showDraftBadge();
+  initPWA();
 
   /* Topluluk katmanı (giriş, yorum, öneri) — community.js yüklüyse ve
      config.js doldurulmuşsa devreye girer; aksi halde site eskisi gibidir. */
@@ -1650,6 +1698,38 @@ function showDraftBadge() {
   b.id = 'sw-draft-badge';
   b.innerHTML = '<span>Yerel taslak görüntüleniyor (' + files.length + ' dosya)</span>';
   document.body.appendChild(b);
+}
+
+/* Progressive Web App (PWA) — Service Worker & Yükleme Desteği */
+function initPWA() {
+  if ('serviceWorker' in navigator && (location.protocol === 'https:' || location.hostname === 'localhost' || location.hostname === '127.0.0.1')) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('/sw.js')
+        .then(reg => {
+          // SW registered
+        })
+        .catch(err => {
+          console.warn('[PWA] Service Worker registration warning:', err);
+        });
+    });
+  }
+
+  window.addEventListener('beforeinstallprompt', (e) => {
+    e.preventDefault();
+    window.deferredPWAInstallPrompt = e;
+    document.querySelectorAll('.pwa-install-btn, [data-act="install-pwa"]').forEach(btn => {
+      btn.hidden = false;
+      btn.onclick = () => {
+        if (window.deferredPWAInstallPrompt) {
+          window.deferredPWAInstallPrompt.prompt();
+          window.deferredPWAInstallPrompt.userChoice.then(() => {
+            window.deferredPWAInstallPrompt = null;
+            btn.hidden = true;
+          });
+        }
+      };
+    });
+  });
 }
 
 /* Görsel kaynağı doğrulaması: yalnızca depo yolu, http(s) veya data:image/png|jpeg|webp|gif.

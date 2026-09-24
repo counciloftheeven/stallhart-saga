@@ -1,0 +1,16 @@
+{
+  "name": "stallhart-saga",
+  "version": "1.0.0",
+  "description": "Stallhart Destanı — Son İmparator, Türkçe dark fantasy epik roman",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "dev": "node server.js",
+    "start": "node server.js",
+    "build": "echo 'Ready'",
+    "check": "node scripts/check.mjs"
+  },
+  "dependencies": {
+    "express": "^4.21.2"
+  }
+}

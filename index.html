@@ -16,6 +16,10 @@
 <meta name="twitter:title" content="The Stallhart Saga">
 <meta name="twitter:description" content="Stallhart Destanı — Son İmparator, Türkçe dark fantasy epik roman">
 <meta name="twitter:image" content="assets/images/logo-stallhart.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="apple-touch-icon" href="assets/images/logo-stallhart.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Modern+Antiqua&amp;family=IM+Fell+English:ital@0;1&amp;family=Merriweather:ital,wght@0,400;0,700;1,400&amp;display=swap">
@@ -27,11 +31,6 @@
   align-items: center; justify-content: center;
   text-align: center; padding: 80px 2rem 5rem;
   position: relative; overflow: hidden;
-}
-.hero::before {
-  content: ''; position: absolute; inset: 0; z-index: -1;
-  background: radial-gradient(ellipse 60% 48% at 50% 32%, rgba(196,150,42,.12), transparent 70%);
-  pointer-events: none;
 }
 .hero::after {
   content: ''; position: absolute; bottom: 0; left: 0; right: 0;
@@ -46,7 +45,6 @@
   font-family: var(--font-display); font-style: italic;
   font-size: .82rem; letter-spacing: .2em;
   color: var(--goldd); margin-bottom: 2rem;
-  text-shadow: 0 0 14px rgba(196,150,42,.22);
 }
 picture { display: contents; } /* <picture> yerleşimi bozmasın */
 .hero-logo {
