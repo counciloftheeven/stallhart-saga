@@ -870,35 +870,46 @@ img { max-width: 100%; }
   background: linear-gradient(180deg, #cfa15c, #7d5a2c);
 }
 .hcb-flag-frame {
-  border: 1px solid var(--borderl); background: var(--deep); padding: 4px;
-  box-shadow: 0 6px 14px rgba(0,0,0,.4);
-  transition: border-color .4s ease, box-shadow .4s ease;
+  background: linear-gradient(180deg, rgba(32,24,14,.92) 0%, rgba(12,8,4,.96) 100%);
+  padding: 3px 3px 8px;
+  clip-path: polygon(0% 0%, 100% 0%, 100% 55%, 96% 68%, 86% 80%, 70% 91%, 50% 100%, 30% 91%, 14% 80%, 4% 68%, 0% 55%);
+  filter: drop-shadow(0 4px 10px rgba(0,0,0,.5)) drop-shadow(0 0 1px rgba(196,150,42,.45));
+  transition: border-color .35s ease, filter .35s ease, transform .35s ease;
   position: relative;
 }
-/* Bayrak görseli yüklendiğinde hafif parıltı (glow) ve odak efekti */
+/* Bayrak görseli yüklendiğinde ve hover anında asil kalkan parlaması */
 .hcb-flag-frame.hcb-loaded {
-  border-color: var(--house-accent, var(--goldb));
-  box-shadow:
-    0 8px 18px rgba(0,0,0,.45),
-    0 0 16px rgba(184,115,51,.35),
-    0 0 28px rgba(216,148,85,.18);
-  animation: hcbGlowPulse 4s ease-in-out infinite alternate;
+  filter:
+    drop-shadow(0 4px 12px rgba(0,0,0,.6))
+    drop-shadow(0 0 4px var(--house-accent, var(--goldd)));
 }
-.house-crest-banner:hover .hcb-flag-frame.hcb-loaded,
-.hcb-flag:hover .hcb-flag-frame.hcb-loaded {
-  border-color: var(--goldb);
-  box-shadow:
-    0 10px 22px rgba(0,0,0,.5),
-    0 0 22px rgba(216,148,85,.55),
-    0 0 38px rgba(184,115,51,.28);
+.house-crest-banner:hover .hcb-flag-frame,
+.hcb-flag:hover .hcb-flag-frame {
+  transform: translateY(-2px) scale(1.02);
+  filter:
+    drop-shadow(0 6px 16px rgba(0,0,0,.7))
+    drop-shadow(0 0 10px var(--house-accent, var(--gold)))
+    drop-shadow(0 0 22px rgba(196,150,42,.35));
+}
+.house-crest-banner:hover .hcb-flag-frame img,
+.hcb-flag:hover .hcb-flag-frame img {
+  filter: brightness(1.06) contrast(1.04);
 }
 html[data-theme="light"] .hcb-flag-frame.hcb-loaded {
-  border-color: var(--goldd);
-  box-shadow:
-    0 6px 14px rgba(0,0,0,.12),
-    0 0 16px rgba(184,115,51,.25);
+  filter:
+    drop-shadow(0 4px 10px rgba(0,0,0,.15))
+    drop-shadow(0 0 6px rgba(184,115,51,.35));
 }
-.hcb-flag-frame img { display: block; width: 100%; height: auto; max-height: 190px; object-fit: contain; cursor: zoom-in; }
+.hcb-flag-frame img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 185px;
+  object-fit: cover;
+  clip-path: polygon(0% 0%, 100% 0%, 100% 55%, 96% 68%, 86% 80%, 70% 91%, 50% 100%, 30% 91%, 14% 80%, 4% 68%, 0% 55%);
+  cursor: zoom-in;
+  transition: transform .35s ease, filter .35s ease;
+}
 
 /* ── SANCAK İÇİ PAYLAŞ BUTONU (DISCREET SHARE BUTTON) ───── */
 .hcb-share-btn {
@@ -953,12 +964,23 @@ html[data-theme="light"] .hcb-flag-frame.hcb-loaded {
   border-color: rgba(207, 161, 92, .4);
 }
 
-/* Bayrak yüklenmemişse: kesikli çerçeve + açıklayıcı yazı */
+/* Bayrak yüklenmemişse: kalkan kesimli çerçeve + açıklayıcı yazı */
 .hcb-ph {
   display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .4rem;
-  text-align: center; min-height: 150px; padding: .6rem .4rem;
-  border: 1px dashed var(--borderl); background: rgba(0,0,0,.18);
+  text-align: center; min-height: 155px; padding: 1.2rem .6rem 1.8rem;
+  clip-path: polygon(0% 0%, 100% 0%, 100% 55%, 96% 68%, 86% 80%, 70% 91%, 50% 100%, 30% 91%, 14% 80%, 4% 68%, 0% 55%);
+  background: linear-gradient(180deg, rgba(28,20,12,.88) 0%, rgba(12,8,4,.96) 100%);
+  filter: drop-shadow(0 4px 10px rgba(0,0,0,.5)) drop-shadow(0 0 1px rgba(196,150,42,.4));
   font-family: var(--font-display); font-style: italic; font-size: .72rem; line-height: 1.4; color: var(--parchd);
+  transition: transform .35s ease, filter .35s ease;
+}
+.house-crest-banner:hover .hcb-ph,
+.hcb-flag:hover .hcb-ph {
+  transform: translateY(-2px) scale(1.02);
+  filter:
+    drop-shadow(0 6px 16px rgba(0,0,0,.7))
+    drop-shadow(0 0 10px var(--house-accent, var(--gold)))
+    drop-shadow(0 0 20px rgba(196,150,42,.3));
 }
 .hcb-ph-glyph { font-size: 1.5rem; color: var(--banner-c2, var(--goldd)); font-style: normal; }
 .house-crest-banner .hcb-pole {

@@ -91,15 +91,41 @@
   font-family: var(--font-display); font-style: italic;
   font-size: .78rem; color: var(--goldd); margin-bottom: .6rem;
 }
-.modal-rels-list { display: flex; flex-wrap: wrap; gap: .4rem; }
+.modal-rels-list { display: flex; flex-wrap: wrap; gap: .5rem; }
 .modal-rel-tag {
-  font-size: .75rem; padding: 3px 10px;
-  border: 1px solid var(--border); color: var(--parchd);
-  cursor: pointer; transition: .15s; text-decoration: none;
-  font-family: var(--font-display); font-style: italic;
+  display: inline-flex;
+  align-items: center;
+  gap: .35rem;
+  font-size: .76rem;
+  padding: .32rem .75rem;
+  border: 1px solid var(--border);
+  color: var(--parch);
+  background: var(--surface);
+  cursor: pointer;
+  transition: all .18s ease;
+  text-decoration: none;
+  font-family: var(--font-display);
+  border-radius: 3px;
+  position: relative;
 }
-.modal-rel-tag:hover { border-color: var(--goldd); color: var(--parchl); }
-.modal-rel-tag.enemy { border-color: var(--blood); color: var(--bloodb); }
+.modal-rel-tag.ally {
+  border-left: 3px solid var(--gold);
+}
+.modal-rel-tag.ally:hover {
+  border-color: var(--goldd);
+  color: var(--goldb);
+  box-shadow: 0 0 10px rgba(196,150,42,.3);
+  transform: translateY(-1px);
+}
+.modal-rel-tag.enemy {
+  border-left: 3px solid #d33838;
+}
+.modal-rel-tag.enemy:hover {
+  border-color: #d33838;
+  color: #ff7575;
+  box-shadow: 0 0 10px rgba(184,20,20,.35);
+  transform: translateY(-1px);
+}
 
 /* Etiket filtre çipleri */
 .tag-filter-row { display: flex; gap: .4rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
@@ -297,18 +323,18 @@ function openModal(id) {
     historical: l === 'tr' ? 'Tarihsel' : 'Historical'
   }[c.status] || c.status;
 
-  /* İlişkiler */
+  /* İlişkiler (Dost: Altın ✦, Düşman: Kan Kırmızı ⚔) */
   const allyTags = (c.allies || []).map(aid => {
     const ac = charMap[aid];
     return ac
-      ? `<span class="modal-rel-tag" data-open="${aid}">${esc(t(ac.name))}</span>`
-      : `<span class="modal-rel-tag">${esc(aid)}</span>`;
+      ? `<span class="modal-rel-tag ally" data-open="${aid}"><span style="color:var(--goldb);font-size:.75rem">✦</span> ${esc(t(ac.name))}</span>`
+      : `<span class="modal-rel-tag ally"><span style="color:var(--goldb);font-size:.75rem">✦</span> ${esc(aid)}</span>`;
   }).join('');
   const enemyTags = (c.enemies || []).map(eid => {
     const ec = charMap[eid];
     return ec
-      ? `<span class="modal-rel-tag enemy" data-open="${eid}">${esc(t(ec.name))}</span>`
-      : `<span class="modal-rel-tag enemy">${esc(eid)}</span>`;
+      ? `<span class="modal-rel-tag enemy" data-open="${eid}"><span style="color:#f06a6a;font-size:.75rem">⚔</span> ${esc(t(ec.name))}</span>`
+      : `<span class="modal-rel-tag enemy"><span style="color:#f06a6a;font-size:.75rem">⚔</span> ${esc(eid)}</span>`;
   }).join('');
 
   document.getElementById('modal-body').innerHTML = `

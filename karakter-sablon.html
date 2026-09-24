@@ -58,6 +58,75 @@ body{background:var(--bg)}
 .art-quote{border-left:2px solid var(--goldd);padding:.6rem 1rem;margin:1rem 0;font-style:italic;font-size:.88rem;color:var(--parchd)}
 .art-quote cite{display:block;font-size:.75rem;color:var(--border);margin-top:.35rem;font-style:normal}
 
+/* ── İTTİFAK & HUSUMET DÜĞÜM HATLARI (Dual-colored Relationship Nodes) ── */
+.rel-section{margin:1.85rem 0}
+.rel-section .art-sec-head{display:flex;align-items:center;gap:.6rem;margin-bottom:1rem}
+.rel-head-icon{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:3px;font-size:.85rem;line-height:1}
+.rel-head-icon.ally{color:var(--goldb);background:rgba(196,150,42,.15);border:1px solid rgba(196,150,42,.4);box-shadow:0 0 8px rgba(196,150,42,.2)}
+.rel-head-icon.enemy{color:#e05555;background:rgba(184,32,32,.15);border:1px solid rgba(184,32,32,.4);box-shadow:0 0 8px rgba(184,32,32,.25)}
+
+.rel-nodes-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:.85rem}
+.rel-node-card{
+  display:flex;align-items:center;gap:.75rem;
+  background:var(--surface);border:1px solid var(--border);
+  padding:.7rem .85rem;text-decoration:none;position:relative;
+  overflow:hidden;border-radius:3px;transition:all .22s ease;
+}
+.rel-node-card::before{
+  content:'';position:absolute;top:0;bottom:0;left:0;width:3px;
+  transition:width .22s ease, background .22s ease;
+}
+
+/* Dost (İttifak): Altın ✦ */
+.rel-node-card.rel-ally::before{background:linear-gradient(180deg, var(--goldb), var(--goldd))}
+.rel-node-card.rel-ally .rel-node-glyph{
+  color:var(--goldb);border-color:rgba(196,150,42,.45);
+  background:rgba(196,150,42,.12);box-shadow:0 0 6px rgba(196,150,42,.15);
+}
+.rel-node-card.rel-ally:hover{
+  border-color:var(--goldd);background:rgba(196,150,42,.06);
+  transform:translateY(-2px);
+  box-shadow:0 6px 16px rgba(0,0,0,.35),0 0 12px rgba(196,150,42,.2);
+}
+.rel-node-card.rel-ally:hover::before{width:5px;background:var(--gold)}
+.rel-node-card.rel-ally:hover .rel-node-glyph{box-shadow:0 0 10px rgba(196,150,42,.5);transform:scale(1.1)}
+
+/* Düşman (Husumet): Kan Kırmızı ⚔ */
+.rel-node-card.rel-enemy::before{background:linear-gradient(180deg, #d33838, #821010)}
+.rel-node-card.rel-enemy .rel-node-glyph{
+  color:#f06a6a;border-color:rgba(200,40,40,.45);
+  background:rgba(184,20,20,.14);box-shadow:0 0 6px rgba(184,20,20,.2);
+}
+.rel-node-card.rel-enemy:hover{
+  border-color:rgba(220,50,50,.6);background:rgba(184,20,20,.07);
+  transform:translateY(-2px);
+  box-shadow:0 6px 16px rgba(0,0,0,.4),0 0 12px rgba(184,20,20,.25);
+}
+.rel-node-card.rel-enemy:hover::before{width:5px;background:#ff4d4d}
+.rel-node-card.rel-enemy:hover .rel-node-glyph{box-shadow:0 0 10px rgba(220,40,40,.6);transform:scale(1.1)}
+
+.rel-node-glyph{
+  display:flex;align-items:center;justify-content:center;
+  width:28px;height:28px;border-radius:50%;border:1px solid;
+  font-size:.85rem;flex-shrink:0;transition:transform .2s ease, box-shadow .2s ease;
+}
+.rel-node-info{flex:1;min-width:0}
+.rel-node-name{
+  font-family:var(--font-display);font-size:.88rem;color:var(--parchl);
+  line-height:1.25;display:flex;align-items:center;gap:.4rem;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+}
+.rel-status-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
+.rel-status-dot.alive{background:var(--gold)}
+.rel-status-dot.deceased{background:var(--bloodb)}
+.rel-status-dot.historical{background:var(--borderl)}
+.rel-node-meta{
+  font-size:.72rem;color:var(--parchd);font-style:italic;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:.15rem;
+}
+.rel-node-arrow{color:var(--borderl);font-size:.85rem;transition:transform .2s ease, color .2s ease}
+.rel-node-card:hover .rel-node-arrow{transform:translateX(3px);color:var(--parchl)}
+
 /* Image placeholder / actual image */
 .char-image-wrap{width:100%;aspect-ratio:3/4;background:linear-gradient(135deg,var(--surface),var(--deep));border:1px solid var(--border);display:flex;align-items:center;justify-content:center;margin-bottom:.85rem;overflow:hidden;position:relative}
 .char-image-wrap img{width:100%;height:100%;object-fit:cover;object-position:top center}
@@ -238,15 +307,65 @@ function render(){
       <h2 class="art-sec-head" id="biyografi">${l==='tr'?'Biyografi':'Biography'}</h2>
       <p class="art-p">${esc(t(c.bio))}</p>
 
-      <!-- Müttefikler -->
+      <!-- Müttefikler & İttifak Bağları -->
       ${(c.allies||[]).length?`
-      <h2 class="art-sec-head" id="muttefikler">${l==='tr'?'Müttefikler':'Allies'}</h2>
-      <p class="art-p">${c.allies.map(aid=>{const ac=allChars[aid];return ac?`<a href="${SWRoute.href('karakter',aid)}">${esc(t(ac.name))}</a>`:esc(aid);}).join(' · ')}</p>`:''}
+      <div class="rel-section rel-allies">
+        <h2 class="art-sec-head" id="muttefikler">
+          <span class="rel-head-icon ally">✦</span>
+          <span>${l==='tr'?'Müttefikler & İttifak Bağları':'Allies & Pacts'}</span>
+        </h2>
+        <div class="rel-nodes-grid">
+          ${c.allies.map(aid=>{
+            const ac=allChars[aid];
+            const name=ac?t(ac.name):aid;
+            const house=ac?t(ac.house):'';
+            const role=ac?t(ac.title):'';
+            const status=ac?.status||'';
+            return `
+              <a href="${SWRoute.href('karakter',aid)}" class="rel-node-card rel-ally">
+                <span class="rel-node-glyph" title="${l==='tr'?'İttifak Bağı':'Alliance Bond'}">✦</span>
+                <div class="rel-node-info">
+                  <div class="rel-node-name">
+                    <span>${esc(name)}</span>
+                    ${status?`<span class="rel-status-dot ${status}"></span>`:''}
+                  </div>
+                  ${house||role?`<div class="rel-node-meta">${esc([house,role].filter(Boolean).join(' · '))}</div>`:''}
+                </div>
+                <span class="rel-node-arrow">→</span>
+              </a>`;
+          }).join('')}
+        </div>
+      </div>`:''}
 
-      <!-- Düşmanlar -->
+      <!-- Düşmanlar & Husumet Hatları -->
       ${(c.enemies||[]).length?`
-      <h2 class="art-sec-head" id="dusmanlar">${l==='tr'?'Düşmanlar / Rakipler':'Enemies / Rivals'}</h2>
-      <p class="art-p">${c.enemies.map(eid=>{const ec=allChars[eid];return ec?`<a href="${SWRoute.href('karakter',eid)}">${esc(t(ec.name))}</a>`:esc(eid);}).join(' · ')}</p>`:''}
+      <div class="rel-section rel-enemies">
+        <h2 class="art-sec-head" id="dusmanlar">
+          <span class="rel-head-icon enemy">⚔</span>
+          <span>${l==='tr'?'Düşmanlar & Husumet Hatları':'Enemies & Feuds'}</span>
+        </h2>
+        <div class="rel-nodes-grid">
+          ${c.enemies.map(eid=>{
+            const ec=allChars[eid];
+            const name=ec?t(ec.name):eid;
+            const house=ec?t(ec.house):'';
+            const role=ec?t(ec.title):'';
+            const status=ec?.status||'';
+            return `
+              <a href="${SWRoute.href('karakter',eid)}" class="rel-node-card rel-enemy">
+                <span class="rel-node-glyph" title="${l==='tr'?'Husumet / Rekabet':'Hostility / Rivalry'}">⚔</span>
+                <div class="rel-node-info">
+                  <div class="rel-node-name">
+                    <span>${esc(name)}</span>
+                    ${status?`<span class="rel-status-dot ${status}"></span>`:''}
+                  </div>
+                  ${house||role?`<div class="rel-node-meta">${esc([house,role].filter(Boolean).join(' · '))}</div>`:''}
+                </div>
+                <span class="rel-node-arrow">→</span>
+              </a>`;
+          }).join('')}
+        </div>
+      </div>`:''}
 
       <!-- Lakap -->
       ${t(c.epi)?`

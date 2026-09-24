@@ -52,13 +52,19 @@ body{background:var(--bg)}
 .art-h2:first-of-type{border-top:none;margin-top:0}
 .art-p{font-size:.94rem;line-height:1.9;color:var(--parch);margin-bottom:1rem}
 
-/* Hane amblemi */
+/* Hane amblemi (Gotik Şövalye Kalkanı) */
 .sigil{
-  width:140px;height:160px;margin:0 auto 1.25rem;position:relative;
-  clip-path:polygon(50% 0%,100% 22%,100% 70%,50% 100%,0% 70%,0% 22%);
+  width:140px;height:165px;margin:0 auto 1.25rem;position:relative;
+  clip-path:polygon(0% 0%, 100% 0%, 100% 55%, 96% 68%, 86% 80%, 70% 91%, 50% 100%, 30% 91%, 14% 80%, 4% 68%, 0% 55%);
   display:flex;align-items:center;justify-content:center;text-align:center;
+  background:linear-gradient(180deg, rgba(32,24,14,.92) 0%, rgba(12,8,4,.96) 100%);
   border:2px solid var(--house-accent,var(--goldd));
-  box-shadow:0 0 24px var(--house-glow,rgba(184,115,51,.18));
+  filter:drop-shadow(0 4px 12px rgba(0,0,0,.6)) drop-shadow(0 0 1px rgba(196,150,42,.45));
+  transition:transform .35s ease, filter .35s ease;
+}
+.sigil:hover{
+  transform:translateY(-2px) scale(1.02);
+  filter:drop-shadow(0 6px 18px rgba(0,0,0,.7)) drop-shadow(0 0 10px var(--house-accent,var(--gold))) drop-shadow(0 0 22px rgba(196,150,42,.35));
 }
 .sigil-inner{padding:1rem;font-family:var(--font-display);font-size:.8rem;color:var(--parchl);line-height:1.4}
 
