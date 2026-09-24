@@ -159,8 +159,11 @@ html {
 body {
   background-color: var(--bg);
   background-image:
+    radial-gradient(circle at 50% 15%, rgba(196,150,42,.035) 0%, transparent 70%),
     radial-gradient(ellipse 80% 60% at 15% 15%, rgba(92,26,26,.09) 0%, transparent 100%),
-    radial-gradient(ellipse 60% 80% at 85% 85%, rgba(196,150,42,.05) 0%, transparent 100%);
+    radial-gradient(ellipse 60% 80% at 85% 85%, rgba(196,150,42,.05) 0%, transparent 100%),
+    radial-gradient(circle at center, transparent 40%, rgba(4,6,12,.48) 100%);
+  background-attachment: fixed;
   color: var(--parch);
   font-family: var(--font-body);
   font-size: calc(19px * var(--font-scale, 1));      /* +2 punto — v10: okunabilirlik için tabanı 17px'ten büyütüldü */
@@ -172,7 +175,27 @@ body {
 html[data-theme="light"] body {
   background-image:
     radial-gradient(ellipse 80% 60% at 15% 15%, rgba(139,0,0,.05) 0%, transparent 100%),
-    radial-gradient(ellipse 60% 80% at 85% 85%, rgba(138,90,30,.06) 0%, transparent 100%);
+    radial-gradient(ellipse 60% 80% at 85% 85%, rgba(138,90,30,.06) 0%, transparent 100%),
+    radial-gradient(circle at center, transparent 55%, rgba(138,90,30,.08) 100%);
+}
+
+/* ── MİKRO PARŞÖMEN DOKUSU (Subtle SVG Grain / Noise) ─────────────── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 150;
+  opacity: .038;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 180px 180px;
+}
+html[data-theme="light"] body::before {
+  opacity: .048;
+  mix-blend-mode: multiply;
 }
 /* Renkli/kenarlıklı yüzeylerin hepsi tema geçişinde yumuşak dönsün.
    Tek tek her bileşeni işaretlemek yerine, geçişe en sık giren üç
@@ -1617,18 +1640,61 @@ html[data-theme="light"] .lh { --lh-ink: var(--parchl); --lh-hi: var(--gold); }
   z-index: 950;
   background: var(--surface);
   color: var(--parch);
-  border: 1px solid var(--goldd);
+  border: 1px solid var(--borderl);
+  border-left: 3px solid var(--wk-accent, var(--goldd));
   border-radius: 4px;
-  padding: .9rem 1rem .95rem;
+  padding: .9rem 1.05rem .95rem;
   max-width: 320px;
-  box-shadow: 0 12px 36px rgba(0,0,0,.6), 0 0 0 1px rgba(184,115,51,.25);
+  box-shadow: 0 14px 42px rgba(0,0,0,.68), 0 0 0 1px rgba(184,115,51,.2);
   font-family: var(--font-body);
   font-size: .86rem;
   line-height: 1.5;
   pointer-events: auto;
   opacity: 0;
+  overflow: hidden;
   transform: translateY(4px);
-  transition: opacity .18s ease, transform .18s ease;
+  transition: opacity .18s ease, transform .18s ease, border-left-color .2s ease;
+}
+.wk-watermark {
+  position: absolute;
+  right: -8px;
+  bottom: -12px;
+  width: 108px;
+  height: 108px;
+  pointer-events: none;
+  opacity: .075;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  filter: grayscale(0.25) contrast(1.15);
+  transition: opacity .25s ease, transform .25s ease;
+  z-index: 0;
+}
+.wk-card:hover .wk-watermark {
+  opacity: .13;
+  transform: scale(1.04);
+}
+html[data-theme="light"] .wk-watermark {
+  opacity: .09;
+  mix-blend-mode: multiply;
+}
+.wk-watermark-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 0 3px rgba(196,150,42,.3));
+}
+.wk-watermark-glyph {
+  font-family: var(--font-display);
+  font-size: 5.5rem;
+  font-weight: 700;
+  color: var(--wk-accent, var(--goldd));
+  line-height: 1;
+}
+.wk-top-bar, .wk-title, .wk-sub, .wk-body, .wk-footer {
+  position: relative;
+  z-index: 1;
 }
 .wk-card.on {
   opacity: 1;

@@ -88,20 +88,30 @@
 }
 
 /* ── SEKMELER (MODERN SEGMENTED NAV) ───────────────── */
-.lore-nav-bar {
-  display: flex;
-  align-items: center;
-  gap: .5rem;
-  border-bottom: 1px solid var(--border);
-  padding: .75rem 0;
-  margin-bottom: 2rem;
-  overflow-x: auto;
-  scrollbar-width: none;
-  -webkit-overflow-scrolling: touch;
+.lore-nav-container {
   position: sticky;
   top: var(--nav-h, 54px);
   z-index: 95;
   background: var(--bg);
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 2.2rem;
+  padding: .65rem 0;
+  transition: box-shadow .2s ease;
+}
+.lore-nav-bar {
+  display: flex;
+  align-items: center;
+  gap: .55rem;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+  padding: 2px 4px;
+  /* Yumuşak kenar silinme maskeleri (scroll fade) */
+  --mask-l: 0px;
+  --mask-r: 0px;
+  mask-image: linear-gradient(to right, transparent 0, black var(--mask-l, 0px), black calc(100% - var(--mask-r, 0px)), transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0, black var(--mask-l, 0px), black calc(100% - var(--mask-r, 0px)), transparent 100%);
 }
 .lore-nav-bar::-webkit-scrollbar { display: none; }
 .lore-tab-btn {
@@ -878,28 +888,30 @@
     </div>
 
     <!-- ── NAVİGASYON SEKMELERİ ── -->
-    <nav class="lore-nav-bar" id="lore-tabs" aria-label="Ansiklopedi Bölümleri">
-      <button class="lore-tab-btn on" id="tb-cog" data-tab="cog">
-        <svg viewBox="0 0 24 24"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></svg>
-        <span data-tr="Coğrafya &amp; Dünya" data-en="Geography &amp; World">Coğrafya &amp; Dünya</span>
-      </button>
-      <button class="lore-tab-btn" id="tb-din" data-tab="din">
-        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
-        <span data-tr="Din &amp; İnanç" data-en="Faith &amp; Religion">Din &amp; İnanç</span>
-      </button>
-      <button class="lore-tab-btn" id="tb-tarih" data-tab="tarih">
-        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-        <span data-tr="Tarih &amp; Kronoloji" data-en="History &amp; Chronology">Tarih &amp; Kronoloji</span>
-      </button>
-      <button class="lore-tab-btn" id="tb-soz" data-tab="soz">
-        <svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
-        <span data-tr="Kavram Sözlüğü" data-en="Lore Glossary">Kavram Sözlüğü</span>
-      </button>
-      <button class="lore-tab-btn" id="tb-dil" data-tab="dil">
-        <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-        <span data-tr="Ortak Lisan" data-en="Common Tongue">Ortak Lisan</span>
-      </button>
-    </nav>
+    <div class="lore-nav-container" id="lore-nav-container">
+      <nav class="lore-nav-bar" id="lore-tabs" aria-label="Ansiklopedi Bölümleri">
+        <button class="lore-tab-btn on" id="tb-cog" data-tab="cog">
+          <svg viewBox="0 0 24 24"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></svg>
+          <span data-tr="Coğrafya &amp; Dünya" data-en="Geography &amp; World">Coğrafya &amp; Dünya</span>
+        </button>
+        <button class="lore-tab-btn" id="tb-din" data-tab="din">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
+          <span data-tr="Din &amp; İnanç" data-en="Faith &amp; Religion">Din &amp; İnanç</span>
+        </button>
+        <button class="lore-tab-btn" id="tb-tarih" data-tab="tarih">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          <span data-tr="Tarih &amp; Kronoloji" data-en="History &amp; Chronology">Tarih &amp; Kronoloji</span>
+        </button>
+        <button class="lore-tab-btn" id="tb-soz" data-tab="soz">
+          <svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+          <span data-tr="Kavram Sözlüğü" data-en="Lore Glossary">Kavram Sözlüğü</span>
+        </button>
+        <button class="lore-tab-btn" id="tb-dil" data-tab="dil">
+          <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          <span data-tr="Ortak Lisan" data-en="Common Tongue">Ortak Lisan</span>
+        </button>
+      </nav>
+    </div>
 
     <!-- ════════════════════════════════════════════════════════════
          1. TAB: COĞRAFYA & DÜNYA
@@ -1659,10 +1671,33 @@ function renderLanguage() {
 }
 
 /* ── TAB GEÇİŞ SİSTEMİ ────────────────────────────── */
+function updateLoreNavMask() {
+  const bar = document.getElementById('lore-tabs');
+  if (!bar) return;
+  const sl = bar.scrollLeft;
+  const max = bar.scrollWidth - bar.clientWidth;
+  const canLeft = sl > 6;
+  const canRight = max - sl > 6;
+  bar.style.setProperty('--mask-l', canLeft ? '28px' : '0px');
+  bar.style.setProperty('--mask-r', canRight ? '32px' : '0px');
+}
+
+function initLoreNavScrollMask() {
+  const bar = document.getElementById('lore-tabs');
+  if (!bar) return;
+  bar.addEventListener('scroll', updateLoreNavMask, { passive: true });
+  window.addEventListener('resize', updateLoreNavMask, { passive: true });
+  setTimeout(updateLoreNavMask, 120);
+}
+
 function switchTab(id) {
   activeTab = id;
   document.querySelectorAll('.lore-tab-btn').forEach(b => {
-    b.classList.toggle('on', b.dataset.tab === id);
+    const isTarget = b.dataset.tab === id;
+    b.classList.toggle('on', isTarget);
+    if (isTarget) {
+      try { b.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' }); } catch (e) {}
+    }
   });
   document.querySelectorAll('.lore-stat-card').forEach(c => {
     c.classList.toggle('active', c.dataset.tabTarget === id);
@@ -1676,6 +1711,7 @@ function switchTab(id) {
   if (id === 'tarih') renderTimeline();
   if (id === 'soz') renderGlossary();
   if (id === 'dil') renderLanguage();
+  setTimeout(updateLoreNavMask, 160);
 }
 
 /* ── ETKİNLİK BAĞLANTILARI ─────────────────────────── */
@@ -1958,6 +1994,7 @@ async function init() {
   renderTimeline();
   renderGlossary();
   renderLanguage();
+  initLoreNavScrollMask();
   checkHash();
 }
 

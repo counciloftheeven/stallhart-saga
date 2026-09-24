@@ -1181,15 +1181,56 @@ const Tooltip = (() => {
         else if (o && typeof o === 'object') Object.keys(o).forEach(k => walk(o[k], (k === 'tr' || k === 'en') ? key : k));
       };
       [charData, hd, kd, geo, lore].forEach(d => walk(d, ''));
+      /* ── Haneler ── */
+      const houseRec = Object.create(null);
+      const houseMap = Object.create(null);
+      (hd.provinces || []).forEach(p => (p.houses || []).forEach(h => {
+        if (!h.name) return;
+        const hAccent = (h.colors && (h.colors[1] || h.colors[0])) || '#c4962a';
+        const rec = {
+          uid: 'hane:' + h.id, kind: 'hane', title: h.name,
+          sub: [tt(h.meaning), tt(p.name)].filter(Boolean).join(' · '),
+          body: snip(tt(h.desc) || tt(h.origin), 170), cs: true,
+          url: url(R.href('hane', h.id)),
+          watermark: h.banner ? safeImg(h.banner) : '',
+          watermarkGlyph: h.name.charAt(0) || '🛡️',
+          accent: hAccent
+        };
+        houseRec[h.id] = rec;
+        houseMap[h.id.toLowerCase()] = { house: h, province: p, rec };
+        houseMap[h.name.toLowerCase()] = { house: h, province: p, rec };
+        addPrimary(h.name, rec);
+        addAlias(h.name + ' Hanesi', rec);
+        addAlias(h.name + ' Hanedanı', rec);
+        addAlias('House ' + h.name, rec);
+      }));
+
       const tokOwners = Object.create(null), coreOwners = Object.create(null), items = [];
       chars.forEach(ch => {
         const nm = tt(ch.name);
         if (!nm) return;
+        let chBanner = '';
+        let chAccent = '';
+        let chGlyph = '';
+        if (ch.house) {
+          const hRaw = tt(ch.house).toLowerCase().replace(/\s*(?:hanesi|hanedanı|house)\b/gi, '').trim();
+          const hit = houseMap[hRaw] || (ch.group && houseMap[ch.group.toLowerCase()]);
+          if (hit) {
+            chBanner = hit.house.banner ? safeImg(hit.house.banner) : '';
+            chAccent = (hit.house.colors && (hit.house.colors[1] || hit.house.colors[0])) || '';
+            chGlyph = hit.house.name ? hit.house.name.charAt(0) : '';
+          }
+        }
+        if (!chBanner && ch.image) chBanner = safeImg(ch.image);
+        if (!chGlyph && nm) chGlyph = nm.charAt(0);
         const rec = {
           uid: 'karakter:' + ch.id, kind: 'karakter', title: nm.replace(/\s*\/\s*/g, ' / '),
           sub: [tt(ch.house), tt(ch.title)].filter(Boolean).join(' · '),
           body: snip(tt(ch.bio), 170), status: ch.status, cs: true,
-          url: url(R.href('karakter', ch.id))
+          url: url(R.href('karakter', ch.id)),
+          watermark: chBanner,
+          watermarkGlyph: chGlyph || '⚔',
+          accent: chAccent || '#c4962a'
         };
         const vs = nameVariants(nm, 1);
         const cores = [];
@@ -1217,23 +1258,6 @@ const Tooltip = (() => {
         }));
       });
 
-      /* ── Haneler ── */
-      const houseRec = Object.create(null);
-      (hd.provinces || []).forEach(p => (p.houses || []).forEach(h => {
-        if (!h.name) return;
-        const rec = {
-          uid: 'hane:' + h.id, kind: 'hane', title: h.name,
-          sub: [tt(h.meaning), tt(p.name)].filter(Boolean).join(' · '),
-          body: snip(tt(h.desc) || tt(h.origin), 170), cs: true,
-          url: url(R.href('hane', h.id))
-        };
-        houseRec[h.id] = rec;
-        addPrimary(h.name, rec);
-        addAlias(h.name + ' Hanesi', rec);
-        addAlias(h.name + ' Hanedanı', rec);
-        addAlias('House ' + h.name, rec);
-      }));
-
       /* ── Devletler ── */
       const kingByKey = Object.create(null);
       (kd.kingdoms || []).forEach(k => {
@@ -1243,7 +1267,10 @@ const Tooltip = (() => {
           uid: 'devlet:' + k.id, kind: 'devlet', title: nm,
           sub: tt(k.capital) ? (en ? 'Capital: ' : 'Başkent: ') + tt(k.capital) : '',
           body: snip(tt(k.desc), 170), cs: true,
-          url: url(R.href('devlet', k.id))
+          url: url(R.href('devlet', k.id)),
+          watermark: k.banner ? safeImg(k.banner) : (k.arms ? safeImg(k.arms) : ''),
+          watermarkGlyph: '👑',
+          accent: '#c4962a'
         };
         nameVariants(nm).forEach(v => { addPrimary(v, rec); kingByKey[norm(v)] = rec; });
         const first = nm.split(/\s+/)[0];
@@ -1263,7 +1290,9 @@ const Tooltip = (() => {
           uid: 'devlet:wp:' + Book.slug(vs[0]), kind: 'devlet', title: vs[0],
           sub: en ? 'World power #' + w.rank : 'Dünya gücü #' + w.rank,
           body: (en ? 'Population ' : 'Nüfus ') + fmt(w.population) + ' · ' + (en ? 'Military ' : 'Askerî güç ') + fmt(w.military),
-          cs: true, url: url(R.href('evren', 'dunya'))
+          cs: true, url: url(R.href('evren', 'dunya')),
+          watermarkGlyph: '👑',
+          accent: '#b87333'
         };
         vs.forEach(v => addPrimary(v, rec));
       });
@@ -1278,7 +1307,10 @@ const Tooltip = (() => {
         const rec = {
           uid: 'yer:' + pid, kind: 'yer', title: vs[0] || p.name, sub: en ? 'Province' : 'Eyalet',
           body: snip([p.economy, p.neighbors].filter(Boolean).join(' · '), 170), cs: true,
-          url: url(R.href('evren', 'yer-' + pid))
+          url: url(R.href('evren', 'yer-' + pid)),
+          watermark: p.banner ? safeImg(p.banner) : '',
+          watermarkGlyph: '🏰',
+          accent: p.color || '#c4962a'
         };
         vs.forEach(v => addPrimary(v, rec));
         String(p.cities || '').split(/[,;]/).forEach(c => {
@@ -1288,7 +1320,9 @@ const Tooltip = (() => {
             uid: 'yer:' + pid + ':' + Book.slug(cn), kind: 'yer', title: cn,
             sub: (en ? 'City · ' : 'Şehir · ') + short,
             body: /^arava$/i.test(cn) && cityInfo ? snip(cityInfo, 170) : (en ? 'A city of ' : '') + short + (en ? '.' : ' eyaletinde şehir.'),
-            cs: true, url: rec.url
+            cs: true, url: rec.url,
+            watermarkGlyph: '🏰',
+            accent: p.color || '#c4962a'
           });
         });
       });
@@ -1317,7 +1351,10 @@ const Tooltip = (() => {
           uid: 'tanri:' + g.id, kind: 'tanri', title: g.trueName,
           sub: (ep ? ep + ' · ' : '') + (en ? 'God' : 'Tanrı'),
           body: snip(tt(g.role), 170), cs: true,
-          url: url(R.href('tanri', g.id))
+          url: url(R.href('tanri', g.id)),
+          watermark: g.symbolImg ? safeImg(g.symbolImg) : '',
+          watermarkGlyph: '⚡',
+          accent: g.faction === 'order' ? '#6a9ac9' : (g.faction === 'chaos' ? '#c95a5a' : '#c4962a')
         };
         addPrimary(g.trueName, rec);
         if (ep) addAlias(ep + ' ' + g.trueName, rec);
@@ -1422,7 +1459,15 @@ const Tooltip = (() => {
     const kLabel = kInfo[l] || kInfo.tr;
     const kIcon = kInfo.icon || '📜';
 
+    const accent = rec.accent || '#c4962a';
+    c.style.setProperty('--wk-accent', accent);
+
     c.innerHTML =
+      '<div class="wk-watermark" aria-hidden="true">' +
+        (rec.watermark
+          ? '<img src="' + esc(rec.watermark) + '" class="wk-watermark-img" alt="">'
+          : '<span class="wk-watermark-glyph">' + esc(rec.watermarkGlyph || kIcon) + '</span>') +
+      '</div>' +
       '<div class="wk-top-bar">' +
         '<span class="wk-kind">' + kIcon + ' ' + esc(kLabel) +
         (rec.status ? '<span class="wk-dot ' + esc(rec.status) + '"></span>' : '') + '</span>' +
