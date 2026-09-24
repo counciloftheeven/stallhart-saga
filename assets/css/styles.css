@@ -199,7 +199,7 @@ html[data-theme="light"] body {
    Sağ taraftaki araçlar: 🔍 (yalnızca simge), ⚙ (yazı boyutu + dil + tema),
    profil. Kullanıcı adı yalnızca ≥1440px'te yazılır. */
 :root { --nav-h: 54px; }
-nav:where(:not(.breadcrumb)) {
+#site-nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 200;
   background: var(--nav-bg); backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--border);

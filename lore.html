@@ -26,8 +26,8 @@
 <link rel="stylesheet" href="assets/css/styles.css?v=3.0">
 <style>
 /* ── EVREN ANSİKLOPEDİSİ MODERN STİL SİSTEMİ ─────────── */
-#lore-sec { background: var(--bg); min-height: 100vh; }
-#lore-sec .inn { padding-top: 1.5rem; max-width: 1200px; margin: 0 auto; }
+#lore-sec { background: var(--bg); min-height: 100vh; padding: 0; }
+#lore-sec .inn { padding: 2rem 1.5rem 6rem; max-width: 1200px; margin: 0 auto; }
 
 /* ── METRİK ÖZET ÇUBUĞU (Hero altı) ───────────────── */
 .lore-summary-strip {
@@ -93,11 +93,15 @@
   align-items: center;
   gap: .5rem;
   border-bottom: 1px solid var(--border);
-  padding-bottom: .75rem;
+  padding: .75rem 0;
   margin-bottom: 2rem;
   overflow-x: auto;
   scrollbar-width: none;
   -webkit-overflow-scrolling: touch;
+  position: sticky;
+  top: var(--nav-h, 54px);
+  z-index: 95;
+  background: var(--bg);
 }
 .lore-nav-bar::-webkit-scrollbar { display: none; }
 .lore-tab-btn {
