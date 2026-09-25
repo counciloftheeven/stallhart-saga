@@ -95,6 +95,7 @@
     <div class="fr-filter-pills" id="fr-sub-filters">
       <button class="fr-fp-btn active" data-type="all" id="fp-all" data-tr="Tüm Müzakereler" data-en="All Topics">Tüm Müzakereler</button>
       <button class="fr-fp-btn" data-type="canon" id="fp-canon" data-tr="🔮 Doğrulanan Kehanetler" data-en="🔮 Canonized Theories">🔮 Doğrulanan Kehanetler</button>
+      <button class="fr-fp-btn" data-type="ama" id="fp-ama" data-tr="👑 Yazar Divanı &amp; Fermanlar" data-en="👑 Author AMA &amp; Decrees">👑 Yazar Divanı &amp; Fermanlar</button>
       <button class="fr-fp-btn" data-type="poll" id="fp-poll" data-tr="📊 Anketli Konular" data-en="📊 Polls & Ballots">📊 Anketli Konular</button>
       <button class="fr-fp-btn" data-type="no_spoiler" id="fp-nospoiler" data-tr="👁️ Spoilersiz" data-en="👁️ No Spoilers">👁️ Spoilersiz</button>
       <select class="fr-fp-btn" id="fp-house-select" style="background:rgba(14,18,28,.8);border:1px solid var(--border);color:var(--parchl);padding:.25rem .6rem;outline:none;">
@@ -277,6 +278,7 @@ async function renderAll() {
       sort: sort,
       pageSize: 20,
       canonOnly: activeFilter === 'canon',
+      amaOnly: activeFilter === 'ama',
       pollOnly: activeFilter === 'poll',
       noSpoiler: activeFilter === 'no_spoiler',
       houseFilter: activeHouse

@@ -1820,20 +1820,136 @@ const Prefetch = (() => {
   return { init, trigger };
 })();
 
-/* ── 9c. METİN SEÇİMİNDE HIZLI TANIM (Selection Lookup) ─────── */
+/* ── 9c. METİN SEÇİMİNDE HIZLI TANIM & DİVAN DEFTERİ (Selection Lookup, Highlight & Share) ─────── */
 const SelectionLookup = (() => {
   let bubble = null;
   let activeText = '';
+  let activeRange = null;
+
+  const HIGHLIGHTS_KEY = 'sw-reader-highlights-v1';
+
+  function getHighlights() {
+    try {
+      const raw = localStorage.getItem(HIGHLIGHTS_KEY);
+      return raw ? JSON.parse(raw) : [];
+    } catch (e) { return []; }
+  }
+
+  function saveHighlight(text, note) {
+    try {
+      const list = getHighlights();
+      const chNum = (window.location.hash || window.location.search || '').match(/\d+/) || ['I'];
+      const item = {
+        id: 'hl-' + Date.now(),
+        text: text,
+        note: note || '',
+        ch: chNum[0] || 'I',
+        time: new Date().toISOString()
+      };
+      list.unshift(item);
+      localStorage.setItem(HIGHLIGHTS_KEY, JSON.stringify(list.slice(0, 100)));
+      return item;
+    } catch (e) { return null; }
+  }
+
+  function openShareCardModal(quoteText) {
+    const l = Lang.get();
+    const cleanQuote = quoteText.trim();
+    const chNum = (window.location.hash || window.location.search || '').match(/\d+/) || ['I'];
+    const cite = l === 'tr' ? `Stallhart Destanı · Bölüm ${chNum[0]}` : `The Stallhart Saga · Chapter ${chNum[0]}`;
+
+    let modal = document.getElementById('sw-quote-card-modal');
+    if (!modal) {
+      modal = document.createElement('div');
+      modal.id = 'sw-quote-card-modal';
+      modal.className = 'tc-modal-overlay';
+      document.body.appendChild(modal);
+    }
+
+    modal.innerHTML = `
+      <div class="tc-modal-dialog" style="max-width:560px;padding:1.5rem;background:#0d111b;border:1px solid #c4962a;box-shadow:0 15px 50px rgba(0,0,0,.85);">
+        <button type="button" class="tc-modal-close" id="sw-qc-close">✕</button>
+        <h3 style="font-family:var(--font-display);color:#f7d88b;margin:0 0 .5rem;font-size:1.1rem;display:flex;align-items:center;gap:.5rem">
+          <span>📜</span>
+          <span>${l === 'tr' ? 'Parşömen Aforizma Kartı' : 'Parchment Aphorism Card'}</span>
+        </h3>
+        <p style="font-size:.78rem;color:#9a8870;margin:0 0 1.2rem;font-style:italic">
+          ${l === 'tr' ? 'Bu alıntıyı sosyal medyada (X / Twitter) paylaşabilir veya panoya kopyalayabilirsiniz.' : 'Share this quote card to X/Twitter or copy to clipboard.'}
+        </p>
+        
+        <!-- Önizleme Kartı (Eskitilmiş Parşömen) -->
+        <div id="sw-qc-preview" style="position:relative;background:radial-gradient(ellipse at 50% 0%, #221a14 0%, #120f0d 95%);border:2px solid #c4962a;padding:2rem 2.2rem 1.8rem;border-radius:4px;box-shadow:inset 0 0 30px rgba(0,0,0,.7), 0 8px 24px rgba(0,0,0,.5);margin-bottom:1.25rem;">
+          <div style="position:absolute;top:1rem;left:1.25rem;font-size:1.6rem;opacity:.3;color:#c4962a;line-height:1">❝</div>
+          <div style="font-family:'IM Fell English',Georgia,serif;font-style:italic;font-size:1.15rem;line-height:1.65;color:#e8d8be;margin:1rem 0;position:relative;z-index:1;text-shadow:0 1px 2px rgba(0,0,0,.6)">
+            “${quoteText}”
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-top:1.4rem;padding-top:.8rem;border-top:1px solid rgba(196,150,42,.3);font-family:var(--font-display);font-size:.76rem;color:#c4962a;">
+            <span>⚔️ ${cite}</span>
+            <span style="letter-spacing:.08em;opacity:.8">STALLHART.COM</span>
+          </div>
+        </div>
+
+        <div style="display:flex;gap:.8rem;flex-wrap:wrap;justify-content:flex-end">
+          <button type="button" class="btn-g" id="sw-qc-copy" style="padding:.5rem 1rem;font-size:.82rem">
+            📋 ${l === 'tr' ? 'Alıntıyı Kopyala' : 'Copy Quote'}
+          </button>
+          <button type="button" class="btn-g" id="sw-qc-share-x" style="padding:.5rem 1rem;font-size:.82rem;background:#1d9bf0;border-color:#1d9bf0;color:#fff">
+            𝕏 ${l === 'tr' ? 'X / Twitter’da Paylaş' : 'Share on X'}
+          </button>
+        </div>
+      </div>
+    `;
+
+    modal.hidden = false;
+    document.body.classList.add('tc-no-scroll');
+
+    const closeModal = () => {
+      modal.hidden = true;
+      document.body.classList.remove('tc-no-scroll');
+    };
+
+    modal.querySelector('#sw-qc-close').onclick = closeModal;
+    modal.onclick = e => { if (e.target === modal) closeModal(); };
+
+    modal.querySelector('#sw-qc-copy').onclick = () => {
+      const shareText = `“${cleanQuote}”\n\n— ${cite}\nhttps://stallhart.com`;
+      navigator.clipboard.writeText(shareText).then(() => {
+        if (window.Community && Community.util && Community.util.toast) {
+          Community.util.toast(l === 'tr' ? 'Alıntı panoya kopyalandı!' : 'Quote copied to clipboard!');
+        } else if (Wiki.Toast && Wiki.Toast.show) {
+          Wiki.Toast.show(l === 'tr' ? 'Alıntı panoya kopyalandı!' : 'Quote copied!');
+        }
+      });
+    };
+
+    modal.querySelector('#sw-qc-share-x').onclick = () => {
+      const tweetText = encodeURIComponent(`“${cleanQuote}”\n\n— ${cite}\n#Stallhart #DarkFantasy`);
+      const tweetUrl = encodeURIComponent(window.location.href);
+      window.open(`https://twitter.com/intent/tweet?text=${tweetText}&url=${tweetUrl}`, '_blank', 'noopener,noreferrer');
+    };
+  }
 
   function ensureBubble() {
     if (bubble) return bubble;
     bubble = document.createElement('div');
     bubble.id = 'sw-selection-bubble';
     bubble.className = 'sw-sel-bubble';
-    bubble.innerHTML = '<button type="button" class="sw-sel-btn" id="sw-sel-search">' +
-      '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="22" y2="22"/></svg>' +
-      '<span class="sw-sel-lbl">Ansiklopedide Ara</span></button>';
+    bubble.innerHTML = `
+      <button type="button" class="sw-sel-btn" id="sw-sel-highlight" title="Altın Mürekkeple İşaretle">
+        <span>🖋️</span>
+        <span class="sw-sel-lbl">Mühürle</span>
+      </button>
+      <button type="button" class="sw-sel-btn" id="sw-sel-card" title="Parşömen Kartı Oluştur & Paylaş">
+        <span>📜</span>
+        <span class="sw-sel-lbl">Paylaş</span>
+      </button>
+      <button type="button" class="sw-sel-btn" id="sw-sel-search" title="Ansiklopedide Ara">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="22" y2="22"/></svg>
+        <span class="sw-sel-lbl">Ara</span>
+      </button>
+    `;
     document.body.appendChild(bubble);
+
     bubble.querySelector('#sw-sel-search').addEventListener('click', e => {
       e.stopPropagation();
       e.preventDefault();
@@ -1841,6 +1957,41 @@ const SelectionLookup = (() => {
       hide();
       Search.open(q);
     });
+
+    bubble.querySelector('#sw-sel-highlight').addEventListener('click', e => {
+      e.stopPropagation();
+      e.preventDefault();
+      const q = activeText;
+      const l = Lang.get();
+      if (q) {
+        saveHighlight(q);
+        try {
+          const sel = window.getSelection();
+          if (sel && sel.rangeCount > 0) {
+            const range = sel.getRangeAt(0);
+            const mark = document.createElement('mark');
+            mark.className = 'sw-gold-highlight';
+            mark.title = l === 'tr' ? 'Divan Kütüğüne İşlenmiş Aforizma' : 'Saved Highlight';
+            range.surroundContents(mark);
+          }
+        } catch (err) {}
+        if (window.Community && Community.util && Community.util.toast) {
+          Community.util.toast(l === 'tr' ? 'Aforizma divan defterinize altın mürekkeple işlendi!' : 'Quote sealed in your personal codex!');
+        } else if (Wiki.Toast && Wiki.Toast.show) {
+          Wiki.Toast.show(l === 'tr' ? 'Aforizma kaydedildi!' : 'Quote saved!');
+        }
+      }
+      hide();
+    });
+
+    bubble.querySelector('#sw-sel-card').addEventListener('click', e => {
+      e.stopPropagation();
+      e.preventDefault();
+      const q = activeText;
+      hide();
+      if (q) openShareCardModal(q);
+    });
+
     return bubble;
   }
 
@@ -1856,12 +2007,12 @@ const SelectionLookup = (() => {
       return;
     }
     const text = sel.toString().trim();
-    if (text.length < 2 || text.length > 50) {
+    if (text.length < 2 || text.length > 320) {
       hide();
       return;
     }
     const anchor = sel.anchorNode && (sel.anchorNode.nodeType === 3 ? sel.anchorNode.parentElement : sel.anchorNode);
-    if (!anchor || !anchor.closest('.book-body, .rd-article, .art-p, .lc, .cc-desc, main, article')) {
+    if (!anchor || !anchor.closest('.book-body, .rd-article, .art-p, .lc, .cc-desc, main, article, #rd-body')) {
       hide();
       return;
     }
@@ -1872,11 +2023,12 @@ const SelectionLookup = (() => {
 
     const b = ensureBubble();
     const l = Lang.get();
-    const cleanT = text.slice(0, 16) + (text.length > 16 ? '…' : '');
-    b.querySelector('.sw-sel-lbl').textContent = l === 'tr' ? `“${cleanT}” Ara` : `Search “${cleanT}”`;
+    b.querySelector('#sw-sel-highlight .sw-sel-lbl').textContent = l === 'tr' ? 'Mühürle' : 'Highlight';
+    b.querySelector('#sw-sel-card .sw-sel-lbl').textContent = l === 'tr' ? 'Paylaş' : 'Share';
+    b.querySelector('#sw-sel-search .sw-sel-lbl').textContent = l === 'tr' ? 'Ara' : 'Search';
     b.classList.add('on');
 
-    const bw = b.offsetWidth || 150;
+    const bw = b.offsetWidth || 190;
     const bh = b.offsetHeight || 34;
     let left = rect.left + rect.width / 2 - bw / 2;
     left = Math.max(10, Math.min(left, window.innerWidth - bw - 10));
@@ -1895,7 +2047,7 @@ const SelectionLookup = (() => {
     window.addEventListener('scroll', () => { if (bubble && bubble.classList.contains('on')) hide(); }, { passive: true });
   }
 
-  return { init, hide };
+  return { init, hide, getHighlights, saveHighlight, openShareCardModal };
 })();
 
 /* ── 10. AÇILIŞ ──────────────────────────────────────────────── */

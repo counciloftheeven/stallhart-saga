@@ -191,7 +191,23 @@ body.reader.rt-dark {
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg>
     <span class="rd-lbl" id="l-toc">İçindekiler</span>
   </button>
+  <button class="rd-btn" id="rd-defter-btn" type="button" aria-haspopup="dialog" aria-controls="rd-defter" aria-expanded="false" title="Divan Defterim (Vurgular ve Notlar)">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+    <span class="rd-lbl" id="l-defter">Defterim</span>
+  </button>
   <div class="rd-bar-title" id="rd-bar-title"></div>
+  <button class="rd-btn" id="rd-sync-btn" type="button" title="Kaldığın Yeri Bulut & Cihazla Eşitle">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg>
+    <span class="rd-lbl" id="l-sync">Eşitle</span>
+  </button>
+  <button class="rd-btn" id="rd-share-btn" type="button" title="Bölümü Paylaş">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+    <span class="rd-lbl" id="l-share">Paylaş</span>
+  </button>
+  <button class="rd-btn" id="rd-install-btn" type="button" style="display:none;" title="Uygulamayı Cihaza Yükle">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+    <span class="rd-lbl" id="l-install">Yükle</span>
+  </button>
   <button class="rd-btn" id="rd-set-btn" type="button" aria-haspopup="dialog" aria-controls="rd-set" aria-expanded="false" aria-label="Okuma ayarları">
     <span class="rd-aa" aria-hidden="true">A<small>a</small></span>
   </button>
@@ -207,6 +223,19 @@ body.reader.rt-dark {
 
 <div class="rd-resume" id="rd-resume" hidden role="status"></div>
 <div class="rd-scrim" id="rd-scrim" hidden></div>
+
+<!-- Yüzen Metin Seçim Araç Çubuğu -->
+<div id="sw-hl-tooltip" class="sw-hl-tooltip" style="display:none;">
+  <button type="button" id="sw-hl-save-btn"><span>✒️</span> <span id="l-hl-save">Vurgula</span></button>
+  <button type="button" id="sw-hl-card-btn"><span>📜</span> <span id="l-hl-card">Parşömen Kartı</span></button>
+  <button type="button" class="btn-close" id="sw-hl-close-btn" title="Kapat">×</button>
+</div>
+
+<!-- Çevrimdışı Durum Bildirimi (PWA) -->
+<div id="sw-offline-banner" class="sw-offline-banner" style="display:none;">
+  <span class="sw-offline-dot"></span>
+  <span id="sw-offline-msg">Çevrimdışı Mod — Kayıtlı bölümler önbellekten kesintisiz okunuyor.</span>
+</div>
 
 <!-- Okuma ayarları -->
 <section class="rd-sheet" id="rd-set" role="dialog" aria-modal="true" aria-labelledby="rd-set-h" hidden>
@@ -249,6 +278,100 @@ body.reader.rt-dark {
   <ul class="rd-toc-list" id="rd-toc-list"></ul>
 </section>
 
+<!-- Divan Defterim Çekmecesi -->
+<section class="rd-sheet rd-sheet-l" id="rd-defter" role="dialog" aria-modal="true" aria-labelledby="rd-defter-h" hidden>
+  <h2 id="rd-defter-h"><span id="l-defter-title">📖 Divan Defterim</span><button class="rd-x" type="button" data-close aria-label="Kapat">×</button></h2>
+  <p style="font-size:.8rem;color:var(--parchd);margin-bottom:.8rem;font-style:italic;" id="l-defter-sub">Metin üzerinde işaretlediğiniz aforizmalar, kanon kelamları ve notlarınız.</p>
+  <div id="rd-defter-content" class="rd-defter-list"></div>
+  <div style="margin-top:1.2rem;display:flex;justify-content:space-between;align-items:center;border-top:1px solid rgba(196,150,42,.2);padding-top:.8rem;">
+    <button type="button" id="rd-defter-export" class="rd-pill" style="font-size:.78rem;padding:.3rem .6rem;">📜 Dışa Aktar (JSON)</button>
+    <button type="button" id="rd-defter-clear" class="rd-reset" style="color:var(--bloodb);">Defteri Temizle</button>
+  </div>
+</section>
+
+<!-- Parşömen Görsel Kartı Üretici Modalı -->
+<div id="rd-quote-modal" class="rd-modal-scrim" style="display:none;">
+  <div class="rd-modal-card">
+    <div class="rd-modal-head">
+      <h3><span>📜</span> <span id="l-qm-title">Parşömen Alıntı Kartı</span></h3>
+      <button class="rd-x" type="button" id="rd-quote-close" aria-label="Kapat">×</button>
+    </div>
+    <div class="rd-modal-body">
+      <div class="rd-quote-canvas-wrap">
+        <canvas id="rd-quote-canvas" width="900" height="520"></canvas>
+      </div>
+      <p style="font-size:.8rem;color:var(--parchd);font-style:italic;margin:.4rem 0 0;" id="l-qm-sub">
+        Kişiselleştirilmiş eskitilmiş parşömen kartınızı PNG olarak kaydedebilir veya X'te paylaşabilirsiniz.
+      </p>
+    </div>
+    <div class="rd-modal-foot">
+      <button type="button" class="btn-g" id="rd-quote-download" style="padding:.5rem 1rem;font-size:.85rem;">
+        📥 Görseli İndir (PNG)
+      </button>
+      <button type="button" class="btn-o" id="rd-quote-tweet" style="padding:.5rem 1rem;font-size:.85rem;">
+        𝕏 X'te Paylaş
+      </button>
+      <button type="button" class="btn-o" id="rd-quote-copy" style="padding:.5rem 1rem;font-size:.85rem;">
+        📋 Metni Kopyala
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Cihazlar Arası Bulut Eşitleme Modalı -->
+<div id="rd-sync-modal" class="rd-modal-scrim" style="display:none;">
+  <div class="rd-modal-card">
+    <div class="rd-modal-head">
+      <h3><span>🔄</span> <span id="l-sm-title">Cihazlar Arası Okuma Eşitlemesi</span></h3>
+      <button class="rd-x" type="button" id="rd-sync-close" aria-label="Kapat">×</button>
+    </div>
+    <div class="rd-modal-body" style="text-align:left;">
+      <p style="font-size:.86rem;color:var(--parchl);margin-bottom:.8rem;" id="l-sm-desc">
+        Telefonunuzda veya başka bir cihazda kaldığınız tam paragrafı, defter notlarınızı ve okuma ilerlemenizi taşımak için bu eşitleme kodunu kullanın:
+      </p>
+      <div style="margin-bottom:1rem;">
+        <label style="display:block;font-size:.78rem;color:var(--gold);margin-bottom:.3rem;text-transform:uppercase;">Bu Cihazın Eşitleme Kodu (Dışa Aktar):</label>
+        <textarea id="rd-sync-export-code" readonly style="width:100%;height:70px;background:#090d14;border:1px solid var(--border);color:var(--goldd);font-family:monospace;font-size:.76rem;padding:.5rem;border-radius:3px;resize:none;"></textarea>
+        <button type="button" id="rd-sync-copy-btn" class="rd-pill" style="margin-top:.4rem;padding:.3rem .7rem;font-size:.8rem;">📋 Kodu Kopyala</button>
+      </div>
+      <div>
+        <label style="display:block;font-size:.78rem;color:var(--gold);margin-bottom:.3rem;text-transform:uppercase;">Başka Cihazdan Gelen Kod (İçe Aktar):</label>
+        <textarea id="rd-sync-import-code" placeholder="Diğer cihazdan kopyaladığınız kodu buraya yapıştırın..." style="width:100%;height:65px;background:#090d14;border:1px solid var(--border);color:var(--parchl);font-family:monospace;font-size:.76rem;padding:.5rem;border-radius:3px;resize:none;"></textarea>
+        <button type="button" id="rd-sync-apply-btn" class="btn-g" style="margin-top:.4rem;padding:.35rem .8rem;font-size:.8rem;">✓ Eşitlemeyi Uygula &amp; Kaldığım Yere Git</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Sosyal Medya Paylaşım Modalı -->
+<div id="rd-share-modal" class="rd-modal-scrim" style="display:none;">
+  <div class="rd-modal-card" style="max-width:440px;">
+    <div class="rd-modal-head">
+      <h3><span>📤</span> <span id="l-sh-title">Bölümü Paylaş</span></h3>
+      <button class="rd-x" type="button" id="rd-share-close" aria-label="Kapat">×</button>
+    </div>
+    <div class="rd-modal-body" style="text-align:left;">
+      <p style="font-size:.85rem;color:var(--parchl);margin-bottom:1rem;" id="l-sh-desc">
+        Bu bölümü dostlarınız ve sancaktarlarınızla doğrudan paylaşın:
+      </p>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:.6rem;margin-bottom:.5rem;">
+        <button type="button" class="btn-o" id="sh-wa" style="justify-content:center;padding:.55rem;font-size:.84rem;">
+          💬 WhatsApp
+        </button>
+        <button type="button" class="btn-o" id="sh-x" style="justify-content:center;padding:.55rem;font-size:.84rem;">
+          𝕏 Twitter / X
+        </button>
+        <button type="button" class="btn-o" id="sh-tg" style="justify-content:center;padding:.55rem;font-size:.84rem;">
+          ✈️ Telegram
+        </button>
+        <button type="button" class="btn-o" id="sh-copy" style="justify-content:center;padding:.55rem;font-size:.84rem;">
+          🔗 Bağlantıyı Kopyala
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <script src="assets/js/config.js?v=3.0"></script>
 <script src="assets/js/patches.js?v=3.0"></script>
 <script src="assets/js/wiki.js?v=3.0"></script>
@@ -269,7 +392,8 @@ const I18N = {
         locked: 'Bu bölüm henüz yayınlanmadı.', empty: 'Bu bölümün metni henüz eklenmedi.', nf: 'Bölüm bulunamadı.',
         toList: 'Bölüm listesine dön', enNote: 'Bu bölümün İngilizce çevirisi henüz yok; Türkçe metin gösteriliyor.',
         resume: 'Kaldığın yerden devam et', go: 'Devam et', restart: 'Baştan', fail: 'Bölüm verisi yüklenemedi. Sayfayı yenileyin.',
-        skipTo: 'Sonraki yayında olan bölüm', pending: 'henüz yayında değil' },
+        skipTo: 'Sonraki yayında olan bölüm', pending: 'henüz yayında değil',
+        defter: 'Defterim', sync: 'Eşitle', share: 'Paylaş', install: 'Yükle' },
   en: { back: 'Chapters', toc: 'Contents', set: 'Reading settings', size: 'Text size', font: 'Typeface', lh: 'Line spacing',
         width: 'Column width', align: 'Alignment', theme: 'Theme', reset: 'Reset to defaults', skip: 'Skip to content',
         tight: 'Tight', normal: 'Normal', loose: 'Airy', narrow: 'Narrow', wide: 'Wide', left: 'Left', justify: 'Justified',
@@ -279,7 +403,8 @@ const I18N = {
         locked: 'This chapter has not been published yet.', empty: 'The text of this chapter has not been added yet.', nf: 'Chapter not found.',
         toList: 'Back to chapter list', enNote: 'The English translation of this chapter is not available yet; showing the Turkish text.',
         resume: 'Continue where you left off', go: 'Continue', restart: 'Start over', fail: 'Chapter data could not be loaded. Please refresh.',
-        skipTo: 'Next published chapter', pending: 'not published yet' }
+        skipTo: 'Next published chapter', pending: 'not published yet',
+        defter: 'Notebook', sync: 'Sync', share: 'Share', install: 'Install' }
 };
 const T = k => (I18N[Lang.get()] || I18N.tr)[k] || I18N.tr[k] || k;
 
@@ -389,6 +514,25 @@ function render(keepPct) {
     '<h1 class="rd-h1"><span class="rd-num">' + esc(cur.num) + '.</span> ' + esc(title) + '</h1>' +
     '<p class="rd-meta">' + esc(meta.join(' · ')) + '</p></header>' +
     (tx.fallback ? '<p class="rd-notice">' + esc(T('enNote')) + '</p>' : '') +
+    
+    /* Sesli Bölüm / Vakanüvis Anlatıcı Oynatıcısı */
+    '<div class="sw-audio-narrator-card" id="sw-narrator-card">' +
+      '<div class="sw-an-left">' +
+        '<span class="sw-an-icon">🎙️</span>' +
+        '<div class="sw-an-info">' +
+          '<h4>' + (l === 'tr' ? 'Vakanüvis Dinleme Modu (Sesli Özet & Anlatım)' : 'Chronicler Audio Mode (Narration & Synopsis)') + '</h4>' +
+          '<p>' + (l === 'tr' ? cur.num + '. Bölümün başlangıç tasvirlerini ve sinopsisini epik sesle dinleyin.' : 'Listen to chapter opening descriptions and synopsis with narrator voice.') + '</p>' +
+        '</div>' +
+      '</div>' +
+      '<div class="sw-an-controls">' +
+        '<button type="button" class="sw-an-btn" id="sw-an-play-btn">' +
+          '<span id="sw-an-btn-ic">▶</span>' +
+          '<span id="sw-an-btn-txt">' + (l === 'tr' ? 'Dinle' : 'Listen') + '</span>' +
+        '</button>' +
+        '<span class="sw-an-status" id="sw-an-status">' + (l === 'tr' ? 'Hazır' : 'Ready') + '</span>' +
+      '</div>' +
+    '</div>' +
+
     '<div class="book-body" id="rd-body">' + Book.render(tx.text, { images: entry(cur).images || {} }) + '</div>' +
     '<footer class="rd-end">' +
       '<p class="rd-fin">— ' + esc(T('end')) + ' —</p>' +
@@ -405,6 +549,20 @@ function render(keepPct) {
       (gap ? '<p class="rd-soon">' + esc(gap.num + '. ' + Lang.t(gap.title) + ' — ' + T('pending')) + '</p>' : '') +
       '<div class="rd-nav" role="navigation" aria-label="' + esc(T('toc')) + '">' +
       (prev ? card(prev, 'prev', '← ' + T('prev')) : '') + (next ? card(next, 'next', T('next') + ' →') : '') + '</div></footer>';
+
+  const bodyEl = $('rd-body');
+  if (bodyEl) {
+    const paras = bodyEl.querySelectorAll('p');
+    paras.forEach((p, idx) => {
+      p.dataset.pIdx = String(idx);
+      p.id = 'p-' + idx;
+    });
+  }
+  applyHighlightsToDOM();
+
+  bindAudioNarrator(cur, tx, l);
+  checkCloudSyncNotice(cur, l);
+  updateChapterSEO(cur, tx);
 
   /* Otomatik bağlantılar: karakter / hane / yer / tanrı / olay adları bölümde ilk geçtikleri yerde
      işaretlenir; dokununca (fareyle: üzerine gelince) mini bilgi kartı açılır. */
@@ -433,6 +591,7 @@ function applyLabels() {
   const set = (id, k) => { const el = $(id); if (el) el.textContent = T(k); };
   set('l-back', 'back'); set('l-toc', 'toc'); set('l-toc2', 'toc'); set('l-set', 'set'); set('l-size', 'size'); set('l-font', 'font');
   set('l-lh', 'lh'); set('l-width', 'width'); set('l-align', 'align'); set('l-theme', 'theme'); set('rd-reset', 'reset'); set('rd-skip', 'skip');
+  set('l-defter', 'defter'); set('l-sync', 'sync'); set('l-share', 'share'); set('l-install', 'install');
   document.querySelectorAll('[data-pref] button[data-k]').forEach(b => { b.textContent = T(b.dataset.k); });
   document.querySelector('[data-pref="font"]').querySelectorAll('button').forEach(b => { b.textContent = T(b.dataset.val); });
   $('rd-toc-btn').setAttribute('aria-label', T('toc')); $('rd-back').setAttribute('aria-label', T('back'));
@@ -472,11 +631,22 @@ function savePos() {
   else if (p > 0.01) map[cur.id] = Number(p.toFixed(4));
   else return;
   map.last = cur.id; lsSet(POS_KEY, map);
+
+  const curPIdx = findActiveParagraphIdx();
   try {
     localStorage.setItem('sw-last-read', JSON.stringify({
       id: cur.id,
       num: cur.num,
       title: cur.title,
+      pct: Number(p.toFixed(3)),
+      pIdx: curPIdx,
+      time: Date.now()
+    }));
+    localStorage.setItem(SYNC_KEY, JSON.stringify({
+      chapterId: cur.id,
+      chapterNum: cur.num,
+      title: cur.title,
+      pIdx: curPIdx,
       pct: Number(p.toFixed(3)),
       time: Date.now()
     }));
@@ -509,6 +679,771 @@ window.addEventListener('resize', onScroll, { passive: true });
 document.addEventListener('visibilitychange', () => { if (document.hidden) savePos(); });
 window.addEventListener('pagehide', savePos);
 
+/* ── 1. SESLİ BÖLÜM / VAKANÜVİS DİNLEME SİSTEMİ ─────────────── */
+let audioState = {
+  synth: window.speechSynthesis,
+  utterance: null,
+  playing: false,
+  paused: false,
+  speed: 1.0,
+  ambient: true,
+  audioCtx: null,
+  droneNode: null,
+  gainNode: null
+};
+
+function startAmbientSound() {
+  if (!audioState.ambient) return;
+  try {
+    const AudioCtx = window.AudioContext || window.webkitAudioContext;
+    if (!AudioCtx) return;
+    if (!audioState.audioCtx) audioState.audioCtx = new AudioCtx();
+    if (audioState.audioCtx.state === 'suspended') audioState.audioCtx.resume();
+    
+    if (!audioState.droneNode) {
+      const osc = audioState.audioCtx.createOscillator();
+      const gain = audioState.audioCtx.createGain();
+      const filter = audioState.audioCtx.createBiquadFilter();
+      
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(55, audioState.audioCtx.currentTime); // Low A resonant medieval drone
+      filter.type = 'lowpass';
+      filter.frequency.setValueAtTime(140, audioState.audioCtx.currentTime);
+      
+      gain.gain.setValueAtTime(0.001, audioState.audioCtx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.035, audioState.audioCtx.currentTime + 1.5);
+      
+      osc.connect(filter);
+      filter.connect(gain);
+      gain.connect(audioState.audioCtx.destination);
+      osc.start();
+      
+      audioState.droneNode = osc;
+      audioState.gainNode = gain;
+    }
+  } catch (e) {
+    console.warn('Ambient audio could not start:', e);
+  }
+}
+
+function stopAmbientSound() {
+  if (audioState.gainNode && audioState.audioCtx) {
+    try {
+      audioState.gainNode.gain.setValueAtTime(audioState.gainNode.gain.value, audioState.audioCtx.currentTime);
+      audioState.gainNode.gain.exponentialRampToValueAtTime(0.0001, audioState.audioCtx.currentTime + 0.8);
+      setTimeout(() => {
+        if (audioState.droneNode) {
+          try { audioState.droneNode.stop(); audioState.droneNode.disconnect(); } catch (e) {}
+          audioState.droneNode = null;
+          audioState.gainNode = null;
+        }
+      }, 850);
+    } catch (e) {}
+  }
+}
+
+function bindAudioNarrator(ch, tx, l) {
+  const card = $('sw-narrator-card');
+  if (!card) return;
+  const playBtn = $('sw-an-play-btn');
+  const statusEl = $('sw-an-status');
+  const ic = $('sw-an-btn-ic');
+  const txt = $('sw-an-btn-txt');
+  const ambBtn = $('sw-an-ambient');
+
+  if (audioState.synth) audioState.synth.cancel();
+  audioState.playing = false;
+  audioState.paused = false;
+  stopAmbientSound();
+
+  if (ambBtn) {
+    ambBtn.onclick = () => {
+      audioState.ambient = !audioState.ambient;
+      ambBtn.classList.toggle('on', audioState.ambient);
+      if (!audioState.ambient) stopAmbientSound();
+      else if (audioState.playing && !audioState.paused) startAmbientSound();
+    };
+  }
+
+  card.querySelectorAll('.sw-an-spd').forEach(btn => {
+    btn.onclick = () => {
+      card.querySelectorAll('.sw-an-spd').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      audioState.speed = parseFloat(btn.dataset.spd) || 1.0;
+      if (audioState.playing && !audioState.paused && audioState.synth) {
+        audioState.synth.cancel();
+        startSpeech();
+      }
+    };
+  });
+
+  function cleanNarratorText(raw) {
+    return String(raw || '').replace(/!\[[^\]]*\]\([^)]*\)/g, '')
+      .replace(/\[([^\]]*)\]\([^)]*\)/g, '$1')
+      .replace(/[#>*_~`]/g, '')
+      .replace(/\n{2,}/g, '. ')
+      .replace(/\s+/g, ' ')
+      .trim();
+  }
+
+  function startSpeech() {
+    if (!window.speechSynthesis) {
+      if (statusEl) statusEl.textContent = l === 'tr' ? 'Tarayıcı ses desteklemiyor' : 'Speech synthesis not supported';
+      return;
+    }
+    audioState.synth.cancel();
+
+    const plainText = cleanNarratorText(tx.text);
+    const sentences = plainText.split(/(?<=[.!?])\s+/);
+    const excerpt = sentences.slice(0, 10).join(' '); // 2-3 dakikalık epik başlangıç anlatısı
+
+    const titleStr = l === 'tr'
+      ? (ch.num + '. Bölüm: ' + Lang.t(ch.title) + '. ')
+      : ('Chapter ' + ch.num + ': ' + Lang.t(ch.title) + '. ');
+    
+    const utter = new SpeechSynthesisUtterance(titleStr + excerpt);
+    utter.rate = audioState.speed * 0.90; // Epik vakur tempo
+    utter.pitch = 0.88; // Derin ve tınılı vakanüvis tonu
+
+    const voices = audioState.synth.getVoices ? audioState.synth.getVoices() : [];
+    if (l === 'tr') {
+      const trVoice = voices.find(v => v.lang && v.lang.startsWith('tr'));
+      if (trVoice) utter.voice = trVoice;
+    } else {
+      const enVoice = voices.find(v => v.lang && v.lang.startsWith('en'));
+      if (enVoice) utter.voice = enVoice;
+    }
+
+    utter.onstart = () => {
+      audioState.playing = true;
+      audioState.paused = false;
+      playBtn.classList.add('playing');
+      if (ic) ic.textContent = '❚❚';
+      if (txt) txt.textContent = l === 'tr' ? 'Duraklat' : 'Pause';
+      if (statusEl) statusEl.textContent = l === 'tr' ? '🎙️ Vakanüvis Anlatıyor…' : '🎙️ Chronicler Narrating…';
+      startAmbientSound();
+    };
+
+    utter.onpause = () => {
+      audioState.paused = true;
+      if (ic) ic.textContent = '▶';
+      if (txt) txt.textContent = l === 'tr' ? 'Devam Et' : 'Resume';
+      if (statusEl) statusEl.textContent = l === 'tr' ? 'Duraklatıldı' : 'Paused';
+      stopAmbientSound();
+    };
+
+    utter.onresume = () => {
+      audioState.paused = false;
+      if (ic) ic.textContent = '❚❚';
+      if (txt) txt.textContent = l === 'tr' ? 'Duraklat' : 'Pause';
+      if (statusEl) statusEl.textContent = l === 'tr' ? '🎙️ Vakanüvis Anlatıyor…' : '🎙️ Chronicler Narrating…';
+      startAmbientSound();
+    };
+
+    utter.onend = () => {
+      audioState.playing = false;
+      audioState.paused = false;
+      playBtn.classList.remove('playing');
+      if (ic) ic.textContent = '▶';
+      if (txt) txt.textContent = l === 'tr' ? 'Tekrar Dinle' : 'Listen Again';
+      if (statusEl) statusEl.textContent = l === 'tr' ? 'Tamamlandı' : 'Completed';
+      stopAmbientSound();
+    };
+
+    utter.onerror = () => {
+      audioState.playing = false;
+      audioState.paused = false;
+      playBtn.classList.remove('playing');
+      if (ic) ic.textContent = '▶';
+      if (txt) txt.textContent = l === 'tr' ? 'Dinle' : 'Listen';
+      if (statusEl) statusEl.textContent = l === 'tr' ? 'Hazır' : 'Ready';
+      stopAmbientSound();
+    };
+
+    audioState.utterance = utter;
+    audioState.synth.speak(utter);
+  }
+
+  if (playBtn) {
+    playBtn.onclick = () => {
+      if (!audioState.playing) {
+        startSpeech();
+      } else if (audioState.paused) {
+        audioState.synth.resume();
+      } else {
+        audioState.synth.pause();
+      }
+    };
+  }
+}
+
+/* ── 2. METİN İÇİ VURGULAMA & DİVAN DEFTERİ ──────────────────── */
+const ANNOTATIONS_KEY = 'sw-annotations';
+function getAnnotations() {
+  try { return JSON.parse(localStorage.getItem(ANNOTATIONS_KEY) || '[]'); } catch (e) { return []; }
+}
+function saveAnnotations(arr) {
+  try { localStorage.setItem(ANNOTATIONS_KEY, JSON.stringify(arr)); } catch (e) {}
+}
+
+let activeSelectionText = '';
+function handleTextSelection() {
+  const sel = window.getSelection();
+  const tooltip = $('sw-hl-tooltip');
+  if (!sel || sel.isCollapsed || !sel.rangeCount) {
+    if (tooltip && tooltip.style.display !== 'none') tooltip.style.display = 'none';
+    return;
+  }
+  const text = sel.toString().trim();
+  if (text.length < 3) {
+    if (tooltip && tooltip.style.display !== 'none') tooltip.style.display = 'none';
+    return;
+  }
+  const range = sel.getRangeAt(0);
+  const bodyEl = $('rd-body');
+  if (!bodyEl || !bodyEl.contains(range.commonAncestorContainer)) {
+    if (tooltip && tooltip.style.display !== 'none') tooltip.style.display = 'none';
+    return;
+  }
+  activeSelectionText = text;
+  const rect = range.getBoundingClientRect();
+  if (tooltip) {
+    tooltip.style.left = (rect.left + rect.width / 2) + 'px';
+    tooltip.style.top = Math.max(10, rect.top + window.scrollY - 44) + 'px';
+    tooltip.style.display = 'flex';
+  }
+}
+document.addEventListener('selectionchange', handleTextSelection);
+
+$('sw-hl-save-btn').addEventListener('click', () => {
+  if (!activeSelectionText || !cur) return;
+  const l = Lang.get();
+  const ann = getAnnotations();
+  const id = 'hl-' + Date.now();
+  ann.unshift({
+    id: id,
+    chapterId: cur.id,
+    chapterNum: cur.num,
+    chapterTitle: Lang.t(cur.title),
+    text: activeSelectionText,
+    date: Date.now()
+  });
+  saveAnnotations(ann);
+  applyHighlightsToDOM();
+  $('sw-hl-tooltip').style.display = 'none';
+  window.getSelection()?.removeAllRanges();
+  if (Wiki.Community && Wiki.Community.util && Wiki.Community.util.toast) {
+    Wiki.Community.util.toast(l === 'tr' ? '✒️ Alıntı Divan Defterinize kaydedildi.' : '✒️ Quote saved to Divan Notebook.');
+  }
+});
+
+$('sw-hl-card-btn').addEventListener('click', () => {
+  const text = activeSelectionText;
+  $('sw-hl-tooltip').style.display = 'none';
+  if (text && cur) {
+    openQuoteModal(text, Lang.t(cur.title), cur.num);
+  }
+});
+
+$('sw-hl-close-btn').addEventListener('click', () => {
+  $('sw-hl-tooltip').style.display = 'none';
+  window.getSelection()?.removeAllRanges();
+});
+
+function applyHighlightsToDOM() {
+  const bodyEl = $('rd-body');
+  if (!bodyEl || !cur) return;
+  const list = getAnnotations().filter(a => a.chapterId === cur.id);
+  if (!list.length) return;
+  
+  list.forEach(item => {
+    if (!item.text || item.text.length < 4) return;
+    const walker = document.createTreeWalker(bodyEl, NodeFilter.SHOW_TEXT, null, false);
+    let node;
+    while ((node = walker.nextNode())) {
+      if (node.parentElement && node.parentElement.tagName === 'MARK') continue;
+      const idx = node.textContent.indexOf(item.text);
+      if (idx >= 0) {
+        const range = document.createRange();
+        range.setStart(node, idx);
+        range.setEnd(node, idx + item.text.length);
+        const mark = document.createElement('mark');
+        mark.className = 'sw-highlight';
+        mark.dataset.hlId = item.id;
+        mark.title = Lang.get() === 'tr' ? 'Divan Defteri Alıntısı (Tıkla: Parşömen Kartı)' : 'Divan Quote (Click: Parchment Card)';
+        try {
+          range.surroundContents(mark);
+          mark.onclick = (e) => {
+            e.stopPropagation();
+            openQuoteModal(item.text, Lang.t(cur.title), cur.num);
+          };
+        } catch (e) {}
+        break;
+      }
+    }
+  });
+}
+
+function renderDefter() {
+  const cont = $('rd-defter-content');
+  if (!cont) return;
+  const l = Lang.get();
+  const ann = getAnnotations();
+  if (!ann.length) {
+    cont.innerHTML = '<div class="rd-defter-empty">' + (l === 'tr' ? 'Henüz hiçbir aforizma veya kelam işaretlemediniz. Metin üzerinde seçim yaparak Divan Defterinize ekleyebilirsiniz.' : 'No highlights saved yet. Select text in any chapter to save.') + '</div>';
+    return;
+  }
+  cont.innerHTML = ann.map(item => {
+    const dStr = new Date(item.date).toLocaleDateString(l === 'tr' ? 'tr-TR' : 'en-US', { day: 'numeric', month: 'short' });
+    return `
+      <div class="rd-defter-item" id="ann-card-${esc(item.id)}">
+        <p class="rd-defter-q">“${esc(item.text)}”</p>
+        <div class="rd-defter-meta">
+          <span>${item.chapterNum ? `${item.chapterNum}. ` : ''}${esc(item.chapterTitle || '')} · ${dStr}</span>
+          <div class="rd-defter-actions">
+            <button type="button" class="rd-defter-btn" data-act="card" data-id="${esc(item.id)}">📜 ${l === 'tr' ? 'Kart' : 'Card'}</button>
+            <button type="button" class="rd-defter-btn" data-act="jump" data-id="${esc(item.id)}">🎯 ${l === 'tr' ? 'Git' : 'Go'}</button>
+            <button type="button" class="rd-defter-btn" data-act="del" data-id="${esc(item.id)}" style="color:var(--bloodb);">🗑</button>
+          </div>
+        </div>
+      </div>
+    `;
+  }).join('');
+
+  cont.querySelectorAll('button[data-act]').forEach(btn => {
+    btn.onclick = () => {
+      const act = btn.dataset.act;
+      const id = btn.dataset.id;
+      const target = getAnnotations().find(a => a.id === id);
+      if (!target) return;
+      if (act === 'card') {
+        openQuoteModal(target.text, target.chapterTitle, target.chapterNum);
+      } else if (act === 'jump') {
+        close();
+        if (cur && cur.id === target.chapterId) {
+          const mark = document.querySelector(`mark[data-hl-id="${target.id}"]`);
+          if (mark) {
+            mark.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            mark.classList.add('flash');
+            setTimeout(() => mark.classList.remove('flash'), 2500);
+          }
+        } else {
+          location.href = SWRoute.href('bolum', target.chapterId);
+        }
+      } else if (act === 'del') {
+        const filtered = getAnnotations().filter(a => a.id !== id);
+        saveAnnotations(filtered);
+        renderDefter();
+        const mark = document.querySelector(`mark[data-hl-id="${id}"]`);
+        if (mark) {
+          const text = mark.textContent;
+          mark.replaceWith(document.createTextNode(text));
+        }
+      }
+    };
+  });
+}
+
+$('rd-defter-export').onclick = () => {
+  const ann = getAnnotations();
+  const blob = new Blob([JSON.stringify(ann, null, 2)], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'stallhart-divan-defteri.json';
+  a.click();
+  URL.revokeObjectURL(url);
+};
+
+$('rd-defter-clear').onclick = () => {
+  const l = Lang.get();
+  if (confirm(l === 'tr' ? 'Divan Defterinizdeki tüm alıntı ve notlar silinsin mi?' : 'Clear all notes from Divan Notebook?')) {
+    saveAnnotations([]);
+    renderDefter();
+    document.querySelectorAll('mark.sw-highlight').forEach(m => m.replaceWith(document.createTextNode(m.textContent)));
+  }
+};
+
+/* ── 3. PARŞÖMEN GÖRSELİ KARTI ÜRETİCİ ──────────────────────── */
+let activeQuoteForModal = { quote: '', title: '', num: '' };
+
+function renderQuoteCanvas(quote, chapterTitle, chapterNum) {
+  const canvas = $('rd-quote-canvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  const w = 900, h = 520;
+  canvas.width = w;
+  canvas.height = h;
+
+  // 1. Eskitilmiş Koyu Parşömen Arka Plan
+  const bgGrad = ctx.createRadialGradient(w/2, h/2, 40, w/2, h/2, 460);
+  bgGrad.addColorStop(0, '#211812');
+  bgGrad.addColorStop(0.65, '#15100c');
+  bgGrad.addColorStop(1, '#0c0907');
+  ctx.fillStyle = bgGrad;
+  ctx.fillRect(0, 0, w, h);
+
+  // Parşömen Doku Benekleri
+  ctx.fillStyle = 'rgba(196, 150, 42, 0.035)';
+  for (let i = 0; i < 70; i++) {
+    ctx.fillRect((i * 137) % w, (i * 189) % h, ((i * 17) % 35) + 8, ((i * 23) % 25) + 4);
+  }
+
+  // 2. Çift Altın Varaklı Kenarlık
+  ctx.strokeStyle = '#c4962a';
+  ctx.lineWidth = 2.5;
+  ctx.strokeRect(24, 24, w - 48, h - 48);
+
+  ctx.strokeStyle = 'rgba(196, 150, 42, 0.35)';
+  ctx.lineWidth = 1;
+  ctx.strokeRect(32, 32, w - 64, h - 64);
+
+  // Köşe İşlemeleri
+  const drawCorner = (x, y, flipX, flipY) => {
+    ctx.save();
+    ctx.translate(x, y);
+    ctx.scale(flipX ? -1 : 1, flipY ? -1 : 1);
+    ctx.strokeStyle = '#c4962a';
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.moveTo(0, 22);
+    ctx.lineTo(0, 0);
+    ctx.lineTo(22, 0);
+    ctx.stroke();
+    ctx.fillStyle = '#c4962a';
+    ctx.fillRect(5, 5, 3.5, 3.5);
+    ctx.restore();
+  };
+  drawCorner(24, 24, false, false);
+  drawCorner(w - 24, 24, true, false);
+  drawCorner(24, h - 24, false, true);
+  drawCorner(w - 24, h - 24, true, true);
+
+  // 3. Başlık & Arma
+  ctx.textAlign = 'center';
+  ctx.fillStyle = '#c4962a';
+  ctx.font = '600 13px system-ui, sans-serif';
+  ctx.fillText('⚔️  STALLHART DESTANI · SON İMPARATOR  ⚔️', w / 2, 68);
+
+  ctx.strokeStyle = 'rgba(196, 150, 42, 0.4)';
+  ctx.beginPath();
+  ctx.moveTo(w / 2 - 140, 84);
+  ctx.lineTo(w / 2 + 140, 84);
+  ctx.stroke();
+
+  // 4. Büyük Vurgulu Tırnak İşareti
+  ctx.fillStyle = 'rgba(196, 150, 42, 0.22)';
+  ctx.font = 'italic 74px Georgia, serif';
+  ctx.fillText('“', w / 2 - 260, 165);
+
+  // 5. Alıntı Metnini Satırlara Böl & Çiz
+  ctx.fillStyle = '#f4ecd8';
+  ctx.font = 'italic 25px "IM Fell English", Georgia, serif';
+  const maxTextWidth = w - 160;
+  const words = (quote || '').split(' ');
+  let lines = [];
+  let currentLine = '';
+
+  for (let n = 0; n < words.length; n++) {
+    const testLine = currentLine + words[n] + ' ';
+    const metrics = ctx.measureText(testLine);
+    if (metrics.width > maxTextWidth && n > 0) {
+      lines.push(currentLine.trim());
+      currentLine = words[n] + ' ';
+    } else {
+      currentLine = testLine;
+    }
+  }
+  lines.push(currentLine.trim());
+
+  if (lines.length > 5) {
+    lines = lines.slice(0, 5);
+    lines[4] += '…';
+  }
+
+  const lineHeight = 38;
+  const totalTextHeight = lines.length * lineHeight;
+  let startY = (h / 2) - (totalTextHeight / 2) + 20;
+
+  for (let k = 0; k < lines.length; k++) {
+    ctx.fillText(lines[k], w / 2, startY + (k * lineHeight));
+  }
+
+  // 6. Alt Bölücü & Referans
+  const bottomDividerY = h - 95;
+  ctx.strokeStyle = 'rgba(196, 150, 42, 0.35)';
+  ctx.beginPath();
+  ctx.moveTo(w / 2 - 110, bottomDividerY);
+  ctx.lineTo(w / 2 + 110, bottomDividerY);
+  ctx.stroke();
+
+  ctx.fillStyle = '#c4962a';
+  ctx.beginPath();
+  ctx.arc(w / 2, bottomDividerY, 3, 0, Math.PI * 2);
+  ctx.fill();
+
+  ctx.fillStyle = '#ad7a34';
+  ctx.font = '14px "Modern Antiqua", Georgia, serif';
+  const citation = '— ' + (chapterNum ? chapterNum + '. Bölüm: ' : '') + (chapterTitle || '') + ' · Vakanüvis Divan Kaydı';
+  ctx.fillText(citation, w / 2, h - 62);
+}
+
+function openQuoteModal(quote, title, num) {
+  activeQuoteForModal = { quote, title, num };
+  renderQuoteCanvas(quote, title, num);
+  $('rd-quote-modal').style.display = 'flex';
+}
+
+$('rd-quote-close').onclick = () => { $('rd-quote-modal').style.display = 'none'; };
+
+$('rd-quote-download').onclick = () => {
+  const canvas = $('rd-quote-canvas');
+  if (!canvas) return;
+  const a = document.createElement('a');
+  a.href = canvas.toDataURL('image/png');
+  a.download = 'stallhart-alinti.png';
+  a.click();
+};
+
+$('rd-quote-tweet').onclick = () => {
+  const q = activeQuoteForModal.quote ? `“${activeQuoteForModal.quote}”` : '';
+  const text = encodeURIComponent(`${q}\n— Stallhart Destanı\n${window.location.href}`);
+  window.open(`https://twitter.com/intent/tweet?text=${text}`, '_blank');
+};
+
+$('rd-quote-copy').onclick = () => {
+  const q = activeQuoteForModal.quote ? `“${activeQuoteForModal.quote}”\n— Stallhart Destanı` : '';
+  navigator.clipboard?.writeText(q).then(() => {
+    if (Wiki.Community && Wiki.Community.util && Wiki.Community.util.toast) {
+      Wiki.Community.util.toast(Lang.get() === 'tr' ? '📋 Alıntı panoya kopyalandı!' : '📋 Quote copied!');
+    }
+  });
+};
+
+/* ── 4. PARAGRAF BAZLI BULUT EŞİTLEMESİ & DEVAM ET ───────────── */
+const SYNC_KEY = 'sw-reading-sync';
+
+function findActiveParagraphIdx() {
+  const paras = document.querySelectorAll('#rd-body p');
+  if (!paras.length) return 0;
+  const viewMid = window.innerHeight * 0.35;
+  let closestIdx = 0;
+  let minDiff = Infinity;
+  paras.forEach((p, idx) => {
+    const rect = p.getBoundingClientRect();
+    const diff = Math.abs(rect.top - viewMid);
+    if (diff < minDiff && rect.top < window.innerHeight && rect.bottom > 0) {
+      minDiff = diff;
+      closestIdx = idx;
+    }
+  });
+  return closestIdx;
+}
+
+function checkCloudSyncNotice(ch, l) {
+  try {
+    const raw = localStorage.getItem(SYNC_KEY);
+    if (!raw) return;
+    const data = JSON.parse(raw);
+    if (!data || data.chapterId !== ch.id || !data.pIdx || data.pIdx < 1) return;
+    
+    const r = $('rd-resume');
+    r.innerHTML = '<span>📜 ' + (l === 'tr' ? ('Kaldığınız yer: Paragraf ' + (data.pIdx + 1) + ' (%' + Math.round((data.pct || 0) * 100) + ')') : ('Saved: Paragraph ' + (data.pIdx + 1) + ' (' + Math.round((data.pct || 0) * 100) + '%)')) + '</span>' +
+      '<button class="rd-pill" type="button" id="rs-go-sync">' + (l === 'tr' ? 'Kaldığım Yere Git' : 'Go to Position') + '</button>' +
+      '<button class="rd-pill" type="button" id="rs-no-sync" style="border-color:var(--border);color:var(--parchd)">×</button>';
+    r.hidden = false;
+
+    $('rs-go-sync').onclick = () => {
+      const targetP = document.getElementById('p-' + data.pIdx);
+      if (targetP) {
+        targetP.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        targetP.classList.add('sw-highlight-jump');
+        setTimeout(() => targetP.classList.remove('sw-highlight-jump'), 3000);
+      } else {
+        restore(data.pct || 0);
+      }
+      hideResume();
+    };
+    $('rs-no-sync').onclick = () => hideResume();
+    setTimeout(() => { if (!r.hidden) hideResume(); }, 16000);
+  } catch (e) {}
+}
+
+function openSyncModal() {
+  const modal = $('rd-sync-modal');
+  if (!modal) return;
+  const exportArea = $('rd-sync-export-code');
+  const syncData = {
+    sync: lsGet(SYNC_KEY),
+    lastRead: lsGet('sw-last-read'),
+    pos: lsGet(POS_KEY),
+    annotations: getAnnotations(),
+    time: Date.now()
+  };
+  if (exportArea) {
+    try {
+      exportArea.value = btoa(unescape(encodeURIComponent(JSON.stringify(syncData))));
+    } catch (e) {
+      exportArea.value = JSON.stringify(syncData);
+    }
+  }
+  modal.style.display = 'flex';
+}
+
+$('rd-sync-close').onclick = () => { $('rd-sync-modal').style.display = 'none'; };
+
+$('rd-sync-copy-btn').onclick = () => {
+  const val = $('rd-sync-export-code').value;
+  navigator.clipboard?.writeText(val).then(() => {
+    if (Wiki.Community && Wiki.Community.util && Wiki.Community.util.toast) {
+      Wiki.Community.util.toast(Lang.get() === 'tr' ? '📋 Eşitleme kodu panoya kopyalandı!' : '📋 Sync code copied!');
+    }
+  });
+};
+
+$('rd-sync-apply-btn').onclick = () => {
+  const l = Lang.get();
+  const val = $('rd-sync-import-code').value.trim();
+  if (!val) {
+    alert(l === 'tr' ? 'Lütfen eşitleme kodunu yapıştırın.' : 'Please paste sync code.');
+    return;
+  }
+  try {
+    let rawJson;
+    try {
+      rawJson = decodeURIComponent(escape(atob(val)));
+    } catch (e) {
+      rawJson = val;
+    }
+    const data = JSON.parse(rawJson);
+    if (data.sync) localStorage.setItem(SYNC_KEY, JSON.stringify(data.sync));
+    if (data.lastRead) localStorage.setItem('sw-last-read', JSON.stringify(data.lastRead));
+    if (data.pos) lsSet(POS_KEY, data.pos);
+    if (data.annotations) saveAnnotations(data.annotations);
+    
+    $('rd-sync-modal').style.display = 'none';
+    if (Wiki.Community && Wiki.Community.util && Wiki.Community.util.toast) {
+      Wiki.Community.util.toast(l === 'tr' ? '✓ Okuma ilerlemesi ve defter senkronize edildi!' : '✓ Reading progress & notebook synced!');
+    }
+    if (data.sync && data.sync.chapterId) {
+      location.href = SWRoute.href('bolum', data.sync.chapterId);
+    } else {
+      location.reload();
+    }
+  } catch (err) {
+    alert(l === 'tr' ? 'Geçersiz eşitleme kodu.' : 'Invalid sync code.');
+  }
+};
+
+/* ── 5. SOSYAL MEDYA PAYLAŞIM MODALI ────────────────────────── */
+function openShareModal() {
+  const modal = $('rd-share-modal');
+  if (!modal || !cur) return;
+  const title = cur.num + '. ' + Lang.t(cur.title) + ' · Stallhart Destanı';
+  const url = window.location.href;
+  const text = encodeURIComponent(title + '\n' + url);
+
+  $('sh-wa').onclick = () => {
+    window.open('https://api.whatsapp.com/send?text=' + text, '_blank');
+  };
+  $('sh-x').onclick = () => {
+    window.open('https://twitter.com/intent/tweet?text=' + text, '_blank');
+  };
+  $('sh-tg').onclick = () => {
+    window.open('https://t.me/share/url?url=' + encodeURIComponent(url) + '&text=' + encodeURIComponent(title), '_blank');
+  };
+  $('sh-copy').onclick = () => {
+    navigator.clipboard?.writeText(url).then(() => {
+      if (Wiki.Community && Wiki.Community.util && Wiki.Community.util.toast) {
+        Wiki.Community.util.toast(Lang.get() === 'tr' ? '🔗 Bağlantı panoya kopyalandı!' : '🔗 Link copied to clipboard!');
+      }
+    });
+  };
+  modal.style.display = 'flex';
+}
+
+$('rd-share-close').onclick = () => { $('rd-share-modal').style.display = 'none'; };
+
+/* ── 6. DİNAMİK SEO & OPENGRAPH ──────────────────────────────── */
+function updateChapterSEO(ch, tx) {
+  if (!ch) return;
+  const fullTitle = ch.num + '. ' + Lang.t(ch.title) + ' · Stallhart Destanı';
+  document.title = fullTitle;
+  const ogTitle = document.querySelector('meta[property="og:title"]');
+  if (ogTitle) ogTitle.content = fullTitle;
+  const twTitle = document.querySelector('meta[name="twitter:title"]');
+  if (twTitle) twTitle.content = fullTitle;
+
+  const desc = String(tx.text || '').slice(0, 160).replace(/\s+/g, ' ') + '…';
+  const ogDesc = document.querySelector('meta[property="og:description"]');
+  if (ogDesc) ogDesc.content = desc;
+  const twDesc = document.querySelector('meta[name="twitter:description"]');
+  if (twDesc) twDesc.content = desc;
+
+  let ldScript = document.getElementById('rd-jsonld');
+  if (!ldScript) {
+    ldScript = document.createElement('script');
+    ldScript.id = 'rd-jsonld';
+    ldScript.type = 'application/ld+json';
+    document.head.appendChild(ldScript);
+  }
+  ldScript.textContent = JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Chapter",
+    "name": Lang.t(ch.title),
+    "position": ch.num,
+    "isPartOf": {
+      "@type": "Book",
+      "name": "Stallhart Destanı — Son İmparator",
+      "author": { "@type": "Person", "name": "Azad Çelik" }
+    }
+  });
+}
+
+/* ── 7. PWA KURULUM & ÇEVRİMDIŞI TAKİPÇİSİ ──────────────────── */
+let deferredPwaPrompt = null;
+window.addEventListener('beforeinstallprompt', e => {
+  e.preventDefault();
+  deferredPwaPrompt = e;
+  const btn = $('rd-install-btn');
+  if (btn) btn.style.display = 'inline-flex';
+});
+
+const installBtn = $('rd-install-btn');
+if (installBtn) {
+  installBtn.onclick = async () => {
+    if (deferredPwaPrompt) {
+      deferredPwaPrompt.prompt();
+      const res = await deferredPwaPrompt.userChoice;
+      if (res.outcome === 'accepted') {
+        installBtn.style.display = 'none';
+      }
+      deferredPwaPrompt = null;
+    }
+  };
+}
+
+function updateOnlineStatus() {
+  const isOnline = navigator.onLine;
+  const banner = $('sw-offline-banner');
+  const msg = $('sw-offline-msg');
+  const l = Lang.get();
+  if (!banner) return;
+  if (!isOnline) {
+    if (msg) msg.textContent = l === 'tr' ? '📶 Çevrimdışı Mod — Kayıtlı bölümler önbellekten kesintisiz okunuyor.' : '📶 Offline Mode — Reading cached chapters.';
+    banner.style.display = 'flex';
+  } else {
+    if (banner.style.display === 'flex') {
+      if (msg) msg.textContent = l === 'tr' ? '✓ Bağlantı sağlandı — Meclis kütüğü güncellendi.' : '✓ Connection restored — Synced.';
+      banner.style.borderColor = '#10b981';
+      setTimeout(() => { banner.style.display = 'none'; banner.style.borderColor = ''; }, 3000);
+    }
+  }
+}
+window.addEventListener('online', updateOnlineStatus);
+window.addEventListener('offline', updateOnlineStatus);
+setTimeout(updateOnlineStatus, 1000);
+
 /* ── Paneller (odak yönetimi, Esc, dışarı tıklama) ─────────── */
 let openPanel = null, opener = null;
 const anyOpen = () => !!openPanel;
@@ -527,6 +1462,18 @@ function close() {
 }
 $('rd-set-btn').addEventListener('click', e => (openPanel && openPanel.id === 'rd-set') ? close() : open('rd-set', e.currentTarget));
 $('rd-toc-btn').addEventListener('click', e => (openPanel && openPanel.id === 'rd-toc') ? close() : open('rd-toc', e.currentTarget));
+const defterBtn = $('rd-defter-btn');
+if (defterBtn) defterBtn.addEventListener('click', e => {
+  if (openPanel && openPanel.id === 'rd-defter') close();
+  else {
+    renderDefter();
+    open('rd-defter', e.currentTarget);
+  }
+});
+const syncBtn = $('rd-sync-btn');
+if (syncBtn) syncBtn.addEventListener('click', openSyncModal);
+const shareBtn = $('rd-share-btn');
+if (shareBtn) shareBtn.addEventListener('click', openShareModal);
 $('rd-scrim').addEventListener('click', close);
 document.querySelectorAll('[data-close]').forEach(b => b.addEventListener('click', close));
 document.addEventListener('keydown', e => {

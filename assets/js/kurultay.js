@@ -16,6 +16,7 @@ var W = window.Wiki, C = W && W.Community, esc = W ? W.esc : function(s){ return
 
 /* ── İKONLAR (kategori rozetleri) ─────────────────────────────── */
 var ICONS = {
+  yazar:   '<path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/>',
   denge:   '<path d="M12 3v18M6 8l6-5 6 5M3 13l3-5 3 5a3 3 0 0 1-6 0zM15 13l3-5 3 5a3 3 0 0 1-6 0z"/><path d="M6 21h12"/>',
   teori:   '<circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M2 12h3M19 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/><circle cx="12" cy="12" r="9" stroke-dasharray="2 3"/>',
   bolum:   '<path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/><line x1="9" y1="7" x2="16" y2="7"/><line x1="9" y1="11" x2="14" y2="11"/>',
@@ -28,6 +29,18 @@ var ICONS = {
 
 /* ── KATEGORİ LİSTESİ (Kapsamlı Dark Fantasy Evrenine Uyumlu) ──── */
 var FALLBACK_CATS = [
+  {
+    id: 'yazar-divani',
+    icon: 'yazar',
+    name_tr: 'Yazarın Divanı (Resmî AMA & Soru-Cevap)',
+    name_en: "The Author's Divan (Official AMA & Q&A)",
+    desc_tr: 'Yazarın meclise bizzat teşrif ettiği, teorileri yanıtladığı ve karanlık evrenin perdelerini araladığı resmî soru-cevap odası.',
+    desc_en: "Official chamber where the author answers reader inquiries, validates theories, and unveils lore secrets.",
+    is_locked: false,
+    thread_count: 28,
+    post_count: 194,
+    sort_order: 0
+  },
   {
     id: 'denge-konseyi',
     icon: 'denge',
@@ -132,6 +145,48 @@ function minsAgo(n) { return new Date(Date.now() - n * 60000).toISOString(); }
 
 /* ── ZENGİN ÖRNEK KONULAR (Dark Fantasy Atmosferi & Kurgusal Zenginlik) ── */
 var FALLBACK_THREADS = [
+  {
+    id: 'f-ama-1',
+    category_id: 'yazar-divani',
+    title: '👑 [YAZARIN DİVANI #1] Cilt II Öncesi Kanon Soruları & On İki Tanrı’nın Sessizliği',
+    title_en: '👑 [AUTHOR AMA #1] Canon Questions Before Volume II & The Silence of the Twelve',
+    body: '> Alıntı: "Mürekkep kandan daha ağırdır; zira kan toprağa karışır, mürekkep ise asırları bağlar."\n\nDeğerli okurlar ve sancaktarlar; bu meclis divanında Cilt I sonundaki olaylar, hanedanların perde arkası niyetleri ve On İki Tanrı\'nın KS 1144 kırılmasındaki rolü üzerine sorularınızı yanıtlıyorum.\n\n[Bölüm 5, Sayfa 18] referanslı teorilerinizi doğrudan yöneltebilirsiniz.',
+    body_en: '> Quote: "Ink is heavier than blood; for blood sinks into soil, while ink binds the ages."\n\nNoble readers and bannermen; in this divan session I am answering your inquiries regarding Volume I climax, secret intentions of houses, and the Twelve Gods.\n\nCite your theories with [Chapter 5] references.',
+    is_pinned: true,
+    is_locked: false,
+    view_count: 3450,
+    reply_count: 52,
+    last_activity_at: hoursAgo(1),
+    created_at: daysAgo(2),
+    profiles: { username: 'Azad Çelik (Yazar)', avatar: 'crown', favorite_house: 'stallhart', title: 'Destan Yazarı & Kanon Muhafızı' },
+    reactions: { steel: 94, blood: 16, seal: 138, balance: 42 },
+    author_reply: {
+      author_name: 'Azad Çelik (Yazar)',
+      date: daysAgo(1),
+      decree: 'On İki Tanrı’nın KS 1144’ten bu yana süregelen sessizliği bir terk ediş değil; aksine Kaos ve Düzen terazisinin insan iradesine devredilmesidir. Zeandor’un elindeki hançerin üzerindeki mühür, bizzat Galdra’nın adını taşımaktadır.'
+    }
+  },
+  {
+    id: 'f-ama-2',
+    category_id: 'yazar-divani',
+    title: 'Soru: Zeandor’un KS 12 Seferi sırasında gördüğü kara rüya bir kehanet miydi?',
+    title_en: 'Question: Was Zeandor’s dark vision during the KS 12 Campaign a prophecy?',
+    body: 'Saygıdeğer yazarım, 3. Bölümde Zeandor’un çadırında uyanırken andığı "Gökte iki güneş batarken kızıla boyanan deniz" tasviri, Cilt II’deki Arathen kuşatmasına mı işaret ediyor?\n\n@AzadCelik cevabınızı meclisle paylaşabilir misiniz?',
+    body_en: 'Honored author, in Chapter 3 Zeandor awakens remembering "the sea dyed red as two suns set in the sky". Does this foreshadow the Siege of Arathen in Volume II?',
+    is_pinned: false,
+    is_locked: false,
+    view_count: 980,
+    reply_count: 18,
+    last_activity_at: hoursAgo(6),
+    created_at: daysAgo(3),
+    profiles: { username: 'Althaea_Gözcüsü', avatar: 'scroll', favorite_house: 'selya', title: 'Kadim Vakanüvis' },
+    reactions: { steel: 48, blood: 6, seal: 82, balance: 24 },
+    author_reply: {
+      author_name: 'Azad Çelik (Yazar)',
+      date: daysAgo(2),
+      decree: 'Evet, çok isabetli bir tahlil. O rüya alelade bir kabus değildi. Selya açıklarında batacak olan ikinci güneş, bir hanedanın kan bağının son temsilcisini simgeliyor. Cilt II’de bu sahnenin yankılarını göreceksiniz.'
+    }
+  },
   {
     id: 'f-pin-1',
     category_id: 'duyuru',
@@ -710,6 +765,18 @@ function renderCanonBanner(thread, l) {
   '</div>';
 }
 
+function renderAuthorDecree(thread, l) {
+  if (!thread || !thread.author_reply) return '';
+  var rep = thread.author_reply;
+  return '<div class="sw-author-decree-card">' +
+    '<div class="sw-author-decree-body">“' + esc(rep.decree) + '”</div>' +
+    '<div class="sw-author-decree-foot">' +
+      '<span>🪶 ' + esc(rep.author_name || (l === 'tr' ? 'Azad Çelik (Yazar)' : 'Author Azad Çelik')) + '</span>' +
+      '<span>📜 ' + (l === 'tr' ? 'Resmî Kanon Mührü Basıldı' : 'Official Canon Seal Applied') + '</span>' +
+    '</div>' +
+  '</div>';
+}
+
 /* ── PARŞÖMEN ÜSLUPLU ZENGİN METİN & SPOİLER RENDERER ─────────── */
 function renderRichBody(raw, l) {
   if (!raw) return '';
@@ -952,6 +1019,7 @@ function filterFallback(opts) {
   if (opts.pinnedOnly) rows = rows.filter(function (t) { return t.is_pinned; });
   if (opts.canonOnly) rows = rows.filter(function (t) { return !!t.is_canonized; });
   if (opts.pollOnly) rows = rows.filter(function (t) { return !!t.poll; });
+  if (opts.amaOnly) rows = rows.filter(function (t) { return t.category_id === 'yazar-divani' || !!t.author_reply || !!t.is_author_ama; });
   if (opts.noSpoiler) rows = rows.filter(function (t) { return (t.title || '').indexOf('[SPOILER]') === -1 && (t.body || '').indexOf('||') === -1; });
   if (opts.houseFilter) rows = rows.filter(function (t) { return t.profiles && t.profiles.favorite_house === opts.houseFilter; });
   if (opts.search) {
@@ -1125,6 +1193,7 @@ function threadRowHTML(t, l, opts) {
         (unread ? '<i class="ft-dot" title="' + (l === 'tr' ? 'Okunmadı' : 'Unread') + '"></i>' : '') +
         (t.is_pinned ? '<span class="ft-pin-pill"><svg viewBox="0 0 24 24"><path d="M12 2l1.5 5.5L19 9l-4.5 3L16 18l-4-3-4 3 1.5-6L5 9l5.5-1.5z"/></svg>' + (l === 'tr' ? 'Ferman' : 'Decree') + '</span>' : '') +
         (t.is_canonized ? '<span class="ft-canon-pill" title="' + (l === 'tr' ? 'Yazar tarafından doğrulanmış kanon teori' : 'Verified canon theory') + '">🔮 ' + (l === 'tr' ? 'Doğrulanan Kehanet' : 'Canonized') + '</span>' : '') +
+        (t.author_reply ? '<span class="ft-poll-pill" style="border-color:var(--gold);color:var(--gold);background:rgba(196,150,42,.15)">👑 ' + (l === 'tr' ? 'Yazar Yanıtı' : 'Author Reply') + '</span>' : '') +
         (t.poll ? '<span class="ft-poll-pill">📊 ' + (l === 'tr' ? 'Anket' : 'Poll') + '</span>' : '') +
         (t.is_locked ? '<svg class="ft-lock-i" viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="9" rx="1"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>' : '') +
         '<span class="ft-title-text">' + esc(l === 'tr' ? t.title : (t.title_en || t.title)) + '</span>' +
@@ -1400,6 +1469,7 @@ window.Kurultay = {
   renderPollCard: renderPollCard,
   canonizeThread: canonizeThread,
   renderCanonBanner: renderCanonBanner,
+  renderAuthorDecree: renderAuthorDecree,
   renderRichBody: renderRichBody,
   attachEditorToolbar: attachEditorToolbar,
   Notifications: Notifications,

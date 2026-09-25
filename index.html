@@ -25,6 +25,20 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Modern+Antiqua&amp;family=IM+Fell+English:ital@0;1&amp;family=Merriweather:ital,wght@0,400;0,700;1,400&amp;display=swap">
 <link rel="stylesheet" href="assets/css/styles.css?v=3.0">
 <link rel="stylesheet" href="assets/css/kurultay.css?v=3.0">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Book",
+  "name": "The Stallhart Saga — Son İmparator",
+  "description": "Stallhart Destanı — Son İmparator, Türkçe dark fantasy epik roman ve evren ansiklopedisi.",
+  "inLanguage": "tr",
+  "genre": "Dark Fantasy, Epic Fantasy",
+  "author": {
+    "@type": "Person",
+    "name": "Azad Çelik"
+  }
+}
+</script>
 <style>
 /* ── İNDEX'E ÖZEL STİLLER ─────────────────────────── */
 .hero {
@@ -520,7 +534,7 @@ function checkResume() {
       <a class="hero-resume-link" href="${SWRoute.href('bolum', data.id)}">
         <span class="hr-icon">📖</span>
         <span class="hr-text">
-          <small>${l === 'tr' ? 'Kaldığın Yerden Devam Et' : 'Continue Where You Left Off'}${pct > 0 ? ` (%${pct})` : ''}</small>
+          <small>${l === 'tr' ? 'Kaldığın Yerden Devam Et' : 'Continue Where You Left Off'}${data.pIdx ? ` · ${l === 'tr' ? 'Paragraf' : 'Paragraph'} ${data.pIdx + 1}` : ''}${pct > 0 ? ` (%${pct})` : ''}</small>
           <strong>${esc(data.num ? `${data.num}. ` : '')}${esc(title)}</strong>
         </span>
         <span class="hr-arrow">→</span>

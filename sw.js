@@ -5,7 +5,7 @@
    ═══════════════════════════════════════════════════════════════ */
 'use strict';
 
-const CACHE_NAME = 'stallhart-v1';
+const CACHE_NAME = 'stallhart-v2';
 const PRECACHE_ASSETS = [
   '/',
   '/index.html',
@@ -16,13 +16,20 @@ const PRECACHE_ASSETS = [
   '/lore.html',
   '/harita.html',
   '/sozler.html',
+  '/forum.html',
+  '/forum-kategori.html',
+  '/forum-konu.html',
   '/assets/css/styles.css?v=3.0',
+  '/assets/css/kurultay.css?v=3.0',
+  '/assets/css/community.css',
+  '/assets/css/harita.css',
   '/assets/js/router.js?v=3.0',
   '/assets/js/config.js?v=3.0',
   '/assets/js/patches.js?v=3.0',
   '/assets/js/wiki.js?v=3.0',
   '/assets/js/community.js?v=3.0',
   '/assets/js/community-divan.js',
+  '/assets/js/kurultay.js',
   '/assets/js/travel-calc.js',
   '/data/book.json',
   '/data/chapters.json',
@@ -34,8 +41,7 @@ const PRECACHE_ASSETS = [
   '/data/quotes.json',
   '/data/language.json',
   '/assets/images/logo-stallhart.png',
-  '/assets/css/community.css',
-  '/assets/css/harita.css',
+  '/assets/images/logo-stallhart-240w.webp',
   '/manifest.json',
   '/manifest.webmanifest'
 ];
@@ -71,7 +77,25 @@ self.addEventListener('fetch', event => {
     return;
   }
 
-  // HTML Sayfaları: Network First (Ağ varsa tazele, yoksa önbellekten sun)
+  // Kitap ve Evren Verileri (/data/*.json): Cache First + Arka Planda Güncelle (Tam Çevrimdışı Okuma)
+  if (url.pathname.startsWith('/data/') && url.pathname.endsWith('.json')) {
+    event.respondWith(
+      caches.match(req).then(cached => {
+        const fetchPromise = fetch(req).then(networkResponse => {
+          if (networkResponse && networkResponse.status === 200) {
+            const clone = networkResponse.clone();
+            caches.open(CACHE_NAME).then(cache => cache.put(req, clone));
+          }
+          return networkResponse;
+        }).catch(() => null);
+
+        return cached || fetchPromise || caches.match('/data/chapters.json');
+      })
+    );
+    return;
+  }
+
+  // HTML Sayfaları: Network First, Çevrimdışında Önbellekten Sun
   if (req.mode === 'navigate' || req.headers.get('accept')?.includes('text/html')) {
     event.respondWith(
       fetch(req)
@@ -83,13 +107,13 @@ self.addEventListener('fetch', event => {
           return response;
         })
         .catch(() => {
-          return caches.match(req).then(cached => cached || caches.match('/index.html'));
+          return caches.match(req).then(cached => cached || caches.match('/oku.html') || caches.match('/index.html'));
         })
     );
     return;
   }
 
-  // Statik Varlıklar (CSS, JS, JSON, Görseller): Stale-While-Revalidate
+  // Statik Varlıklar (CSS, JS, Görseller): Stale-While-Revalidate
   event.respondWith(
     caches.match(req).then(cachedResponse => {
       const fetchPromise = fetch(req).then(networkResponse => {

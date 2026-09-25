@@ -64,11 +64,13 @@ function fkHeadHTML(l) {
   const rawBody = l === 'tr' ? thread.body : (thread.body_en || thread.body);
   const richBodyHTML = K.renderRichBody ? K.renderRichBody(rawBody, l) : esc(rawBody);
   const canonBannerHTML = K.renderCanonBanner ? K.renderCanonBanner(thread, l) : '';
+  const authorDecreeHTML = K.renderAuthorDecree ? K.renderAuthorDecree(thread, l) : '';
   const pollHTML = (thread.poll && K.renderPollCard) ? K.renderPollCard(thread, l) : '';
   const reactionsHTML = K.renderReactionsBar ? K.renderReactionsBar(thread.id, l) : '';
 
   return `
     ${canonBannerHTML}
+    ${authorDecreeHTML}
     <div class="fk-head">
       <div class="fk-tags">
         <span class="ft-tag${thread.category_id === 'duyuru' ? ' duyuru' : ''}">${esc(K.catLabel(cat, l))}</span>
