@@ -24,6 +24,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Modern+Antiqua&amp;family=IM+Fell+English:ital@0;1&amp;family=Merriweather:ital,wght@0,400;0,700;1,400&amp;display=swap">
 <link rel="stylesheet" href="assets/css/styles.css?v=3.0">
+<link rel="stylesheet" href="assets/css/kurultay.css?v=3.0">
 <style>
 /* ── İNDEX'E ÖZEL STİLLER ─────────────────────────── */
 .hero {
@@ -321,6 +322,9 @@ html[data-theme="light"] .hero-logo {
       </a>
     </div>
 
+    <!-- İNTERAKTİF KURULTAY OYLAMASI (POLL PREVIEW CARD) -->
+    <div id="vitrin-poll-slot" style="margin-top: 2.25rem;"></div>
+
     <div style="text-align:center; margin-top:2.25rem;">
       <a href="forum.html" class="btn-g" style="padding:.7rem 1.8rem; font-size:.92rem;" data-tr="Kurultay Forumuna Gir (Tüm Meclis Odaları)" data-en="Enter Kurultay Forum (All Chambers)">Kurultay Forumuna Gir (Tüm Meclis Odaları)</a>
     </div>
@@ -396,6 +400,7 @@ html[data-theme="light"] .hero-logo {
 <script src="assets/js/patches.js?v=3.0"></script>
 <script src="assets/js/wiki.js?v=3.0"></script>
 <script src="assets/js/community.js?v=3.0"></script>
+<script src="assets/js/kurultay.js?v=3.0"></script>
 <script>
 const { Lang, loadData, initWiki, groupClass, esc } = Wiki;
 
@@ -525,12 +530,64 @@ function checkResume() {
   } catch (e) {}
 }
 
+function renderVitrinPoll() {
+  const slot = document.getElementById('vitrin-poll-slot');
+  if (!slot || !window.Kurultay) return;
+  const l = Lang.get();
+  const pollThread = Kurultay.FALLBACK_THREADS.find(t => t.id === 'f-hane-1') || Kurultay.FALLBACK_THREADS.find(t => !!t.poll);
+  if (!pollThread || !Kurultay.renderPollCard) return;
+
+  const cardHtml = Kurultay.renderPollCard(pollThread, l);
+  slot.innerHTML = `
+    <div style="max-width: 860px; margin: 0 auto;">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:.75rem; border-bottom:1px solid rgba(196,150,42,.2); padding-bottom:.5rem;">
+        <span style="font-family:var(--font-display); font-size:.85rem; color:var(--gold); display:flex; align-items:center; gap:.5rem;">
+          <span>⚖️</span>
+          <span>${l === 'tr' ? 'Haftanın Meclis Oylaması' : 'Assembly Ballot of the Week'}</span>
+        </span>
+        <a href="forum-konu.html?id=${encodeURIComponent(pollThread.id)}" style="font-size:.78rem; color:var(--goldd); text-decoration:none; display:flex; align-items:center; gap:.3rem;">
+          <span>${l === 'tr' ? 'Tartışmaya Katıl' : 'Join Discussion'}</span>
+          <span>→</span>
+        </a>
+      </div>
+      ${cardHtml}
+    </div>
+  `;
+
+  // Oylama etkileşimini bağla
+  const pollBtn = slot.querySelector('[data-poll-submit]');
+  if (pollBtn) {
+    pollBtn.addEventListener('click', () => {
+      const checked = slot.querySelector(`input[name="poll_choice_${pollThread.id}"]:checked`);
+      if (!checked) {
+        if (window.Community && Community.util && Community.util.toast) {
+          Community.util.toast(l === 'tr' ? 'Lütfen önce mührünüzü basacağınız haneyi seçin.' : 'Please select an option before casting your vote.', true);
+        } else if (Wiki.Toast && Wiki.Toast.show) {
+          Wiki.Toast.show(l === 'tr' ? 'Lütfen önce bir seçenek işaretleyin.' : 'Please select an option first.');
+        } else {
+          alert(l === 'tr' ? 'Lütfen bir seçenek seçin.' : 'Please select an option.');
+        }
+        return;
+      }
+      Kurultay.votePoll(pollThread.id, checked.value);
+      if (window.Community && Community.util && Community.util.toast) {
+        Community.util.toast(l === 'tr' ? 'Oyunuz Kurultay Divanı’na mühürlendi (+25 Şan)!' : 'Your vote has been recorded (+25 Renown)!');
+      } else if (Wiki.Toast && Wiki.Toast.show) {
+        Wiki.Toast.show(l === 'tr' ? 'Oyunuz kaydedildi (+25 Şan)!' : 'Vote recorded (+25 Renown)!');
+      }
+      renderVitrinPoll();
+    });
+  }
+}
+
 applyStaticLang(Lang.get());
 renderFeatured();
 checkResume();
+renderVitrinPoll();
 document.addEventListener('langchange', () => {
   applyStaticLang(Lang.get());
   checkResume();
+  renderVitrinPoll();
 });
 </script>
 </body>
