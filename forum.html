@@ -3,90 +3,197 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title data-tr="Kurultay · Stallhart Wiki" data-en="The Kurultay · Stallhart Wiki">Kurultay · Stallhart Wiki</title>
-<meta name="description" content="Stallhart Destanı topluluk forumu — Kurultay. Teoriler, tartışmalar, hane sohbetleri ve duyurular." data-tr="Stallhart Destanı topluluk forumu — Kurultay. Teoriler, tartışmalar, hane sohbetleri ve duyurular." data-en="The Stallhart Saga community forum — the Kurultay. Theories, discussions, house chatter and announcements." data-i18n-attr="content">
-<meta name="theme-color" content="#0c121f">
+<title data-tr="Kurultay · Stallhart Forumu" data-en="The Kurultay · Stallhart Forum">Kurultay · Stallhart Forumu</title>
+<meta name="description" content="Stallhart Destanı Kurultayı: Denge Konseyi Tartışmaları, Teori Köşesi, Bölüm Yorumları ve Hanedan Sadakat Meydanı." data-tr="Stallhart Destanı Kurultayı: Denge Konseyi Tartışmaları, Teori Köşesi, Bölüm Yorumları ve Hanedan Sadakat Meydanı." data-en="The Kurultay of Stallhart Saga: Council of Balance Discussions, Theory Corner, Chapter Breakdowns, and House Allegiances." data-i18n-attr="content">
+<meta name="theme-color" content="#0a0e17">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="The Stallhart Saga">
 <meta property="og:locale" content="tr_TR" data-tr="tr_TR" data-en="en_US" data-i18n-attr="content">
-<meta property="og:title" content="Kurultay · Stallhart Wiki" data-tr="Kurultay · Stallhart Wiki" data-en="The Kurultay · Stallhart Wiki" data-i18n-attr="content">
-<meta property="og:description" content="Stallhart Destanı topluluk forumu — teoriler, tartışmalar, hane sohbetleri ve duyurular." data-tr="Stallhart Destanı topluluk forumu — teoriler, tartışmalar, hane sohbetleri ve duyurular." data-en="The Stallhart Saga community forum — theories, discussions, house chatter and announcements." data-i18n-attr="content">
+<meta property="og:title" content="Kurultay · Stallhart Forumu" data-tr="Kurultay · Stallhart Forumu" data-en="The Kurultay · Stallhart Forum" data-i18n-attr="content">
+<meta property="og:description" content="Denge Konseyi Tartışmaları, Teori Köşesi, Bölüm Yorumları ve Hane Sancakları ile zenginleştirilmiş dark fantasy forum meclisi." data-tr="Denge Konseyi Tartışmaları, Teori Köşesi, Bölüm Yorumları ve Hane Sancakları ile zenginleştirilmiş dark fantasy forum meclisi." data-en="Dark fantasy assembly featuring Council of Balance debates, theory crafting, chapter critiques, and house allegiances." data-i18n-attr="content">
 <meta property="og:image" content="assets/images/logo-stallhart.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Kurultay · Stallhart Wiki">
-<meta name="twitter:description" content="Stallhart Destanı topluluk forumu — teoriler, tartışmalar, hane sohbetleri ve duyurular.">
+<meta name="twitter:title" content="Kurultay · Stallhart Forumu">
+<meta name="twitter:description" content="Denge Konseyi Tartışmaları, Teori Köşesi, Bölüm Yorumları ve Hane Sancakları.">
 <meta name="twitter:image" content="assets/images/logo-stallhart.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Modern+Antiqua&family=IM+Fell+English:ital@0;1&family=Merriweather:ital,wght@0,400;0,700;1,400&display=swap">
 <link rel="stylesheet" href="assets/css/styles.css?v=3.0">
 <link rel="stylesheet" href="assets/css/kurultay.css?v=3.0">
-<style>#fr-sec { background: var(--bg); }</style>
+<style>
+  #fr-sec {
+    background: radial-gradient(ellipse at 50% 0%, rgba(26, 16, 12, 0.45) 0%, rgba(10, 14, 23, 0.98) 70%), var(--bg);
+    min-height: 100vh;
+  }
+  .page-hero-forum {
+    position: relative;
+    padding: 4.5rem 1.5rem 3rem;
+    text-align: center;
+    border-bottom: 1px solid rgba(196,150,42,.25);
+    background: radial-gradient(circle at 50% 30%, rgba(139,30,30,.15), transparent 70%);
+  }
+  .page-hero-forum::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 200px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--gold), var(--blood), transparent);
+  }
+</style>
 <script src="assets/js/router.js?v=3.0"></script>
 </head>
 <body>
 
 <section id="fr-sec">
-  <div class="page-hero">
-    <p class="page-hero-eye" id="page-eye">Stallhart Destanı · Topluluk</p>
+  <div class="page-hero-forum">
+    <p class="page-hero-eye" id="page-eye">Stallhart Destanı · Yeminli Okurlar Meclisi</p>
     <h1 class="page-hero-title" id="page-title">Kurultay</h1>
-    <p class="page-hero-sub" id="page-sub">Okurların teori kurduğu, hanelerin tartıştığı ve destanın konuşulduğu meclis.</p>
+    <p class="page-hero-sub" id="page-sub">Denge Konseyi müzakereleri, kadim sırlar, teori kehanetleri ve hanedan sancaklarının konuşulduğu meclis.</p>
   </div>
 
-  <div class="inn" style="padding:2.5rem 2rem 6rem">
+  <div class="inn" style="padding:2.5rem 1.5rem 6rem; max-width: 1320px; margin: 0 auto;">
 
+    <!-- Ekmek Kırıntısı (Breadcrumb) Navigasyonu -->
+    <nav class="fr-crumb" aria-label="Breadcrumb">
+      <a href="index.html" id="l-crumb-root" data-tr="Ana Sayfa" data-en="Home">Ana Sayfa</a>
+      <span>›</span>
+      <strong id="l-crumb-cur" data-tr="Kurultay" data-en="Forum">Kurultay</strong>
+    </nav>
+
+    <!-- Üst Araç Çubuğu -->
     <div class="fr-toolbar">
       <div class="fr-toolbar-l">
         <div class="fr-search-wrap">
           <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="22" y2="22"/></svg>
-          <input type="search" id="fr-search" placeholder="Konu ara…" autocomplete="off">
+          <input type="search" id="fr-search" placeholder="Konu, teori veya kelam ara…" autocomplete="off">
         </div>
         <select class="fr-sort" id="fr-sort">
-          <option value="yeni" data-tr="En yeni" data-en="Newest">En yeni</option>
-          <option value="cevap" data-tr="En çok cevap" data-en="Most replies">En çok cevap</option>
-          <option value="goruntulenme" data-tr="En çok görüntülenme" data-en="Most viewed">En çok görüntülenme</option>
+          <option value="yeni" data-tr="En yeni müzakereler" data-en="Newest discussions">En yeni müzakereler</option>
+          <option value="cevap" data-tr="En çok cevaplanan" data-en="Most replied">En çok cevaplanan</option>
+          <option value="goruntulenme" data-tr="En çok okunan" data-en="Most viewed">En çok okunan</option>
         </select>
       </div>
-      <button class="btn-g fr-newbtn" type="button" id="fr-new-btn">
-        <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-        <span id="l-new">Yeni Konu Aç</span>
-      </button>
+      <div style="display:flex;align-items:center;gap:.75rem">
+        <div id="fr-notif-slot"></div>
+        <button class="fr-newbtn" type="button" id="fr-new-btn">
+          <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          <span id="l-new">Yeni Konu Aç</span>
+        </button>
+      </div>
     </div>
 
-    <div class="filter-bar" id="fr-tag-filters">
-      <span class="fb-label" id="l-filter">Kategori:</span>
+    <!-- Kategori Filtre Sekmeleri -->
+    <div class="fr-tag-filters" id="fr-tag-filters">
+      <span class="fb-label" id="l-filter">Meclis Odaları:</span>
     </div>
 
+    <!-- Gelişmiş Filtre Hapları (Kehanet, Anket, Spoiler ve Hane Filtresi) -->
+    <div class="fr-filter-pills" id="fr-sub-filters">
+      <button class="fr-fp-btn active" data-type="all" id="fp-all" data-tr="Tüm Müzakereler" data-en="All Topics">Tüm Müzakereler</button>
+      <button class="fr-fp-btn" data-type="canon" id="fp-canon" data-tr="🔮 Doğrulanan Kehanetler" data-en="🔮 Canonized Theories">🔮 Doğrulanan Kehanetler</button>
+      <button class="fr-fp-btn" data-type="poll" id="fp-poll" data-tr="📊 Anketli Konular" data-en="📊 Polls & Ballots">📊 Anketli Konular</button>
+      <button class="fr-fp-btn" data-type="no_spoiler" id="fp-nospoiler" data-tr="👁️ Spoilersiz" data-en="👁️ No Spoilers">👁️ Spoilersiz</button>
+      <select class="fr-fp-btn" id="fp-house-select" style="background:rgba(14,18,28,.8);border:1px solid var(--border);color:var(--parchl);padding:.25rem .6rem;outline:none;">
+        <option value="" data-tr="🛡️ Tüm Haneler" data-en="🛡️ All Houses">🛡️ Tüm Haneler</option>
+        <option value="stallhart">Stallhart (Çelik ve Kan)</option>
+        <option value="arhan">Arhan (Küllerden Doğan)</option>
+        <option value="demir-ada">Demir Ada (Kırılırız ama Eğilmeyiz)</option>
+        <option value="selya">Selya (Dalgalar Boyun Eğmez)</option>
+      </select>
+    </div>
+
+    <!-- Ana Çift Kolonlu Düzen -->
     <div class="fr-layout">
+      <!-- Sol Kolon: Kategoriler Grid & Konu Akışı -->
       <div>
-        <h2 class="fr-h" id="l-pinned">📌 Sabitlenmiş &amp; Duyurular</h2>
-        <div class="ft-list" id="ft-pinned"><p style="padding:1.2rem;color:var(--parchd);font-style:italic">Yükleniyor…</p></div>
+        <!-- Sabitlenmiş Duyurular & Kadim Fermanlar -->
+        <h2 class="fr-h" id="l-pinned">
+          <span>📌 Kadim Fermanlar &amp; Duyurular</span>
+        </h2>
+        <div class="ft-list" id="ft-pinned">
+          <p style="padding:1.4rem;color:var(--parchd);font-style:italic;text-align:center">Kadim yazıtlar çözümleniyor…</p>
+        </div>
 
-        <h2 class="fr-h" id="l-cats">Kategoriler</h2>
+        <!-- Modern Kategori Grid Düzeni -->
+        <div id="forum-kategorileri" style="margin-top:2.75rem">
+          <nav class="fr-crumb fr-crumb-section" id="fr-cat-crumb" aria-label="Kategori Gezintisi" style="margin-bottom:.85rem; font-size:.8rem;">
+            <a href="index.html" data-tr="Ana Sayfa" data-en="Home">Ana Sayfa</a>
+            <span>›</span>
+            <a href="forum.html" data-tr="Kurultay" data-en="Forum">Kurultay</a>
+            <span>›</span>
+            <strong id="fr-cat-crumb-cur" data-tr="Tüm Meclis Odaları" data-en="All Chambers">Tüm Meclis Odaları</strong>
+          </nav>
+          <h2 class="fr-h" id="l-cats" style="margin-top:0">
+            <span>Meclis Odaları &amp; Kategoriler</span>
+          </h2>
+        </div>
         <div class="fc-grid" id="fc-grid"></div>
 
-        <h2 class="fr-h">
-          <span id="l-recent">Son Konular</span>
+        <!-- Konular Akışı -->
+        <h2 class="fr-h" style="margin-top:2.75rem">
+          <span id="l-recent">Son Müzakereler &amp; Tartışmalar</span>
           <small id="fr-recent-count"></small>
         </h2>
-        <div class="ft-list" id="ft-recent"><p style="padding:1.2rem;color:var(--parchd);font-style:italic">Yükleniyor…</p></div>
+        <div class="ft-list" id="ft-recent">
+          <p style="padding:1.4rem;color:var(--parchd);font-style:italic;text-align:center">Müzakereler yükleniyor…</p>
+        </div>
       </div>
 
+      <!-- Sağ Kolon: Kullanıcı Kartı & Taht Mücadelesi & İstatistikler -->
       <aside>
+        <!-- Kullanıcı Profil & Sancak Rozeti & İlerleme Kartı -->
+        <div id="fr-user-card-slot"></div>
+
+        <!-- Taht Mücadelesi / Haftanın Baskın Hanesi (Faction Leaderboard) -->
+        <div id="fr-faction-slot"></div>
+
+        <!-- Kurultay'ın Hâli (İstatistikler) -->
         <div class="fr-side-box">
           <p class="fr-side-h" id="l-stats">Kurultay'ın Hâli</p>
           <div class="fr-stat-grid">
-            <div class="fr-stat"><b id="st-threads">—</b><span id="l-st-threads">Konu</span></div>
-            <div class="fr-stat"><b id="st-posts">—</b><span id="l-st-posts">Mesaj</span></div>
+            <div class="fr-stat"><b id="st-threads">—</b><span id="l-st-threads">Müzakere</span></div>
+            <div class="fr-stat"><b id="st-posts">—</b><span id="l-st-posts">Yazılan Kelam</span></div>
           </div>
         </div>
 
+        <!-- Meclis Yönergesi & Hızlı Bağlantılar -->
         <div class="fr-side-box">
-          <p class="fr-side-h" id="l-rules-h">Kurultay Yönergesi</p>
+          <p class="fr-side-h" id="l-rules-h">Meclis Rehberi &amp; Arşiv</p>
           <ul class="fr-rules">
-            <li><a href="forum-kategori.html?kat=duyuru" id="fr-rules-link"><svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg><span id="l-rules">Forum kuralları</span></a></li>
-            <li><a href="sozler.html"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg><span id="l-quotes-link">Sözler arşivi</span></a></li>
-            <li><a href="bolumler.html"><svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg><span id="l-chapters-link">Bölümlere dön</span></a></li>
+            <li>
+              <a href="forum-kategori.html?kat=duyuru" id="fr-rules-link">
+                <svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+                <span id="l-rules">Kurultay Kanunları &amp; Yönerge</span>
+              </a>
+            </li>
+            <li>
+              <a href="tanrilar.html">
+                <svg viewBox="0 0 24 24"><path d="M12 3v18M6 8l6-5 6 5M3 13l3-5 3 5a3 3 0 0 1-6 0zM15 13l3-5 3 5a3 3 0 0 1-6 0z"/><path d="M6 21h12"/></svg>
+                <span>Denge Konseyi &amp; On İki Tanrı</span>
+              </a>
+            </li>
+            <li>
+              <a href="haneler.html">
+                <svg viewBox="0 0 24 24"><path d="M12 2l8 4v6c0 5.5-3.5 10-8 11-4.5-1-8-5.5-8-11V6l8-4z"/><path d="M12 6v12M8 10h8"/></svg>
+                <span>Hanedanlar &amp; Sancaklar Ansiklopedisi</span>
+              </a>
+            </li>
+            <li>
+              <a href="sozler.html">
+                <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                <span id="l-quotes-link">Editoryal Sözler &amp; Aforizmalar</span>
+              </a>
+            </li>
+            <li>
+              <a href="bolumler.html">
+                <svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+                <span id="l-chapters-link">Destan Bölümlerine Dön</span>
+              </a>
+            </li>
           </ul>
         </div>
       </aside>
@@ -106,19 +213,57 @@ const K = Kurultay;
 
 let activeCat = null;
 let allCats = [];
+let activeFilter = 'all'; // 'all' | 'canon' | 'poll' | 'no_spoiler'
+let activeHouse = '';
 
 function renderFilters(l) {
   const wrap = document.getElementById('fr-tag-filters');
   wrap.querySelectorAll('.f-btn').forEach(b => b.remove());
-  wrap.insertAdjacentHTML('beforeend', allCats.map(c =>
+  
+  const allLabel = l === 'tr' ? 'Tüm Odalar' : 'All Chambers';
+  let html = `<button class="f-btn${!activeCat ? ' on' : ''}" data-cat="">${allLabel}</button>`;
+  
+  html += allCats.map(c =>
     `<button class="f-btn${activeCat === c.id ? ' on' : ''}" data-cat="${c.id}">${esc(K.catLabel(c, l))}</button>`
-  ).join(''));
+  ).join('');
+  
+  wrap.insertAdjacentHTML('beforeend', html);
 }
 
 async function renderAll() {
   const l = Lang.get();
   renderFilters(l);
 
+  // Kategori Grid & Ekmek Kırıntısı Güncellemesi
+  const catCrumbCur = document.getElementById('fr-cat-crumb-cur');
+  if (catCrumbCur) {
+    if (activeCat) {
+      const selected = allCats.find(c => c.id === activeCat);
+      catCrumbCur.textContent = selected ? K.catLabel(selected, l) : (l === 'tr' ? 'Seçili Oda' : 'Selected Chamber');
+    } else {
+      catCrumbCur.textContent = l === 'tr' ? 'Tüm Meclis Odaları' : 'All Chambers';
+    }
+  }
+
+  // Anlık Bildirimler Kadehi & Dropdown
+  const notifSlot = document.getElementById('fr-notif-slot');
+  if (notifSlot && K.Notifications && K.Notifications.renderDropdown) {
+    K.Notifications.renderDropdown(notifSlot, l);
+  }
+
+  // Kullanıcı Profil & Sancak Kartı Render
+  const userCardSlot = document.getElementById('fr-user-card-slot');
+  if (userCardSlot && K.renderUserCard) {
+    K.renderUserCard(userCardSlot, l);
+  }
+
+  // Taht Mücadelesi (Faction Leaderboard) Render
+  const factionSlot = document.getElementById('fr-faction-slot');
+  if (factionSlot && K.renderFactionLeaderboardWidget) {
+    K.renderFactionLeaderboardWidget(factionSlot, l);
+  }
+
+  // Kategori Grid Kartları
   document.getElementById('fc-grid').innerHTML = allCats.map(c => K.categoryCardHTML(c, l)).join('');
 
   const q = document.getElementById('fr-search').value.trim();
@@ -126,17 +271,27 @@ async function renderAll() {
 
   const [pinned, recent, stats] = await Promise.all([
     K.fetchThreads({ pinnedOnly: true, pageSize: 5 }),
-    K.fetchThreads({ categoryId: activeCat, search: q, sort, pageSize: 20 }),
+    K.fetchThreads({
+      categoryId: activeCat,
+      search: q,
+      sort: sort,
+      pageSize: 20,
+      canonOnly: activeFilter === 'canon',
+      pollOnly: activeFilter === 'poll',
+      noSpoiler: activeFilter === 'no_spoiler',
+      houseFilter: activeHouse
+    }),
     K.fetchStats()
   ]);
 
   document.getElementById('ft-pinned').innerHTML = pinned.rows.length
     ? pinned.rows.map(t => K.threadRowHTML(t, l)).join('')
-    : `<p style="padding:1.2rem;color:var(--parchd);font-style:italic;text-align:center">${l === 'tr' ? 'Sabitlenmiş konu yok.' : 'No pinned threads.'}</p>`;
+    : `<p style="padding:1.4rem;color:var(--parchd);font-style:italic;text-align:center">${l === 'tr' ? 'Sabitlenmiş ferman bulunmuyor.' : 'No pinned decrees.'}</p>`;
 
   document.getElementById('ft-recent').innerHTML = recent.rows.length
     ? recent.rows.map(t => K.threadRowHTML(t, l)).join('')
-    : `<p style="padding:1.5rem;text-align:center;color:var(--parchd);font-style:italic;font-size:.85rem">${l === 'tr' ? 'Eşleşen konu bulunamadı.' : 'No matching threads found.'}</p>`;
+    : `<p style="padding:2rem;text-align:center;color:var(--parchd);font-style:italic;font-size:.9rem">${l === 'tr' ? 'Bu filtrelere uygun müzakere bulunamadı. İlk kelamı siz söyleyin!' : 'No discussions match this filter. Be the first to speak!'}</p>`;
+  
   document.getElementById('fr-recent-count').textContent = `(${recent.rows.length})`;
 
   document.getElementById('st-threads').textContent = stats.threads || '—';
@@ -147,22 +302,60 @@ async function renderAll() {
 
 function applyLang(l) {
   document.documentElement.lang = l;
-  const tr = { eye: 'Stallhart Destanı · Topluluk', title: 'Kurultay', sub: 'Okurların teori kurduğu, hanelerin tartıştığı ve destanın konuşulduğu meclis.',
-    filter: 'Kategori:', new: 'Yeni Konu Aç', pinned: '📌 Sabitlenmiş & Duyurular', cats: 'Kategoriler', recent: 'Son Konular',
-    stats: "Kurultay'ın Hâli", stThreads: 'Konu', stPosts: 'Yeni Mesaj', rulesH: 'Kurultay Yönergesi', rules: 'Forum kuralları',
-    quotes: 'Sözler arşivi', chapters: 'Bölümlere dön', search: 'Konu ara…' };
-  const en = { eye: 'The Stallhart Saga · Community', title: 'The Kurultay', sub: 'Where readers theorize, houses argue, and the saga gets talked through.',
-    filter: 'Category:', new: 'New Thread', pinned: '📌 Pinned & Announcements', cats: 'Categories', recent: 'Recent Threads',
-    stats: 'State of the Kurultay', stThreads: 'Threads', stPosts: 'New Posts', rulesH: 'Kurultay Guidelines', rules: 'Forum rules',
-    quotes: 'Quote archive', chapters: 'Back to chapters', search: 'Search threads…' };
+  const tr = {
+    eye: 'Stallhart Destanı · Yeminli Okurlar Meclisi',
+    title: 'Kurultay',
+    sub: 'Denge Konseyi müzakereleri, kadim sırlar, teori kehanetleri ve hanedan sancaklarının konuşulduğu meclis.',
+    filter: 'Meclis Odaları:',
+    new: 'Yeni Konu Aç',
+    pinned: '📌 Kadim Fermanlar & Duyurular',
+    cats: 'Meclis Odaları & Kategoriler',
+    recent: 'Son Müzakereler & Tartışmalar',
+    stats: "Kurultay'ın Hâli",
+    stThreads: 'Müzakere',
+    stPosts: 'Yazılan Kelam',
+    rulesH: 'Meclis Rehberi & Arşiv',
+    rules: 'Kurultay Kanunları & Yönerge',
+    quotes: 'Editoryal Sözler & Aforizmalar',
+    chapters: 'Destan Bölümlerine Dön',
+    search: 'Konu, teori veya kelam ara…'
+  };
+  const en = {
+    eye: 'The Stallhart Saga · Sworn Assembly',
+    title: 'The Kurultay',
+    sub: 'Where Council of Balance decrees, ancient prophecies, chapter critiques, and house allegiances are debated.',
+    filter: 'Assembly Chambers:',
+    new: 'New Topic',
+    pinned: '📌 Decrees & Announcements',
+    cats: 'Chambers & Categories',
+    recent: 'Recent Discussions',
+    stats: 'State of the Kurultay',
+    stThreads: 'Discussions',
+    stPosts: 'Recorded Posts',
+    rulesH: 'Assembly Codex & Archives',
+    rules: 'Assembly Bylaws & Rules',
+    quotes: 'Quotes & Aphorisms',
+    chapters: 'Back to Chapters',
+    search: 'Search topics, lore, or terms…'
+  };
   const s = l === 'tr' ? tr : en;
+  const rootCrumb = document.getElementById('l-crumb-root');
+  if (rootCrumb) rootCrumb.textContent = l === 'tr' ? 'Ana Sayfa' : 'Home';
+  const curCrumb = document.getElementById('l-crumb-cur');
+  if (curCrumb) curCrumb.textContent = l === 'tr' ? 'Kurultay' : 'Forum';
+  const catCrumbNav = document.getElementById('fr-cat-crumb');
+  if (catCrumbNav) {
+    const links = catCrumbNav.querySelectorAll('a');
+    if (links[0]) links[0].textContent = l === 'tr' ? 'Ana Sayfa' : 'Home';
+    if (links[1]) links[1].textContent = l === 'tr' ? 'Kurultay' : 'Forum';
+  }
   document.getElementById('page-eye').textContent = s.eye;
   document.getElementById('page-title').textContent = s.title;
   document.getElementById('page-sub').textContent = s.sub;
   document.getElementById('l-filter').textContent = s.filter;
   document.getElementById('l-new').textContent = s.new;
-  document.getElementById('l-pinned').firstChild.textContent = s.pinned + ' ';
-  document.getElementById('l-cats').textContent = s.cats;
+  document.getElementById('l-pinned').querySelector('span').textContent = s.pinned;
+  document.getElementById('l-cats').querySelector('span').textContent = s.cats;
   document.getElementById('l-recent').textContent = s.recent;
   document.getElementById('l-stats').textContent = s.stats;
   document.getElementById('l-st-threads').textContent = s.stThreads;
@@ -178,55 +371,159 @@ function applyLang(l) {
 document.getElementById('fr-tag-filters').addEventListener('click', e => {
   const btn = e.target.closest('[data-cat]');
   if (!btn) return;
-  activeCat = activeCat === btn.dataset.cat ? null : btn.dataset.cat;
+  const targetCat = btn.dataset.cat;
+  activeCat = activeCat === targetCat ? null : (targetCat || null);
   renderAll();
 });
-document.getElementById('fc-grid').addEventListener('click', e => {
-  if (e.target.closest('.fc')) return; /* normal link — kategori sayfasına gider */
+
+// Gelişmiş Filtre Hapları Tıklamaları
+document.getElementById('fr-sub-filters').addEventListener('click', e => {
+  const btn = e.target.closest('[data-type]');
+  if (!btn) return;
+  document.querySelectorAll('#fr-sub-filters [data-type]').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  activeFilter = btn.getAttribute('data-type');
+  renderAll();
 });
-let searchT;
-document.getElementById('fr-search').addEventListener('input', () => { clearTimeout(searchT); searchT = setTimeout(renderAll, 250); });
+
+document.getElementById('fp-house-select').addEventListener('change', e => {
+  activeHouse = e.target.value;
+  renderAll();
+});
+
+let searchTimer;
+document.getElementById('fr-search').addEventListener('input', () => {
+  clearTimeout(searchTimer);
+  searchTimer = setTimeout(renderAll, 250);
+});
 document.getElementById('fr-sort').addEventListener('change', renderAll);
 
 document.getElementById('fr-new-btn').addEventListener('click', () => openNewThreadModal());
 
 function openNewThreadModal(presetCat) {
   const l = Lang.get();
-  if (!Wiki.Community.enabled) { alert(l === 'tr' ? 'Konu açmak için topluluk katmanı yapılandırılmalı.' : 'The community layer must be configured to post.'); return; }
-  if (!Wiki.Community.requireLogin()) return;
-  const catOpts = allCats.filter(c => !c.is_locked || Wiki.Community.getState().isAdmin)
-    .map(c => `<option value="${esc(c.id)}"${c.id === presetCat ? ' selected' : ''}>${esc(K.catLabel(c, l))}</option>`).join('');
-  const rec = Wiki.Community.util.Modal.open({
-    title: l === 'tr' ? 'Yeni Konu Aç' : 'New Thread', cls: 'sw-suggest fr-newform',
-    html: `
-      <h2 class="sw-h">${l === 'tr' ? 'Yeni Konu Aç' : 'New Thread'}</h2>
-      <p class="sw-sub">${l === 'tr' ? 'Kurultay Yönergesi\'ne uygun, saygılı bir üslup kullan.' : 'Keep it respectful and in line with the Kurultay guidelines.'}</p>
-      <form class="sw-form" id="fr-nt-form" style="margin-top:1rem">
-        <label class="sw-l"><span>${l === 'tr' ? 'Kategori' : 'Category'}</span>
-          <select class="sw-in" name="cat" required>${catOpts}</select></label>
-        <label class="sw-l"><span>${l === 'tr' ? 'Başlık' : 'Title'}</span>
-          <input class="sw-in" name="title" maxlength="140" required></label>
-        <label class="sw-l"><span>${l === 'tr' ? 'İçerik' : 'Body'}</span>
-          <textarea class="sw-in" data-body name="body" maxlength="8000" required></textarea></label>
-        <p class="sw-err" id="fr-nt-err" hidden></p>
-        <div class="sw-actions">
-          <button type="button" class="sw-btn" data-close>${l === 'tr' ? 'Vazgeç' : 'Cancel'}</button>
-          <button type="submit" class="sw-btn primary">${l === 'tr' ? 'Konuyu Aç' : 'Post Thread'}</button>
+  const user = K.Allegiance ? K.Allegiance.get() : { username: 'Okur' };
+  
+  const catOpts = allCats.filter(c => !c.is_locked || (Wiki.Community && Wiki.Community.getState().isAdmin))
+    .map(c => `<option value="${esc(c.id)}"${c.id === (presetCat || activeCat) ? ' selected' : ''}>${esc(K.catLabel(c, l))}</option>`).join('');
+
+  const modalHtml = `
+    <h2 class="sw-h" style="font-family:var(--font-display);color:var(--parchl);border-bottom:1px solid rgba(196,150,42,.3);padding-bottom:.5rem">⚔ ${l === 'tr' ? 'Mecliste Yeni Bir Müzakere Başlat' : 'Open a New Discussion'}</h2>
+    <p class="sw-sub" style="color:var(--parchd);font-style:italic;margin-top:.4rem">${l === 'tr' ? 'Kurultay Yönergesi\'ne uygun, saygılı ve editoryal bir üslup kullanınız. Spoiler ve alıntı araçlarını kullanabilirsiniz.' : 'Maintain a respectful tone in alignment with the Kurultay Codex. Use the toolbar for quotes and spoilers.'}</p>
+    <form class="sw-form" id="fr-nt-form" style="margin-top:1.25rem">
+      <label class="sw-l"><span>${l === 'tr' ? 'Meclis Odası / Kategori' : 'Chamber / Category'}</span>
+        <select class="sw-in" name="cat" required style="background:rgba(8,12,19,.9);border:1px solid var(--border);color:var(--parchl);padding:.5rem">${catOpts}</select></label>
+      <label class="sw-l" style="margin-top:.8rem"><span>${l === 'tr' ? 'Müzakere Başlığı' : 'Topic Title'}</span>
+        <input class="sw-in" name="title" maxlength="140" placeholder="${l === 'tr' ? 'Örn: KS 0 Sonrası Denge ve Zeandor\'un Kararı...' : 'e.g., Balance after KS 0 and Zeandor\'s choice...'}" required style="background:rgba(8,12,19,.9);border:1px solid var(--border);color:var(--parchl);padding:.5rem"></label>
+      
+      <label class="sw-l" style="margin-top:.8rem">
+        <span>${l === 'tr' ? 'Müzakere Metni & Deliller' : 'Argument & Observations'}</span>
+        <div id="fr-editor-toolbar-slot"></div>
+        <textarea class="sw-in" id="fr-nt-body" data-body name="body" maxlength="8000" rows="6" placeholder="${l === 'tr' ? 'Fikrinizi, bölüm alıntılarını veya kehanet ipuçlarını buraya yazınız...' : 'Write your theory, chapter quotes, or thoughts here...'}" required style="background:rgba(8,12,19,.9);border:1px solid var(--border);color:var(--parchl);padding:.6rem;line-height:1.7"></textarea>
+      </label>
+
+      <!-- Spoiler Kutusu -->
+      <div style="display:flex;align-items:center;gap:.6rem;margin-top:.8rem">
+        <input type="checkbox" id="fr-spoiler-chk" name="spoiler" style="accent-color:var(--blood)">
+        <label for="fr-spoiler-chk" style="font-size:.82rem;color:var(--parchd);font-style:italic">${l === 'tr' ? 'Bu konu henüz yayınlanan bölümler için ağır spoiler içerir' : 'This topic contains critical chapter spoilers'}</label>
+      </div>
+
+      <!-- Anket Ekleme Alanı -->
+      <div style="margin-top:.9rem;padding:.85rem;background:rgba(12,16,26,.8);border:1px dashed rgba(196,150,42,.3);">
+        <div style="display:flex;align-items:center;gap:.6rem">
+          <input type="checkbox" id="fr-poll-chk" name="has_poll" style="accent-color:var(--gold)">
+          <label for="fr-poll-chk" style="font-size:.85rem;color:var(--gold);font-family:var(--font-display);font-weight:600">📊 ${l === 'tr' ? 'Bu konuya bir Kurultay Oylaması (Anket) ekle' : 'Attach a Kurultay Ballot (Poll)'}</label>
         </div>
-      </form>`
-  });
-  rec.body.querySelector('#fr-nt-form').addEventListener('submit', async e => {
+        <div id="fr-poll-fields" hidden style="margin-top:.75rem">
+          <label class="sw-l" style="font-size:.78rem;color:var(--parchd)"><span>${l === 'tr' ? 'Anket Sorusu' : 'Poll Question'}</span>
+            <input class="sw-in" id="fr-poll-q" placeholder="${l === 'tr' ? 'Örn: Taht mücadelesini kim kazanacak?' : 'e.g., Who will win the throne?'}" style="background:rgba(8,12,19,.9);border:1px solid var(--border);color:var(--parchl);padding:.4rem;margin-top:.2rem"></label>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:.5rem;margin-top:.5rem">
+            <input class="sw-in poll-opt" placeholder="${l === 'tr' ? '1. Seçenek (Örn: Stallhart)' : 'Option 1'}" style="background:rgba(8,12,19,.9);border:1px solid var(--border);color:var(--parchl);padding:.4rem">
+            <input class="sw-in poll-opt" placeholder="${l === 'tr' ? '2. Seçenek (Örn: Demir Ada)' : 'Option 2'}" style="background:rgba(8,12,19,.9);border:1px solid var(--border);color:var(--parchl);padding:.4rem">
+            <input class="sw-in poll-opt" placeholder="${l === 'tr' ? '3. Seçenek (Örn: Arhan)' : 'Option 3'}" style="background:rgba(8,12,19,.9);border:1px solid var(--border);color:var(--parchl);padding:.4rem">
+            <input class="sw-in poll-opt" placeholder="${l === 'tr' ? '4. Seçenek (Örn: Selya)' : 'Option 4'}" style="background:rgba(8,12,19,.9);border:1px solid var(--border);color:var(--parchl);padding:.4rem">
+          </div>
+        </div>
+      </div>
+
+      <p class="sw-err" id="fr-nt-err" hidden style="color:var(--bloodb);margin-top:.6rem"></p>
+      <div class="sw-actions" style="margin-top:1.4rem;display:flex;justify-content:flex-end;gap:.8rem">
+        <button type="button" class="sw-btn" data-close>${l === 'tr' ? 'Vazgeç' : 'Cancel'}</button>
+        <button type="submit" class="sw-btn primary" style="background:linear-gradient(135deg,rgba(139,30,30,.9),rgba(196,150,42,.85));border-color:var(--gold);color:#fff">${l === 'tr' ? 'Müzakereyi Başlat' : 'Post Discussion'}</button>
+      </div>
+    </form>`;
+
+  let modalRec = null;
+  if (Wiki.Community && Wiki.Community.util && Wiki.Community.util.Modal && Wiki.Community.util.Modal.open) {
+    modalRec = Wiki.Community.util.Modal.open({
+      title: l === 'tr' ? 'Yeni Konu Aç' : 'New Topic',
+      cls: 'sw-suggest fr-newform',
+      html: modalHtml
+    });
+  } else {
+    const back = document.createElement('div');
+    back.className = 'sw-modal-back';
+    back.innerHTML = `<div class="sw-modal sw-suggest fr-newform"><button type="button" class="sw-x" data-close>✕</button><div class="sw-modal-body">${modalHtml}</div></div>`;
+    document.body.appendChild(back);
+    modalRec = { close: () => back.remove(), body: back.querySelector('.sw-modal-body') };
+    back.addEventListener('click', e => { if (e.target === back || e.target.closest('[data-close]')) modalRec.close(); });
+  }
+
+  // Zengin Metin Editör Çubuğunu Bağla
+  const bodyTextarea = modalRec.body.querySelector('#fr-nt-body');
+  const toolbarSlot = modalRec.body.querySelector('#fr-editor-toolbar-slot');
+  if (bodyTextarea && toolbarSlot && K.attachEditorToolbar) {
+    K.attachEditorToolbar(bodyTextarea, toolbarSlot, l);
+  }
+
+  // Anket Aç/Kapa
+  const pollChk = modalRec.body.querySelector('#fr-poll-chk');
+  const pollFields = modalRec.body.querySelector('#fr-poll-fields');
+  if (pollChk && pollFields) {
+    pollChk.addEventListener('change', () => { pollFields.hidden = !pollChk.checked; });
+  }
+
+  const form = modalRec.body.querySelector('#fr-nt-form');
+  form.addEventListener('submit', async e => {
     e.preventDefault();
-    const f = e.target, err = rec.body.querySelector('#fr-nt-err');
-    const cat = f.cat.value, title = f.title.value.trim(), body = f.body.value.trim();
-    if (title.length < 4) { err.hidden = false; err.textContent = l === 'tr' ? 'Başlık en az 4 karakter olmalı.' : 'Title must be at least 4 characters.'; return; }
+    const f = e.target, err = modalRec.body.querySelector('#fr-nt-err');
+    const cat = f.cat.value;
+    let title = f.title.value.trim();
+    const body = f.body.value.trim();
+    const isSpoiler = f.spoiler && f.spoiler.checked;
+    if (isSpoiler) title = '[SPOILER] ' + title;
+
+    if (title.length < 4) {
+      err.hidden = false;
+      err.textContent = l === 'tr' ? 'Başlık en az 4 karakter olmalı.' : 'Title must be at least 4 characters.';
+      return;
+    }
+
+    let pollData = null;
+    if (pollChk && pollChk.checked) {
+      const qInput = modalRec.body.querySelector('#fr-poll-q');
+      const optInputs = Array.from(modalRec.body.querySelectorAll('.poll-opt'))
+        .map(i => i.value.trim())
+        .filter(Boolean);
+      if (qInput && qInput.value.trim() && optInputs.length >= 2) {
+        pollData = {
+          question: qInput.value.trim(),
+          options: optInputs
+        };
+      }
+    }
+
     f.querySelectorAll('input,select,textarea,button').forEach(el => el.disabled = true);
     try {
-      const thread = await K.createThread(cat, title, body);
-      rec.close();
-      location.href = 'forum-konu.html?id=' + encodeURIComponent(thread.id);
+      const thread = await K.createThread(cat, title, body, { poll: pollData, isCanon: cat === 'teori' && title.toLowerCase().includes('kehanet') });
+      modalRec.close();
+      if (Wiki.Toast && Wiki.Toast.show) {
+        Wiki.Toast.show(l === 'tr' ? 'Müzakere Kurultay meclisine sunuldu.' : 'Topic presented to the Kurultay.');
+      }
+      renderAll();
     } catch (ex) {
-      err.hidden = false; err.textContent = (Wiki.Community.util.mapErr ? Wiki.Community.util.mapErr(ex) : ex.message) || (l === 'tr' ? 'Bir şeyler ters gitti.' : 'Something went wrong.');
+      err.hidden = false;
+      err.textContent = ex.message || (l === 'tr' ? 'Bir şeyler ters gitti.' : 'Something went wrong.');
       f.querySelectorAll('input,select,textarea,button').forEach(el => el.disabled = false);
     }
   });

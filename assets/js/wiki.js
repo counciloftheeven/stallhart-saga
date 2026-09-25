@@ -931,6 +931,7 @@ const NAV_LINKS = [
   { href: 'tanrilar.html',    tr: 'Denge Konseyi', en: 'Council of Balance' },
   { href: 'harita.html',      tr: 'Harita',      en: 'Map' },
   { href: 'bolumler.html',    tr: 'Bölümler',    en: 'Chapters' },
+  { href: 'forum.html',       tr: 'Kurultay',    en: 'Kurultay' },
   { href: 'soy-agaci.html',   tr: 'Soy Ağacı',   en: 'Family Tree' },
   { href: 'sozler.html',      tr: 'Sözler',      en: 'Quotes' }
 ];
@@ -1779,6 +1780,7 @@ const Prefetch = (() => {
     { match: /karakter/i, files: ['characters.json', 'houses.json'] },
     { match: /hane/i, files: ['houses.json'] },
     { match: /bolum|oku\.html/i, files: ['chapters.json', 'book.json'] },
+    { match: /forum/i, files: ['houses.json', 'lore.json'] },
     { match: /lore|evren/i, files: ['lore.json', 'geography.json'] },
     { match: /tanri/i, files: ['lore.json'] },
     { match: /harita/i, files: ['maps.json', 'geography.json'] },

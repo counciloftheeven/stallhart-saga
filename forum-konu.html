@@ -28,11 +28,12 @@
 
 <section id="frt-sec">
   <div class="inn" style="padding:2.5rem 2rem 6rem;max-width:900px">
-    <p class="fr-crumb">
-      <a href="forum.html">Kurultay</a><span>›</span>
+    <nav class="fr-crumb" aria-label="Breadcrumb">
+      <a href="index.html" id="fr-crumb-root" data-tr="Ana Sayfa" data-en="Home">Ana Sayfa</a><span>›</span>
+      <a href="forum.html" id="fr-crumb-home" data-tr="Kurultay" data-en="Forum">Kurultay</a><span>›</span>
       <a href="forum-kategori.html?kat=" id="fr-crumb-cat">…</a><span>›</span>
       <strong id="fr-crumb-cur">…</strong>
-    </p>
+    </nav>
 
     <div id="fk-content"><p style="padding:2rem 0;color:var(--parchd);font-style:italic">Yükleniyor…</p></div>
 
@@ -60,11 +61,20 @@ let thread = null, cat = null;
 
 function fkHeadHTML(l) {
   const prof = thread.profiles || { username: '?', avatar: 'initial' };
+  const rawBody = l === 'tr' ? thread.body : (thread.body_en || thread.body);
+  const richBodyHTML = K.renderRichBody ? K.renderRichBody(rawBody, l) : esc(rawBody);
+  const canonBannerHTML = K.renderCanonBanner ? K.renderCanonBanner(thread, l) : '';
+  const pollHTML = (thread.poll && K.renderPollCard) ? K.renderPollCard(thread, l) : '';
+  const reactionsHTML = K.renderReactionsBar ? K.renderReactionsBar(thread.id, l) : '';
+
   return `
+    ${canonBannerHTML}
     <div class="fk-head">
       <div class="fk-tags">
         <span class="ft-tag${thread.category_id === 'duyuru' ? ' duyuru' : ''}">${esc(K.catLabel(cat, l))}</span>
         ${thread.is_pinned ? `<span class="ft-tag" style="border-color:var(--gold);color:var(--gold)">${l === 'tr' ? 'Sabitlenmiş' : 'Pinned'}</span>` : ''}
+        ${thread.is_canonized ? `<span class="ft-tag" style="border-color:#b784f7;color:#d5abff">🔮 ${l === 'tr' ? 'Doğrulanan Kehanet' : 'Canonized'}</span>` : ''}
+        ${thread.poll ? `<span class="ft-tag" style="border-color:#64b5f6;color:#90caf9">📊 ${l === 'tr' ? 'Anket' : 'Poll'}</span>` : ''}
         ${thread.is_locked ? `<span class="ft-tag">${l === 'tr' ? 'Kilitli' : 'Locked'}</span>` : ''}
       </div>
       <h1 class="fk-title">${esc(l === 'tr' ? thread.title : (thread.title_en || thread.title))}</h1>
@@ -74,7 +84,9 @@ function fkHeadHTML(l) {
         <span>·</span>
         <span>${thread.view_count || 0} ${l === 'tr' ? 'görüntülenme' : 'views'}</span>
       </div>
-      <div class="fk-body">${esc(l === 'tr' ? thread.body : (thread.body_en || thread.body))}</div>
+      <div class="fk-body">${richBodyHTML}</div>
+      ${pollHTML}
+      ${reactionsHTML}
       <div id="fk-mod"></div>
     </div>`;
 }
@@ -84,8 +96,13 @@ function renderMod(l) {
   const box = document.getElementById('fk-mod');
   if (!box) return;
   const isOwner = st.user && thread.user_id === st.user.id;
-  if (!st.isAdmin && !isOwner) { box.innerHTML = ''; return; }
+  const isTheory = thread.category_id === 'teori' || (thread.title && thread.title.toLowerCase().includes('teori'));
+  if (!st.isAdmin && !isOwner && !isTheory) { box.innerHTML = ''; return; }
+  
   let html = '<div class="fk-mod">';
+  // Admin / Yazar için Kehanet Doğrulama Mührü
+  html += `<button class="fk-mod-btn${thread.is_canonized ? ' on' : ''}" data-act="canon" title="${l === 'tr' ? 'Bu teoriyi resmî kanon kehanet olarak tescille' : 'Canonize this theory'}">${thread.is_canonized ? (l === 'tr' ? '🔮 Kehanet Mührünü Kaldır' : '🔮 Revoke Prophecy Seal') : (l === 'tr' ? '🔮 Doğrulanan Kehanet İlan Et' : '🔮 Seal as Canonized Prophecy')}</button>`;
+  
   if (st.isAdmin) {
     html += `<button class="fk-mod-btn${thread.is_pinned ? ' on' : ''}" data-act="pin">${thread.is_pinned ? (l === 'tr' ? '📌 Sabitlemeyi kaldır' : '📌 Unpin') : (l === 'tr' ? '📌 Sabitle' : '📌 Pin')}</button>`;
     html += `<button class="fk-mod-btn${thread.is_locked ? ' on' : ''}" data-act="lock">${thread.is_locked ? (l === 'tr' ? '🔓 Kilidi aç' : '🔓 Unlock') : (l === 'tr' ? '🔒 Kilitle' : '🔒 Lock')}</button>`;
@@ -93,9 +110,61 @@ function renderMod(l) {
   html += `<button class="fk-mod-btn danger" data-act="delete">${l === 'tr' ? '🗑 Konuyu sil' : '🗑 Delete thread'}</button>`;
   html += '</div>';
   box.innerHTML = html;
+  
+  box.querySelector('[data-act="canon"]')?.addEventListener('click', toggleCanon);
   box.querySelector('[data-act="pin"]')?.addEventListener('click', () => toggleFlag('pin'));
   box.querySelector('[data-act="lock"]')?.addEventListener('click', () => toggleFlag('lock'));
-  box.querySelector('[data-act="delete"]').addEventListener('click', doDelete);
+  box.querySelector('[data-act="delete"]')?.addEventListener('click', doDelete);
+}
+
+function toggleCanon() {
+  const l = Lang.get();
+  const next = !thread.is_canonized;
+  thread.is_canonized = next;
+  if (K.canonizeThread) {
+    K.canonizeThread(thread.id, next, l === 'tr' ? 'Son bölümlerde yazar tarafından doğrulanmış resmi kanon kehanettir.' : 'Officially canonized prophecy by the Chronicler.');
+  }
+  if (C.util && C.util.toast) {
+    C.util.toast(next ? (l === 'tr' ? '🔮 Teori resmî kanon kehanet olarak mühürlendi! Yazara Kâhin unvanı verildi.' : '🔮 Theory verified as canon prophecy! Author granted Prophet title.') : (l === 'tr' ? 'Kehanet mührü kaldırıldı.' : 'Prophecy seal removed.'));
+  }
+  render(l);
+}
+
+function bindInteractiveWidgets() {
+  const l = Lang.get();
+  const content = document.getElementById('fk-content');
+  if (!content) return;
+
+  // Tepki Butonları (⚔️ Çelik, 🩸 Kan, 📜 Mühür, ⚖️ Denge)
+  content.querySelectorAll('.sw-rx-btn[data-rx]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const rxType = btn.getAttribute('data-rx');
+      const res = K.toggleReaction(thread.id, rxType);
+      const isVoted = !!res.userVotes[rxType];
+      btn.classList.toggle('active', isVoted);
+      const cntEl = btn.querySelector('.sw-rx-cnt');
+      if (cntEl) cntEl.textContent = res.counts[rxType] || 0;
+      if (C.util && C.util.toast && isVoted) {
+        C.util.toast(l === 'tr' ? 'Kelamınız divan kütüğüne mühürlendi (+15 Şan).' : 'Your reaction has been recorded (+15 Renown).');
+      }
+    });
+  });
+
+  // Anket Oylama Butonu
+  const pollSubmitBtn = content.querySelector('[data-poll-submit]');
+  if (pollSubmitBtn) {
+    pollSubmitBtn.addEventListener('click', () => {
+      const checked = content.querySelector(`input[name="poll_choice_${thread.id}"]:checked`);
+      if (!checked) {
+        if (C.util && C.util.toast) C.util.toast(l === 'tr' ? 'Lütfen önce bir seçenek işaretleyin.' : 'Please select an option first.', true);
+        return;
+      }
+      const optId = checked.value;
+      K.votePoll(thread.id, optId);
+      if (C.util && C.util.toast) C.util.toast(l === 'tr' ? 'Oyunuz Kurultay Divanı’na mühürlendi (+25 Şan)!' : 'Your vote has been recorded (+25 Renown)!');
+      render(l);
+    });
+  }
 }
 
 async function toggleFlag(field) {
@@ -122,6 +191,12 @@ async function doDelete() {
 function render(l) {
   document.getElementById('fk-content').innerHTML = fkHeadHTML(l);
   renderMod(l);
+  bindInteractiveWidgets();
+
+  const rootEl = document.getElementById('fr-crumb-root');
+  if (rootEl) rootEl.textContent = l === 'tr' ? 'Ana Sayfa' : 'Home';
+  const homeEl = document.getElementById('fr-crumb-home');
+  if (homeEl) homeEl.textContent = l === 'tr' ? 'Kurultay' : 'Forum';
 
   document.getElementById('fr-crumb-cat').href = 'forum-kategori.html?kat=' + encodeURIComponent(cat.id);
   document.getElementById('fr-crumb-cat').textContent = K.catLabel(cat, l);

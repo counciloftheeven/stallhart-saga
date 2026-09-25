@@ -34,7 +34,13 @@
   </div>
 
   <div class="inn" style="padding:2.5rem 2rem 6rem">
-    <p class="fr-crumb"><a href="forum.html" id="l-crumb-home">Kurultay</a><span>›</span><strong id="l-crumb-cur">…</strong></p>
+    <nav class="fr-crumb" aria-label="Breadcrumb">
+      <a href="index.html" id="l-crumb-root" data-tr="Ana Sayfa" data-en="Home">Ana Sayfa</a>
+      <span>›</span>
+      <a href="forum.html" id="l-crumb-home" data-tr="Kurultay" data-en="Forum">Kurultay</a>
+      <span>›</span>
+      <strong id="l-crumb-cur">…</strong>
+    </nav>
 
     <div class="fr-toolbar">
       <div class="fr-toolbar-l">
@@ -48,10 +54,29 @@
           <option value="goruntulenme" data-tr="En çok görüntülenme" data-en="Most viewed">En çok görüntülenme</option>
         </select>
       </div>
-      <button class="btn-g fr-newbtn" type="button" id="fr-new-btn">
-        <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-        <span id="l-new">Yeni Konu Aç</span>
-      </button>
+      <div style="display:flex;align-items:center;gap:.75rem">
+        <div id="fr-notif-slot"></div>
+        <button class="btn-g fr-newbtn" type="button" id="fr-new-btn">
+          <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          <span id="l-new">Yeni Konu Aç</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Alt Filtreler (Kehanet, Anket, Spoiler) -->
+    <div class="fr-filter-pills" id="fr-sub-filters">
+      <button class="fr-fp-btn active" data-type="all" data-tr="Tüm Konular" data-en="All Threads">Tüm Konular</button>
+      <button class="fr-fp-btn" data-type="canon" data-tr="🔮 Doğrulanan Kehanetler" data-en="🔮 Canonized Theories">🔮 Doğrulanan Kehanetler</button>
+      <button class="fr-fp-btn" data-type="poll" data-tr="📊 Anketli Konular" data-en="📊 Polls">📊 Anketli Konular</button>
+      <button class="fr-fp-btn" data-type="no_spoiler" data-tr="👁️ Spoilersiz" data-en="👁️ No Spoilers">👁️ Spoilersiz</button>
+    </div>
+
+    <div id="fr-ch-bridge-banner" hidden style="margin-bottom:1.25rem;padding:.9rem 1.25rem;background:radial-gradient(ellipse at 50% 0%,rgba(139,30,30,.2),rgba(14,18,28,.95));border:1px solid var(--goldd);display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap">
+      <div style="display:flex;align-items:center;gap:.65rem">
+        <span style="font-size:1.3rem">📖</span>
+        <span id="fr-ch-bridge-text" style="font-family:var(--font-display);color:var(--parchl);font-size:.9rem"></span>
+      </div>
+      <a href="forum-kategori.html?kat=bolum" style="font-size:.8rem;color:var(--gold);text-decoration:none">✕ Tüm Bölümleri Göster</a>
     </div>
 
     <div class="ft-list" id="ft-list"><p style="padding:1.2rem;color:var(--parchd);font-style:italic">Yükleniyor…</p></div>
@@ -71,18 +96,48 @@ const PAGE_SIZE = 20;
 
 const params = new URLSearchParams(location.search);
 const catId = params.get('kat') || '';
+const chParam = params.get('ch') || '';
 let cat = null, page = 0, totalCount = 0;
+let activeFilter = 'all';
 
 async function render() {
   const l = Lang.get();
   const q = document.getElementById('fr-search').value.trim();
   const sort = document.getElementById('fr-sort').value;
-  const res = await K.fetchThreads({ categoryId: catId, search: q, sort, page, pageSize: PAGE_SIZE });
+  
+  // Bildirimler Kadehi
+  const notifSlot = document.getElementById('fr-notif-slot');
+  if (notifSlot && K.Notifications && K.Notifications.renderDropdown) {
+    K.Notifications.renderDropdown(notifSlot, l);
+  }
+
+  // Bölüm Köprüsü Başlığı
+  const chBanner = document.getElementById('fr-ch-bridge-banner');
+  const chText = document.getElementById('fr-ch-bridge-text');
+  if (chParam && chBanner && chText) {
+    chBanner.hidden = false;
+    chText.textContent = l === 'tr'
+      ? `Bölüm ${chParam} okumasından geldiniz — bu bölüme ait meclis tahlilleri listeleniyor.`
+      : `Arrived from Chapter ${chParam} — showing critiques and theories for this chapter.`;
+  }
+
+  const effectiveSearch = q || (chParam ? (chParam + '. Bölüm') : '');
+
+  const res = await K.fetchThreads({
+    categoryId: catId,
+    search: effectiveSearch,
+    sort,
+    page,
+    pageSize: PAGE_SIZE,
+    canonOnly: activeFilter === 'canon',
+    pollOnly: activeFilter === 'poll',
+    noSpoiler: activeFilter === 'no_spoiler'
+  });
   totalCount = typeof res.count === 'number' ? res.count : res.rows.length;
 
   document.getElementById('ft-list').innerHTML = res.rows.length
     ? res.rows.map(t => K.threadRowHTML(t, l, { showCat: false })).join('')
-    : `<p style="padding:1.5rem;text-align:center;color:var(--parchd);font-style:italic;font-size:.85rem">${l === 'tr' ? 'Bu kategoride henüz konu yok. İlk konuyu sen aç!' : 'No threads here yet. Start the first one!'}</p>`;
+    : `<p style="padding:1.5rem;text-align:center;color:var(--parchd);font-style:italic;font-size:.85rem">${l === 'tr' ? 'Bu filtrelere uygun müzakere bulunamadı. İlk konuyu sen aç!' : 'No threads match this filter. Start the first one!'}</p>`;
 
   const pager = document.getElementById('fr-pager');
   const hasMore = res.rows.length === PAGE_SIZE;
@@ -99,27 +154,52 @@ async function render() {
 
 function openNewThreadModal() {
   const l = Lang.get();
-  if (!Wiki.Community.enabled) { alert(l === 'tr' ? 'Konu açmak için topluluk katmanı yapılandırılmalı.' : 'The community layer must be configured to post.'); return; }
-  if (!Wiki.Community.requireLogin()) return;
-  const isAdmin = Wiki.Community.getState().isAdmin;
-  if (cat && cat.is_locked && !isAdmin) { Wiki.Community.util.toast(l === 'tr' ? 'Bu kategoride yalnızca yönetim konu açabilir.' : 'Only staff can post in this category.', true); return; }
-  const rec = Wiki.Community.util.Modal.open({
-    title: l === 'tr' ? 'Yeni Konu Aç' : 'New Thread', cls: 'sw-suggest fr-newform',
-    html: `
-      <h2 class="sw-h">${l === 'tr' ? 'Yeni Konu Aç' : 'New Thread'}</h2>
-      <p class="sw-sub">${esc(K.catLabel(cat, l))}</p>
-      <form class="sw-form" id="fr-nt-form" style="margin-top:1rem">
-        <label class="sw-l"><span>${l === 'tr' ? 'Başlık' : 'Title'}</span>
-          <input class="sw-in" name="title" maxlength="140" required data-autofocus></label>
-        <label class="sw-l"><span>${l === 'tr' ? 'İçerik' : 'Body'}</span>
-          <textarea class="sw-in" data-body name="body" maxlength="8000" required></textarea></label>
-        <p class="sw-err" id="fr-nt-err" hidden></p>
-        <div class="sw-actions">
-          <button type="button" class="sw-btn" data-close>${l === 'tr' ? 'Vazgeç' : 'Cancel'}</button>
-          <button type="submit" class="sw-btn primary">${l === 'tr' ? 'Konuyu Aç' : 'Post Thread'}</button>
-        </div>
-      </form>`
-  });
+  if (cat && cat.is_locked && Wiki.Community && Wiki.Community.getState && !Wiki.Community.getState().isAdmin) {
+    if (Wiki.Community.util && Wiki.Community.util.toast) Wiki.Community.util.toast(l === 'tr' ? 'Bu kategoride yalnızca yönetim konu açabilir.' : 'Only staff can post in this category.', true);
+    else alert(l === 'tr' ? 'Bu kategoride yalnızca yönetim konu açabilir.' : 'Only staff can post in this category.');
+    return;
+  }
+  const defaultTitle = chParam ? `${chParam}. Bölüm Tahlili: ` : '';
+  const modalHtml = `
+    <h2 class="sw-h" style="font-family:var(--font-display);color:var(--parchl);border-bottom:1px solid rgba(196,150,42,.3);padding-bottom:.5rem">⚔ ${l === 'tr' ? 'Yeni Konu Aç' : 'New Thread'}</h2>
+    <p class="sw-sub" style="color:var(--parchd);font-style:italic;margin-top:.4rem">${esc(K.catLabel(cat, l))}</p>
+    <form class="sw-form" id="fr-nt-form" style="margin-top:1.25rem">
+      <label class="sw-l"><span>${l === 'tr' ? 'Başlık' : 'Title'}</span>
+        <input class="sw-in" name="title" maxlength="140" required value="${esc(defaultTitle)}" placeholder="${l === 'tr' ? 'Konu başlığını yazın...' : 'Enter topic title...'}" style="background:rgba(8,12,19,.9);border:1px solid var(--border);color:var(--parchl);padding:.5rem"></label>
+      <label class="sw-l" style="margin-top:.8rem">
+        <span>${l === 'tr' ? 'İçerik & Gözlemler' : 'Body & Observations'}</span>
+        <div id="fr-cat-tb-slot"></div>
+        <textarea class="sw-in" id="fr-cat-nt-body" data-body name="body" maxlength="8000" rows="6" required placeholder="${l === 'tr' ? 'Düşüncelerinizi, alıntıları veya teorinizi buraya yazın...' : 'Write your post here...'}" style="background:rgba(8,12,19,.9);border:1px solid var(--border);color:var(--parchl);padding:.6rem;line-height:1.7"></textarea>
+      </label>
+      <p class="sw-err" id="fr-nt-err" hidden style="color:var(--bloodb);margin-top:.6rem"></p>
+      <div class="sw-actions" style="margin-top:1.4rem;display:flex;justify-content:flex-end;gap:.8rem">
+        <button type="button" class="sw-btn" data-close>${l === 'tr' ? 'Vazgeç' : 'Cancel'}</button>
+        <button type="submit" class="sw-btn primary" style="background:linear-gradient(135deg,rgba(139,30,30,.9),rgba(196,150,42,.85));border-color:var(--gold);color:#fff">${l === 'tr' ? 'Konuyu Aç' : 'Post Thread'}</button>
+      </div>
+    </form>`;
+
+  let rec = null;
+  if (Wiki.Community && Wiki.Community.util && Wiki.Community.util.Modal && Wiki.Community.util.Modal.open) {
+    rec = Wiki.Community.util.Modal.open({
+      title: l === 'tr' ? 'Yeni Konu Aç' : 'New Thread', cls: 'sw-suggest fr-newform',
+      html: modalHtml
+    });
+  } else {
+    const back = document.createElement('div');
+    back.className = 'sw-modal-back';
+    back.innerHTML = `<div class="sw-modal sw-suggest fr-newform"><button type="button" class="sw-x" data-close>✕</button><div class="sw-modal-body">${modalHtml}</div></div>`;
+    document.body.appendChild(back);
+    rec = { close: () => back.remove(), body: back.querySelector('.sw-modal-body') };
+    back.addEventListener('click', e => { if (e.target === back || e.target.closest('[data-close]')) rec.close(); });
+  }
+
+  // Editör araç çubuğu
+  const tbSlot = rec.body.querySelector('#fr-cat-tb-slot');
+  const tbTextarea = rec.body.querySelector('#fr-cat-nt-body');
+  if (tbSlot && tbTextarea && K.attachEditorToolbar) {
+    K.attachEditorToolbar(tbTextarea, tbSlot, l);
+  }
+
   rec.body.querySelector('#fr-nt-form').addEventListener('submit', async e => {
     e.preventDefault();
     const f = e.target, err = rec.body.querySelector('#fr-nt-err');
@@ -127,11 +207,15 @@ function openNewThreadModal() {
     if (title.length < 4) { err.hidden = false; err.textContent = l === 'tr' ? 'Başlık en az 4 karakter olmalı.' : 'Title must be at least 4 characters.'; return; }
     f.querySelectorAll('input,select,textarea,button').forEach(el => el.disabled = true);
     try {
-      const thread = await K.createThread(catId, title, body);
+      const thread = await K.createThread(catId, title, body, { isCanon: catId === 'teori' && title.toLowerCase().includes('kehanet') });
       rec.close();
-      location.href = 'forum-konu.html?id=' + encodeURIComponent(thread.id);
+      if (thread && thread.id && !thread.id.startsWith('local-')) {
+        location.href = 'forum-konu.html?id=' + encodeURIComponent(thread.id);
+      } else {
+        render();
+      }
     } catch (ex) {
-      err.hidden = false; err.textContent = (Wiki.Community.util.mapErr ? Wiki.Community.util.mapErr(ex) : ex.message) || (l === 'tr' ? 'Bir şeyler ters gitti.' : 'Something went wrong.');
+      err.hidden = false; err.textContent = ex.message || (l === 'tr' ? 'Bir şeyler ters gitti.' : 'Something went wrong.');
       f.querySelectorAll('input,select,textarea,button').forEach(el => el.disabled = false);
     }
   });
@@ -141,7 +225,9 @@ function applyLang(l) {
   document.documentElement.lang = l;
   document.getElementById('page-title').textContent = cat ? K.catLabel(cat, l) : '—';
   document.getElementById('page-sub').textContent = cat ? (l === 'tr' ? cat.desc_tr : cat.desc_en) : '';
-  document.getElementById('l-crumb-home').textContent = 'Kurultay';
+  const rootCrumb = document.getElementById('l-crumb-root');
+  if (rootCrumb) rootCrumb.textContent = l === 'tr' ? 'Ana Sayfa' : 'Home';
+  document.getElementById('l-crumb-home').textContent = l === 'tr' ? 'Kurultay' : 'Forum';
   document.getElementById('l-crumb-cur').textContent = cat ? K.catLabel(cat, l) : '';
   document.getElementById('l-new').textContent = l === 'tr' ? 'Yeni Konu Aç' : 'New Thread';
   document.getElementById('fr-search').placeholder = l === 'tr' ? 'Bu kategoride ara…' : 'Search this category…';
@@ -152,6 +238,16 @@ let searchT;
 document.getElementById('fr-search').addEventListener('input', () => { clearTimeout(searchT); searchT = setTimeout(() => { page = 0; render(); }, 250); });
 document.getElementById('fr-sort').addEventListener('change', () => { page = 0; render(); });
 document.getElementById('fr-new-btn').addEventListener('click', openNewThreadModal);
+
+document.getElementById('fr-sub-filters').addEventListener('click', e => {
+  const btn = e.target.closest('[data-type]');
+  if (!btn) return;
+  document.querySelectorAll('#fr-sub-filters [data-type]').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  activeFilter = btn.getAttribute('data-type');
+  page = 0;
+  render();
+});
 
 (async function boot() {
   const cats = await K.fetchCategories();

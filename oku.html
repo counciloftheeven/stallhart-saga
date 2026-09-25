@@ -24,6 +24,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Modern+Antiqua&amp;family=IM+Fell+English:ital@0;1&amp;family=Merriweather:ital,wght@0,400;0,700;1,400&amp;display=swap">
 <link rel="stylesheet" href="assets/css/styles.css?v=3.0">
+<link rel="stylesheet" href="assets/css/kurultay.css?v=3.0">
 <style>
 /* ═══ OKUYUCU ═══════════════════════════════════════════════
    Site menüsü gizlenir; okumaya odaklı ince bir üst çubuk kullanılır.
@@ -389,10 +390,21 @@ function render(keepPct) {
     '<p class="rd-meta">' + esc(meta.join(' · ')) + '</p></header>' +
     (tx.fallback ? '<p class="rd-notice">' + esc(T('enNote')) + '</p>' : '') +
     '<div class="book-body" id="rd-body">' + Book.render(tx.text, { images: entry(cur).images || {} }) + '</div>' +
-    '<footer class="rd-end"><p class="rd-fin">— ' + esc(T('end')) + ' —</p>' +
-    (gap ? '<p class="rd-soon">' + esc(gap.num + '. ' + Lang.t(gap.title) + ' — ' + T('pending')) + '</p>' : '') +
-    '<div class="rd-nav" role="navigation" aria-label="' + esc(T('toc')) + '">' +
-    (prev ? card(prev, 'prev', '← ' + T('prev')) : '') + (next ? card(next, 'next', T('next') + ' →') : '') + '</div></footer>';
+    '<footer class="rd-end">' +
+      '<p class="rd-fin">— ' + esc(T('end')) + ' —</p>' +
+      '<div class="rd-kurultay-bridge">' +
+        '<div class="rd-kb-crest">⚔️</div>' +
+        '<div class="rd-kb-info">' +
+          '<h4>' + (l === 'tr' ? 'Bu Bölümü Kurultay’da Tartış' : 'Discuss This Chapter in the Kurultay') + '</h4>' +
+          '<p>' + (l === 'tr' ? cur.num + '. Bölümün gizemlerini, repliklerini ve teorilerini Meclis Odalarında diğer okurlarla müzakere edin.' : 'Debate mysteries, lore clues and quotes from Chapter ' + cur.num + ' with fellow bannermen.') + '</p>' +
+        '</div>' +
+        '<a class="rd-kb-btn" href="forum-kategori.html?kat=bolum&ch=' + encodeURIComponent(cur.num) + '">' +
+          '<span>' + (l === 'tr' ? 'Bölüm Yorumları Odasına Git →' : 'Enter Chapter Chamber →') + '</span>' +
+        '</a>' +
+      '</div>' +
+      (gap ? '<p class="rd-soon">' + esc(gap.num + '. ' + Lang.t(gap.title) + ' — ' + T('pending')) + '</p>' : '') +
+      '<div class="rd-nav" role="navigation" aria-label="' + esc(T('toc')) + '">' +
+      (prev ? card(prev, 'prev', '← ' + T('prev')) : '') + (next ? card(next, 'next', T('next') + ' →') : '') + '</div></footer>';
 
   /* Otomatik bağlantılar: karakter / hane / yer / tanrı / olay adları bölümde ilk geçtikleri yerde
      işaretlenir; dokununca (fareyle: üzerine gelince) mini bilgi kartı açılır. */
