@@ -42,29 +42,43 @@
 <div class="admin-shell" id="shell" style="display:none">
 
   <nav class="side" aria-label="Panel menüsü">
-    <a class="side-brand" href="index.html">Stallhart ↗</a>
+    <div class="side-brand-wrap">
+      <a class="side-brand" href="index.html">Stallhart <span class="side-brand-tag">YÖNETİM</span> ↗</a>
+      <div class="side-sync-pill" id="sync-pill" title="Sunucu veri senkronizasyonu">
+        <span class="sync-dot"></span> <span id="sync-text">Senkronize</span>
+      </div>
+    </div>
 
-    <button class="side-item on" data-view="dash" type="button">Pano</button>
-    <button class="side-item" data-view="chars" type="button">Karakterler</button>
-    <button class="side-item" data-view="houses" type="button">Haneler</button>
-    <button class="side-item" data-view="trees" type="button">Soy Ağaçları</button>
-    <button class="side-item" data-view="kingdoms" type="button">Devletler</button>
-    <button class="side-item" data-view="gods" type="button">Tanrılar</button>
-    <button class="side-item" data-view="chapters" type="button">Bölümler</button>
-    <button class="side-item" data-view="events" type="button">Tarih Şeridi</button>
-    <button class="side-item" data-view="glossary" type="button">Sözlük</button>
-    <button class="side-item" data-view="quotes" type="button">Sözler</button>
-    <button class="side-item" data-view="media" type="button">Görsel &amp; Medya</button>
-    <button class="side-item" data-view="maps" type="button">Haritalar</button>
-    <button class="side-item" data-view="geo" type="button">Coğrafya</button>
-    <button class="side-item" data-view="language" type="button">Ortak Lisan</button>
-    <button class="side-item" data-view="data" type="button">Veri &amp; Yayın</button>
+    <div class="side-group-title">İÇERİK &amp; SAYFALAR</div>
+    <button class="side-item on" data-view="dash" type="button"><span class="si-icon">📊</span> Pano</button>
+    <button class="side-item" data-view="pages" type="button"><span class="si-icon">📑</span> Sayfalar &amp; CMS</button>
+    <button class="side-item" data-view="hierarchy" type="button"><span class="si-icon">👑</span> Hiyerarşi &amp; Makamlar</button>
+    <button class="side-item" data-view="chars" type="button"><span class="si-icon">👤</span> Karakterler</button>
+    <button class="side-item" data-view="houses" type="button"><span class="si-icon">🛡️</span> Haneler</button>
+    <button class="side-item" data-view="trees" type="button"><span class="si-icon">🌳</span> Soy Ağaçları</button>
+    <button class="side-item" data-view="kingdoms" type="button"><span class="si-icon">🏰</span> Devletler</button>
+    <button class="side-item" data-view="gods" type="button"><span class="si-icon">✨</span> Tanrılar</button>
+
+    <div class="side-group-title">EDEBİYAT &amp; EVREN</div>
+    <button class="side-item" data-view="chapters" type="button"><span class="si-icon">📖</span> Bölümler &amp; Kitap</button>
+    <button class="side-item" data-view="events" type="button"><span class="si-icon">⏳</span> Tarih Şeridi</button>
+    <button class="side-item" data-view="glossary" type="button"><span class="si-icon">📜</span> Sözlük</button>
+    <button class="side-item" data-view="quotes" type="button"><span class="si-icon">💬</span> Sözler &amp; Alıntılar</button>
+    <button class="side-item" data-view="geo" type="button"><span class="si-icon">🏔️</span> Coğrafya</button>
+    <button class="side-item" data-view="language" type="button"><span class="si-icon">🗣️</span> Ortak Lisan</button>
+
+    <div class="side-group-title">GÖRSELLER &amp; HARİTA</div>
+    <button class="side-item" data-view="media" type="button"><span class="si-icon">🖼️</span> Görsel Yöneticisi</button>
+    <button class="side-item" data-view="maps" type="button"><span class="si-icon">🗺️</span> Haritalar</button>
+
+    <div class="side-group-title">SİSTEM &amp; VERİ</div>
+    <button class="side-item" data-view="data" type="button"><span class="si-icon">💾</span> Veri &amp; Yayın</button>
 
     <!-- v16: Topluluk modülleri — yalnızca config.js doldurulduysa görünür -->
     <div class="side-sep" data-community hidden>Topluluk</div>
-    <button class="side-item" data-view="suggestions" data-community hidden type="button">Öneriler<span class="side-badge" id="sugg-badge" hidden></span></button>
-    <button class="side-item" data-view="comments" data-community hidden type="button">Yorumlar</button>
-    <button class="side-item" data-view="users" data-community hidden type="button">Kullanıcılar</button>
+    <button class="side-item" data-view="suggestions" data-community hidden type="button"><span class="si-icon">💡</span> Öneriler<span class="side-badge" id="sugg-badge" hidden></span></button>
+    <button class="side-item" data-view="comments" data-community hidden type="button"><span class="si-icon">💭</span> Yorumlar</button>
+    <button class="side-item" data-view="users" data-community hidden type="button"><span class="si-icon">👥</span> Kullanıcılar</button>
 
     <div class="side-foot">
       <div id="draft-state" style="font-size:.7rem;font-style:italic;color:var(--parchd);line-height:1.6;margin-bottom:.6rem"></div>
@@ -81,11 +95,149 @@
         <h1 class="page-h1" id="page-h1">Pano</h1>
         <p class="page-desc" id="page-desc"></p>
       </div>
-      <button class="abtn primary" id="add-btn" type="button" style="display:none">+ Yeni Ekle</button>
+      <div class="page-head-actions btn-row">
+        <button class="abtn sm" id="btn-sync-all" type="button" title="Tüm yerel değişiklikleri sunucu diskine kalıcı olarak kaydeder">⚡ Sunucuya Kalıcı Kaydet</button>
+        <a class="abtn sm" id="btn-view-site" href="index.html" target="_blank" rel="noopener">Siteyi Aç ↗</a>
+        <button class="abtn primary" id="add-btn" type="button" style="display:none">+ Yeni Ekle</button>
+      </div>
     </div>
 
     <div id="view"></div>
   </main>
+</div>
+
+<!-- ══ EVRENSEL GÖRSEL SEÇİCİ & YÜKLEYİCİ MODAL ═══════════ -->
+<div class="img-modal-back" id="img-modal-back">
+  <div class="img-modal" role="dialog" aria-modal="true" aria-labelledby="img-modal-title">
+    <div class="img-modal-head">
+      <div>
+        <h3 class="img-modal-title" id="img-modal-title">Görsel Seç &amp; Yükle</h3>
+        <p class="img-modal-sub" id="img-modal-sub">Görseli doğrudan bilgisayarınızdan yükleyin veya galeriden seçin.</p>
+      </div>
+      <button class="abtn sm" id="img-modal-close" type="button" aria-label="Kapat">✕</button>
+    </div>
+    
+    <div class="img-modal-tabs">
+      <button class="img-tab on" id="img-tab-upload" type="button">📤 Yeni Yükle</button>
+      <button class="img-tab" id="img-tab-gallery" type="button">🖼️ Medya Galerisi</button>
+      <button class="img-tab" id="img-tab-url" type="button">🔗 Dosya Yolu / URL</button>
+    </div>
+
+    <div class="img-modal-body">
+      <!-- Sekme 1: Yükleme -->
+      <div class="img-pane on" id="img-pane-upload">
+        <div class="f-row">
+          <label class="f-label">Hedef Klasör</label>
+          <select id="img-upload-folder" class="f-select">
+            <option value="characters">Karakter Portreleri (characters/)</option>
+            <option value="kingdoms">Devlet &amp; Krallık Bayrakları (kingdoms/)</option>
+            <option value="gods">Tanrı Sembolleri (gods/)</option>
+            <option value="banners">Sancaklar &amp; Afişler (banners/)</option>
+            <option value="maps">Haritalar (maps/)</option>
+            <option value="chapters">Bölüm Görselleri (chapters/)</option>
+            <option value="general" selected>Genel Görseller &amp; Logolar (general/)</option>
+          </select>
+        </div>
+        
+        <div class="upload-dropzone" id="img-dropzone">
+          <input type="file" id="img-file-input" accept="image/webp,image/png,image/jpeg,image/svg+xml" style="display:none">
+          <div class="dropzone-icon">📷</div>
+          <div class="dropzone-text">Görsel dosyasını buraya sürükleyin veya <strong>bilgisayarınızdan seçin</strong></div>
+          <div class="dropzone-hint">WebP, PNG, JPG, SVG desteklenir (Otomatik olarak optimize edilir)</div>
+          <button class="abtn primary sm" type="button" id="img-browse-btn" style="margin-top:.6rem">Dosya Seç</button>
+        </div>
+
+        <div class="img-upload-preview-wrap" id="img-upload-preview-wrap" style="display:none">
+          <img id="img-upload-preview" src="" alt="Yükleme önizleme" class="img-upload-thumb">
+          <div class="img-upload-info">
+            <div id="img-upload-name" class="img-upload-name"></div>
+            <div id="img-upload-meta" class="img-upload-meta"></div>
+            <div class="f-row" style="margin-top:.4rem;margin-bottom:0">
+              <label class="f-label">Dosya Adı (İsteğe bağlı değiştirin)</label>
+              <input type="text" id="img-custom-name" class="f-input" placeholder="ornek_gorsel">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sekme 2: Medya Galerisi -->
+      <div class="img-pane" id="img-pane-gallery">
+        <div class="toolbar-row" style="margin-bottom:.6rem">
+          <div class="search-box-a" style="max-width:240px">
+            <input type="search" id="gallery-search" placeholder="Görsel ara…">
+          </div>
+          <select id="gallery-filter" class="f-select" style="max-width:180px;padding:.35rem .6rem">
+            <option value="">Tüm Kategoriler</option>
+            <option value="characters">Karakterler</option>
+            <option value="kingdoms">Devletler</option>
+            <option value="gods">Tanrılar</option>
+            <option value="maps">Haritalar</option>
+            <option value="banners">Afiş &amp; Sancak</option>
+            <option value="general">Genel &amp; Logo</option>
+          </select>
+          <span class="count-a" id="gallery-count"></span>
+        </div>
+        <div class="img-gallery-grid" id="img-gallery-grid"></div>
+      </div>
+
+      <!-- Sekme 3: Doğrudan URL -->
+      <div class="img-pane" id="img-pane-url">
+        <div class="f-row">
+          <label class="f-label">Görsel Yolu veya Web URL'si</label>
+          <input type="text" id="img-url-input" class="f-input" placeholder="assets/images/characters/zeandor_stallhart01.png">
+          <div class="f-hint">Site içi bağıl yol (<code>assets/images/...</code>) veya doğrudan harici HTTPS URL'si girebilirsiniz.</div>
+        </div>
+        <div class="img-preview-box" id="img-url-preview-box" style="margin-top:1rem;display:none">
+          <img id="img-url-preview" src="" alt="URL Önizleme" class="img-upload-thumb">
+          <span id="img-url-status" class="f-hint" style="color:var(--goldd)"></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="img-modal-foot">
+      <button class="abtn" id="img-modal-cancel" type="button">Vazgeç</button>
+      <button class="abtn primary" id="img-modal-confirm" type="button">Bu Görseli Kullan</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══ MEVCUT GÖRSELİ DEĞİŞTİRME / ÜZERİNE YAZMA MODALI ══════ -->
+<div class="img-modal-back" id="img-replace-back">
+  <div class="img-modal" style="max-width:540px" role="dialog" aria-modal="true" aria-labelledby="img-replace-title">
+    <div class="img-modal-head">
+      <div>
+        <h3 class="img-modal-title" id="img-replace-title">Görseli Değiştir</h3>
+        <p class="img-modal-sub" id="img-replace-sub">Mevcut dosyanın yerine yeni bir görsel yükleyin. Tüm sayfalarda anında güncellenir.</p>
+      </div>
+      <button class="abtn sm" id="img-replace-close" type="button" aria-label="Kapat">✕</button>
+    </div>
+    <div class="img-modal-body">
+      <div class="replace-compare-wrap">
+        <div class="replace-card">
+          <span class="replace-label">Şu Anki Görsel</span>
+          <img id="replace-current-img" src="" alt="Mevcut görsel" class="replace-thumb">
+          <div id="replace-current-path" class="replace-path"></div>
+        </div>
+        <div class="replace-arrow">➔</div>
+        <div class="replace-card">
+          <span class="replace-label">Yeni Görsel</span>
+          <div id="replace-new-empty" class="replace-empty-box">Henüz dosya seçilmedi</div>
+          <img id="replace-new-img" src="" alt="Yeni görsel" class="replace-thumb" style="display:none">
+          <div id="replace-new-name" class="replace-path"></div>
+        </div>
+      </div>
+
+      <div class="upload-dropzone" id="replace-dropzone" style="margin-top:1rem;padding:1.2rem">
+        <input type="file" id="replace-file-input" accept="image/webp,image/png,image/jpeg,image/svg+xml" style="display:none">
+        <div class="dropzone-text">Değiştirilecek yeni görseli buraya bırakın veya <strong>seçin</strong></div>
+        <button class="abtn primary sm" type="button" id="replace-browse-btn" style="margin-top:.4rem">Yeni Dosya Seç</button>
+      </div>
+    </div>
+    <div class="img-modal-foot">
+      <button class="abtn" id="replace-cancel" type="button">Vazgeç</button>
+      <button class="abtn danger" id="replace-confirm" type="button" disabled>Görseli Değiştir &amp; Kaydet</button>
+    </div>
+  </div>
 </div>
 
 <!-- ══ DÜZENLEME ÇEKMECESİ ═══════════════════════════════ -->

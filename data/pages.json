@@ -1,0 +1,186 @@
+{
+  "pages": {
+    "index": {
+      "id": "index",
+      "name": "Ana Sayfa",
+      "path": "index.html",
+      "title": {
+        "tr": "The Stallhart Saga — Son İmparator",
+        "en": "The Stallhart Saga — The Last Emperor"
+      },
+      "description": {
+        "tr": "Stallhart Destanı — Son İmparator, Türkçe dark fantasy epik roman ve evren ansiklopedisi.",
+        "en": "The Stallhart Saga — The Last Emperor, epic dark fantasy chronicle and universe encyclopedia."
+      },
+      "hero": {
+        "eyebrow": {
+          "tr": "İMPARATORLUK KRONİĞİ & EVREN ANSİKLOPEDİSİ",
+          "en": "IMPERIAL CHRONICLE & UNIVERSE ENCYCLOPEDIA"
+        },
+        "quote": {
+          "tr": "Demir soğur, kan kurur, ferman unutulur; fakat Kutsal Örs'ün üzerinde dövülen yeminler bin yıl yankılanır.",
+          "en": "Iron grows cold, blood dries, decrees fade; but vows forged upon the Holy Anvil echo for a thousand years."
+        },
+        "author": "Azad Çelik",
+        "logoImage": "assets/images/logo-stallhart.png",
+        "bannerImage": "assets/images/SIYASI_HARITA_onizleme.jpg"
+      },
+      "announcement": {
+        "active": true,
+        "badge": {
+          "tr": "İMPARATORLUK FERMANI",
+          "en": "IMPERIAL DECREE"
+        },
+        "title": {
+          "tr": "Yönetim Kademesi & Ferman Kütüğü Yayında",
+          "en": "Imperial Hierarchy & Decree Codex Live"
+        },
+        "text": {
+          "tr": "Stallhart İmparatorluğu'nun tüm makamları, Kutsal Kan Doktrini ve selefler silsilesi artık erişilebilir.",
+          "en": "All offices, the Holy Blood Doctrine, and historical lineage of House Stallhart are now accessible."
+        },
+        "link": "hiyerarsi.html"
+      }
+    },
+    "hiyerarsi": {
+      "id": "hiyerarsi",
+      "name": "Yönetim Hiyerarşisi",
+      "path": "hiyerarsi.html",
+      "title": {
+        "tr": "Yönetici Kademesi & İmparatorluk Hiyerarşisi",
+        "en": "Imperial Hierarchy & Council of Offices"
+      },
+      "description": {
+        "tr": "Stallhart İmparatorluğu yönetim kademesi: Kutsal Kan Doktrini, Siyasi, Askeri ve Dini makamlar.",
+        "en": "Offices of the Stallhart Empire: Holy Blood Doctrine, Political, Military, and Religious hierarchies."
+      },
+      "bannerImage": "assets/images/SIYASI_HARITA_onizleme.jpg"
+    },
+    "haneler": {
+      "id": "haneler",
+      "name": "Haneler & Devletler",
+      "path": "haneler.html",
+      "title": {
+        "tr": "Soylu Haneler & Devletler",
+        "en": "Noble Houses & Sovereign Realms"
+      },
+      "description": {
+        "tr": "İmparatorluk eyaletlerindeki soylu haneler, hanedan sembolleri, renkleri ve bağımsız krallıklar.",
+        "en": "Noble houses across imperial provinces, heraldry, banners, and sovereign kingdoms."
+      },
+      "bannerImage": "assets/images/SIYASI_HARITA_onizleme.jpg"
+    },
+    "karakterler": {
+      "id": "karakterler",
+      "name": "Karakterler",
+      "path": "karakterler.html",
+      "title": {
+        "tr": "Karakter Arşivi",
+        "en": "Character Archives"
+      },
+      "description": {
+        "tr": "Stallhart evrenindeki tüm karakterlerin yaşam öyküleri, unvanları ve hane bağları.",
+        "en": "Biographies, titles, and house allegiances of all figures in the Stallhart universe."
+      },
+      "bannerImage": "assets/images/characters/zeandor_stallhart01.png"
+    },
+    "bolumler": {
+      "id": "bolumler",
+      "name": "Bölümler & Kitap",
+      "path": "bolumler.html",
+      "title": {
+        "tr": "Stallhart Destanı — Bölümler",
+        "en": "The Stallhart Saga — Chapters"
+      },
+      "description": {
+        "tr": "Epik romanın tüm bölümleri, kronolojik okuma sırası ve özeti.",
+        "en": "All story chapters, chronological reading order, and chapter synopses."
+      },
+      "bannerImage": "assets/images/SIYASI_HARITA_onizleme.jpg"
+    },
+    "tanrilar": {
+      "id": "tanrilar",
+      "name": "Tanrılar & Panteon",
+      "path": "tanrilar.html",
+      "title": {
+        "tr": "Denge Konseyi Tanrıları",
+        "en": "Gods of the Balance Council"
+      },
+      "description": {
+        "tr": "Kadim Stallhart panteonu, tanrıların etki alanları, sembolleri ve tapınış ritüelleri.",
+        "en": "The ancient Stallhart pantheon, divine domains, sacred symbols, and worship rites."
+      },
+      "bannerImage": "assets/images/gods/galdra.png"
+    },
+    "harita": {
+      "id": "harita",
+      "name": "İnteraktif Harita",
+      "path": "harita.html",
+      "title": {
+        "tr": "Siyasi & Coğrafi Harita",
+        "en": "Political & Geographic Map"
+      },
+      "description": {
+        "tr": "Kıtanın siyasi sınırları, eyaletleri, kaleleri ve önemli coğrafi noktaları.",
+        "en": "Political borders, provinces, fortresses, and geographic landmarks."
+      },
+      "bannerImage": "assets/images/SIYASI_HARITA.jpg"
+    },
+    "soy-agaci": {
+      "id": "soy-agaci",
+      "name": "Soy Ağaçları",
+      "path": "soy-agaci.html",
+      "title": {
+        "tr": "Hane Soy Ağaçları",
+        "en": "Family Trees & Lineages"
+      },
+      "description": {
+        "tr": "İmparatorluk hanedanı ve soylu ailelerin akrabalık bağları ve soy silsilesi.",
+        "en": "Genealogies and lineage charts of the imperial dynasty and noble families."
+      },
+      "bannerImage": "assets/images/logo-stallhart.png"
+    },
+    "lore": {
+      "id": "lore",
+      "name": "Tarihçe & Evren",
+      "path": "lore.html",
+      "title": {
+        "tr": "Tarih Şeridi & Sözlük",
+        "en": "Timeline & Glossary"
+      },
+      "description": {
+        "tr": "Kıtanın bin yıllık tarihi, önemli kırılma noktaları ve terimler sözlüğü.",
+        "en": "Millennial history, crucial historical events, and glossary of universe terms."
+      },
+      "bannerImage": "assets/images/SIYASI_HARITA_onizleme.jpg"
+    },
+    "sozler": {
+      "id": "sozler",
+      "name": "Sözler & Alıntılar",
+      "path": "sozler.html",
+      "title": {
+        "tr": "Sözler & Alıntılar",
+        "en": "Quotes & Sayings"
+      },
+      "description": {
+        "tr": "Hükümdarların, bilgelerin ve savaşçıların tarihe geçen sözleri.",
+        "en": "Famous sayings and philosophies of rulers, scholars, and warriors."
+      },
+      "bannerImage": "assets/images/logo-stallhart.png"
+    },
+    "forum": {
+      "id": "forum",
+      "name": "Topluluk & Forum",
+      "path": "forum.html",
+      "title": {
+        "tr": "Stallhart Topluluk Forumu",
+        "en": "Stallhart Community Forum"
+      },
+      "description": {
+        "tr": "Evren tartışmaları, teoriler, karakter analizleri ve okur yorumları.",
+        "en": "Universe lore discussions, theories, character analysis, and reader reviews."
+      },
+      "bannerImage": "assets/images/logo-stallhart.png"
+    }
+  }
+}

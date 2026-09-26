@@ -19,7 +19,7 @@
 const { Store, loadData, esc } = window.Wiki;
 
 /* ── SABİTLER ─────────────────────────────────────────────── */
-const FILES = ['characters.json', 'chapters.json', 'book.json', 'quotes.json', 'lore.json', 'houses.json', 'kingdoms.json', 'familytree.json', 'geography.json', 'language.json', 'maps.json'];
+const FILES = ['characters.json', 'chapters.json', 'book.json', 'quotes.json', 'lore.json', 'houses.json', 'kingdoms.json', 'familytree.json', 'geography.json', 'language.json', 'maps.json', 'hierarchy.json', 'pages.json'];
 
 const GROUPS = [
   ['stallhart', 'İmparatorluk Hanedanı'], ['arhan', 'Arhan Hanesi'],
@@ -55,7 +55,7 @@ const MEDIA = [
 const DB = {};                 /* dosya adı → veri nesnesi */
 let currentView = 'dash';
 let editing = null;            /* { kind, index } — null ise yeni kayıt */
-let searchQ = { chars: '', chapters: '', quotes: '', events: '', glossary: '', language: '', houses: '' };
+let searchQ = { chars: '', chapters: '', quotes: '', events: '', glossary: '', language: '', houses: '', hierarchy: '' };
 
 /* ── YARDIMCILAR ──────────────────────────────────────────── */
 const $ = sel => document.querySelector(sel);
@@ -114,14 +114,67 @@ window.AdminBridge = {
   refreshChapters: () => { if (currentView === 'chapters') renderChapters(); else if (currentView === 'dash') renderDash(); }
 };
 
-/* ── KALICILIK ────────────────────────────────────────────── */
-function save(file) {
+/* ── KALICILIK & SUNUCU SENKRONİZASYONU ─────────────────────── */
+function setSyncStatus(isClean) {
+  const pill = $('#sync-pill'), txt = $('#sync-text');
+  if (!pill || !txt) return;
+  if (isClean) {
+    pill.classList.remove('dirty');
+    txt.textContent = 'Senkronize';
+  } else {
+    pill.classList.add('dirty');
+    txt.textContent = 'Taslak Bekliyor';
+  }
+}
+
+function save(file, silent) {
   if (Store.write(file, DB[file])) {
     renderSidebarState();
+    // Sunucu tarafına anında kalıcı yaz (disk persistence)
+    fetch('/api/save-data', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ file, data: DB[file] })
+    }).then(res => res.json()).then(data => {
+      if (data && data.ok) {
+        setSyncStatus(true);
+        if (!silent) toast(file + ' sunucuya ve belleğe kaydedildi.');
+      }
+    }).catch(err => {
+      console.warn('Sunucuya kaydedilemedi:', err);
+      setSyncStatus(false);
+    });
     return true;
   }
   toast('Kaydedilemedi — tarayıcı depolama alanı dolu olabilir.', true);
   return false;
+}
+
+async function syncAllToServer() {
+  const files = Store.overriddenFiles();
+  if (!files.length) {
+    // Taslak yoksa yine de mevcut tüm veriyi sunucuya teyit et
+    toast('Tüm veriler zaten sunucu ile uyumlu.');
+    setSyncStatus(true);
+    return;
+  }
+  let successCount = 0;
+  for (const f of files) {
+    try {
+      const res = await fetch('/api/save-data', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ file: f, data: DB[f] })
+      });
+      const data = await res.json();
+      if (data && data.ok) successCount++;
+    } catch (e) {
+      console.error(f + ' sunucuya yazılamadı:', e);
+    }
+  }
+  toast(successCount + ' dosya sunucu diskine kalıcı olarak kaydedildi.');
+  setSyncStatus(true);
+  renderSidebarState();
 }
 
 async function loadAll() {
@@ -151,20 +204,23 @@ function download(filename, text) {
    GÖRÜNÜM YÖNLENDİRME
    ═══════════════════════════════════════════════════════════ */
 const VIEWS = {
-  dash:     { title: 'Pano', desc: 'Site içeriğinin genel durumu.', render: renderDash },
-  chars:    { title: 'Karakter Yönetimi', desc: 'Karakter ekle, düzenle, sil.', render: renderChars, add: () => openCharEditor(null) },
-  houses:   { title: 'Haneler', desc: 'Soylu hanelerin adı, sembolü, renkleri ve üyeleri.', render: renderHousesAdmin, add: () => openHouseEditor(null) },
-  trees:    { title: 'Soy Ağaçları', desc: 'Hane soy ağaçları — kişiler, akrabalık bağları, meşruiyet çizgileri ve canlı önizleme.', render: renderTrees, add: openTreeCreate },
-  kingdoms: { title: 'Devletler', desc: 'Devlet / krallık maddeleri — bayrak, sicil, tarihçe, bölgesel harita, askerî ve iktisadi güç.', render: renderKingdoms, add: () => openKingdomEditor(null) },
-  gods:     { title: 'Tanrılar', desc: 'Denge Konseyi tanrıları — bilgiler, sembol tarifi ve sembol görseli (tanrilar.html ile tanri-detay.html\'de aynı görsel kullanılır).', render: renderGods },
-  chapters: { title: 'Bölüm & Kronik', desc: 'Hikâye bölümleri ve tarih şeridi olayları.', render: renderChapters, add: () => openChapterEditor(null) },
-  events:   { title: 'Tarih Şeridi', desc: 'Kronolojik olaylar ve etiketleri.', render: renderEvents, add: () => openEventEditor(null) },
-  glossary: { title: 'Sözlük', desc: 'Evren terimleri ansiklopedisi.', render: renderGlossary, add: () => openGlossaryEditor(null) },
-  quotes:   { title: 'Sözler & Alıntılar', desc: 'Felsefi ve karakter sözleri veritabanı.', render: renderQuotes, add: () => openQuoteEditor(null) },
-  media:    { title: 'Görsel & Medya', desc: 'Harita, portre ve arka plan görselleri.', render: renderMedia },
-  geo:      { title: 'Coğrafya', desc: 'Eyalet detayları ve dünya güç sıralaması.', render: renderGeography, add: () => openProvinceEditor(null) },
-  language: { title: 'Ortak Lisan', desc: 'Konlang sözlüğü — sözcük ekle, düzenle, sil.', render: renderLanguageAdmin, add: () => openWordEditor(null) },
-  data:     { title: 'Veri & Yayın', desc: 'Dışa aktarma, içe aktarma ve sıfırlama.', render: renderDataView }
+  dash:      { title: 'Pano', desc: 'Site içeriğinin genel durumu ve hızlı eylemler.', render: renderDash },
+  pages:     { title: 'Sayfalar & CMS Yönetimi', desc: 'Site genelindeki tüm sayfaların meta etiketleri, başlıkları, hero metinleri ve görselleri.', render: renderPagesAdmin },
+  hierarchy: { title: 'İmparatorluk Hiyerarşisi & Makamlar', desc: 'Yüce Hükümranlık, Siyasi Divan, Askeri Erkan ve Mabed makamları, yetkiler ve selefler silsilesi.', render: renderHierarchyAdmin, add: () => openHierarchyEditor(null) },
+  chars:     { title: 'Karakter Yönetimi', desc: 'Karakter ekle, düzenle, sil.', render: renderChars, add: () => openCharEditor(null) },
+  houses:    { title: 'Haneler', desc: 'Soylu hanelerin adı, sembolü, renkleri ve üyeleri.', render: renderHousesAdmin, add: () => openHouseEditor(null) },
+  trees:     { title: 'Soy Ağaçları', desc: 'Hane soy ağaçları — kişiler, akrabalık bağları, meşruiyet çizgileri ve canlı önizleme.', render: renderTrees, add: openTreeCreate },
+  kingdoms:  { title: 'Devletler', desc: 'Devlet / krallık maddeleri — bayrak, sicil, tarihçe, bölgesel harita, askerî ve iktisadi güç.', render: renderKingdoms, add: () => openKingdomEditor(null) },
+  gods:      { title: 'Tanrılar', desc: 'Denge Konseyi tanrıları — bilgiler, sembol tarifi ve sembol görseli (tanrilar.html ile tanri-detay.html\'de aynı görsel kullanılır).', render: renderGods },
+  chapters:  { title: 'Bölüm & Kronik', desc: 'Hikâye bölümleri ve tarih şeridi olayları.', render: renderChapters, add: () => openChapterEditor(null) },
+  events:    { title: 'Tarih Şeridi', desc: 'Kronolojik olaylar ve etiketleri.', render: renderEvents, add: () => openEventEditor(null) },
+  glossary:  { title: 'Sözlük', desc: 'Evren terimleri ansiklopedisi.', render: renderGlossary, add: () => openGlossaryEditor(null) },
+  quotes:    { title: 'Sözler & Alıntılar', desc: 'Felsefi ve karakter sözleri veritabanı.', render: renderQuotes, add: () => openQuoteEditor(null) },
+  media:     { title: 'Görsel Yöneticisi & Medya Hub', desc: 'Tüm site görsellerini görüntüle, doğrudan değiştir veya yeni görsel yükle.', render: renderMedia },
+  maps:      { title: 'Haritalar', desc: 'İnteraktif harita katmanları ve konum noktaları.', render: renderMapsAdmin },
+  geo:       { title: 'Coğrafya', desc: 'Eyalet detayları ve dünya güç sıralaması.', render: renderGeography, add: () => openProvinceEditor(null) },
+  language:  { title: 'Ortak Lisan', desc: 'Konlang sözlüğü — sözcük ekle, düzenle, sil.', render: renderLanguageAdmin, add: () => openWordEditor(null) },
+  data:      { title: 'Veri & Yayın', desc: 'Sunucu senkronizasyonu, dışa aktarma, içe aktarma ve sıfırlama.', render: renderDataView }
 };
 
 function go(view) {
@@ -213,6 +269,10 @@ function go(view) {
    tutulur; bindRowActions() DOMContentLoaded'da çağrılır, o noktada
    tüm fonksiyonlar zaten tanımlıdır. */
 const ROW_ACTIONS = {
+  hierarchy: () => ({ list: hierarchyList, editor: openHierarchyEditor, render: renderHierarchyAdmin, file: 'hierarchy.json',
+    title: 'Makamı sil', msg: h => '"' + biVal(h.title) + '" makamı kalıcı olarak silinecek.', done: () => 'Makam silindi.' }),
+  pages:     () => ({ list: pagesList,     editor: openPageEditor,      render: renderPagesAdmin,     file: 'pages.json',
+    title: 'Sayfayı sıfırla', msg: p => '"' + (p.name || '') + '" sayfa ayarları varsayılana döndürülecek.', done: () => 'Sayfa güncellendi.' }),
   chars:     () => ({ list: charList,     editor: openCharEditor,     render: renderChars,     file: 'characters.json',
     title: 'Karakteri sil', msg: c => '"' + biVal(c.name) + '" kalıcı olarak silinecek. Bu işlem geri alınamaz.', done: () => 'Karakter silindi.' }),
   chapters:  () => ({ list: chapList,     editor: openChapterEditor,  render: renderChapters,  file: 'chapters.json',
@@ -270,6 +330,28 @@ function bindRowActions() {
       return;
     }
 
+    /* Hiyerarşi Makamları */
+    const hyEdit = e.target.closest('[data-hy-edit]');
+    const hyDel = hyEdit ? null : e.target.closest('[data-hy-del]');
+    if (hyEdit || hyDel) {
+      const id = hyEdit ? hyEdit.dataset.hyEdit : hyDel.dataset.hyDel;
+      if (hyEdit) { openHierarchyEditor(id); return; }
+      const office = (DB['hierarchy.json'] || {})[id];
+      if (!office) return;
+      confirmBox('Makamı Sil', '"' + biVal(office.title) + '" (' + id + ') kalıcı olarak silinecek.', () => {
+        delete (DB['hierarchy.json'] || {})[id];
+        if (save('hierarchy.json')) { toast('Makam silindi.'); renderHierarchyAdmin(); }
+      });
+      return;
+    }
+
+    /* Sayfa CMS Düzenleme */
+    const pageEdit = e.target.closest('[data-page-edit]');
+    if (pageEdit) {
+      openPageEditor(pageEdit.dataset.pageEdit);
+      return;
+    }
+
     const editBtn = e.target.closest('[data-edit]');
     const delBtn = editBtn ? null : e.target.closest('[data-del]');
     if (!editBtn && !delBtn) return;
@@ -303,18 +385,22 @@ function renderDash() {
   const events = (DB['lore.json'].events || []);
   const gloss = (DB['lore.json'].glossary || []);
   const houses = (DB['houses.json'].provinces || []).reduce((n, p) => n + (p.houses || []).length, 0);
+  const hyList = hierarchyList();
+  const pgList = pagesList();
 
   const stats = [
     [chars.length, 'Karakter'],
+    [houses, 'Soylu Hane'],
+    [hyList.length, 'Hiyerarşi Makamı'],
+    [pgList.length, 'Yönetilen Sayfa'],
     [chapters.filter(c => c.free).length + ' / ' + chapters.length, 'Yayınlanan Bölüm'],
+    [(DB['kingdoms.json'].kingdoms || []).length, 'Devlet'],
+    [(DB['lore.json'].gods || []).length, 'Tanrı'],
+    [(DB['familytree.json'].trees || []).length, 'Soy Ağacı'],
     [quotes.length, 'Alıntı'],
     [events.length, 'Kronik Olayı'],
     [gloss.length, 'Sözlük Terimi'],
-    [houses, 'Soylu Hane'],
-    [(DB['kingdoms.json'].kingdoms || []).length, 'Devlet'],
-    [(DB['familytree.json'].trees || []).length, 'Soy Ağacı'],
-    [(DB['lore.json'].gods || []).length, 'Tanrı'],
-    [Object.keys((DB['book.json'] || {}).chapters || {}).length + ' / ' + chapters.length, 'Metni Yazılı Bölüm']
+    [AdminMedia ? AdminMedia.cachedImages.length || '—' : '—', 'Görsel Dosyası']
   ];
 
   const drafts = Store.overriddenFiles();
@@ -325,14 +411,24 @@ function renderDash() {
     '</div>' +
 
     (drafts.length
-      ? '<div class="notice"><strong>Yayınlanmamış değişiklik var.</strong> ' +
-        esc(drafts.join(', ')) + ' dosyaları yalnızca bu tarayıcıda güncel. ' +
-        'Kalıcı hâle getirmek için <strong>Veri &amp; Yayın</strong> bölümünden dışa aktarıp ' +
-        'depodaki <code>data/</code> klasörüne koyun.</div>'
-      : '<div class="notice">Şu anda yerel taslak yok; site yayındaki ' +
-        '<code>data/*.json</code> dosyalarını gösteriyor.</div>') +
+      ? '<div class="notice"><strong>Yerel taslakta bekleyen değişiklikler var:</strong> ' +
+        esc(drafts.join(', ')) + '. ' +
+        '<div style="margin-top:.5rem"><button class="abtn primary sm" id="dash-sync-btn">⚡ Tümünü Sunucu Diskine Kaydet</button></div></div>'
+      : '<div class="notice">Tüm veriler sunucu diskiyle senkronize durumda. Sayfalarda yapılan her değişiklik anında hem tarayıcıya hem sunucuya işlenir.</div>') +
 
-    '<div class="panel"><div class="panel-t">Durum Dağılımı</div>' +
+    '<div class="panel"><div class="panel-t">Hızlı Yönetim &amp; Sayfa Düzenleme</div><div class="btn-row">' +
+    '<button class="abtn primary" data-go="pages">📑 Sayfaları Düzenle (CMS)</button>' +
+    '<button class="abtn primary" data-go="hierarchy">👑 Hiyerarşi &amp; Makamlar</button>' +
+    '<button class="abtn primary" data-go="media">🖼️ Görseller &amp; Medya Hub</button>' +
+    '<button class="abtn" data-go="chars">👤 Karakter Ekle</button>' +
+    '<button class="abtn" data-go="houses">🛡️ Hane Ekle</button>' +
+    '<button class="abtn" data-go="kingdoms">🏰 Devlet Ekle</button>' +
+    '<button class="abtn" data-go="chapters">📖 Bölüm Ekle</button>' +
+    '<button class="abtn" data-go="data">💾 Veri &amp; Yayın</button>' +
+    '<a class="abtn" href="index.html" target="_blank" rel="noopener">Siteyi Aç ↗</a>' +
+    '</div></div>' +
+
+    '<div class="panel"><div class="panel-t">Karakter Durum Dağılımı</div>' +
     STATUSES.map(st => {
       const n = chars.filter(c => c.status === st[0]).length;
       const pct = chars.length ? Math.round(n / chars.length * 100) : 0;
@@ -341,17 +437,10 @@ function renderDash() {
         '<span>' + esc(st[1]) + '</span><span>' + n + ' · %' + pct + '</span></div>' +
         '<div style="height:4px;background:var(--deep);border:1px solid var(--border)">' +
         '<div style="height:100%;width:' + pct + '%;background:var(--gold)"></div></div></div>';
-    }).join('') + '</div>' +
-
-    '<div class="panel"><div class="panel-t">Hızlı İşlemler</div><div class="btn-row">' +
-    '<button class="abtn" data-go="chars">Karakter Ekle</button>' +
-    '<button class="abtn" data-go="chapters">Bölüm Ekle</button>' +
-    '<button class="abtn" data-go="quotes">Alıntı Ekle</button>' +
-    '<button class="abtn" data-go="data">Dışa Aktar</button>' +
-    '<a class="abtn" href="index.html" target="_blank" rel="noopener">Siteyi Görüntüle ↗</a>' +
-    '</div></div>';
+    }).join('') + '</div>';
 
   $$('#view [data-go]').forEach(b => b.addEventListener('click', () => go(b.dataset.go)));
+  $('#dash-sync-btn')?.addEventListener('click', syncAllToServer);
 }
 
 /* ═══════════════════════════════════════════════════════════
@@ -2171,61 +2260,761 @@ function openWordEditor(index) {
 }
 
 /* ═══════════════════════════════════════════════════════════
-   7) GÖRSEL & MEDYA
+   7) GÖRSEL YÖNETİCİSİ & MEDYA HUB (AdminMedia)
    ═══════════════════════════════════════════════════════════ */
-function renderMedia() {
-  const portraits = charList().filter(c => c.image)
-    .map(c => ({ name: biVal(c.name), path: c.image, use: 'Karakter portresi' }));
-  const godImgs = godList().filter(g => g.image && !/^data:/.test(g.image) && Wiki.safeImg(g.image))
-    .map(g => ({ name: (biVal(g.epithet) || g.trueName) + ' (' + g.trueName + ')', path: g.image, use: 'Tanrı sembolü · tanrilar.html + tanri-detay.html' }));
-  const mapImgs = ((DB['maps.json'] || {}).maps || [])
-    .filter(m => m.image && !/^data:/.test(m.image) && Wiki.safeImg(m.image) && m.image !== MEDIA[0].path)
-    .map(m => ({ name: (biVal(m.title) || m.id) + ' (harita sekmesi)', path: m.image, use: 'Harita · #/harita/' + m.id }));
-  const items = MEDIA.concat(portraits, godImgs, mapImgs);
+const AdminMedia = {
+  cachedImages: [],
+  currentCallback: null,
+  currentFolder: 'general',
+  targetReplacePath: null,
+  replaceCallback: null,
+  selectedFileDataUrl: null,
+  selectedFileName: '',
+  replaceDataUrl: null,
+  activeCat: 'all',
+  searchQuery: '',
+
+  async fetchImages() {
+    try {
+      const res = await fetch('/api/images');
+      const data = await res.json();
+      if (data && data.ok) {
+        this.cachedImages = data.images || [];
+        return this.cachedImages;
+      }
+    } catch (e) {
+      console.warn('Görseller API\'den okunamadı, yerel fallback:', e);
+    }
+    // Fallback: DB'de kayıtlı görsellerden türet
+    if (!this.cachedImages.length) {
+      const portraits = charList().filter(c => c.image).map(c => ({ path: c.image, name: c.image.split('/').pop(), category: 'characters' }));
+      const godImgs = godList().filter(g => g.image).map(g => ({ path: g.image, name: g.image.split('/').pop(), category: 'gods' }));
+      this.cachedImages = MEDIA.map(m => ({ path: m.path, name: m.name, category: 'general' })).concat(portraits, godImgs);
+    }
+    return this.cachedImages;
+  },
+
+  init() {
+    this.bindPickerModal();
+    this.bindReplacerModal();
+    this.fetchImages();
+  },
+
+  openPicker(options) {
+    this.currentCallback = options.onSelect;
+    this.currentFolder = options.folder || 'general';
+    this.selectedFileDataUrl = null;
+    this.selectedFileName = '';
+
+    const folderSel = $('#img-upload-folder');
+    if (folderSel) folderSel.value = this.currentFolder;
+
+    const prevWrap = $('#img-upload-preview-wrap');
+    if (prevWrap) prevWrap.style.display = 'none';
+    const prevImg = $('#img-upload-preview');
+    if (prevImg) prevImg.src = '';
+    const nameInp = $('#img-custom-name');
+    if (nameInp) nameInp.value = '';
+    const fileInp = $('#img-file-input');
+    if (fileInp) fileInp.value = '';
+
+    const urlInp = $('#img-url-input');
+    if (urlInp) {
+      urlInp.value = options.current || '';
+      this.updateUrlPreview(urlInp.value);
+    }
+
+    this.renderGalleryGrid();
+    this.switchPickerTab('upload');
+    $('#img-modal-back').classList.add('on');
+  },
+
+  closePicker() {
+    $('#img-modal-back').classList.remove('on');
+    this.currentCallback = null;
+  },
+
+  openReplacer(targetPath, onDone) {
+    if (!targetPath) return toast('Değiştirilecek görsel yolu bulunamadı.', true);
+    this.targetReplacePath = targetPath;
+    this.replaceCallback = onDone;
+    this.replaceDataUrl = null;
+
+    $('#replace-current-img').src = targetPath + (targetPath.includes('?') ? '&' : '?') + 't=' + Date.now();
+    $('#replace-current-path').textContent = targetPath;
+    $('#replace-new-empty').style.display = 'flex';
+    $('#replace-new-img').style.display = 'none';
+    $('#replace-new-name').textContent = '';
+    $('#replace-confirm').disabled = true;
+    const fileInp = $('#replace-file-input');
+    if (fileInp) fileInp.value = '';
+
+    $('#img-replace-back').classList.add('on');
+  },
+
+  closeReplacer() {
+    $('#img-replace-back').classList.remove('on');
+    this.targetReplacePath = null;
+    this.replaceCallback = null;
+  },
+
+  switchPickerTab(tab) {
+    $('#img-tab-upload')?.classList.toggle('on', tab === 'upload');
+    $('#img-tab-gallery')?.classList.toggle('on', tab === 'gallery');
+    $('#img-tab-url')?.classList.toggle('on', tab === 'url');
+
+    $('#img-pane-upload')?.classList.toggle('on', tab === 'upload');
+    $('#img-pane-gallery')?.classList.toggle('on', tab === 'gallery');
+    $('#img-pane-url')?.classList.toggle('on', tab === 'url');
+    if (tab === 'gallery') this.renderGalleryGrid();
+  },
+
+  updateUrlPreview(url) {
+    const box = $('#img-url-preview-box'), img = $('#img-url-preview'), st = $('#img-url-status');
+    if (!box || !img || !st) return;
+    if (!url) { box.style.display = 'none'; return; }
+    box.style.display = 'flex';
+    img.src = url;
+    st.textContent = 'Hedef Yol: ' + url;
+  },
+
+  async renderGalleryGrid() {
+    const grid = $('#img-gallery-grid'), countEl = $('#gallery-count');
+    if (!grid) return;
+    await this.fetchImages();
+    const q = ($('#gallery-search') ? $('#gallery-search').value : '').toLowerCase().trim();
+    const cat = $('#gallery-filter') ? $('#gallery-filter').value : '';
+
+    const filtered = this.cachedImages.filter(img => {
+      if (cat && img.category !== cat) return false;
+      if (q && !img.name.toLowerCase().includes(q) && !img.path.toLowerCase().includes(q)) return false;
+      return true;
+    });
+
+    if (countEl) countEl.textContent = filtered.length + ' görsel';
+
+    if (!filtered.length) {
+      grid.innerHTML = '<div class="f-hint" style="grid-column:1/-1;padding:1.5rem;text-align:center">Eşleşen görsel bulunamadı.</div>';
+      return;
+    }
+
+    grid.innerHTML = filtered.map(img => `
+      <div class="gallery-item" data-path="${esc(img.path)}" title="${esc(img.path)}">
+        <img class="gallery-item-thumb" src="${esc(img.path)}" alt="${esc(img.name)}" loading="lazy" onerror="this.style.opacity=.2">
+        <div class="gallery-item-name">${esc(img.name)}</div>
+      </div>
+    `).join('');
+
+    grid.querySelectorAll('.gallery-item').forEach(el => {
+      el.addEventListener('click', () => {
+        grid.querySelectorAll('.gallery-item').forEach(x => x.classList.remove('selected'));
+        el.classList.add('selected');
+        const selectedPath = el.dataset.path;
+        if (AdminMedia.currentCallback) {
+          AdminMedia.currentCallback(selectedPath);
+          toast('Görsel seçildi: ' + selectedPath);
+          AdminMedia.closePicker();
+        }
+      });
+    });
+  },
+
+  bindPickerModal() {
+    $('#img-tab-upload')?.addEventListener('click', () => this.switchPickerTab('upload'));
+    $('#img-tab-gallery')?.addEventListener('click', () => this.switchPickerTab('gallery'));
+    $('#img-tab-url')?.addEventListener('click', () => this.switchPickerTab('url'));
+
+    $('#img-modal-close')?.addEventListener('click', () => this.closePicker());
+    $('#img-modal-cancel')?.addEventListener('click', () => this.closePicker());
+    $('#img-modal-back')?.addEventListener('click', e => { if (e.target.id === 'img-modal-back') this.closePicker(); });
+
+    const dropzone = $('#img-dropzone'), fileInput = $('#img-file-input'), browseBtn = $('#img-browse-btn');
+    browseBtn?.addEventListener('click', () => fileInput?.click());
+    dropzone?.addEventListener('click', e => { if (e.target !== browseBtn) fileInput?.click(); });
+
+    dropzone?.addEventListener('dragover', e => { e.preventDefault(); dropzone.classList.add('dragover'); });
+    dropzone?.addEventListener('dragleave', () => dropzone.classList.remove('dragover'));
+    dropzone?.addEventListener('drop', e => {
+      e.preventDefault();
+      dropzone.classList.remove('dragover');
+      if (e.dataTransfer.files && e.dataTransfer.files[0]) this.handleFileSelection(e.dataTransfer.files[0]);
+    });
+
+    fileInput?.addEventListener('change', () => {
+      if (fileInput.files && fileInput.files[0]) this.handleFileSelection(fileInput.files[0]);
+    });
+
+    $('#gallery-search')?.addEventListener('input', () => this.renderGalleryGrid());
+    $('#gallery-filter')?.addEventListener('change', () => this.renderGalleryGrid());
+
+    $('#img-url-input')?.addEventListener('input', e => this.updateUrlPreview(e.target.value.trim()));
+
+    $('#img-modal-confirm')?.addEventListener('click', async () => {
+      if ($('#img-pane-upload').classList.contains('on')) {
+        if (!this.selectedFileDataUrl) return toast('Lütfen önce bir görsel dosyası seçin.', true);
+        const folder = $('#img-upload-folder').value || 'general';
+        const customName = ($('#img-custom-name').value || this.selectedFileName || '').trim();
+        try {
+          toast('Görsel sunucuya yükleniyor…');
+          const res = await fetch('/api/upload-image', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              fileName: customName,
+              folder,
+              dataUrl: this.selectedFileDataUrl
+            })
+          });
+          const data = await res.json();
+          if (data && data.ok) {
+            toast('Görsel yüklendi: ' + data.path);
+            await this.fetchImages();
+            if (this.currentCallback) this.currentCallback(data.path);
+            this.closePicker();
+          } else {
+            toast('Yükleme hatası: ' + ((data && data.error) || 'Bilinmeyen hata'), true);
+          }
+        } catch (e) {
+          toast('Yükleme başarısız: ' + e.message, true);
+        }
+      } else if ($('#img-pane-gallery').classList.contains('on')) {
+        const sel = $('#img-gallery-grid .gallery-item.selected');
+        if (!sel) return toast('Lütfen galeriden bir görsel seçin.', true);
+        if (this.currentCallback) this.currentCallback(sel.dataset.path);
+        this.closePicker();
+      } else if ($('#img-pane-url').classList.contains('on')) {
+        const url = ($('#img-url-input').value || '').trim();
+        if (!url) return toast('Lütfen bir görsel yolu veya URL girin.', true);
+        if (this.currentCallback) this.currentCallback(url);
+        this.closePicker();
+      }
+    });
+  },
+
+  handleFileSelection(file) {
+    if (!file || !file.type.startsWith('image/')) return toast('Lütfen geçerli bir görsel dosyası seçin.', true);
+    this.selectedFileName = file.name;
+    const reader = new FileReader();
+    reader.onload = e => {
+      this.selectedFileDataUrl = e.target.result;
+      const previewWrap = $('#img-upload-preview-wrap');
+      const previewImg = $('#img-upload-preview');
+      const nameEl = $('#img-upload-name');
+      const metaEl = $('#img-upload-meta');
+      const customNameInput = $('#img-custom-name');
+
+      if (previewWrap) previewWrap.style.display = 'flex';
+      if (previewImg) previewImg.src = this.selectedFileDataUrl;
+      if (nameEl) nameEl.textContent = file.name;
+      if (metaEl) metaEl.textContent = Math.round(file.size / 1024) + ' KB · ' + file.type;
+      if (customNameInput) customNameInput.value = file.name.replace(/\.[a-zA-Z0-9]+$/, '');
+    };
+    reader.readAsDataURL(file);
+  },
+
+  bindReplacerModal() {
+    $('#img-replace-close')?.addEventListener('click', () => this.closeReplacer());
+    $('#replace-cancel')?.addEventListener('click', () => this.closeReplacer());
+    $('#img-replace-back')?.addEventListener('click', e => { if (e.target.id === 'img-replace-back') this.closeReplacer(); });
+
+    const fileInput = $('#replace-file-input'), browseBtn = $('#replace-browse-btn'), dropzone = $('#replace-dropzone');
+    browseBtn?.addEventListener('click', () => fileInput?.click());
+    dropzone?.addEventListener('click', e => { if (e.target !== browseBtn) fileInput?.click(); });
+
+    dropzone?.addEventListener('dragover', e => { e.preventDefault(); dropzone.classList.add('dragover'); });
+    dropzone?.addEventListener('dragleave', () => dropzone.classList.remove('dragover'));
+    dropzone?.addEventListener('drop', e => {
+      e.preventDefault();
+      dropzone.classList.remove('dragover');
+      if (e.dataTransfer.files && e.dataTransfer.files[0]) this.handleReplaceFile(e.dataTransfer.files[0]);
+    });
+
+    fileInput?.addEventListener('change', () => {
+      if (fileInput.files && fileInput.files[0]) this.handleReplaceFile(fileInput.files[0]);
+    });
+
+    $('#replace-confirm')?.addEventListener('click', async () => {
+      if (!this.replaceDataUrl || !this.targetReplacePath) return;
+      try {
+        toast('Görsel değiştiriliyor…');
+        const res = await fetch('/api/replace-image', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            targetPath: this.targetReplacePath,
+            dataUrl: this.replaceDataUrl
+          })
+        });
+        const data = await res.json();
+        if (data && data.ok) {
+          toast('Görsel başarıyla güncellendi: ' + this.targetReplacePath);
+          await this.fetchImages();
+          const t = Date.now();
+          $$(`img[src^="${this.targetReplacePath}"]`).forEach(img => {
+            img.src = this.targetReplacePath + (this.targetReplacePath.includes('?') ? '&' : '?') + 't=' + t;
+          });
+          if (this.replaceCallback) this.replaceCallback(this.targetReplacePath);
+          this.closeReplacer();
+        } else {
+          toast('Değiştirme hatası: ' + ((data && data.error) || 'Bilinmeyen hata'), true);
+        }
+      } catch (e) {
+        toast('Görsel değiştirilemedi: ' + e.message, true);
+      }
+    });
+  },
+
+  handleReplaceFile(file) {
+    if (!file || !file.type.startsWith('image/')) return toast('Lütfen geçerli bir görsel dosyası seçin.', true);
+    const reader = new FileReader();
+    reader.onload = e => {
+      this.replaceDataUrl = e.target.result;
+      $('#replace-new-empty').style.display = 'none';
+      const newImg = $('#replace-new-img');
+      newImg.style.display = 'block';
+      newImg.src = this.replaceDataUrl;
+      $('#replace-new-name').textContent = file.name + ' (' + Math.round(file.size / 1024) + ' KB)';
+      $('#replace-confirm').disabled = false;
+    };
+    reader.readAsDataURL(file);
+  }
+};
+
+async function renderMedia() {
+  await AdminMedia.fetchImages();
+  const all = AdminMedia.cachedImages;
+  const q = (AdminMedia.searchQuery || '').toLowerCase().trim();
+  const cat = AdminMedia.activeCat || 'all';
+
+  const cats = [
+    ['all', 'Tüm Görseller', all.length],
+    ['characters', 'Karakterler', all.filter(x => x.category === 'characters').length],
+    ['kingdoms', 'Devletler', all.filter(x => x.category === 'kingdoms').length],
+    ['gods', 'Tanrılar', all.filter(x => x.category === 'gods').length],
+    ['maps', 'Haritalar', all.filter(x => x.category === 'maps').length],
+    ['banners', 'Sancaklar & Afiş', all.filter(x => x.category === 'banners').length],
+    ['chapters', 'Bölümler', all.filter(x => x.category === 'chapters').length],
+    ['general', 'Genel & Logolar', all.filter(x => x.category === 'general').length]
+  ];
+
+  const filtered = all.filter(img => {
+    if (cat !== 'all' && img.category !== cat) return false;
+    if (q && !img.name.toLowerCase().includes(q) && !img.path.toLowerCase().includes(q)) return false;
+    return true;
+  });
 
   $('#view').innerHTML =
-    '<div class="notice">Görseller depoya <code>assets/images/</code> altına elle yüklenir. ' +
-    'Bu ekran yolları doğrular; kırık yollar <strong>kırmızı</strong> işaretlenir. ' +
-    'GitHub Pages dosya adlarında <strong>büyük/küçük harf ayrımı</strong> yapar — ' +
-    '<code>.PNG</code> ile <code>.png</code> farklı dosyalardır.</div>' +
+    '<div class="notice">Stallhart evrenindeki tüm görseller burada listelenir. ' +
+    'Doğrudan <strong>"Görseli Değiştir"</strong> butonuyla mevcut dosyayı güncelleyebilir veya ' +
+    '<strong>"Yeni Görsel Yükle"</strong> ile projeye yeni dosya ekleyebilirsiniz.</div>' +
 
-    '<div class="panel"><div class="panel-t">Yol Denetimi</div>' +
-    '<div class="btn-row"><button class="abtn" id="check-media">Tüm yolları denetle</button>' +
-    '<span id="check-result" style="font-size:.8rem;color:var(--parchd);font-style:italic"></span></div></div>' +
+    '<div class="cm-tabs">' +
+    cats.map(c => '<button class="cm-tab' + (cat === c[0] ? ' on' : '') + '" data-media-cat="' + c[0] + '">' +
+      esc(c[1]) + '<b>(' + c[2] + ')</b></button>').join('') +
+    '</div>' +
 
-    '<div class="media-grid">' +
-    items.map((m, i) =>
-      '<div class="media-card">' +
-      '<img class="media-thumb" src="' + esc(m.path) + '" alt="" loading="lazy" data-mi="' + i + '">' +
-      '<div class="media-meta">' +
-      '<div class="media-name">' + esc(m.name) + '</div>' +
-      '<div class="media-path">' + esc(m.path) + '</div>' +
-      '<div class="media-status" id="ms-' + i + '">denetleniyor…</div>' +
-      '<div class="media-path" style="color:var(--goldd)">' + esc(m.use) + '</div>' +
-      '</div></div>').join('') +
+    '<div class="toolbar-row">' +
+    '<div class="search-box-a">' +
+    '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--goldd)" stroke-width="1.8" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="22" y2="22"/></svg>' +
+    '<input id="media-search" placeholder="Görsel dosya adı veya yol ara…" value="' + esc(AdminMedia.searchQuery) + '">' +
+    '</div>' +
+    '<button class="abtn primary" id="btn-media-upload">📤 Yeni Görsel Yükle</button>' +
+    '<button class="abtn sm" id="btn-media-scan">🔄 Yeniden Tara</button>' +
+    '<span class="count-a">' + filtered.length + ' / ' + all.length + ' görsel</span>' +
+    '</div>' +
+
+    (filtered.length
+      ? '<div class="media-hub-grid">' +
+        filtered.map(img => `
+          <div class="media-hub-card">
+            <div class="media-hub-img-wrap">
+              <img class="media-hub-thumb" src="${esc(img.path)}" alt="${esc(img.name)}" loading="lazy" onerror="this.style.opacity=.2">
+              <span class="media-hub-badge">${esc(img.ext || img.category)}</span>
+            </div>
+            <div class="media-hub-meta">
+              <div class="media-hub-title" title="${esc(img.name)}">${esc(img.name)}</div>
+              <div class="media-hub-path" title="${esc(img.path)}">${esc(img.path)}</div>
+              <div class="media-hub-details">
+                <span>${img.size ? Math.round(img.size / 1024) + ' KB' : '—'}</span>
+                <span style="color:var(--goldd)">${esc(img.category)}</span>
+              </div>
+              <div class="media-hub-acts">
+                <button class="abtn sm primary" data-act-replace="${esc(img.path)}">🔄 Görseli Değiştir</button>
+                <button class="abtn sm" data-act-copy="${esc(img.path)}">📋 Yolu Kopyala</button>
+              </div>
+            </div>
+          </div>
+        `).join('') +
+        '</div>'
+      : '<div class="empty-a">Aramaya uygun görsel bulunamadı.</div>');
+
+  // Event bindings
+  $$('#view [data-media-cat]').forEach(b => b.addEventListener('click', () => {
+    AdminMedia.activeCat = b.dataset.mediaCat;
+    renderMedia();
+  }));
+
+  $('#media-search')?.addEventListener('input', e => {
+    AdminMedia.searchQuery = e.target.value.trim();
+    renderMedia();
+  });
+
+  $('#btn-media-upload')?.addEventListener('click', () => {
+    AdminMedia.openPicker({
+      folder: cat === 'all' ? 'general' : cat,
+      onSelect: () => renderMedia()
+    });
+  });
+
+  $('#btn-media-scan')?.addEventListener('click', async () => {
+    toast('Görseller yeniden taranıyor…');
+    await AdminMedia.fetchImages();
+    renderMedia();
+    toast('Görsel listesi güncellendi.');
+  });
+
+  $$('#view [data-act-replace]').forEach(b => b.addEventListener('click', () => {
+    AdminMedia.openReplacer(b.dataset.actReplace, () => renderMedia());
+  }));
+
+  $$('#view [data-act-copy]').forEach(b => b.addEventListener('click', () => {
+    navigator.clipboard.writeText(b.dataset.actCopy);
+    toast('Görsel yolu panoya kopyalandı.');
+  }));
+}
+
+/* ═══════════════════════════════════════════════════════════
+   8) İMPARATORLUK HİYERARŞİSİ (hierarchy.json)
+   ═══════════════════════════════════════════════════════════ */
+const HY_BRANCHES = [
+  ['all', 'Tüm Makamlar', '✦'],
+  ['supreme', 'Yüce Hükümranlık', '👑'],
+  ['political', 'Siyasi Divan (Veron)', '🏛️'],
+  ['military', 'Askeri Erkan (Gharion)', '⚔️'],
+  ['religious', 'Ruhani & Mabed', '🕯️']
+];
+
+let hyActiveBranch = 'all';
+
+function hierarchyList() {
+  const h = DB['hierarchy.json'] || {};
+  return Object.keys(h).map(id => Object.assign({ id }, h[id]));
+}
+
+function renderHierarchyAdmin() {
+  const all = hierarchyList();
+  const q = (searchQ.hierarchy || '').toLowerCase().trim();
+  const rows = all.filter(item => {
+    if (hyActiveBranch !== 'all' && item.branch !== hyActiveBranch) return false;
+    if (q) {
+      const title = (biVal(item.title) || '').toLowerCase();
+      const term = (item.term || '').toLowerCase();
+      const motto = (item.motto || '').toLowerCase();
+      const holder = (biVal(item.current && item.current.name) || '').toLowerCase();
+      return title.includes(q) || term.includes(q) || motto.includes(q) || holder.includes(q);
+    }
+    return true;
+  });
+
+  $('#view').innerHTML =
+    '<div class="notice">Stallhart İmparatorluğu\'nun Kutsal Kan Doktrini, Siyasi Divan, ' +
+    'Askeri Komuta ve Dini Mabed makamları. Makam yetkilerini (ferman maddeleri), ' +
+    'mevcut görev sahiplerini ve selefler silsilesini buradan yönetebilirsiniz. ' +
+    'Değişiklikler <code>hiyerarsi.html</code> sayfasına ve ferman kütüğüne anında yansır.</div>' +
+
+    '<div class="hy-branch-tabs">' +
+    HY_BRANCHES.map(b => `
+      <button class="hy-branch-tab${hyActiveBranch === b[0] ? ' on' : ''}" data-hy-branch="${b[0]}">
+        <span>${b[2]}</span> ${esc(b[1])}
+      </button>
+    `).join('') +
+    '</div>' +
+
+    '<div class="toolbar-row">' +
+    '<div class="search-box-a">' +
+    '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--goldd)" stroke-width="1.8" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="22" y2="22"/></svg>' +
+    '<input id="hy-search" placeholder="Makam unvanı, şiar veya görev sahibi ara…" value="' + esc(searchQ.hierarchy) + '">' +
+    '</div>' +
+    '<button class="abtn primary" id="btn-hy-add">+ Yeni Makam Ekle</button>' +
+    '<span class="count-a">' + rows.length + ' / ' + all.length + ' makam</span>' +
+    '</div>' +
+
+    (rows.length
+      ? '<div class="hy-admin-list">' +
+        rows.map(item => {
+          const cur = item.current || {};
+          const curName = biVal(cur.name) || 'Makam Boşta';
+          const curEpithet = biVal(cur.epithet);
+          const curImage = cur.image || 'assets/images/characters/zeandor_stallhart01-240w.webp';
+          const branchLabel = (HY_BRANCHES.find(b => b[0] === item.branch) || [, item.branch])[1];
+          const powersCount = ((item.powers && (item.powers.tr || item.powers.en)) || []).length;
+          const predsCount = (item.predecessors || []).length;
+
+          return `
+            <div class="hy-admin-card branch-${esc(item.branch || 'political')}">
+              <img class="hy-admin-thumb" src="${esc(curImage)}" alt="" onerror="this.src='assets/images/logo-stallhart-240w.webp'">
+              <div class="hy-admin-info">
+                <div class="hy-admin-title">${esc(biVal(item.title))} <span class="pill ${esc(item.branch)}">${esc(branchLabel)}</span></div>
+                <div class="hy-admin-holder">👤 <strong>${esc(curName)}</strong> ${curEpithet ? `· <em>${esc(curEpithet)}</em>` : ''} <span style="color:var(--parchd);font-size:.74rem">(${esc(cur.era || 'KS günümüz')})</span></div>
+                <div class="hy-admin-sub">📜 “${esc(item.motto || item.term || '')}” · <span style="color:var(--goldd)">${powersCount} Ferman Yetkisi</span> · <span style="color:var(--parchd)">${predsCount} Tarihsel Selef</span></div>
+              </div>
+              <div class="cell-acts">
+                <a class="abtn sm" href="hiyerarsi.html?office=${encodeURIComponent(item.id)}" target="_blank" rel="noopener">Sayfada Gör ↗</a>
+                <button class="abtn sm primary" data-hy-edit="${esc(item.id)}">Düzenle</button>
+                <button class="abtn sm danger" data-hy-del="${esc(item.id)}">Sil</button>
+              </div>
+            </div>
+          `;
+        }).join('') +
+        '</div>'
+      : '<div class="empty-a">Makam kaydı bulunamadı.</div>');
+
+  $$('#view [data-hy-branch]').forEach(b => b.addEventListener('click', () => {
+    hyActiveBranch = b.dataset.hyBranch;
+    renderHierarchyAdmin();
+  }));
+
+  $('#hy-search')?.addEventListener('input', e => {
+    searchQ.hierarchy = e.target.value.trim();
+    renderHierarchyAdmin();
+  });
+
+  $('#btn-hy-add')?.addEventListener('click', () => openHierarchyEditor(null));
+}
+
+function openHierarchyEditor(id) {
+  const isNew = id === null;
+  const raw = isNew ? null : (DB['hierarchy.json'] || {})[id];
+  const item = isNew ? {
+    id: '',
+    branch: 'political',
+    title: bi(),
+    term: '',
+    motto: '',
+    subtitle: bi(),
+    description: bi(),
+    insignia: bi(),
+    powers: { tr: [], en: [] },
+    current: {
+      name: bi(),
+      epithet: bi(),
+      house: 'stallhart',
+      charId: '',
+      era: 'KS 1480 — günümüz',
+      status: bi('Makamında', 'Active on Duty'),
+      image: '',
+      bio: bi()
+    },
+    predecessors: []
+  } : JSON.parse(JSON.stringify(raw));
+
+  editing = { kind: 'hierarchy', id };
+
+  const houseOptions = [['stallhart', 'İmparatorluk Hanedanı (Stallhart)'], ['solgar', 'Solgar Hanesi'], ['arhan', 'Arhan Hanesi'], ['selya', 'Selya Hanesi'], ['other', 'Bağımsız / Diğer']];
+  const branchOptions = [
+    ['supreme', 'Yüce Hükümranlık (İmparatorluk)'],
+    ['political', 'Siyasi Divan (Veron)'],
+    ['military', 'Askeri Erkan (Gharion)'],
+    ['religious', 'Ruhani Teşkilat (Mabed)']
+  ];
+
+  const secH = t => '<div class="f-sec" style="font-family:var(--font-display);font-size:.9rem;color:var(--gold);margin:1.4rem 0 .6rem;padding-bottom:.3rem;border-bottom:1px solid var(--border)">' + esc(t) + '</div>';
+
+  const cur = item.current || {};
+  const powersTr = (item.powers && item.powers.tr) || [];
+  const powersEn = (item.powers && item.powers.en) || [];
+
+  drawer(isNew ? 'Yeni İmparatorluk Makamı' : 'Makamı Düzenle: ' + esc(biVal(item.title)),
+    secH('1. Makam Bilgileri') +
+    (isNew ? textField('Makam Kimliği (id)', 'hy-id', '', 'Örn: solgar_chancellor (İngilizce küçük harf ve altçizgi)') : '') +
+    selectField('Makam Branşı', 'hy-branch', branchOptions, item.branch) +
+    biField('Makam Unvanı', 'hy-title', item.title, true) +
+    textField('Ortak Lisan Makam Terimi (term)', 'hy-term', item.term, 'Örn: Veron / Anxes / Gharion') +
+    textField('Makam Şiarı (Motto)', 'hy-motto', item.motto, 'Örn: Xes ovas. Edor Xesed!') +
+    biField('Alt Başlık / Doktrin', 'hy-subtitle', item.subtitle) +
+    biField('Görev ve Makam Tanımı', 'hy-description', item.description, false, true) +
+    biField('Resmi Nişan & Mührü', 'hy-insignia', item.insignia) +
+
+    secH('2. Ferman Yetkileri (Powers)') +
+    '<div class="f-hint" style="margin-bottom:.6rem">Her satıra bir yetki maddesi yazın.</div>' +
+    '<div class="f-row"><label class="f-label">Türkçe Yetkiler (Her satırda bir madde)</label>' +
+    '<textarea class="f-area" id="f-hy-powers-tr" style="min-height:100px" placeholder="Ferman çıkarma yetkisi\nOrduyu teftiş etme yetkisi">' + esc(powersTr.join('\n')) + '</textarea></div>' +
+    '<div class="f-row"><label class="f-label">English Powers (One per line)</label>' +
+    '<textarea class="f-area" id="f-hy-powers-en" style="min-height:100px" placeholder="Authority to issue decrees\nInspection of imperial legions">' + esc(powersEn.join('\n')) + '</textarea></div>' +
+
+    secH('3. Mevcut Görev Sahibi (Current Holder)') +
+    biField('Kişi Adı', 'hy-cur-name', cur.name, true) +
+    biField('Lakap / Sıfat', 'hy-cur-epithet', cur.epithet) +
+    '<div class="f-row half">' +
+      selectField('Bağlı Hane', 'hy-cur-house', houseOptions, cur.house) +
+      textField('Karakter Arşiv Kimliği (charId)', 'hy-cur-charId', cur.charId, 'Örn: zeandor (Boş bırakılabilir)') +
+    '</div>' +
+    '<div class="f-row half">' +
+      textField('Hüküm / Dönem (era)', 'hy-cur-era', cur.era, 'Örn: KS 1480 — günümüz') +
+      biField('Makam Durumu', 'hy-cur-status', cur.status) +
+    '</div>' +
+    imageField('Mevcut Görev Sahibi Portresi', 'hy-cur-image', cur.image, 'Karakter portresi veya mühür görseli.', 'characters') +
+    biField('Biyografi ve İcraatlar', 'hy-cur-bio', cur.bio, false, true),
+    () => {
+      const officeId = isNew ? slugify($('#f-hy-id').value.trim()) : id;
+      if (!officeId) return 'Makam kimliği zorunludur.';
+
+      const title = readBi('hy-title');
+      if (isEmptyBi(title)) return 'Makam unvanı zorunludur.';
+
+      const pTr = ($('#f-hy-powers-tr').value || '').split('\n').map(s => s.trim()).filter(Boolean);
+      const pEn = ($('#f-hy-powers-en').value || '').split('\n').map(s => s.trim()).filter(Boolean);
+
+      const rec = Object.assign({}, item, {
+        id: officeId,
+        branch: $('#f-hy-branch').value,
+        title,
+        term: $('#f-hy-term').value.trim(),
+        motto: $('#f-hy-motto').value.trim(),
+        subtitle: readBi('hy-subtitle'),
+        description: readBi('hy-description'),
+        insignia: readBi('hy-insignia'),
+        powers: { tr: pTr, en: pEn },
+        current: {
+          name: readBi('hy-cur-name'),
+          epithet: readBi('hy-cur-epithet'),
+          house: $('#f-hy-cur-house').value,
+          charId: $('#f-hy-cur-charId').value.trim(),
+          era: $('#f-hy-cur-era').value.trim(),
+          status: readBi('hy-cur-status'),
+          image: $('#f-hy-cur-image').value.trim(),
+          bio: readBi('hy-cur-bio')
+        }
+      });
+
+      if (!DB['hierarchy.json']) DB['hierarchy.json'] = {};
+      DB['hierarchy.json'][officeId] = rec;
+      if (!save('hierarchy.json')) return 'Kaydedilemedi.';
+      toast(isNew ? 'Makam eklendi.' : 'Makam güncellendi.');
+      renderHierarchyAdmin();
+      return null;
+    }
+  );
+}
+
+/* ═══════════════════════════════════════════════════════════
+   9) SAYFALAR & SİTE CMS (pages.json)
+   ═══════════════════════════════════════════════════════════ */
+function pagesList() {
+  const p = (DB['pages.json'] && DB['pages.json'].pages) || {};
+  return Object.keys(p).map(id => Object.assign({ id }, p[id]));
+}
+
+function renderPagesAdmin() {
+  const pages = pagesList();
+
+  $('#view').innerHTML =
+    '<div class="notice">Stallhart web sitesindeki tüm sayfaların meta başlıkları, açıklamaları, ' +
+    'hero sloganları, afişleri ve duyuru fermanları. Düzenlemek istediğiniz sayfanın kartındaki ' +
+    '<strong>"Düzenle"</strong> butonuna tıklayın.</div>' +
+
+    '<div class="pages-cms-grid">' +
+    pages.map(p => {
+      const banner = p.bannerImage || (p.hero && p.hero.bannerImage) || 'assets/images/SIYASI_HARITA_onizleme.jpg';
+      return `
+        <div class="page-cms-card">
+          <div class="page-cms-banner">
+            <img src="${esc(banner)}" alt="" onerror="this.src='assets/images/SIYASI_HARITA_onizleme.jpg'">
+            <span class="page-cms-banner-badge">${esc(p.path)}</span>
+          </div>
+          <div class="page-cms-body">
+            <div class="page-cms-title">${esc(p.name)}</div>
+            <div style="font-size:.78rem;color:var(--goldd);margin-bottom:.4rem;font-style:italic">${esc(biVal(p.title))}</div>
+            <div class="page-cms-desc">${esc(biVal(p.description))}</div>
+            <div class="page-cms-foot">
+              <a class="abtn sm" href="${esc(p.path)}" target="_blank" rel="noopener">Sayfayı Aç ↗</a>
+              <button class="abtn sm primary" data-page-edit="${esc(p.id)}">Düzenle</button>
+            </div>
+          </div>
+        </div>
+      `;
+    }).join('') +
     '</div>';
+}
 
-  /* Her görselin gerçekten yüklenip yüklenmediğini işaretle */
-  $$('#view .media-thumb').forEach(img => {
-    const st = $('#ms-' + img.dataset.mi);
-    const mark = okFlag => {
-      if (!st) return;
-      st.className = 'media-status ' + (okFlag ? 'ok' : 'bad');
-      st.textContent = okFlag ? '✓ yol geçerli' : '✕ dosya bulunamadı';
-      if (!okFlag) img.style.visibility = 'hidden';
-    };
-    if (img.complete) mark(img.naturalWidth > 0);
-    img.addEventListener('load', () => mark(true));
-    img.addEventListener('error', () => mark(false));
-  });
+function openPageEditor(pageKey) {
+  const pagesObj = (DB['pages.json'] && DB['pages.json'].pages) || {};
+  const p = pagesObj[pageKey] ? JSON.parse(JSON.stringify(pagesObj[pageKey])) : {
+    id: pageKey,
+    name: pageKey,
+    path: pageKey + '.html',
+    title: bi(),
+    description: bi(),
+    bannerImage: ''
+  };
 
-  const btn = $('#check-media');
-  if (btn) btn.addEventListener('click', () => {
-    const bad = $$('#view .media-status.bad').length;
-    $('#check-result').textContent = bad
-      ? bad + ' görsel bulunamadı.'
-      : 'Tüm görsel yolları geçerli.';
-  });
+  editing = { kind: 'page', id: pageKey };
+
+  const secH = t => '<div class="f-sec" style="font-family:var(--font-display);font-size:.9rem;color:var(--gold);margin:1.4rem 0 .6rem;padding-bottom:.3rem;border-bottom:1px solid var(--border)">' + esc(t) + '</div>';
+
+  let extraHTML = '';
+  if (pageKey === 'index') {
+    const hero = p.hero || {};
+    const ann = p.announcement || {};
+    extraHTML =
+      secH('Ana Sayfa Hero Ayarları') +
+      biField('Hero Eyebrow (Üst Başlık)', 'pg-eyebrow', hero.eyebrow) +
+      biField('Hero Alıntısı / Epigraf', 'pg-quote', hero.quote, false, true) +
+      textField('Alıntı Sahibi / Yazar', 'pg-author', hero.author) +
+      imageField('Hero Logosu', 'pg-logo', hero.logoImage, 'Hero bölümündeki büyük arma logosu.', 'general') +
+
+      secH('Öne Çıkan Ferman / Duyuru Şeridi') +
+      selectField('Duyuru Aktif mi?', 'pg-ann-active', [['1', 'Aktif (Görünür)'], ['0', 'Pasif (Gizli)']], ann.active ? '1' : '0') +
+      biField('Duyuru Rozeti', 'pg-ann-badge', ann.badge) +
+      biField('Duyuru Başlığı', 'pg-ann-title', ann.title) +
+      biField('Duyuru Metni', 'pg-ann-text', ann.text, false, true) +
+      textField('Duyuru Bağlantısı (URL)', 'pg-ann-link', ann.link, 'Örn: hiyerarsi.html');
+  }
+
+  drawer('Sayfa Ayarlarını Düzenle: ' + esc(p.name),
+    secH('Temel Meta Bilgileri') +
+    textField('Sayfa Adı (İç Etiket)', 'pg-name', p.name, 'Panelde görünen başlık.') +
+    biField('Sayfa Başlığı (Title)', 'pg-title', p.title, true) +
+    biField('Meta Açıklaması (Description)', 'pg-desc', p.description, false, true) +
+    imageField('Sayfa Banner / Arka Plan Görseli', 'pg-banner', p.bannerImage, 'Üst başlık ve paylaşım kartında kullanılır.', 'banners') +
+    extraHTML,
+    () => {
+      const title = readBi('pg-title');
+      if (isEmptyBi(title)) return 'Sayfa başlığı zorunludur.';
+
+      const updated = Object.assign({}, p, {
+        name: $('#f-pg-name').value.trim() || p.name,
+        title,
+        description: readBi('pg-desc'),
+        bannerImage: $('#f-pg-banner').value.trim()
+      });
+
+      if (pageKey === 'index') {
+        updated.hero = Object.assign({}, p.hero, {
+          eyebrow: readBi('pg-eyebrow'),
+          quote: readBi('pg-quote'),
+          author: $('#f-pg-author').value.trim(),
+          logoImage: $('#f-pg-logo').value.trim()
+        });
+        updated.announcement = {
+          active: $('#f-pg-ann-active').value === '1',
+          badge: readBi('pg-ann-badge'),
+          title: readBi('pg-ann-title'),
+          text: readBi('pg-ann-text'),
+          link: $('#f-pg-ann-link').value.trim()
+        };
+      }
+
+      if (!DB['pages.json']) DB['pages.json'] = { pages: {} };
+      if (!DB['pages.json'].pages) DB['pages.json'].pages = {};
+      DB['pages.json'].pages[pageKey] = updated;
+
+      if (!save('pages.json')) return 'Kaydedilemedi.';
+      toast('Sayfa ayarları güncellendi.');
+      renderPagesAdmin();
+      return null;
+    }
+  );
 }
 
 /* ═══════════════════════════════════════════════════════════
@@ -2379,13 +3168,104 @@ function selectField(label, key, options, selected) {
     '</select></div>';
 }
 
-function imageField(val) {
-  return '<div class="f-row"><label class="f-label" for="f-image">Portre Görseli (yol)</label>' +
-    '<input class="f-input" id="f-image" value="' + esc(val || '') + '" ' +
-    'placeholder="assets/images/characters/ORNEK.jpg">' +
-    '<div class="f-hint">Dosyayı depoya <code>assets/images/characters/</code> altına yükleyin, ' +
-    'sonra yolunu buraya yazın. Boş bırakılırsa yer tutucu simge görünür.</div>' +
-    '<div id="img-preview" style="display:none"></div></div>';
+function imageField(label, key, val, hint, folder) {
+  if (arguments.length === 1 && typeof label === 'string' && !key) {
+    val = label;
+    key = 'image';
+    label = 'Portre Görseli';
+    folder = 'characters';
+  }
+  key = key || 'image';
+  label = label || 'Görsel';
+  folder = folder || 'general';
+  val = val || '';
+  const hasVal = Boolean(val);
+
+  return '<div class="f-row">' +
+    '<label class="f-label" for="f-' + esc(key) + '">' + esc(label) + '</label>' +
+    '<div class="img-field-group" id="ifg-' + esc(key) + '">' +
+      '<div class="img-field-preview-box">' +
+        (hasVal
+          ? '<img class="img-field-preview-thumb" id="ifp-' + esc(key) + '" src="' + esc(val) + '" alt="" onerror="this.style.opacity=.25">'
+          : '<div class="img-field-preview-empty" id="ifp-' + esc(key) + '">Görsel Yok</div>') +
+      '</div>' +
+      '<div class="img-field-inputs">' +
+        '<input class="f-input" id="f-' + esc(key) + '" value="' + esc(val) + '" placeholder="assets/images/' + esc(folder) + '/...">' +
+        '<div class="img-field-actions">' +
+          '<button class="abtn primary sm" type="button" data-pick-img="' + esc(key) + '" data-folder="' + esc(folder) + '">📁 Görsel Seç / Yükle</button>' +
+          '<button class="abtn sm" type="button" data-replace-img="' + esc(key) + '" style="' + (hasVal ? '' : 'display:none') + '">🔄 Dosyayı Değiştir</button>' +
+          '<button class="abtn sm danger" type="button" data-clear-img="' + esc(key) + '" style="' + (hasVal ? '' : 'display:none') + '">✕ Kaldır</button>' +
+        '</div>' +
+        (hint ? '<div class="f-hint">' + esc(hint) + '</div>' : '<div class="f-hint">Bilgisayarınızdan yükleyin, galeriden seçin veya yol yazın.</div>') +
+      '</div>' +
+    '</div></div>';
+}
+
+function bindImageFieldEvents() {
+  const body = $('#drawer-body');
+  if (!body) return;
+
+  function updateFieldPreview(k, path) {
+    const prev = $('#ifp-' + k);
+    const grp = $('#ifg-' + k);
+    if (!prev || !grp) return;
+    const repBtn = grp.querySelector('[data-replace-img]');
+    const clrBtn = grp.querySelector('[data-clear-img]');
+    if (path) {
+      prev.outerHTML = '<img class="img-field-preview-thumb" id="ifp-' + esc(k) + '" src="' + esc(path) + '" alt="" onerror="this.style.opacity=.25">';
+      if (repBtn) repBtn.style.display = '';
+      if (clrBtn) clrBtn.style.display = '';
+    } else {
+      prev.outerHTML = '<div class="img-field-preview-empty" id="ifp-' + esc(k) + '">Görsel Yok</div>';
+      if (repBtn) repBtn.style.display = 'none';
+      if (clrBtn) clrBtn.style.display = 'none';
+    }
+  }
+
+  body.querySelectorAll('[data-pick-img]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const k = btn.dataset.pickImg;
+      const folder = btn.dataset.folder || 'general';
+      const input = $('#f-' + k);
+      AdminMedia.openPicker({
+        current: input ? input.value : '',
+        folder: folder,
+        onSelect: (newPath) => {
+          if (input) {
+            input.value = newPath;
+            updateFieldPreview(k, newPath);
+          }
+        }
+      });
+    });
+  });
+
+  body.querySelectorAll('[data-replace-img]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const k = btn.dataset.replaceImg;
+      const input = $('#f-' + k);
+      if (!input || !input.value) return toast('Değiştirilecek görsel seçili değil.', true);
+      AdminMedia.openReplacer(input.value, (newPath) => {
+        updateFieldPreview(k, newPath + (newPath.includes('?') ? '&' : '?') + 't=' + Date.now());
+      });
+    });
+  });
+
+  body.querySelectorAll('[data-clear-img]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const k = btn.dataset.clearImg;
+      const input = $('#f-' + k);
+      if (input) {
+        input.value = '';
+        updateFieldPreview(k, '');
+      }
+    });
+  });
+
+  body.querySelectorAll('.img-field-group input.f-input').forEach(input => {
+    const k = input.id.replace('f-', '');
+    input.addEventListener('input', () => updateFieldPreview(k, input.value.trim()));
+  });
 }
 
 function multiField(label, key, chars, selectedIds) {
@@ -2447,6 +3327,9 @@ function drawer(title, bodyHTML, onSave) {
   $$('#drawer-body .tag-opt').forEach(b => {
     b.addEventListener('click', () => b.classList.toggle('on'));
   });
+
+  /* Görsel alanlarını otomatik bağla */
+  bindImageFieldEvents();
 
   const first = $('#drawer-body input, #drawer-body textarea');
   if (first) setTimeout(() => first.focus(), 60);
@@ -2578,11 +3461,13 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   teBindDrag();
+  AdminMedia.init();
+  $('#btn-sync-all')?.addEventListener('click', syncAllToServer);
   initLogin();
 });
 
-/* v16: topluluk modülleri (öneriler, yorum moderasyonu, kullanıcılar, yamalar)
-   admin-community.js üzerinden bu çekirdeğe bağlanır. */
-window.AdminCore = { DB, VIEWS, FILES, $, $$, toast, confirmBox, save, go, download, esc, biVal, renderSidebarState, current: () => currentView };
+/* v16 & v18: topluluk modülleri ve medya yöneticisi */
+window.AdminCore = { DB, VIEWS, FILES, $, $$, toast, confirmBox, save, go, download, esc, biVal, renderSidebarState, current: () => currentView, AdminMedia, syncAllToServer };
+window.AdminMedia = AdminMedia;
 
 })();
