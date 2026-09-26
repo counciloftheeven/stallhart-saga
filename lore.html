@@ -1303,7 +1303,7 @@ function renderGeography() {
         </div>
         ${rivers.map(r => `
           <div class="geo-feat-item">
-            <div class="geo-feat-name">${esc(r.name)}</div>
+            <div class="geo-feat-name">${esc(t(r.name))}</div>
             <div class="geo-feat-desc">${esc(t(r.desc))}</div>
           </div>
         `).join('')}
@@ -1316,7 +1316,7 @@ function renderGeography() {
         </div>
         ${mountains.map(m => `
           <div class="geo-feat-item">
-            <div class="geo-feat-name">${esc(m.name)}</div>
+            <div class="geo-feat-name">${esc(t(m.name))}</div>
             <div class="geo-feat-desc">${esc(t(m.desc))}</div>
           </div>
         `).join('')}
@@ -1329,7 +1329,7 @@ function renderGeography() {
         </div>
         ${forests.map(f => `
           <div class="geo-feat-item">
-            <div class="geo-feat-name">${esc(f.name)}</div>
+            <div class="geo-feat-name">${esc(t(f.name))}</div>
             <div class="geo-feat-desc">${esc(t(f.desc))}</div>
           </div>
         `).join('')}
@@ -1781,6 +1781,74 @@ function renderLanguage() {
   }
 
   const shown = filtered.slice(0, DIL_LIMIT);
+  function formatPos(pos) {
+    if (!pos || l === 'tr') return pos || '';
+    let s = pos;
+    const map = [
+      ['Özel İsim (Kadın Akraba Unvanı)', 'Proper Noun (Female Kinship Title)'],
+      ['Özel İsim (Yerleşke)', 'Proper Noun (Settlement)'],
+      ['Özel İsim (Şehir)', 'Proper Noun (City)'],
+      ['Özel İsim (Köy)', 'Proper Noun (Village)'],
+      ['Özel İsim (Kale)', 'Proper Noun (Fortress)'],
+      ['Özel İsim (Nehir)', 'Proper Noun (River)'],
+      ['Özel İsim (Dağ)', 'Proper Noun (Mountain)'],
+      ['Özel İsim (Orman)', 'Proper Noun (Forest)'],
+      ['Özel İsim (Göl/Deniz)', 'Proper Noun (Lake/Sea)'],
+      ['Özel İsim (Deniz)', 'Proper Noun (Sea)'],
+      ['Özel İsim (Çöl)', 'Proper Noun (Desert)'],
+      ['Özel İsim (Geçit)', 'Proper Noun (Pass)'],
+      ['Özel İsim', 'Proper Noun'],
+      ['Bileşik İsim (Silah/Yaratık Adı)', 'Compound Noun (Weapon/Creature)'],
+      ['Bileşik İsim (Yaratık/Unvan)', 'Compound Noun (Creature/Title)'],
+      ['Bileşik İsim (Yaratık)', 'Compound Noun (Creature)'],
+      ['Bileşik İsim (Silah/Hane)', 'Compound Noun (Weapon/House)'],
+      ['Bileşik İsim (Hane/Silah)', 'Compound Noun (House/Weapon)'],
+      ['Bileşik İsim (Soy Adı/Silah)', 'Compound Noun (Surname/Weapon)'],
+      ['Bileşik İsim (Hane/Soy Adı)', 'Compound Noun (House/Surname)'],
+      ['Bileşik İsim', 'Compound Noun'],
+      ['Köken Kök', 'Root Stem'],
+      ['Kök', 'Root'],
+      ['Selamlama Kalıbı', 'Greeting Phrase'],
+      ['Dua Kalıbı', 'Prayer Phrase'],
+      ['Dua/Veda Kalıbı', 'Prayer / Farewell Phrase'],
+      ['Teşekkür Kalıbı', 'Thanking Phrase'],
+      ['Cümle Kalıbı', 'Sentence Pattern'],
+      ['Fiil Kalıbı', 'Verb Pattern'],
+      ['Çoğul İsim', 'Plural Noun'],
+      ['İsim (Dini/Teolojik)', 'Noun (Theological)'],
+      ['İsim (Dini)', 'Noun (Religious)'],
+      ['İsim (Askeri)', 'Noun (Military)'],
+      ['İsim (Silah)', 'Noun (Weapon)'],
+      ['İsim (Unvan)', 'Noun (Title)'],
+      ['İsim (Renk)', 'Noun (Color)'],
+      ['İsim (Nesne)', 'Noun (Object)'],
+      ['İsim (Gündelik Eşya)', 'Noun (Everyday Item)'],
+      ['İsim (Mimari)', 'Noun (Architecture)'],
+      ['İsim (Soyut)', 'Noun (Abstract)'],
+      ['İsim / Unvan', 'Noun / Title'],
+      ['İsim / Sıfat', 'Noun / Adjective'],
+      ['Sıfat/İsim', 'Adjective / Noun'],
+      ['İsim', 'Noun'],
+      ['Fiil (Geçmiş)', 'Verb (Past)'],
+      ['Fiil (Gelecek)', 'Verb (Future)'],
+      ['Fiil (Bileşik)', 'Compound Verb'],
+      ['Fiil (Temel)', 'Base Verb'],
+      ['Fiil', 'Verb'],
+      ['Sıfat', 'Adjective'],
+      ['Zamir', 'Pronoun'],
+      ['Zaman Zarfı', 'Time Adverb'],
+      ['Zarf', 'Adverb'],
+      ['Bağlaç', 'Conjunction'],
+      ['Edat', 'Preposition'],
+      ['Ünlem', 'Interjection'],
+      ['Bileşik Unvan', 'Compound Title'],
+      ['Unvan', 'Title']
+    ];
+    for (const [trTerm, enTerm] of map) {
+      if (s.includes(trTerm)) s = s.replace(trTerm, enTerm);
+    }
+    return s;
+  }
   const grid = document.getElementById('dil-grid');
   if (grid) {
     if (!shown.length) {
@@ -1790,7 +1858,7 @@ function renderLanguage() {
         <div class="word-card lc">
           <div class="word-card-top">
             <span class="word-term">${esc(d.word)}</span>
-            <span class="word-pos">${esc(d.pos || '')}</span>
+            <span class="word-pos">${esc(formatPos(d.pos))}</span>
           </div>
           <div class="word-meaning">${esc(d.meaning)}</div>
           ${d.example ? `<div class="word-example">"${esc(d.example)}"</div>` : ''}

@@ -53,35 +53,50 @@
   },
   "rivers": [
     {
-      "name": "Niron Nehri",
+      "name": {
+        "tr": "Niron Nehri",
+        "en": "Niron River"
+      },
       "desc": {
         "tr": "Z'ela'nın kuzeyinden doğar, Başsancak'ın batı sınırı boyunca güneye akar, Garall'da Gümüş Yol'a dökülür; Arava şehrinin batısından geçer.",
         "en": "Rises in the north of Z'ela, flows south along the western border of Başsancak and empties into the Silver Way at Garall; passes west of the city of Arava."
       }
     },
     {
-      "name": "Kızılçay Nehri",
+      "name": {
+        "tr": "Kızılçay Nehri",
+        "en": "Kizilchay River"
+      },
       "desc": {
         "tr": "Başsancak'ın kuzey dağlarından başlar, Harna şehrinden geçer, Niron Nehri'ne dökülür.",
         "en": "Begins in the northern mountains of Başsancak, passes through the city of Harna and empties into the Niron River."
       }
     },
     {
-      "name": "Yevrass Nehri",
+      "name": {
+        "tr": "Yevrass Nehri",
+        "en": "Yevrass River"
+      },
       "desc": {
         "tr": "Solgar'ın güneyinde doğar, Selya'ya akar, Gümüş Yol'a dökülür.",
         "en": "Rises south of Solgar, flows to Selya and empties into the Silver Way."
       }
     },
     {
-      "name": "Kamtel Nehri",
+      "name": {
+        "tr": "Kamtel Nehri",
+        "en": "Kamtel River"
+      },
       "desc": {
         "tr": "Onneva'nın kuzeyinden (Ziron civarı) doğar, güneydoğuya akar.",
         "en": "Rises in the north of Onneva (around Ziron) and flows southeast."
       }
     },
     {
-      "name": "Cebra Nehri",
+      "name": {
+        "tr": "Cebra Nehri",
+        "en": "Cebra River"
+      },
       "desc": {
         "tr": "Kragva şehrinden başlar, Niron Nehri'ne dökülür.",
         "en": "Begins at the city of Kragva and empties into the Niron River."
@@ -90,21 +105,30 @@
   ],
   "mountains": [
     {
-      "name": "Deli Dağı, Kloga Dağı",
+      "name": {
+        "tr": "Deli Dağı, Kloga Dağı",
+        "en": "Mount Deli, Mount Kloga"
+      },
       "desc": {
         "tr": "Memanth sınır dağ silsilesi.",
         "en": "The Memanth border mountain range."
       }
     },
     {
-      "name": "Ergall (\"Demir Geçit\") & Bora Dağları",
+      "name": {
+        "tr": "Ergall (\"Demir Geçit\") & Bora Dağları",
+        "en": "Ergall (\"Iron Pass\") & Bora Mountains"
+      },
       "desc": {
         "tr": "Onneva bölgesinde yer alır.",
         "en": "Located in the Onneva region."
       }
     },
     {
-      "name": "Solgar-Selya sınır dağ silsilesi",
+      "name": {
+        "tr": "Solgar-Selya sınır dağ silsilesi",
+        "en": "Solgar-Selya Border Mountain Range"
+      },
       "desc": {
         "tr": "Güney-merkez; haritanın en yoğun dağlık alanlarından biri.",
         "en": "South-central; one of the most densely mountainous areas on the map."
@@ -113,35 +137,50 @@
   ],
   "forests": [
     {
-      "name": "Arava Ormanı",
+      "name": {
+        "tr": "Arava Ormanı",
+        "en": "Arava Forest"
+      },
       "desc": {
         "tr": "Başsancak; Arava şehrinin güneydoğusunda, surların dışında.",
         "en": "Başsancak; southeast of the city of Arava, outside the walls."
       }
     },
     {
-      "name": "Z'ela Ormanları",
+      "name": {
+        "tr": "Z'ela Ormanları",
+        "en": "Z'ela Forests"
+      },
       "desc": {
         "tr": "Eyaletin büyük çoğunluğu; haritanın en yoğun orman alanı.",
         "en": "Most of the province; the densest forest area on the map."
       }
     },
     {
-      "name": "Seltanya Ormanları",
+      "name": {
+        "tr": "Seltanya Ormanları",
+        "en": "Seltanya Forests"
+      },
       "desc": {
         "tr": "Eyaletin büyük çoğunluğu; haritanın ikinci en ormanlık bölgesi.",
         "en": "Most of the province; the second most forested region on the map."
       }
     },
     {
-      "name": "Selya Ormanları",
+      "name": {
+        "tr": "Selya Ormanları",
+        "en": "Selya Forests"
+      },
       "desc": {
         "tr": "Efrork çevresi, güneybatı ucu.",
         "en": "Around Efrork, southwestern tip."
       }
     },
     {
-      "name": "Mabed Ormanları",
+      "name": {
+        "tr": "Mabed Ormanları",
+        "en": "Mabed Forests"
+      },
       "desc": {
         "tr": "Güney ve batı kıyı şeridi.",
         "en": "The southern and western coastal strip."

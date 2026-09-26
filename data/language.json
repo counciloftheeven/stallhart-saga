@@ -2,39 +2,39 @@
   "grammar": {
     "phonetics": {
       "tr": "Ortak Lisan, sert ünsüz kümeleri ve uzun ünlülerle karakterize edilen bir bozkır dilidir. \"V\" ve \"Z\" sesleri saygı ekleri ve unvanlarda sık kullanılır (Va-, Ez-, Vash-).",
-      "en": ""
+      "en": "The Common Tongue is a steppe language characterized by harsh consonant clusters and long vowels. The \"V\" and \"Z\" sounds are frequently used in honorific prefixes and titles (Va-, Ez-, Vash-)."
     },
     "morphology": {
       "tr": "Sözcükler bağımsız köklerden (Alb- \"beyaz/saf\", An- \"gök\", Sa- \"çöl\") sonek birleştirmeleriyle türetilir. Unvanlar genellikle soyadına sonek olarak eklenir (örn. \"-aldris\" arşivci/şahit anlamında).",
-      "en": ""
+      "en": "Words are derived from root stems (Alb- \"white/pure\", An- \"sky\", Sa- \"desert\") through suffix compounding. Titles are often appended as suffixes to surnames (e.g., \"-aldris\" meaning archivist/witness)."
     },
     "templatePhrases": [
       {
         "phrase": "Alvasha",
         "meaning": {
           "tr": "İyi akşamlar (Gölgeler iyi olsun)",
-          "en": ""
+          "en": "Good evening (May shadows be benevolent)"
         }
       },
       {
         "phrase": "Alvheon",
         "meaning": {
           "tr": "Günaydın / İyi günler (İyi güneşler)",
-          "en": ""
+          "en": "Good morning / Good day (Good suns)"
         }
       },
       {
         "phrase": "Ez alvasen",
         "meaning": {
           "tr": "İyiyim",
-          "en": ""
+          "en": "I am well"
         }
       },
       {
         "phrase": "Alvis kal te",
         "meaning": {
           "tr": "Senin yolun ak/iyi olsun",
-          "en": ""
+          "en": "May your path be white and clear"
         }
       }
     ]

@@ -47,7 +47,10 @@
       },
       "house": "stallhart",
       "charId": "zeandor",
-      "era": "KS 1480 — günümüz",
+      "era": {
+        "tr": "KS 1480 — günümüz",
+        "en": "KS 1480 — present"
+      },
       "image": "assets/images/characters/zeandor_stallhart01-240w.webp",
       "status": {
         "tr": "Makamında (Tahtta)",
@@ -150,7 +153,10 @@
             "en": "Keeper of the Imperial Seal (Grand Vizier)"
           },
           "term": "Veron Lar / Başvezir",
-          "rank": "1. Kademe Mülki Makam",
+          "rank": {
+            "tr": "1. Kademe Mülki Makam",
+            "en": "1st Tier Civil Office"
+          },
           "level": 1,
           "description": {
             "tr": "Bürokrasinin mutlak yöneticisidir. İmparatorun altın mührünü taşır, Yüce Divan'a başkanlık eder ve 12 eyalet valisini birbirine düşürerek merkezî otoriteyi korur. Asla kılıç çekmez, iradesini ferman ve mühürlerle uygular.",
@@ -213,7 +219,10 @@
             "en": "Minister of the Interior"
           },
           "term": "Gema Veron",
-          "rank": "2. Kademe Mülki Makam",
+          "rank": {
+            "tr": "2. Kademe Mülki Makam",
+            "en": "2nd Tier Civil Office"
+          },
           "level": 2,
           "description": {
             "tr": "İmparatorluk sınırları içindeki eyalet asayişi, şehir muhafızları nizamı, yol emniyeti, nüfus sayımları ve iç isyanların takibinden sorumludur.",
@@ -273,7 +282,10 @@
             "en": "Treasurer of the Realm (Aronda)"
           },
           "term": "Aronda Lar",
-          "rank": "2. Kademe Mülki Makam",
+          "rank": {
+            "tr": "2. Kademe Mülki Makam",
+            "en": "2nd Tier Civil Office"
+          },
           "level": 2,
           "description": {
             "tr": "Vergi toplama, darphane, maden imtiyazları, küresel ticaret ve imparatorluk altın rezervi (Aronda) idaresinden sorumludur. Hazine defterleri üzerinde mutlak tasarruf hakkı vardır.",
@@ -333,7 +345,10 @@
             "en": "Minister of Foreign Affairs & Diplomacy"
           },
           "term": "Vash Veron",
-          "rank": "2. Kademe Mülki Makam",
+          "rank": {
+            "tr": "2. Kademe Mülki Makam",
+            "en": "2nd Tier Civil Office"
+          },
           "level": 2,
           "description": {
             "tr": "Yabancı krallıklar (Arathen, Örebas, Burria, Galantha, Zieleina) ile diplomatik ilişkileri, sınır paktlarını, elçilik kabullerini ve dış barış antlaşmalarını idare eder.",
@@ -393,7 +408,10 @@
             "en": "Master of Whispers (Shadow Vizier)"
           },
           "term": "Tshahar Lar",
-          "rank": "2. Kademe Mülki Makam (Gizli)",
+          "rank": {
+            "tr": "2. Kademe Mülki Makam (Gizli)",
+            "en": "2nd Tier Civil Office (Covert)"
+          },
           "level": 2,
           "description": {
             "tr": "İmparatorluğun en karanlık ve korkulan makamıdır. Casusluk, derin-kapak ajanları (Arba İtrez ağı vb.), şantaj, fısıltı arşivi ve saray suikastlarını engelleme operasyonlarını yürütür. Divan oturumlarında en az konuşan ama en çok çekinilen üyedir.",
@@ -437,7 +455,10 @@
                 "tr": "Gecenin Kâtipleri",
                 "en": "Scribes of the Night"
               },
-              "era": "KS 1144 — günümüz",
+              "era": {
+                "tr": "KS 1144 — günümüz",
+                "en": "KS 1144 — present"
+              },
               "charId": "istihbarat-veziri",
               "reason": {
                 "tr": "I. Craes döneminden itibaren hanedanın bekası için gizli ölüm ve şantaj kütüklerini tutmuşlardır.",
@@ -453,7 +474,10 @@
             "en": "Minister of Agriculture & Logistics"
           },
           "term": "Gema Driya",
-          "rank": "2. Kademe Mülki Makam",
+          "rank": {
+            "tr": "2. Kademe Mülki Makam",
+            "en": "2nd Tier Civil Office"
+          },
           "level": 2,
           "description": {
             "tr": "Toprak verimliliği, imparatorluk zahire ambarları, kıtlık rezervleri, ordu erzak ikmali ve kervan yollarının iaşe istasyonlarını koordine eder.",
@@ -513,7 +537,10 @@
             "en": "Minister of Lore, Archives & Library"
           },
           "term": "Ler Veron",
-          "rank": "2. Kademe Mülki Makam",
+          "rank": {
+            "tr": "2. Kademe Mülki Makam",
+            "en": "2nd Tier Civil Office"
+          },
           "level": 2,
           "description": {
             "tr": "Arava Büyük Kütüphanesi, Ortak Lisan dil kütükleri, Vakanüvis saray kütükleri, hanedan soy ağaçları ve kadim felsefi metinlerin muhafazasından sorumludur.",
@@ -573,7 +600,10 @@
             "en": "Provincial Governors (The 12 Lords)"
           },
           "term": "Lar / Melik / Şad",
-          "rank": "3. Kademe Mülki Makamlar",
+          "rank": {
+            "tr": "3. Kademe Mülki Makamlar",
+            "en": "3rd Tier Civil Offices"
+          },
           "level": 3,
           "description": {
             "tr": "İmparatorluğun 12 büyük eyaletini (Başsancak, Selya, Galetsha, Onneva, Memanth, Zela, Adamen, Khasinya, Seltanya, Solgar, Pilkard, Mabed) İmparator adına yöneten hanedan reisleri ve valilerdir.",
@@ -650,7 +680,10 @@
             "en": "Supreme Military Commander (Marshal of War)"
           },
           "term": "Garion Anxes / Savaş Veziri",
-          "rank": "1. Kademe Askeri Makam",
+          "rank": {
+            "tr": "1. Kademe Askeri Makam",
+            "en": "1st Tier Military Office"
+          },
           "level": 1,
           "description": {
             "tr": "140.000 kişilik imparatorluk ordusunun tek askeri hakimidir. Politika ve saray entrikalarından nefret eder; sefer nizamı, lejyon konuşlanmaları, harp stratejisi ve genel seferberlikten doğrudan İmparator'a karşı sorumludur.",
@@ -729,7 +762,10 @@
             "en": "Grand Admiral of the Imperial Fleet"
           },
           "term": "Domkha Garion",
-          "rank": "2. Kademe Askeri Makam",
+          "rank": {
+            "tr": "2. Kademe Askeri Makam",
+            "en": "2nd Tier Military Office"
+          },
           "level": 2,
           "description": {
             "tr": "Gümüş Yol Denizi, Pilkard kıyıları ve açık denizlerdeki tüm savaş kadırgalarının, deniz üslerinin ve sahil tahkimatlarının baş amiralidir. Deniz ticaret yollarının korsanlardan temizlenmesinden sorumludur.",
@@ -789,7 +825,10 @@
             "en": "Commander of the Imperial Guard (Garryon)"
           },
           "term": "Garryon Garion",
-          "rank": "2. Kademe Askeri Makam",
+          "rank": {
+            "tr": "2. Kademe Askeri Makam",
+            "en": "2nd Tier Military Office"
+          },
           "level": 2,
           "description": {
             "tr": "İmparatorun şahsını, Taç Sarayı Arava'yı ve hanedan mensuplarını doğrudan koruyan 5.000 kişilik elit Garryon muhafız alayının başıdır. Saray kapılarının ve gizli tünellerin tek anahtar sahibidir.",
@@ -849,7 +888,10 @@
             "en": "Border Legion Wardens (Eastern March)"
           },
           "term": "Edgal Garion",
-          "rank": "3. Kademe Askeri Makam",
+          "rank": {
+            "tr": "3. Kademe Askeri Makam",
+            "en": "3rd Tier Military Office"
+          },
           "level": 3,
           "description": {
             "tr": "Memanth eyaletinde konuşlu 40.000 kişilik devasa sınır ordusunu ve doğu kalelerini Arathen Krallığı'nın akınlarına karşı savunan kıdemli sınır garnizonudur.",
@@ -909,7 +951,10 @@
             "en": "Imperial Tactical Combat Legions (Rion)"
           },
           "term": "Galdor / Zirae / Fira / Tfa Rion",
-          "rank": "3. Kademe Askeri Sınıflar",
+          "rank": {
+            "tr": "3. Kademe Askeri Sınıflar",
+            "en": "3rd Tier Military Ranks"
+          },
           "level": 3,
           "description": {
             "tr": "İmparatorluk ordusunun dört temel savaş doktrinini icra eden uzmanlaşmış sınıflarıdır: Galdor Rion (Kalkan Birliği), Zirae Athor (Şimşek Süvarileri), Fira Har (Kuşatma ve Ateş Yıkımı), Tfa Rion (Yeminli Tarikat Muhafızları).",
@@ -953,7 +998,10 @@
                 "tr": "Craes ve Scifella'nın Çelik Hatları",
                 "en": "Iron Columns of Craes and Scifella"
               },
-              "era": "KS 1144 — günümüz",
+              "era": {
+                "tr": "KS 1144 — günümüz",
+                "en": "KS 1144 — present"
+              },
               "charId": "craes",
               "reason": {
                 "tr": "İmparatorluğun kıta çapındaki fetihlerini gerçekleştiren kadim ordu teşkilatıdır.",
@@ -986,7 +1034,10 @@
             "en": "High Pontiff & Priestess of the Mabed (Eraler)"
           },
           "term": "Eraler / Yüce Rahip",
-          "rank": "1. Kademe Dini Makam",
+          "rank": {
+            "tr": "1. Kademe Dini Makam",
+            "en": "1st Tier Religious Office"
+          },
           "level": 1,
           "description": {
             "tr": "İmparatorluğun dini hiyerarşisinin zirvesidir. Biri erkek biri kadın olmak üzere iki Yüce Rahip eşzamanlı olarak Centruion Baş Tapınağı'nı ve 330.000 km²'lik kutsal Mabed Eyaleti'ni yönetir. İmparatorun taç giyme ve cenaze törenlerini bizzat icra ederler.",
@@ -1048,7 +1099,10 @@
             "en": "Chief Magistrate of Justice (Lidros Divan)"
           },
           "term": "Lidros Veron / Rekan",
-          "rank": "2. Kademe Dini/Hukuki Makam",
+          "rank": {
+            "tr": "2. Kademe Dini/Hukuki Makam",
+            "en": "2nd Tier Religious/Judicial Office"
+          },
           "level": 2,
           "description": {
             "tr": "Tanrı Lidros'un (Hakim) adalet nizamını temsil eden, imparatorluk kanunlarının, Kutsal Kan davalarının, soylu cinayetlerinin ve yüksek vatana ihanet mahkemelerinin başhakimidir.",
@@ -1124,7 +1178,10 @@
             "en": "Keeper of the Holy Blood Doctrine"
           },
           "term": "Era Hanar Aldris",
-          "rank": "2. Kademe Dini Makam",
+          "rank": {
+            "tr": "2. Kademe Dini Makam",
+            "en": "2nd Tier Religious Office"
+          },
           "level": 2,
           "description": {
             "tr": "Stallhart hanedanının Era'dan gelen kutsal kan taşıdığı resmi devlet ideolojisini muhafaza eden, soyağaçlarını inceleyen ve hanedan evliliklerinin kutsallığını tasdik eden makamdır.",
@@ -1168,7 +1225,10 @@
                 "tr": "Kuruluşun Din Kâtipleri",
                 "en": "Foundational Priesthood"
               },
-              "era": "KS 1144 — günümüz",
+              "era": {
+                "tr": "KS 1144 — günümüz",
+                "en": "KS 1144 — present"
+              },
               "charId": "craes",
               "reason": {
                 "tr": "I. Craes'in Aleron esaretinden dönüşünde ilan ettiği Kutsal Kan manifestosunu ilk kaleme alan heyettir.",
@@ -1184,7 +1244,10 @@
             "en": "High Priests of the 15 Gods Pantheon"
           },
           "term": "Ernyar Rahipleri",
-          "rank": "3. Kademe Dini Makamlar",
+          "rank": {
+            "tr": "3. Kademe Dini Makamlar",
+            "en": "3rd Tier Religious Offices"
+          },
           "level": 3,
           "description": {
             "tr": "Denge Konseyi'nin 15 tanrısına (Muhafız Galdra, Zeval Nazeth, Saatçi Gydor, Hakim Lidros, Harp Garator, Sükun Lomera, Desise Lodvez, Bilge Veleris, Tufan Vazmer, Mimar Brikon, Maraz Zetus, Şifa Eanhar, İhtiras Hardir, Avcı Raxes, İsyan Naldor) adanmış tapınakların başrahipleridir.",
@@ -1228,7 +1291,10 @@
                 "tr": "Kozmik İlahilerin Koruyucuları",
                 "en": "Keepers of the Cosmic Cantos"
               },
-              "era": "KS 0 — günümüz",
+              "era": {
+                "tr": "KS 0 — günümüz",
+                "en": "KS 0 — present"
+              },
               "charId": "ertler-serbam",
               "reason": {
                 "tr": "KS 0 büyük kırılmasından bu yana Denge Ağacı ve Konsey ilahilerini kuşaktan kuşağa aktarmışlardır.",
@@ -1244,7 +1310,10 @@
             "en": "Inquisition of the Mabed & Heresy Wardens (Tfa Rion)"
           },
           "term": "Tfa Rion / Engizisyon",
-          "rank": "3. Kademe Askeri/Dini Teşkilat",
+          "rank": {
+            "tr": "3. Kademe Askeri/Dini Teşkilat",
+            "en": "3rd Tier Military/Religious Order"
+          },
           "level": 3,
           "description": {
             "tr": "Büyünün teolojik olarak yasak olması ilkesini denetleyen; yeraltı 'İlk Anne Kültü'nü, Kaos Fraksiyonu'nu, nekromansi ve sapkın büyü pratiklerini soruşturan, Mabed Eyaleti'ne bağlı yeminli muhafız birlikleridir.",
@@ -1288,7 +1357,10 @@
                 "tr": "Yeminli İman Kılıçları",
                 "en": "Blades of the Sworn Faith"
               },
-              "era": "KS 1160 — günümüz",
+              "era": {
+                "tr": "KS 1160 — günümüz",
+                "en": "KS 1160 — present"
+              },
               "charId": "ertler-serbam",
               "reason": {
                 "tr": "I. Nadima döneminde Kutsal Kan ve devlet inancını korumak üzere ilk kez teşkilatlandırılmışlardır.",
