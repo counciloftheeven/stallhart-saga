@@ -29,16 +29,13 @@
             "#C4962A"
           ],
           "tier": "imperial",
-          "tags": [
-            "miras-veraset"
-          ],
           "desc": {
             "tr": "Demir grisi zemin üzerinde örs ve çekiç. Doğrudan imparatorluk ailesini temsil eder.",
             "en": "Iron-grey field with anvil and hammer. Represents the imperial family directly."
           },
           "origin": {
             "tr": "Stallhart Hanesi, Başsancak eyaletinde kök salmış bir imparatorluk hanedanıdır. Adının anlamı — \"Çelik Yüreği\" — hanenin kendini nasıl tanımladığını yansıtır.",
-            "en": "House Stallhart is an imperial house rooted in the Başsancak province. The meaning of its name — \"Steel Heart\" — reflects how the house defines itself."
+            "en": ""
           },
           "memberIds": [
             "i-nadima-stallhart",
@@ -63,7 +60,7 @@
             "tyrae",
             "ii-remal-stallhart"
           ],
-          "logo": "",
+          "logo": "assets/images/houses/stallhart01.png",
           "motto": {
             "tr": "",
             "en": ""
@@ -91,14 +88,13 @@
             "#C0C0C0"
           ],
           "tier": "major",
-          "tags": [],
           "desc": {
             "tr": "Süt beyazı zemin üzerindeki sekiz köşeli gümüş yıldız, merkezin saf asaletini yansıtır.",
             "en": "Eight-pointed silver star on milk-white field, reflecting the center's pure nobility."
           },
           "origin": {
             "tr": "Ablew Hanesi, Başsancak eyaletinde kök salmış bir büyük soylu hanedir. Adının anlamı — \"Saf Işığı\" — hanenin kendini nasıl tanımladığını yansıtır.",
-            "en": "House Ablew is a major noble house rooted in the Başsancak province. The meaning of its name — \"Pure Light\" — reflects how the house defines itself."
+            "en": ""
           },
           "tierLabel": {
             "tr": "Büyük soylu hane",
@@ -127,14 +123,13 @@
             "#FFFFFF"
           ],
           "tier": "major",
-          "tags": [],
           "desc": {
             "tr": "Açık mavi zemin üzerine beyaz kristalden oyulmuş kalp, başkente has soylu yapıyı simgeler.",
             "en": "White crystal heart on light blue field, symbolizing noble purity unique to the capital."
           },
           "origin": {
             "tr": "Albarth Hanesi, Başsancak eyaletinde kök salmış bir büyük soylu hanedir. Adının anlamı — \"Saf Yüreği\" — hanenin kendini nasıl tanımladığını yansıtır.",
-            "en": "House Albarth is a major noble house rooted in the Başsancak province. The meaning of its name — \"Pure Heart\" — reflects how the house defines itself."
+            "en": ""
           },
           "tierLabel": {
             "tr": "Büyük soylu hane",
@@ -163,16 +158,13 @@
             "#C0C0C0"
           ],
           "tier": "major",
-          "tags": [
-            "savas"
-          ],
           "desc": {
             "tr": "Doğan güneş ve iki gümüş kılıç; imparatorluğun doğuşunu ve merkez savunmasını ifade eder.",
             "en": "Rising sun and two silver swords, expressing the empire's birth and central defense."
           },
           "origin": {
             "tr": "Albea Hanesi, Başsancak eyaletinde kök salmış bir büyük soylu hanedir. Adının anlamı — \"Şafak Kalkanı\" — hanenin kendini nasıl tanımladığını yansıtır.",
-            "en": "House Albea is a major noble house rooted in the Başsancak province. The meaning of its name — \"Dawn Shield\" — reflects how the house defines itself."
+            "en": ""
           },
           "tierLabel": {
             "tr": "Büyük soylu hane",
@@ -205,16 +197,13 @@
             "#000000"
           ],
           "tier": "major",
-          "tags": [
-            "suikast-casusluk"
-          ],
           "desc": {
             "tr": "Altından her yeri gören göz, başkentin istihbarat ve mutlak otorite gücünü yansıtır.",
             "en": "All-seeing golden eye, reflecting the capital's intelligence and absolute authority."
           },
           "origin": {
             "tr": "Aralis Hanesi, Başsancak eyaletinde kök salmış bir büyük soylu hanedir. Adının anlamı — \"Altın Göz\" — hanenin kendini nasıl tanımladığını yansıtır.",
-            "en": "House Aralis is a major noble house rooted in the Başsancak province. The meaning of its name — \"Golden Eye\" — reflects how the house defines itself."
+            "en": ""
           },
           "tierLabel": {
             "tr": "Büyük soylu hane",
@@ -243,16 +232,13 @@
             "#C4962A"
           ],
           "tier": "minor",
-          "tags": [
-            "savas"
-          ],
           "desc": {
             "tr": "Lekesiz ve altın kabzalı kılıç, merkezin onurlu soylularını betimler.",
             "en": "Flawless gold-hilted sword depicting the center's honorable nobility."
           },
           "origin": {
             "tr": "Oneda Hanesi, Başsancak eyaletinde kök salmış bir küçük soylu hanedir. Adının anlamı — \"Onur Soyu\" — hanenin kendini nasıl tanımladığını yansıtır.",
-            "en": "House Oneda is a minor noble house rooted in the Başsancak province. The meaning of its name — \"Lineage of Honor\" — reflects how the house defines itself."
+            "en": ""
           },
           "tierLabel": {
             "tr": "Küçük soylu hane",
@@ -281,16 +267,13 @@
             "#8B0000"
           ],
           "tier": "minor",
-          "tags": [
-            "savas"
-          ],
           "desc": {
             "tr": "Kılıçlarla çevrili altın kalp sembolü, başkent şövalyeliğini yansıtır.",
             "en": "Gold heart surrounded by swords, reflecting capital chivalry."
           },
           "origin": {
             "tr": "Onnard Hanesi, Başsancak eyaletinde kök salmış bir küçük soylu hanedir. Adının anlamı — \"Onur Yüreği\" — hanenin kendini nasıl tanımladığını yansıtır.",
-            "en": "House Onnard is a minor noble house rooted in the Başsancak province. The meaning of its name — \"Heart of Honor\" — reflects how the house defines itself."
+            "en": ""
           },
           "tierLabel": {
             "tr": "Küçük soylu hane",
@@ -319,14 +302,13 @@
             "#FFFFFF"
           ],
           "tier": "minor",
-          "tags": [],
           "desc": {
             "tr": "Bordo zemin üzerinde çiziksiz beyaz kalkan. Saraya yeminli elit muhafızlar.",
             "en": "Flawless white shield on crimson field. Elite guards sworn to the palace."
           },
           "origin": {
             "tr": "Untova Hanesi, Başsancak eyaletinde kök salmış bir küçük soylu hanedir. Adının anlamı — \"Onur Yeminlisi\" — hanenin kendini nasıl tanımladığını yansıtır.",
-            "en": "House Untova is a minor noble house rooted in the Başsancak province. The meaning of its name — \"Oath-Bound Honor\" — reflects how the house defines itself."
+            "en": ""
           },
           "tierLabel": {
             "tr": "Küçük soylu hane",
@@ -355,17 +337,13 @@
             "#C0C0C0"
           ],
           "tier": "minor",
-          "tags": [
-            "savas",
-            "suikast-casusluk"
-          ],
           "desc": {
             "tr": "Kılıca dolanmış yeşil yılan, suikastçıları veya büyü yeminlilerini temsil eder.",
             "en": "Green serpent coiled on a sword, representing assassins or magic oath-takers."
           },
           "origin": {
             "tr": "Sertfa Hanesi, Başsancak eyaletinde kök salmış bir küçük soylu hanedir. Adının anlamı — \"Yılan Yeminlisi\" — hanenin kendini nasıl tanımladığını yansıtır.",
-            "en": "House Sertfa is a minor noble house rooted in the Başsancak province. The meaning of its name — \"Serpent Oath\" — reflects how the house defines itself."
+            "en": ""
           },
           "tierLabel": {
             "tr": "Küçük soylu hane",
@@ -394,14 +372,13 @@
             "#8B4513"
           ],
           "tier": "minor",
-          "tags": [],
           "desc": {
             "tr": "Sarmaşıklardan ve dikenlerden oluşan taç — doğrudan orman aristokrasisi.",
             "en": "Crown of ivy and thorns — the forest aristocracy itself."
           },
           "origin": {
             "tr": "Dirde Hanesi, Başsancak eyaletinde kök salmış bir küçük soylu hanedir. Adının anlamı — \"Orman Soyu\" — hanenin kendini nasıl tanımladığını yansıtır.",
-            "en": "House Dirde is a minor noble house rooted in the Başsancak province. The meaning of its name — \"Forest Lineage\" — reflects how the house defines itself."
+            "en": ""
           },
           "tierLabel": {
             "tr": "Küçük soylu hane",
@@ -412,19 +389,19 @@
       ],
       "flagDesc": {
         "tr": "Dama tahtası desenli siyah-beyaz zemin, altın çerçeveli",
-        "en": "Black-and-white checkerboard field with a gold border"
+        "en": ""
       },
       "economy": {
         "tr": "Tarım ve ticaret; imparatorluk yönetim merkezi",
-        "en": "Agriculture and trade; the empire's administrative center"
+        "en": ""
       },
       "neighbors": {
         "tr": "Batıda Z'ela, kuzeyde Galetsha, kuzeydoğuda Memanth, güneyde Onneva",
-        "en": "Z'ela to the west, Galetsha to the north, Memanth to the northeast, Onneva to the south"
+        "en": ""
       },
       "cities": {
         "tr": "Arava (başkent), Harna (Kızılçay), Solinor, Amuseya, Kutna, Xeska, Aksema, Dorma (Darova), Lougat",
-        "en": "Arava (capital), Harna (Kızılçay), Solinor, Amuseya, Kutna, Xeska, Aksema, Dorma (Darova), Lougat"
+        "en": ""
       }
     },
     {
@@ -461,16 +438,13 @@
             "#2F4F4F"
           ],
           "tier": "major",
-          "tags": [
-            "savas"
-          ],
           "desc": {
             "tr": "Darbelerle parçalanmış devasa tunç kalkan, kuzeyin savaşçı karakterini taşır.",
             "en": "Shattered bronze shield depicting the north's warrior character."
           },
           "origin": {
             "tr": "Galetsha Hanesi, Galetsha Eyaleti eyaletinde kök salmış bir büyük soylu hanedir. Adının anlamı — \"Kalkan Öfkesi\" — hanenin kendini nasıl tanımladığını yansıtır.",
-            "en": "House Galetsha is a major noble house rooted in the Province of Galetsha. The meaning of its name — \"Shield's Fury\" — reflects how the house defines itself."
+            "en": ""
           },
           "tierLabel": {
             "tr": "Büyük soylu hane",
@@ -502,14 +476,13 @@
             "#808080"
           ],
           "tier": "minor",
-          "tags": [],
           "desc": {
             "tr": "Siyah ve demir kalkanlardan sarsılmaz duvar, dağlıların omuz omuza savunması.",
             "en": "Impenetrable wall of black and iron shields, the mountaineers' shoulder-to-shoulder defense."
           },
           "origin": {
             "tr": "Galron Hanesi, Galetsha Eyaleti eyaletinde kök salmış bir küçük soylu hanedir. Adının anlamı — \"Kalkan Topluluğu\" — hanenin kendini nasıl tanımladığını yansıtır.",
-            "en": "House Galron is a minor noble house rooted in the Province of Galetsha. The meaning of its name — \"Shield Brotherhood\" — reflects how the house defines itself."
+            "en": ""
           },
           "tierLabel": {
             "tr": "Küçük soylu hane",
@@ -538,16 +511,13 @@
             "#A9A9A9"
           ],
           "tier": "minor",
-          "tags": [
-            "savas"
-          ],
           "desc": {
             "tr": "Birbirine çarpan dağ zirveleri, bu dağlık coğrafyanın doğrudan kanıtı.",
             "en": "Mountain peaks clashing against each other, direct evidence of this rugged terrain."
           },
           "origin": {
             "tr": "Ohevon Hanesi, Galetsha Eyaleti eyaletinde kök salmış bir küçük soylu hanedir. Adının anlamı — \"Yankı Dağlısı\" — hanenin kendini nasıl tanımladığını yansıtır.",
-            "en": "House Ohevon is a minor noble house rooted in the Province of Galetsha. The meaning of its name — \"Echo Mountaineer\" — reflects how the house defines itself."
+            "en": ""
           },
           "tierLabel": {
             "tr": "Küçük soylu hane",
@@ -576,14 +546,13 @@
             "#FFD700"
           ],
           "tier": "major",
-          "tags": [],
           "desc": {
             "tr": "Zifiri karanlıktan sızan çatlak ışık, kömür madenlerinin derinliğini çağrıştırır.",
             "en": "A crack of light breaking through pitch darkness, evoking the depth of coal mines."
           },
           "origin": {
             "tr": "Sınglew Hanesi, Galetsha Eyaleti eyaletinde kök salmış bir büyük soylu hanedir. Adının anlamı — \"Karanlık Işığı\" — hanenin kendini nasıl tanımladığını yansıtır.",
-            "en": "House Sınglew is a major noble house rooted in the Province of Galetsha. The meaning of its name — \"Dark Light\" — reflects how the house defines itself."
+            "en": ""
           },
           "tierLabel": {
             "tr": "Büyük soylu hane",
@@ -614,14 +583,13 @@
             "#C0C0C0"
           ],
           "tier": "minor",
-          "tags": [],
           "desc": {
             "tr": "Ay ışığında uluyan iri ve siyah kurt, vahşi ve soğuk yaban hayatını betimler.",
             "en": "Large black wolf howling at the moon, depicting the wild and cold wilderness."
           },
           "origin": {
             "tr": "Voven Hanesi, Galetsha Eyaleti eyaletinde kök salmış bir küçük soylu hanedir. Adının anlamı — \"Vahşi Dağlısı\" — hanenin kendini nasıl tanımladığını yansıtır.",
-            "en": "House Voven is a minor noble house rooted in the Province of Galetsha. The meaning of its name — \"Wild Mountaineer\" — reflects how the house defines itself."
+            "en": ""
           },
           "tierLabel": {
             "tr": "Küçük soylu hane",
@@ -650,14 +618,13 @@
             "#2F4F4F"
           ],
           "tier": "major",
-          "tags": [],
           "desc": {
             "tr": "Devasa gümüş kurt profili, kuzeyli asaletinin göstergesi.",
             "en": "Imposing silver wolf profile, mark of northern nobility."
           },
           "origin": {
             "tr": "Wolde Hanesi, Galetsha Eyaleti eyaletinde kök salmış bir büyük soylu hanedir. Adının anlamı — \"Kurt Soyu\" — hanenin kendini nasıl tanımladığını yansıtır.",
-            "en": "House Wolde is a major noble house rooted in the Province of Galetsha. The meaning of its name — \"Wolf Lineage\" — reflects how the house defines itself."
+            "en": ""
           },
           "tierLabel": {
             "tr": "Büyük soylu hane",
@@ -688,14 +655,13 @@
             "#FFD700"
           ],
           "tier": "minor",
-          "tags": [],
           "desc": {
             "tr": "Sisler arasından parlayan sarı kurt gözleri, Galetsha'nın puslu dağlarına aittir.",
             "en": "Yellow wolf eyes gleaming through mist, belonging to Galetsha's foggy mountains."
           },
           "origin": {
             "tr": "Wolm Hanesi, Galetsha Eyaleti eyaletinde kök salmış bir küçük soylu hanedir. Adının anlamı — \"Kurt Ruhu\" — hanenin kendini nasıl tanımladığını yansıtır.",
-            "en": "House Wolm is a minor noble house rooted in the Province of Galetsha. The meaning of its name — \"Wolf Spirit\" — reflects how the house defines itself."
+            "en": ""
           },
           "tierLabel": {
             "tr": "Küçük soylu hane",
@@ -724,14 +690,13 @@
             "#708090"
           ],
           "tier": "minor",
-          "tags": [],
           "desc": {
             "tr": "Bulutları delen altın dağ sembolü, bölgenin hakimi olduklarını gösterir.",
             "en": "Golden mountain piercing clouds, showing they rule the region."
           },
           "origin": {
             "tr": "Tadeon Hanesi, Galetsha Eyaleti eyaletinde kök salmış bir küçük soylu hanedir. Adının anlamı — \"Dağ Hükümdarı\" — hanenin kendini nasıl tanımladığını yansıtır.",
-            "en": "House Tadeon is a minor noble house rooted in the Province of Galetsha. The meaning of its name — \"Mountain Sovereign\" — reflects how the house defines itself."
+            "en": ""
           },
           "tierLabel": {
             "tr": "Küçük soylu hane",
@@ -744,18 +709,17 @@
           "name": "Arhan",
           "meaning": {
             "tr": "Soylu Kan",
-            "en": "Noble Blood"
+            "en": ""
           },
           "symbol": {
             "tr": "Kan Ve Kadeh",
-            "en": "Blood and Chalice"
+            "en": ""
           },
           "colors": [
             "#606060",
             "#C4962A"
           ],
           "tier": "minor",
-          "tags": [],
           "desc": {
             "tr": "",
             "en": ""
@@ -770,24 +734,24 @@
             "kaelen",
             "erthan"
           ],
-          "logo": ""
+          "logo": "assets/images/houses/arhan01.jpg"
         }
       ],
       "flagDesc": {
         "tr": "Zifiri siyah zeminde sarı anahtar, dişlerinde gizli dağ-kale silüeti",
-        "en": "Jet-black field with a yellow key, a hidden mountain-fortress silhouette in its teeth"
+        "en": ""
       },
       "economy": {
         "tr": "Maden, kömür, kükürt, bakır",
-        "en": "Mining, coal, sulfur, copper"
+        "en": ""
       },
       "neighbors": {
         "tr": "Güneybatıda Adamen, güneyde Başsancak ve Z'ela, doğuda Memanth",
-        "en": "Adamen to the southwest, Başsancak and Z'ela to the south, Memanth to the east"
+        "en": ""
       },
       "cities": {
         "tr": "Galetsha (merkez), Xora (kuzey), Yirsha (güney), Chebert (en kuzey uç), Exagna",
-        "en": "Galetsha (center), Xora (north), Yirsha (south), Chebert (far north), Exagna"
+        "en": ""
       }
     },
     {
@@ -824,18 +788,13 @@
             "#FFD700"
           ],
           "tier": "major",
-          "tags": [
-            "savas",
-            "ask",
-            "sinir-bolgesi"
-          ],
           "desc": {
             "tr": "Sınır bölgesinin önde gelen askeri hanesi. Aertas Sınglew bu hanenin üyesidir.",
             "en": "The frontier's leading military house. Aertas Sınglew is a member."
           },
           "origin": {
             "tr": "Sınglew Hanesi, Memanth Eyaleti eyaletinde kök salmış bir büyük soylu hanedir. Adının anlamı — \"Karanlık Işığı\" — hanenin kendini nasıl tanımladığını yansıtır.",
-            "en": "House Sınglew is a major noble house rooted in the Province of Memanth. The meaning of its name — \"Dark Light\" — reflects how the house defines itself."
+            "en": ""
           },
           "tierLabel": {
             "tr": "Büyük soylu hane",
@@ -866,16 +825,13 @@
             "#556B2F"
           ],
           "tier": "minor",
-          "tags": [
-            "sinir-bolgesi"
-          ],
           "desc": {
             "tr": "Aşılmaz taş duvar ve ardından yükselen dağ zirveleri sınır savunmasını betimler.",
             "en": "Impenetrable stone wall with mountain peaks rising behind, depicting border defense."
           },
           "origin": {
             "tr": "Berkov Hanesi, Memanth Eyaleti eyaletinde kök salmış bir küçük soylu hanedir. Adının anlamı — \"Sur Dağlısı\" — hanenin kendini nasıl tanımladığını yansıtır.",
-            "en": "House Berkov is a minor noble house rooted in the Province of Memanth. The meaning of its name — \"Wall Mountaineer\" — reflects how the house defines itself."
+            "en": ""
           },
           "tierLabel": {
             "tr": "Küçük soylu hane",
@@ -906,18 +862,13 @@
             "#C0C0C0"
           ],
           "tier": "minor",
-          "tags": [
-            "savas",
-            "ask",
-            "sinir-bolgesi"
-          ],
           "desc": {
             "tr": "Surlara saplanmış kılıç, sınırda savaşmaya yeminli askerlerin simgesi.",
             "en": "Sword plunged into walls, symbol of soldiers sworn to fight at the border."
           },
           "origin": {
             "tr": "Brekfa Hanesi, Memanth Eyaleti eyaletinde kök salmış bir küçük soylu hanedir. Adının anlamı — \"Sur Yeminlisi\" — hanenin kendini nasıl tanımladığını yansıtır.",
-            "en": "House Brekfa is a minor noble house rooted in the Province of Memanth. The meaning of its name — \"Wall Oath-Taker\" — reflects how the house defines itself."
+            "en": ""
           },
           "tierLabel": {
             "tr": "Küçük soylu hane",
@@ -949,16 +900,13 @@
             "#808080"
           ],
           "tier": "minor",
-          "tags": [
-            "sinir-bolgesi"
-          ],
           "desc": {
             "tr": "Yıkık sur parçası ve kan damlası, sınır çatışmalarının bedelini gösterir.",
             "en": "Broken wall fragment and blood drop, showing the cost of border conflicts."
           },
           "origin": {
             "tr": "Briktod Hanesi, Memanth Eyaleti eyaletinde kök salmış bir küçük soylu hanedir. Adının anlamı — \"Sur Ölümü\" — hanenin kendini nasıl tanımladığını yansıtır.",
-            "en": "House Briktod is a minor noble house rooted in the Province of Memanth. The meaning of its name — \"Wall's Death\" — reflects how the house defines itself."
+            "en": ""
           },
           "tierLabel": {
             "tr": "Küçük soylu hane",
@@ -987,17 +935,13 @@
             "#A0522D"
           ],
           "tier": "minor",
-          "tags": [
-            "savas",
-            "sinir-bolgesi"
-          ],
           "desc": {
             "tr": "Kana bulanmış sınır mızrağı, doğrudan cepheyi gösterir.",
             "en": "A bloodied border spear, directly pointing to the front lines."
           },
           "origin": {
             "tr": "Kalpear Hanesi, Memanth Eyaleti eyaletinde kök salmış bir küçük soylu hanedir. Adının anlamı — \"Sınır Mızrağı\" — hanenin kendini nasıl tanımladığını yansıtır.",
-            "en": "House Kalpear is a minor noble house rooted in the Province of Memanth. The meaning of its name — \"Border Spear\" — reflects how the house defines itself."
+            "en": ""
           },
           "tierLabel": {
             "tr": "Küçük soylu hane",
@@ -1026,16 +970,13 @@
             "#C4962A"
           ],
           "tier": "minor",
-          "tags": [
-            "savas"
-          ],
           "desc": {
             "tr": "Demir zırhlı ve yeleli savaş atı, doğunun bozkır süvarilerini yansıtır.",
             "en": "Iron-armored warhorse with flowing mane, reflecting the east's steppe cavalry."
           },
           "origin": {
             "tr": "Rhoven Hanesi, Memanth Eyaleti eyaletinde kök salmış bir küçük soylu hanedir. Adının anlamı — \"Süvari Dağlısı\" — hanenin kendini nasıl tanımladığını yansıtır.",
-            "en": "House Rhoven is a minor noble house rooted in the Province of Memanth. The meaning of its name — \"Cavalry Mountaineer\" — reflects how the house defines itself."
+            "en": ""
           },
           "tierLabel": {
             "tr": "Küçük soylu hane",
@@ -1046,19 +987,19 @@
       ],
       "flagDesc": {
         "tr": "Zifiri siyah zeminde kor ateşinden sarıya dönen geometrik kuzgun",
-        "en": "Jet-black field with a geometric raven shifting from glowing ember to yellow"
+        "en": ""
       },
       "economy": {
         "tr": "Sınır savunma ekonomisi",
-        "en": "Border-defense economy"
+        "en": ""
       },
       "neighbors": {
         "tr": "Batıda Galetsha, güneybatıda Başsancak, güneyde Onneva",
-        "en": "Galetsha to the west, Başsancak to the southwest, Onneva to the south"
+        "en": ""
       },
       "cities": {
         "tr": "Covan (kuzey), Eyross/Syross (kuzeydoğu köşe), Alvra, Drolla, Malenia (merkez), Aleron (doğu kıyısı), Aleron Kalesi (Aleron'un kuzeyi, kale), Solgnor (güneybatı), Remwanya (kale --- güney, Onneva sınırı), Arva/Arya (en güney), Eizgar (Arya'nın altı), Navza, Exagna (batı sınırı), Hioya",
-        "en": "Covan (north), Eyross/Syross (northeast corner), Alvra, Drolla, Malenia (center), Aleron (east coast), Aleron Fortress (north of Aleron, fortress), Solgnor (southwest), Remwanya (fortress — south, Onneva border), Arva/Arya (far south), Eizgar (below Arya), Navza, Exagna (western border), Hioya"
+        "en": ""
       }
     },
     {
@@ -1095,16 +1036,13 @@
             "#228B22"
           ],
           "tier": "major",
-          "tags": [
-            "ticaret"
-          ],
           "desc": {
             "tr": "Eyalete ismini veren hane. Altın kase bereketini ve ticaret merkezini temsil eder.",
             "en": "The house that gives the province its name. Golden chalice represents abundance and trade center."
           },
           "origin": {
             "tr": "Onneva Hanesi, Onneva Eyaleti eyaletinde kök salmış bir büyük soylu hanedir. Adının anlamı — \"Onur Anası\" — hanenin kendini nasıl tanımladığını yansıtır.",
-            "en": "House Onneva is a major noble house rooted in the Province of Onneva. The meaning of its name — \"Mother of Honor\" — reflects how the house defines itself."
+            "en": ""
           },
           "tierLabel": {
             "tr": "Büyük soylu hane",
@@ -1139,14 +1077,13 @@
             "#228B22"
           ],
           "tier": "minor",
-          "tags": [],
           "desc": {
             "tr": "İki gümüş ok ve kalkan, orman muhafızlığını yansıtır.",
             "en": "Two silver arrows and shield, reflecting forest guardianship."
           },
           "origin": {
             "tr": "Certfa Hanesi, Onneva Eyaleti eyaletinde kök salmış bir küçük soylu hanedir. Adının anlamı — \"Avcı Yeminlisi\" — hanenin kendini nasıl tanımladığını yansıtır.",
-            "en": "House Certfa is a minor noble house rooted in the Province of Onneva. The meaning of its name — \"Hunter's Oath\" — reflects how the house defines itself."
+            "en": ""
           },
           "tierLabel": {
             "tr": "Küçük soylu hane",
@@ -1175,14 +1112,13 @@
             "#C4962A"
           ],
           "tier": "minor",
-          "tags": [],
           "desc": {
             "tr": "Zümrüt yeşili zemin üzerindeki altın geyik boynuzu yaban hayatını simgeler.",
             "en": "Golden antlers on emerald green field, symbolizing wildlife."
           },
           "origin": {
             "tr": "Dray Hanesi, Onneva Eyaleti eyaletinde kök salmış bir küçük soylu hanedir. Adının anlamı — \"Orman Diyarı\" — hanenin kendini nasıl tanımladığını yansıtır.",
-            "en": "House Dray is a minor noble house rooted in the Province of Onneva. The meaning of its name — \"Forest Land\" — reflects how the house defines itself."
+            "en": ""
           },
           "tierLabel": {
             "tr": "Küçük soylu hane",
@@ -1211,14 +1147,13 @@
             "#C0C0C0"
           ],
           "tier": "minor",
-          "tags": [],
           "desc": {
             "tr": "Yarı saydam hayalet kurt silüeti, bölgedeki avcı mistisizmini yansıtır.",
             "en": "Semi-transparent ghost wolf silhouette, reflecting the region's hunter mysticism."
           },
           "origin": {
             "tr": "Sarem Hanesi, Onneva Eyaleti eyaletinde kök salmış bir küçük soylu hanedir. Adının anlamı — \"Avcı Ruhu\" — hanenin kendini nasıl tanımladığını yansıtır.",
-            "en": "House Sarem is a minor noble house rooted in the Province of Onneva. The meaning of its name — \"Hunter's Spirit\" — reflects how the house defines itself."
+            "en": ""
           },
           "tierLabel": {
             "tr": "Küçük soylu hane",
@@ -1229,19 +1164,19 @@
       ],
       "flagDesc": {
         "tr": "Kömür karası zeminde kırmızı anka kuşu, gövdesi kılıç ucuna dönüşüyor",
-        "en": "Coal-black field with a red phoenix whose body turns into a sword tip"
+        "en": ""
       },
       "economy": {
         "tr": "Tahıl/tarım ambarı; imparatorluğun ekonomik can damarı",
-        "en": "Grain/agriculture granary; the empire's economic lifeline"
+        "en": ""
       },
       "neighbors": {
         "tr": "Kuzeyde Başsancak ve Memanth, batıda Gümüş Yol üzerinden Solgar",
-        "en": "Başsancak and Memanth to the north, Solgar to the west across the Silver Way"
+        "en": ""
       },
       "cities": {
         "tr": "Kamtel Şehri, Jihon/Ziron (kuzey), Eromer, Tolea (merkez), Remwanya (Memanth sınırı), Gelia, Seldur (batı delta), Isonwell, Serba, Elgarn, Gomara, Todea, Piekgow (kale), Gom Ara (kale), Ergall, Bora, Eldarn, Las, Yoren",
-        "en": "Kamtel City, Jihon/Ziron (north), Eromer, Tolea (center), Remwanya (Memanth border), Gelia, Seldur (western delta), Isonwell, Serba, Elgarn, Gomara, Todea, Piekgow (fortress), Gom Ara (fortress), Ergall, Bora, Eldarn, Las, Yoren"
+        "en": ""
       }
     },
     {
@@ -1278,7 +1213,6 @@
             "#C0C0C0"
           ],
           "tier": "major",
-          "tags": [],
           "desc": {
             "tr": "Lacivert deniz ortasından yükselen gümüş yelkenli gemi. Celios Selya bu hanenin lordu.",
             "en": "Silver sailing ship rising from navy sea. Celios Selya is this house's lord."
@@ -1290,7 +1224,7 @@
           ],
           "origin": {
             "tr": "Selya Hanesi, Selya / Shelia Eyaleti eyaletinde kök salmış bir büyük soylu hanedir. Adının anlamı — \"Gümüş Diyarı\" — hanenin kendini nasıl tanımladığını yansıtır.",
-            "en": "House Selya is a major noble house rooted in the Province of Selya / Shelia. The meaning of its name — \"Silver Land\" — reflects how the house defines itself."
+            "en": ""
           },
           "tierLabel": {
             "tr": "Büyük soylu hane",
@@ -1332,14 +1266,13 @@
             "#FFD700"
           ],
           "tier": "minor",
-          "tags": [],
           "desc": {
             "tr": "Tüm haşmetiyle parlayan alevli güneş, güney soylularını temsil eder.",
             "en": "Blazing sun in full glory, representing southern nobility."
           },
           "origin": {
             "tr": "Hedon Hanesi, Selya / Shelia Eyaleti eyaletinde kök salmış bir küçük soylu hanedir. Adının anlamı — \"Güneş Soyu\" — hanenin kendini nasıl tanımladığını yansıtır.",
-            "en": "House Hedon is a minor noble house rooted in the Province of Selya / Shelia. The meaning of its name — \"Sun Lineage\" — reflects how the house defines itself."
+            "en": ""
           },
           "tierLabel": {
             "tr": "Küçük soylu hane",
@@ -1368,14 +1301,13 @@
             "#C4962A"
           ],
           "tier": "minor",
-          "tags": [],
           "desc": {
             "tr": "Kum sarısı zemin üzerindeki altın akrep, çöl koşullarını temsil eder.",
             "en": "Golden scorpion on sandy field, representing desert conditions."
           },
           "origin": {
             "tr": "Saert Hanesi, Selya / Shelia Eyaleti eyaletinde kök salmış bir küçük soylu hanedir. Adının anlamı — \"Çöl Zekası\" — hanenin kendini nasıl tanımladığını yansıtır.",
-            "en": "House Saert is a minor noble house rooted in the Province of Selya / Shelia. The meaning of its name — \"Desert Wisdom\" — reflects how the house defines itself."
+            "en": ""
           },
           "tierLabel": {
             "tr": "Küçük soylu hane",
@@ -1386,19 +1318,19 @@
       ],
       "flagDesc": {
         "tr": "Bordo zeminde altın çerçeveli 12 ışınlı güneş, merkezde siyah boşluk",
-        "en": "Burgundy field with a gold-bordered 12-rayed sun, a black void at its center"
+        "en": ""
       },
       "economy": {
         "tr": "Deniz ticareti, tersaneler, liman ekonomisi",
-        "en": "Maritime trade, shipyards, port economy"
+        "en": ""
       },
       "neighbors": {
         "tr": "Kuzeyde Solgar, batıda Seltanya ve Mabed, doğuda/güneyde deniz",
-        "en": "Solgar to the north, Seltanya and Mabed to the west, sea to the east and south"
+        "en": ""
       },
       "cities": {
         "tr": "Sayla, Terobi (kuzey nehir havzası), Direniş (batı ormanları), Selya Merkez (güney-orta, kale), Qomar, Sabiryah (güneybatı), Efrork, Kılıçlimanı (Gümüşyol kıyısı, doğu), Shada (merkez), Oıtcestr (Mabed sınırı), Zrustead",
-        "en": "Sayla, Terobi (northern river basin), Direniş (western forests), Selya Center (south-central, fortress), Qomar, Sabiryah (southwest), Efrork, Kılıçlimanı (Silver Way coast, east), Shada (center), Oıtcestr (Mabed border), Zrustead"
+        "en": ""
       }
     },
     {
@@ -1435,7 +1367,6 @@
             "#FFD700"
           ],
           "tier": "major",
-          "tags": [],
           "desc": {
             "tr": "Dev siyah şimşek, eyaletin kudretini isminde taşıyan hane. Edun ve Reun Solgar bu haneye mensuptur.",
             "en": "Massive black lightning. Edun and Reun Solgar are members of this house."
@@ -1446,7 +1377,7 @@
           ],
           "origin": {
             "tr": "Solgar Hanesi, Solgar Eyaleti eyaletinde kök salmış bir büyük soylu hanedir. Adının anlamı — \"Yalnız Gazabı\" — hanenin kendini nasıl tanımladığını yansıtır.",
-            "en": "House Solgar is a major noble house rooted in the Province of Solgar. The meaning of its name — \"Lone Wrath\" — reflects how the house defines itself."
+            "en": ""
           },
           "tierLabel": {
             "tr": "Büyük soylu hane",
@@ -1479,17 +1410,13 @@
             "#C4962A"
           ],
           "tier": "minor",
-          "tags": [
-            "ittifak-diplomasi",
-            "ticaret"
-          ],
           "desc": {
             "tr": "Mürekkep damlayan tüy kalem, ticaret antlaşmaları ve diplomasi ustalarını simgeler.",
             "en": "Ink-dipping quill, symbolizing masters of trade agreements and diplomacy."
           },
           "origin": {
             "tr": "Serbam Hanesi, Solgar Eyaleti eyaletinde kök salmış bir küçük soylu hanedir. Adının anlamı — \"Söz Ustası\" — hanenin kendini nasıl tanımladığını yansıtır.",
-            "en": "House Serbam is a minor noble house rooted in the Province of Solgar. The meaning of its name — \"Word Master\" — reflects how the house defines itself."
+            "en": ""
           },
           "tierLabel": {
             "tr": "Küçük soylu hane",
@@ -1520,14 +1447,13 @@
             "#808080"
           ],
           "tier": "minor",
-          "tags": [],
           "desc": {
             "tr": "Paslı dişliler ve çarklar, endüstriyi ve madeni betimler.",
             "en": "Rusted gears and wheels, depicting industry and mining."
           },
           "origin": {
             "tr": "Gekhor Hanesi, Solgar Eyaleti eyaletinde kök salmış bir küçük soylu hanedir. Adının anlamı — \"Mekanik Obur\" — hanenin kendini nasıl tanımladığını yansıtır.",
-            "en": "House Gekhor is a minor noble house rooted in the Province of Solgar. The meaning of its name — \"Mechanical Glutton\" — reflects how the house defines itself."
+            "en": ""
           },
           "tierLabel": {
             "tr": "Küçük soylu hane",
@@ -1538,19 +1464,19 @@
       ],
       "flagDesc": {
         "tr": "Gece mavisi zeminde gövdesi hançere dönüşen yusufçuk",
-        "en": "Midnight-blue field with a dragonfly whose body turns into a dagger"
+        "en": ""
       },
       "economy": {
         "tr": "Ticaret, endüstri zenginliği",
-        "en": "Trade, industrial wealth"
+        "en": ""
       },
       "neighbors": {
         "tr": "Kuzeyde Adamen, kuzeydoğuda Z'ela, batıda Seltanya, güneyde Selya, doğuda Gümüş Yol üzerinden Onneva",
-        "en": "Adamen to the north, Z'ela to the northeast, Seltanya to the west, Selya to the south, Onneva to the east across the Silver Way"
+        "en": ""
       },
       "cities": {
         "tr": "Plarji (batı kıyısı), Sador, Artien (güneybatı), Velemdal (merkez), Orduların Sığınağı (güneydoğu boğaz kalesi), Faqlar, Albit (kuzey), Liwanhel (Z'ela sınırı), Pearit (kıyı, kale), Sagoe (Seltanya kuzey sınırı), Orhen/Altınpınar (Gümüşyol kıyısı), Garall (kale --- Gümüş Yol, Niron ağzı), Wyrmkal, Arden, Anga/Uluçayır (batı)",
-        "en": "Plarji (west coast), Sador, Artien (southwest), Velemdal (center), Refuge of the Armies (southeastern strait fortress), Faqlar, Albit (north), Liwanhel (Z'ela border), Pearit (coast, fortress), Sagoe (northern border of Seltanya), Orhen/Altınpınar (Silver Way coast), Garall (fortress — Silver Way, mouth of the Niron), Wyrmkal, Arden, Anga/Uluçayır (west)"
+        "en": ""
       }
     },
     {
@@ -1587,16 +1513,13 @@
             "#1C1C1C"
           ],
           "tier": "major",
-          "tags": [
-            "buyu-mit"
-          ],
           "desc": {
             "tr": "Zehir yeşili zeminde efsunlu kafatası; eyaletin ismini ve lanetli doğasını taşır.",
             "en": "Enchanted skull on poison-green field; carries the province's name and cursed nature."
           },
           "origin": {
             "tr": "Khasin Hanesi, Khasinia / Khasinya Eyaleti eyaletinde kök salmış bir büyük soylu hanedir. Adının anlamı — \"Büyü Laneti\" — hanenin kendini nasıl tanımladığını yansıtır.",
-            "en": "House Khasin is a major noble house rooted in the Province of Khasinia / Khasinya. The meaning of its name — \"Magic Curse\" — reflects how the house defines itself."
+            "en": ""
           },
           "tierLabel": {
             "tr": "Büyük soylu hane",
@@ -1629,16 +1552,13 @@
             "#8B0000"
           ],
           "tier": "minor",
-          "tags": [
-            "buyu-mit"
-          ],
           "desc": {
             "tr": "Kendi kuyruğunu ısıran yılan, okült batı efsanelerini yansıtır.",
             "en": "Serpent devouring its own tail, reflecting occult western legends."
           },
           "origin": {
             "tr": "Sersen Hanesi, Khasinia / Khasinya Eyaleti eyaletinde kök salmış bir küçük soylu hanedir. Adının anlamı — \"Yılan Laneti\" — hanenin kendini nasıl tanımladığını yansıtır.",
-            "en": "House Sersen is a minor noble house rooted in the Province of Khasinia / Khasinya. The meaning of its name — \"Serpent Curse\" — reflects how the house defines itself."
+            "en": ""
           },
           "tierLabel": {
             "tr": "Küçük soylu hane",
@@ -1667,16 +1587,13 @@
             "#FFD700"
           ],
           "tier": "major",
-          "tags": [
-            "buyu-mit"
-          ],
           "desc": {
             "tr": "Üçüncü gözü açık mistik insan silüeti, kehanet ve vizyoner güçleri simgeler.",
             "en": "Mystic human silhouette with open third eye, symbolizing prophecy and visionary powers."
           },
           "origin": {
             "tr": "Vizelar Hanesi, Khasinia / Khasinya Eyaleti eyaletinde kök salmış bir büyük soylu hanedir. Adının anlamı — \"Kahin Bilgesi\" — hanenin kendini nasıl tanımladığını yansıtır.",
-            "en": "House Vizelar is a major noble house rooted in the Province of Khasinia / Khasinya. The meaning of its name — \"Oracle Sage\" — reflects how the house defines itself."
+            "en": ""
           },
           "tierLabel": {
             "tr": "Büyük soylu hane",
@@ -1705,14 +1622,13 @@
             "#87CEEB"
           ],
           "tier": "minor",
-          "tags": [],
           "desc": {
             "tr": "Yeni bir günü başlatan sabah güneşi, tarım ve hayvancılık döngüsünü simgeler.",
             "en": "Morning sun starting a new day, symbolizing the agricultural and pastoral cycle."
           },
           "origin": {
             "tr": "Yunner Hanesi, Khasinia / Khasinya Eyaleti eyaletinde kök salmış bir küçük soylu hanedir. Adının anlamı — \"Genç Bilgesi\" — hanenin kendini nasıl tanımladığını yansıtır.",
-            "en": "House Yunner is a minor noble house rooted in the Province of Khasinia / Khasinya. The meaning of its name — \"Young Sage\" — reflects how the house defines itself."
+            "en": ""
           },
           "tierLabel": {
             "tr": "Küçük soylu hane",
@@ -1723,15 +1639,15 @@
       ],
       "flagDesc": {
         "tr": "Teal zeminde köpekbalığı çenesini andıran beyaz üçgen dizilimi",
-        "en": "Teal field with a white triangular arrangement resembling a shark's jaw"
+        "en": ""
       },
       "economy": {
         "tr": "Stratejik kale-ada; donanma denetimi altında",
-        "en": "Strategic fortress-island; under naval control"
+        "en": ""
       },
       "cities": {
         "tr": "Qei (kuzeybatı kıyısı), Crosdar (güney kıyısı)",
-        "en": "Qei (northwest coast), Crosdar (south coast)"
+        "en": ""
       }
     },
     {
@@ -1768,14 +1684,13 @@
             "#FFFFFF"
           ],
           "tier": "major",
-          "tags": [],
           "desc": {
             "tr": "Fırtına mavisi zemin üzerinde kasırga ve beyaz yıldırımlar, açık deniz adalarının amblemdir.",
             "en": "Hurricane and white lightning on storm-blue field, the emblem of open-sea islands."
           },
           "origin": {
             "tr": "Triala Hanesi, Pilkkard Eyaleti eyaletinde kök salmış bir büyük soylu hanedir. Adının anlamı — \"Fırtına Diyarı\" — hanenin kendini nasıl tanımladığını yansıtır.",
-            "en": "House Triala is a major noble house rooted in the Province of Pilkkard. The meaning of its name — \"Storm Land\" — reflects how the house defines itself."
+            "en": ""
           },
           "tierLabel": {
             "tr": "Büyük soylu hane",
@@ -1806,14 +1721,13 @@
             "#C4962A"
           ],
           "tier": "minor",
-          "tags": [],
           "desc": {
             "tr": "Antik rünlerle yazılmış sembol, adadaki en eski ve unutulmuş yerleşimleri işaret eder.",
             "en": "Symbol written in ancient runes, pointing to the island's oldest forgotten settlements."
           },
           "origin": {
             "tr": "Gemen Hanesi, Pilkkard Eyaleti eyaletinde kök salmış bir küçük soylu hanedir. Adının anlamı — \"Kadim Ruhu\" — hanenin kendini nasıl tanımladığını yansıtır.",
-            "en": "House Gemen is a minor noble house rooted in the Province of Pilkkard. The meaning of its name — \"Ancient Spirit\" — reflects how the house defines itself."
+            "en": ""
           },
           "tierLabel": {
             "tr": "Küçük soylu hane",
@@ -1842,14 +1756,13 @@
             "#9400D3"
           ],
           "tier": "minor",
-          "tags": [],
           "desc": {
             "tr": "Gece siyahı zeminde orkide, ada bölgesine özgü nadir deniz bitkilerini çağrıştırır.",
             "en": "Orchid on night-black field, evoking rare sea plants unique to the island region."
           },
           "origin": {
             "tr": "Lufela Hanesi, Pilkkard Eyaleti eyaletinde kök salmış bir küçük soylu hanedir. Adının anlamı — \"Gece Zarafeti\" — hanenin kendini nasıl tanımladığını yansıtır.",
-            "en": "House Lufela is a minor noble house rooted in the Province of Pilkkard. The meaning of its name — \"Night's Grace\" — reflects how the house defines itself."
+            "en": ""
           },
           "tierLabel": {
             "tr": "Küçük soylu hane",
@@ -1860,15 +1773,15 @@
       ],
       "flagDesc": {
         "tr": "Belirtilmemiş",
-        "en": "Unspecified"
+        "en": ""
       },
       "economy": {
         "tr": "Doğal savunma konumu, ticaret yolları, donanma üssü",
-        "en": "Natural defensive position, trade routes, naval base"
+        "en": ""
       },
       "cities": {
         "tr": "Xoma (yalnızca kuzey burnunda)",
-        "en": "Xoma (northern cape only)"
+        "en": ""
       }
     },
     {
@@ -1905,14 +1818,13 @@
             "#87CEEB"
           ],
           "tier": "minor",
-          "tags": [],
           "desc": {
             "tr": "Toprağı yararak filizlenen yeşil fidan, tarım gücünü betimler.",
             "en": "Green sapling breaking through soil, depicting agricultural power."
           },
           "origin": {
             "tr": "Yonja Hanesi, Z'ela Eyaleti eyaletinde kök salmış bir küçük soylu hanedir. Adının anlamı — \"Genç Pınarı\" — hanenin kendini nasıl tanımladığını yansıtır.",
-            "en": "House Yonja is a minor noble house rooted in the Province of Z'ela. The meaning of its name — \"Young Spring\" — reflects how the house defines itself."
+            "en": ""
           },
           "tierLabel": {
             "tr": "Küçük soylu hane",
@@ -1944,7 +1856,6 @@
             "#C2B280"
           ],
           "tier": "major",
-          "tags": [],
           "desc": {
             "tr": "Yosun tutmuş devasa ayı kafatası, çiftlik hayvanlarını tehdit eden vahşi hayatı simgeler.",
             "en": "Massive moss-covered bear skull, symbolizing wildlife threatening livestock."
@@ -1952,7 +1863,7 @@
           "notable": [],
           "origin": {
             "tr": "Valer Hanesi, Z'ela Eyaleti eyaletinde kök salmış bir büyük soylu hanedir. Adının anlamı — \"Vahşi Bilgesi\" — hanenin kendini nasıl tanımladığını yansıtır.",
-            "en": "House Valer is a major noble house rooted in the Province of Z'ela. The meaning of its name — \"Wild Sage\" — reflects how the house defines itself."
+            "en": ""
           },
           "tierLabel": {
             "tr": "Büyük soylu hane",
@@ -1983,14 +1894,13 @@
             "#C0C0C0"
           ],
           "tier": "minor",
-          "tags": [],
           "desc": {
             "tr": "Rüzgarda dağılan duman, geçmiş zenginliklerin gizemini ve geçiciliğini anlatır.",
             "en": "Smoke dispersing in wind, telling of past riches' mystery and transience."
           },
           "origin": {
             "tr": "İtrez Hanesi, Z'ela Eyaleti eyaletinde kök salmış bir küçük soylu hanedir. Adının anlamı — \"Kayıp Ruhu\" — hanenin kendini nasıl tanımladığını yansıtır.",
-            "en": "House İtrez is a minor noble house rooted in the Province of Z'ela. The meaning of its name — \"Lost Spirit\" — reflects how the house defines itself."
+            "en": ""
           },
           "tierLabel": {
             "tr": "Küçük soylu hane",
@@ -2006,19 +1916,19 @@
       ],
       "flagDesc": {
         "tr": "Küf yeşili zeminde kenetli yılan dişi/hilal motifleri",
-        "en": "Mold-green field with interlocked serpent-fang/crescent motifs"
+        "en": ""
       },
       "economy": {
         "tr": "Kereste, maden, tarım/gıda merkezi",
-        "en": "Timber, mining, agriculture/food center"
+        "en": ""
       },
       "neighbors": {
         "tr": "Batıda Adamen, doğuda Başsancak, güneyde Solgar, kuzeydoğuda Galetsha",
-        "en": "Adamen to the west, Başsancak to the east, Solgar to the south, Galetsha to the northeast"
+        "en": ""
       },
       "cities": {
         "tr": "Kralya, Ulara, Fesmag, Kutsal Kütüphane (Niron Nehri kıyısı), Vekra, Kragva, Cebra, Bamo, Zela, Hema, Liwanhel (kale), Pearit (kale), Yukmar, Garall (kale --- Gümüş Yol ağzında), Ürga (en kuzey)",
-        "en": "Kralya, Ulara, Fesmag, Holy Library (Niron River bank), Vekra, Kragva, Cebra, Bamo, Zela, Hema, Liwanhel (fortress), Pearit (fortress), Yukmar, Garall (fortress — at the mouth of the Silver Way), Ürga (far north)"
+        "en": ""
       }
     }
   ]

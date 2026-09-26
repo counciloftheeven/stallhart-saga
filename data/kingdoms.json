@@ -4,11 +4,6 @@
       "id": "stallhart-empire",
       "type": "empire",
       "status": "active",
-      "tags": [
-        "din",
-        "saray-entrikasi",
-        "miras-veraset"
-      ],
       "name": {
         "tr": "Stallhart İmparatorluğu",
         "en": "Stallhart Empire"
@@ -32,7 +27,7 @@
       "currency": null,
       "religion": {
         "tr": "Denge Konseyi",
-        "en": "Council of the Even"
+        "en": "Council of Balance"
       },
       "color": "#C4962A",
       "flag": {
@@ -102,11 +97,6 @@
       "id": "arathen-kingdom",
       "type": "kingdom",
       "status": "active",
-      "tags": [
-        "savas",
-        "din",
-        "suikast-casusluk"
-      ],
       "name": {
         "tr": "Arathen Krallığı",
         "en": "Kingdom of Arathen"
@@ -196,10 +186,6 @@
       "id": "zelaina-empire",
       "type": "empire",
       "status": "active",
-      "tags": [
-        "miras-veraset",
-        "ittifak-diplomasi"
-      ],
       "name": {
         "tr": "Zelaina Elfin İmparatorluğu",
         "en": "Zelaina Elven Empire"
@@ -276,7 +262,6 @@
       "id": "garchar",
       "type": "state",
       "status": "contested",
-      "tags": [],
       "name": {
         "tr": "Garchar",
         "en": "Garchar"
@@ -349,7 +334,6 @@
       "id": "orebas",
       "type": "state",
       "status": "active",
-      "tags": [],
       "name": {
         "tr": "Örebas",
         "en": "Örebas"
@@ -416,7 +400,6 @@
       "id": "burria",
       "type": "kingdom",
       "status": "independent",
-      "tags": [],
       "name": {
         "tr": "Burria",
         "en": "Burria"
@@ -485,7 +468,7 @@
       "rank": 1,
       "name": {
         "tr": "Zelaina (Elf İmparatorluğu)",
-        "en": "Zelaina (Elven Empire)"
+        "en": ""
       },
       "score": 10,
       "population": 10500000,
@@ -495,7 +478,7 @@
       "rank": 2,
       "name": {
         "tr": "Stallhart İmparatorluğu",
-        "en": "Stallhart Empire"
+        "en": ""
       },
       "score": 9.95,
       "population": 14000000,
@@ -505,7 +488,7 @@
       "rank": 3,
       "name": {
         "tr": "Rei Krallığı (Otbeind)",
-        "en": "Kingdom of Rei (Otbeind)"
+        "en": ""
       },
       "score": 7.77,
       "population": 8500000,
@@ -515,7 +498,7 @@
       "rank": 4,
       "name": {
         "tr": "Arathen Krallığı",
-        "en": "Kingdom of Arathen"
+        "en": ""
       },
       "score": 7.5,
       "population": 9000000,
@@ -525,7 +508,7 @@
       "rank": 5,
       "name": {
         "tr": "Gastenia",
-        "en": "Gastenia"
+        "en": ""
       },
       "score": 7.22,
       "population": 9500000,
@@ -535,7 +518,7 @@
       "rank": 6,
       "name": {
         "tr": "Selanharla",
-        "en": "Selanharla"
+        "en": ""
       },
       "score": 6.57,
       "population": 6500000,
@@ -545,7 +528,7 @@
       "rank": 7,
       "name": {
         "tr": "Esma Yatta",
-        "en": "Esma Yatta"
+        "en": ""
       },
       "score": 6.5,
       "population": 7000000,
@@ -555,7 +538,7 @@
       "rank": 8,
       "name": {
         "tr": "Grathen",
-        "en": "Grathen"
+        "en": ""
       },
       "score": 6.5,
       "population": 7200000,
@@ -565,7 +548,7 @@
       "rank": 9,
       "name": {
         "tr": "Oushalux",
-        "en": "Oushalux"
+        "en": ""
       },
       "score": 6.5,
       "population": 7000000,
@@ -575,7 +558,7 @@
       "rank": 10,
       "name": {
         "tr": "Assigrat",
-        "en": "Assigrat"
+        "en": ""
       },
       "score": 6.44,
       "population": 6800000,
@@ -585,7 +568,7 @@
       "rank": 11,
       "name": {
         "tr": "Galantha Ada Devletleri",
-        "en": "Galantha Island States"
+        "en": ""
       },
       "score": 6.23,
       "population": 5500000,
@@ -595,7 +578,7 @@
       "rank": 12,
       "name": {
         "tr": "Vox Miysa",
-        "en": "Vox Miysa"
+        "en": ""
       },
       "score": 6,
       "population": 8000000,
@@ -605,7 +588,7 @@
       "rank": 13,
       "name": {
         "tr": "Burria (Bağımsız)",
-        "en": "Burria (Independent)"
+        "en": ""
       },
       "score": 5.76,
       "population": 4800000,
@@ -615,7 +598,7 @@
       "rank": 14,
       "name": {
         "tr": "Xyloristan",
-        "en": "Xyloristan"
+        "en": ""
       },
       "score": 5.5,
       "population": 4200000,
@@ -625,7 +608,7 @@
       "rank": 15,
       "name": {
         "tr": "Örebas Krallığı",
-        "en": "Kingdom of Örebas"
+        "en": ""
       },
       "score": 5.45,
       "population": 4000000,
@@ -635,7 +618,7 @@
       "rank": 16,
       "name": {
         "tr": "Melerya",
-        "en": "Melerya"
+        "en": ""
       },
       "score": 5.24,
       "population": 3800000,
@@ -645,7 +628,7 @@
       "rank": 17,
       "name": {
         "tr": "Selmakh Prensliği",
-        "en": "Principality of Selmakh"
+        "en": ""
       },
       "score": 5.2,
       "population": 3500000,
@@ -655,7 +638,7 @@
       "rank": 18,
       "name": {
         "tr": "Burria Prensliği",
-        "en": "Principality of Burria"
+        "en": ""
       },
       "score": 5.13,
       "population": 3200000,
@@ -665,7 +648,7 @@
       "rank": 19,
       "name": {
         "tr": "Lehm İna",
-        "en": "Lehm İna"
+        "en": ""
       },
       "score": 5.11,
       "population": 3000000,
@@ -675,7 +658,7 @@
       "rank": 20,
       "name": {
         "tr": "Quizei Seha Şehir Devletleri",
-        "en": "Quizei Seha City-States"
+        "en": ""
       },
       "score": 5.1,
       "population": 2800000,
@@ -685,7 +668,7 @@
       "rank": 21,
       "name": {
         "tr": "Tgronyz",
-        "en": "Tgronyz"
+        "en": ""
       },
       "score": 5.03,
       "population": 2500000,
@@ -695,7 +678,7 @@
       "rank": 22,
       "name": {
         "tr": "Shonya",
-        "en": "Shonya"
+        "en": ""
       },
       "score": 4.9,
       "population": 2000000,
@@ -705,7 +688,7 @@
       "rank": 23,
       "name": {
         "tr": "Kalasess",
-        "en": "Kalasess"
+        "en": ""
       },
       "score": 4.34,
       "population": 1500000,

@@ -40,7 +40,7 @@
     {
       "id": 2,
       "arc": 1,
-      "free": true,
+      "free": false,
       "num": "II",
       "title": {
         "tr": "Elçi",
@@ -61,7 +61,7 @@
     {
       "id": 3,
       "arc": 1,
-      "free": true,
+      "free": false,
       "num": "III",
       "title": {
         "tr": "Tembellik",
@@ -82,7 +82,7 @@
     {
       "id": 4,
       "arc": 1,
-      "free": true,
+      "free": false,
       "num": "IV",
       "title": {
         "tr": "Cenaze",
@@ -103,7 +103,7 @@
     {
       "id": 5,
       "arc": 1,
-      "free": true,
+      "free": false,
       "num": "V",
       "title": {
         "tr": "Hırsızlar",
@@ -124,7 +124,7 @@
     {
       "id": 6,
       "arc": 1,
-      "free": true,
+      "free": false,
       "num": "VI",
       "title": {
         "tr": "Kefil",
@@ -145,7 +145,7 @@
     {
       "id": 7,
       "arc": 1,
-      "free": true,
+      "free": false,
       "num": "VII",
       "title": {
         "tr": "Ulak",
@@ -166,7 +166,7 @@
     {
       "id": 8,
       "arc": 1,
-      "free": true,
+      "free": false,
       "num": "VIII",
       "title": {
         "tr": "Cüce Kral",
@@ -208,7 +208,7 @@
     {
       "id": 10,
       "arc": 1,
-      "free": true,
+      "free": false,
       "num": "X",
       "title": {
         "tr": "Akbaba",
@@ -229,7 +229,7 @@
     {
       "id": 11,
       "arc": 1,
-      "free": true,
+      "free": false,
       "num": "XI",
       "title": {
         "tr": "Hata",
@@ -245,90 +245,6 @@
         "en": "Erthan returns to the capital battered from the bloody ambush in İğneada Forest, carrying Baron Valer's sealed document for the prison administration. But guards block his path and extort a passage fee; a single mistake made that morning will have unexpected and grave consequences. Edlas Arhan watches the developments from a distance."
       },
       "firstLine": "Doru'nun ciğerleri, yırtık bir demirci körüğü misali hırıldıyordu.",
-      "tags": []
-    },
-    {
-      "id": 12,
-      "arc": 1,
-      "free": true,
-      "num": "XII",
-      "ks": "",
-      "title": {
-        "tr": "Yalan",
-        "en": "The Lie"
-      },
-      "pov": {
-        "tr": "",
-        "en": ""
-      },
-      "synopsis": {
-        "tr": "",
-        "en": ""
-      },
-      "firstLine": "Şafağın ilk soluğu, Arhan Hanesinin sığınağına sızdığında gökyüzü henüz yıkanmamış bir yara gibi gri ve donuktu.",
-      "tags": []
-    },
-    {
-      "id": 13,
-      "arc": 1,
-      "free": true,
-      "num": "XIII",
-      "ks": "",
-      "title": {
-        "tr": "Vazgeçiş",
-        "en": "Giving Up"
-      },
-      "pov": {
-        "tr": "",
-        "en": ""
-      },
-      "synopsis": {
-        "tr": "",
-        "en": ""
-      },
-      "firstLine": "Ufuk çizgisi, çürümeye yüz tutmuş bir meyvenin morluğuyla çalkalanıyordu.",
-      "tags": []
-    },
-    {
-      "id": 14,
-      "arc": 1,
-      "free": true,
-      "num": "XIV",
-      "ks": "",
-      "title": {
-        "tr": "Dönüş",
-        "en": "The Return"
-      },
-      "pov": {
-        "tr": "",
-        "en": ""
-      },
-      "synopsis": {
-        "tr": "",
-        "en": ""
-      },
-      "firstLine": "Örebas limanına süzülen ticaret teknesinin pruvasından bakıldığında, başkentin silueti evvela sisli bir karaltı, ardından kireç badanalı evl",
-      "tags": []
-    },
-    {
-      "id": 15,
-      "arc": 1,
-      "free": true,
-      "num": "XV",
-      "ks": "",
-      "title": {
-        "tr": "Altavar",
-        "en": "Altavar"
-      },
-      "pov": {
-        "tr": "",
-        "en": ""
-      },
-      "synopsis": {
-        "tr": "",
-        "en": ""
-      },
-      "firstLine": "Ellan şehri yürüyerek öğrenmek istedi.",
       "tags": []
     }
   ]
