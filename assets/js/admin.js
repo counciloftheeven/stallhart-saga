@@ -217,7 +217,7 @@ const VIEWS = {
   glossary:  { title: 'Sözlük', desc: 'Evren terimleri ansiklopedisi.', render: renderGlossary, add: () => openGlossaryEditor(null) },
   quotes:    { title: 'Sözler & Alıntılar', desc: 'Felsefi ve karakter sözleri veritabanı.', render: renderQuotes, add: () => openQuoteEditor(null) },
   media:     { title: 'Görsel Yöneticisi & Medya Hub', desc: 'Tüm site görsellerini görüntüle, doğrudan değiştir veya yeni görsel yükle.', render: renderMedia },
-  maps:      { title: 'Haritalar', desc: 'İnteraktif harita katmanları ve konum noktaları.', render: renderMapsAdmin },
+  maps:      { title: 'Haritalar', desc: 'İnteraktif harita katmanları ve konum noktaları.', render: function(){} }, /* admin-maps.js bu girişi kendi render+add fonksiyonuyla üzerine yazar */
   geo:       { title: 'Coğrafya', desc: 'Eyalet detayları ve dünya güç sıralaması.', render: renderGeography, add: () => openProvinceEditor(null) },
   language:  { title: 'Ortak Lisan', desc: 'Konlang sözlüğü — sözcük ekle, düzenle, sil.', render: renderLanguageAdmin, add: () => openWordEditor(null) },
   data:      { title: 'Veri & Yayın', desc: 'Sunucu senkronizasyonu, dışa aktarma, içe aktarma ve sıfırlama.', render: renderDataView }
