@@ -14,11 +14,11 @@
       },
       "title": {
         "tr": "Melik Vali → İmparator",
-        "en": "Governor King → Emperor"
+        "en": "Melik Governor→ Emperor"
       },
       "birth": {
-        "tr": "Başkent",
-        "en": "The Capital"
+        "tr": "Başkent Arava",
+        "en": "The Capital (Arava)"
       },
       "alleg": {
         "tr": "Stallhart İmparatorluğu",
@@ -37,8 +37,8 @@
         "en": "The empire is a chain. Find the weak link, break it — the rest unravels on its own."
       },
       "bio": {
-        "tr": "\"Bölüm - Elçi\"de, annesinin ölümüyle aynı anda doğar. Başkent Arava'da doğmuş, dokuz yaşında sürgüne gönderildiği Selya eyaletinde büyümüştür. \"Bölüm - Öneri\"den sonra Selya Meliği (Prens-Vali) olarak atanır. Selya'da bir vinç sistemi tasarlayacak kadar mühendislik zekâsına sahiptir. Haydut çetesi liderini bizzat öldürüp kellesini başkente uyarı olarak gönderir. Erthan isyanını bastırarak birçok unvan kazanır. \"Bölüm - İmparator\" kısmında Amadon'dan sonra tahta geçer.",
-        "en": "Exiled to Selya at age 9, Zeandor came of age under the wise Celios. Cold and calculating, yet not blind to justice. From inventing the port crane to bearing a tavern alias, from ending Erthan's rebellion to ascending the throne — a martyr's death became an emperor's birth."
+        "tr": "",
+        "en": ""
       },
       "allies": [
         "celios",
@@ -46,6 +46,7 @@
         "elyndra"
       ],
       "enemies": [
+        "amadon",
         "edun-solgar",
         "reun-solgar",
         "erthan"
@@ -59,7 +60,7 @@
     {
       "id": "amadon",
       "group": "stallhart",
-      "status": "deceased",
+      "status": "alive",
       "name": {
         "tr": "Amadon Stallhart",
         "en": "Amadon Stallhart"
@@ -73,8 +74,8 @@
         "en": "Melik of Seltanya → Emperor"
       },
       "birth": {
-        "tr": "Başkent",
-        "en": "The Capital"
+        "tr": "Başkent Arava",
+        "en": "The Capital (Arava)"
       },
       "alleg": {
         "tr": "Stallhart İmparatorluğu",
@@ -93,13 +94,26 @@
         "en": "They build empires from stone. I built mine from fear."
       },
       "bio": {
-        "tr": "Imloth'un paranoyak kıskançlığı yüzünden Seltanya'ya sürülmüş, burada adil ve başarılı bir Melik Vali olarak halkın sevgisini kazanmıştır. Abisi Imloth'un ölüm döşeğindeki çağrısıyla başkente dönmüş; Kurultay'ı \"Yagbu\" sıfatıyla yönetip abisinin ölümüyle tahta çıkmıştır. Devraldığı un ufak olmuş imparatorluğu toparlamak için ordu bütçesini kısmış, acımasız bürokratik tasfiyelere girişmiştir. Saltanatının son yıllarında amansız bir hastalığa yakalanmıştır.",
-        "en": "His intellect and resolve revived a crumbling empire. Founded the Black Claws, reigned through plague, but his paranoia consumed him. Sealed edicts written on his deathbed determined the empire's fate."
+        "tr": "",
+        "en": ""
       },
-      "allies": [],
-      "enemies": [
+      "allies": [
+        "meryen",
         "edun-solgar",
-        "erthan"
+        "reun-solgar",
+        "aertas-singlew",
+        "lunin-stallhart",
+        "yunghar-khasin",
+        "konsey-vezirleri-muhurdar-vezir",
+        "harbiye-baskomutani",
+        "istihbarat-veziri",
+        "baskomutan-olinder-albea"
+      ],
+      "enemies": [
+        "zeandor",
+        "imloth",
+        "erthan",
+        "leno-kridas"
       ],
       "chapters": [
         "Bölüm – Karar"
@@ -123,12 +137,16 @@
         "en": "Emperor"
       },
       "birth": {
-        "tr": "Başkent",
-        "en": "The Capital"
+        "tr": "Başkent Arava",
+        "en": "The Capital (Arava)"
       },
       "alleg": {
         "tr": "Stallhart İmparatorluğu",
         "en": "Stallhart Empire"
+      },
+      "weapon": {
+        "tr": "İmparatorluk asası",
+        "en": "Imperial scepter"
       },
       "epi": {
         "tr": "Tembel · Derin Tuzak",
@@ -142,22 +160,16 @@
         "tr": "KS 1451'de tahta çıktı. \"Bölüm - Elçi\" ile dâhil olur, \"Bölüm - Son Nefes\"te ölür. Devlet işlerini danışmanlarına bıraktı. Karısı Selmira'nın ölümünden sonra vicdan azabıyla çöktü. Kardeşi Amadon'a karşı derin bir kıskançlık ve paranoya besledi.",
         "en": "Obese, bald, with apathetic eyes — paralyzed by paranoia and guilt. Amadon's older brother, Zeandor's father. His passivity and incompetence brought the empire to the brink of rot. Died of illness."
       },
-      "allies": [],
-      "enemies": [],
+      "allies": [
+        "zeandor",
+        "selmira"
+      ],
+      "enemies": [
+        "amadon",
+        "leno-kridas"
+      ],
       "chapters": [],
-      "image": "assets/images/characters/IMLOTH_STALLHART.jpg",
-      "weapon": {
-        "tr": "İmparatorluk asası",
-        "en": "Imperial scepter"
-      },
-      "nameMeaning": {
-        "tr": "Derin Tuzak / Gölge Oyunu",
-        "en": ""
-      },
-      "kinship": {
-        "tr": "Karısı İmparatoriçe Selmira; oğulları Zeandor, Prens Amadon; Başvezir Celios Selya. Elron'un büyük oğlu, Amadon'un ağabeyi.",
-        "en": ""
-      }
+      "image": "assets/images/characters/IMLOTH_STALLHART.jpg"
     },
     {
       "id": "selmira",
@@ -298,6 +310,10 @@
         "tr": "Stallhart İmparatorluğu",
         "en": "Stallhart Empire"
       },
+      "weapon": {
+        "tr": "isli ve biçimli bir yay",
+        "en": ""
+      },
       "epi": {
         "tr": "",
         "en": ""
@@ -311,21 +327,14 @@
         "en": "Elegant features, pale skin, gray eyes; known for her emerald dressing gown and ruby necklace. Amadon's wife. Manipulated by Edun Solgar into secretly crowning Lun Aldris; forced to flee the capital."
       },
       "allies": [
+        "amadon",
         "lun-aldris"
       ],
       "enemies": [
         "zeandor"
       ],
       "chapters": [],
-      "image": "",
-      "weapon": {
-        "tr": "isli ve biçimli bir yay",
-        "en": ""
-      },
-      "nameMeaning": {
-        "tr": "Deniz Ruhlu / Okyanusun Şifası",
-        "en": ""
-      }
+      "image": "assets/images/characters/meryen_stallhart.webp"
     },
     {
       "id": "craes",
@@ -498,6 +507,10 @@
         "tr": "İlk Anne Tarikatı",
         "en": "First Mother Cult"
       },
+      "weapon": {
+        "tr": "koyu kahverengi yaydı",
+        "en": ""
+      },
       "epi": {
         "tr": "Zihin — Erthan'ın Çekicine Karşı",
         "en": "The Mind — Against Erthan's Hammer"
@@ -511,8 +524,8 @@
         "en": "Orange-red haired, thin-framed, intellectual aura. Secret member of the First Mother cult; amateur practitioner of Loth and Khaan magic. Erthan's partner but his perfect opposite: mind and soul. Used his own life force to destroy the Galet council hall — the ultimate sacrifice."
       },
       "allies": [
-        "erthan",
-        "fihor"
+        "fihor",
+        "erthan"
       ],
       "enemies": [
         "wolrez-galet"
@@ -522,14 +535,7 @@
         "Bölüm – Tarikat",
         "Bölüm – Mağara"
       ],
-      "weapon": {
-        "tr": "koyu kahverengi yaydı",
-        "en": ""
-      },
-      "kinship": {
-        "tr": "Babası Kont Fihor; ağabeyi (adı net belirtilmemiş, \"Aldris\" olarak anılan kibirli komutan); yaveri Erthan; kahyası Nanon; gizli aşkı (mağarada bulunan yaralı suikastçı kadın --- Dosya 2 / ya da Dosya 3'te Zeren/Liane olarak netleştirilmiştir).",
-        "en": ""
-      }
+      "image": "assets/images/characters/Edlas_Arhan.webp"
     },
     {
       "id": "fihor",
@@ -919,8 +925,12 @@
         "en": "Çukurtepe Village"
       },
       "alleg": {
-        "tr": "Halkın Adaleti",
-        "en": "People's Justice"
+        "tr": "Arhan Hanesi",
+        "en": "Arhan House"
+      },
+      "weapon": {
+        "tr": "Selrin",
+        "en": "Selrin"
       },
       "epi": {
         "tr": "İmparatorluğun Kâbusu · Almonth'un Oğlu",
@@ -935,10 +945,13 @@
         "en": "Dusty chestnut hair, calloused knuckles, defiant eyes. His father Almonth was executed due to a clerical date error. As Edlas's partner, he served justice. His rebellion both shook the empire and paved Zeandor's rise. Bears the heirloom sword Selrin."
       },
       "allies": [
-        "edlas"
+        "edlas",
+        "fihor",
+        "kaelen"
       ],
       "enemies": [
         "zeandor",
+        "amadon",
         "reun-solgar",
         "wolrez-galet"
       ],
@@ -948,15 +961,7 @@
         "Bölüm – Kıyafet",
         "Bölüm – Mağara"
       ],
-      "image": "",
-      "weapon": {
-        "tr": "İsyan baltası",
-        "en": "Rebel axe"
-      },
-      "kinship": {
-        "tr": "Babası Almonth (idam edilir), annesi Sarya; efendisi ve dostu Edlas Arhan; atı Doru; ölen sevgilisi (kimliği net belirtilmemiş).",
-        "en": ""
-      }
+      "image": "assets/images/characters/Erthan.webp"
     },
     {
       "id": "almonth",
@@ -3948,10 +3953,30 @@
         "en": ""
       },
       "house": {
-        "tr": "Stallhart Hanedanı",
-        "en": ""
+        "tr": "İmparatorluk Hanedanı",
+        "en": "İmparatorluk Hanedanı"
       },
       "title": {
+        "tr": "",
+        "en": ""
+      },
+      "birth": {
+        "tr": "",
+        "en": ""
+      },
+      "alleg": {
+        "tr": "Stallhart hanedanı geçmiş dönem hükümdarı.",
+        "en": ""
+      },
+      "weapon": {
+        "tr": "Geleneksel saray zırhları",
+        "en": ""
+      },
+      "epi": {
+        "tr": "",
+        "en": ""
+      },
+      "quote": {
         "tr": "",
         "en": ""
       },
@@ -3959,14 +3984,9 @@
         "tr": "İç isyanlar, vergi krizleri ve bütçe darboğazlarıyla boğuşmuş tarihi imparatorluk hükümdarı.",
         "en": ""
       },
-      "weapon": {
-        "tr": "Geleneksel saray zırhları",
-        "en": ""
-      },
-      "alleg": {
-        "tr": "Stallhart hanedanı geçmiş dönem hükümdarı.",
-        "en": ""
-      }
+      "allies": [],
+      "enemies": [],
+      "chapters": []
     }
   ]
 }
