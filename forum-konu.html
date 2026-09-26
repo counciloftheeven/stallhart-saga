@@ -234,7 +234,8 @@ function applyLang(l) {
     document.getElementById('fk-content').innerHTML = `<p style="padding:2rem 0;color:var(--parchd);font-style:italic">${l0 === 'tr' ? 'Konu bulunamadı ya da kaldırılmış.' : 'This thread was not found or was removed.'} <a href="forum.html" style="color:var(--gold)">${l0 === 'tr' ? "Kurultay'a dön" : 'Back to the Kurultay'}</a>.</p>`;
     initWiki({}); return;
   }
-  thread = t; cat = K.catById(t.category_id) || cats.find(c => c.id === t.category_id);
+  thread = t;
+  cat = K.catById(t.category_id) || cats.find(c => c.id === t.category_id) || { id: t.category_id || 'sohbet', name_tr: 'Genel', name_en: 'General' };
 
   /* Görüntülenme: oturum başına bir kez say */
   try {

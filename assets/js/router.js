@@ -60,9 +60,13 @@ var TYPES = {
   tanrilar: 'tanrilar.html',
   bolumler: 'bolumler.html',
   sozler: 'sozler.html',
+  forum: 'forum.html',
+  'forum-kategori': 'forum-kategori.html',
+  'forum-konu': 'forum-konu.html',
+  hiyerarsi: 'hiyerarsi.html',
   ana: 'index.html'
 };
-var HAS_PARTS = { karakter: 1, devlet: 1, hane: 1, tanri: 1, bolum: 1, harita: 1, evren: 1, 'soy-agaci': 1 };
+var HAS_PARTS = { karakter: 1, devlet: 1, hane: 1, tanri: 1, bolum: 1, harita: 1, evren: 1, 'soy-agaci': 1, 'forum-kategori': 1, 'forum-konu': 1, hiyerarsi: 1 };
 var ENTITY = { karakter: 1, devlet: 1, hane: 1, tanri: 1, bolum: 1 };
 /* Yönlendirme yapılmayan sayfalar: yönetim paneli kendi #görünüm hash'lerini kullanır */
 var NO_REDIRECT = { 'admin.html': 1, '404.html': 1 };
@@ -127,6 +131,9 @@ function fromLegacy(page, search, h) {
       return hs ? { type: 'evren', parts: [hs], legacy: true } : null;
     case 'soy-agaci.html':
       return hs ? { type: 'soy-agaci', parts: [hs], legacy: true } : null;
+    case 'hiyerarsi.html':
+      id = qs(search, 'office') || qs(search, 'id') || hs;
+      return id ? { type: 'hiyerarsi', parts: [id], legacy: true } : null;
     default: return null;
   }
 }

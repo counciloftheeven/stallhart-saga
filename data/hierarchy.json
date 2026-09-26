@@ -1,0 +1,1303 @@
+{
+  "emperor": {
+    "id": "emperor",
+    "branch": "supreme",
+    "title": {
+      "tr": "İmparator / Kağan (Anxes / Xes)",
+      "en": "Supreme Emperor / Khagan (Anxes / Xes)"
+    },
+    "term": "Anxes / Xes",
+    "motto": "Xes ovas. Edor Xesed. Lidozes!",
+    "subtitle": {
+      "tr": "Kutsal Kan Doktrini & Mutlak Hükümran",
+      "en": "Holy Blood Doctrine & Supreme Sovereign"
+    },
+    "description": {
+      "tr": "Stallhart Hanedanı'nın başındaki mutlak hükümdardır. Siyasi Divan (Veron), 140.000 kişilik ordu nizamı ve Mabed teşkilatı doğrudan İmparator'un iki dudağı arasındaki fermana bağlıdır. KS 1144'te I. Craes Stallhart tarafından kurulan Kutsal Kan Doktrini uyarınca, Era'nın yeryüzündeki gölgesi ve iradesi sayılır.",
+      "en": "Supreme sovereign of House Stallhart. The civil council (Veron), the 140,000-strong imperial army, and the Mabed priesthood answer directly to his decree. By the Holy Blood Doctrine established in KS 1144 by Craes I, he embodies Era's divine will."
+    },
+    "powers": {
+      "tr": [
+        "Ferman çıkarma ve kanun koyma mutlak yetkisi (Xes ovas)",
+        "Yüce Divan'ı (Kurultay / Veron) toplama, azletme ve feshetme",
+        "140.000 kişilik orduya Başkomutan atama ve savaş ilan etme",
+        "Eyalet valilerini atama, denetleme ve mülk tasarruflarını belirleme",
+        "Kutsal Kan Doktrini uyarınca taht verasetini belirleme"
+      ],
+      "en": [
+        "Absolute decree-making and legislative authority (Xes ovas)",
+        "Convening, dismissing, and dissolving the High Council (Veron)",
+        "Appointing the Supreme Commander and declaring war",
+        "Appointing provincial governors and dictating fief dispensations",
+        "Designating imperial succession under the Holy Blood Doctrine"
+      ]
+    },
+    "insignia": {
+      "tr": "Xesron (İmparatorluk Demir & Altın Tacı), Çift Altın Mühür ve Örs-Çekiç Sancağı",
+      "en": "Xesron (Imperial Iron & Gold Crown), Dual Golden Seal, and Anvil-Hammer Standard"
+    },
+    "current": {
+      "name": {
+        "tr": "İmparator Zeandor Stallhart",
+        "en": "Emperor Zeandor Stallhart"
+      },
+      "epithet": {
+        "tr": "Yarının Hükümdarı · Sürgünün Oğlu · Hak Edilen Prens",
+        "en": "Ruler of Tomorrow · Son of Exile · The Earned Prince"
+      },
+      "house": "stallhart",
+      "charId": "zeandor",
+      "era": "KS 1480 — günümüz",
+      "image": "assets/images/characters/zeandor_stallhart01-240w.webp",
+      "status": {
+        "tr": "Makamında (Tahtta)",
+        "en": "Active on Throne"
+      },
+      "bio": {
+        "tr": "Dokuz yaşında sürgüne gönderildiği Selya eyaletinde acıyla pişen; halkla iç içe yaşayan, mühendislik ve stratejik zekâsıyla temayüz eden hükümdar. Erthan köylü isyanını diplomatik akılla çözerek 'Yarının Hükümdarı' unvanını kazanmış, amcası Amadon'un vefatıyla tahta çıkmıştır.",
+        "en": "Exiled to Selya at age nine and hardened by trials; closely connected to the common folk, gifted in engineering and military tactics. Resolved the Erthan uprising diplomatically and ascended the throne upon his uncle Amadon's demise."
+      }
+    },
+    "predecessors": [
+      {
+        "name": {
+          "tr": "İmparator Amadon Stallhart",
+          "en": "Emperor Amadon Stallhart"
+        },
+        "epithet": {
+          "tr": "Enkazın Hükümdarı · Demiryumruk · Seltanya Meliği",
+          "en": "Ruler of the Ruins · Iron Fist · Melik of Seltanya"
+        },
+        "era": "KS 1466 — 1480",
+        "charId": "amadon",
+        "reason": {
+          "tr": "Amansız bir hastalıkla mücadele edip vefat etmeden önce yeğeni Zeandor'a mühürlü vasiyetini teslim etti.",
+          "en": "Fought a terminal illness, handing over the sealed succession decree to his nephew Zeandor on his deathbed."
+        }
+      },
+      {
+        "name": {
+          "tr": "İmparator Imloth Stallhart",
+          "en": "Emperor Imloth Stallhart"
+        },
+        "epithet": {
+          "tr": "Tembel",
+          "en": "The Slothful"
+        },
+        "era": "KS 1451 — 1466",
+        "charId": "imloth",
+        "image": "assets/images/characters/IMLOTH_STALLHART-240w.webp",
+        "reason": {
+          "tr": "Eşi İmparatoriçe Selmira'nın doğumda vefatından sonra keder ve uyuşukluğa gömüldü, saray entrikaları arasında can verdi.",
+          "en": "Sank into grief and lethargy following Empress Selmira's death in childbirth, perishing amidst court plots."
+        }
+      },
+      {
+        "name": {
+          "tr": "III. Elron Stallhart",
+          "en": "Elron Stallhart III"
+        },
+        "epithet": {
+          "tr": "Barışsever · Kırılgan",
+          "en": "The Peaceful · The Fragile"
+        },
+        "era": "KS 1441 — 1451",
+        "charId": "elron",
+        "image": "assets/images/characters/Elron_Stallhart3-240w.webp",
+        "reason": {
+          "tr": "Garnizonları boşaltıp askeri bütçeyi kısmış, oğulları Imloth ve Amadon'a zayıflamış bir taht bırakmıştır.",
+          "en": "Emptied garrisons and cut military spending, leaving a frail realm to his sons Imloth and Amadon."
+        }
+      },
+      {
+        "name": {
+          "tr": "I. Craes Stallhart",
+          "en": "Craes Stallhart I"
+        },
+        "epithet": {
+          "tr": "İlteriş · Kurucu Hakan",
+          "en": "Ilterish · The Founder Khan"
+        },
+        "era": "KS 1144 — 1160",
+        "charId": "craes",
+        "reason": {
+          "tr": "Stallhart Hanedanı'nın kurucusu ve boyları tek bayrak altında toplayan İlteriş Hakan; Kutsal Kan Doktrini'ni ilan etmiş, Eretay saldırısını püskürttükten sonra KS 1160'ta vefat etmiştir.",
+          "en": "Founder of House Stallhart and the Ilterish Khan who gathered the clans under one banner; proclaimed the Holy Blood Doctrine and passed away in KS 1160 after repelling the Eretay invasion."
+        }
+      }
+    ]
+  },
+  "branches": [
+    {
+      "id": "political",
+      "name": {
+        "tr": "Siyasi & Mülki İdare (Veron)",
+        "en": "Civil & Administrative Council (Veron)"
+      },
+      "code": "Veron",
+      "icon": "🏛️",
+      "motto": "Veron ovas. Lido va.",
+      "color": "#d97706",
+      "description": {
+        "tr": "İmparatorluğun sivil bürokrasisi, hazinesi, hariciye diplomasisi, iç asayişi ve eyalet valiliklerini sevk ve idare eden Yüce Divan (Kurultay) organıdır. Başvezir başkanlığında toplanır ve imparatorluk fermanlarını mülki hayata geçirir.",
+        "en": "The High Council (Kurultay) governing civil bureaucracy, the imperial treasury, external diplomacy, internal order, and provincial governors. Presided over by the Grand Vizier."
+      },
+      "offices": [
+        {
+          "id": "muhurdar_vezir",
+          "title": {
+            "tr": "Mühürdar Vezir (Başvezir)",
+            "en": "Keeper of the Imperial Seal (Grand Vizier)"
+          },
+          "term": "Veron Lar / Başvezir",
+          "rank": "1. Kademe Mülki Makam",
+          "level": 1,
+          "description": {
+            "tr": "Bürokrasinin mutlak yöneticisidir. İmparatorun altın mührünü taşır, Yüce Divan'a başkanlık eder ve 12 eyalet valisini birbirine düşürerek merkezî otoriteyi korur. Asla kılıç çekmez, iradesini ferman ve mühürlerle uygular.",
+            "en": "Supreme head of the bureaucracy. Bears the Emperor's golden seal, presides over the Veron, and balances the 12 provincial governors to preserve central authority."
+          },
+          "powers": {
+            "tr": [
+              "İmparatorluk mührünü fermanlara tatbik etme yetkisi",
+              "Kurultay divan oturumlarını yönetme ve gündemi belirleme",
+              "Eyalet valilik bütçelerini ve atama tekliflerini onaylama",
+              "Sivil bürokratik kadroları tayin etme"
+            ],
+            "en": [
+              "Affixing the imperial seal to royal decrees",
+              "Presiding over the Kurultay and setting council agendas",
+              "Reviewing provincial budgets and governor nominations",
+              "Appointing high civil bureaucrats"
+            ]
+          },
+          "current": {
+            "name": {
+              "tr": "Edun Solgar",
+              "en": "Edun Solgar"
+            },
+            "epithet": {
+              "tr": "Engerek · Solgar Efendisi",
+              "en": "The Viper · Lord of Solgar"
+            },
+            "house": "solgar",
+            "charId": "edun-solgar",
+            "bio": {
+              "tr": "İliklerine kadar realist, riski asla göze almayan usta bir siyasetçi ve tüccar. Zümrüt yeşili cübbesi, parmaklarındaki mürekkep lekeleri ve yakut yüzükleriyle tanınır. Amadon'un ölüm döşeğindeki entrikaları soğukkanlılıkla yönetmiştir.",
+              "en": "An uncompromising realist and master schemer. Known for his emerald robes, ink-stained fingers, and ruby rings. Steered court intrigues during Amadon's final hours."
+            }
+          },
+          "predecessors": [
+            {
+              "name": {
+                "tr": "Celios Selya",
+                "en": "Celios Selya"
+              },
+              "epithet": {
+                "tr": "Selya'nın Kart Tilkisi · Eski Başvezir",
+                "en": "The Old Fox of Selya · Former Grand Vizier"
+              },
+              "era": "KS 1445 — 1466",
+              "charId": "celios",
+              "image": "assets/images/characters/CELIOS_SELYA-240w.webp",
+              "reason": {
+                "tr": "Imloth döneminde devleti ayakta tutmuş, ardından genç Zeandor'a hocalık yapmak üzere Selya'ya çekilerek makamı devretmiştir.",
+                "en": "Maintained the realm under Imloth, then retired to mentor young Zeandor in Selya."
+              }
+            }
+          ]
+        },
+        {
+          "id": "dahiliye_veziri",
+          "title": {
+            "tr": "Dahiliye Veziri (İç İşleri Veziri)",
+            "en": "Minister of the Interior"
+          },
+          "term": "Gema Veron",
+          "rank": "2. Kademe Mülki Makam",
+          "level": 2,
+          "description": {
+            "tr": "İmparatorluk sınırları içindeki eyalet asayişi, şehir muhafızları nizamı, yol emniyeti, nüfus sayımları ve iç isyanların takibinden sorumludur.",
+            "en": "Oversees internal provincial peace, city watch regulations, highway security, census registries, and domestic civil disturbances."
+          },
+          "powers": {
+            "tr": [
+              "Şehir muhafızları ve asayiş alaylarını teftiş etme",
+              "Eyaletler arası seyahat ve kervan güvenlik nizamnameleri yayımlama",
+              "İç ayaklanma ve eşkıyalık durumunda sıkıyönetim teklif etme"
+            ],
+            "en": [
+              "Inspecting municipal watches and local constabularies",
+              "Issuing inter-provincial travel and caravan safety mandates",
+              "Recommending martial law during civil insurgencies"
+            ]
+          },
+          "current": {
+            "name": {
+              "tr": "Ekash Triala",
+              "en": "Ekash Triala"
+            },
+            "epithet": {
+              "tr": "Seltanya'nın Muhafızı",
+              "en": "Guardian of Seltanya"
+            },
+            "house": "triala",
+            "charId": "ekash-triala",
+            "bio": {
+              "tr": "Eski Seltanya Valisi. Gümüşe çalan saçları ve yorgunluğuna rağmen keskin gözleriyle sınır tehditlerini ve iç huzursuzlukları ciddiyetle takip eden tecrübeli bir devlet adamı.",
+              "en": "Former Governor of Seltanya. A veteran statesman with silvered hair and sharp, vigilant eyes who monitors border threats and domestic unrest."
+            }
+          },
+          "predecessors": [
+            {
+              "name": {
+                "tr": "Hiles Vizelar",
+                "en": "Hiles Vizelar"
+              },
+              "epithet": {
+                "tr": "Amadon'un Sırdaşı",
+                "en": "Amadon's Confidant"
+              },
+              "era": "KS 1466 — 1475",
+              "charId": "hiles-vizelar",
+              "reason": {
+                "tr": "Edun Solgar'ın saray entrikaları sonucu Amadon ile arası açılmış ve haksız yere sürgüne gönderilmiştir.",
+                "en": "Fell victim to Edun Solgar's court machinations, estranged from Amadon and unjustly exiled."
+              }
+            }
+          ]
+        },
+        {
+          "id": "hazine_veziri",
+          "title": {
+            "tr": "Hazine Veziri (Aronda / Maliye)",
+            "en": "Treasurer of the Realm (Aronda)"
+          },
+          "term": "Aronda Lar",
+          "rank": "2. Kademe Mülki Makam",
+          "level": 2,
+          "description": {
+            "tr": "Vergi toplama, darphane, maden imtiyazları, küresel ticaret ve imparatorluk altın rezervi (Aronda) idaresinden sorumludur. Hazine defterleri üzerinde mutlak tasarruf hakkı vardır.",
+            "en": "In charge of taxation, imperial mints, mining charters, global commerce, and the treasury vault (Aronda)."
+          },
+          "powers": {
+            "tr": [
+              "İmparatorluk vergi oranlarını belirleme ve tahsildarları denetleme",
+              "Kuzey bakır ve altın madeni işletme beratlarını dağıtma",
+              "Ordu ve donanma bütçe ödeneklerini tahsis etme"
+            ],
+            "en": [
+              "Setting imperial tax rates and auditing tax collectors",
+              "Distributing mining charters for northern copper and gold",
+              "Allocating budget provisions to the army and fleet"
+            ]
+          },
+          "current": {
+            "name": {
+              "tr": "Selith Hedar",
+              "en": "Selith Hedar"
+            },
+            "epithet": {
+              "tr": "Altın Defterdar",
+              "en": "The Golden Keeper"
+            },
+            "house": "hedar",
+            "charId": "selith-hedar",
+            "bio": {
+              "tr": "Buz gibi soğuk, duygulardan arınmış, tamamen rakamlarla ve vergi kütükleriyle düşünen genç bir soylu bürokrat. Şarap rengi ipek cüppesi ve parmağındaki zümrüt yüzüğüyle tanınır.",
+              "en": "An icy, dispassionate noble bureaucrat who thinks entirely in ledger figures and revenue ratios. Known for wine-red silk robes and his emerald ring."
+            }
+          },
+          "predecessors": [
+            {
+              "name": {
+                "tr": "Metron Galet",
+                "en": "Metron Galet"
+              },
+              "epithet": {
+                "tr": "Galetsha Lordu · Madenlerin Efendisi",
+                "en": "Lord of Galetsha · Master of Ores"
+              },
+              "era": "KS 1448 — 1466",
+              "charId": "metron-galet",
+              "reason": {
+                "tr": "Kuzey bakır madenlerini ve imparatorluk gelirlerini bizzat koordine etmiş, vefatından sonra makamı devretmiştir.",
+                "en": "Directly coordinated northern copper mines and imperial revenues until his demise."
+              }
+            }
+          ]
+        },
+        {
+          "id": "hariciye_veziri",
+          "title": {
+            "tr": "Hariciye Veziri (Diplomasi & Elçiler)",
+            "en": "Minister of Foreign Affairs & Diplomacy"
+          },
+          "term": "Vash Veron",
+          "rank": "2. Kademe Mülki Makam",
+          "level": 2,
+          "description": {
+            "tr": "Yabancı krallıklar (Arathen, Örebas, Burria, Galantha, Zieleina) ile diplomatik ilişkileri, sınır paktlarını, elçilik kabullerini ve dış barış antlaşmalarını idare eder.",
+            "en": "Handles diplomatic relations with foreign realms (Arathen, Örebas, Burria, Galantha, Zieleina), border pacts, and embassy receptions."
+          },
+          "powers": {
+            "tr": [
+              "Yabancı elçileri huzura kabul etme ve müzakereleri yürütme",
+              "Sınır ve ticaret antlaşmaları metinlerini tanzim etme",
+              "İmparatorluk elçilerini yabancı saraylara atama"
+            ],
+            "en": [
+              "Receiving foreign envoys and conducting negotiations",
+              "Drafting border and trade treaty pacts",
+              "Deploying imperial ambassadors to foreign courts"
+            ]
+          },
+          "current": {
+            "name": {
+              "tr": "Valori Gekhor",
+              "en": "Valori Gekhor"
+            },
+            "epithet": {
+              "tr": "Masanın Gülen Yılanı",
+              "en": "The Smiling Serpent of the Table"
+            },
+            "house": "selya",
+            "charId": "valori-gekhor",
+            "bio": {
+              "tr": "Selya bölgesi kökenli, lacivert cüppeli, kısa kırçıl sakallı ve keskin zekâlı bir diplomat. Muhatabının en zayıf noktasını tebessümle bulup çıkaran usta bir müzakerecidir.",
+              "en": "A sharp-witted diplomat from Selya clad in sea-shell trimmed blue robes. Uncovers an adversary's vulnerability behind a disarming smile."
+            }
+          },
+          "predecessors": [
+            {
+              "name": {
+                "tr": "Vezir Serat",
+                "en": "Vizier Serat"
+              },
+              "epithet": {
+                "tr": "Protokol Üstadı",
+                "en": "Master of Protocol"
+              },
+              "era": "KS 1450 — 1466",
+              "charId": "vezir-serat",
+              "reason": {
+                "tr": "Saray törenleri ve elçi protokolündeki kadim usulleri yönetmiş, yaş haddinden emekliye ayrılmıştır.",
+                "en": "Presided over ancient court protocols and embassies before retiring with honors."
+              }
+            }
+          ]
+        },
+        {
+          "id": "istihbarat_veziri",
+          "title": {
+            "tr": "İstihbarat Veziri (Gölge Veziri)",
+            "en": "Master of Whispers (Shadow Vizier)"
+          },
+          "term": "Tshahar Lar",
+          "rank": "2. Kademe Mülki Makam (Gizli)",
+          "level": 2,
+          "description": {
+            "tr": "İmparatorluğun en karanlık ve korkulan makamıdır. Casusluk, derin-kapak ajanları (Arba İtrez ağı vb.), şantaj, fısıltı arşivi ve saray suikastlarını engelleme operasyonlarını yürütür. Divan oturumlarında en az konuşan ama en çok çekinilen üyedir.",
+            "en": "The realm's most dreaded office. Operates espionage rings, deep-cover infiltrators, extortion dossiers, and anti-assassination counter-measures."
+          },
+          "powers": {
+            "tr": [
+              "Fısıltı ağı ve derin ajan hücrelerini doğrudan yönetme",
+              "Vatana ihanet şüphelilerine gizli operasyon ve sorgulama emri verme",
+              "Yabancı krallıklardaki casus şebekelerini finanse etme"
+            ],
+            "en": [
+              "Directing spy networks and deep infiltrator cells",
+              "Ordering clandestine interrogations of treason suspects",
+              "Funding foreign espionage rings in rival realms"
+            ]
+          },
+          "current": {
+            "name": {
+              "tr": "Gölge Veziri (Kimliği Gizli)",
+              "en": "The Shadow Vizier (Identity Concealed)"
+            },
+            "epithet": {
+              "tr": "Gözü Olmayan Gören",
+              "en": "The Unseen Seer"
+            },
+            "house": "bilinmiyor",
+            "charId": "istihbarat-veziri",
+            "bio": {
+              "tr": "Yüzü siyah kadife bir maskeyle gizlenen, divan oturumlarında gölgeler arasında oturan meçhul şahsiyet. Gulon Stallhart'ın zehirlenmesinden ve sınır casus ağlarının çökertilmesinden sorumlu tutulur.",
+              "en": "A masked figure sitting in the shadows of the council chamber. Credited with the poisoning of Gulon Stallhart and unraveling border spy networks."
+            }
+          },
+          "predecessors": [
+            {
+              "name": {
+                "tr": "Kadim Gölge Kethüdaları",
+                "en": "Ancient Shadow Wardens"
+              },
+              "epithet": {
+                "tr": "Gecenin Kâtipleri",
+                "en": "Scribes of the Night"
+              },
+              "era": "KS 1144 — günümüz",
+              "charId": "istihbarat-veziri",
+              "reason": {
+                "tr": "I. Craes döneminden itibaren hanedanın bekası için gizli ölüm ve şantaj kütüklerini tutmuşlardır.",
+                "en": "Maintained classified dossiers of poison and extortion for the dynasty since Craes I."
+              }
+            }
+          ]
+        },
+        {
+          "id": "tarim_lojistik_veziri",
+          "title": {
+            "tr": "Tarım ve Lojistik Veziri (Gema)",
+            "en": "Minister of Agriculture & Logistics"
+          },
+          "term": "Gema Driya",
+          "rank": "2. Kademe Mülki Makam",
+          "level": 2,
+          "description": {
+            "tr": "Toprak verimliliği, imparatorluk zahire ambarları, kıtlık rezervleri, ordu erzak ikmali ve kervan yollarının iaşe istasyonlarını koordine eder.",
+            "en": "Coordinates agricultural harvests, imperial grain silos, famine relief, army supply trains, and highway provisioning posts."
+          },
+          "powers": {
+            "tr": [
+              "Eyalet tahıl ambarlarını teftiş etme ve kıtlık rezervi oluşturma",
+              "Ordu seferberliklerinde erzak konvoylarını sevk etme",
+              "Sulama kanalları ve tarımsal bayındırlık işlerini onaylama"
+            ],
+            "en": [
+              "Inspecting grain silos and managing famine reserves",
+              "Dispatching supply convoys during military mobilizations",
+              "Approving irrigation canals and rural agricultural works"
+            ]
+          },
+          "current": {
+            "name": {
+              "tr": "Gealea Driya",
+              "en": "Gealea Driya"
+            },
+            "epithet": {
+              "tr": "Kadim Pınar",
+              "en": "The Ancient Spring"
+            },
+            "house": "driya",
+            "charId": "gealea-driya",
+            "bio": {
+              "tr": "Driya Ailesi'nin deneyimli reisi. Ağabeyi Eaviz'in vefatından sonra makamı devralmış, eyalet ambarlarının doluluk oranlarını titizlikle korumuştur.",
+              "en": "Elder of House Driya. Succeeded his brother Eaviz, vigilantly maintaining grain inventories across provincial silos."
+            }
+          },
+          "predecessors": [
+            {
+              "name": {
+                "tr": "Eaviz Driya",
+                "en": "Eaviz Driya"
+              },
+              "epithet": {
+                "tr": "Pınarın Gözü",
+                "en": "The Eye of the Spring"
+              },
+              "era": "KS 1450 — 1470",
+              "charId": "eaviz-driya",
+              "reason": {
+                "tr": "Uzun yıllar imparatorluk ambarlarını başarıyla yönetmiş, eceliyle vefat ettikten sonra makamı kardeşi Gealea'ya devretmiştir.",
+                "en": "Governed the imperial silos for decades, passing the office to his brother Gealea upon his passing."
+              }
+            }
+          ]
+        },
+        {
+          "id": "maarif_veziri",
+          "title": {
+            "tr": "Maarif Veziri (Büyük Kütüphane & Arşiv)",
+            "en": "Minister of Lore, Archives & Library"
+          },
+          "term": "Ler Veron",
+          "rank": "2. Kademe Mülki Makam",
+          "level": 2,
+          "description": {
+            "tr": "Arava Büyük Kütüphanesi, Ortak Lisan dil kütükleri, Vakanüvis saray kütükleri, hanedan soy ağaçları ve kadim felsefi metinlerin muhafazasından sorumludur.",
+            "en": "Custodian of the Grand Library in Arava, Common Tongue lexicons, official chronicler codices, and dynasty genealogy trees."
+          },
+          "powers": {
+            "tr": [
+              "Büyük Kütüphane ve eyalet yazıhanelerini denetleme",
+              "Resmi imparatorluk tarihini tescil etme ve vakanüvis atama",
+              "Yasaklı büyü metinleri ve sapkın parşömenleri teftiş etme"
+            ],
+            "en": [
+              "Overseeing the Grand Library and scriptoriums",
+              "Certifying official imperial chronicles and appointing chroniclers",
+              "Confiscating banned occult grimoires and heretical scrolls"
+            ]
+          },
+          "current": {
+            "name": {
+              "tr": "Alim Elara",
+              "en": "Scholar Elara"
+            },
+            "epithet": {
+              "tr": "Tarihçi Bilge · Vakanüvis",
+              "en": "The Wise Chronicler"
+            },
+            "house": "kutuphane",
+            "charId": "alim-elara",
+            "bio": {
+              "tr": "İmparatorluk Ortak Lisanı Ansiklopedisi ve Mutlak Sükûn felsefi metinlerini derleyen ak sakallı usta vakanüvis. Sarayın hafızasını tarafsız mürekkeple korumasıyla hürmet görür.",
+              "en": "Revered elder chronicler who compiled the Encyclopedia of the Common Tongue and philosophical treatises on Absolute Calm."
+            }
+          },
+          "predecessors": [
+            {
+              "name": {
+                "tr": "Hilnor Wolde",
+                "en": "Hilnor Wolde"
+              },
+              "epithet": {
+                "tr": "Saray Başdanışmanı · Yürüyen Kütüphane",
+                "en": "Chief Court Advisor · The Living Library"
+              },
+              "era": "KS 1450 — 1475",
+              "charId": "hilnor-wolde",
+              "reason": {
+                "tr": "Sabık İmparator Imloth döneminden beri sarayın mermer koridorlarında dönen her fısıltıyı ve soy kütüğünü ezbere bilen efsanevi saray arşivcisi.",
+                "en": "Court advisor since Imloth's reign, renowned for memorizing every royal lineage and treaty."
+              }
+            }
+          ]
+        },
+        {
+          "id": "eyalet_valileri",
+          "title": {
+            "tr": "Eyalet Valileri (12 Eyalet Mülki Şadları)",
+            "en": "Provincial Governors (The 12 Lords)"
+          },
+          "term": "Lar / Melik / Şad",
+          "rank": "3. Kademe Mülki Makamlar",
+          "level": 3,
+          "description": {
+            "tr": "İmparatorluğun 12 büyük eyaletini (Başsancak, Selya, Galetsha, Onneva, Memanth, Zela, Adamen, Khasinya, Seltanya, Solgar, Pilkard, Mabed) İmparator adına yöneten hanedan reisleri ve valilerdir.",
+            "en": "Regional rulers administering the 12 imperial provinces (Başsancak, Selya, Galetsha, Onneva, Memanth, Zela, Adamen, Khasinya, Seltanya, Solgar, Pilkard, Mabed) under imperial mandate."
+          },
+          "powers": {
+            "tr": [
+              "Eyalet içindeki feodal vergileri toplama ve merkeze aktarma",
+              "Bölgesel garnizon ve şehir muhafızlarına komuta etme",
+              "Taşra mahkemelerinde adalet dağıtma"
+            ],
+            "en": [
+              "Collecting provincial taxes and transmitting quotas to Arava",
+              "Commanding regional garrisons and militia levies",
+              "Dispensing justice in provincial regional courts"
+            ]
+          },
+          "current": {
+            "name": {
+              "tr": "Darios Selya, Wolrez Galet, Elglew Onneva, Vizeho Brekfa vd.",
+              "en": "Darios Selya, Wolrez Galet, Elglew Onneva, Vizeho Brekfa et al."
+            },
+            "epithet": {
+              "tr": "Eyalet Sancak Beyleri",
+              "en": "Provincial Banner Lords"
+            },
+            "house": "selya",
+            "charId": "darios-selya",
+            "bio": {
+              "tr": "Kuzeyin bakır madenlerinden güneyin Selya donanmasına, Memanth hudut kalelerinden Adamen cüce cevher ocaklarına kadar kıtanın geniş topraklarını yöneten vali ve melikler heyeti.",
+              "en": "The council of governors ruling the provinces from northern copper mines to the southern Selya fleet and eastern border strongholds."
+            }
+          },
+          "predecessors": [
+            {
+              "name": {
+                "tr": "Metron Galet, Cerert Onneva, Kalrez Brekfa, Heongea Yonja",
+                "en": "Metron Galet, Cerert Onneva, Kalrez Brekfa, Heongea Yonja"
+              },
+              "epithet": {
+                "tr": "Önceki Dönem Eyalet Reisleri",
+                "en": "Former Provincial Lords"
+              },
+              "era": "KS 1440 — 1475",
+              "charId": "metron-galet",
+              "reason": {
+                "tr": "İç isyanlar, savaşlar ve ecelleriyle vefat ederek yerlerini yeni nesil sancaktarlara bırakmışlardır.",
+                "en": "Passed their titles to their heirs through succession, battle, or natural passing."
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "military",
+      "name": {
+        "tr": "Askeri Teşkilat & Ordu Nizamı (Gharion)",
+        "en": "Military Command & Legions (Gharion)"
+      },
+      "code": "Gharion",
+      "icon": "⚔️",
+      "motto": "Aron hanar, Edron rion! Tod dor!",
+      "color": "#dc2626",
+      "description": {
+        "tr": "140.000 kişilik muazzam imparatorluk ordusunu, donanmasını, sınır tahkimatlarını ve saray muhafız alaylarını sevk ve idare eden askeri piramittir. Harbiye Başkomutanı emir ve komutasında hareket eder.",
+        "en": "The military pyramid directing the 140,000-strong imperial army, imperial navy, border fortifications, and palace guard legions. Commanded by the Supreme Marshal."
+      },
+      "offices": [
+        {
+          "id": "harbiye_baskomutani",
+          "title": {
+            "tr": "Harbiye Başkomutanı (Savaş Veziri)",
+            "en": "Supreme Military Commander (Marshal of War)"
+          },
+          "term": "Garion Anxes / Savaş Veziri",
+          "rank": "1. Kademe Askeri Makam",
+          "level": 1,
+          "description": {
+            "tr": "140.000 kişilik imparatorluk ordusunun tek askeri hakimidir. Politika ve saray entrikalarından nefret eder; sefer nizamı, lejyon konuşlanmaları, harp stratejisi ve genel seferberlikten doğrudan İmparator'a karşı sorumludur.",
+            "en": "Sole supreme commander of the 140,000-man imperial army. Detests political intrigue, answering directly to the Emperor for war planning and legion deployments."
+          },
+          "powers": {
+            "tr": [
+              "Tüm lejyonlara (Rion) ve garnizonlara mutlak savaş emri verme",
+              "Seferberlik ilan etme ve orduyu cephelere sevk etme",
+              "Lejyon generallerini (Garion) atama ve divanda yargılama",
+              "Hazine ve Tarım vezirlerinden ordu levazımını talep etme"
+            ],
+            "en": [
+              "Issuing battle commands to all imperial legions and garrisons",
+              "Ordering general mobilization and field troop deployments",
+              "Commissioning legion generals and presiding over courts-martial",
+              "Requisitioning war supplies from Treasury and Agriculture ministers"
+            ]
+          },
+          "current": {
+            "name": {
+              "tr": "Aertas Sınglew",
+              "en": "Aertas Sınglew"
+            },
+            "epithet": {
+              "tr": "Doğu Hudutlarının Gazisi · Yeni Başkomutan",
+              "en": "Veteran of the East · Supreme Commander"
+            },
+            "house": "singlew",
+            "charId": "aertas-singlew",
+            "image": "assets/images/characters/AERTAS_SINGLEW-240w.webp",
+            "bio": {
+              "tr": "Doğu sınırının ayazında pişmiş heybetli bir asker. Tıraşlı kafası, yara izleriyle bezeli sert çehresi ve derin kurşuni gözleriyle saray ipeklilerinden nefret eden, çelik disiplinli gazi mareşal.",
+              "en": "A commanding warrior steeled by northern border frosts. Shaven-headed, scarred, and grim-eyed, he despises court flattery and enforces ironclad discipline."
+            }
+          },
+          "predecessors": [
+            {
+              "name": {
+                "tr": "Rean Certfa",
+                "en": "Rean Certfa"
+              },
+              "epithet": {
+                "tr": "Kara Zırhlı Başkomutan",
+                "en": "The Black-Armored Commander"
+              },
+              "era": "KS 1475 — 1480",
+              "charId": "rean-certfa",
+              "reason": {
+                "tr": "Olinder Albea'nın suikastından sonra Başkomutan olmuş, Zeandor'un cülusuyla yerini Aertas Sınglew'e bırakmıştır.",
+                "en": "Appointed following Olinder Albea's assassination, superseded by Aertas Sınglew upon Zeandor's ascension."
+              }
+            },
+            {
+              "name": {
+                "tr": "Başkomutan Olinder Albea",
+                "en": "Supreme Commander Olinder Albea"
+              },
+              "epithet": {
+                "tr": "Efsanevi Başkomutan",
+                "en": "The Legendary Marshal"
+              },
+              "era": "KS 1450 — 1475",
+              "charId": "baskomutan-olinder-albea",
+              "reason": {
+                "tr": "58 yaşında, stratejik sabır doktrininin mimarı iken Kılıç Geçidi töreninde Sessiz Avcı kod adlı suikastçı tarafından şehit edildi.",
+                "en": "Martyred at age 58 during the Sword Pass ceremony by the assassin known as the Silent Hunter."
+              }
+            }
+          ]
+        },
+        {
+          "id": "donanma_baskomutani",
+          "title": {
+            "tr": "Donanma Başkomutanı (Büyük Amiral)",
+            "en": "Grand Admiral of the Imperial Fleet"
+          },
+          "term": "Domkha Garion",
+          "rank": "2. Kademe Askeri Makam",
+          "level": 2,
+          "description": {
+            "tr": "Gümüş Yol Denizi, Pilkard kıyıları ve açık denizlerdeki tüm savaş kadırgalarının, deniz üslerinin ve sahil tahkimatlarının baş amiralidir. Deniz ticaret yollarının korsanlardan temizlenmesinden sorumludur.",
+            "en": "Commands war galleys, coastal batteries, and naval bases across the Silver Road Sea and Pilkard waters."
+          },
+          "powers": {
+            "tr": [
+              "Savaş kadırgalarını ve donanma filolarını açık denizlere sürme",
+              "Korsanlık ve kaçakçılığa karşı deniz ablukası uygulama",
+              "Tersanelerin üretim kotalarını belirleme"
+            ],
+            "en": [
+              "Deploying war fleets into open waters and straits",
+              "Imposing maritime blockades against piracy and smuggling",
+              "Directing shipyard production quotas"
+            ]
+          },
+          "current": {
+            "name": {
+              "tr": "Dirdar Poenta",
+              "en": "Dirdar Poenta"
+            },
+            "epithet": {
+              "tr": "Dalgaların Gazisi · Kaptan-ı Derya",
+              "en": "Veteran of the Waves · Grand Admiral"
+            },
+            "house": "selya",
+            "charId": "dirdar-poenta",
+            "bio": {
+              "tr": "Denizlerin çarpıntısını yüzünde taşıyan, yılların fırtınalarıyla yoğrulmuş cesur bir kaptan. Durgun denizden hoşlanmayan, sürekli teyakkuzda bir bahriye efsanesidir.",
+              "en": "A weathered sea captain bearing the scars of countless tempests. Always vigilant, keeping the fleet primed for coastal defense."
+            }
+          },
+          "predecessors": [
+            {
+              "name": {
+                "tr": "Domkha Remal Stallhart",
+                "en": "Domkha Remal Stallhart"
+              },
+              "epithet": {
+                "tr": "Tarihi Deniz Lordu",
+                "en": "The Ancient Sea Lord"
+              },
+              "era": "KS 1280 — 1305 (Tarihi)",
+              "charId": "remal",
+              "reason": {
+                "tr": "İmparatorluk donanmasını sıfırdan kurup açık denizlerin hakimi kılan efsanevi denizci imparatordur.",
+                "en": "Legendary seafaring emperor who established the imperial battle fleet from the ground up."
+              }
+            }
+          ]
+        },
+        {
+          "id": "saray_muhafizlari",
+          "title": {
+            "tr": "Saray Muhafızları Komutanı (Garryon Alayı)",
+            "en": "Commander of the Imperial Guard (Garryon)"
+          },
+          "term": "Garryon Garion",
+          "rank": "2. Kademe Askeri Makam",
+          "level": 2,
+          "description": {
+            "tr": "İmparatorun şahsını, Taç Sarayı Arava'yı ve hanedan mensuplarını doğrudan koruyan 5.000 kişilik elit Garryon muhafız alayının başıdır. Saray kapılarının ve gizli tünellerin tek anahtar sahibidir.",
+            "en": "Commands the elite 5,000-man Garryon regiment tasked with personal protection of the Emperor and the Arava Citadel."
+          },
+          "powers": {
+            "tr": [
+              "Saray giriş-çıkışlarını denetleme ve kılıç taşıma ruhsatı verme",
+              "İmparatorun yakın koruma çemberini sevk ve idare etme",
+              "Saray içi olağanüstü hâl ilan etme"
+            ],
+            "en": [
+              "Controlling citadel gates and sword-bearing privileges",
+              "Directing the Emperor's close-protection detail",
+              "Enforcing lockdown protocols inside the imperial palace"
+            ]
+          },
+          "current": {
+            "name": {
+              "tr": "Komutan Rikan Berkov",
+              "en": "Commander Rikan Berkov"
+            },
+            "epithet": {
+              "tr": "Elit Alay Muhafızı",
+              "en": "Guard of the Elite Regiment"
+            },
+            "house": "berkov",
+            "charId": "rikan-berkov",
+            "bio": {
+              "tr": "Parlak altın işlemeli elit zırhı ve kibirli duruşuyla bilinen saray subayı. Aktif meydan muharebelerinden çok saray nizamını korumaya alışkındır.",
+              "en": "A proud court officer in polished golden-trimmed plate armor, attuned to citadel ceremony and palace defense."
+            }
+          },
+          "predecessors": [
+            {
+              "name": {
+                "tr": "Rean Certfa",
+                "en": "Rean Certfa"
+              },
+              "epithet": {
+                "tr": "Çelik Nöbetçi",
+                "en": "The Iron Sentry"
+              },
+              "era": "KS 1465 — 1475",
+              "charId": "rean-certfa",
+              "reason": {
+                "tr": "Olinder Albea'nın vefatıyla Başkomutanlık makamına terfi ederek saray muhafızlığı görevini devretmiştir.",
+                "en": "Promoted to Supreme Military Commander following Olinder Albea's demise."
+              }
+            }
+          ]
+        },
+        {
+          "id": "hudut_lejyonlari",
+          "title": {
+            "tr": "Sınır Lejyonları Komutanlığı (Hudut & Memanth)",
+            "en": "Border Legion Wardens (Eastern March)"
+          },
+          "term": "Edgal Garion",
+          "rank": "3. Kademe Askeri Makam",
+          "level": 3,
+          "description": {
+            "tr": "Memanth eyaletinde konuşlu 40.000 kişilik devasa sınır ordusunu ve doğu kalelerini Arathen Krallığı'nın akınlarına karşı savunan kıdemli sınır garnizonudur.",
+            "en": "40,000-man border army stationed along Memanth's frontier forts to repulse Arathen raids."
+          },
+          "powers": {
+            "tr": [
+              "Sınır ihlali durumunda derhal misilleme taarruzu emretme",
+              "Hudut kalelerinin tahkimat ve ikmal nizamını yönetme",
+              "Sınır gözetleme kulelerini ve keşif süvarilerini idare etme"
+            ],
+            "en": [
+              "Ordering immediate reprisal strikes upon border breaches",
+              "Managing fortification and supply lines for border citadels",
+              "Commanding scout horsemen and frontier signal towers"
+            ]
+          },
+          "current": {
+            "name": {
+              "tr": "Vizeho Brekfa & Shelrho Rhoven",
+              "en": "Vizeho Brekfa & Shelrho Rhoven"
+            },
+            "epithet": {
+              "tr": "Gözcü Süvari & Zırhlı Hudut Muhafızları",
+              "en": "Scout Vanguard & Armored Border Wardens"
+            },
+            "house": "brekfa",
+            "charId": "vizeho-brekfa",
+            "bio": {
+              "tr": "Doğu bozkırlarında at sırtında yaşayan, Arathen akıncılarına karşı uyanık gözlerle hudut boylarını koruyan tecrübeli sınır muhafız komutanları.",
+              "en": "Veteran frontier commanders who live on horseback patrolling the eastern steppes against Arathen incursions."
+            }
+          },
+          "predecessors": [
+            {
+              "name": {
+                "tr": "Kalrez Brekfa",
+                "en": "Kalrez Brekfa"
+              },
+              "epithet": {
+                "tr": "Direnen Sınır",
+                "en": "The Unyielding Frontier"
+              },
+              "era": "KS 1460 — 1475",
+              "charId": "kalrez-brekfa",
+              "reason": {
+                "tr": "Doğu sınırını yıllarca Arathen'e karşı sarsılmaz bir sur gibi savunmuş, salgın hastalığa yenik düşerek makamı oğluna devretmiştir.",
+                "en": "Held the eastern frontier against Arathen for years before succumbing to sickness."
+              }
+            }
+          ]
+        },
+        {
+          "id": "taktik_tumenler",
+          "title": {
+            "tr": "İmparatorluk Taktik Muharebe Lejyonları (Rion)",
+            "en": "Imperial Tactical Combat Legions (Rion)"
+          },
+          "term": "Galdor / Zirae / Fira / Tfa Rion",
+          "rank": "3. Kademe Askeri Sınıflar",
+          "level": 3,
+          "description": {
+            "tr": "İmparatorluk ordusunun dört temel savaş doktrinini icra eden uzmanlaşmış sınıflarıdır: Galdor Rion (Kalkan Birliği), Zirae Athor (Şimşek Süvarileri), Fira Har (Kuşatma ve Ateş Yıkımı), Tfa Rion (Yeminli Tarikat Muhafızları).",
+            "en": "The four specialized combat branches of the imperial host: Galdor Rion (Shield Legions), Zirae Athor (Shock Cavalry), Fira Har (Siege Artillery), Tfa Rion (Sworn Zealots)."
+          },
+          "powers": {
+            "tr": [
+              "Kuşatmalarda mancınık ve balista bataryalarını konuşlandırma (Fira Har)",
+              "Ağır kalkan duvarı örerek düşman süvarisini püskürtme (Galdor Rion)",
+              "Düşman hatlarını kanatlardan yaran ani hücumlar düzenleme (Zirae Athor)"
+            ],
+            "en": [
+              "Deploying catapult and ballista batteries during sieges (Fira Har)",
+              "Forming interlocking shield-walls to stop heavy cavalry (Galdor Rion)",
+              "Executing flank-crushing shock cavalry charges (Zirae Athor)"
+            ]
+          },
+          "current": {
+            "name": {
+              "tr": "Lejyon Komutanları Heyeti (Garionra)",
+              "en": "Legion Commanders Council (Garionra)"
+            },
+            "epithet": {
+              "tr": "Çeliğin ve Ateşin Efendileri",
+              "en": "Masters of Steel and Fire"
+            },
+            "house": "merkez",
+            "charId": "aertas-singlew",
+            "bio": {
+              "tr": "Her biri kendi alanında yüzlerce muharebede tecrübe kazanmış, 20.000'er kişilik taktik tümenleri sevk eden kıdemli savaş komutanları.",
+              "en": "Senior division commanders with battle experience across hundreds of sieges and open field encounters."
+            }
+          },
+          "predecessors": [
+            {
+              "name": {
+                "tr": "Tarihi Fatih Lejyonları",
+                "en": "Historic Conquest Legions"
+              },
+              "epithet": {
+                "tr": "Craes ve Scifella'nın Çelik Hatları",
+                "en": "Iron Columns of Craes and Scifella"
+              },
+              "era": "KS 1144 — günümüz",
+              "charId": "craes",
+              "reason": {
+                "tr": "İmparatorluğun kıta çapındaki fetihlerini gerçekleştiren kadim ordu teşkilatıdır.",
+                "en": "The ancient military formation that carved out the continental empire since Craes I."
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "religious",
+      "name": {
+        "tr": "Dini & Ruhani Teşkilat (Mabed Divanı)",
+        "en": "Religious & Priesthood Order (Mabed Divan)"
+      },
+      "code": "Mabed",
+      "icon": "⚖️",
+      "motto": "Era Zeana va. Ernyar lidofad.",
+      "color": "#9333ea",
+      "description": {
+        "tr": "Mabed Eyaleti'nden yönetilen, 15 Tanrı Tapınağı'nı, Kutsal Kan Doktrini'ni, şeriat mahkemelerini ve imparatorluk dini ritüellerini idare eden ruhani teşkilattır. Yüce Rahip ve Rahibe eşbaşkanlığında toplanır.",
+        "en": "Headquartered in Mabed Province, governing the Temple of the 15 Gods, the Holy Blood Doctrine, ecclesiastical tribunals, and sacred ceremonies."
+      },
+      "offices": [
+        {
+          "id": "yuce_rahip",
+          "title": {
+            "tr": "Mabed Yüce Rahibi & Rahibesi (Eraler)",
+            "en": "High Pontiff & Priestess of the Mabed (Eraler)"
+          },
+          "term": "Eraler / Yüce Rahip",
+          "rank": "1. Kademe Dini Makam",
+          "level": 1,
+          "description": {
+            "tr": "İmparatorluğun dini hiyerarşisinin zirvesidir. Biri erkek biri kadın olmak üzere iki Yüce Rahip eşzamanlı olarak Centruion Baş Tapınağı'nı ve 330.000 km²'lik kutsal Mabed Eyaleti'ni yönetir. İmparatorun taç giyme ve cenaze törenlerini bizzat icra ederler.",
+            "en": "The apex of the religious hierarchy. Co-chaired by a High Priest and High Priestess who govern the Centruion Temple and sacred Mabed Province."
+          },
+          "powers": {
+            "tr": [
+              "İmparator taç giyme ve kutsama ayinini bizzat yönetme",
+              "Dini ferman yayımlama ve aforoz (sapkınlık) kararı verme",
+              "Centruion Tapınağı vakıf gelirlerini ve kurban hazinesini idare etme",
+              "Kutsal Kan Doktrini'ne uygunluğu tasdik etme"
+            ],
+            "en": [
+              "Presiding over imperial coronations and anointment rites",
+              "Issuing papal decrees and excommunications for heresy",
+              "Managing Centruion Temple endowments and tithes",
+              "Certifying compliance with the Holy Blood Doctrine"
+            ]
+          },
+          "current": {
+            "name": {
+              "tr": "Yüce Rahip Ertler Serbam & Yüce Rahibe Serme Onneva",
+              "en": "High Priest Ertler Serbam & High Priestess Serme Onneva"
+            },
+            "epithet": {
+              "tr": "Keskin Bilge & Genç Yüce Rahibe",
+              "en": "The Keen Sage & The Young High Priestess"
+            },
+            "house": "onneva",
+            "charId": "ertler-serbam",
+            "bio": {
+              "tr": "Ertler Serbam'ın kadim bilgeliği ve Serme Onneva'nın 30 yaşında elde ettiği dikkat çekici liderlikle panteonun dengesini sağlayan çift başlı dini otorite. Kutsal ayinlerde beyaz ve altın sarısı cüppeleriyle meclise teşrif ederler.",
+              "en": "A dual pontificate blending Ertler Serbam's elder wisdom with 30-year-old Serme Onneva's formidable theological authority."
+            }
+          },
+          "predecessors": [
+            {
+              "name": {
+                "tr": "Yüce Rahibe Irin Onneva",
+                "en": "High Priestess Irin Onneva"
+              },
+              "epithet": {
+                "tr": "Mabedin Anası",
+                "en": "Mother of the Mabed"
+              },
+              "era": "KS 1445 — 1466",
+              "charId": "irin-onneva",
+              "reason": {
+                "tr": "Centruion Tapınağı'nın başrahibesi olarak uzun yıllar hizmet etmiş, İmparatoriçe Selmira'nın cenazesinden sonra eceliyle vefat etmiştir.",
+                "en": "Served as head of the Centruion Temple for decades, passing peacefully after Empress Selmira's funeral."
+              }
+            }
+          ]
+        },
+        {
+          "id": "adliye_hakimi",
+          "title": {
+            "tr": "Adliye & Şeriat Yüksek Hakimi (Lidros Divanı)",
+            "en": "Chief Magistrate of Justice (Lidros Divan)"
+          },
+          "term": "Lidros Veron / Rekan",
+          "rank": "2. Kademe Dini/Hukuki Makam",
+          "level": 2,
+          "description": {
+            "tr": "Tanrı Lidros'un (Hakim) adalet nizamını temsil eden, imparatorluk kanunlarının, Kutsal Kan davalarının, soylu cinayetlerinin ve yüksek vatana ihanet mahkemelerinin başhakimidir.",
+            "en": "Embodies the justice of the God Lidros, serving as Chief Justice of imperial courts, noble blood trials, and high treason tribunals."
+          },
+          "powers": {
+            "tr": [
+              "Yüksek Mahkeme'ye başkanlık etme ve idam/sürgün kararlarını onama",
+              "Soylular arası mülkiyet ve kan davası ihtilaflarını hükme bağlama",
+              "İmparatorluk kanunlarının dini hukuka uygunluğunu denetleme"
+            ],
+            "en": [
+              "Presiding over the High Court and ratifying death or exile sentences",
+              "Adjudicating noble inheritance disputes and blood feuds",
+              "Reviewing imperial statutes for religious compliance"
+            ]
+          },
+          "current": {
+            "name": {
+              "tr": "Kalrez Brekfa (Adliye Vekili)",
+              "en": "Kalrez Brekfa (Chief Justice)"
+            },
+            "epithet": {
+              "tr": "Adaletin Kılıcı",
+              "en": "Sword of Justice"
+            },
+            "house": "brekfa",
+            "charId": "kalrez-brekfa",
+            "bio": {
+              "tr": "İsyan sonrası adliye vekilliğini üstlenen, kanun maddelerini tavizsiz bir disiplinle uygulayan sert ve vakur yargıç.",
+              "en": "Stern and unbending jurist who assumed legal leadership following the rebellions, enforcing statutes with martial discipline."
+            }
+          },
+          "predecessors": [
+            {
+              "name": {
+                "tr": "Todkal Kalpear",
+                "en": "Todkal Kalpear"
+              },
+              "epithet": {
+                "tr": "Ölüm Sınırı",
+                "en": "The Death Boundary"
+              },
+              "era": "KS 1466 — 1475",
+              "charId": "todkal-kalpear",
+              "reason": {
+                "tr": "Erthan köylü ayaklanması sırasında isyancılar tarafından adliye binasında katledilmiştir.",
+                "en": "Assassinated in the hall of justice during the Erthan peasant uprising."
+              }
+            },
+            {
+              "name": {
+                "tr": "Harvez Kaher",
+                "en": "Harvez Kaher"
+              },
+              "epithet": {
+                "tr": "Sırların Yıkımı",
+                "en": "The Ruin of Secrets"
+              },
+              "era": "KS 1455 — 1466",
+              "charId": "harvez-kaher",
+              "reason": {
+                "tr": "Amadon'un tahta çıkışıyla siyasi fikir ayrılığına düşerek istifa edip ayrılmıştır.",
+                "en": "Resigned following Amadon's coronation due to irreconcilable political friction."
+              }
+            }
+          ]
+        },
+        {
+          "id": "doktrin_koruyucusu",
+          "title": {
+            "tr": "Kutsal Kan Doktrini Koruyucusu (Centruion Kâtibi)",
+            "en": "Keeper of the Holy Blood Doctrine"
+          },
+          "term": "Era Hanar Aldris",
+          "rank": "2. Kademe Dini Makam",
+          "level": 2,
+          "description": {
+            "tr": "Stallhart hanedanının Era'dan gelen kutsal kan taşıdığı resmi devlet ideolojisini muhafaza eden, soyağaçlarını inceleyen ve hanedan evliliklerinin kutsallığını tasdik eden makamdır.",
+            "en": "Protector of the imperial state dogma asserting that House Stallhart carries divine blood from Era, vetting all royal matches."
+          },
+          "powers": {
+            "tr": [
+              "Hanedan mensuplarının soy kütüğü ve kan saflığı kütüğünü tutma",
+              "Evliliklerin Kutsal Kan yasalarına uygunluğunu teyit etme",
+              "Gayrimeşru doğumları ve kan şüphelerini divana raporlama"
+            ],
+            "en": [
+              "Maintaining genealogical registers of royal blood purity",
+              "Validating imperial betrothals against Holy Blood statutes",
+              "Investigating illegitimate births and lineage disputes"
+            ]
+          },
+          "current": {
+            "name": {
+              "tr": "Centruion Baş Kâtibi & Serme Onneva",
+              "en": "Arch-Scribe of Centruion & Serme Onneva"
+            },
+            "epithet": {
+              "tr": "Kutsal Kan Şahidi",
+              "en": "Witness of the Sacred Blood"
+            },
+            "house": "onneva",
+            "charId": "serme-onneva",
+            "bio": {
+              "tr": "Kadim parşömenlerdeki kutsal soyağaçlarını koruyan, hanedan varislerinin doğum ve kan kayıtlarını bizzat mühürleyen dini kâtipler heyeti.",
+              "en": "Keepers of the sacred lineage scrolls who authenticate the birthright and seal of imperial claimants."
+            }
+          },
+          "predecessors": [
+            {
+              "name": {
+                "tr": "I. Craes ve I. Nadima Kâtipleri",
+                "en": "Scribes of Craes I and Nadima I"
+              },
+              "epithet": {
+                "tr": "Kuruluşun Din Kâtipleri",
+                "en": "Foundational Priesthood"
+              },
+              "era": "KS 1144 — günümüz",
+              "charId": "craes",
+              "reason": {
+                "tr": "I. Craes'in Aleron esaretinden dönüşünde ilan ettiği Kutsal Kan manifestosunu ilk kaleme alan heyettir.",
+                "en": "Original authors of the Holy Blood Manifesto proclaimed by Craes I upon returning from Aleron captivity."
+              }
+            }
+          ]
+        },
+        {
+          "id": "panteon_kultleri",
+          "title": {
+            "tr": "15 Tanrı Panteonu Baş Rahipleri (Kült Heyeti)",
+            "en": "High Priests of the 15 Gods Pantheon"
+          },
+          "term": "Ernyar Rahipleri",
+          "rank": "3. Kademe Dini Makamlar",
+          "level": 3,
+          "description": {
+            "tr": "Denge Konseyi'nin 15 tanrısına (Muhafız Galdra, Zeval Nazeth, Saatçi Gydor, Hakim Lidros, Harp Garator, Sükun Lomera, Desise Lodvez, Bilge Veleris, Tufan Vazmer, Mimar Brikon, Maraz Zetus, Şifa Eanhar, İhtiras Hardir, Avcı Raxes, İsyan Naldor) adanmış tapınakların başrahipleridir.",
+            "en": "High priests presiding over the temples dedicated to the 15 deities of the Council of the Even."
+          },
+          "powers": {
+            "tr": [
+              "Tanrılara sunulan kurban, adak ve dua ritüellerini icra etme",
+              "Tapınak şifahanelerini ve kütüphanelerini yönetme",
+              "Kendi kültlerine ait dini bayramları tertip etme"
+            ],
+            "en": [
+              "Conducting sacrificial rituals, prayers, and holy festivals",
+              "Directing temple infirmaries and scriptoriums",
+              "Organizing holy days dedicated to their patron deity"
+            ]
+          },
+          "current": {
+            "name": {
+              "tr": "15 Kült Başrahipleri Heyeti",
+              "en": "College of the 15 Cult High Priests"
+            },
+            "epithet": {
+              "tr": "Denge Taşlarının Hizmetkârları",
+              "en": "Servants of the Balance Stones"
+            },
+            "house": "mabed",
+            "charId": "ertler-serbam",
+            "bio": {
+              "tr": "Savaşa giden askerleri kutsayan Garator rahiplerinden, ölüm döşeğinde ruhu uğurlayan Zetus rahiplerine kadar imparatorluğun manevi hayatını tanzim eden kadim ruhban sınıfı.",
+              "en": "The sacred priesthood ministering to all aspects of mortal life, from battle-blessing Garator priests to funeral Zetus monks."
+            }
+          },
+          "predecessors": [
+            {
+              "name": {
+                "tr": "6 Ezgi Kadim Din Adamları",
+                "en": "Priesthood of the 6 Cantos"
+              },
+              "epithet": {
+                "tr": "Kozmik İlahilerin Koruyucuları",
+                "en": "Keepers of the Cosmic Cantos"
+              },
+              "era": "KS 0 — günümüz",
+              "charId": "ertler-serbam",
+              "reason": {
+                "tr": "KS 0 büyük kırılmasından bu yana Denge Ağacı ve Konsey ilahilerini kuşaktan kuşağa aktarmışlardır.",
+                "en": "Chanted the Cantos of Balance and the Tree of Equinox down through centuries since the Great Fracture."
+              }
+            }
+          ]
+        },
+        {
+          "id": "engizisyon_takip",
+          "title": {
+            "tr": "Mabed Muhafızları & Engizisyon (Tfa Rion)",
+            "en": "Inquisition of the Mabed & Heresy Wardens (Tfa Rion)"
+          },
+          "term": "Tfa Rion / Engizisyon",
+          "rank": "3. Kademe Askeri/Dini Teşkilat",
+          "level": 3,
+          "description": {
+            "tr": "Büyünün teolojik olarak yasak olması ilkesini denetleyen; yeraltı 'İlk Anne Kültü'nü, Kaos Fraksiyonu'nu, nekromansi ve sapkın büyü pratiklerini soruşturan, Mabed Eyaleti'ne bağlı yeminli muhafız birlikleridir.",
+            "en": "Enforces the theological ban on sorcery. Investigates the subterranean Cult of the First Mother, Chaos factions, and forbidden necromantic rites."
+          },
+          "powers": {
+            "tr": [
+              "Yasaklı büyü ve cadılık şüphelilerini tutuklama ve yargılama",
+              "Sapkın tarikat yuvalarını ve yeraltı sunaklarını imha etme",
+              "Mabed Eyaleti sınırlarını askeri güçle koruma"
+            ],
+            "en": [
+              "Arresting and prosecuting practitioners of forbidden magic and witchcraft",
+              "Dismantling heretical cult shrines and underground altars",
+              "Guarding sacred sanctums across Mabed Province"
+            ]
+          },
+          "current": {
+            "name": {
+              "tr": "Yeminli Mabed Komutanları (Tfa Rion)",
+              "en": "Commanders of the Sworn Zealots (Tfa Rion)"
+            },
+            "epithet": {
+              "tr": "Demir Cüppeliler · Kutsal Kılıçlar",
+              "en": "Iron-Robed Zealots · Sacred Blades"
+            },
+            "house": "mabed",
+            "charId": "ertler-serbam",
+            "bio": {
+              "tr": "Göğüslerinde Denge Ağacı ve kılıç amblemleri taşıyan, büyücülere ve sapkınlara karşı acımasız soruşturmalar yürüten 2.000 kişilik fanatik tapınak muhafızları.",
+              "en": "A 2,000-man zealous monastic guard marked with the Tree of Balance emblem, relentlessly hunting illegal sorcerers."
+            }
+          },
+          "predecessors": [
+            {
+              "name": {
+                "tr": "Kadim Tfa Şövalyeleri",
+                "en": "Ancient Tfa Knights"
+              },
+              "epithet": {
+                "tr": "Yeminli İman Kılıçları",
+                "en": "Blades of the Sworn Faith"
+              },
+              "era": "KS 1160 — günümüz",
+              "charId": "ertler-serbam",
+              "reason": {
+                "tr": "I. Nadima döneminde Kutsal Kan ve devlet inancını korumak üzere ilk kez teşkilatlandırılmışlardır.",
+                "en": "Founded under Empress Nadima I to safeguard the holy creed and eradicate pagan sorcery."
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -845,6 +845,109 @@
   outline-offset: 3px;
   transition: outline-color .4s;
 }
+
+/* ── LORE HİYERARŞİ PORTAL BANNERI & NAV ──────────────── */
+.lore-hierarchy-banner {
+  background: radial-gradient(ellipse at 80% 0%, rgba(45, 28, 16, 0.85), rgba(14, 18, 28, 0.95));
+  border: 1px solid var(--goldd);
+  border-radius: 6px;
+  padding: 1.5rem 1.8rem;
+  margin: 1.5rem 0 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4), 0 0 20px rgba(196, 150, 42, 0.12);
+  position: relative;
+  overflow: hidden;
+}
+.lore-hierarchy-banner::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+.lhb-left {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.25rem;
+  flex: 1;
+  min-width: 280px;
+}
+.lhb-emblem {
+  font-size: 2.2rem;
+  background: rgba(196, 150, 42, 0.12);
+  border: 1px solid var(--goldd);
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.lhb-badge {
+  font-family: var(--font-display);
+  font-size: .72rem;
+  color: var(--goldd);
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  margin-bottom: .25rem;
+}
+.lhb-title {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  color: var(--parchl);
+  margin: 0 0 .4rem;
+}
+.lhb-desc {
+  font-size: .86rem;
+  color: var(--parch);
+  line-height: 1.6;
+  margin: 0;
+  max-width: 680px;
+}
+.lhb-cta-btn {
+  background: linear-gradient(135deg, rgba(139, 30, 30, 0.9), rgba(196, 150, 42, 0.95));
+  border: 1px solid var(--gold);
+  color: #fff !important;
+  font-family: var(--font-display);
+  font-size: .88rem;
+  padding: .75rem 1.4rem;
+  border-radius: 4px;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  transition: all .2s ease;
+  white-space: nowrap;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
+}
+.lhb-cta-btn:hover {
+  filter: brightness(1.15);
+  box-shadow: 0 6px 20px rgba(196, 150, 42, 0.4);
+  transform: translateY(-2px);
+}
+.lore-stat-card.lore-hierarchy-card {
+  border-color: rgba(196, 150, 42, 0.4);
+  background: rgba(196, 150, 42, 0.06);
+}
+.lore-stat-card.lore-hierarchy-card:hover {
+  border-color: var(--gold);
+  background: rgba(196, 150, 42, 0.12);
+}
+.lore-hierarchy-nav-link {
+  text-decoration: none;
+  border-color: rgba(196, 150, 42, 0.35);
+  color: var(--goldd);
+}
+.lore-hierarchy-nav-link:hover {
+  color: var(--gold);
+  border-color: var(--gold);
+  background: rgba(196, 150, 42, 0.1);
+}
 </style>
 <script src="assets/js/router.js?v=3.0"></script>
 </head>
@@ -867,7 +970,7 @@
       </div>
       <div class="lore-stat-card" data-tab-target="din">
         <div class="lore-stat-num" id="stat-gods">15</div>
-        <div class="lore-stat-title" data-tr="Denge Panteonu" data-en="Pantheon of Balance">Denge Panteonu</div>
+        <div class="lore-stat-title" data-tr="Denge Panteonu" data-en="Pantheon of the Even">Denge Panteonu</div>
         <div class="lore-stat-sub" data-tr="Düzen, Kaos ve Muhafız" data-en="Order, Chaos &amp; Protector">Düzen, Kaos ve Muhafız</div>
       </div>
       <div class="lore-stat-card" data-tab-target="tarih">
@@ -885,6 +988,11 @@
         <div class="lore-stat-title" data-tr="Ortak Lisan" data-en="Common Tongue">Ortak Lisan</div>
         <div class="lore-stat-sub" data-tr="Kadim sözcük hazinesi" data-en="Ancient vocabulary">Kadim sözcük hazinesi</div>
       </div>
+      <a href="hiyerarsi.html" class="lore-stat-card lore-hierarchy-card" style="text-decoration:none;" title="İmparatorluk Yönetim Hiyerarşisi ve Teşkilat Şeması">
+        <div class="lore-stat-num" style="color:var(--goldb)">👑 3 Kol</div>
+        <div class="lore-stat-title" data-tr="Yönetici Kademesi" data-en="Imperial Hierarchy">Yönetici Kademesi</div>
+        <div class="lore-stat-sub" data-tr="Siyasi, Askeri &amp; Dini ➔" data-en="Civil, Military &amp; Faith ➔">Siyasi, Askeri &amp; Dini ➔</div>
+      </a>
     </div>
 
     <!-- ── NAVİGASYON SEKMELERİ ── -->
@@ -910,6 +1018,10 @@
           <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
           <span data-tr="Ortak Lisan" data-en="Common Tongue">Ortak Lisan</span>
         </button>
+        <a href="hiyerarsi.html" class="lore-tab-btn lore-hierarchy-nav-link" title="İmparatorluk Yönetim Hiyerarşisi">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+          <span data-tr="Yönetici Kademesi ↗" data-en="Hierarchy ↗">Yönetici Kademesi ↗</span>
+        </a>
       </nav>
     </div>
 
@@ -921,6 +1033,24 @@
         <span data-tr="İmparatorluk Dosyası &amp; Genel Bakış" data-en="Imperial Dossier &amp; Overview">İmparatorluk Dosyası &amp; Genel Bakış</span>
       </h2>
       <div id="cog-overview" class="imperial-dossier-grid"></div>
+
+      <!-- ── İMPARATORLUK YÖNETİM HİYERARŞİSİ PORTAL BANNERI ── -->
+      <div class="lore-hierarchy-banner">
+        <div class="lhb-left">
+          <div class="lhb-emblem">⚜️</div>
+          <div class="lhb-info">
+            <div class="lhb-badge" data-tr="ARAVA TAÇ SARAYI DİVANI" data-en="IMPERIAL HIGH DIWAN">ARAVA TAÇ SARAYI DİVANI</div>
+            <h3 class="lhb-title" data-tr="İmparatorluk Yönetim Kademesi &amp; Teşkilat Hiyerarşisi" data-en="Imperial Administrative Order &amp; Hierarchy">İmparatorluk Yönetim Kademesi &amp; Teşkilat Hiyerarşisi</h3>
+            <p class="lhb-desc" data-tr="İmparator Zeandor Stallhart'ın mutlak hükümdarlığından dallanan Siyasi Divan (Veron), Askeri Ordu (Gharion) ve Dini Mabed teşkilatı; makamlar, yetkiler ve selefler kütüğü." data-en="The imperial administration radiating from Emperor Zeandor Stallhart into Civil Council (Veron), Military (Gharion), and Priesthood (Mabed) orders with complete prerogatives and lineage.">
+              İmparator Zeandor Stallhart'ın mutlak hükümdarlığından dallanan Siyasi Divan (Veron), Askeri Ordu (Gharion) ve Dini Mabed teşkilatı; makamlar, yetkiler ve selefler kütüğü.
+            </p>
+          </div>
+        </div>
+        <a href="hiyerarsi.html" class="lhb-cta-btn">
+          <span data-tr="Hiyerarşi Şemasına Git" data-en="Explore Hierarchy Tree">Hiyerarşi Şemasına Git</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+        </a>
+      </div>
 
       <h2 class="lore-sec-title">
         <span data-tr="Doğal Coğrafya &amp; Kadim İşaretler" data-en="Natural Geography &amp; Ancient Landmarks">Doğal Coğrafya &amp; Kadim İşaretler</span>
@@ -1358,7 +1488,7 @@ function renderGods() {
           order:   l === 'tr' ? 'Düzen Panteonu' : 'Order Pantheon',
           chaos:   l === 'tr' ? 'Kaos Panteonu' : 'Chaos Pantheon',
           neutral: l === 'tr' ? 'Tarafsız / Denge' : 'Neutral / Balance'
-        }[g.faction] || (l === 'tr' ? 'Denge Konseyi' : 'Council of Balance');
+        }[g.faction] || (l === 'tr' ? 'Denge Konseyi' : 'Council of the Even');
 
         const detailUrl = SWRoute ? SWRoute.href('tanri', g.id) : `tanri-detay.html#/tanri/${esc(g.id)}`;
 
@@ -1718,14 +1848,16 @@ function switchTab(id) {
 function setupEvents() {
   /* Tab Bar Tıklamaları */
   document.querySelectorAll('.lore-tab-btn').forEach(btn => {
-    btn.addEventListener('click', function() {
+    btn.addEventListener('click', function(e) {
+      if (!this.dataset.tab) return;
       switchTab(this.dataset.tab);
     });
   });
 
   /* Hero Metrik Kart Tıklamaları */
   document.querySelectorAll('.lore-stat-card').forEach(card => {
-    card.addEventListener('click', function() {
+    card.addEventListener('click', function(e) {
+      if (!this.dataset.tabTarget) return;
       switchTab(this.dataset.tabTarget);
     });
   });

@@ -197,8 +197,8 @@ function render() {
     document.getElementById('content-main').innerHTML = `
       <div class="not-found">
         <h2>${l === 'tr' ? 'Tanrı Bulunamadı' : 'God Not Found'}</h2>
-        <p style="color:var(--parchd);font-style:italic">${l === 'tr' ? 'Aradığın tanrı Denge Konseyi\'nde kayıtlı değil.' : 'The god you are looking for is not recorded in the Council of Balance.'}</p>
-        <br><a href="tanrilar.html">← ${l === 'tr' ? 'Denge Konseyi\'ne Dön' : 'Back to the Council of Balance'}</a>
+        <p style="color:var(--parchd);font-style:italic">${l === 'tr' ? 'Aradığın tanrı Denge Konseyi\'nde kayıtlı değil.' : 'The god you are looking for is not recorded in the Council of the Even.'}</p>
+        <br><a href="tanrilar.html">← ${l === 'tr' ? 'Denge Konseyi\'ne Dön' : 'Back to the Council of the Even'}</a>
       </div>`;
     document.getElementById('content-side').innerHTML = '';
     document.title = '404 · Stallhart Wiki';
@@ -224,7 +224,7 @@ function render() {
     <div>
       <nav class="breadcrumb">
         <a href="index.html">${l === 'tr' ? 'Ana Sayfa' : 'Home'}</a><span>›</span>
-        <a href="tanrilar.html">${l === 'tr' ? 'Denge Konseyi' : 'Council of Balance'}</a><span>›</span>
+        <a href="tanrilar.html">${l === 'tr' ? 'Denge Konseyi' : 'Council of the Even'}</a><span>›</span>
         <strong style="color:var(--parchl)">${esc(epithetTr)}</strong>
       </nav>
 
@@ -290,7 +290,7 @@ function render() {
     <div class="gib">
       <div class="gib-head">${id === 'galdra' ? (l === 'tr' ? 'Konum' : 'Position') : (l === 'tr' ? 'Dengeleyici Karşı Kutup' : 'Balancing Counterpart')}</div>
       ${id === 'galdra'
-        ? `<p class="art-p muted" style="margin:0">${l === 'tr' ? 'Denge Konseyi\'nin tarafsız bekçisi — Daire\'nin tam merkezinde durur, belirli bir karşı kutbu yoktur.' : "The neutral guardian of the Council of Balance — stands at the exact center of the Circle, with no specific counterpart."}</p>`
+        ? `<p class="art-p muted" style="margin:0">${l === 'tr' ? 'Denge Konseyi\'nin tarafsız bekçisi — Daire\'nin tam merkezinde durur, belirli bir karşı kutbu yoktur.' : "The neutral guardian of the Council of the Even — stands at the exact center of the Circle, with no specific counterpart."}</p>`
         : partner
           ? `<a class="pair-card" href="${SWRoute.href('tanri', partnerId)}">
                <div class="pair-emblem-sm">${godImg(partner)}<span>${esc((partner.trueName || '?').trim()[0] || '?')}</span></div>

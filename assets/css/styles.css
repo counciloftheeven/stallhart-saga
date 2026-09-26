@@ -527,6 +527,8 @@ section { padding: 6rem 2rem; }
 .tab-b.on::after { transform: scaleX(1); }
 .tab-b:hover { color: var(--parchl); }
 .tab-b:hover::after { transform: scaleX(1); }
+.tab-p { display: none; }
+.tab-p.on { display: block; }
 
 /* ── BUTONLAR ───────────────────────────────────────── */
 .btn-g {

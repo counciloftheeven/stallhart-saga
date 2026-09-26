@@ -11,31 +11,31 @@
   "background_color": "#0c121f",
   "icons": [
     {
-      "src": "assets/images/logo-stallhart-240w.webp",
+      "src": "/assets/images/logo-stallhart-240w.webp",
       "sizes": "240x240",
       "type": "image/webp",
       "purpose": "any"
     },
     {
-      "src": "assets/images/logo-stallhart.png",
+      "src": "/assets/images/logo-stallhart.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "assets/images/logo-stallhart.png",
+      "src": "/assets/images/logo-stallhart.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "assets/images/logo-stallhart.png",
+      "src": "/assets/images/logo-stallhart.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "maskable"
     },
     {
-      "src": "assets/images/logo-stallhart.png",
+      "src": "/assets/images/logo-stallhart.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "maskable"

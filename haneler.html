@@ -26,6 +26,11 @@
 /* Tab wrap */
 .htabs{display:flex;border-bottom:1px solid var(--border);margin-bottom:2rem}
 
+/* Tab panels */
+.tab-p{display:none}
+.tab-p.on{display:block;animation:tabFade .2s ease-out}
+@keyframes tabFade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
+
 /* Province accordion */
 .prov-block{margin-bottom:1.5rem;border:1px solid var(--border)}
 .prov-header{display:flex;align-items:center;gap:1rem;padding:1rem 1.5rem;cursor:pointer;background:var(--surface);transition:background .18s;user-select:none}
@@ -131,13 +136,13 @@
   </div>
 
   <div class="inn" style="padding:2.5rem 2rem 6rem">
-    <div class="htabs tabs-wrap" id="htabs">
-      <button class="tab-b on" id="tb-haneler">Soylu Haneler</button>
-      <button class="tab-b" id="tb-devletler">Devletler &amp; Güçler</button>
+    <div class="htabs tabs-wrap" id="htabs" role="tablist" aria-label="Haneler ve Devletler">
+      <button class="tab-b on" id="tb-haneler" role="tab" aria-selected="true" aria-controls="tab-haneler" type="button">Soylu Haneler</button>
+      <button class="tab-b" id="tb-devletler" role="tab" aria-selected="false" aria-controls="tab-devletler" type="button">Devletler &amp; Güçler</button>
     </div>
 
     <!-- ── HANELER TAB ── -->
-    <div class="tab-p on" id="tab-haneler">
+    <div class="tab-p on" id="tab-haneler" role="tabpanel" aria-labelledby="tb-haneler">
       <div class="h-search-wrap">
         <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="22" y2="22"/></svg>
         <input type="search" id="h-search" placeholder="Hane ara…" autocomplete="off">
@@ -148,7 +153,7 @@
     </div>
 
     <!-- ── DEVLETLER TAB ── -->
-    <div class="tab-p" id="tab-devletler">
+    <div class="tab-p" id="tab-devletler" role="tabpanel" aria-labelledby="tb-devletler">
       <div class="tag-filter-row" id="k-tag-filters"></div>
       <div class="kg" id="kingdoms-grid">
         <div style="color:var(--parchd);font-style:italic;font-size:.88rem">Yükleniyor…</div>
@@ -321,19 +326,59 @@ document.getElementById('houses-list').addEventListener('click', e=>{
 });
 
 /* ── TABS ── */
-document.getElementById('tb-haneler').addEventListener('click',function(){
-  document.querySelectorAll('#htabs .tab-b').forEach(b=>b.classList.remove('on'));
-  this.classList.add('on');
-  document.getElementById('tab-haneler').classList.add('on');
-  document.getElementById('tab-devletler').classList.remove('on');
-});
-document.getElementById('tb-devletler').addEventListener('click',function(){
-  document.querySelectorAll('#htabs .tab-b').forEach(b=>b.classList.remove('on'));
-  this.classList.add('on');
-  document.getElementById('tab-devletler').classList.add('on');
-  document.getElementById('tab-haneler').classList.remove('on');
-  renderKingdoms();
-});
+function switchTab(tabId, updateUrl = true) {
+  const isHaneler = tabId === 'haneler';
+  const tbHaneler = document.getElementById('tb-haneler');
+  const tbDevletler = document.getElementById('tb-devletler');
+  const tabHaneler = document.getElementById('tab-haneler');
+  const tabDevletler = document.getElementById('tab-devletler');
+  if (!tbHaneler || !tbDevletler || !tabHaneler || !tabDevletler) return;
+
+  if (isHaneler) {
+    tbHaneler.classList.add('on');
+    tbHaneler.setAttribute('aria-selected', 'true');
+    tbDevletler.classList.remove('on');
+    tbDevletler.setAttribute('aria-selected', 'false');
+    tabHaneler.classList.add('on');
+    tabDevletler.classList.remove('on');
+    if (updateUrl && history.replaceState) {
+      const url = new URL(window.location.href);
+      url.hash = 'haneler';
+      url.searchParams.delete('tab');
+      history.replaceState(null, '', url.toString());
+    }
+  } else {
+    tbDevletler.classList.add('on');
+    tbDevletler.setAttribute('aria-selected', 'true');
+    tbHaneler.classList.remove('on');
+    tbHaneler.setAttribute('aria-selected', 'false');
+    tabDevletler.classList.add('on');
+    tabHaneler.classList.remove('on');
+    renderKingdoms();
+    if (updateUrl && history.replaceState) {
+      const url = new URL(window.location.href);
+      url.hash = 'devletler';
+      url.searchParams.delete('tab');
+      history.replaceState(null, '', url.toString());
+    }
+  }
+}
+
+document.getElementById('tb-haneler').addEventListener('click', () => switchTab('haneler'));
+document.getElementById('tb-devletler').addEventListener('click', () => switchTab('devletler'));
+
+function syncTabFromUrl() {
+  const hash = (window.location.hash || '').replace('#', '').toLowerCase();
+  const searchParam = (new URLSearchParams(window.location.search).get('tab') || '').toLowerCase();
+  const target = hash || searchParam;
+  if (['devletler', 'gucler', 'kingdoms', 'states'].includes(target)) {
+    switchTab('devletler', false);
+  } else if (['haneler', 'houses'].includes(target)) {
+    switchTab('haneler', false);
+  }
+}
+
+window.addEventListener('hashchange', syncTabFromUrl);
 
 document.getElementById('h-search').addEventListener('input',function(){hSearch=this.value.trim();renderHouses();});
 
@@ -354,6 +399,7 @@ function applyLang(l){
 
 initWiki({onLangChange:applyLang});
 applyLang(Lang.get());
+syncTabFromUrl();
 renderKingdoms();   /* gizli sekme de baştan dolsun; bayat "Yükleniyor…" kalmasın */
 </script>
 </body>

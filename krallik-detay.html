@@ -276,7 +276,7 @@ function render() {
       <div class="not-found">
         <h2>${l === 'tr' ? 'Devlet Bulunamadı' : 'State Not Found'}</h2>
         <p style="color:var(--parchd);font-style:italic">${l === 'tr' ? 'Aradığın devlet mevcut değil.' : 'The state you are looking for does not exist.'}</p>
-        <br><a href="haneler.html">← ${l === 'tr' ? 'Tüm Haneler & Devletler' : 'All Houses & States'}</a>
+        <br><a href="haneler.html#devletler">← ${l === 'tr' ? 'Tüm Haneler & Devletler' : 'All Houses & States'}</a>
       </div>`;
     document.getElementById('content-side').innerHTML = '';
     document.title = '404 · Stallhart Wiki';
@@ -322,7 +322,7 @@ function render() {
     <div>
       <nav class="breadcrumb">
         <a href="index.html">${l === 'tr' ? 'Ana Sayfa' : 'Home'}</a><span>›</span>
-        <a href="haneler.html">${l === 'tr' ? 'Haneler & Devletler' : 'Houses & States'}</a><span>›</span>
+        <a href="haneler.html#devletler">${l === 'tr' ? 'Haneler & Devletler' : 'Houses & States'}</a><span>›</span>
         <strong style="color:var(--kg-accent,var(--goldb))">${esc(kName)}</strong>
       </nav>
 

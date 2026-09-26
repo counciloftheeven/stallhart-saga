@@ -393,12 +393,15 @@ document.getElementById('chapters-list').addEventListener('click', e => {
   }
 });
 
-document.getElementById('reset-btn').addEventListener('click', () => {
+document.getElementById('reset-btn').addEventListener('click', async () => {
   const l = Lang.get();
   const msg = l === 'tr'
     ? 'Tüm okuma ilerlemesi silinecek. Emin misin?'
     : 'All reading progress will be deleted. Are you sure?';
-  if (!confirm(msg)) return;
+  const ok = (window.Wiki && Wiki.Community && Wiki.Community.util && Wiki.Community.util.confirmBox)
+    ? await Wiki.Community.util.confirmBox(msg, l === 'tr' ? 'Sıfırla' : 'Reset', true)
+    : true;
+  if (!ok) return;
   localStorage.removeItem('sw-read');
   localStorage.removeItem('sw-reader-pos');
   renderChapters();

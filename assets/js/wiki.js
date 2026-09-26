@@ -690,7 +690,28 @@ const Search = (() => {
           sub: { order: 'Düzen', kaos: 'Kaos', neutral: 'Tarafsız' }[g.faction] || g.faction,
           bio: String(Lang.t(g.role) || '').substring(0, 120),
           url: base + R.href('tanri', g.id)
-        }))]
+        }))],
+        ['hierarchy.json', d => {
+          if (!d) return;
+          if (d.emperor) {
+            push({
+              type: 'makam', typeLabel: { tr: 'Makam', en: 'Office' },
+              id: 'emperor',
+              name: Lang.t(d.emperor.title) + ' — ' + Lang.t(d.emperor.current && d.emperor.current.name),
+              sub: Lang.t(d.emperor.subtitle) || (Lang.get() === 'tr' ? 'İmparatorluk Divanı' : 'Imperial Divan'),
+              bio: String(Lang.t(d.emperor.description) || '').substring(0, 120),
+              url: base + 'hiyerarsi.html?office=emperor'
+            });
+          }
+          (d.branches || []).forEach(b => (b.offices || []).forEach(o => push({
+            type: 'makam', typeLabel: { tr: 'Makam', en: 'Office' },
+            id: o.id,
+            name: Lang.t(o.title) + ' — ' + Lang.t(o.current && o.current.name),
+            sub: Lang.t(b.name) + (o.term ? ' (' + o.term + ')' : ''),
+            bio: String(Lang.t(o.description) || '').substring(0, 120),
+            url: base + 'hiyerarsi.html?office=' + o.id
+          })));
+        }]
       ];
 
       /* Dosyalar paralel yüklenir (lore.json bir kez); bir dosya düşerse diğerleri yine de indekslensin. */
@@ -750,7 +771,7 @@ const Search = (() => {
       esc(text.slice(idx + q.length));
   }
 
-  const TYPE_ICON = { karakter: 'K', bolum: 'B', sozluk: 'S', hane: 'H', alinti: 'A' };
+  const TYPE_ICON = { karakter: 'K', bolum: 'B', sozluk: 'S', hane: 'H', alinti: 'A', tanri: 'T', makam: 'M' };
 
   let openFn = null, closeFn = null;
 
@@ -927,8 +948,9 @@ const NAV_LINKS = [
   { href: 'index.html',       tr: 'Ana Sayfa',   en: 'Home' },
   { href: 'karakterler.html', tr: 'Karakterler', en: 'Characters' },
   { href: 'haneler.html',     tr: 'Haneler',     en: 'Houses' },
+  { href: 'hiyerarsi.html',   tr: 'Yönetim Kademesi', en: 'Hierarchy' },
   { href: 'lore.html',        tr: 'Evren',       en: 'Lore' },
-  { href: 'tanrilar.html',    tr: 'Denge Konseyi', en: 'Council of Balance' },
+  { href: 'tanrilar.html',    tr: 'Denge Konseyi', en: 'Council of the Even' },
   { href: 'harita.html',      tr: 'Harita',      en: 'Map' },
   { href: 'bolumler.html',    tr: 'Bölümler',    en: 'Chapters' },
   { href: 'forum.html',       tr: 'Kurultay',    en: 'Kurultay' },

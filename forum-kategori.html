@@ -156,7 +156,6 @@ function openNewThreadModal() {
   const l = Lang.get();
   if (cat && cat.is_locked && Wiki.Community && Wiki.Community.getState && !Wiki.Community.getState().isAdmin) {
     if (Wiki.Community.util && Wiki.Community.util.toast) Wiki.Community.util.toast(l === 'tr' ? 'Bu kategoride yalnızca yönetim konu açabilir.' : 'Only staff can post in this category.', true);
-    else alert(l === 'tr' ? 'Bu kategoride yalnızca yönetim konu açabilir.' : 'Only staff can post in this category.');
     return;
   }
   const defaultTitle = chParam ? `${chParam}. Bölüm Tahlili: ` : '';
@@ -209,7 +208,7 @@ function openNewThreadModal() {
     try {
       const thread = await K.createThread(catId, title, body, { isCanon: catId === 'teori' && title.toLowerCase().includes('kehanet') });
       rec.close();
-      if (thread && thread.id && !thread.id.startsWith('local-')) {
+      if (thread && thread.id) {
         location.href = 'forum-konu.html?id=' + encodeURIComponent(thread.id);
       } else {
         render();

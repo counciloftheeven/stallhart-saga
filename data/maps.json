@@ -507,11 +507,11 @@
           },
           "ruler": {
             "tr": "Denge Konseyi",
-            "en": "Council of Balance"
+            "en": "Council of the Even"
           },
           "desc": {
             "tr": "İmparatorluğun en kutsal toprakları. Denge Konseyi'nin ruhani otoritesinin merkezi; tapınak kompleksleri ve kutsal törenleriyle imparatorluk üzerinde güçlü bir manevi etki kurar.",
-            "en": "The most sacred lands of the empire. Spiritual authority center of the Council of Balance; exercises powerful influence through its temple complexes and holy ceremonies."
+            "en": "The most sacred lands of the empire. Spiritual authority center of the Council of the Even; exercises powerful influence through its temple complexes and holy ceremonies."
           },
           "tags": {
             "tr": [
@@ -521,7 +521,7 @@
             ],
             "en": [
               "Sacred Ground",
-              "Council of Balance",
+              "Council of the Even",
               "Temple Complex"
             ]
           },

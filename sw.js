@@ -5,7 +5,7 @@
    ═══════════════════════════════════════════════════════════════ */
 'use strict';
 
-const CACHE_NAME = 'stallhart-v2';
+const CACHE_NAME = 'stallhart-v3';
 const PRECACHE_ASSETS = [
   '/',
   '/index.html',
@@ -16,20 +16,31 @@ const PRECACHE_ASSETS = [
   '/lore.html',
   '/harita.html',
   '/sozler.html',
+  '/hiyerarsi.html',
   '/forum.html',
   '/forum-kategori.html',
   '/forum-konu.html',
+  '/assets/css/styles.css',
   '/assets/css/styles.css?v=3.0',
+  '/assets/css/kurultay.css',
   '/assets/css/kurultay.css?v=3.0',
   '/assets/css/community.css',
+  '/assets/css/community.css?v=3.0',
   '/assets/css/harita.css',
+  '/assets/css/harita.css?v=3.0',
+  '/assets/js/router.js',
   '/assets/js/router.js?v=3.0',
+  '/assets/js/config.js',
   '/assets/js/config.js?v=3.0',
+  '/assets/js/patches.js',
   '/assets/js/patches.js?v=3.0',
+  '/assets/js/wiki.js',
   '/assets/js/wiki.js?v=3.0',
+  '/assets/js/community.js',
   '/assets/js/community.js?v=3.0',
   '/assets/js/community-divan.js',
   '/assets/js/kurultay.js',
+  '/assets/js/kurultay.js?v=3.0',
   '/assets/js/travel-calc.js',
   '/data/book.json',
   '/data/chapters.json',
@@ -39,6 +50,7 @@ const PRECACHE_ASSETS = [
   '/data/geography.json',
   '/data/lore.json',
   '/data/quotes.json',
+  '/data/hierarchy.json',
   '/data/language.json',
   '/assets/images/logo-stallhart.png',
   '/assets/images/logo-stallhart-240w.webp',
@@ -80,7 +92,7 @@ self.addEventListener('fetch', event => {
   // Kitap ve Evren Verileri (/data/*.json): Cache First + Arka Planda Güncelle (Tam Çevrimdışı Okuma)
   if (url.pathname.startsWith('/data/') && url.pathname.endsWith('.json')) {
     event.respondWith(
-      caches.match(req).then(cached => {
+      caches.match(req, { ignoreSearch: true }).then(cached => {
         const fetchPromise = fetch(req).then(networkResponse => {
           if (networkResponse && networkResponse.status === 200) {
             const clone = networkResponse.clone();
@@ -107,7 +119,7 @@ self.addEventListener('fetch', event => {
           return response;
         })
         .catch(() => {
-          return caches.match(req).then(cached => cached || caches.match('/oku.html') || caches.match('/index.html'));
+          return caches.match(req, { ignoreSearch: true }).then(cached => cached || caches.match('/oku.html') || caches.match('/index.html'));
         })
     );
     return;
@@ -115,7 +127,7 @@ self.addEventListener('fetch', event => {
 
   // Statik Varlıklar (CSS, JS, Görseller): Stale-While-Revalidate
   event.respondWith(
-    caches.match(req).then(cachedResponse => {
+    caches.match(req, { ignoreSearch: true }).then(cachedResponse => {
       const fetchPromise = fetch(req).then(networkResponse => {
         if (networkResponse && networkResponse.status === 200) {
           const responseToCache = networkResponse.clone();

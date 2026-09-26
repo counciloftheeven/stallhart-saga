@@ -454,7 +454,15 @@ const $ = id => document.getElementById(id);
 
 function chapterId() {
   const n = parseInt(SWRoute.id('bolum'), 10);   /* #/bolum/<n>  (eski ?b=<n> ve #bolum-<n> da okunur) */
-  return isNaN(n) ? null : n;
+  if (!isNaN(n)) return n;
+  try {
+    const lr = JSON.parse(localStorage.getItem('sw-last-read') || '{}');
+    if (lr && lr.id) {
+      const parsed = parseInt(lr.id, 10);
+      if (!isNaN(parsed)) return parsed;
+    }
+  } catch (e) {}
+  return 1;
 }
 function entry(ch) { return ch && book && book.chapters ? book.chapters[String(ch.id)] : null; }
 function textOf(ch) {
@@ -561,7 +569,6 @@ function render(keepPct) {
   applyHighlightsToDOM();
 
   bindAudioNarrator(cur, tx, l);
-  checkCloudSyncNotice(cur, l);
   updateChapterSEO(cur, tx);
 
   /* Otomatik bağlantılar: karakter / hane / yer / tanrı / olay adları bölümde ilk geçtikleri yerde
@@ -663,16 +670,60 @@ function restore(p) {
 }
 function hideResume() { const r = $('rd-resume'); r.hidden = true; r.innerHTML = ''; }
 function offerResume() {
-  const map = lsGet(POS_KEY) || {}, p = cur ? Number(map[cur.id]) : 0;
-  if (!(p > 0.03 && p < 0.96)) return;
+  if (!cur) return;
+  const l = Lang.get();
+  const map = lsGet(POS_KEY) || {}, p = Number(map[cur.id]) || 0;
+  
+  let syncData = null;
+  try {
+    const rawSync = localStorage.getItem('sw-reading-sync') || localStorage.getItem('sw-last-read');
+    if (rawSync) syncData = JSON.parse(rawSync);
+  } catch (e) {}
+
+  const hasPIdx = syncData && (syncData.chapterId === cur.id || syncData.id === cur.id) && typeof syncData.pIdx === 'number' && syncData.pIdx > 0;
+  const hasPct = p > 0.03 && p < 0.96;
+  if (!hasPIdx && !hasPct) return;
+
+  const targetPct = (hasPIdx && syncData.pct) ? syncData.pct : p;
+  const pctStr = Math.round(targetPct * 100);
   const r = $('rd-resume');
-  r.innerHTML = '<span>' + esc(T('resume')) + ' (' + Math.round(p * 100) + '%)</span>' +
-    '<button class="rd-pill" type="button" id="rs-go">' + esc(T('go')) + '</button>' +
-    '<button class="rd-pill" type="button" id="rs-no" style="border-color:var(--border);color:var(--parchd)">' + esc(T('restart')) + '</button>';
+  if (!r) return;
+
+  let msgText = '';
+  if (hasPIdx) {
+    msgText = l === 'tr' ? ('📜 Kaldığınız yer: Paragraf ' + (syncData.pIdx + 1) + ' (%' + pctStr + ')') : ('📜 Saved: Paragraph ' + (syncData.pIdx + 1) + ' (' + pctStr + '%)');
+  } else {
+    msgText = esc(T('resume')) + ' (' + pctStr + '%)';
+  }
+
+  r.innerHTML = '<span>' + msgText + '</span>' +
+    '<button class="rd-pill" type="button" id="rs-go">' + (hasPIdx ? (l === 'tr' ? 'Kaldığım Yere Git' : 'Go to Position') : esc(T('go'))) + '</button>' +
+    '<button class="rd-pill" type="button" id="rs-no" style="border-color:var(--border);color:var(--parchd)">' + (hasPIdx ? '×' : esc(T('restart'))) + '</button>';
   r.hidden = false;
-  $('rs-go').onclick = () => { restore(p); hideResume(); };
-  $('rs-no').onclick = () => { const m = lsGet(POS_KEY) || {}; delete m[cur.id]; lsSet(POS_KEY, m); hideResume(); };
-  setTimeout(() => { if (!r.hidden) hideResume(); }, 15000);
+
+  $('rs-go').onclick = () => {
+    if (hasPIdx) {
+      const targetP = document.getElementById('p-' + syncData.pIdx);
+      if (targetP) {
+        targetP.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        targetP.classList.add('sw-highlight-jump');
+        setTimeout(() => targetP.classList.remove('sw-highlight-jump'), 3000);
+      } else {
+        restore(targetPct);
+      }
+    } else {
+      restore(p);
+    }
+    hideResume();
+  };
+
+  $('rs-no').onclick = () => {
+    const m = lsGet(POS_KEY) || {};
+    delete m[cur.id];
+    lsSet(POS_KEY, m);
+    hideResume();
+  };
+  setTimeout(() => { if (!r.hidden) hideResume(); }, 16000);
 }
 window.addEventListener('scroll', onScroll, { passive: true });
 window.addEventListener('resize', onScroll, { passive: true });
@@ -729,17 +780,28 @@ function startAmbientSound() {
 function stopAmbientSound() {
   if (audioState.gainNode && audioState.audioCtx) {
     try {
-      audioState.gainNode.gain.setValueAtTime(audioState.gainNode.gain.value, audioState.audioCtx.currentTime);
-      audioState.gainNode.gain.exponentialRampToValueAtTime(0.0001, audioState.audioCtx.currentTime + 0.8);
+      const now = audioState.audioCtx.currentTime;
+      audioState.gainNode.gain.cancelScheduledValues(now);
+      audioState.gainNode.gain.setValueAtTime(audioState.gainNode.gain.value, now);
+      audioState.gainNode.gain.linearRampToValueAtTime(0.0001, now + 0.6);
       setTimeout(() => {
         if (audioState.droneNode) {
           try { audioState.droneNode.stop(); audioState.droneNode.disconnect(); } catch (e) {}
           audioState.droneNode = null;
           audioState.gainNode = null;
         }
-      }, 850);
+      }, 700);
     } catch (e) {}
   }
+}
+
+function cleanNarratorText(raw) {
+  return String(raw || '').replace(/!\[[^\]]*\]\([^)]*\)/g, '')
+    .replace(/\[([^\]]*)\]\([^)]*\)/g, '$1')
+    .replace(/[#>*_~`]/g, '')
+    .replace(/\n{2,}/g, '. ')
+    .replace(/\s+/g, ' ')
+    .trim();
 }
 
 function bindAudioNarrator(ch, tx, l) {
@@ -777,15 +839,6 @@ function bindAudioNarrator(ch, tx, l) {
     };
   });
 
-  function cleanNarratorText(raw) {
-    return String(raw || '').replace(/!\[[^\]]*\]\([^)]*\)/g, '')
-      .replace(/\[([^\]]*)\]\([^)]*\)/g, '$1')
-      .replace(/[#>*_~`]/g, '')
-      .replace(/\n{2,}/g, '. ')
-      .replace(/\s+/g, ' ')
-      .trim();
-  }
-
   function startSpeech() {
     if (!window.speechSynthesis) {
       if (statusEl) statusEl.textContent = l === 'tr' ? 'Tarayıcı ses desteklemiyor' : 'Speech synthesis not supported';
@@ -802,15 +855,16 @@ function bindAudioNarrator(ch, tx, l) {
       : ('Chapter ' + ch.num + ': ' + Lang.t(ch.title) + '. ');
     
     const utter = new SpeechSynthesisUtterance(titleStr + excerpt);
+    utter.lang = l === 'tr' ? 'tr-TR' : 'en-US';
     utter.rate = audioState.speed * 0.90; // Epik vakur tempo
     utter.pitch = 0.88; // Derin ve tınılı vakanüvis tonu
 
-    const voices = audioState.synth.getVoices ? audioState.synth.getVoices() : [];
+    const voices = (audioState.synth && audioState.synth.getVoices) ? audioState.synth.getVoices() : [];
     if (l === 'tr') {
-      const trVoice = voices.find(v => v.lang && v.lang.startsWith('tr'));
+      const trVoice = voices.find(v => v.lang && (v.lang.startsWith('tr') || v.lang.startsWith('TR')));
       if (trVoice) utter.voice = trVoice;
     } else {
-      const enVoice = voices.find(v => v.lang && v.lang.startsWith('en'));
+      const enVoice = voices.find(v => v.lang && (v.lang.startsWith('en') || v.lang.startsWith('EN')));
       if (enVoice) utter.voice = enVoice;
     }
 
@@ -869,12 +923,21 @@ function bindAudioNarrator(ch, tx, l) {
       if (!audioState.playing) {
         startSpeech();
       } else if (audioState.paused) {
-        audioState.synth.resume();
+        if (audioState.synth && audioState.synth.resume) audioState.synth.resume();
       } else {
-        audioState.synth.pause();
+        if (audioState.synth && audioState.synth.pause) audioState.synth.pause();
       }
     };
   }
+
+  const stopAllAudio = () => {
+    if (audioState.synth && audioState.synth.cancel) audioState.synth.cancel();
+    stopAmbientSound();
+    audioState.playing = false;
+    audioState.paused = false;
+  };
+  window.addEventListener('pagehide', stopAllAudio);
+  window.addEventListener('beforeunload', stopAllAudio);
 }
 
 /* ── 2. METİN İÇİ VURGULAMA & DİVAN DEFTERİ ──────────────────── */
@@ -887,31 +950,41 @@ function saveAnnotations(arr) {
 }
 
 let activeSelectionText = '';
+let selDebounceT = null;
+const tooltipEl = $('sw-hl-tooltip');
+if (tooltipEl) {
+  tooltipEl.addEventListener('mousedown', e => e.preventDefault());
+  tooltipEl.addEventListener('touchstart', e => { e.stopPropagation(); }, { passive: true });
+}
+
 function handleTextSelection() {
-  const sel = window.getSelection();
-  const tooltip = $('sw-hl-tooltip');
-  if (!sel || sel.isCollapsed || !sel.rangeCount) {
-    if (tooltip && tooltip.style.display !== 'none') tooltip.style.display = 'none';
-    return;
-  }
-  const text = sel.toString().trim();
-  if (text.length < 3) {
-    if (tooltip && tooltip.style.display !== 'none') tooltip.style.display = 'none';
-    return;
-  }
-  const range = sel.getRangeAt(0);
-  const bodyEl = $('rd-body');
-  if (!bodyEl || !bodyEl.contains(range.commonAncestorContainer)) {
-    if (tooltip && tooltip.style.display !== 'none') tooltip.style.display = 'none';
-    return;
-  }
-  activeSelectionText = text;
-  const rect = range.getBoundingClientRect();
-  if (tooltip) {
-    tooltip.style.left = (rect.left + rect.width / 2) + 'px';
-    tooltip.style.top = Math.max(10, rect.top + window.scrollY - 44) + 'px';
-    tooltip.style.display = 'flex';
-  }
+  clearTimeout(selDebounceT);
+  selDebounceT = setTimeout(() => {
+    const sel = window.getSelection();
+    const tooltip = $('sw-hl-tooltip');
+    if (!sel || sel.isCollapsed || !sel.rangeCount) {
+      if (tooltip && tooltip.style.display !== 'none' && !activeSelectionText) tooltip.style.display = 'none';
+      return;
+    }
+    const text = sel.toString().trim();
+    if (text.length < 3) {
+      if (tooltip && tooltip.style.display !== 'none') tooltip.style.display = 'none';
+      return;
+    }
+    const range = sel.getRangeAt(0);
+    const bodyEl = $('rd-body');
+    if (!bodyEl || !bodyEl.contains(range.commonAncestorContainer)) {
+      if (tooltip && tooltip.style.display !== 'none') tooltip.style.display = 'none';
+      return;
+    }
+    activeSelectionText = text;
+    const rect = range.getBoundingClientRect();
+    if (tooltip) {
+      tooltip.style.left = Math.max(16, Math.min(window.innerWidth - 180, (rect.left + rect.width / 2))) + 'px';
+      tooltip.style.top = Math.max(10, rect.top + window.scrollY - 48) + 'px';
+      tooltip.style.display = 'flex';
+    }
+  }, 80);
 }
 document.addEventListener('selectionchange', handleTextSelection);
 
@@ -953,6 +1026,11 @@ $('sw-hl-close-btn').addEventListener('click', () => {
 function applyHighlightsToDOM() {
   const bodyEl = $('rd-body');
   if (!bodyEl || !cur) return;
+  bodyEl.querySelectorAll('mark.sw-highlight').forEach(m => {
+    m.replaceWith(document.createTextNode(m.textContent));
+  });
+  bodyEl.normalize();
+
   const list = getAnnotations().filter(a => a.chapterId === cur.id);
   if (!list.length) return;
   
@@ -1026,6 +1104,14 @@ function renderDefter() {
             mark.scrollIntoView({ behavior: 'smooth', block: 'center' });
             mark.classList.add('flash');
             setTimeout(() => mark.classList.remove('flash'), 2500);
+          } else {
+            const snippet = (target.text || '').slice(0, 30).trim();
+            const pMatch = Array.from(document.querySelectorAll('#rd-body p')).find(p => snippet && p.textContent.includes(snippet));
+            if (pMatch) {
+              pMatch.scrollIntoView({ behavior: 'smooth', block: 'center' });
+              pMatch.classList.add('sw-highlight-jump');
+              setTimeout(() => pMatch.classList.remove('sw-highlight-jump'), 2500);
+            }
           }
         } else {
           location.href = SWRoute.href('bolum', target.chapterId);
@@ -1055,13 +1141,15 @@ $('rd-defter-export').onclick = () => {
   URL.revokeObjectURL(url);
 };
 
-$('rd-defter-clear').onclick = () => {
+$('rd-defter-clear').onclick = async () => {
   const l = Lang.get();
-  if (confirm(l === 'tr' ? 'Divan Defterinizdeki tüm alıntı ve notlar silinsin mi?' : 'Clear all notes from Divan Notebook?')) {
-    saveAnnotations([]);
-    renderDefter();
-    document.querySelectorAll('mark.sw-highlight').forEach(m => m.replaceWith(document.createTextNode(m.textContent)));
-  }
+  const ok = (window.Wiki && Wiki.Community && Wiki.Community.util && Wiki.Community.util.confirmBox)
+    ? await Wiki.Community.util.confirmBox(l === 'tr' ? 'Divan Defterinizdeki tüm alıntı ve notlar silinsin mi?' : 'Clear all notes from Divan Notebook?', l === 'tr' ? 'Temizle' : 'Clear', true)
+    : true;
+  if (!ok) return;
+  saveAnnotations([]);
+  renderDefter();
+  document.querySelectorAll('mark.sw-highlight').forEach(m => m.replaceWith(document.createTextNode(m.textContent)));
 };
 
 /* ── 3. PARŞÖMEN GÖRSELİ KARTI ÜRETİCİ ──────────────────────── */
@@ -1205,10 +1293,20 @@ $('rd-quote-download').onclick = () => {
   a.click();
 };
 
+function safeOpenUrl(url) {
+  const a = document.createElement('a');
+  a.href = url;
+  a.target = '_blank';
+  a.rel = 'noopener noreferrer';
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+}
+
 $('rd-quote-tweet').onclick = () => {
   const q = activeQuoteForModal.quote ? `“${activeQuoteForModal.quote}”` : '';
   const text = encodeURIComponent(`${q}\n— Stallhart Destanı\n${window.location.href}`);
-  window.open(`https://twitter.com/intent/tweet?text=${text}`, '_blank');
+  safeOpenUrl(`https://twitter.com/intent/tweet?text=${text}`);
 };
 
 $('rd-quote-copy').onclick = () => {
@@ -1238,35 +1336,6 @@ function findActiveParagraphIdx() {
     }
   });
   return closestIdx;
-}
-
-function checkCloudSyncNotice(ch, l) {
-  try {
-    const raw = localStorage.getItem(SYNC_KEY);
-    if (!raw) return;
-    const data = JSON.parse(raw);
-    if (!data || data.chapterId !== ch.id || !data.pIdx || data.pIdx < 1) return;
-    
-    const r = $('rd-resume');
-    r.innerHTML = '<span>📜 ' + (l === 'tr' ? ('Kaldığınız yer: Paragraf ' + (data.pIdx + 1) + ' (%' + Math.round((data.pct || 0) * 100) + ')') : ('Saved: Paragraph ' + (data.pIdx + 1) + ' (' + Math.round((data.pct || 0) * 100) + '%)')) + '</span>' +
-      '<button class="rd-pill" type="button" id="rs-go-sync">' + (l === 'tr' ? 'Kaldığım Yere Git' : 'Go to Position') + '</button>' +
-      '<button class="rd-pill" type="button" id="rs-no-sync" style="border-color:var(--border);color:var(--parchd)">×</button>';
-    r.hidden = false;
-
-    $('rs-go-sync').onclick = () => {
-      const targetP = document.getElementById('p-' + data.pIdx);
-      if (targetP) {
-        targetP.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        targetP.classList.add('sw-highlight-jump');
-        setTimeout(() => targetP.classList.remove('sw-highlight-jump'), 3000);
-      } else {
-        restore(data.pct || 0);
-      }
-      hideResume();
-    };
-    $('rs-no-sync').onclick = () => hideResume();
-    setTimeout(() => { if (!r.hidden) hideResume(); }, 16000);
-  } catch (e) {}
 }
 
 function openSyncModal() {
@@ -1305,7 +1374,9 @@ $('rd-sync-apply-btn').onclick = () => {
   const l = Lang.get();
   const val = $('rd-sync-import-code').value.trim();
   if (!val) {
-    alert(l === 'tr' ? 'Lütfen eşitleme kodunu yapıştırın.' : 'Please paste sync code.');
+    if (Wiki.Community && Wiki.Community.util && Wiki.Community.util.toast) {
+      Wiki.Community.util.toast(l === 'tr' ? 'Lütfen eşitleme kodunu yapıştırın.' : 'Please paste sync code.', true);
+    }
     return;
   }
   try {
@@ -1331,7 +1402,9 @@ $('rd-sync-apply-btn').onclick = () => {
       location.reload();
     }
   } catch (err) {
-    alert(l === 'tr' ? 'Geçersiz eşitleme kodu.' : 'Invalid sync code.');
+    if (Wiki.Community && Wiki.Community.util && Wiki.Community.util.toast) {
+      Wiki.Community.util.toast(l === 'tr' ? 'Geçersiz eşitleme kodu.' : 'Invalid sync code.', true);
+    }
   }
 };
 
@@ -1344,13 +1417,13 @@ function openShareModal() {
   const text = encodeURIComponent(title + '\n' + url);
 
   $('sh-wa').onclick = () => {
-    window.open('https://api.whatsapp.com/send?text=' + text, '_blank');
+    safeOpenUrl('https://api.whatsapp.com/send?text=' + text);
   };
   $('sh-x').onclick = () => {
-    window.open('https://twitter.com/intent/tweet?text=' + text, '_blank');
+    safeOpenUrl('https://twitter.com/intent/tweet?text=' + text);
   };
   $('sh-tg').onclick = () => {
-    window.open('https://t.me/share/url?url=' + encodeURIComponent(url) + '&text=' + encodeURIComponent(title), '_blank');
+    safeOpenUrl('https://t.me/share/url?url=' + encodeURIComponent(url) + '&text=' + encodeURIComponent(title));
   };
   $('sh-copy').onclick = () => {
     navigator.clipboard?.writeText(url).then(() => {
@@ -1374,11 +1447,20 @@ function updateChapterSEO(ch, tx) {
   const twTitle = document.querySelector('meta[name="twitter:title"]');
   if (twTitle) twTitle.content = fullTitle;
 
-  const desc = String(tx.text || '').slice(0, 160).replace(/\s+/g, ' ') + '…';
+  const plain = cleanNarratorText ? cleanNarratorText(tx.text) : String(tx.text || '').replace(/[#>*_~`]/g, '').trim();
+  const desc = plain.slice(0, 160).replace(/\s+/g, ' ') + (plain.length > 160 ? '…' : '');
   const ogDesc = document.querySelector('meta[property="og:description"]');
   if (ogDesc) ogDesc.content = desc;
   const twDesc = document.querySelector('meta[name="twitter:description"]');
   if (twDesc) twDesc.content = desc;
+
+  try {
+    const absImg = new URL('assets/images/logo-stallhart.png', location.origin).href;
+    const ogImg = document.querySelector('meta[property="og:image"]');
+    if (ogImg) ogImg.content = absImg;
+    const twImg = document.querySelector('meta[name="twitter:image"]');
+    if (twImg) twImg.content = absImg;
+  } catch (e) {}
 
   let ldScript = document.getElementById('rd-jsonld');
   if (!ldScript) {
@@ -1412,6 +1494,7 @@ window.addEventListener('beforeinstallprompt', e => {
 const installBtn = $('rd-install-btn');
 if (installBtn) {
   installBtn.onclick = async () => {
+    const l = Lang.get();
     if (deferredPwaPrompt) {
       deferredPwaPrompt.prompt();
       const res = await deferredPwaPrompt.userChoice;
@@ -1419,6 +1502,10 @@ if (installBtn) {
         installBtn.style.display = 'none';
       }
       deferredPwaPrompt = null;
+    } else {
+      if (Wiki.Community && Wiki.Community.util && Wiki.Community.util.toast) {
+        Wiki.Community.util.toast(l === 'tr' ? 'PWA Yükleme: Tarayıcınızın menüsünden "Ana Ekrana Ekle" seçeneğini kullanabilirsiniz.' : 'PWA Install: Use "Add to Home Screen" from your browser menu.');
+      }
     }
   };
 }

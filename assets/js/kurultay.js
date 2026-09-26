@@ -24,7 +24,8 @@ var ICONS = {
   karakter:'<path d="M12 2a5 5 0 0 0-5 5v3a5 5 0 0 0 10 0V7a5 5 0 0 0-5-5z"/><path d="M4 22v-3a4 4 0 0 1 4-4h8a4 4 0 0 1 4 4v3"/><path d="M9 11h6"/>',
   duyuru:  '<path d="M3 11l18-5v12L3 14v-3z"/><path d="M11.6 16.8a2 2 0 0 1-3.6-1.2"/><line x1="14" y1="7" x2="14" y2="13"/>',
   sohbet:  '<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><circle cx="8" cy="10" r="1"/><circle cx="12" cy="10" r="1"/><circle cx="16" cy="10" r="1"/>',
-  sanat:   '<circle cx="12" cy="12" r="9"/><circle cx="8.5" cy="10.5" r="1.5"/><circle cx="15" cy="9" r="1.5"/><circle cx="15.5" cy="14.5" r="1.5"/><path d="M12 21a9 9 0 0 1 0-18 4 4 0 0 1 0 8h-.5a2 2 0 0 0 0 4H12a9 9 0 0 1 0 6z"/>'
+  sanat:   '<circle cx="12" cy="12" r="9"/><circle cx="8.5" cy="10.5" r="1.5"/><circle cx="15" cy="9" r="1.5"/><circle cx="15.5" cy="14.5" r="1.5"/><path d="M12 21a9 9 0 0 1 0-18 4 4 0 0 1 0 8h-.5a2 2 0 0 0 0 4H12a9 9 0 0 1 0 6z"/>',
+  yazar:   '<path d="M12 2l3 5 4-2-2 7H7L5 5l4 2 3-5z"/><path d="M7 16h10v2a1 1 0 0 1-1 1H8a1 1 0 0 1-1-1v-2z"/><path d="M18 20l2 2m-2-2l-1 2m3 0l-2-2"/><circle cx="12" cy="10" r="1"/>'
 };
 
 /* ── KATEGORİ LİSTESİ (Kapsamlı Dark Fantasy Evrenine Uyumlu) ──── */
@@ -45,7 +46,7 @@ var FALLBACK_CATS = [
     id: 'denge-konseyi',
     icon: 'denge',
     name_tr: 'Denge Konseyi Tartışmaları',
-    name_en: 'Council of Balance Discussions',
+    name_en: 'Council of the Even Discussions',
     desc_tr: 'Düzen ve Kaos dengesi, kadim On İki Tanrı’nın fermanları, KS 0 kırılması ve evrenin mukadderatı.',
     desc_en: 'Cosmic balance of Order & Chaos, decrees of the Twelve Gods, the fracture of KS 0, and the fate of the realm.',
     is_locked: false,
@@ -334,7 +335,7 @@ var FALLBACK_THREADS = [
     id: 'f-sanat-1',
     category_id: 'sanat',
     title: 'Denge Konseyi Tapınak Kapısı İllüstrasyon Çalışmam (Dijital Çizim)',
-    title_en: 'My Illustration of the Council of Balance Temple Gate (Digital Art)',
+    title_en: 'My Illustration of the Council of the Even Temple Gate (Digital Art)',
     body: 'Kitaptaki tasvirlere sadık kalarak kapıdaki On İki Rün kabartmalarını çizdim. Yorumlarınızı bekliyorum!',
     body_en: 'Faithfully reconstructed the Twelve Runes on the gate based on canon lore descriptions. Feedback welcome!',
     is_pinned: false,
@@ -667,26 +668,34 @@ function getPollData(thread) {
     userVote = localStorage.getItem('sw-poll-vote-' + thread.id);
   } catch (e) {}
 
-  var total = (p.options || []).reduce(function (sum, o) { return sum + (o.votes || 0); }, 0);
+  var options = (p.options || []).map(function (o) {
+    var v = o.votes || 0;
+    if (userVote === o.id) {
+      v = Math.max(v, 1);
+    }
+    return { id: o.id, text: o.text, votes: v };
+  });
+  var total = options.reduce(function (sum, o) { return sum + (o.votes || 0); }, 0);
   return {
     id: p.id || 'poll-' + thread.id,
     question: p.question,
     question_en: p.question_en,
-    options: p.options || [],
+    options: options,
     totalVotes: total,
     userVote: userVote
   };
 }
 
 function votePoll(threadId, optionId) {
-  var t = FALLBACK_THREADS.filter(function (x) { return x.id === threadId; })[0];
+  try {
+    localStorage.setItem('sw-poll-vote-' + threadId, optionId);
+  } catch (e) {}
+  var t = getLocalThreads().filter(function (x) { return x.id === threadId; })[0] ||
+          FALLBACK_THREADS.filter(function (x) { return x.id === threadId; })[0];
   if (!t || !t.poll) return null;
   var opt = t.poll.options.filter(function (o) { return o.id === optionId; })[0];
   if (opt) {
     opt.votes = (opt.votes || 0) + 1;
-    try {
-      localStorage.setItem('sw-poll-vote-' + threadId, optionId);
-    } catch (e) {}
     var u = Allegiance.get();
     addFactionPoints(u.favorite_house || 'stallhart', 25);
   }
@@ -1013,8 +1022,16 @@ async function fetchThreads(opts) {
   } catch (e) { return filterFallback(opts); }
 }
 
+function getLocalThreads() {
+  try { return JSON.parse(localStorage.getItem('sw-local-threads') || '[]'); } catch (e) { return []; }
+}
+function saveLocalThreads(arr) {
+  try { localStorage.setItem('sw-local-threads', JSON.stringify(arr)); } catch (e) {}
+}
+
 function filterFallback(opts) {
-  var rows = FALLBACK_THREADS.slice();
+  var localRows = getLocalThreads();
+  var rows = localRows.concat(FALLBACK_THREADS.slice());
   if (opts.categoryId) rows = rows.filter(function (t) { return t.category_id === opts.categoryId; });
   if (opts.pinnedOnly) rows = rows.filter(function (t) { return t.is_pinned; });
   if (opts.canonOnly) rows = rows.filter(function (t) { return !!t.is_canonized; });
@@ -1040,6 +1057,9 @@ function filterFallback(opts) {
 }
 
 async function fetchThread(id) {
+  var localMatch = getLocalThreads().filter(function (t) { return t.id === id; })[0];
+  if (localMatch) return localMatch;
+
   if (!C || !C.enabled) {
     var f = FALLBACK_THREADS.filter(function (t) { return t.id === id; })[0];
     return f || null;
@@ -1049,7 +1069,10 @@ async function fetchThread(id) {
     var res = await client.from('forum_threads').select('*, profiles(username,avatar,favorite_house,title)').eq('id', id).maybeSingle();
     if (res.error) throw res.error;
     return res.data;
-  } catch (e) { return null; }
+  } catch (e) {
+    var fb = FALLBACK_THREADS.filter(function (t) { return t.id === id; })[0];
+    return fb || null;
+  }
 }
 
 async function createThread(categoryId, title, body, extraOpts) {
@@ -1085,6 +1108,9 @@ async function createThread(categoryId, title, body, extraOpts) {
         })
       };
     }
+    var localList = getLocalThreads();
+    localList.unshift(newT);
+    saveLocalThreads(localList);
     FALLBACK_THREADS.unshift(newT);
     Allegiance.set({ thread_count: (user.thread_count || 0) + 1 });
     addFactionPoints(user.favorite_house || 'stallhart', 20);
