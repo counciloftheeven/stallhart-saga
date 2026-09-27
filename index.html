@@ -85,6 +85,45 @@ html[data-theme="light"] .hero-logo {
 .tab-p.on { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
 @media (max-width: 640px) { .tab-p.on { grid-template-columns: 1fr; } }
 
+/* Evren Bölümü Light Mod Stilleri */
+html[data-theme="light"] #evren {
+  background: var(--deep);
+  border-color: var(--border);
+}
+html[data-theme="light"] #evren .lc {
+  background: var(--surface);
+  border-color: var(--border);
+  box-shadow: 0 4px 14px rgba(70, 50, 25, 0.08);
+}
+html[data-theme="light"] #evren .lc:hover {
+  border-color: var(--borderl);
+  box-shadow: 0 6px 20px rgba(70, 50, 25, 0.12);
+}
+html[data-theme="light"] #evren .lc::before {
+  border-color: rgba(138, 90, 30, 0.2);
+}
+html[data-theme="light"] #evren .lc h3 {
+  color: var(--goldb);
+  font-weight: 700;
+}
+html[data-theme="light"] #evren .lc p {
+  color: #241c14;
+}
+html[data-theme="light"] #evren .tab-b.on {
+  color: var(--goldb);
+  font-weight: 700;
+}
+html[data-theme="light"] #evren .btn-o {
+  background: var(--surface);
+  color: var(--goldb);
+  border-color: var(--borderl);
+  box-shadow: 0 2px 8px rgba(70, 50, 25, 0.06);
+}
+html[data-theme="light"] #evren .btn-o:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+}
+
 /* Karakterler (önizleme) */
 #karakterler { background: var(--bg); }
 .chars-more {
@@ -105,7 +144,235 @@ html[data-theme="light"] .hero-logo {
 #sss { background: var(--deep); border-top: 1px solid var(--border); }
 
 /* Ekran dışındaki bölümlerin yerleşim/boyama işi görünene kadar ertelenir */
-#evren, #karakterler, #bolumler, #harita, #sss { content-visibility: auto; contain-intrinsic-size: auto 720px; }
+#evren, #karakterler, #bolumler, #forum-vitrini, #harita, #sss { content-visibility: auto; contain-intrinsic-size: auto 720px; }
+
+/* ── KURULTAY VİTRİNİ (Ana Sayfa) ── */
+#forum-vitrini {
+  background: radial-gradient(ellipse at 50% 20%, rgba(26, 16, 12, 0.4) 0%, rgba(10, 14, 23, 0.95) 70%);
+  border-top: 1px solid rgba(196,150,42,.2);
+  border-bottom: 1px solid rgba(196,150,42,.2);
+  transition: background-color var(--theme-transition-duration) ease,
+              border-color var(--theme-transition-duration) ease;
+}
+.fv-grid {
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+.fv-card {
+  text-decoration: none;
+  display: block;
+}
+.fv-card-inner {
+  background: radial-gradient(circle at top right, rgba(139,30,30,.25), rgba(14,18,28,.95));
+  border: 1px solid rgba(196,150,42,.35);
+  padding: 1.5rem;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 4px 16px rgba(0,0,0,.3);
+  transition: background var(--theme-transition-duration) ease,
+              border-color var(--theme-transition-duration) ease,
+              box-shadow var(--theme-transition-duration) ease,
+              transform .2s ease;
+}
+.fv-card:hover .fv-card-inner {
+  border-color: var(--gold);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0,0,0,.45);
+}
+.fv-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: .85rem;
+}
+.fv-icon {
+  display: inline-flex;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  align-items: center;
+  justify-content: center;
+  background: rgba(196,150,42,.15);
+  border: 1px solid var(--gold);
+  color: var(--gold);
+  transition: background-color var(--theme-transition-duration) ease,
+              border-color var(--theme-transition-duration) ease,
+              color var(--theme-transition-duration) ease;
+}
+.fv-card.fv-teori .fv-icon {
+  background: rgba(139,30,30,.2);
+  border-color: #8b1e1e;
+  color: #e5989b;
+}
+.fv-badge {
+  border: 1px solid rgba(196,150,42,.3);
+  color: var(--goldd);
+  font-size: .7rem;
+  padding: .25rem .6rem;
+  border-radius: 3px;
+  background: rgba(0,0,0,.25);
+  transition: background-color var(--theme-transition-duration) ease,
+              border-color var(--theme-transition-duration) ease,
+              color var(--theme-transition-duration) ease;
+}
+.fv-card .cc-name {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  color: var(--parchl);
+  margin-bottom: .4rem;
+  line-height: 1.3;
+  transition: color var(--theme-transition-duration) ease;
+}
+.fv-card:hover .cc-name {
+  color: var(--gold);
+}
+.fv-card .cc-desc {
+  font-size: .84rem;
+  color: var(--parchd);
+  line-height: 1.68;
+  flex: 1;
+  transition: color var(--theme-transition-duration) ease;
+}
+.fv-foot {
+  margin-top: 1.15rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px dashed rgba(196,150,42,.2);
+  padding-top: .65rem;
+  font-size: .78rem;
+  color: var(--goldd);
+  transition: border-color var(--theme-transition-duration) ease,
+              color var(--theme-transition-duration) ease;
+}
+.fv-foot .fv-tag {
+  font-style: italic;
+}
+.fv-card:hover .fv-action {
+  color: var(--gold);
+}
+.fv-poll-slot {
+  margin-top: 2.25rem;
+}
+.fv-poll-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: .75rem;
+  border-bottom: 1px solid rgba(196,150,42,.2);
+  padding-bottom: .5rem;
+  transition: border-color var(--theme-transition-duration) ease;
+}
+.fv-poll-title {
+  font-family: var(--font-display);
+  font-size: .86rem;
+  color: var(--gold);
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  transition: color var(--theme-transition-duration) ease;
+}
+.fv-poll-link {
+  font-size: .78rem;
+  color: var(--goldd);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: .3rem;
+  transition: color .18s ease;
+}
+.fv-poll-link:hover {
+  color: var(--gold);
+}
+.fv-cta-wrap {
+  text-align: center;
+  margin-top: 2.25rem;
+}
+.fv-cta-wrap .btn-g {
+  padding: .75rem 2rem;
+  font-size: .92rem;
+}
+
+/* ── IŞIK TEMASI (Kurultay Vitrini / Light Mode) ── */
+html[data-theme="light"] #forum-vitrini {
+  background:
+    radial-gradient(ellipse 80% 60% at 15% 15%, rgba(139,0,0,.04) 0%, transparent 100%),
+    radial-gradient(ellipse 60% 80% at 85% 85%, rgba(138,90,30,.06) 0%, transparent 100%),
+    radial-gradient(circle at center, transparent 55%, rgba(138,90,30,.07) 100%),
+    var(--bg);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+html[data-theme="light"] .fv-card-inner {
+  background: var(--surface);
+  border-color: var(--border);
+  box-shadow: 0 4px 14px rgba(70, 50, 25, 0.08);
+}
+html[data-theme="light"] .fv-card:hover .fv-card-inner {
+  border-color: var(--borderl);
+  box-shadow: 0 8px 24px rgba(70, 50, 25, 0.14);
+}
+html[data-theme="light"] .fv-icon {
+  background: radial-gradient(circle, rgba(138, 90, 30, 0.14), rgba(244, 236, 216, 0.9));
+  border-color: var(--borderl);
+  color: var(--gold);
+}
+html[data-theme="light"] .fv-card.fv-teori .fv-icon {
+  background: radial-gradient(circle, rgba(163, 50, 50, 0.12), rgba(244, 236, 216, 0.9));
+  border-color: var(--blood);
+  color: var(--bloodb);
+}
+html[data-theme="light"] .fv-card:hover .fv-icon {
+  border-color: var(--goldb);
+  color: var(--goldb);
+}
+html[data-theme="light"] .fv-badge {
+  background: var(--deep);
+  border-color: var(--border);
+  color: var(--goldb);
+  font-weight: 600;
+}
+html[data-theme="light"] .fv-card .cc-name {
+  color: var(--parchl);
+  font-weight: 700;
+}
+html[data-theme="light"] .fv-card:hover .cc-name {
+  color: var(--gold);
+}
+html[data-theme="light"] .fv-card .cc-desc {
+  color: #241c14; /* Koyu, net ve okunaklı metin */
+}
+html[data-theme="light"] .fv-foot {
+  border-top-color: var(--border);
+  color: var(--goldb);
+}
+html[data-theme="light"] .fv-card:hover .fv-action {
+  color: var(--gold);
+}
+html[data-theme="light"] .fv-poll-header {
+  border-bottom-color: var(--border);
+}
+html[data-theme="light"] .fv-poll-title {
+  color: var(--goldb);
+  font-weight: 700;
+}
+html[data-theme="light"] .fv-poll-link {
+  color: var(--gold);
+}
+html[data-theme="light"] .fv-poll-link:hover {
+  color: var(--goldb);
+}
+html[data-theme="light"] #forum-vitrini .btn-g {
+  background: var(--gold);
+  color: #fff;
+  box-shadow: 0 2px 10px rgba(138, 90, 30, 0.2);
+}
+html[data-theme="light"] #forum-vitrini .btn-g:hover {
+  background: var(--goldb);
+  box-shadow: 0 4px 14px rgba(138, 90, 30, 0.3);
+}
 </style>
 <script src="assets/js/router.js?v=3.0"></script>
 </head>
@@ -274,7 +541,7 @@ html[data-theme="light"] .hero-logo {
 </section>
 
 <!-- KURULTAY / FORUM VİTRİNİ -->
-<section id="forum-vitrini" style="background: radial-gradient(ellipse at 50% 20%, rgba(26, 16, 12, 0.4) 0%, rgba(10, 14, 23, 0.95) 70%); border-top: 1px solid rgba(196,150,42,.2); border-bottom: 1px solid rgba(196,150,42,.2);">
+<section id="forum-vitrini">
   <div class="inn">
     <nav class="fr-crumb" aria-label="Breadcrumb" style="margin-bottom: 1.25rem;">
       <a href="index.html" data-tr="Ana Sayfa" data-en="Home">Ana Sayfa</a>
@@ -289,64 +556,64 @@ html[data-theme="light"] .hero-logo {
       <span class="rule"></span>
     </div>
 
-    <div class="cg" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin-top: 2rem;">
-      <a href="forum-kategori.html?kat=denge-konseyi" class="cc" style="text-decoration:none;">
-        <div class="cc-bg" style="background: radial-gradient(circle at top right, rgba(139,30,30,.25), rgba(14,18,28,.95)); border: 1px solid rgba(196,150,42,.35); padding: 1.5rem;">
-          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: .85rem;">
-            <span style="display:inline-flex; width:44px; height:44px; border-radius:50%; align-items:center; justify-content:center; background:rgba(196,150,42,.15); border:1px solid var(--gold); color:var(--gold);">
+    <div class="cg fv-grid">
+      <a href="forum-kategori.html?kat=denge-konseyi" class="cc fv-card fv-denge">
+        <div class="cc-bg fv-card-inner">
+          <div class="fv-top">
+            <span class="fv-icon">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3v18M6 8l6-5 6 5M3 13l3-5 3 5a3 3 0 0 1-6 0zM15 13l3-5 3 5a3 3 0 0 1-6 0z"/><path d="M6 21h12"/></svg>
             </span>
-            <span class="badge" style="border: 1px solid rgba(196,150,42,.3); color:var(--goldd); font-size:.7rem; padding:.2rem .5rem;">84 Müzakere</span>
+            <span class="badge fv-badge" data-tr="84 Müzakere" data-en="84 Debates">84 Müzakere</span>
           </div>
-          <h3 class="cc-name" style="font-family:var(--font-display); font-size:1.15rem; color:var(--parchl); margin-bottom:.4rem;" data-tr="Denge Konseyi Tartışmaları" data-en="Council of the Even Discussions">Denge Konseyi Tartışmaları</h3>
-          <p class="cc-desc" style="font-size:.82rem; color:var(--parchd); line-height:1.6;" data-tr="Düzen ve Kaos dengesi, kadim On İki Tanrı’nın fermanları ve KS 0 sonrası evrenin mukadderatı." data-en="Cosmic balance of Order & Chaos, decrees of the Twelve Gods, and the fate of the realm.">Düzen ve Kaos dengesi, kadim On İki Tanrı’nın fermanları ve KS 0 sonrası evrenin mukadderatı.</p>
-          <div style="margin-top:1.1rem; display:flex; justify-content:space-between; align-items:center; border-top:1px dashed rgba(196,150,42,.2); padding-top:.6rem; font-size:.78rem; color:var(--goldd);">
-            <span>Müzakerelere Katıl →</span>
-            <span style="font-style:italic;">Kadim İnanç</span>
+          <h3 class="cc-name" data-tr="Denge Konseyi Tartışmaları" data-en="Council of the Even Discussions">Denge Konseyi Tartışmaları</h3>
+          <p class="cc-desc" data-tr="Düzen ve Kaos dengesi, kadim On İki Tanrı’nın fermanları ve KS 0 sonrası evrenin mukadderatı." data-en="Cosmic balance of Order & Chaos, decrees of the Twelve Gods, and the fate of the realm.">Düzen ve Kaos dengesi, kadim On İki Tanrı’nın fermanları ve KS 0 sonrası evrenin mukadderatı.</p>
+          <div class="fv-foot">
+            <span class="fv-action" data-tr="Müzakerelere Katıl →" data-en="Join Debates →">Müzakerelere Katıl →</span>
+            <span class="fv-tag" data-tr="Kadim İnanç" data-en="Ancient Faith">Kadim İnanç</span>
           </div>
         </div>
       </a>
 
-      <a href="forum-kategori.html?kat=teori" class="cc" style="text-decoration:none;">
-        <div class="cc-bg" style="background: radial-gradient(circle at top right, rgba(139,30,30,.25), rgba(14,18,28,.95)); border: 1px solid rgba(196,150,42,.35); padding: 1.5rem;">
-          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: .85rem;">
-            <span style="display:inline-flex; width:44px; height:44px; border-radius:50%; align-items:center; justify-content:center; background:rgba(139,30,30,.2); border:1px solid #8b1e1e; color:#e5989b;">
+      <a href="forum-kategori.html?kat=teori" class="cc fv-card fv-teori">
+        <div class="cc-bg fv-card-inner">
+          <div class="fv-top">
+            <span class="fv-icon">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M2 12h3M19 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/></svg>
             </span>
-            <span class="badge" style="border: 1px solid rgba(196,150,42,.3); color:var(--goldd); font-size:.7rem; padding:.2rem .5rem;">196 Kehanet</span>
+            <span class="badge fv-badge" data-tr="196 Kehanet" data-en="196 Prophecies">196 Kehanet</span>
           </div>
-          <h3 class="cc-name" style="font-family:var(--font-display); font-size:1.15rem; color:var(--parchl); margin-bottom:.4rem;" data-tr="Teori Köşesi & Gizemler" data-en="Theory Corner & Mysteries">Teori Köşesi & Gizemler</h3>
-          <p class="cc-desc" style="font-size:.82rem; color:var(--parchd); line-height:1.6;" data-tr="Kadim kehanetler, kayıp soy bağları, Son İmparator’un ardındaki gizemler ve ipucu avı." data-en="Ancient prophecies, hidden bloodlines, unresolved secrets of the Last Emperor, and deep lore deductions.">Kadim kehanetler, kayıp soy bağları, Son İmparator’un ardındaki gizemler ve ipucu avı.</p>
-          <div style="margin-top:1.1rem; display:flex; justify-content:space-between; align-items:center; border-top:1px dashed rgba(196,150,42,.2); padding-top:.6rem; font-size:.78rem; color:var(--goldd);">
-            <span>Kehanetleri Çöz →</span>
-            <span style="font-style:italic;">Gizli İpuçları</span>
+          <h3 class="cc-name" data-tr="Teori Köşesi & Gizemler" data-en="Theory Corner & Mysteries">Teori Köşesi & Gizemler</h3>
+          <p class="cc-desc" data-tr="Kadim kehanetler, kayıp soy bağları, Son İmparator’un ardındaki gizemler ve ipucu avı." data-en="Ancient prophecies, hidden bloodlines, unresolved secrets of the Last Emperor, and deep lore deductions.">Kadim kehanetler, kayıp soy bağları, Son İmparator’un ardındaki gizemler ve ipucu avı.</p>
+          <div class="fv-foot">
+            <span class="fv-action" data-tr="Kehanetleri Çöz →" data-en="Unravel Prophecies →">Kehanetleri Çöz →</span>
+            <span class="fv-tag" data-tr="Gizli İpuçları" data-en="Hidden Clues">Gizli İpuçları</span>
           </div>
         </div>
       </a>
 
-      <a href="forum-kategori.html?kat=bolum" class="cc" style="text-decoration:none;">
-        <div class="cc-bg" style="background: radial-gradient(circle at top right, rgba(139,30,30,.25), rgba(14,18,28,.95)); border: 1px solid rgba(196,150,42,.35); padding: 1.5rem;">
-          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: .85rem;">
-            <span style="display:inline-flex; width:44px; height:44px; border-radius:50%; align-items:center; justify-content:center; background:rgba(196,150,42,.15); border:1px solid var(--gold); color:var(--gold);">
+      <a href="forum-kategori.html?kat=bolum" class="cc fv-card fv-bolum">
+        <div class="cc-bg fv-card-inner">
+          <div class="fv-top">
+            <span class="fv-icon">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/><line x1="9" y1="7" x2="16" y2="7"/><line x1="9" y1="11" x2="14" y2="11"/></svg>
             </span>
-            <span class="badge" style="border: 1px solid rgba(196,150,42,.3); color:var(--goldd); font-size:.7rem; padding:.2rem .5rem;">142 Tahlil</span>
+            <span class="badge fv-badge" data-tr="142 Tahlil" data-en="142 Reviews">142 Tahlil</span>
           </div>
-          <h3 class="cc-name" style="font-family:var(--font-display); font-size:1.15rem; color:var(--parchl); margin-bottom:.4rem;" data-tr="Bölüm Yorumları & Okuma Kulübü" data-en="Chapter Discussions & Reading Club">Bölüm Yorumları & Okuma Kulübü</h3>
-          <p class="cc-desc" style="font-size:.82rem; color:var(--parchd); line-height:1.6;" data-tr="Yayınlanan her bölümün tahlili, kritik sahne reaksiyonları, aforizmalar ve okur tartışmaları." data-en="Chapter breakdowns, critical scene reactions, aphorisms, and lively reader discussions.">Yayınlanan her bölümün tahlili, kritik sahne reaksiyonları, aforizmalar ve okur tartışmaları.</p>
-          <div style="margin-top:1.1rem; display:flex; justify-content:space-between; align-items:center; border-top:1px dashed rgba(196,150,42,.2); padding-top:.6rem; font-size:.78rem; color:var(--goldd);">
-            <span>Bölüm Tahlillerine Git →</span>
-            <span style="font-style:italic;">Okuma Meclisi</span>
+          <h3 class="cc-name" data-tr="Bölüm Yorumları & Okuma Kulübü" data-en="Chapter Discussions & Reading Club">Bölüm Yorumları & Okuma Kulübü</h3>
+          <p class="cc-desc" data-tr="Yayınlanan her bölümün tahlili, kritik sahne reaksiyonları, aforizmalar ve okur tartışmaları." data-en="Chapter breakdowns, critical scene reactions, aphorisms, and lively reader discussions.">Yayınlanan her bölümün tahlili, kritik sahne reaksiyonları, aforizmalar ve okur tartışmaları.</p>
+          <div class="fv-foot">
+            <span class="fv-action" data-tr="Bölüm Tahlillerine Git →" data-en="To Chapter Critiques →">Bölüm Tahlillerine Git →</span>
+            <span class="fv-tag" data-tr="Okuma Meclisi" data-en="Reading Assembly">Okuma Meclisi</span>
           </div>
         </div>
       </a>
     </div>
 
     <!-- İNTERAKTİF KURULTAY OYLAMASI (POLL PREVIEW CARD) -->
-    <div id="vitrin-poll-slot" style="margin-top: 2.25rem;"></div>
+    <div id="vitrin-poll-slot" class="fv-poll-slot"></div>
 
-    <div style="text-align:center; margin-top:2.25rem;">
-      <a href="forum.html" class="btn-g" style="padding:.7rem 1.8rem; font-size:.92rem;" data-tr="Kurultay Forumuna Gir (Tüm Meclis Odaları)" data-en="Enter Kurultay Forum (All Chambers)">Kurultay Forumuna Gir (Tüm Meclis Odaları)</a>
+    <div class="fv-cta-wrap">
+      <a href="forum.html" class="btn-g" data-tr="Kurultay Forumuna Gir (Tüm Meclis Odaları)" data-en="Enter Kurultay Forum (All Chambers)">Kurultay Forumuna Gir (Tüm Meclis Odaları)</a>
     </div>
   </div>
 </section>
@@ -560,12 +827,12 @@ function renderVitrinPoll() {
   const cardHtml = Kurultay.renderPollCard(pollThread, l);
   slot.innerHTML = `
     <div style="max-width: 860px; margin: 0 auto;">
-      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:.75rem; border-bottom:1px solid rgba(196,150,42,.2); padding-bottom:.5rem;">
-        <span style="font-family:var(--font-display); font-size:.85rem; color:var(--gold); display:flex; align-items:center; gap:.5rem;">
+      <div class="fv-poll-header">
+        <span class="fv-poll-title">
           <span>⚖️</span>
           <span>${l === 'tr' ? 'Haftanın Meclis Oylaması' : 'Assembly Ballot of the Week'}</span>
         </span>
-        <a href="forum-konu.html?id=${encodeURIComponent(pollThread.id)}" style="font-size:.78rem; color:var(--goldd); text-decoration:none; display:flex; align-items:center; gap:.3rem;">
+        <a class="fv-poll-link" href="forum-konu.html?id=${encodeURIComponent(pollThread.id)}">
           <span>${l === 'tr' ? 'Tartışmaya Katıl' : 'Join Discussion'}</span>
           <span>→</span>
         </a>

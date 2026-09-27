@@ -695,16 +695,48 @@ footer small { display: block; margin-top: .5rem; font-size: .82rem; color: var(
 
 /* ── LORE KART ──────────────────────────────────────── */
 .lc {
-  background: rgba(20,12,6,.7); border: 1px solid var(--border);
+  background: var(--card); border: 1px solid var(--border);
   padding: 1.75rem; position: relative;
+  box-shadow: 0 4px 16px rgba(0,0,0,.25);
+  transition: background-color var(--theme-transition-duration) ease,
+              border-color var(--theme-transition-duration) ease,
+              box-shadow var(--theme-transition-duration) ease;
 }
+.lc:hover { border-color: var(--borderl); }
 .lc::before {
   content: ''; position: absolute; inset: 5px;
-  border: 1px solid rgba(196,150,42,.06); pointer-events: none;
+  border: 1px solid rgba(196,150,42,.12); pointer-events: none;
+  transition: border-color var(--theme-transition-duration) ease;
 }
-.lc h3 { font-family: var(--font-display); font-size: 1rem; color: var(--gold); margin-bottom: .75rem; }
-.lc p  { font-size: .88rem; color: var(--parch); line-height: 1.78; }
+.lc h3 {
+  font-family: var(--font-display); font-size: 1.08rem; color: var(--gold);
+  margin-bottom: .75rem; font-weight: 700; line-height: 1.35;
+  transition: color var(--theme-transition-duration) ease;
+}
+.lc p  {
+  font-size: .92rem; color: var(--parch); line-height: 1.82;
+  transition: color var(--theme-transition-duration) ease;
+}
 .lc.sp { grid-column: 1 / -1; }
+
+html[data-theme="light"] .lc {
+  background: var(--surface);
+  border-color: var(--border);
+  box-shadow: 0 4px 16px rgba(70, 50, 25, 0.08);
+}
+html[data-theme="light"] .lc:hover {
+  border-color: var(--borderl);
+  box-shadow: 0 6px 20px rgba(70, 50, 25, 0.13);
+}
+html[data-theme="light"] .lc::before {
+  border-color: rgba(138, 90, 30, 0.2);
+}
+html[data-theme="light"] .lc h3 {
+  color: var(--goldb);
+}
+html[data-theme="light"] .lc p {
+  color: #241c14;
+}
 
 /* ── TİMELİNE ───────────────────────────────────────── */
 .timeline { position: relative; padding-left: 2rem; }

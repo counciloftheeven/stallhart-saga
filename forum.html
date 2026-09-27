@@ -43,6 +43,17 @@
     height: 2px;
     background: linear-gradient(90deg, transparent, var(--gold), var(--blood), transparent);
   }
+  html[data-theme="light"] #fr-sec {
+    background:
+      radial-gradient(ellipse 80% 60% at 15% 15%, rgba(139,0,0,.04) 0%, transparent 100%),
+      radial-gradient(ellipse 60% 80% at 85% 85%, rgba(138,90,30,.06) 0%, transparent 100%),
+      radial-gradient(circle at center, transparent 55%, rgba(138,90,30,.07) 100%),
+      var(--bg);
+  }
+  html[data-theme="light"] .page-hero-forum {
+    border-bottom: 1px solid var(--border);
+    background: radial-gradient(circle at 50% 30%, rgba(139, 0, 0, 0.04), transparent 70%), var(--surface);
+  }
 </style>
 <script src="assets/js/router.js?v=3.0"></script>
 </head>
@@ -98,7 +109,7 @@
       <button class="fr-fp-btn" data-type="ama" id="fp-ama" data-tr="👑 Yazar Divanı &amp; Fermanlar" data-en="👑 Author AMA &amp; Decrees">👑 Yazar Divanı &amp; Fermanlar</button>
       <button class="fr-fp-btn" data-type="poll" id="fp-poll" data-tr="📊 Anketli Konular" data-en="📊 Polls & Ballots">📊 Anketli Konular</button>
       <button class="fr-fp-btn" data-type="no_spoiler" id="fp-nospoiler" data-tr="👁️ Spoilersiz" data-en="👁️ No Spoilers">👁️ Spoilersiz</button>
-      <select class="fr-fp-btn" id="fp-house-select" style="background:rgba(14,18,28,.8);border:1px solid var(--border);color:var(--parchl);padding:.25rem .6rem;outline:none;">
+      <select class="fr-fp-btn" id="fp-house-select" style="padding:.25rem .6rem;outline:none;">
         <option value="" data-tr="🛡️ Tüm Haneler" data-en="🛡️ All Houses">🛡️ Tüm Haneler</option>
         <option value="stallhart">Stallhart (Çelik ve Kan)</option>
         <option value="arhan">Arhan (Küllerden Doğan)</option>
@@ -414,14 +425,14 @@ function openNewThreadModal(presetCat) {
     <p class="sw-sub" style="color:var(--parchd);font-style:italic;margin-top:.4rem">${l === 'tr' ? 'Kurultay Yönergesi\'ne uygun, saygılı ve editoryal bir üslup kullanınız. Spoiler ve alıntı araçlarını kullanabilirsiniz.' : 'Maintain a respectful tone in alignment with the Kurultay Codex. Use the toolbar for quotes and spoilers.'}</p>
     <form class="sw-form" id="fr-nt-form" style="margin-top:1.25rem">
       <label class="sw-l"><span>${l === 'tr' ? 'Meclis Odası / Kategori' : 'Chamber / Category'}</span>
-        <select class="sw-in" name="cat" required style="background:rgba(8,12,19,.9);border:1px solid var(--border);color:var(--parchl);padding:.5rem">${catOpts}</select></label>
+        <select class="sw-in" name="cat" required style="padding:.5rem">${catOpts}</select></label>
       <label class="sw-l" style="margin-top:.8rem"><span>${l === 'tr' ? 'Müzakere Başlığı' : 'Topic Title'}</span>
-        <input class="sw-in" name="title" maxlength="140" placeholder="${l === 'tr' ? 'Örn: KS 0 Sonrası Denge ve Zeandor\'un Kararı...' : 'e.g., Balance after KS 0 and Zeandor\'s choice...'}" required style="background:rgba(8,12,19,.9);border:1px solid var(--border);color:var(--parchl);padding:.5rem"></label>
+        <input class="sw-in" name="title" maxlength="140" placeholder="${l === 'tr' ? 'Örn: KS 0 Sonrası Denge ve Zeandor\'un Kararı...' : 'e.g., Balance after KS 0 and Zeandor\'s choice...'}" required style="padding:.5rem"></label>
       
       <label class="sw-l" style="margin-top:.8rem">
         <span>${l === 'tr' ? 'Müzakere Metni & Deliller' : 'Argument & Observations'}</span>
         <div id="fr-editor-toolbar-slot"></div>
-        <textarea class="sw-in" id="fr-nt-body" data-body name="body" maxlength="8000" rows="6" placeholder="${l === 'tr' ? 'Fikrinizi, bölüm alıntılarını veya kehanet ipuçlarını buraya yazınız...' : 'Write your theory, chapter quotes, or thoughts here...'}" required style="background:rgba(8,12,19,.9);border:1px solid var(--border);color:var(--parchl);padding:.6rem;line-height:1.7"></textarea>
+        <textarea class="sw-in" id="fr-nt-body" data-body name="body" maxlength="8000" rows="6" placeholder="${l === 'tr' ? 'Fikrinizi, bölüm alıntılarını veya kehanet ipuçlarını buraya yazınız...' : 'Write your theory, chapter quotes, or thoughts here...'}" required style="padding:.6rem;line-height:1.7"></textarea>
       </label>
 
       <!-- Spoiler Kutusu -->
@@ -431,19 +442,19 @@ function openNewThreadModal(presetCat) {
       </div>
 
       <!-- Anket Ekleme Alanı -->
-      <div style="margin-top:.9rem;padding:.85rem;background:rgba(12,16,26,.8);border:1px dashed rgba(196,150,42,.3);">
+      <div class="fr-nt-poll-box" style="margin-top:.9rem;padding:.85rem;background:rgba(12,16,26,.8);border:1px dashed rgba(196,150,42,.3);">
         <div style="display:flex;align-items:center;gap:.6rem">
           <input type="checkbox" id="fr-poll-chk" name="has_poll" style="accent-color:var(--gold)">
           <label for="fr-poll-chk" style="font-size:.85rem;color:var(--gold);font-family:var(--font-display);font-weight:600">📊 ${l === 'tr' ? 'Bu konuya bir Kurultay Oylaması (Anket) ekle' : 'Attach a Kurultay Ballot (Poll)'}</label>
         </div>
         <div id="fr-poll-fields" hidden style="margin-top:.75rem">
           <label class="sw-l" style="font-size:.78rem;color:var(--parchd)"><span>${l === 'tr' ? 'Anket Sorusu' : 'Poll Question'}</span>
-            <input class="sw-in" id="fr-poll-q" placeholder="${l === 'tr' ? 'Örn: Taht mücadelesini kim kazanacak?' : 'e.g., Who will win the throne?'}" style="background:rgba(8,12,19,.9);border:1px solid var(--border);color:var(--parchl);padding:.4rem;margin-top:.2rem"></label>
+            <input class="sw-in" id="fr-poll-q" placeholder="${l === 'tr' ? 'Örn: Taht mücadelesini kim kazanacak?' : 'e.g., Who will win the throne?'}" style="padding:.4rem;margin-top:.2rem"></label>
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:.5rem;margin-top:.5rem">
-            <input class="sw-in poll-opt" placeholder="${l === 'tr' ? '1. Seçenek (Örn: Stallhart)' : 'Option 1'}" style="background:rgba(8,12,19,.9);border:1px solid var(--border);color:var(--parchl);padding:.4rem">
-            <input class="sw-in poll-opt" placeholder="${l === 'tr' ? '2. Seçenek (Örn: Demir Ada)' : 'Option 2'}" style="background:rgba(8,12,19,.9);border:1px solid var(--border);color:var(--parchl);padding:.4rem">
-            <input class="sw-in poll-opt" placeholder="${l === 'tr' ? '3. Seçenek (Örn: Arhan)' : 'Option 3'}" style="background:rgba(8,12,19,.9);border:1px solid var(--border);color:var(--parchl);padding:.4rem">
-            <input class="sw-in poll-opt" placeholder="${l === 'tr' ? '4. Seçenek (Örn: Selya)' : 'Option 4'}" style="background:rgba(8,12,19,.9);border:1px solid var(--border);color:var(--parchl);padding:.4rem">
+            <input class="sw-in poll-opt" placeholder="${l === 'tr' ? '1. Seçenek (Örn: Stallhart)' : 'Option 1'}" style="padding:.4rem">
+            <input class="sw-in poll-opt" placeholder="${l === 'tr' ? '2. Seçenek (Örn: Demir Ada)' : 'Option 2'}" style="padding:.4rem">
+            <input class="sw-in poll-opt" placeholder="${l === 'tr' ? '3. Seçenek (Örn: Arhan)' : 'Option 3'}" style="padding:.4rem">
+            <input class="sw-in poll-opt" placeholder="${l === 'tr' ? '4. Seçenek (Örn: Selya)' : 'Option 4'}" style="padding:.4rem">
           </div>
         </div>
       </div>

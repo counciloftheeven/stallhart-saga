@@ -1463,4 +1463,743 @@
   border-color: var(--gold);
   color: #fff;
 }
+#fp-house-select {
+  background: rgba(14, 18, 28, 0.8);
+  border: 1px solid var(--border);
+  color: var(--parchl);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   KURULTAY FORUM — IŞIK TEMASI (Light Mode / Parşömen Uyumu)
+   Site genelindeki parşömen (#f4ecd8 / #fbf5e6), kömür grisi
+   ve asil pas-altın (#8a5a1e / #6b4415) paletiyle tam uyum.
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ── Kırıntı (Breadcrumb) ── */
+html[data-theme="light"] .fr-crumb {
+  background: var(--surface);
+  border-color: var(--border);
+  box-shadow: 0 1px 4px rgba(70, 50, 25, 0.06);
+  color: var(--parchd);
+}
+html[data-theme="light"] .fr-crumb a {
+  color: var(--gold);
+}
+html[data-theme="light"] .fr-crumb a:hover {
+  color: var(--goldb);
+  text-shadow: none;
+}
+html[data-theme="light"] .fr-crumb span {
+  color: var(--goldd);
+  opacity: .7;
+}
+html[data-theme="light"] .fr-crumb strong {
+  color: var(--parchl);
+  text-shadow: none;
+}
+
+/* ── Araç Çubuğu & Arama ── */
+html[data-theme="light"] .fr-toolbar {
+  background: var(--surface);
+  border-color: var(--border);
+  box-shadow: 0 2px 10px rgba(70, 50, 25, 0.06);
+}
+html[data-theme="light"] .fr-search-wrap {
+  background: var(--bg);
+  border-color: var(--border);
+}
+html[data-theme="light"] .fr-search-wrap:focus-within {
+  border-color: var(--gold);
+  box-shadow: 0 0 10px rgba(138, 90, 30, 0.15);
+}
+html[data-theme="light"] .fr-search-wrap svg {
+  stroke: var(--goldb);
+}
+html[data-theme="light"] .fr-search-wrap input {
+  color: var(--parchl);
+  caret-color: var(--gold);
+}
+html[data-theme="light"] .fr-search-wrap input::placeholder {
+  color: var(--parchd);
+}
+html[data-theme="light"] .fr-sort {
+  background: var(--bg);
+  border-color: var(--border);
+  color: var(--parchl);
+}
+html[data-theme="light"] .fr-sort:hover,
+html[data-theme="light"] .fr-sort:focus {
+  border-color: var(--gold);
+}
+
+/* ── Filtre Sekmeleri & Hapları ── */
+html[data-theme="light"] .fr-tag-filters {
+  border-bottom-color: var(--border);
+}
+html[data-theme="light"] .fr-tag-filters .fb-label {
+  color: var(--parchd);
+}
+html[data-theme="light"] .fr-tag-filters .f-btn {
+  background: var(--surface);
+  border-color: var(--border);
+  color: var(--parch);
+}
+html[data-theme="light"] .fr-tag-filters .f-btn:hover {
+  background: var(--deep);
+  border-color: var(--gold);
+  color: var(--parchl);
+}
+html[data-theme="light"] .fr-tag-filters .f-btn.on {
+  background: linear-gradient(135deg, rgba(163, 50, 50, 0.9), rgba(122, 16, 16, 0.95));
+  border-color: var(--bloodb);
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(139, 0, 0, 0.25);
+}
+html[data-theme="light"] .fr-fp-btn {
+  background: var(--surface);
+  border-color: var(--border);
+  color: var(--parch);
+}
+html[data-theme="light"] .fr-fp-btn:hover {
+  border-color: var(--gold);
+  color: var(--parchl);
+}
+html[data-theme="light"] .fr-fp-btn.active {
+  background: var(--gold);
+  border-color: var(--goldb);
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(138, 90, 30, 0.2);
+}
+html[data-theme="light"] #fp-house-select {
+  background: var(--surface) !important;
+  border-color: var(--border) !important;
+  color: var(--parchl) !important;
+}
+
+/* ── Başlıklar ── */
+html[data-theme="light"] .fr-h {
+  color: var(--parchl);
+  border-bottom-color: var(--border);
+}
+html[data-theme="light"] .fr-h small {
+  color: var(--goldb);
+}
+
+/* ── Kategori Kartları Grid ── */
+html[data-theme="light"] .fc {
+  background: var(--surface);
+  border-color: var(--border);
+  box-shadow: 0 4px 14px rgba(70, 50, 25, 0.08);
+}
+html[data-theme="light"] .fc::before {
+  background: radial-gradient(circle at 85% 15%, rgba(139, 0, 0, 0.04), transparent 60%);
+}
+html[data-theme="light"] .fc:hover {
+  border-color: var(--borderl);
+  box-shadow: 0 8px 24px rgba(70, 50, 25, 0.14);
+}
+html[data-theme="light"] .fc-filigree-top {
+  background: linear-gradient(90deg, transparent, var(--borderl), var(--blood), transparent);
+}
+html[data-theme="light"] .fc:hover .fc-filigree-top {
+  background: linear-gradient(90deg, transparent, var(--gold), var(--blood), transparent);
+}
+html[data-theme="light"] .fc-ic {
+  background: radial-gradient(circle, rgba(138, 90, 30, 0.12), rgba(244, 236, 216, 0.9));
+  border-color: var(--borderl);
+  color: var(--gold);
+  box-shadow: inset 0 0 8px rgba(138, 90, 30, 0.08);
+}
+html[data-theme="light"] .fc:hover .fc-ic {
+  border-color: var(--goldb);
+  color: var(--goldb);
+}
+html[data-theme="light"] .fc-count-pill {
+  background: var(--deep);
+  border-color: var(--border);
+  color: var(--parchd);
+}
+html[data-theme="light"] .fc-count-pill b {
+  color: var(--goldb);
+}
+html[data-theme="light"] .fc-name {
+  color: var(--parchl);
+  font-weight: 700;
+}
+html[data-theme="light"] .fc:hover .fc-name {
+  color: var(--gold);
+}
+html[data-theme="light"] .fc-desc {
+  color: #241c14;
+}
+html[data-theme="light"] .fc-footer {
+  border-top-color: var(--border);
+}
+html[data-theme="light"] .fc-cta {
+  color: var(--gold);
+  font-weight: 600;
+}
+html[data-theme="light"] .fc:hover .fc-cta {
+  color: var(--goldb);
+}
+html[data-theme="light"] .fc-watermark {
+  color: rgba(138, 90, 30, 0.22);
+}
+html[data-theme="light"] .fc-denge-konseyi .fc-ic {
+  border-color: var(--gold);
+  background: radial-gradient(circle, rgba(138, 90, 30, 0.18), rgba(251, 245, 230, 0.95));
+}
+html[data-theme="light"] .fc-teori .fc-ic {
+  border-color: var(--blood);
+  color: var(--bloodb);
+  background: radial-gradient(circle, rgba(163, 50, 50, 0.12), rgba(251, 245, 230, 0.95));
+}
+html[data-theme="light"] .fc-bolum .fc-ic {
+  border-color: var(--goldb);
+  color: var(--goldb);
+  background: radial-gradient(circle, rgba(138, 90, 30, 0.14), rgba(251, 245, 230, 0.95));
+}
+
+/* ── Konu / Müzakere Listesi ── */
+html[data-theme="light"] .ft-list {
+  background: var(--surface);
+  border-color: var(--border);
+  box-shadow: 0 4px 14px rgba(70, 50, 25, 0.08);
+}
+html[data-theme="light"] .ft-row {
+  border-bottom-color: var(--border);
+}
+html[data-theme="light"] .ft-row:hover {
+  background: rgba(138, 90, 30, 0.05);
+  border-left-color: var(--gold);
+}
+html[data-theme="light"] .ft-row.ft-pinned-row {
+  background: rgba(163, 50, 50, 0.04);
+  border-left-color: var(--blood);
+}
+html[data-theme="light"] .ft-row.ft-unread {
+  background: rgba(138, 90, 30, 0.04);
+}
+html[data-theme="light"] .ft-title-text {
+  color: var(--parchl);
+  font-weight: 600;
+}
+html[data-theme="light"] .ft-row:hover .ft-title-text {
+  color: var(--gold);
+}
+html[data-theme="light"] .ft-row.ft-unread .ft-title-text {
+  text-shadow: none;
+}
+html[data-theme="light"] .ft-pin-pill {
+  background: rgba(163, 50, 50, 0.12);
+  border-color: var(--blood);
+  color: var(--bloodb);
+  font-weight: 600;
+}
+html[data-theme="light"] .ft-lock-i {
+  stroke: var(--parchd);
+}
+html[data-theme="light"] .ft-sub {
+  color: var(--parchd);
+}
+html[data-theme="light"] .ft-sub b {
+  color: var(--parchl);
+}
+html[data-theme="light"] .ft-author-title {
+  color: var(--goldb);
+}
+html[data-theme="light"] .ft-tag {
+  background: var(--deep);
+  border-color: var(--borderl);
+  color: var(--parch);
+}
+html[data-theme="light"] .ft-tag.duyuru {
+  border-color: var(--blood);
+  color: var(--bloodb);
+  background: rgba(163, 50, 50, 0.1);
+}
+html[data-theme="light"] .ft-tag.denge-konseyi {
+  border-color: var(--gold);
+  color: var(--goldb);
+  background: rgba(138, 90, 30, 0.1);
+}
+html[data-theme="light"] .ft-tag.teori {
+  border-color: var(--blood);
+  color: var(--bloodb);
+  background: rgba(163, 50, 50, 0.08);
+}
+html[data-theme="light"] .ft-stat-num {
+  color: var(--parchl);
+  font-weight: 600;
+}
+html[data-theme="light"] .ft-stats small {
+  color: var(--parchd);
+}
+html[data-theme="light"] .ft-last {
+  color: var(--parchd);
+}
+html[data-theme="light"] .ft-last-lbl {
+  color: var(--goldb);
+}
+html[data-theme="light"] .ft-last-time {
+  color: var(--parchl);
+}
+html[data-theme="light"] .ft-canon-pill {
+  background: rgba(138, 90, 30, 0.12);
+  border-color: var(--gold);
+  color: var(--goldb);
+  font-weight: 600;
+}
+html[data-theme="light"] .ft-poll-pill {
+  background: rgba(42, 74, 108, 0.12);
+  border-color: #2a4a6c;
+  color: #2a4a6c;
+  font-weight: 600;
+}
+html[data-theme="light"] .ft-canonized-row {
+  border-left-color: var(--gold) !important;
+  background: linear-gradient(90deg, rgba(138, 90, 30, 0.08), transparent) !important;
+}
+
+/* ── Kullanıcı Kartı (Sidebar) ── */
+html[data-theme="light"] .fr-user-card {
+  background: var(--surface);
+  border-color: var(--border);
+  box-shadow: 0 4px 16px rgba(70, 50, 25, 0.09);
+}
+html[data-theme="light"] .fuc-banner {
+  border-bottom-color: var(--border);
+}
+html[data-theme="light"] .fuc-crest-seal {
+  opacity: .35;
+  filter: drop-shadow(0 0 2px rgba(255,255,255,.5));
+}
+html[data-theme="light"] .fuc-status-tag {
+  background: var(--surface);
+  border-color: var(--borderl);
+  color: var(--goldb);
+}
+html[data-theme="light"] .fuc-av-box {
+  background: var(--deep);
+  border-color: var(--gold);
+  box-shadow: 0 2px 8px rgba(70, 50, 25, 0.15);
+}
+html[data-theme="light"] .fuc-name {
+  color: var(--parchl);
+}
+html[data-theme="light"] .fuc-title {
+  color: var(--goldb);
+}
+html[data-theme="light"] .fuc-allegiance-box {
+  border-bottom-color: var(--border);
+}
+html[data-theme="light"] .fuc-label {
+  color: var(--parchd);
+}
+html[data-theme="light"] .fuc-stats-grid {
+  background: var(--deep);
+  border-bottom-color: var(--border);
+}
+html[data-theme="light"] .fuc-stat-val {
+  color: var(--parchl);
+}
+html[data-theme="light"] .fuc-stat-lbl {
+  color: var(--parchd);
+}
+html[data-theme="light"] .fuc-btn-pledge {
+  background: linear-gradient(135deg, rgba(163, 50, 50, 0.9), rgba(122, 16, 16, 0.95));
+  border-color: var(--blood);
+  color: #fff;
+}
+html[data-theme="light"] .fuc-btn-pledge:hover {
+  background: linear-gradient(135deg, rgba(185, 60, 60, 1), rgba(140, 20, 20, 1));
+  box-shadow: 0 2px 10px rgba(139, 0, 0, 0.3);
+}
+html[data-theme="light"] .fuc-btn-pledge svg {
+  stroke: #fff;
+}
+html[data-theme="light"] .fuc-prog-box {
+  background: var(--deep);
+  border-bottom-color: var(--border);
+}
+html[data-theme="light"] .fuc-prog-head {
+  color: var(--parchd);
+}
+html[data-theme="light"] .fuc-prog-head b {
+  color: var(--goldb);
+}
+html[data-theme="light"] .fuc-prog-track {
+  background: rgba(0, 0, 0, 0.12);
+}
+html[data-theme="light"] .fuc-medals-box {
+  border-bottom-color: var(--border);
+}
+html[data-theme="light"] .sw-medal-chip {
+  background: var(--deep);
+  border-color: var(--border);
+}
+html[data-theme="light"] .sw-medal-chip.unlocked {
+  border-color: var(--gold);
+  background: rgba(138, 90, 30, 0.12);
+}
+html[data-theme="light"] .sw-md-lbl {
+  color: var(--parchl);
+}
+
+/* ── Taht Mücadelesi (Faction Wars) ── */
+html[data-theme="light"] .sw-faction-box {
+  background: var(--surface) !important;
+  border-color: var(--border);
+}
+html[data-theme="light"] .sw-fl-crown {
+  color: var(--goldb);
+}
+html[data-theme="light"] .sw-fl-leader-card {
+  background: var(--deep);
+  border-color: var(--gold);
+  box-shadow: 0 2px 10px rgba(138, 90, 30, 0.12);
+}
+html[data-theme="light"] .sw-fl-leader-name {
+  color: var(--parchl);
+}
+html[data-theme="light"] .sw-fl-leader-motto {
+  color: var(--goldb);
+}
+html[data-theme="light"] .sw-fl-rank {
+  color: var(--parchd);
+}
+html[data-theme="light"] .sw-fl-pts {
+  color: var(--parchd);
+}
+html[data-theme="light"] .sw-fl-header b {
+  color: var(--parchl);
+}
+html[data-theme="light"] .sw-fl-progress-track {
+  background: rgba(0, 0, 0, 0.12);
+}
+html[data-theme="light"] .sw-fl-pledge-btn {
+  background: var(--surface);
+  border-color: var(--borderl);
+  color: var(--parchl);
+}
+html[data-theme="light"] .sw-fl-pledge-btn:hover {
+  background: var(--gold);
+  color: #fff;
+  border-color: var(--gold);
+}
+
+/* ── Kenar Çubuğu Diğer Kutular ── */
+html[data-theme="light"] .fr-side-box {
+  background: var(--surface);
+  border-color: var(--border);
+  box-shadow: 0 4px 14px rgba(70, 50, 25, 0.08);
+}
+html[data-theme="light"] .fr-side-box::before {
+  background: var(--gold);
+}
+html[data-theme="light"] .fr-side-h {
+  color: var(--goldb);
+  font-weight: 700;
+}
+html[data-theme="light"] .fr-stat b {
+  color: var(--parchl);
+}
+html[data-theme="light"] .fr-stat span {
+  color: var(--parchd);
+}
+html[data-theme="light"] .fr-rules a {
+  color: var(--parch);
+}
+html[data-theme="light"] .fr-rules a:hover {
+  color: var(--gold);
+}
+html[data-theme="light"] .fr-rules svg {
+  stroke: var(--goldb);
+}
+
+/* ── Sayfalama ── */
+html[data-theme="light"] .fr-pager button {
+  background: var(--surface);
+  border-color: var(--border);
+  color: var(--parchl);
+}
+html[data-theme="light"] .fr-pager button:hover:not(:disabled) {
+  border-color: var(--gold);
+  color: var(--gold);
+}
+html[data-theme="light"] .fr-pager span {
+  color: var(--parchd);
+}
+
+/* ── Sancak Seçim Modalı ── */
+html[data-theme="light"] .sw-pledge-card {
+  background: var(--surface);
+  border-color: var(--border);
+}
+html[data-theme="light"] .sw-pledge-card:hover {
+  border-color: var(--gold);
+  background: var(--deep);
+  box-shadow: 0 4px 14px rgba(70, 50, 25, 0.12);
+}
+html[data-theme="light"] .sw-pledge-card.selected {
+  border-color: var(--gold);
+  background: rgba(138, 90, 30, 0.12);
+  box-shadow: 0 0 10px rgba(138, 90, 30, 0.2);
+}
+html[data-theme="light"] .spc-name {
+  color: var(--parchl);
+}
+html[data-theme="light"] .spc-motto {
+  color: var(--parchd);
+}
+html[data-theme="light"] .spc-prov {
+  color: var(--goldb);
+}
+
+/* ── Konu Detayı ── */
+html[data-theme="light"] .fk-head {
+  background: var(--surface);
+  border-color: var(--border);
+  box-shadow: 0 4px 16px rgba(70, 50, 25, 0.08);
+}
+html[data-theme="light"] .fk-title {
+  color: var(--parchl);
+}
+html[data-theme="light"] .fk-meta {
+  color: var(--parchd);
+}
+html[data-theme="light"] .fk-meta b {
+  color: var(--parchl);
+}
+html[data-theme="light"] .fk-body {
+  color: #241c14;
+}
+html[data-theme="light"] .fk-mod {
+  border-top-color: var(--border);
+}
+html[data-theme="light"] .fk-mod-btn {
+  color: var(--parch);
+  border-color: var(--border);
+}
+html[data-theme="light"] .fk-mod-btn:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+}
+html[data-theme="light"] .fk-locked-note {
+  background: rgba(138, 90, 30, 0.08);
+  border-color: var(--gold);
+  color: var(--goldb);
+}
+
+/* ── Doğrulanan Kehanet Bandı ── */
+html[data-theme="light"] .sw-canon-banner {
+  background: radial-gradient(ellipse at top left, rgba(138, 90, 30, 0.15), rgba(251, 245, 230, 0.98));
+  border-color: var(--gold);
+  box-shadow: 0 4px 16px rgba(138, 90, 30, 0.12);
+}
+html[data-theme="light"] .sw-canon-info h4 {
+  color: var(--goldb);
+  text-shadow: none;
+}
+html[data-theme="light"] .sw-canon-info p {
+  color: var(--parch);
+}
+html[data-theme="light"] .sw-canon-tag {
+  background: var(--deep);
+  border-color: var(--gold);
+  color: var(--goldb);
+}
+
+/* ── Zengin Metin Alıntıları & Spoilerlar ── */
+html[data-theme="light"] .sw-parch-quote {
+  background: var(--deep);
+  border-left-color: var(--gold);
+  border-right-color: var(--border);
+  border-top-color: var(--border);
+  border-bottom-color: var(--border);
+  color: #241c14;
+  box-shadow: inset 0 0 10px rgba(70, 50, 25, 0.06);
+}
+html[data-theme="light"] .sw-spoiler-box {
+  background: var(--deep);
+  border-color: var(--borderl);
+}
+html[data-theme="light"] .sw-spoiler-box .sw-sp-badge {
+  color: var(--goldb);
+}
+html[data-theme="light"] .sw-spoiler-box.revealed {
+  background: rgba(163, 50, 50, 0.08);
+  border-color: var(--blood);
+  color: #241c14;
+}
+html[data-theme="light"] .sw-canon-tag-chip {
+  background: rgba(138, 90, 30, 0.12);
+  border-color: var(--gold);
+  color: var(--goldb);
+}
+html[data-theme="light"] .sw-mention-chip {
+  color: var(--goldb);
+  background: rgba(138, 90, 30, 0.14);
+  border-color: var(--gold);
+  text-shadow: none;
+}
+
+/* ── Tepkiler Barı ── */
+html[data-theme="light"] .sw-reactions-bar {
+  background: var(--surface);
+  border-color: var(--border);
+}
+html[data-theme="light"] .sw-rx-btn {
+  background: var(--deep);
+  border-color: var(--border);
+  color: var(--parch);
+}
+html[data-theme="light"] .sw-rx-btn:hover {
+  border-color: var(--gold);
+  color: var(--parchl);
+}
+html[data-theme="light"] .sw-rx-btn.active {
+  background: rgba(138, 90, 30, 0.16);
+  border-color: var(--gold);
+  color: var(--goldb);
+}
+html[data-theme="light"] .sw-rx-btn.blood.active {
+  background: rgba(163, 50, 50, 0.15);
+  border-color: var(--blood);
+  color: var(--bloodb);
+}
+html[data-theme="light"] .sw-rx-cnt {
+  background: rgba(0, 0, 0, 0.08);
+  color: var(--parchl);
+}
+
+/* ── Anket Kartı ── */
+html[data-theme="light"] .sw-poll-card {
+  background: var(--surface);
+  border-color: var(--border);
+  box-shadow: 0 4px 14px rgba(70, 50, 25, 0.08);
+}
+html[data-theme="light"] .sw-poll-badge {
+  color: var(--goldb);
+}
+html[data-theme="light"] .sw-poll-q {
+  color: var(--parchl);
+}
+html[data-theme="light"] .sw-poll-radio-row {
+  background: var(--deep);
+  border-color: var(--border);
+}
+html[data-theme="light"] .sw-poll-radio-row:hover {
+  border-color: var(--gold);
+  background: rgba(138, 90, 30, 0.08);
+}
+html[data-theme="light"] .sw-poll-opt-text {
+  color: var(--parchl);
+}
+html[data-theme="light"] .sw-poll-result-row {
+  background: var(--deep);
+  border-color: var(--border);
+}
+html[data-theme="light"] .sw-poll-result-row.chosen {
+  border-color: var(--gold);
+  background: rgba(138, 90, 30, 0.12);
+}
+html[data-theme="light"] .sw-poll-opt-pct {
+  color: var(--goldb);
+}
+html[data-theme="light"] .sw-poll-bar-track {
+  background: rgba(0, 0, 0, 0.12);
+}
+html[data-theme="light"] .sw-poll-count-lbl {
+  color: var(--parchd);
+}
+html[data-theme="light"] .sw-poll-voted-msg {
+  color: var(--goldb);
+}
+
+/* ── Editör Araç Çubuğu ── */
+html[data-theme="light"] .sw-editor-toolbar {
+  background: var(--deep);
+  border-color: var(--border);
+}
+html[data-theme="light"] .sw-tb-btn {
+  color: var(--parchd);
+}
+html[data-theme="light"] .sw-tb-btn:hover {
+  color: var(--gold);
+  border-color: var(--borderl);
+  background: var(--surface);
+}
+
+/* ── Bildirimler Kadehi & Paneli ── */
+html[data-theme="light"] .sw-notif-bell-btn {
+  background: var(--surface);
+  border-color: var(--border);
+  color: var(--gold);
+}
+html[data-theme="light"] .sw-notif-bell-btn:hover {
+  border-color: var(--gold);
+  background: var(--deep);
+}
+html[data-theme="light"] .sw-notif-panel {
+  background: var(--surface);
+  border-color: var(--borderl);
+  box-shadow: 0 10px 30px rgba(70, 50, 25, 0.18);
+}
+html[data-theme="light"] .sw-notif-head {
+  background: var(--deep);
+  border-bottom-color: var(--border);
+}
+html[data-theme="light"] .sw-notif-head h4 {
+  color: var(--parchl);
+}
+html[data-theme="light"] .sw-notif-clear-btn {
+  color: var(--goldb);
+}
+html[data-theme="light"] .sw-notif-clear-btn:hover {
+  color: var(--gold);
+}
+html[data-theme="light"] .sw-notif-item {
+  border-bottom-color: var(--border);
+}
+html[data-theme="light"] .sw-notif-item:hover {
+  background: rgba(138, 90, 30, 0.06);
+}
+html[data-theme="light"] .sw-notif-item.unread {
+  background: rgba(163, 50, 50, 0.08);
+}
+html[data-theme="light"] .sw-notif-txt p {
+  color: var(--parch);
+}
+html[data-theme="light"] .sw-notif-txt small {
+  color: var(--parchd);
+}
+
+/* ── Bölüm Okuma Köprüsü (oku.html) ── */
+html[data-theme="light"] .rd-kurultay-bridge {
+  background: var(--surface);
+  border-color: var(--border);
+  box-shadow: 0 4px 16px rgba(70, 50, 25, 0.08);
+}
+html[data-theme="light"] .rd-kb-info h4 {
+  color: var(--parchl);
+}
+html[data-theme="light"] .rd-kb-info p {
+  color: var(--parchd);
+}
+
+/* ── Form Elemanları (Modal içi inputlar) ── */
+html[data-theme="light"] .fr-nt-poll-box {
+  background: var(--deep) !important;
+  border-color: var(--border) !important;
+}
+html[data-theme="light"] #fr-nt-form .sw-in {
+  background: var(--deep) !important;
+  border-color: var(--border) !important;
+  color: var(--parchl) !important;
+}
+html[data-theme="light"] #fr-nt-form .sw-in:focus {
+  border-color: var(--gold) !important;
+}
+
 
