@@ -89,6 +89,7 @@
         </select>
       </div>
       <div style="display:flex;align-items:center;gap:.75rem">
+        <div class="sw-throne-flourish-slot"></div>
         <div id="fr-notif-slot"></div>
         <button class="fr-newbtn" type="button" id="fr-new-btn">
           <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
@@ -106,6 +107,7 @@
     <div class="fr-filter-pills" id="fr-sub-filters">
       <button class="fr-fp-btn active" data-type="all" id="fp-all" data-tr="Tüm Müzakereler" data-en="All Topics">Tüm Müzakereler</button>
       <button class="fr-fp-btn" data-type="canon" id="fp-canon" data-tr="🔮 Doğrulanan Kehanetler" data-en="🔮 Canonized Theories">🔮 Doğrulanan Kehanetler</button>
+      <button class="fr-fp-btn sw-ledger-trigger-btn" type="button" id="btn-forum-open-ledger" data-tr="📜 Kehanet Kütüğü" data-en="📜 Prophecy Ledger">📜 Kehanet Kütüğü</button>
       <button class="fr-fp-btn" data-type="ama" id="fp-ama" data-tr="👑 Yazar Divanı &amp; Fermanlar" data-en="👑 Author AMA &amp; Decrees">👑 Yazar Divanı &amp; Fermanlar</button>
       <button class="fr-fp-btn" data-type="poll" id="fp-poll" data-tr="📊 Anketli Konular" data-en="📊 Polls & Ballots">📊 Anketli Konular</button>
       <button class="fr-fp-btn" data-type="no_spoiler" id="fp-nospoiler" data-tr="👁️ Spoilersiz" data-en="👁️ No Spoilers">👁️ Spoilersiz</button>
@@ -546,6 +548,12 @@ function openNewThreadModal(presetCat) {
   allCats = await K.fetchCategories();
   initWiki({ onLangChange: applyLang });
   applyLang(Lang.get());
+
+  const forumLedgerBtn = document.getElementById('btn-forum-open-ledger');
+  if (forumLedgerBtn) {
+    forumLedgerBtn.onclick = () => K.openProphecyLedgerModal(Lang.get());
+  }
+  if (K.applyChampionFlourish) K.applyChampionFlourish();
 })();
 </script>
 </body>

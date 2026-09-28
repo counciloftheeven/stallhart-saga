@@ -399,12 +399,17 @@ var Modal = (function () {
   function close(rec) {
     if (!rec || rec.closed) return;
     rec.closed = true;
+    if (rec.abortController) {
+      try { rec.abortController.abort(); } catch (e) {}
+    }
     rec.back.remove();
     stack = stack.filter(function (r) { return r !== rec; });
     lock();
     if (rec.onClose) { try { rec.onClose(); } catch (e) { console.warn(e); } }
   }
   function open(opts) {
+    var abortController = typeof AbortController !== 'undefined' ? new AbortController() : null;
+    var signal = abortController ? abortController.signal : null;
     var back = document.createElement('div');
     back.className = 'sw-modal-back';
     back.innerHTML =
@@ -413,11 +418,12 @@ var Modal = (function () {
       '<div class="sw-modal-body"></div></div>';
     document.body.appendChild(back);
     var rec = { back: back, box: back.firstChild, body: back.querySelector('.sw-modal-body'),
-                onClose: opts.onClose, closed: false };
+                onClose: opts.onClose, closed: false, abortController: abortController, signal: signal };
     rec.close = function () { close(rec); };
     rec.body.innerHTML = opts.html || '';
-    back.addEventListener('mousedown', function (e) { if (e.target === back) rec.close(); });
-    back.addEventListener('click', function (e) { if (e.target.closest && e.target.closest('[data-close]')) rec.close(); });
+    var listenerOpts = signal ? { signal: signal } : false;
+    back.addEventListener('mousedown', function (e) { if (e.target === back) rec.close(); }, listenerOpts);
+    back.addEventListener('click', function (e) { if (e.target.closest && e.target.closest('[data-close]')) rec.close(); }, listenerOpts);
     stack.push(rec); lock();
     setTimeout(function () {
       if (rec.closed) return;

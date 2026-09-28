@@ -196,6 +196,7 @@ body.reader.rt-dark {
     <span class="rd-lbl" id="l-defter">Defterim</span>
   </button>
   <div class="rd-bar-title" id="rd-bar-title"></div>
+  <div class="sw-throne-flourish-slot" style="margin-left:auto;margin-right:.4rem;"></div>
   <button class="rd-btn" id="rd-sync-btn" type="button" title="Kaldığın Yeri Bulut & Cihazla Eşitle">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg>
     <span class="rd-lbl" id="l-sync">Eşitle</span>
@@ -376,6 +377,7 @@ body.reader.rt-dark {
 <script src="assets/js/patches.js?v=3.0"></script>
 <script src="assets/js/wiki.js?v=3.0"></script>
 <script src="assets/js/community.js?v=3.0"></script>
+<script src="assets/js/kurultay.js?v=3.0"></script>
 <script>
 (function () {
 'use strict';
@@ -544,16 +546,31 @@ function render(keepPct) {
     '<div class="book-body" id="rd-body">' + Book.render(tx.text, { images: entry(cur).images || {} }) + '</div>' +
     '<footer class="rd-end">' +
       '<p class="rd-fin">— ' + esc(T('end')) + ' —</p>' +
-      '<div class="rd-kurultay-bridge">' +
-        '<div class="rd-kb-crest">⚔️</div>' +
-        '<div class="rd-kb-info">' +
-          '<h4>' + (l === 'tr' ? 'Bu Bölümü Kurultay’da Tartış' : 'Discuss This Chapter in the Kurultay') + '</h4>' +
-          '<p>' + (l === 'tr' ? cur.num + '. Bölümün gizemlerini, repliklerini ve teorilerini Meclis Odalarında diğer okurlarla müzakere edin.' : 'Debate mysteries, lore clues and quotes from Chapter ' + cur.num + ' with fellow bannermen.') + '</p>' +
-        '</div>' +
-        '<a class="rd-kb-btn" href="forum-kategori.html?kat=bolum&ch=' + encodeURIComponent(cur.num) + '">' +
-          '<span>' + (l === 'tr' ? 'Bölüm Yorumları Odasına Git →' : 'Enter Chapter Chamber →') + '</span>' +
-        '</a>' +
-      '</div>' +
+      (() => {
+        const chapCanon = (window.Kurultay && Kurultay.getCanonizedProphecies ? Kurultay.getCanonizedProphecies() : []).filter(p => (p.canonized_chapter || '').indexOf(String(cur.num)) >= 0);
+        const canonCallout = chapCanon.length > 0
+          ? '<div class="rd-kb-verified-prophecy" style="margin-top:.6rem;padding:.5rem .75rem;background:rgba(142,68,173,.18);border:1px solid rgba(142,68,173,.45);border-radius:3px;font-size:.8rem;color:var(--parchl);">' +
+              '🔮 <b>' + (l === 'tr' ? 'Bu Bölümde Doğrulanan Kehanet:' : 'Prophecy Fulfilled in this Chapter:') + '</b> “' + esc(chapCanon[0].title) + '” ' +
+              '<span style="color:var(--gold);font-weight:700;">(+100 Şan)</span>' +
+            '</div>'
+          : '';
+        return '<div class="rd-kurultay-bridge">' +
+          '<div class="rd-kb-crest">⚔️</div>' +
+          '<div class="rd-kb-info">' +
+            '<h4>' + (l === 'tr' ? 'Bu Bölümü Kurultay’da Tartış' : 'Discuss This Chapter in the Kurultay') + '</h4>' +
+            '<p>' + (l === 'tr' ? cur.num + '. Bölümün gizemlerini, repliklerini ve teorilerini Meclis Odalarında diğer okurlarla müzakere edin.' : 'Debate mysteries, lore clues and quotes from Chapter ' + cur.num + ' with fellow bannermen.') + '</p>' +
+            canonCallout +
+          '</div>' +
+          '<div class="rd-kb-actions" style="display:flex;gap:.5rem;flex-wrap:wrap;align-items:center;">' +
+            '<a class="rd-kb-btn" href="forum-kategori.html?kat=bolum&ch=' + encodeURIComponent(cur.num) + '">' +
+              '<span>' + (l === 'tr' ? 'Bölüm Odası →' : 'Chapter Chamber →') + '</span>' +
+            '</a>' +
+            '<button type="button" class="rd-kb-btn rd-kb-ledger-btn" id="btn-rd-prophecy-ledger" style="background:rgba(142,68,173,.25);border-color:#8e44ad;cursor:pointer;">' +
+              '<span>🔮 ' + (l === 'tr' ? 'Kehanet Kütüğü' : 'Prophecy Ledger') + '</span>' +
+            '</button>' +
+          '</div>' +
+        '</div>';
+      })() +
       (gap ? '<p class="rd-soon">' + esc(gap.num + '. ' + Lang.t(gap.title) + ' — ' + T('pending')) + '</p>' : '') +
       '<div class="rd-nav" role="navigation" aria-label="' + esc(T('toc')) + '">' +
       (prev ? card(prev, 'prev', '← ' + T('prev')) : '') + (next ? card(next, 'next', T('next') + ' →') : '') + '</div></footer>';
@@ -571,9 +588,17 @@ function render(keepPct) {
   bindAudioNarrator(cur, tx, l);
   updateChapterSEO(cur, tx);
 
+  const ledgerBtn = $('btn-rd-prophecy-ledger');
+  if (ledgerBtn && window.Kurultay && Kurultay.openProphecyLedgerModal) {
+    ledgerBtn.onclick = () => Kurultay.openProphecyLedgerModal(l);
+  }
+  if (window.Kurultay && Kurultay.applyChampionFlourish) {
+    Kurultay.applyChampionFlourish();
+  }
+
   /* Otomatik bağlantılar: karakter / hane / yer / tanrı / olay adları bölümde ilk geçtikleri yerde
      işaretlenir; dokununca (fareyle: üzerine gelince) mini bilgi kartı açılır. */
-  if (Tooltip) { Tooltip.hide(); Tooltip.scan($('rd-body')); }
+  if (Tooltip) { Tooltip.hide(); Tooltip.scan($('rd-body'), { force: true }); }
 
   divan(true);
   if (typeof keepPct === 'number') restore(keepPct);
@@ -631,10 +656,62 @@ function onScroll() {
   if (!cur || !readable(cur)) return;
   clearTimeout(saveT); saveT = setTimeout(savePos, 450);
 }
+function tryAwardReadingMilestoneRenown(chapterId) {
+  try {
+    if (!window.Kurultay || !Kurultay.Allegiance || !Kurultay.addFactionPoints) return;
+    const key = 'sw-fl-ch-half-' + chapterId;
+    if (localStorage.getItem(key)) return;
+    localStorage.setItem(key, '1');
+    const u = Kurultay.Allegiance.get();
+    const house = u.favorite_house || 'stallhart';
+    Kurultay.addFactionPoints(house, 15);
+    const l = Lang.get();
+    const houseMeta = (Kurultay.FACTION_META && Kurultay.FACTION_META[house]) || { name: house.toUpperCase() };
+    const msg = l === 'tr'
+      ? `⚔️ Okuma İlerlemesi (%50): ${houseMeta.name} Hanesine +15 Şan Puanı!`
+      : `⚔️ Reading Milestone (50%): +15 Renown to House ${houseMeta.name}!`;
+    if (window.Community && Community.util && Community.util.toast) {
+      Community.util.toast(msg);
+    } else if (window.Wiki && Wiki.Toast && Wiki.Toast.show) {
+      Wiki.Toast.show(msg);
+    }
+  } catch (e) {}
+}
+
+function tryAwardReadingFactionRenown(chapterId) {
+  try {
+    if (!window.Kurultay || !Kurultay.Allegiance || !Kurultay.addFactionPoints) return;
+    const key = 'sw-fl-ch-reward-' + chapterId;
+    if (localStorage.getItem(key)) return;
+    localStorage.setItem(key, '1');
+    const u = Kurultay.Allegiance.get();
+    const house = u.favorite_house || 'stallhart';
+    Kurultay.addFactionPoints(house, 50);
+    const l = Lang.get();
+    const houseMeta = (Kurultay.FACTION_META && Kurultay.FACTION_META[house]) || { name: house.toUpperCase() };
+    const msg = l === 'tr'
+      ? `👑 Bölüm Tamamlandı! ${houseMeta.name} Hanesine +50 Şan Puanı kazandırdın!`
+      : `👑 Chapter Complete! +50 Renown awarded to House ${houseMeta.name}!`;
+    if (window.Community && Community.util && Community.util.toast) {
+      Community.util.toast(msg);
+    } else if (window.Wiki && Wiki.Toast && Wiki.Toast.show) {
+      Wiki.Toast.show(msg);
+    }
+  } catch (e) {}
+}
+
 function savePos() {
   if (!cur || !readable(cur)) return;
   const p = pct(), map = lsGet(POS_KEY) || {};
-  if (p >= 0.97) { ReadTracker.mark('ch-' + cur.id); map[cur.id] = 1; }
+  if (p >= 0.95) {
+    ReadTracker.mark('ch-' + cur.id);
+    map[cur.id] = 1;
+    tryAwardReadingFactionRenown(cur.id);
+  }
+  else if (p >= 0.50) {
+    tryAwardReadingMilestoneRenown(cur.id);
+    map[cur.id] = Number(p.toFixed(4));
+  }
   else if (p > 0.01) map[cur.id] = Number(p.toFixed(4));
   else return;
   map.last = cur.id; lsSet(POS_KEY, map);

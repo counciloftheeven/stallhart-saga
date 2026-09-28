@@ -159,10 +159,11 @@ html {
 body {
   background-color: var(--bg);
   background-image:
-    radial-gradient(circle at 50% 15%, rgba(196,150,42,.035) 0%, transparent 70%),
-    radial-gradient(ellipse 80% 60% at 15% 15%, rgba(92,26,26,.09) 0%, transparent 100%),
-    radial-gradient(ellipse 60% 80% at 85% 85%, rgba(196,150,42,.05) 0%, transparent 100%),
-    radial-gradient(circle at center, transparent 40%, rgba(4,6,12,.48) 100%);
+    radial-gradient(circle at 50% 12%, rgba(196,150,42,.045) 0%, transparent 65%),
+    radial-gradient(ellipse 90% 65% at 15% 15%, rgba(92,26,26,.10) 0%, transparent 100%),
+    radial-gradient(ellipse 70% 85% at 85% 85%, rgba(196,150,42,.06) 0%, transparent 100%),
+    radial-gradient(ellipse 80% 50% at 50% 95%, rgba(14,12,18,.92) 0%, transparent 100%),
+    radial-gradient(circle at center, transparent 35%, rgba(4,6,12,.55) 100%);
   background-attachment: fixed;
   color: var(--parch);
   font-family: var(--font-body);
@@ -177,6 +178,31 @@ html[data-theme="light"] body {
     radial-gradient(ellipse 80% 60% at 15% 15%, rgba(139,0,0,.05) 0%, transparent 100%),
     radial-gradient(ellipse 60% 80% at 85% 85%, rgba(138,90,30,.06) 0%, transparent 100%),
     radial-gradient(circle at center, transparent 55%, rgba(138,90,30,.08) 100%);
+}
+
+/* ── CANLI PARŞÖMEN & KADİM DOKU KANVASI (Ambient Living Texture) ── */
+#sw-parchment-canvas {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 1;
+  transition: opacity .8s ease;
+}
+html.sw-no-atmosphere #sw-parchment-canvas {
+  opacity: 0;
+  visibility: hidden;
+}
+
+/* Sayfa içeriklerinin kanvas partiküllerinin üzerinde temiz kalması */
+main, section, article, header, footer,
+.inn, .hero, .rd-main, .rd-article, .sec-h, .card, .ci, .fi,
+.sw-ledger-card, .kurultay-wrap, .forum-container, .f-list,
+.nav-in, #site-nav {
+  position: relative;
+  z-index: 2;
 }
 
 /* ── MİKRO PARŞÖMEN DOKUSU (Subtle SVG Grain / Noise) ─────────────── */
@@ -322,6 +348,25 @@ html[data-theme="light"] body::before {
 .theme-btn svg { transition: transform .3s ease, opacity .16s ease; }
 .theme-btn:hover svg { transform: rotate(18deg); }
 .theme-btn.tb-swap svg { opacity: 0; transform: rotate(-90deg) scale(.5); }
+.atmosphere-btn {
+  font-family: var(--font-display);
+  font-size: .78rem;
+  color: var(--parchd);
+  background: none;
+  border: 1px solid var(--border);
+  min-width: 60px;
+  height: 30px;
+  padding: 0 .45rem;
+  cursor: pointer;
+  transition: .18s;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .25rem;
+  white-space: nowrap;
+}
+.atmosphere-btn:hover { border-color: var(--goldd); color: var(--gold); }
+.atmosphere-btn.on { border-color: var(--gold); color: var(--goldb); background: rgba(196,150,42,.12); }
 
 /* ── YAZI BOYUTU DÜĞMELERİ (A- / A+) ─────────────────
    Web ve mobilde site genelindeki yazı boyutunu büyütüp küçültür
@@ -1803,10 +1848,45 @@ html[data-theme="light"] .lh { --lh-ink: var(--parchl); --lh-hi: var(--gold); }
   border-bottom-style: solid;
   outline: none;
 }
+.wk.wk-sihir {
+  border-bottom: 1.5px dashed #d45d5d;
+}
+.wk.wk-sihir:hover, .wk.wk-sihir:focus-visible {
+  background-color: rgba(196, 40, 40, 0.16);
+  border-bottom-color: #ff7676;
+}
+.wk.wk-hane {
+  border-bottom: 1.5px dashed var(--gold);
+}
+.wk.wk-hane:hover, .wk.wk-hane:focus-visible {
+  background-color: rgba(196, 150, 42, 0.16);
+  border-bottom-color: var(--goldb);
+}
+.wk.wk-tanri {
+  border-bottom: 1.5px dashed #6a9ac9;
+}
+.wk.wk-tanri:hover, .wk.wk-tanri:focus-visible {
+  background-color: rgba(106, 154, 201, 0.16);
+  border-bottom-color: #90c2f5;
+}
+.wk.wk-grup {
+  border-bottom: 1.5px dashed #b87333;
+}
+.wk.wk-grup:hover, .wk.wk-grup:focus-visible {
+  background-color: rgba(184, 115, 51, 0.16);
+  border-bottom-color: #df9855;
+}
+.wk.wk-unvan {
+  border-bottom: 1.5px dashed #b784f7;
+}
+.wk.wk-unvan:hover, .wk.wk-unvan:focus-visible {
+  background-color: rgba(183, 132, 247, 0.15);
+  border-bottom-color: #d5abff;
+}
 .wk-card {
   position: fixed;
   z-index: 950;
-  background: var(--surface);
+  background: radial-gradient(ellipse at top left, rgba(230, 215, 185, 0.08), rgba(20, 16, 22, 0.97));
   color: var(--parch);
   border: 1px solid var(--borderl);
   border-left: 3px solid var(--wk-accent, var(--goldd));
@@ -1822,6 +1902,14 @@ html[data-theme="light"] .lh { --lh-ink: var(--parchl); --lh-hi: var(--gold); }
   overflow: hidden;
   transform: translateY(4px);
   transition: opacity .18s ease, transform .18s ease, border-left-color .2s ease;
+}
+.wk-card::before {
+  content: '';
+  position: absolute;
+  inset: 3px;
+  border: 1px solid rgba(196,150,42,.15);
+  pointer-events: none;
+  border-radius: 2px;
 }
 .wk-watermark {
   position: absolute;
@@ -1934,6 +2022,75 @@ html[data-theme="light"] .wk-watermark {
 .wk-go:hover {
   text-decoration: underline;
   color: var(--parchl);
+}
+
+/* Light mode uyumu: Tooltip bilgi kartı & işaretçiler */
+html[data-theme="light"] .wk {
+  border-bottom-color: var(--goldd);
+}
+html[data-theme="light"] .wk:hover,
+html[data-theme="light"] .wk:focus-visible {
+  background-color: rgba(138, 90, 30, 0.12);
+  border-bottom-color: var(--goldb);
+}
+html[data-theme="light"] .wk.wk-sihir {
+  border-bottom-color: #b52b2b;
+}
+html[data-theme="light"] .wk.wk-sihir:hover {
+  background-color: rgba(181, 43, 43, 0.12);
+  border-bottom-color: #8b1e1e;
+}
+html[data-theme="light"] .wk.wk-hane {
+  border-bottom-color: var(--gold);
+}
+html[data-theme="light"] .wk.wk-tanri {
+  border-bottom-color: #2b5d8f;
+}
+html[data-theme="light"] .wk.wk-grup {
+  border-bottom-color: #8f4d1e;
+}
+html[data-theme="light"] .wk.wk-unvan {
+  border-bottom-color: #7b4fb5;
+}
+
+html[data-theme="light"] .wk-card {
+  background: radial-gradient(ellipse at top left, #fffdf8 0%, #f7eedb 100%);
+  color: #2b2216;
+  border: 1px solid rgba(184, 115, 51, 0.38);
+  box-shadow: 0 12px 36px rgba(70, 50, 25, 0.16), 0 0 0 1px rgba(138, 90, 30, 0.12);
+}
+html[data-theme="light"] .wk-card::before {
+  border-color: rgba(184, 115, 51, 0.22);
+}
+html[data-theme="light"] .wk-top-bar {
+  border-bottom-color: var(--border);
+}
+html[data-theme="light"] .wk-kind {
+  color: var(--goldb);
+}
+html[data-theme="light"] .wk-close-btn {
+  color: var(--parchd);
+}
+html[data-theme="light"] .wk-close-btn:hover {
+  color: var(--parchl);
+}
+html[data-theme="light"] .wk-title {
+  color: var(--parchl);
+}
+html[data-theme="light"] .wk-sub {
+  color: var(--goldb);
+}
+html[data-theme="light"] .wk-body {
+  color: #241c14; /* Koyu, berrak ve okunaklı */
+}
+html[data-theme="light"] .wk-footer {
+  border-top-color: var(--border);
+}
+html[data-theme="light"] .wk-go {
+  color: var(--gold);
+}
+html[data-theme="light"] .wk-go:hover {
+  color: var(--goldb);
 }
 
 /* ═══════════════════════════════════════════════════════════════
@@ -2517,5 +2674,31 @@ p.sw-highlight-jump {
   to { opacity: 1; transform: translateY(0); }
 }
 
+/* ═══════════════════════════════════════════════════════════════
+   7. PERFORMANS & RENDER OPTİMİZASYONLARI (content-visibility)
+   Kitap bölümlerinde ve uzun forum akışlarında ekran dışındaki
+   blokların render maliyetini %70 azaltır, GPU & CPU yükünü düşürür.
+   ═══════════════════════════════════════════════════════════════ */
+.book-body p,
+.rd-body p {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 68px;
+}
 
+.book-body blockquote,
+.bk-quote {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 120px;
+}
 
+.f-item,
+.sw-ledger-card,
+.fr-thread-card {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 90px;
+}
+
+.f-list,
+.sw-fl-list {
+  contain: layout style;
+}

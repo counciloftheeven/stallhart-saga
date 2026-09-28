@@ -272,6 +272,336 @@ const Loader = (() => {
   return { track, hide, finish };
 })();
 
+/* ── 3d. CANLI PARŞÖMEN & KADİM DOKU (Living Parchment & Ambient Canvas) ──
+   Düz koyu renk zeminler (#0e0c12) yerine kadim bir el yazması üzerinde
+   ağır ağır süzülen altın tozları (golden motes), kül/köz zerrecikleri ve
+   organik fırça/sis ışığı haresi sunan dinamik kanvas katmanı.
+   • 60 FPS, Canvas 2D, minimal CPU tüketimi.
+   • DPR (Retina) uyumlu.
+   • prefers-reduced-motion etkinse animasyon durdurulur / statik çizilir.
+   • Sekme arka plana geçtiğinde (document.hidden) döngü durur, pil korunur.
+   • Fare hareketi veya sayfa kaydırmada mikro-esinti (subtle tactile breeze).
+   • Koyu (#0c121f / #0e0c12) ve Işık (antik parşömen) modlarına dinamik renk uyumu.
+   • Ayarlar panelinden (⚙) açılıp kapatılabilir, tercih sw-ambient-atmosphere anahtarıyla saklanır. */
+const ParchmentAtmosphere = (() => {
+  const STORAGE_KEY = 'sw-ambient-atmosphere';
+  let canvas = null;
+  let ctx = null;
+  let animId = null;
+  let enabled = true;
+  let width = 0;
+  let height = 0;
+  let dpr = 1;
+  let particles = [];
+  let isReducedMotion = false;
+  let mouse = { x: -9999, y: -9999, lastX: 0, lastY: 0, moved: false };
+  let scrollY = 0;
+  let lastScrollY = 0;
+  let scrollVelocity = 0;
+  let lastTime = 0;
+
+  try {
+    const saved = localStorage.getItem(STORAGE_KEY);
+    if (saved !== null) enabled = saved === '1';
+    isReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  } catch (e) {}
+
+  function createParticle(w, h, initial) {
+    const isGold = Math.random() < 0.65;
+    const isBokeh = isGold && Math.random() < 0.18;
+    const size = isBokeh
+      ? (2.8 + Math.random() * 2.6)
+      : (isGold ? (0.8 + Math.random() * 1.5) : (1.0 + Math.random() * 1.8));
+
+    return {
+      x: Math.random() * w,
+      y: initial ? Math.random() * h : (h + 10 + Math.random() * 20),
+      vx: (Math.random() - 0.5) * 0.18,
+      vy: -(0.12 + Math.random() * 0.28),
+      size: size,
+      isGold: isGold,
+      isBokeh: isBokeh,
+      alpha: Math.random() * 0.5 + 0.2,
+      maxAlpha: isBokeh ? (0.28 + Math.random() * 0.25) : (isGold ? (0.45 + Math.random() * 0.45) : (0.3 + Math.random() * 0.35)),
+      pulseSpeed: 0.008 + Math.random() * 0.02,
+      pulsePhase: Math.random() * Math.PI * 2,
+      wobbleSpeed: 0.001 + Math.random() * 0.002,
+      wobbleAmp: 0.25 + Math.random() * 0.6,
+      angle: Math.random() * Math.PI * 2,
+      spin: (Math.random() - 0.5) * 0.015,
+      pushX: 0,
+      pushY: 0
+    };
+  }
+
+  function initParticles(w, h) {
+    const isMobile = w < 768;
+    const count = isMobile ? 22 : 46;
+    particles = [];
+    for (let i = 0; i < count; i++) {
+      particles.push(createParticle(w, h, true));
+    }
+  }
+
+  function resize() {
+    if (!canvas || !canvas.parentElement) return;
+    width = window.innerWidth;
+    height = window.innerHeight;
+    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    canvas.width = Math.floor(width * dpr);
+    canvas.height = Math.floor(height * dpr);
+    ctx = canvas.getContext('2d');
+    if (ctx) ctx.scale(dpr, dpr);
+    if (particles.length === 0) initParticles(width, height);
+  }
+
+  function drawFrame(now) {
+    if (!ctx || !enabled) return;
+    lastTime = now;
+    const isLight = document.documentElement.getAttribute('data-theme') === 'light';
+
+    ctx.clearRect(0, 0, width, height);
+
+    // ── 1. Kadim Sis & Fırça Işığı Haresi (Ambient Vignette & Torch Glow) ──
+    const breathe1 = Math.sin(now * 0.00035);
+    const breathe2 = Math.cos(now * 0.00028);
+
+    // Üst-orta bölgedeki altın/sıcak kehribar ışıltısı
+    const g1x = width * 0.45 + breathe1 * 60;
+    const g1y = height * 0.22 + breathe2 * 40;
+    const g1r = Math.max(width, height) * 0.55;
+    const grad1 = ctx.createRadialGradient(g1x, g1y, 10, g1x, g1y, g1r);
+    if (!isLight) {
+      grad1.addColorStop(0, 'rgba(212, 175, 55, 0.026)');
+      grad1.addColorStop(0.5, 'rgba(184, 115, 51, 0.014)');
+      grad1.addColorStop(1, 'rgba(14, 12, 18, 0)');
+    } else {
+      grad1.addColorStop(0, 'rgba(218, 165, 32, 0.024)');
+      grad1.addColorStop(0.6, 'rgba(180, 140, 60, 0.010)');
+      grad1.addColorStop(1, 'rgba(255, 255, 255, 0)');
+    }
+    ctx.fillStyle = grad1;
+    ctx.fillRect(0, 0, width, height);
+
+    // Sağ-alt bölgedeki kadim kan kırmızısı / derin pas köz haresi
+    const g2x = width * 0.8 + breathe2 * 40;
+    const g2y = height * 0.85 + breathe1 * 40;
+    const g2r = Math.max(width, height) * 0.45;
+    const grad2 = ctx.createRadialGradient(g2x, g2y, 5, g2x, g2y, g2r);
+    if (!isLight) {
+      grad2.addColorStop(0, 'rgba(139, 0, 0, 0.022)');
+      grad2.addColorStop(0.6, 'rgba(94, 26, 26, 0.008)');
+      grad2.addColorStop(1, 'rgba(12, 18, 31, 0)');
+    } else {
+      grad2.addColorStop(0, 'rgba(180, 100, 40, 0.018)');
+      grad2.addColorStop(1, 'rgba(255, 255, 255, 0)');
+    }
+    ctx.fillStyle = grad2;
+    ctx.fillRect(0, 0, width, height);
+
+    // ── 2. Partikül Hareketi & Çizimi (Altın Tozları & Kül/Köz) ──
+    const scrollImpulse = scrollVelocity * 0.08;
+    scrollVelocity *= 0.90;
+
+    for (let i = 0; i < particles.length; i++) {
+      const p = particles[i];
+
+      // Fareye göre mikro-esinti (subtle drift away)
+      if (mouse.moved) {
+        const dx = p.x - mouse.x;
+        const dy = p.y - mouse.y;
+        const distSq = dx * dx + dy * dy;
+        if (distSq < 22500 && distSq > 4) { // ~150px yarıçap
+          const dist = Math.sqrt(distSq);
+          const force = (1 - dist / 150) * 0.45;
+          p.pushX += (dx / dist) * force;
+          p.pushY += (dy / dist) * force;
+        }
+      }
+
+      // Konum güncellemesi
+      p.pushX *= 0.94;
+      p.pushY *= 0.94;
+      p.x += p.vx + Math.sin(now * p.wobbleSpeed + p.pulsePhase) * p.wobbleAmp + p.pushX;
+      p.y += p.vy + scrollImpulse + p.pushY;
+      p.angle += p.spin;
+
+      // Ekran dışına çıkınca yeniden doğur
+      if (p.y < -30) {
+        p.y = height + 15 + Math.random() * 20;
+        p.x = Math.random() * width;
+        p.pushX = 0;
+        p.pushY = 0;
+      } else if (p.y > height + 40) {
+        p.y = -10;
+        p.x = Math.random() * width;
+      }
+      if (p.x < -30) p.x = width + 20;
+      else if (p.x > width + 30) p.x = -20;
+
+      // Yanıp sönme (glint & breathe)
+      const currentAlpha = Math.max(0.04, Math.min(1, p.maxAlpha * (0.65 + 0.35 * Math.sin(now * p.pulseSpeed + p.pulsePhase))));
+
+      if (p.isGold) {
+        if (p.isBokeh) {
+          // Büyük odak dışı altın tozu haresi (Bokeh Mote)
+          const rad = p.size * 2.8;
+          const bg = ctx.createRadialGradient(p.x, p.y, p.size * 0.2, p.x, p.y, rad);
+          if (!isLight) {
+            bg.addColorStop(0, `rgba(235, 195, 105, ${currentAlpha * 0.9})`);
+            bg.addColorStop(0.4, `rgba(196, 150, 42, ${currentAlpha * 0.45})`);
+            bg.addColorStop(1, 'rgba(184, 115, 51, 0)');
+          } else {
+            bg.addColorStop(0, `rgba(180, 130, 40, ${currentAlpha * 0.8})`);
+            bg.addColorStop(0.4, `rgba(160, 110, 30, ${currentAlpha * 0.35})`);
+            bg.addColorStop(1, 'rgba(160, 110, 30, 0)');
+          }
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, rad, 0, Math.PI * 2);
+          ctx.fillStyle = bg;
+          ctx.fill();
+        } else {
+          // İnce altın tozu zerresi (Fine golden speck with halo)
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+          ctx.fillStyle = !isLight
+            ? `rgba(224, 182, 85, ${currentAlpha})`
+            : `rgba(160, 110, 35, ${currentAlpha * 0.85})`;
+          ctx.fill();
+        }
+      } else {
+        // Köz / Kül zerreciği (Tumbling ash / ember flake)
+        ctx.save();
+        ctx.translate(p.x, p.y);
+        ctx.rotate(p.angle);
+        ctx.beginPath();
+        const rw = p.size * 1.6;
+        const rh = p.size * 0.9;
+        ctx.ellipse(0, 0, rw, rh, 0, 0, Math.PI * 2);
+        if (!isLight) {
+          // Gece: kızıl/pas kor zerreciği
+          ctx.fillStyle = (i % 2 === 0)
+            ? `rgba(210, 95, 45, ${currentAlpha * 0.75})`
+            : `rgba(145, 135, 130, ${currentAlpha * 0.55})`;
+        } else {
+          // Gündüz: antik mürekkep / parşömen tozu
+          ctx.fillStyle = `rgba(110, 90, 75, ${currentAlpha * 0.5})`;
+        }
+        ctx.fill();
+        ctx.restore();
+      }
+    }
+
+    if (mouse.moved) mouse.moved = false;
+
+    if (!isReducedMotion) {
+      animId = requestAnimationFrame(drawFrame);
+    }
+  }
+
+  function start() {
+    if (!enabled || animId) return;
+    if (isReducedMotion) {
+      requestAnimationFrame(now => drawFrame(now));
+      return;
+    }
+    lastTime = performance.now();
+    animId = requestAnimationFrame(drawFrame);
+  }
+
+  function stop() {
+    if (animId) {
+      cancelAnimationFrame(animId);
+      animId = null;
+    }
+  }
+
+  function toggle() {
+    set(!enabled);
+    return enabled;
+  }
+
+  function set(state) {
+    enabled = !!state;
+    try { localStorage.setItem(STORAGE_KEY, enabled ? '1' : '0'); } catch (e) {}
+    document.documentElement.classList.toggle('sw-no-atmosphere', !enabled);
+    if (enabled) {
+      start();
+    } else {
+      stop();
+      if (ctx) ctx.clearRect(0, 0, width, height);
+    }
+    syncButtons();
+  }
+
+  function syncButtons() {
+    document.querySelectorAll('[data-atmosphere-btn]').forEach(b => {
+      b.classList.toggle('on', enabled);
+      b.setAttribute('aria-pressed', String(enabled));
+      const l = (window.Wiki && window.Wiki.Lang) ? window.Wiki.Lang.get() : 'tr';
+      const label = enabled ? (l === 'tr' ? '✨ Açık' : '✨ On') : (l === 'tr' ? '✨ Kapalı' : '✨ Off');
+      b.innerHTML = label;
+    });
+  }
+
+  function init() {
+    if (canvas || document.getElementById('sw-parchment-canvas')) return;
+    if (!document.body) {
+      document.addEventListener('DOMContentLoaded', init, { once: true });
+      return;
+    }
+
+    canvas = document.createElement('canvas');
+    canvas.id = 'sw-parchment-canvas';
+    canvas.setAttribute('aria-hidden', 'true');
+    document.body.insertAdjacentElement('afterbegin', canvas);
+
+    if (!enabled) {
+      document.documentElement.classList.add('sw-no-atmosphere');
+    }
+
+    resize();
+    window.addEventListener('resize', resize, { passive: true });
+
+    window.addEventListener('mousemove', e => {
+      mouse.x = e.clientX;
+      mouse.y = e.clientY;
+      mouse.moved = true;
+    }, { passive: true });
+
+    window.addEventListener('scroll', () => {
+      const sy = window.scrollY || window.pageYOffset;
+      scrollVelocity = sy - lastScrollY;
+      lastScrollY = sy;
+    }, { passive: true });
+
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) stop();
+      else if (enabled) start();
+    });
+
+    document.addEventListener('themechange', () => {
+      if (enabled && isReducedMotion) {
+        requestAnimationFrame(now => drawFrame(now));
+      }
+    });
+
+    if (window.matchMedia) {
+      const media = window.matchMedia('(prefers-reduced-motion: reduce)');
+      media.addEventListener('change', e => {
+        isReducedMotion = e.matches;
+        if (isReducedMotion) stop();
+        else if (enabled) start();
+      });
+    }
+
+    if (enabled) start();
+    syncButtons();
+  }
+
+  return { init, toggle, set, isEnabled: () => enabled, syncButtons };
+})();
+
 /* İskelet: [data-skeleton="cards|rows|blocks"] işaretli, henüz boş kapları
    gri "ışıltılı" bloklarla doldurur. Sayfanın kendi render'ı içeriği
    innerHTML ile yazınca iskelet kendiliğinden gider; ilk kez gelen içerik
@@ -990,6 +1320,8 @@ function injectNav() {
     '<button class="lang-btn" type="button" data-lang-btn>' + (l === 'tr' ? 'EN' : 'TR') + '</button></div>' +
     '<div class="ns-row"><span class="ns-l" data-tr="Tema" data-en="Theme">' + (l === 'tr' ? 'Tema' : 'Theme') + '</span>' +
     '<button class="theme-btn" type="button" data-theme-btn data-tr="Tema değiştir" data-en="Toggle theme" data-i18n-attr="aria-label" aria-label="' + (l === 'tr' ? 'Tema değiştir' : 'Toggle theme') + '">' + Theme.icon() + '</button></div>' +
+    '<div class="ns-row"><span class="ns-l" data-tr="Kadim Doku" data-en="Atmosphere">' + (l === 'tr' ? 'Kadim Doku' : 'Atmosphere') + '</span>' +
+    '<button class="atmosphere-btn' + (ParchmentAtmosphere.isEnabled() ? ' on' : '') + '" type="button" data-atmosphere-btn data-tr="Parşömen partikülleri: Açık/Kapalı" data-en="Living parchment: On/Off" data-i18n-attr="aria-label,title" aria-label="' + (l === 'tr' ? 'Parşömen partikülleri' : 'Living parchment particles') + '">' + (ParchmentAtmosphere.isEnabled() ? (l === 'tr' ? '✨ Açık' : '✨ On') : (l === 'tr' ? '✨ Kapalı' : '✨ Off')) + '</button></div>' +
     '</div></div>' +
     '<span class="nav-auth-slot" id="sw-auth-slot"></span>' +
     '<button class="nav-ham" id="nav-ham" type="button" data-tr="Menü" data-en="Menu" data-i18n-attr="aria-label" aria-label="' + (l === 'tr' ? 'Menü' : 'Menu') + '" aria-expanded="false">' +
@@ -1028,6 +1360,14 @@ function initNav() {
     document.addEventListener('click', e => { if (!setBox.contains(e.target)) setOpen(false); });
     document.addEventListener('keydown', e => {
       if (e.key === 'Escape' && setBox.classList.contains('open')) { setOpen(false); setBtn.focus(); }
+    });
+  }
+
+  const atmBtn = document.querySelector('[data-atmosphere-btn]');
+  if (atmBtn) {
+    atmBtn.addEventListener('click', () => {
+      const active = ParchmentAtmosphere.toggle();
+      atmBtn.classList.toggle('on', active);
     });
   }
 
@@ -1131,23 +1471,24 @@ const Tooltip = (() => {
 
   const SCAN_SELECTOR =
     '.art-p, .cc-desc, .ci-d, .gls-def, .read-synopsis, .ip-desc, ' +
-    '.hc-desc, .kc-desc, .modal-bio, .tl-desc, .q-text, .lc p, .book-body p';
+    '.hc-desc, .kc-desc, .modal-bio, .tl-desc, .q-text, .lc p, .book-body p, #rd-body p, .rd-article p, .bk-quote p';
 
   const KIND = {
     karakter: { tr: 'Karakter', en: 'Character', rank: 1, icon: '👤' },
-    devlet:   { tr: 'Devlet',   en: 'State',     rank: 2, icon: '👑' },
+    devlet:   { tr: 'Devlet & Hanedanlık', en: 'State & Realm', rank: 2, icon: '👑' },
     yer:      { tr: 'Yer & Kale', en: 'Place',   rank: 3, icon: '🏰' },
-    hane:     { tr: 'Hane',     en: 'House',     rank: 4, icon: '🛡️' },
-    tanri:    { tr: 'Tanrı',    en: 'God',       rank: 5, icon: '⚡' },
-    grup:     { tr: 'Topluluk', en: 'Faction',   rank: 6, icon: '⚔️' },
+    hane:     { tr: 'Hane & Sancak', en: 'House', rank: 4, icon: '🛡️' },
+    tanri:    { tr: 'Tanrı & Panteon', en: 'God', rank: 5, icon: '⚡' },
+    sihir:    { tr: 'Kadim / Yasak Sihir', en: 'Ancient / Forbidden Magic', rank: 5.5, icon: '🔮' },
+    grup:     { tr: 'Topluluk & Teşkilat', en: 'Faction & Order', rank: 6, icon: '⚔️' },
     olay:     { tr: 'Tarihî Olay', en: 'Event',  rank: 7, icon: '📜' },
-    unvan:    { tr: 'Unvan & Makam', en: 'Title', rank: 8, icon: '⚜️' },
+    unvan:    { tr: 'Unvan & Makam', en: 'Title & Rank', rank: 8, icon: '⚜️' },
     sozluk:   { tr: 'Vakanüvis Dipnotu', en: 'Chronicler Note', rank: 9, icon: '✒️' }
   };
   const GLS_TYPE = {
-    geo: { tr: 'Coğrafya', en: 'Geography' }, title: { tr: 'Unvan', en: 'Title' },
-    political: { tr: 'Siyasi', en: 'Political' }, military: { tr: 'Askerî', en: 'Military' },
-    religious: { tr: 'Dinî', en: 'Religious' }, magic: { tr: 'Sihir', en: 'Magic' }
+    geo: { tr: 'Coğrafya', en: 'Geography' }, title: { tr: 'Unvan & Makam', en: 'Title & Rank' },
+    political: { tr: 'Siyasi Düzen', en: 'Political Order' }, military: { tr: 'Askerî Teşkilat', en: 'Military Order' },
+    religious: { tr: 'Kadim İnanç', en: 'Ancient Faith' }, magic: { tr: 'Yasak / Kadim Sihir', en: 'Forbidden / Ancient Magic' }
   };
   /* Elle yazılmış köprü türü → sözlük kaydı türü (ilk-geçiş takibi için) */
   const WT_KIND = { character: 'karakter', god: 'tanri', house: 'hane', kingdom: 'devlet' };
@@ -1425,12 +1766,21 @@ const Tooltip = (() => {
         const nm = tt(f.name);
         if (!nm) return;
         const parts = nm.split(/\s+[—–]\s+/).map(s => s.replace(/["“”„]/g, '').trim()).filter(Boolean);
+        const isKarabicak = /karabıçak/i.test(nm) || f.id === 'karabicaklar';
         const rec = {
-          uid: 'grup:' + f.id, kind: 'grup', title: parts[0] || nm, sub: parts[1] || '',
-          body: snip(tt(f.belief) || tt(f.desc), 170), cs: true,
-          url: url(R.href('evren', 'grup-' + f.id))
+          uid: 'grup:' + f.id, kind: 'grup', title: parts[0] || nm,
+          sub: parts[1] || (isKarabicak ? (en ? 'Imperial Covert Order' : 'İmparatorluk Gizli Teşkilatı') : (en ? 'Faction / Order' : 'Gizli Birlik & Teşkilat')),
+          body: snip(tt(f.belief) || tt(f.desc), 190), cs: true,
+          url: url(R.href('evren', 'grup-' + f.id)),
+          watermarkGlyph: isKarabicak ? '🗡️' : '⚔️',
+          accent: isKarabicak ? '#8b1e1e' : '#c4962a'
         };
         parts.forEach(p => addPrimary(p, rec));
+        if (isKarabicak) {
+          addAlias('Karabıçaklar', rec);
+          addAlias('Karabıçak', rec);
+          addAlias('Karabıçaklar Teşkilatı', rec);
+        }
       });
       (lore.events || []).forEach(e => {
         const nm = tt(e.name);
@@ -1447,13 +1797,43 @@ const Tooltip = (() => {
       (lore.glossary || []).forEach(g => {
         const term = tt(g.term);
         if (!term || term.length < 3) return;
+        const isMagic = g.type === 'magic' || /sihir|büyü|magic/i.test(term) || g.id === 'khaan' || g.id === 'loth-sihri';
+        const isKarabicak = /karabıçak/i.test(term) || g.id === 'karabicaklar';
         const ty = GLS_TYPE[g.type];
-        addPrimary(term, {
-          uid: 'sozluk:' + g.id, kind: 'sozluk', title: term,
-          sub: ty ? ty[en ? 'en' : 'tr'] : (g.type || ''),
-          body: snip(tt(g.def), 170), cs: false,
-          url: url(R.href('evren', g.id))
-        });
+        const rec = {
+          uid: 'sozluk:' + g.id,
+          kind: isMagic ? 'sihir' : (isKarabicak ? 'unvan' : 'sozluk'),
+          title: term,
+          sub: isMagic ? (en ? 'Forbidden Magic · Arcane Lore' : 'Yasak Sihir · Kadim Gizem') : (isKarabicak ? (en ? 'Imperial Covert Order & Title' : 'İmparatorluk Gizli Teşkilatı & Unvan') : (ty ? ty[en ? 'en' : 'tr'] : (g.type || ''))),
+          body: snip(tt(g.def), 190),
+          cs: false,
+          url: url(R.href('evren', g.id)),
+          watermarkGlyph: isMagic ? '🔮' : (isKarabicak ? '🗡️' : '📜'),
+          accent: isMagic ? '#8b1e1e' : (isKarabicak ? '#9c1c1c' : '#c4962a')
+        };
+        addPrimary(term, rec);
+        if (g.id === 'loth-sihri' || /loth/i.test(term)) {
+          addPrimary('Loth', rec);
+          addAlias('Loth', rec);
+          addAlias('Loth Sihri', rec);
+          addAlias('Loth Sihrî', rec);
+          addAlias('Loth Büyüsü', rec);
+          addAlias('Loth Magic', rec);
+        }
+        if (g.id === 'khaan' || /khaan/i.test(term)) {
+          addPrimary('Khaan', rec);
+          addAlias('Khaan', rec);
+          addAlias('Khaan Sihri', rec);
+          addAlias('Khaan Büyüsü', rec);
+          addAlias('Khaan Magic', rec);
+        }
+        if (isKarabicak) {
+          addPrimary('Karabıçaklar', rec);
+          addAlias('Karabıçaklar', rec);
+          addAlias('Karabıçak', rec);
+          addAlias('Karabıçaklar Teşkilatı', rec);
+          addAlias('Black Claws', rec);
+        }
       });
 
       /* ── Ortak Lisan & Vakanüvis Sözlüğü (Unvanlar, Arkaik Terimler) ── */
@@ -1630,8 +2010,17 @@ const Tooltip = (() => {
   function markup(root, o) {
     if (!terms || !sorted.length || !root) return;
     const once = !!((o && o.once !== undefined) ? o.once : opts.once);
-    const scopes = root.matches && root.matches(SCAN_SELECTOR)
-      ? [root] : Array.prototype.slice.call(root.querySelectorAll(SCAN_SELECTOR));
+    let scopes = [];
+    if (root.id === 'rd-body' || (root.classList && root.classList.contains('book-body'))) {
+      scopes = Array.prototype.slice.call(root.querySelectorAll('p'));
+    } else if (root.matches && root.matches(SCAN_SELECTOR)) {
+      scopes = [root];
+    } else {
+      scopes = Array.prototype.slice.call(root.querySelectorAll(SCAN_SELECTOR));
+      if (!scopes.length && root.querySelectorAll) {
+        scopes = Array.prototype.slice.call(root.querySelectorAll('p'));
+      }
+    }
     const shared = Object.create(null);
     if (once) seedSeen(root, shared);
 
@@ -1665,7 +2054,7 @@ const Tooltip = (() => {
     }
 
     scopes.forEach(scope => {
-      if (scope.dataset.wkDone === '1') return;
+      if (scope.dataset.wkDone === '1' && !(o && o.force)) return;
       scope.dataset.wkDone = '1';
 
       const walker = document.createTreeWalker(scope, NodeFilter.SHOW_TEXT, {
@@ -1706,8 +2095,9 @@ const Tooltip = (() => {
           if (once) seen[m.key] = true;
 
           const span = document.createElement('span');
-          span.className = 'wk';
+          span.className = 'wk' + (rec.kind ? ' wk-' + rec.kind : '');
           span.dataset.wk = m.key;
+          span.dataset.kind = rec.kind || 'sozluk';
           span.textContent = rest.nodeValue;
           span.tabIndex = 0;
           span.setAttribute('role', 'link');
@@ -1727,8 +2117,69 @@ const Tooltip = (() => {
     if (window.requestIdleCallback) window.requestIdleCallback(fn, { timeout: 1500 });
     else setTimeout(fn, 200);
   }
+
+  let lazyObserver = null;
+  function getLazyObserver() {
+    if (lazyObserver) return lazyObserver;
+    if (!('IntersectionObserver' in window)) return null;
+    lazyObserver = new IntersectionObserver((entries, obs) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const el = entry.target;
+          obs.unobserve(el);
+          if (el.dataset.wkDone !== '1') {
+            markup(el, { force: false });
+          }
+        }
+      });
+    }, { rootMargin: '300px 0px 300px 0px', threshold: 0.01 });
+    return lazyObserver;
+  }
+
+  /* Lazy scanning: Uzun kitap bölümlerinde (40+ sayfa / yüzlerce paragraf)
+     tüm metni tek bir Regex döngüsüyle kitlemek yerine ekrana yaklaşan
+     paragrafları IntersectionObserver ile parça parça tarar. */
+  function scanLazy(root, o) {
+    root = root || document.body;
+    return build().then(() => {
+      const obs = getLazyObserver();
+      if (!obs) return markup(root, o);
+
+      let paras = [];
+      if (root.id === 'rd-body' || (root.classList && root.classList.contains('book-body'))) {
+        paras = Array.prototype.slice.call(root.querySelectorAll('p, blockquote'));
+      } else {
+        paras = Array.prototype.slice.call(root.querySelectorAll(SCAN_SELECTOR));
+      }
+
+      if (paras.length <= 15) {
+        return markup(root, o);
+      }
+
+      /* İlk 6 paragrafı hemen kullanıcı okumaya başlasın diye tara */
+      for (let i = 0; i < Math.min(6, paras.length); i++) {
+        markup(paras[i], o);
+      }
+      /* Geri kalan tüm paragrafları ekrana yaklaştıkça taranmak üzere observer'a bağla */
+      for (let j = 6; j < paras.length; j++) {
+        if (paras[j].dataset.wkDone !== '1') {
+          obs.observe(paras[j]);
+        }
+      }
+    });
+  }
+
   function scan(root, o) {
     root = root || document.body;
+    /* Eğer taranan alan kitap gövdesi veya 25'ten fazla paragraf içeriyorsa otomatik lazy scan kullan */
+    const isLongText = (root.id === 'rd-body') ||
+                       (root.classList && root.classList.contains('book-body')) ||
+                       (root.querySelectorAll && root.querySelectorAll('p').length > 25);
+
+    if (isLongText && 'IntersectionObserver' in window) {
+      return scanLazy(root, o);
+    }
+
     return new Promise((resolve, reject) => {
       idle(() => { build().then(() => markup(root, o)).then(resolve, reject); });
     });
@@ -2090,6 +2541,7 @@ function initWiki(options) {
   initFaq();
   Prefetch.init();
   SelectionLookup.init();
+  ParchmentAtmosphere.init();
 
   if (options.tooltips !== false) Tooltip.init(options.tooltipOpts);
   showDraftBadge();
@@ -2627,10 +3079,11 @@ const Tags = (function () {
 
 window.Wiki = {
   LivePatches,
-  Lang, Theme, FontSize, loadData, Store, Search, Tooltip, Bookmarks, ReadTracker, Book,
+  Lang, Theme, FontSize, ParchmentAtmosphere, loadData, Store, Search, Tooltip, Bookmarks, ReadTracker, Book,
   initWiki, injectNav, groupClass, esc, safeImg, godImgHTML, wireGodImgs, godImgSources,
   getBasePath, BASE_PATH, renderError, showFatal, Tags, Prefetch, SelectionLookup,
   Img, imgAttrs: Img.attrs, imgUrl: Img.url
 };
+window.ParchmentAtmosphere = ParchmentAtmosphere;
 
 })();

@@ -256,6 +256,10 @@ html[data-theme="light"] #evren .btn-o:hover {
 .fv-poll-slot {
   margin-top: 2.25rem;
 }
+.fv-poll-slot .sw-poll-card {
+  margin: 0;
+  border-radius: 2px;
+}
 .fv-poll-header {
   display: flex;
   justify-content: space-between;
@@ -350,6 +354,18 @@ html[data-theme="light"] .fv-foot {
 }
 html[data-theme="light"] .fv-card:hover .fv-action {
   color: var(--gold);
+}
+html[data-theme="light"] .fv-poll-slot .sw-poll-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  box-shadow: 0 4px 18px rgba(70, 50, 25, 0.08);
+}
+html[data-theme="light"] .fv-poll-slot .sw-poll-card::before {
+  content: '';
+  position: absolute;
+  inset: 5px;
+  border: 1px solid rgba(138, 90, 30, 0.14);
+  pointer-events: none;
 }
 html[data-theme="light"] .fv-poll-header {
   border-bottom-color: var(--border);
@@ -543,6 +559,7 @@ html[data-theme="light"] #forum-vitrini .btn-g:hover {
 <!-- KURULTAY / FORUM VİTRİNİ -->
 <section id="forum-vitrini">
   <div class="inn">
+    <div class="sw-throne-flourish-slot" style="margin-bottom:1.15rem;display:flex;justify-content:center;"></div>
     <nav class="fr-crumb" aria-label="Breadcrumb" style="margin-bottom: 1.25rem;">
       <a href="index.html" data-tr="Ana Sayfa" data-en="Home">Ana Sayfa</a>
       <span>›</span>
@@ -612,8 +629,11 @@ html[data-theme="light"] #forum-vitrini .btn-g:hover {
     <!-- İNTERAKTİF KURULTAY OYLAMASI (POLL PREVIEW CARD) -->
     <div id="vitrin-poll-slot" class="fv-poll-slot"></div>
 
-    <div class="fv-cta-wrap">
+    <div class="fv-cta-wrap" style="display:flex;justify-content:center;gap:.75rem;flex-wrap:wrap;align-items:center;">
       <a href="forum.html" class="btn-g" data-tr="Kurultay Forumuna Gir (Tüm Meclis Odaları)" data-en="Enter Kurultay Forum (All Chambers)">Kurultay Forumuna Gir (Tüm Meclis Odaları)</a>
+      <button type="button" class="btn-o" id="btn-vitrin-open-ledger" style="padding:.75rem 1.4rem;font-size:.85rem;cursor:pointer;">
+        🔮 <span data-tr="Kadim Kehanet Kütüğü" data-en="The Prophecy Ledger">Kadim Kehanet Kütüğü</span>
+      </button>
     </div>
   </div>
 </section>
@@ -865,16 +885,26 @@ function renderVitrinPoll() {
       renderVitrinPoll();
     });
   }
+
+  const ledgerBtn = document.getElementById('btn-vitrin-open-ledger');
+  if (ledgerBtn && window.Kurultay && Kurultay.openProphecyLedgerModal) {
+    ledgerBtn.onclick = () => Kurultay.openProphecyLedgerModal(l);
+  }
+  if (window.Kurultay && Kurultay.applyChampionFlourish) {
+    Kurultay.applyChampionFlourish();
+  }
 }
 
 applyStaticLang(Lang.get());
 renderFeatured();
 checkResume();
 renderVitrinPoll();
+if (window.Kurultay && Kurultay.applyChampionFlourish) Kurultay.applyChampionFlourish();
 document.addEventListener('langchange', () => {
   applyStaticLang(Lang.get());
   checkResume();
   renderVitrinPoll();
+  if (window.Kurultay && Kurultay.applyChampionFlourish) Kurultay.applyChampionFlourish();
 });
 </script>
 </body>

@@ -230,8 +230,9 @@ var FALLBACK_THREADS = [
     is_pinned: false,
     is_locked: false,
     is_canonized: true,
-    canonized_note: 'Bölüm 12 yayınlandığında Yazar tarafından kanon olarak tescillenmiştir.',
+    canonized_note: 'Bölüm 12 yayınlandığında Yazar tarafından resmî kanon olarak tescillenmiştir.',
     canonized_note_en: 'Canonized by the Chronicler upon the release of Chapter 12.',
+    canonized_chapter: '12. Bölüm',
     canonized_by: 'craesx',
     view_count: 4620,
     reply_count: 104,
@@ -239,6 +240,27 @@ var FALLBACK_THREADS = [
     created_at: hoursAgo(14),
     profiles: { username: 'GozcuSolmaz', avatar: 'eye', favorite_house: 'demir-ada', title: 'Kadim Kâhin' },
     reactions: { steel: 89, blood: 24, seal: 142, balance: 38 }
+  },
+  {
+    id: 'f-teori-2',
+    category_id: 'teori',
+    title: 'Khaan ve Loth Büyülerinin Ayrışması: Ruhsal Tüketim ile İllüzyon Tuzağı',
+    title_en: 'The Dichotomy of Khaan and Loth: Spiritual Attrition vs. Deceptive Illusion',
+    body: '> Alıntı: "Büyü bedenden çalınan candır; bedelini ödemeyen hiçbir fani o ateşle yaşayamaz."\n\nBölüm 5\'te Karabıçaklar arşivindeki kayıtlar Khaan sihrinin uygulayıcının ruhunu kemirdiğini, Loth\'un ise doğrudan algıyı yanıltan bir zihin tuzağı olduğunu belgeliyor.\n\n||Bu kadim yasak Craes tarafından değil, bizzat On İki Tanrı’nın ilk kırılma öncesi mutabakatıyla mühürlenmişti.||',
+    body_en: '> Quote: "Magic is life stolen from flesh; no mortal who denies the toll survives the flame."\n\nChapter 5 reveals ancient scrolls in the Karabıçak vaults confirming Khaan consumes the soul while Loth ensnares perception.\n\n||This prohibition was sealed not by Craes, but by the Council of the Even before the cataclysm.||',
+    is_pinned: false,
+    is_locked: false,
+    is_canonized: true,
+    canonized_note: 'Bölüm 5 yayınlandığında Karabıçak arşivleri doğrultusunda yazar tarafından doğrulanmıştır.',
+    canonized_note_en: 'Officially verified as canon by the author upon Chapter 5 release.',
+    canonized_chapter: '5. Bölüm',
+    canonized_by: 'craesx',
+    view_count: 3840,
+    reply_count: 86,
+    last_activity_at: minsAgo(45),
+    created_at: hoursAgo(20),
+    profiles: { username: 'KahinAlper', avatar: 'eye', favorite_house: 'stallhart', title: 'Kadim Kâhin' },
+    reactions: { steel: 72, blood: 18, seal: 120, balance: 64 }
   },
   {
     id: 'f-hane-1',
@@ -522,20 +544,238 @@ function getFactionStandings() {
   });
 }
 
-function addFactionPoints(houseId, delta) {
+function addFactionPoints(houseId, delta, opts) {
+  opts = opts || {};
   try {
     var stored = {};
     var raw = localStorage.getItem(FACTION_KEY);
     if (raw) stored = JSON.parse(raw);
     stored[houseId] = (stored[houseId] || 0) + (delta || 10);
     localStorage.setItem(FACTION_KEY, JSON.stringify(stored));
+
+    var u = Allegiance.get();
+    var curContrib = (u.house_points_contributed || 0) + (delta || 10);
+    Allegiance.set({ house_points_contributed: curContrib });
+
+    if (opts.notify || opts.toast) {
+      var l = (window.Wiki && Wiki.Lang && Wiki.Lang.get()) || 'tr';
+      var meta = FACTION_META[houseId] || { name: houseId };
+      var msg = l === 'tr'
+        ? '👑 ' + meta.name + ' Hanesine +' + (delta || 10) + ' Şan Puanı kazandırdın!'
+        : '👑 +' + (delta || 10) + ' Renown awarded to House ' + meta.name + '!';
+      if (window.Community && Community.util && Community.util.toast) {
+        Community.util.toast(msg);
+      } else if (window.Wiki && Wiki.Toast && Wiki.Toast.show) {
+        Wiki.Toast.show(msg);
+      }
+    }
   } catch (e) {}
+}
+
+function applyChampionFlourish() {
+  try {
+    var standings = getFactionStandings();
+    if (!standings || !standings.length) return;
+    var leader = standings[0];
+    var l = (window.Wiki && Wiki.Lang && Wiki.Lang.get()) || 'tr';
+    var u = Allegiance.get();
+    var isChampion = u.favorite_house === leader.id;
+
+    if (isChampion) {
+      document.body.classList.add('sw-reigning-champion');
+      document.querySelectorAll('.fuc-avatar, .ft-av-wrap').forEach(function (el) {
+        el.classList.add('sw-champion-halo');
+      });
+    }
+
+    var targets = document.querySelectorAll('.sw-throne-flourish-slot, #sw-throne-flourish-slot');
+    targets.forEach(function (slot) {
+      slot.innerHTML =
+        '<button type="button" class="sw-throne-flourish" id="btn-throne-flourish" title="' + (l === 'tr' ? 'Sezonun Taht Hâkimi Hanedanı' : 'Reigning Faction of the Throne') + '">' +
+          '<span>👑</span>' +
+          '<span class="sw-tf-name" style="color:' + esc(leader.color1) + '">' + esc(leader.name) + '</span>' +
+          '<span class="sw-tf-tag">' + (l === 'tr' ? 'Taht Hâkimi' : 'Reigning') + '</span>' +
+        '</button>';
+      var btn = slot.querySelector('#btn-throne-flourish');
+      if (btn) {
+        btn.onclick = function () { openSeasonModal(l); };
+      }
+    });
+  } catch (e) {}
+}
+
+function openSeasonModal(l) {
+  l = l || (window.Wiki && Wiki.Lang && Wiki.Lang.get()) || 'tr';
+  var standings = getFactionStandings();
+  var leader = standings[0];
+  var u = Allegiance.get();
+  var isChampion = u.favorite_house === leader.id;
+  var myHouseMeta = FACTION_META[u.favorite_house] || FACTION_META.stallhart;
+
+  var standingsHTML = standings.map(function (h) {
+    return '<div class="sw-fl-row' + (h.isLeader ? ' leader-row' : '') + '">' +
+      '<span class="sw-fl-rank">' + (h.isLeader ? '👑' : '#' + h.rank) + '</span>' +
+      '<div class="sw-fl-bar-wrap">' +
+        '<div class="sw-fl-header">' +
+          '<b class="sw-fl-name" style="color:' + esc(h.color1) + '">' + esc(h.name) + '</b>' +
+          '<span class="sw-fl-pts">' + h.points.toLocaleString('tr-TR') + ' ' + (l === 'tr' ? 'Şan' : 'Renown') + '</span>' +
+        '</div>' +
+        '<div class="sw-fl-progress-track">' +
+          '<div class="sw-fl-progress-fill" style="width:' + h.pct + '%; background: linear-gradient(90deg, ' + esc(h.color2) + ', ' + esc(h.color1) + ');"></div>' +
+        '</div>' +
+      '</div>' +
+    '</div>';
+  }).join('');
+
+  var modalHTML =
+    '<div class="sw-season-modal">' +
+      '<div class="sw-fl-leader-card" style="border-color:' + esc(leader.color1) + '; margin-bottom:1.25rem;">' +
+        '<div class="sw-fl-leader-badge" style="background:linear-gradient(135deg, ' + esc(leader.color2) + ', ' + esc(leader.color1) + ')">' +
+          '<span>' + esc(leader.name.charAt(0)) + '</span>' +
+        '</div>' +
+        '<div class="sw-fl-leader-meta">' +
+          '<div class="sw-fl-leader-sub">👑 ' + (l === 'tr' ? 'Güz Sezonu Taht Lideri' : 'Autumn Season Throne Champion') + '</div>' +
+          '<h3 class="sw-fl-leader-name" style="font-size:1.25rem;margin:0;">' + esc(leader.name) + ' Hanedanı</h3>' +
+          '<p class="sw-fl-leader-motto">“' + esc(leader.motto) + '”</p>' +
+        '</div>' +
+      '</div>' +
+      '<div class="sw-season-info-box" style="background:rgba(184,115,51,.1);border:1px solid var(--border);padding:.85rem 1rem;border-radius:2px;margin-bottom:1.2rem;font-size:.82rem;line-height:1.5;">' +
+        '<p style="margin:0 0 .4rem 0;"><b>⚔ ' + (l === 'tr' ? 'Sezon Kuralları & Puan Kazanma:' : 'Season Rules & Earning Renown:') + '</b></p>' +
+        '<ul style="margin:0;padding-left:1.2rem;display:flex;flex-direction:column;gap:.25rem;">' +
+          '<li>📖 ' + (l === 'tr' ? 'Bölüm Okuma: +50 Hane Şanı (Bölüm Tamamlandığında) & +15 Şan (İlerleme)' : 'Chapter Reading: +50 House Renown (Completion) & +15 (Progress)') + '</li>' +
+          '<li>🔮 ' + (l === 'tr' ? 'Teori & Kehanet Paylaşımı: +25 Hane Şanı' : 'Sharing Theories: +25 House Renown') + '</li>' +
+          '<li>🗳️ ' + (l === 'tr' ? 'Meclis Oylamasına Katılım: +20 Hane Şanı' : 'Voting in Polls: +20 House Renown') + '</li>' +
+          '<li>👑 ' + (l === 'tr' ? 'Kabul Edilen Kehanet (Yazar Mührü): +100 Hane Şanı & Kâhin Unvanı' : 'Canonized Prophecy: +100 Renown & Prophet Title') + '</li>' +
+        '</ul>' +
+        '<p style="margin:.6rem 0 0 0;font-size:.76rem;color:var(--goldb);">' +
+          (l === 'tr' ? '🏆 Ay sonunda Tahtı elinde tutan Hanedan, tüm sitede özel sancak süslemeleri ve şampiyon halesi kazanır.' : '🏆 The reigning house at month-end holds the throne flourish and champion halo across the entire realm.') +
+        '</p>' +
+      '</div>' +
+      '<div class="sw-user-contrib-stat" style="display:flex;justify-content:space-between;align-items:center;background:var(--deep);border:1px solid var(--border);padding:.6rem 1rem;border-radius:2px;margin-bottom:1rem;font-size:.84rem;">' +
+        '<span>🛡️ ' + (l === 'tr' ? 'Bağlı Olduğunuz Hane: ' : 'Your Sworn House: ') + '<b>' + esc(myHouseMeta.name) + '</b></span>' +
+        '<span style="color:var(--gold);font-weight:700;">+' + (u.house_points_contributed || 0) + ' ' + (l === 'tr' ? 'Katkı Şanı' : 'Renown Contributed') + '</span>' +
+      '</div>' +
+      '<h4 class="fr-side-h" style="margin:.5rem 0 .75rem 0;">' + (l === 'tr' ? 'Taht Mücadelesi Puan Durumu' : 'Throne Contest Standings') + '</h4>' +
+      '<div class="sw-fl-list">' + standingsHTML + '</div>' +
+      '<div class="sw-actions" style="margin-top:1.4rem;display:flex;justify-content:space-between;">' +
+        '<button type="button" class="sw-btn" id="btn-season-pledge">' + (l === 'tr' ? 'Sancak Değiştir' : 'Change Allegiance') + '</button>' +
+        '<button type="button" class="sw-btn primary" data-close>' + (l === 'tr' ? 'Kapat' : 'Close') + '</button>' +
+      '</div>' +
+    '</div>';
+
+  var modalRec = null;
+  if (C && C.util && C.util.Modal && C.util.Modal.open) {
+    modalRec = C.util.Modal.open({
+      title: l === 'tr' ? 'Taht Mücadelesi Sezonu' : 'Throne Contest Season',
+      cls: 'sw-season-dialog',
+      html: modalHTML
+    });
+  } else {
+    var ac = typeof AbortController !== 'undefined' ? new AbortController() : null;
+    var sig = ac ? { signal: ac.signal } : false;
+    var back = document.createElement('div');
+    back.className = 'sw-modal-back';
+    back.innerHTML = '<div class="sw-modal sw-season-dialog" style="max-width:620px"><button type="button" class="sw-x" data-close>✕</button><div class="sw-modal-body">' + modalHTML + '</div></div>';
+    document.body.appendChild(back);
+    modalRec = {
+      close: function () {
+        if (ac) try { ac.abort(); } catch (e) {}
+        back.remove();
+      }
+    };
+    back.addEventListener('click', function (e) {
+      if (e.target === back || e.target.closest('[data-close]')) modalRec.close();
+    }, sig);
+  }
+
+  setTimeout(function () {
+    var pledgeBtn = document.getElementById('btn-season-pledge');
+    if (pledgeBtn) {
+      pledgeBtn.onclick = function () {
+        modalRec.close();
+        openPledgeModal(function () {
+          applyChampionFlourish();
+        });
+      };
+    }
+  }, 50);
+}
+
+function openCanonizeModal(threadId, l) {
+  l = l || (window.Wiki && Wiki.Lang && Wiki.Lang.get()) || 'tr';
+  var t = FALLBACK_THREADS.filter(function (x) { return x.id === threadId; })[0] ||
+          getLocalThreads().filter(function (x) { return x.id === threadId; })[0];
+  if (!t) return;
+
+  var modalHTML =
+    '<div class="sw-canonize-dialog-body">' +
+      '<div style="display:flex;align-items:center;gap:.75rem;margin-bottom:1rem;">' +
+        '<span style="font-size:2rem;">🔮</span>' +
+        '<div>' +
+          '<h3 style="margin:0;font-size:1.15rem;font-family:var(--font-display);color:var(--parchl);">' + (l === 'tr' ? 'Kehaneti Yazar Mührüyle Taçlandır' : 'Crown Prophecy with Author Seal') + '</h3>' +
+          '<p style="margin:.2rem 0 0;font-size:.78rem;color:var(--parchd);">' + (l === 'tr' ? 'Bu teoriyi resmî hikâye kanonuna kabul edin. Okurun hanesine +100 Şan ve "Kâhin" unvanı verilir.' : 'Canonize this reader theory as official story lore. Awards +100 Renown and Prophet title.') + '</p>' +
+        '</div>' +
+      '</div>' +
+      '<div style="display:flex;flex-direction:column;gap:.75rem;">' +
+        '<label style="font-size:.8rem;color:var(--goldb);font-weight:600;">' + (l === 'tr' ? 'Doğrulandığı Bölüm:' : 'Verified Chapter:') + '</label>' +
+        '<input type="text" class="sw-in" id="sw-canon-chap" value="' + (t.canonized_chapter || '12. Bölüm') + '" style="width:100%;">' +
+        '<label style="font-size:.8rem;color:var(--goldb);font-weight:600;">' + (l === 'tr' ? 'Yazar / Kanon Notu:' : 'Author / Canon Note:') + '</label>' +
+        '<textarea class="sw-in" id="sw-canon-note" rows="3" style="width:100%;">' + (t.canonized_note || (l === 'tr' ? 'Bu teori, son bölümlerde yazar tarafından doğrulanmış bir kehanettir.' : 'This theory was officially verified as canon lore.')) + '</textarea>' +
+      '</div>' +
+      '<div class="sw-actions" style="margin-top:1.25rem;display:flex;justify-content:flex-end;gap:.5rem;">' +
+        '<button type="button" class="sw-btn" data-close>' + (l === 'tr' ? 'Vazgeç' : 'Cancel') + '</button>' +
+        '<button type="button" class="sw-btn primary" id="sw-btn-confirm-canonize">👑 ' + (l === 'tr' ? 'Kabul Edilen Kehanet İlan Et' : 'Crown as Canon Prophecy') + '</button>' +
+      '</div>' +
+    '</div>';
+
+  var modalRec = null;
+  if (C && C.util && C.util.Modal && C.util.Modal.open) {
+    modalRec = C.util.Modal.open({
+      title: l === 'tr' ? 'Kabul Edilen Kehanet' : 'Canonize Prophecy',
+      cls: 'sw-canon-modal-dialog',
+      html: modalHTML
+    });
+  } else {
+    var acCanon = typeof AbortController !== 'undefined' ? new AbortController() : null;
+    var sigCanon = acCanon ? { signal: acCanon.signal } : false;
+    var back = document.createElement('div');
+    back.className = 'sw-modal-back';
+    back.innerHTML = '<div class="sw-modal sw-canon-modal-dialog" style="max-width:540px"><button type="button" class="sw-x" data-close>✕</button><div class="sw-modal-body">' + modalHTML + '</div></div>';
+    document.body.appendChild(back);
+    modalRec = {
+      close: function () {
+        if (acCanon) try { acCanon.abort(); } catch (e) {}
+        back.remove();
+      }
+    };
+    back.addEventListener('click', function (e) {
+      if (e.target === back || e.target.closest('[data-close]')) modalRec.close();
+    }, sigCanon);
+  }
+
+  setTimeout(function () {
+    var confirmBtn = document.getElementById('sw-btn-confirm-canonize');
+    if (confirmBtn) {
+      confirmBtn.onclick = function () {
+        var ch = document.getElementById('sw-canon-chap').value;
+        var note = document.getElementById('sw-canon-note').value;
+        canonizeThread(threadId, true, note, ch);
+        modalRec.close();
+        if (window.Wiki && Wiki.Toast && Wiki.Toast.show) {
+          Wiki.Toast.show(l === 'tr' ? '🔮 Kehanet kabul edildi ve Kehanet Kütüğüne işlendi! (+100 Şan)' : '🔮 Prophecy canonized and entered into the Ledger! (+100 Renown)');
+        }
+        location.reload();
+      };
+    }
+  }, 50);
 }
 
 function renderFactionLeaderboardWidget(container, l) {
   if (!container) return;
   var standings = getFactionStandings();
   var leader = standings[0];
+  var u = Allegiance.get();
+  var isChampion = u.favorite_house === leader.id;
 
   var rowsHTML = standings.map(function (h) {
     return '<div class="sw-fl-row' + (h.isLeader ? ' leader-row' : '') + '">' +
@@ -552,25 +792,36 @@ function renderFactionLeaderboardWidget(container, l) {
     '</div>';
   }).join('');
 
+  var championBadge = isChampion
+    ? '<div class="sw-fl-champion-pill">👑 ' + (l === 'tr' ? 'Sancağınız Tahtın Zirvesinde! (+250 Hane Bonusu)' : 'Your Sworn House Leads the Realm! (+250 Bonus)') + '</div>'
+    : '';
+
   container.innerHTML =
     '<div class="fr-side-box sw-faction-box">' +
       '<div class="sw-fl-trophy-top">' +
-        '<span class="sw-fl-crown">👑 ' + (l === 'tr' ? 'Haftanın Baskın Sancağı' : 'Dominant House Banner') + '</span>' +
+        '<span class="sw-fl-crown">🏆 ' + (l === 'tr' ? 'Güz Kurultayı Sezonu (Kalan: 4 Gün)' : 'Autumn Kurultay Season (4 Days Left)') + '</span>' +
       '</div>' +
       '<div class="sw-fl-leader-card" style="border-color:' + esc(leader.color1) + '">' +
         '<div class="sw-fl-leader-badge" style="background:linear-gradient(135deg, ' + esc(leader.color2) + ', ' + esc(leader.color1) + ')">' +
           '<span>' + esc(leader.name.charAt(0)) + '</span>' +
         '</div>' +
         '<div class="sw-fl-leader-meta">' +
+          '<div class="sw-fl-leader-sub">👑 ' + (l === 'tr' ? 'Tahtın Zirvesindeki Hanedan' : 'Reigning Throne Champion') + '</div>' +
           '<h4 class="sw-fl-leader-name">' + esc(leader.name) + ' Hanedanı</h4>' +
           '<p class="sw-fl-leader-motto">“' + esc(leader.motto) + '”</p>' +
         '</div>' +
       '</div>' +
+      championBadge +
       '<p class="fr-side-h" style="margin-top:1.1rem;font-size:.82rem;">' + (l === 'tr' ? 'Taht Mücadelesi Puan Tablosu' : 'Throne Contest Standings') + '</p>' +
       '<div class="sw-fl-list">' + rowsHTML + '</div>' +
-      '<button type="button" class="sw-fl-pledge-btn" id="sw-fl-open-pledge">' +
-        '⚔ ' + (l === 'tr' ? 'Sancağına Güç Ver (Tarafını Seç)' : 'Empower Your House (Pledge)') +
-      '</button>' +
+      '<div class="sw-fl-actions-group" style="display:flex;flex-direction:column;gap:.5rem;margin-top:1.15rem;">' +
+        '<button type="button" class="sw-fl-pledge-btn" id="sw-fl-open-pledge">' +
+          '⚔ ' + (l === 'tr' ? 'Sancağına Güç Ver (Tarafını Seç)' : 'Empower Your House (Pledge)') +
+        '</button>' +
+        '<button type="button" class="sw-fl-ledger-btn" id="sw-fl-open-ledger">' +
+          '🔮 ' + (l === 'tr' ? 'Kadim Kehanet Kütüğü (Kabul Edilenler)' : 'The Prophecy Ledger (Canonized)') +
+        '</button>' +
+      '</div>' +
     '</div>';
 
   var btn = container.querySelector('#sw-fl-open-pledge');
@@ -581,6 +832,13 @@ function renderFactionLeaderboardWidget(container, l) {
         var uSlot = document.getElementById('fr-user-card-slot');
         if (uSlot) renderUserCard(uSlot, l);
       });
+    });
+  }
+
+  var ledgerBtn = container.querySelector('#sw-fl-open-ledger');
+  if (ledgerBtn) {
+    ledgerBtn.addEventListener('click', function () {
+      openProphecyLedgerModal(l);
     });
   }
 }
@@ -746,32 +1004,124 @@ function renderPollCard(thread, l) {
   '</div>';
 }
 
-/* ── KEHANET & TEORİ DOĞRULAMA (Canonized Theories) ───────────── */
-function canonizeThread(threadId, isCanon, note) {
-  var t = FALLBACK_THREADS.filter(function (x) { return x.id === threadId; })[0];
+/* ── KEHANET & TEORİ DOĞRULAMA (Canonized Theories & Prophecy Ledger) ── */
+function canonizeThread(threadId, isCanon, note, chapter) {
+  var t = FALLBACK_THREADS.filter(function (x) { return x.id === threadId; })[0] ||
+          getLocalThreads().filter(function (x) { return x.id === threadId; })[0];
   if (!t) return;
   t.is_canonized = isCanon;
-  t.canonized_note = note || 'Yazar tarafından resmi kanon kehanet olarak ilan edilmiştir.';
+  t.canonized_note = note || 'Yazar tarafından resmî kanon kehanet olarak ilan edilmiştir.';
+  if (chapter) t.canonized_chapter = chapter;
   if (isCanon && t.profiles) {
     t.profiles.title = 'Kâhin';
     t.profiles.is_prophet = true;
+    addFactionPoints(t.profiles.favorite_house || 'stallhart', 100);
+    Notifications.add({
+      icon: '🔮',
+      text_tr: 'Kehanetin doğrulandı! "' + (t.title || '') + '" teorin resmî kanon kehanet ilan edildi (+100 Şan).',
+      text_en: 'Prophecy verified! Your theory "' + (t.title_en || t.title || '') + '" was officially canonized (+100 Renown).',
+      link: 'forum-konu.html?id=' + threadId
+    });
   }
   try {
     localStorage.setItem('sw-canon-' + threadId, isCanon ? '1' : '0');
   } catch (e) {}
 }
 
+function getCanonizedProphecies() {
+  var all = FALLBACK_THREADS.concat(getLocalThreads());
+  var seen = {}, list = [];
+  all.forEach(function (t) {
+    if (t.is_canonized && !seen[t.id]) {
+      seen[t.id] = true;
+      list.push(t);
+    }
+  });
+  return list;
+}
+
 function renderCanonBanner(thread, l) {
   if (!thread.is_canonized) return '';
   var note = l === 'tr' ? (thread.canonized_note || 'Bu teori, son bölümlerde yazar tarafından doğrulanmış bir kehanettir.') : (thread.canonized_note_en || 'This theory was officially verified as canon lore by the author.');
+  var ch = thread.canonized_chapter ? (l === 'tr' ? ' · Doğrulandığı Bölüm: ' + thread.canonized_chapter : ' · Verified in: ' + thread.canonized_chapter) : '';
   return '<div class="sw-canon-banner">' +
     '<div class="sw-canon-seal">🔮</div>' +
     '<div class="sw-canon-info">' +
-      '<h4>' + (l === 'tr' ? 'Doğrulanan Kehanet (Resmî Kanon)' : 'Canonized Prophecy (Official Lore)') + '</h4>' +
+      '<h4>' + (l === 'tr' ? 'Kabul Edilen Kehanet (Resmî Kanon)' : 'Canonized Prophecy (Official Lore)') + '<small>' + esc(ch) + '</small></h4>' +
       '<p>' + esc(note) + '</p>' +
     '</div>' +
-    '<span class="sw-canon-tag">👑 ' + (l === 'tr' ? 'Kâhin Mührü' : 'Prophet Seal') + '</span>' +
+    '<span class="sw-canon-tag">👑 ' + (l === 'tr' ? 'Kâhin Mührü (+100 Şan)' : 'Prophet Seal (+100 Renown)') + '</span>' +
   '</div>';
+}
+
+function openProphecyLedgerModal(l) {
+  l = l || (window.Wiki && Wiki.Lang && Wiki.Lang.get()) || 'tr';
+  var list = getCanonizedProphecies();
+
+  var cardsHTML = list.map(function (t) {
+    var house = (t.profiles && t.profiles.favorite_house) || 'stallhart';
+    var author = (t.profiles && t.profiles.username) || 'Kâhin';
+    var title = l === 'tr' ? t.title : (t.title_en || t.title);
+    var note = l === 'tr' ? (t.canonized_note || 'Son bölümlerde yazar tarafından doğrulanmış resmi kanondur.') : (t.canonized_note_en || 'Officially verified as canon lore by the author.');
+    var ch = t.canonized_chapter || '12. Bölüm';
+    return '<div class="sw-ledger-card">' +
+      '<div class="sw-ledger-top">' +
+        '<div class="sw-ledger-badge">🔮 ' + (l === 'tr' ? 'Kabul Edilen Kehanet' : 'Canonized Prophecy') + '</div>' +
+        '<div class="sw-ledger-chapter">📖 ' + esc(ch) + '</div>' +
+      '</div>' +
+      '<h3 class="sw-ledger-title">' + esc(title) + '</h3>' +
+      '<div class="sw-ledger-note">“' + esc(note) + '”</div>' +
+      '<div class="sw-ledger-footer">' +
+        '<div class="sw-ledger-author">' +
+          '<span>👑 <b>' + esc(author) + '</b> (' + (t.profiles && t.profiles.title ? esc(t.profiles.title) : 'Kâhin') + ')</span>' +
+          '<span class="sw-ledger-reward">+100 ' + (l === 'tr' ? 'Şan Kazandırdı' : 'Renown Awarded') + '</span>' +
+        '</div>' +
+        '<a href="forum-konu.html?id=' + encodeURIComponent(t.id) + '" class="sw-ledger-link">' +
+          (l === 'tr' ? 'Kehanet Müzakeresini Aç →' : 'View Prophecy Debate →') +
+        '</a>' +
+      '</div>' +
+    '</div>';
+  }).join('');
+
+  var modalHTML =
+    '<div class="sw-ledger-modal">' +
+      '<div class="sw-ledger-modal-head">' +
+        '<span class="sw-ledger-icon">🔮</span>' +
+        '<div>' +
+          '<h2 class="sw-h" style="margin:0;font-size:1.35rem;color:var(--parchl);font-family:var(--font-display);">' + (l === 'tr' ? 'Kadim Kehanet Kütüğü' : 'The Prophecy Ledger') + '</h2>' +
+          '<p class="sw-sub" style="margin:.3rem 0 0;font-size:.82rem;color:var(--parchd);font-style:italic;">' + (l === 'tr' ? 'Okurlarımızın Meclis Odalarında öne sürdüğü, yayınlanan bölümlerde yazar tarafından doğrulanarak resmî evren kanonuna geçen kehanetler.' : 'Reader theories proposed in Kurultay that were officially verified by the author as canon lore.') + '</p>' +
+        '</div>' +
+      '</div>' +
+      '<div class="sw-ledger-grid">' + cardsHTML + '</div>' +
+      '<div class="sw-actions" style="margin-top:1.4rem;display:flex;justify-content:flex-end;">' +
+        '<button type="button" class="sw-btn primary" data-close>' + (l === 'tr' ? 'Kütüğü Kapat' : 'Close Ledger') + '</button>' +
+      '</div>' +
+    '</div>';
+
+  var modalRec = null;
+  if (C && C.util && C.util.Modal && C.util.Modal.open) {
+    modalRec = C.util.Modal.open({
+      title: l === 'tr' ? 'Kehanet Kütüğü' : 'Prophecy Ledger',
+      cls: 'sw-ledger-dialog',
+      html: modalHTML
+    });
+  } else {
+    var acLedger = typeof AbortController !== 'undefined' ? new AbortController() : null;
+    var sigLedger = acLedger ? { signal: acLedger.signal } : false;
+    var back = document.createElement('div');
+    back.className = 'sw-modal-back';
+    back.innerHTML = '<div class="sw-modal sw-ledger-dialog" style="max-width:760px"><button type="button" class="sw-x" data-close>✕</button><div class="sw-modal-body">' + modalHTML + '</div></div>';
+    document.body.appendChild(back);
+    modalRec = {
+      close: function () {
+        if (acLedger) try { acLedger.abort(); } catch (e) {}
+        back.remove();
+      }
+    };
+    back.addEventListener('click', function (e) {
+      if (e.target === back || e.target.closest('[data-close]')) modalRec.close();
+    }, sigLedger);
+  }
 }
 
 function renderAuthorDecree(thread, l) {
@@ -1446,16 +1796,21 @@ async function openPledgeModal(onPledged) {
     });
   } else {
     /* Fallback modal */
+    var acPledge = typeof AbortController !== 'undefined' ? new AbortController() : null;
+    var sigPledge = acPledge ? { signal: acPledge.signal } : false;
     var back = document.createElement('div');
     back.className = 'sw-modal-back';
     back.innerHTML = '<div class="sw-modal sw-pledge-dialog"><button type="button" class="sw-x" data-close>✕</button><div class="sw-modal-body">' + modalHTML + '</div></div>';
     document.body.appendChild(back);
     modalRec = {
-      close: function () { back.remove(); }
+      close: function () {
+        if (acPledge) try { acPledge.abort(); } catch (e) {}
+        back.remove();
+      }
     };
     back.addEventListener('click', function (e) {
       if (e.target === back || e.target.closest('[data-close]')) modalRec.close();
-    });
+    }, sigPledge);
   }
 
   var containerNode = document.querySelector('.sw-pledge-dialog .sw-pledge-grid');
@@ -1515,7 +1870,12 @@ window.Kurultay = {
   threadRowHTML: threadRowHTML,
   categoryCardHTML: categoryCardHTML,
   renderUserCard: renderUserCard,
-  openPledgeModal: openPledgeModal
+  openPledgeModal: openPledgeModal,
+  openProphecyLedgerModal: openProphecyLedgerModal,
+  applyChampionFlourish: applyChampionFlourish,
+  openSeasonModal: openSeasonModal,
+  openCanonizeModal: openCanonizeModal,
+  FACTION_META: FACTION_META
 };
 
 })();

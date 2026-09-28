@@ -169,6 +169,18 @@ function bindInteractiveWidgets() {
   }
 }
 
+function toggleCanon() {
+  const l = Lang.get();
+  if (thread.is_canonized) {
+    K.canonizeThread(thread.id, false);
+    thread.is_canonized = false;
+    if (C.util && C.util.toast) C.util.toast(l === 'tr' ? 'Kehanet mührü kaldırıldı.' : 'Prophecy seal revoked.');
+    render(l);
+  } else {
+    K.openCanonizeModal(thread.id, l);
+  }
+}
+
 async function toggleFlag(field) {
   const l = Lang.get();
   try {
@@ -213,6 +225,7 @@ function render(l) {
     : 'This thread is locked — no new replies, past replies stay readable.';
 
   C.mountComments('kurultay-mount', { type: 'forum_thread', id: thread.id, title: thread.title });
+  if (K.applyChampionFlourish) K.applyChampionFlourish();
 
   document.title = (l === 'tr' ? thread.title : (thread.title_en || thread.title)) + ' · Kurultay · Stallhart Wiki';
 }
