@@ -286,7 +286,8 @@ function renderChapters() {
 function renderChapter(ch, l, t) {
   const isRead = ReadTracker.has('ch-' + ch.id);
   const ok = readable(ch);
-  const href = SWRoute.href('bolum', ch.id);
+  const bm = (window.Wiki && Wiki.Bookmarks && Wiki.Bookmarks.getByChapter) ? Wiki.Bookmarks.getByChapter(ch.id)[0] : null;
+  const href = SWRoute.href('bolum', ch.id) + (bm && typeof bm.pIdx === 'number' ? `#p-${bm.pIdx}` : '');
   const syn = clean(t(ch.synopsis)), pov = clean(t(ch.pov));
 
   return `
@@ -298,6 +299,7 @@ function renderChapter(ch, l, t) {
       <div>
         <div class="ci-n">
           ${ok ? `<a class="ci-link" href="${href}">${esc(ch.num)}. ${esc(t(ch.title))}</a>` : `${esc(ch.num)}. ${esc(t(ch.title))}`}
+          ${bm ? `<span class="ci-bm-badge" style="display:inline-flex;align-items:center;gap:3px;font-size:.68rem;padding:1px 6px;border-radius:3px;background:rgba(196,150,42,.18);border:1px solid rgba(196,150,42,.45);color:var(--gold);margin-left:.4rem;font-weight:600;">🔖 ${l === 'tr' ? 'Ayraç' : 'Bookmark'}${typeof bm.pIdx === 'number' ? ` (P.${bm.pIdx + 1})` : ''}</span>` : ''}
           ${ok ? `<span class="ci-min">≈ ${mins(ch)} ${l === 'tr' ? 'dk' : 'min'}</span>` : `<span class="locked-badge">${l === 'tr' ? '(yakında)' : '(coming soon)'}</span>`}
         </div>
         ${ok ? `
@@ -329,23 +331,43 @@ function renderResume() {
   try { pos = JSON.parse(localStorage.getItem('sw-reader-pos') || '{}') || {}; } catch (e) {}
   const list = chapData.chapters.filter(readable).sort((a, b) => a.id - b.id);
   if (!list.length) { slot.innerHTML = ''; return; }
+  
+  const latestBm = (window.Wiki && Wiki.Bookmarks && Wiki.Bookmarks.getRecent) ? Wiki.Bookmarks.getRecent() : null;
   const last = list.find(c => c.id === pos.last);
-  let target = null, kicker = '', note = '';
-  if (last && pos[last.id] > 0.03 && pos[last.id] < 0.96) {
-    target = last; kicker = l === 'tr' ? 'Kaldığın yerden devam et' : 'Continue reading';
-    note = '%' + Math.round(pos[last.id] * 100);
-  } else {
-    target = list.find(c => !ReadTracker.has('ch-' + c.id)) || null;
-    if (target) kicker = (ReadTracker.has('ch-' + list[0].id) || Object.keys(pos).length)
-      ? (l === 'tr' ? 'Sıradaki bölüm' : 'Next chapter') : (l === 'tr' ? 'Okumaya başla' : 'Start reading');
+  let target = null, kicker = '', note = '', targetHref = '';
+
+  if (latestBm) {
+    const chTarget = list.find(c => String(c.id) === String(latestBm.chapterId));
+    if (chTarget) {
+      target = chTarget;
+      kicker = l === 'tr' ? '🔖 Kayıtlı Ayraç' : '🔖 Saved Bookmark';
+      const pStr = (typeof latestBm.pIdx === 'number') ? (l === 'tr' ? `Paragraf ${latestBm.pIdx + 1}` : `Paragraph ${latestBm.pIdx + 1}`) : '';
+      const pctStr = latestBm.pct ? `%${Math.round(latestBm.pct * 100)}` : '';
+      note = [pStr, pctStr].filter(Boolean).join(' · ');
+      targetHref = SWRoute.href('bolum', target.id) + (typeof latestBm.pIdx === 'number' ? `#p-${latestBm.pIdx}` : '');
+    }
   }
+
+  if (!target) {
+    if (last && pos[last.id] > 0.03 && pos[last.id] < 0.96) {
+      target = last; kicker = l === 'tr' ? 'Kaldığın yerden devam et' : 'Continue reading';
+      note = '%' + Math.round(pos[last.id] * 100);
+      targetHref = SWRoute.href('bolum', target.id);
+    } else {
+      target = list.find(c => !ReadTracker.has('ch-' + c.id)) || null;
+      if (target) kicker = (ReadTracker.has('ch-' + list[0].id) || Object.keys(pos).length)
+        ? (l === 'tr' ? 'Sıradaki bölüm' : 'Next chapter') : (l === 'tr' ? 'Okumaya başla' : 'Start reading');
+      if (target) targetHref = SWRoute.href('bolum', target.id);
+    }
+  }
+
   if (!target) { slot.innerHTML = ''; return; }
   slot.innerHTML = `
     <div class="resume-card">
       <div class="rc-t"><div class="rc-k">${esc(kicker)}</div>
         <div class="rc-n">${esc(target.num)}. ${esc(t(target.title))}</div>
         ${note ? `<div class="rc-p">${esc(note)}</div>` : ''}</div>
-      <a class="rc-btn" href="${SWRoute.href('bolum', target.id)}">${l === 'tr' ? 'Oku →' : 'Read →'}</a>
+      <a class="rc-btn" href="${targetHref}">${l === 'tr' ? 'Oku →' : 'Read →'}</a>
     </div>`;
 }
 

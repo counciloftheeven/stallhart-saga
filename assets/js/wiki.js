@@ -1213,14 +1213,88 @@ function esc(str) {
 
 const Bookmarks = {
   key: 'sw-bookmarks',
-  get() { try { return JSON.parse(localStorage.getItem(this.key) || '[]'); } catch (e) { return []; } },
-  has(id) { return this.get().indexOf(id) >= 0; },
-  toggle(id) {
+  get() {
+    try {
+      const raw = localStorage.getItem(this.key);
+      if (!raw) return [];
+      const parsed = JSON.parse(raw);
+      if (!Array.isArray(parsed)) return [];
+      return parsed.map(item => {
+        if (typeof item === 'string' || typeof item === 'number') {
+          return { id: String(item), chapterId: String(item), type: 'chapter', time: Date.now() };
+        }
+        return item;
+      }).sort((a, b) => (b.time || 0) - (a.time || 0));
+    } catch (e) { return []; }
+  },
+  has(id, pIdx) {
     const list = this.get();
-    const i = list.indexOf(id);
-    if (i >= 0) list.splice(i, 1); else list.push(id);
+    const strId = String(id);
+    if (typeof pIdx === 'number' && pIdx >= 0) {
+      return list.some(b => (String(b.id) === strId || String(b.chapterId) === strId) && b.pIdx === pIdx);
+    }
+    return list.some(b => (String(b.id) === strId || String(b.chapterId) === strId));
+  },
+  getByChapter(chapterId) {
+    const strId = String(chapterId);
+    return this.get().filter(b => String(b.chapterId) === strId || String(b.id) === strId);
+  },
+  getRecent() {
+    return this.get()[0] || null;
+  },
+  add(bookmark) {
+    if (!bookmark || (!bookmark.chapterId && !bookmark.id)) return null;
+    const chapId = String(bookmark.chapterId || bookmark.id);
+    const pIdx = (typeof bookmark.pIdx === 'number') ? bookmark.pIdx : undefined;
+    
+    // Remove duplicate entry for same chapter/paragraph if already exists
+    const list = this.get().filter(b => {
+      const bChapId = String(b.chapterId || b.id);
+      if (pIdx !== undefined && b.pIdx !== undefined) {
+        return !(bChapId === chapId && b.pIdx === pIdx);
+      }
+      return bChapId !== chapId;
+    });
+
+    const entry = Object.assign({
+      id: bookmark.id || ('bm-' + chapId + (pIdx !== undefined ? ('-p' + pIdx) : '')),
+      chapterId: chapId,
+      time: Date.now(),
+      type: 'chapter'
+    }, bookmark);
+
+    list.unshift(entry);
+    try { localStorage.setItem(this.key, JSON.stringify(list.slice(0, 50))); } catch (e) {}
+    document.dispatchEvent(new CustomEvent('bookmarkschange', { detail: list }));
+    return entry;
+  },
+  remove(id, pIdx) {
+    const strId = String(id);
+    let list = this.get();
+    if (typeof pIdx === 'number' && pIdx >= 0) {
+      list = list.filter(b => !((String(b.id) === strId || String(b.chapterId) === strId) && b.pIdx === pIdx));
+    } else {
+      list = list.filter(b => String(b.id) !== strId && String(b.chapterId) !== strId);
+    }
     try { localStorage.setItem(this.key, JSON.stringify(list)); } catch (e) {}
-    return i < 0;
+    document.dispatchEvent(new CustomEvent('bookmarkschange', { detail: list }));
+    return list;
+  },
+  toggle(chapterId, meta) {
+    meta = meta || {};
+    const pIdx = meta.pIdx !== undefined ? meta.pIdx : null;
+    const isSaved = this.has(chapterId, pIdx);
+    if (isSaved) {
+      this.remove(chapterId, pIdx);
+      return false;
+    } else {
+      this.add(Object.assign({ chapterId: chapterId }, meta));
+      return true;
+    }
+  },
+  clear() {
+    try { localStorage.removeItem(this.key); } catch (e) {}
+    document.dispatchEvent(new CustomEvent('bookmarkschange', { detail: [] }));
   }
 };
 

@@ -195,6 +195,10 @@ body.reader.rt-dark {
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
     <span class="rd-lbl" id="l-defter">Defterim</span>
   </button>
+  <button class="rd-btn" id="rd-bookmark-btn" type="button" title="Bu Bölümü & Kaldığın Yeri Ayraç Ekle" aria-label="Ayraç Ekle">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+    <span class="rd-lbl" id="l-bookmark">Ayraç</span>
+  </button>
   <div class="rd-bar-title" id="rd-bar-title"></div>
   <div class="sw-throne-flourish-slot" style="margin-left:auto;margin-right:.4rem;"></div>
   <button class="rd-btn" id="rd-sync-btn" type="button" title="Kaldığın Yeri Bulut & Cihazla Eşitle">
@@ -279,14 +283,30 @@ body.reader.rt-dark {
   <ul class="rd-toc-list" id="rd-toc-list"></ul>
 </section>
 
-<!-- Divan Defterim Çekmecesi -->
+<!-- Divan Defterim & Ayraçlar Çekmecesi -->
 <section class="rd-sheet rd-sheet-l" id="rd-defter" role="dialog" aria-modal="true" aria-labelledby="rd-defter-h" hidden>
-  <h2 id="rd-defter-h"><span id="l-defter-title">📖 Divan Defterim</span><button class="rd-x" type="button" data-close aria-label="Kapat">×</button></h2>
-  <p style="font-size:.8rem;color:var(--parchd);margin-bottom:.8rem;font-style:italic;" id="l-defter-sub">Metin üzerinde işaretlediğiniz aforizmalar, kanon kelamları ve notlarınız.</p>
-  <div id="rd-defter-content" class="rd-defter-list"></div>
-  <div style="margin-top:1.2rem;display:flex;justify-content:space-between;align-items:center;border-top:1px solid rgba(196,150,42,.2);padding-top:.8rem;">
-    <button type="button" id="rd-defter-export" class="rd-pill" style="font-size:.78rem;padding:.3rem .6rem;">📜 Dışa Aktar (JSON)</button>
-    <button type="button" id="rd-defter-clear" class="rd-reset" style="color:var(--bloodb);">Defteri Temizle</button>
+  <h2 id="rd-defter-h"><span id="l-defter-title">📖 Divan Defteri &amp; Ayraçlar</span><button class="rd-x" type="button" data-close aria-label="Kapat">×</button></h2>
+  <div class="rd-defter-tabs">
+    <button type="button" class="rd-defter-tab-btn active" id="tab-btn-bookmarks">🔖 <span id="l-tab-bm">Kayıtlı Ayraçlar</span> <span class="badge" id="bm-count" style="font-size:.74rem;background:rgba(196,150,42,.2);padding:1px 6px;border-radius:10px;color:var(--gold);">0</span></button>
+    <button type="button" class="rd-defter-tab-btn" id="tab-btn-quotes">✒️ <span id="l-tab-quotes">Alıntılar &amp; Notlar</span> <span class="badge" id="quotes-count" style="font-size:.74rem;background:rgba(196,150,42,.2);padding:1px 6px;border-radius:10px;color:var(--gold);">0</span></button>
+  </div>
+  <!-- Ayraçlar Sekmesi -->
+  <div id="rd-bookmarks-view">
+    <p style="font-size:.8rem;color:var(--parchd);margin-bottom:.8rem;font-style:italic;" id="l-bm-sub">Bölümlerde kaldığınız paragraflar ve işaretlediğiniz sahneler.</p>
+    <div id="rd-bookmarks-content" class="rd-defter-list"></div>
+    <div style="margin-top:1.2rem;display:flex;justify-content:space-between;align-items:center;border-top:1px solid rgba(196,150,42,.2);padding-top:.8rem;">
+      <button type="button" id="rd-bm-add-current" class="btn-g" style="padding:.35rem .8rem;font-size:.8rem;">🔖 Şu Anki Yere Ayraç Koy</button>
+      <button type="button" id="rd-bm-clear" class="rd-reset" style="color:var(--bloodb);font-size:.78rem;">Ayraçları Temizle</button>
+    </div>
+  </div>
+  <!-- Alıntılar Sekmesi -->
+  <div id="rd-quotes-view" style="display:none;">
+    <p style="font-size:.8rem;color:var(--parchd);margin-bottom:.8rem;font-style:italic;" id="l-defter-sub">Metin üzerinde işaretlediğiniz aforizmalar, kanon kelamları ve notlarınız.</p>
+    <div id="rd-defter-content" class="rd-defter-list"></div>
+    <div style="margin-top:1.2rem;display:flex;justify-content:space-between;align-items:center;border-top:1px solid rgba(196,150,42,.2);padding-top:.8rem;">
+      <button type="button" id="rd-defter-export" class="rd-pill" style="font-size:.78rem;padding:.3rem .6rem;">📜 Dışa Aktar (JSON)</button>
+      <button type="button" id="rd-defter-clear" class="rd-reset" style="color:var(--bloodb);">Defteri Temizle</button>
+    </div>
   </div>
 </section>
 
@@ -381,7 +401,7 @@ body.reader.rt-dark {
 <script>
 (function () {
 'use strict';
-const { Lang, loadData, initWiki, ReadTracker, esc, Book, Tooltip } = Wiki;
+const { Lang, loadData, initWiki, ReadTracker, Bookmarks, esc, Book, Tooltip } = Wiki;
 
 /* ── Metinler ─────────────────────────────────────────────── */
 const I18N = {
@@ -395,7 +415,8 @@ const I18N = {
         toList: 'Bölüm listesine dön', enNote: 'Bu bölümün İngilizce çevirisi henüz yok; Türkçe metin gösteriliyor.',
         resume: 'Kaldığın yerden devam et', go: 'Devam et', restart: 'Baştan', fail: 'Bölüm verisi yüklenemedi. Sayfayı yenileyin.',
         skipTo: 'Sonraki yayında olan bölüm', pending: 'henüz yayında değil',
-        defter: 'Defterim', sync: 'Eşitle', share: 'Paylaş', install: 'Yükle' },
+        defter: 'Defterim', sync: 'Eşitle', share: 'Paylaş', install: 'Yükle',
+        bookmark: 'Ayraç', bookmarked: 'Ayraçta', addBookmark: 'Ayraç Ekle', removeBookmark: 'Ayracı Kaldır' },
   en: { back: 'Chapters', toc: 'Contents', set: 'Reading settings', size: 'Text size', font: 'Typeface', lh: 'Line spacing',
         width: 'Column width', align: 'Alignment', theme: 'Theme', reset: 'Reset to defaults', skip: 'Skip to content',
         tight: 'Tight', normal: 'Normal', loose: 'Airy', narrow: 'Narrow', wide: 'Wide', left: 'Left', justify: 'Justified',
@@ -406,7 +427,8 @@ const I18N = {
         toList: 'Back to chapter list', enNote: 'The English translation of this chapter is not available yet; showing the Turkish text.',
         resume: 'Continue where you left off', go: 'Continue', restart: 'Start over', fail: 'Chapter data could not be loaded. Please refresh.',
         skipTo: 'Next published chapter', pending: 'not published yet',
-        defter: 'Notebook', sync: 'Sync', share: 'Share', install: 'Install' }
+        defter: 'Notebook', sync: 'Sync', share: 'Share', install: 'Install',
+        bookmark: 'Bookmark', bookmarked: 'Bookmarked', addBookmark: 'Add Bookmark', removeBookmark: 'Remove Bookmark' }
 };
 const T = k => (I18N[Lang.get()] || I18N.tr)[k] || I18N.tr[k] || k;
 
@@ -584,6 +606,7 @@ function render(keepPct) {
     });
   }
   applyHighlightsToDOM();
+  if (typeof syncParagraphBookmarks === 'function') syncParagraphBookmarks();
 
   bindAudioNarrator(cur, tx, l);
   updateChapterSEO(cur, tx);
@@ -601,8 +624,19 @@ function render(keepPct) {
   if (Tooltip) { Tooltip.hide(); Tooltip.scan($('rd-body'), { force: true }); }
 
   divan(true);
-  if (typeof keepPct === 'number') restore(keepPct);
-  else { jump(0); offerResume(); }
+
+  const targetPIdx = (typeof targetParagraphIdx === 'function') ? targetParagraphIdx() : null;
+  if (typeof targetPIdx === 'number' && targetPIdx >= 0) {
+    setTimeout(() => {
+      if (typeof jumpToParagraph === 'function') jumpToParagraph(targetPIdx, true);
+    }, 280);
+  } else if (typeof keepPct === 'number') {
+    restore(keepPct);
+  } else {
+    jump(0);
+    offerResume();
+  }
+  if (typeof updateBookmarkUI === 'function') updateBookmarkUI();
   onScroll();
 }
 
@@ -757,37 +791,39 @@ function offerResume() {
     if (rawSync) syncData = JSON.parse(rawSync);
   } catch (e) {}
 
-  const hasPIdx = syncData && (syncData.chapterId === cur.id || syncData.id === cur.id) && typeof syncData.pIdx === 'number' && syncData.pIdx > 0;
-  const hasPct = p > 0.03 && p < 0.96;
-  if (!hasPIdx && !hasPct) return;
+  const bmList = (Bookmarks && Bookmarks.getByChapter) ? Bookmarks.getByChapter(cur.id) : [];
+  const latestBm = bmList[0] || null;
 
-  const targetPct = (hasPIdx && syncData.pct) ? syncData.pct : p;
+  const hasBmPIdx = latestBm && typeof latestBm.pIdx === 'number';
+  const hasSyncPIdx = syncData && (syncData.chapterId === cur.id || syncData.id === cur.id) && typeof syncData.pIdx === 'number' && syncData.pIdx > 0;
+  const hasPct = p > 0.03 && p < 0.96;
+
+  if (!hasBmPIdx && !hasSyncPIdx && !hasPct) return;
+
+  const activePIdx = hasBmPIdx ? latestBm.pIdx : (hasSyncPIdx ? syncData.pIdx : 0);
+  const targetPct = hasBmPIdx ? (latestBm.pct || p) : (hasSyncPIdx && syncData.pct ? syncData.pct : p);
   const pctStr = Math.round(targetPct * 100);
   const r = $('rd-resume');
   if (!r) return;
 
   let msgText = '';
-  if (hasPIdx) {
-    msgText = l === 'tr' ? ('📜 Kaldığınız yer: Paragraf ' + (syncData.pIdx + 1) + ' (%' + pctStr + ')') : ('📜 Saved: Paragraph ' + (syncData.pIdx + 1) + ' (' + pctStr + '%)');
+  if (hasBmPIdx) {
+    msgText = l === 'tr' ? (`🔖 Kayıtlı Ayraç: Paragraf ${activePIdx + 1} (%${pctStr})`) : (`🔖 Saved Bookmark: Paragraph ${activePIdx + 1} (${pctStr}%)`);
+  } else if (hasSyncPIdx) {
+    msgText = l === 'tr' ? ('📜 Kaldığınız yer: Paragraf ' + (activePIdx + 1) + ' (%' + pctStr + ')') : ('📜 Saved: Paragraph ' + (activePIdx + 1) + ' (' + pctStr + '%)');
   } else {
     msgText = esc(T('resume')) + ' (' + pctStr + '%)';
   }
 
+  const isParagraphJump = hasBmPIdx || hasSyncPIdx;
   r.innerHTML = '<span>' + msgText + '</span>' +
-    '<button class="rd-pill" type="button" id="rs-go">' + (hasPIdx ? (l === 'tr' ? 'Kaldığım Yere Git' : 'Go to Position') : esc(T('go'))) + '</button>' +
-    '<button class="rd-pill" type="button" id="rs-no" style="border-color:var(--border);color:var(--parchd)">' + (hasPIdx ? '×' : esc(T('restart'))) + '</button>';
+    '<button class="rd-pill" type="button" id="rs-go">' + (isParagraphJump ? (l === 'tr' ? 'Kaldığım Yere Git' : 'Go to Position') : esc(T('go'))) + '</button>' +
+    '<button class="rd-pill" type="button" id="rs-no" style="border-color:var(--border);color:var(--parchd)">' + (isParagraphJump ? '×' : esc(T('restart'))) + '</button>';
   r.hidden = false;
 
   $('rs-go').onclick = () => {
-    if (hasPIdx) {
-      const targetP = document.getElementById('p-' + syncData.pIdx);
-      if (targetP) {
-        targetP.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        targetP.classList.add('sw-highlight-jump');
-        setTimeout(() => targetP.classList.remove('sw-highlight-jump'), 3000);
-      } else {
-        restore(targetPct);
-      }
+    if (isParagraphJump) {
+      jumpToParagraph(activePIdx, true);
     } else {
       restore(p);
     }
@@ -1141,9 +1177,11 @@ function applyHighlightsToDOM() {
 
 function renderDefter() {
   const cont = $('rd-defter-content');
+  const quotesCount = $('quotes-count');
+  const ann = getAnnotations();
+  if (quotesCount) quotesCount.textContent = String(ann.length);
   if (!cont) return;
   const l = Lang.get();
-  const ann = getAnnotations();
   if (!ann.length) {
     cont.innerHTML = '<div class="rd-defter-empty">' + (l === 'tr' ? 'Henüz hiçbir aforizma veya kelam işaretlemediniz. Metin üzerinde seçim yaparak Divan Defterinize ekleyebilirsiniz.' : 'No highlights saved yet. Select text in any chapter to save.') + '</div>';
     return;
@@ -1228,6 +1266,241 @@ $('rd-defter-clear').onclick = async () => {
   renderDefter();
   document.querySelectorAll('mark.sw-highlight').forEach(m => m.replaceWith(document.createTextNode(m.textContent)));
 };
+
+/* ── 2b. AYRAÇLAR SİSTEMİ (Bookmarks Engine & Paragraph Jump) ── */
+function showToast(msg) {
+  if (window.Community && Community.util && Community.util.toast) {
+    Community.util.toast(msg);
+  } else if (window.Wiki && Wiki.Toast && Wiki.Toast.show) {
+    Wiki.Toast.show(msg);
+  } else {
+    let toast = document.getElementById('rd-floating-toast');
+    if (!toast) {
+      toast = document.createElement('div');
+      toast.id = 'rd-floating-toast';
+      toast.style.cssText = 'position:fixed;bottom:2rem;left:50%;transform:translateX(-50%);z-index:900;background:rgba(14,18,28,0.96);border:1px solid var(--gold);color:var(--parchl);padding:.6rem 1.2rem;border-radius:4px;box-shadow:0 8px 24px rgba(0,0,0,.7);font-family:var(--font-display);font-size:.85rem;pointer-events:none;transition:opacity .3s;';
+      document.body.appendChild(toast);
+    }
+    toast.textContent = msg;
+    toast.style.opacity = '1';
+    clearTimeout(toast._tm);
+    toast._tm = setTimeout(() => { toast.style.opacity = '0'; }, 3200);
+  }
+}
+
+function targetParagraphIdx() {
+  try {
+    const curR = (window.SWRoute && SWRoute.current) ? SWRoute.current() : null;
+    if (curR && curR.parts && curR.parts.length > 1) {
+      const m = String(curR.parts[1]).match(/\d+/);
+      if (m) return parseInt(m[0], 10);
+    }
+  } catch (e) {}
+  try {
+    const sp = new URLSearchParams(window.location.search);
+    if (sp.has('p')) {
+      const val = parseInt(sp.get('p'), 10);
+      if (!isNaN(val)) return val;
+    }
+  } catch (e) {}
+  try {
+    const m = (window.location.hash || '').match(/p[-=]?(\d+)/i);
+    if (m) return parseInt(m[1], 10);
+  } catch (e) {}
+  return null;
+}
+
+function jumpToParagraph(idx, highlight) {
+  const targetEl = document.getElementById('p-' + idx);
+  if (targetEl) {
+    targetEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    if (highlight) {
+      targetEl.classList.add('sw-highlight-jump');
+      setTimeout(() => targetEl.classList.remove('sw-highlight-jump'), 3500);
+      const l = Lang.get();
+      showToast(l === 'tr' ? `🔖 Ayraç noktasına ulaşıldı: Paragraf ${idx + 1}` : `🔖 Jumped to bookmark: Paragraph ${idx + 1}`);
+    }
+    return true;
+  }
+  return false;
+}
+
+function updateBookmarkUI() {
+  const btn = $('rd-bookmark-btn');
+  if (!btn || !cur) return;
+  const l = Lang.get();
+  const isBookmarked = Bookmarks.has(cur.id);
+  btn.classList.toggle('is-bookmarked', isBookmarked);
+  btn.setAttribute('aria-pressed', String(isBookmarked));
+  
+  const lbl = $('l-bookmark');
+  if (lbl) {
+    lbl.textContent = isBookmarked
+      ? (l === 'tr' ? 'Ayraçta' : 'Saved')
+      : (l === 'tr' ? 'Ayraç' : 'Bookmark');
+  }
+  btn.title = isBookmarked
+    ? (l === 'tr' ? 'Bu Bölümde Ayraç Var (Tıkla: Ayracı Güncelle / Kaldır)' : 'Bookmark exists in chapter (Click to update/remove)')
+    : (l === 'tr' ? 'Kaldığın Yere Ayraç Ekle' : 'Add bookmark at current position');
+  
+  syncParagraphBookmarks();
+  renderBookmarksDrawer();
+}
+
+function syncParagraphBookmarks() {
+  if (!cur) return;
+  const l = Lang.get();
+  const bookmarkedInChapter = Bookmarks.getByChapter(cur.id);
+  const pMap = {};
+  bookmarkedInChapter.forEach(b => {
+    if (typeof b.pIdx === 'number') pMap[b.pIdx] = b;
+  });
+
+  document.querySelectorAll('#rd-body p').forEach(p => {
+    const idx = parseInt(p.dataset.pIdx, 10);
+    const bm = pMap[idx];
+    p.classList.toggle('sw-bookmarked-p', !!bm);
+    let ribbon = p.querySelector('.sw-p-bm-ribbon');
+    if (bm) {
+      if (!ribbon) {
+        ribbon = document.createElement('span');
+        ribbon.className = 'sw-p-bm-ribbon';
+        ribbon.innerHTML = '🔖';
+        ribbon.setAttribute('role', 'button');
+        ribbon.title = l === 'tr' ? `Kayıtlı Ayraç: Paragraf ${idx + 1} (Tıkla: Kaldır)` : `Saved Bookmark: Paragraph ${idx + 1} (Click to remove)`;
+        ribbon.onclick = (e) => {
+          e.stopPropagation();
+          Bookmarks.remove(cur.id, idx);
+          updateBookmarkUI();
+          showToast(l === 'tr' ? 'Ayraç kaldırıldı.' : 'Bookmark removed.');
+        };
+        p.prepend(ribbon);
+      }
+    } else if (ribbon) {
+      ribbon.remove();
+    }
+  });
+}
+
+function toggleCurrentBookmark() {
+  if (!cur) return;
+  const l = Lang.get();
+  const curPIdx = findActiveParagraphIdx();
+  const activeP = document.getElementById('p-' + curPIdx);
+  const snippet = activeP ? activeP.textContent.trim().slice(0, 120).replace(/\s+/g, ' ') : '';
+  const currentPct = pct();
+
+  const isExactBm = Bookmarks.has(cur.id, curPIdx);
+  if (isExactBm) {
+    Bookmarks.remove(cur.id, curPIdx);
+    updateBookmarkUI();
+    showToast(l === 'tr' ? '🗑 Ayraç kaldırıldı.' : '🗑 Bookmark removed.');
+  } else {
+    // Bölümde önceden kalmış ayraç varsa güncel konuma güncelle
+    Bookmarks.remove(cur.id);
+    Bookmarks.add({
+      chapterId: cur.id,
+      chapterNum: cur.num,
+      chapterTitle: Lang.t(cur.title),
+      pIdx: curPIdx,
+      pct: Number(currentPct.toFixed(3)),
+      snippet: snippet,
+      time: Date.now()
+    });
+
+    // Ana sayfa vitrini için sw-last-read kaydını da güncelle
+    try {
+      localStorage.setItem('sw-last-read', JSON.stringify({
+        id: cur.id,
+        num: cur.num,
+        title: cur.title,
+        pct: Number(currentPct.toFixed(3)),
+        pIdx: curPIdx,
+        snippet: snippet,
+        time: Date.now()
+      }));
+    } catch (e) {}
+
+    updateBookmarkUI();
+    showToast(l === 'tr'
+      ? `🔖 Ayraç mühürlendi: ${cur.num}. Bölüm · Paragraf ${curPIdx + 1} (%${Math.round(currentPct * 100)})`
+      : `🔖 Bookmark sealed: Chapter ${cur.num} · Paragraph ${curPIdx + 1} (${Math.round(currentPct * 100)}%)`);
+  }
+}
+
+function renderBookmarksDrawer() {
+  const cont = $('rd-bookmarks-content');
+  const countEl = $('bm-count');
+  if (!cont) return;
+  const l = Lang.get();
+  const list = Bookmarks.get();
+  if (countEl) countEl.textContent = String(list.length);
+
+  if (!list.length) {
+    cont.innerHTML = `
+      <div class="rd-defter-empty">
+        <p style="font-size:1.6rem;margin-bottom:.5rem;">🔖</p>
+        <p>${l === 'tr' ? 'Henüz kayıtlı bir ayracınız yok.' : 'No saved bookmarks yet.'}</p>
+        <p style="font-size:.78rem;color:var(--parchd);margin-top:.4rem;font-style:italic;">
+          ${l === 'tr' ? 'Üst çubuktaki "Ayraç" düğmesine basarak okuduğunuz yeri anında mühürleyebilirsiniz.' : 'Click "Bookmark" in the top bar to save your position.'}
+        </p>
+      </div>`;
+    return;
+  }
+
+  cont.innerHTML = list.map(item => {
+    const isHere = cur && String(cur.id) === String(item.chapterId);
+    const dStr = new Date(item.time || Date.now()).toLocaleDateString(l === 'tr' ? 'tr-TR' : 'en-US', { day: 'numeric', month: 'short' });
+    const pLabel = (typeof item.pIdx === 'number') ? (l === 'tr' ? `Paragraf ${item.pIdx + 1}` : `Paragraph ${item.pIdx + 1}`) : '';
+    const pctLabel = item.pct ? `%${Math.round(item.pct * 100)}` : '';
+    const subParts = [pLabel, pctLabel, dStr].filter(Boolean).join(' · ');
+
+    return `
+      <div class="rd-bm-item" id="bm-item-${esc(item.id)}">
+        <div class="rd-bm-title">
+          <span>${item.chapterNum ? `${item.chapterNum}. ` : ''}${esc(item.chapterTitle || '')}</span>
+          ${isHere ? `<span style="font-size:.68rem;padding:1px 6px;background:rgba(196,150,42,.2);border:1px solid rgba(196,150,42,.4);border-radius:3px;color:var(--gold);">${l === 'tr' ? 'Şu Anki Bölüm' : 'Current'}</span>` : ''}
+        </div>
+        <div class="rd-bm-sub">${esc(subParts)}</div>
+        ${item.snippet ? `<div class="rd-bm-snippet">“${esc(item.snippet)}”</div>` : ''}
+        <div class="rd-bm-actions">
+          <button type="button" class="rd-defter-btn" data-bm-act="jump" data-ch="${esc(item.chapterId)}" data-pidx="${item.pIdx !== undefined ? item.pIdx : ''}">
+            🎯 ${l === 'tr' ? 'Kaldığım Yere Git' : 'Jump to Spot'}
+          </button>
+          <button type="button" class="rd-defter-btn" data-bm-act="del" data-id="${esc(item.id)}" data-ch="${esc(item.chapterId)}" data-pidx="${item.pIdx !== undefined ? item.pIdx : ''}" style="color:var(--bloodb);">
+            🗑 ${l === 'tr' ? 'Sil' : 'Delete'}
+          </button>
+        </div>
+      </div>
+    `;
+  }).join('');
+
+  cont.querySelectorAll('button[data-bm-act]').forEach(btn => {
+    btn.onclick = () => {
+      const act = btn.dataset.bmAct;
+      const chId = btn.dataset.ch;
+      const pIdx = btn.dataset.pidx !== '' ? parseInt(btn.dataset.pidx, 10) : undefined;
+      const id = btn.dataset.id;
+
+      if (act === 'jump') {
+        close();
+        if (cur && String(cur.id) === String(chId)) {
+          if (typeof pIdx === 'number') {
+            jumpToParagraph(pIdx, true);
+          } else {
+            jump(0);
+          }
+        } else {
+          location.href = SWRoute.href('bolum', chId) + (typeof pIdx === 'number' ? `#p-${pIdx}` : '');
+        }
+      } else if (act === 'del') {
+        Bookmarks.remove(id || chId, pIdx);
+        updateBookmarkUI();
+        showToast(l === 'tr' ? 'Ayraç silindi.' : 'Bookmark deleted.');
+      }
+    };
+  });
+}
 
 /* ── 3. PARŞÖMEN GÖRSELİ KARTI ÜRETİCİ ──────────────────────── */
 let activeQuoteForModal = { quote: '', title: '', num: '' };
@@ -1630,9 +1903,64 @@ const defterBtn = $('rd-defter-btn');
 if (defterBtn) defterBtn.addEventListener('click', e => {
   if (openPanel && openPanel.id === 'rd-defter') close();
   else {
+    renderBookmarksDrawer();
     renderDefter();
     open('rd-defter', e.currentTarget);
   }
+});
+
+const bmHeaderBtn = $('rd-bookmark-btn');
+if (bmHeaderBtn) {
+  bmHeaderBtn.onclick = () => {
+    toggleCurrentBookmark();
+  };
+}
+
+const tabBm = $('tab-btn-bookmarks');
+const tabQuotes = $('tab-btn-quotes');
+const bmView = $('rd-bookmarks-view');
+const quotesView = $('rd-quotes-view');
+
+if (tabBm && tabQuotes) {
+  tabBm.onclick = () => {
+    tabBm.classList.add('active');
+    tabQuotes.classList.remove('active');
+    if (bmView) bmView.style.display = 'block';
+    if (quotesView) quotesView.style.display = 'none';
+    renderBookmarksDrawer();
+  };
+  tabQuotes.onclick = () => {
+    tabQuotes.classList.add('active');
+    tabBm.classList.remove('active');
+    if (quotesView) quotesView.style.display = 'block';
+    if (bmView) bmView.style.display = 'none';
+    renderDefter();
+  };
+}
+
+const addCurBmBtn = $('rd-bm-add-current');
+if (addCurBmBtn) {
+  addCurBmBtn.onclick = () => {
+    toggleCurrentBookmark();
+  };
+}
+
+const clearBmBtn = $('rd-bm-clear');
+if (clearBmBtn) {
+  clearBmBtn.onclick = async () => {
+    const l = Lang.get();
+    const ok = (window.Wiki && Wiki.Community && Wiki.Community.util && Wiki.Community.util.confirmBox)
+      ? await Wiki.Community.util.confirmBox(l === 'tr' ? 'Tüm kayıtlı ayraçlar silinsin mi?' : 'Clear all saved bookmarks?', l === 'tr' ? 'Temizle' : 'Clear', true)
+      : true;
+    if (!ok) return;
+    Bookmarks.clear();
+    updateBookmarkUI();
+    showToast(l === 'tr' ? 'Tüm ayraçlar silindi.' : 'All bookmarks cleared.');
+  };
+}
+
+document.addEventListener('bookmarkschange', () => {
+  updateBookmarkUI();
 });
 const syncBtn = $('rd-sync-btn');
 if (syncBtn) syncBtn.addEventListener('click', openSyncModal);

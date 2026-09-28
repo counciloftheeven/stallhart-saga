@@ -814,27 +814,90 @@ async function renderFeatured() {
 
 function checkResume() {
   try {
-    const raw = localStorage.getItem('sw-last-read');
-    if (!raw) return;
-    const data = JSON.parse(raw);
-    if (!data || !data.id) return;
-    const l = Lang.get();
-    const title = (typeof data.title === 'object' ? Lang.t(data.title) : data.title) || '';
-    const pct = Math.round((data.pct || 0) * 100);
     const box = document.getElementById('hero-resume-card');
     if (!box) return;
+    const l = Lang.get();
+
+    // 1. Kayıtlı ayraçları kontrol et
+    const bookmarks = (window.Wiki && Wiki.Bookmarks && Wiki.Bookmarks.get) ? Wiki.Bookmarks.get() : [];
+    const latestBm = bookmarks[0] || null;
+
+    // 2. Son okuma ilerlemesini kontrol et
+    let lastRead = null;
+    try {
+      const raw = localStorage.getItem('sw-last-read');
+      if (raw) lastRead = JSON.parse(raw);
+    } catch (e) {}
+
+    // İkisi de yoksa kartı gizle
+    if (!latestBm && (!lastRead || !lastRead.id)) {
+      box.hidden = true;
+      box.innerHTML = '';
+      return;
+    }
+
+    // Öncelik: Kullanıcı açıkça ayraç koymuşsa ayracı öne çıkar, yoksa son okunan konumu göster
+    const isBookmark = !!latestBm;
+    const primary = isBookmark ? latestBm : lastRead;
+    const chapId = primary.chapterId || primary.id;
+    const title = (typeof primary.title === 'object' ? Lang.t(primary.title) : (primary.chapterTitle || primary.title)) || '';
+    const chapNum = primary.chapterNum || primary.num || '';
+    const pct = Math.round((primary.pct || 0) * 100);
+    const pIdx = (typeof primary.pIdx === 'number') ? primary.pIdx : null;
+    const snippet = primary.snippet ? primary.snippet.trim() : '';
+
+    // Doğrudan paragrafa atlama bağlantısı
+    const targetUrl = SWRoute.href('bolum', chapId) + (pIdx !== null ? `#p-${pIdx}` : '');
+
+    // Rozet & bilgi
+    const badgeHtml = isBookmark
+      ? `<span class="hr-badge">🔖 ${l === 'tr' ? 'Kayıtlı Ayraç' : 'Saved Bookmark'}</span>`
+      : `<span class="hr-badge" style="background:rgba(196,150,42,.12);border-color:rgba(196,150,42,.35);color:var(--goldd);">📖 ${l === 'tr' ? 'Okuma İlerlemesi' : 'Reading Progress'}</span>`;
+
+    const subDetails = [
+      pIdx !== null ? (l === 'tr' ? `Paragraf ${pIdx + 1}` : `Paragraph ${pIdx + 1}`) : '',
+      pct > 0 ? `%${pct}` : ''
+    ].filter(Boolean).join(' · ');
+
+    // Birden fazla ayraç varsa diğer ayraçlar için hızlı atlama çipleri
+    let otherPillsHtml = '';
+    if (bookmarks.length > 1) {
+      const otherBms = bookmarks.slice(1, 4);
+      otherPillsHtml = `
+        <div class="hr-extra-bookmarks">
+          <span class="hr-extra-lbl">${l === 'tr' ? 'Diğer Ayraçlar:' : 'Other Bookmarks:'}</span>
+          ${otherBms.map(b => {
+            const bTitle = (typeof b.title === 'object' ? Lang.t(b.title) : (b.chapterTitle || b.title)) || '';
+            const bPIdx = (typeof b.pIdx === 'number') ? b.pIdx : null;
+            const bUrl = SWRoute.href('bolum', b.chapterId || b.id) + (bPIdx !== null ? `#p-${bPIdx}` : '');
+            return `
+              <a class="hr-extra-chip" href="${bUrl}" title="${esc(bTitle)}">
+                <span>🔖</span>
+                <span>${esc(b.chapterNum ? `${b.chapterNum}. Bölüm` : bTitle)}${bPIdx !== null ? ` (P.${bPIdx + 1})` : ''}</span>
+              </a>
+            `;
+          }).join('')}
+        </div>
+      `;
+    }
+
     box.innerHTML = `
-      <a class="hero-resume-link" href="${SWRoute.href('bolum', data.id)}">
-        <span class="hr-icon">📖</span>
+      <a class="hero-resume-link" href="${targetUrl}" aria-label="${l === 'tr' ? 'Kaldığın yerden bölüme devam et' : 'Resume reading chapter'}">
+        <span class="hr-icon">${isBookmark ? '🔖' : '📖'}</span>
         <span class="hr-text">
-          <small>${l === 'tr' ? 'Kaldığın Yerden Devam Et' : 'Continue Where You Left Off'}${data.pIdx ? ` · ${l === 'tr' ? 'Paragraf' : 'Paragraph'} ${data.pIdx + 1}` : ''}${pct > 0 ? ` (%${pct})` : ''}</small>
-          <strong>${esc(data.num ? `${data.num}. ` : '')}${esc(title)}</strong>
+          ${badgeHtml}
+          <strong>${esc(chapNum ? `${chapNum}. ` : '')}${esc(title)}</strong>
+          ${subDetails ? `<small>${esc(subDetails)}</small>` : ''}
+          ${snippet ? `<div class="hr-snippet">“${esc(snippet)}”</div>` : ''}
         </span>
-        <span class="hr-arrow">→</span>
+        <span class="hr-arrow" aria-hidden="true">→</span>
       </a>
+      ${otherPillsHtml}
     `;
     box.hidden = false;
-  } catch (e) {}
+  } catch (e) {
+    console.warn('Hero resume check error:', e);
+  }
 }
 
 function renderVitrinPoll() {
@@ -906,6 +969,7 @@ document.addEventListener('langchange', () => {
   renderVitrinPoll();
   if (window.Kurultay && Kurultay.applyChampionFlourish) Kurultay.applyChampionFlourish();
 });
+document.addEventListener('bookmarkschange', checkResume);
 </script>
 </body>
 </html>

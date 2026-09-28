@@ -955,32 +955,267 @@ img { max-width: 100%; }
 /* ── KALDIĞIN YERDEN DEVAM ET KARTI (Ana Sayfa) ─────── */
 .hero-resume {
   margin-bottom: 2rem;
-  max-width: 480px; width: 92%;
+  max-width: 520px; width: 92%;
   animation: heroResumeFade .35s ease;
 }
 @keyframes heroResumeFade { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
 .hero-resume-link {
-  display: flex; align-items: center; gap: .9rem;
-  background: rgba(19,26,41,.92);
+  display: flex; align-items: center; gap: 1rem;
+  background: radial-gradient(ellipse at 50% 0%, rgba(32, 24, 16, 0.95), rgba(12, 16, 26, 0.96));
   border: 1px solid var(--gold);
   border-radius: 6px;
-  padding: .75rem 1.15rem;
+  padding: .85rem 1.25rem;
   text-decoration: none;
   color: var(--parch);
-  box-shadow: 0 4px 20px rgba(0,0,0,.4), 0 0 14px rgba(184,115,51,.15);
+  box-shadow: 0 4px 20px rgba(0,0,0,.5), 0 0 16px rgba(184,115,51,.2);
   transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease;
+  position: relative;
 }
 .hero-resume-link:hover {
   transform: translateY(-2px);
   border-color: var(--goldb);
-  box-shadow: 0 6px 25px rgba(184,115,51,.3);
+  box-shadow: 0 8px 28px rgba(184,115,51,.35);
 }
-.hero-resume-link .hr-icon { font-size: 1.35rem; line-height: 1; }
-.hero-resume-link .hr-text { flex: 1; text-align: left; }
-.hero-resume-link .hr-text small { display: block; font-size: .72rem; color: var(--goldd); text-transform: uppercase; letter-spacing: .06em; }
-.hero-resume-link .hr-text strong { display: block; font-size: .95rem; color: var(--parchl); font-family: var(--font-display); margin-top: 1px; }
-.hero-resume-link .hr-arrow { color: var(--gold); font-size: 1.15rem; transition: transform .2s ease; }
-.hero-resume-link:hover .hr-arrow { transform: translateX(3px); }
+.hero-resume-link .hr-icon {
+  font-size: 1.6rem;
+  line-height: 1;
+  filter: drop-shadow(0 0 8px rgba(196,150,42,.4));
+  flex-shrink: 0;
+}
+.hero-resume-link .hr-text {
+  flex: 1;
+  min-width: 0;
+  text-align: left;
+}
+.hero-resume-link .hr-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: .3rem;
+  font-size: .68rem;
+  padding: 2px 7px;
+  border-radius: 3px;
+  background: rgba(196,150,42,.15);
+  border: 1px solid rgba(196,150,42,.45);
+  color: var(--gold);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  margin-bottom: .25rem;
+}
+.hero-resume-link .hr-text small {
+  display: block;
+  font-size: .74rem;
+  color: var(--goldd);
+  text-transform: uppercase;
+  letter-spacing: .05em;
+}
+.hero-resume-link .hr-text strong {
+  display: block;
+  font-size: 1.02rem;
+  color: var(--parchl);
+  font-family: var(--font-display);
+  margin-top: 1px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.hero-resume-link .hr-snippet {
+  font-family: 'IM Fell English', Georgia, serif;
+  font-style: italic;
+  font-size: .84rem;
+  color: var(--parchd);
+  line-height: 1.45;
+  margin-top: .35rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.hero-resume-link .hr-arrow {
+  color: var(--gold);
+  font-size: 1.25rem;
+  transition: transform .2s ease;
+  flex-shrink: 0;
+}
+.hero-resume-link:hover .hr-arrow {
+  transform: translateX(4px);
+}
+
+/* Diğer Ayraçlar mini etiketleri */
+.hr-extra-bookmarks {
+  margin-top: .65rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: .45rem;
+  flex-wrap: wrap;
+}
+.hr-extra-lbl {
+  font-size: .72rem;
+  color: var(--parchd);
+  font-style: italic;
+}
+.hr-extra-chip {
+  font-size: .74rem;
+  color: var(--goldd);
+  background: rgba(14, 18, 28, 0.85);
+  border: 1px solid var(--border);
+  padding: .2rem .6rem;
+  border-radius: 12px;
+  text-decoration: none;
+  transition: all .15s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: .3rem;
+}
+.hr-extra-chip:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+  background: rgba(196,150,42,.12);
+  transform: translateY(-1px);
+}
+
+html[data-theme="light"] .hero-resume-link {
+  background: radial-gradient(ellipse at 50% 0%, #fffdf8, #f5ebd5);
+  border-color: var(--borderl);
+  box-shadow: 0 4px 18px rgba(70,50,25,.14);
+}
+html[data-theme="light"] .hero-resume-link:hover {
+  border-color: var(--gold);
+  box-shadow: 0 8px 25px rgba(138,90,30,.22);
+}
+html[data-theme="light"] .hero-resume-link .hr-text strong {
+  color: #1c150e;
+}
+html[data-theme="light"] .hero-resume-link .hr-snippet {
+  color: #4a3d2c;
+}
+html[data-theme="light"] .hr-extra-chip {
+  background: #fbf5e6;
+  border-color: var(--border);
+  color: var(--goldb);
+}
+
+/* Okuyucu Ayraç Düğmesi & Paragraf İçi Vurgular */
+.rd-btn#rd-bookmark-btn.is-bookmarked {
+  color: var(--gold);
+  border-color: var(--gold);
+  background: rgba(196, 150, 42, 0.18);
+  box-shadow: 0 0 10px rgba(196,150,42,.35);
+}
+.rd-btn#rd-bookmark-btn.is-bookmarked svg {
+  fill: var(--gold);
+  stroke: var(--goldb);
+}
+
+.sw-bookmarked-p {
+  border-left: 3px solid var(--gold);
+  padding-left: 1.1rem !important;
+  position: relative;
+  background: rgba(196, 150, 42, 0.05);
+  border-radius: 0 3px 3px 0;
+  transition: background .3s;
+}
+.sw-p-bm-ribbon {
+  position: absolute;
+  left: -15px;
+  top: 1px;
+  font-size: 1rem;
+  cursor: pointer;
+  user-select: none;
+  filter: drop-shadow(0 2px 5px rgba(0,0,0,.6));
+  transition: transform .18s ease;
+}
+.sw-p-bm-ribbon:hover {
+  transform: scale(1.25);
+}
+
+.sw-highlight-jump {
+  animation: swJumpFlash 2.8s ease-out;
+}
+@keyframes swJumpFlash {
+  0% {
+    background: rgba(196, 150, 42, 0.42);
+    box-shadow: 0 0 20px rgba(196,150,42,.5);
+    border-radius: 2px;
+  }
+  40% {
+    background: rgba(196, 150, 42, 0.18);
+  }
+  100% {
+    background: transparent;
+    box-shadow: none;
+  }
+}
+
+/* Divan Defteri Çekmecesi Sekmeleri (Ayraçlar & Alıntılar) */
+.rd-defter-tabs {
+  display: flex;
+  gap: .5rem;
+  border-bottom: 1px solid rgba(196,150,42,.2);
+  margin-bottom: 1rem;
+}
+.rd-defter-tab-btn {
+  font-family: var(--font-display);
+  font-size: .82rem;
+  color: var(--parchd);
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  padding: .5rem .75rem;
+  cursor: pointer;
+  transition: all .15s ease;
+}
+.rd-defter-tab-btn:hover {
+  color: var(--parchl);
+}
+.rd-defter-tab-btn.active {
+  color: var(--gold);
+  border-bottom-color: var(--gold);
+  font-weight: 600;
+}
+.rd-bm-item {
+  background: rgba(12, 16, 26, 0.7);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--gold);
+  padding: .85rem;
+  border-radius: 3px;
+  transition: border-color .15s;
+  margin-bottom: .85rem;
+}
+.rd-bm-item:hover {
+  border-color: var(--goldd);
+}
+.rd-bm-title {
+  font-family: var(--font-display);
+  font-size: .95rem;
+  color: var(--parchl);
+  margin-bottom: .25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.rd-bm-sub {
+  font-size: .74rem;
+  color: var(--goldd);
+  font-style: italic;
+}
+.rd-bm-snippet {
+  font-family: 'IM Fell English', Georgia, serif;
+  font-style: italic;
+  font-size: .88rem;
+  color: var(--parch);
+  margin: .45rem 0 .65rem;
+  line-height: 1.45;
+  background: rgba(196,150,42,.04);
+  padding: .3rem .5rem;
+  border-radius: 2px;
+}
+.rd-bm-actions {
+  display: flex;
+  gap: .4rem;
+  justify-content: flex-end;
+}
 
 /* ── MOBİL DONANIM HIZLANDIRMASI (GPU Rasterization) ─ */
 #site-nav, .rd-bar, .lore-nav-container, .lore-nav-bar {
