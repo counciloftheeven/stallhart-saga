@@ -67,12 +67,22 @@ body.sw-noscroll { overflow: hidden; }
   background: linear-gradient(140deg, var(--av2), var(--av1));
   box-shadow: 0 1px 4px rgba(0,0,0,.45), inset 0 0 0 1px rgba(0,0,0,.25);
   font-family: var(--font-display); line-height: 1; overflow: hidden;
+  position: relative;
 }
 .sw-av svg { width: 58%; height: 58%; }
 .sw-av-ch { text-shadow: 0 1px 2px rgba(0,0,0,.6); }
 .sw-av-sm { width: 26px; height: 26px; font-size: .8rem; }
 .sw-av-md { width: 40px; height: 40px; font-size: 1.05rem; }
+.sw-av-lg { width: 56px; height: 56px; font-size: 1.45rem; border-width: 2px; }
 .sw-av-xl { width: 78px; height: 78px; font-size: 2rem; border-width: 2px; }
+
+.sw-av-photo { background: #120e09; padding: 0; }
+.sw-av-img {
+  width: 100%; height: 100%; object-fit: cover; border-radius: 50%; display: block;
+}
+.sw-av-fallback {
+  width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;
+}
 
 .sw-crest-mini {
   display: inline-block; width: 11px; height: 14px; margin-left: 2px; vertical-align: -2px; flex-shrink: 0;
@@ -174,6 +184,91 @@ select.sw-in { cursor: pointer; }
 
 /* ── PROFİL ──────────────────────────────────────────────────── */
 .sw-pf-head { display: flex; gap: 1.1rem; align-items: flex-start; margin-bottom: 1.2rem; padding-right: 1.4rem; }
+.sw-pf-av { position: relative; display: inline-block; flex-shrink: 0; }
+.sw-pf-av-edit {
+  position: absolute; right: -3px; bottom: 1px; width: 27px; height: 27px;
+  border-radius: 50%; background: var(--bloodb); color: #f4ecd8;
+  border: 1.5px solid var(--gold); display: flex; align-items: center; justify-content: center;
+  font-size: .82rem; cursor: pointer; transition: transform .15s, box-shadow .15s;
+  box-shadow: 0 2px 6px rgba(0,0,0,.6); z-index: 5;
+}
+.sw-pf-av-edit:hover { transform: scale(1.12); box-shadow: 0 0 10px rgba(196,150,42,.6); }
+
+/* Sadakat Rozetleri (Loyalty Badges) */
+.sw-loyalty-badge {
+  display: inline-flex; align-items: center; gap: .32rem;
+  font-family: var(--font-display); font-size: .72rem; letter-spacing: .02em;
+  padding: .14rem .55rem .14rem .45rem; border-radius: 14px;
+  background: linear-gradient(135deg, rgba(28,20,12,.88), rgba(48,32,18,.92));
+  color: #f7e7be; border: 1px solid rgba(212,175,55,.45);
+  box-shadow: 0 1px 4px rgba(0,0,0,.35), inset 0 0 6px rgba(212,175,55,.12);
+  vertical-align: middle; line-height: 1.2; user-select: none;
+  transition: transform .15s, border-color .15s, box-shadow .15s;
+}
+.sw-loyalty-badge:hover {
+  border-color: #f3d078;
+  box-shadow: 0 2px 8px rgba(212,175,55,.35), inset 0 0 8px rgba(212,175,55,.25);
+  transform: translateY(-1px);
+}
+.sw-loyalty-badge .sw-lb-icon { font-size: .85rem; line-height: 1; }
+.sw-loyalty-badge .sw-lb-name { font-weight: 500; }
+.sw-loyalty-badge.tier-1 { border-color: rgba(184,115,51,.6); color: #ebd4be; }
+.sw-loyalty-badge.tier-2 { border-color: rgba(192,204,218,.7); color: #f0f4f8; }
+.sw-loyalty-badge.tier-3 { border-color: rgba(230,190,60,.85); color: #fff2c4; background: linear-gradient(135deg, rgba(38,28,14,.92), rgba(64,44,20,.95)); }
+.sw-loyalty-badge.tier-4 {
+  border-color: #ffd700; color: #fff9db;
+  background: linear-gradient(135deg, rgba(94,18,18,.92), rgba(58,22,12,.95));
+  box-shadow: 0 2px 10px rgba(255,215,0,.35), inset 0 0 10px rgba(255,215,0,.25);
+}
+
+/* Sadakat Rozetleri Paneli & Kartları */
+.sw-loyalty-panel { padding: .3rem 0; }
+.sw-loyalty-intro { display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap; margin-bottom: 1.1rem; padding-bottom: .8rem; border-bottom: 1px dashed var(--border); }
+.sw-loyalty-h { margin: 0 0 .2rem; font-family: var(--font-display); font-size: 1.1rem; color: var(--gold); }
+.sw-loyalty-sub { margin: 0; font-size: .82rem; color: var(--parchd); font-style: italic; }
+.sw-loyalty-count { font-family: var(--font-display); font-size: .85rem; color: var(--goldd); background: rgba(0,0,0,.35); padding: .35rem .75rem; border: 1px solid var(--border); border-radius: 12px; }
+.sw-loyalty-count b { color: var(--gold); }
+.sw-loyalty-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(235px, 1fr)); gap: .85rem; max-height: 52vh; overflow-y: auto; padding-right: 4px; }
+.sw-loyalty-card {
+  padding: .85rem .95rem; border-radius: 4px; border: 1px solid var(--border);
+  background: rgba(14,10,6,.6); display: flex; flex-direction: column; justify-content: space-between; gap: .55rem;
+  transition: border-color .18s, transform .15s, box-shadow .18s; position: relative;
+}
+.sw-loyalty-card:hover { transform: translateY(-2px); border-color: var(--borderl); }
+.sw-loyalty-card.active-card {
+  border-color: #ffd700; background: linear-gradient(145deg, rgba(46,24,14,.85), rgba(24,16,10,.95));
+  box-shadow: 0 4px 14px rgba(255,215,0,.2), inset 0 0 12px rgba(255,215,0,.1);
+}
+.sw-loyalty-card.unlocked { border-color: rgba(196,150,42,.45); background: rgba(22,16,10,.7); }
+.sw-loyalty-card.locked { opacity: .72; background: rgba(10,8,6,.5); border-style: dashed; }
+.sw-lc-top { display: flex; align-items: center; gap: .65rem; }
+.sw-lc-emblem { font-size: 1.6rem; line-height: 1; filter: drop-shadow(0 2px 4px rgba(0,0,0,.5)); flex-shrink: 0; }
+.sw-lc-title-wrap { flex: 1; min-width: 0; }
+.sw-lc-name { margin: 0; font-family: var(--font-display); font-size: .95rem; color: var(--parchl); font-weight: 500; }
+.sw-lc-tier { font-family: var(--font-display); font-size: .68rem; color: var(--goldd); text-transform: uppercase; letter-spacing: .05em; }
+.sw-lc-desc { margin: 0; font-size: .8rem; color: var(--parch); line-height: 1.45; }
+.sw-lc-req { font-size: .74rem; color: var(--parchd); font-style: italic; border-top: 1px dashed rgba(255,255,255,.06); padding-top: .4rem; }
+.sw-lc-req strong { font-weight: 500; color: var(--goldd); font-style: normal; }
+.sw-lc-foot { margin-top: .3rem; display: flex; justify-content: flex-end; }
+.sw-lb-status { font-family: var(--font-display); font-size: .74rem; padding: .25rem .6rem; border-radius: 3px; display: inline-flex; align-items: center; gap: .3rem; }
+.sw-lb-status.active { background: rgba(196,150,42,.25); color: #ffe685; border: 1px solid #ffd700; font-weight: 500; }
+.sw-lb-status.unlocked { color: #86b473; border: 1px solid #5f8a4f; }
+.sw-lb-status.locked { color: var(--parchd); border: 1px solid var(--border); font-size: .7rem; }
+.sw-lb-choose { font-size: .78rem; padding: .3rem .75rem; border-color: var(--goldd); color: var(--gold); }
+.sw-lb-choose:hover { border-color: var(--gold); background: rgba(196,150,42,.15); }
+
+/* Özel Fotoğraf Yükleme Bölümü */
+.sw-photo-sec { margin-bottom: 1.25rem; padding-bottom: 1.1rem; border-bottom: 1px dashed var(--border); }
+.sw-label-title { font-family: var(--font-display); font-size: .85rem; color: var(--gold); display: block; margin-bottom: .45rem; }
+.sw-photo-box { display: flex; gap: 1.2rem; align-items: center; flex-wrap: wrap; background: rgba(12,9,6,.65); border: 1px solid var(--border); padding: .85rem 1rem; border-radius: 4px; }
+.sw-photo-preview-wrap { flex-shrink: 0; }
+.sw-photo-controls { flex: 1; min-width: 220px; }
+.sw-photo-btn-group { display: flex; gap: .6rem; flex-wrap: wrap; margin-bottom: .5rem; }
+.sw-photo-hint { margin: 0 0 .6rem; font-size: .75rem; color: var(--parchd); font-style: italic; }
+.sw-photo-url-row { display: flex; gap: .4rem; }
+.sw-photo-url-row input { flex: 1; font-size: .82rem; padding: .45rem .7rem; }
+.sw-photo-url-row button { padding: .45rem .85rem; }
+
 .sw-pf-id { flex: 1; min-width: 0; }
 .sw-pf-id .sw-h { overflow-wrap: anywhere; }
 .sw-pf-role { display: flex; align-items: center; gap: .6rem; flex-wrap: wrap; margin-top: .3rem; }

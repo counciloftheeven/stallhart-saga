@@ -465,8 +465,10 @@ var Allegiance = (function () {
           id: st.user.id,
           username: p.username || st.user.email.split('@')[0],
           avatar: p.avatar || 'sword',
+          avatar_url: p.avatar_url || (C && C.util && C.util.getCustomAvatar ? C.util.getCustomAvatar(p) : null),
           favorite_house: p.favorite_house || loc.favorite_house || 'stallhart',
           title: p.title || loc.title || 'Divan Üyesi',
+          loyalty_badge: p.loyalty_badge || loc.loyalty_badge,
           rank: st.isAdmin ? 'Baş Vakanüvis' : (p.role === 'admin' ? 'Vakanüvis' : (loc.rank || 'Yeminli Sancaktar')),
           seals: p.seals !== undefined ? p.seals : loc.seals,
           thread_count: loc.thread_count || 1,
@@ -1577,6 +1579,7 @@ function threadRowHTML(t, l, opts) {
       '</span>' +
       '<span class="ft-sub">' +
         (l === 'tr' ? 'Açan: ' : 'by: ') + '<b>' + esc(prof.username) + '</b>' + authorTitle + ' ' + houseBadge +
+        (C && C.util && C.util.loyaltyBadgeHTML ? ' ' + C.util.loyaltyBadgeHTML(prof) : '') +
         (rxTotal > 0 ? '<span class="ft-rx-preview">⚔️' + (rx.steel||0) + ' 🩸' + (rx.blood||0) + ' 📜' + (rx.seal||0) + '</span>' : '') +
       '</span>' +
     '</span>' +
@@ -1660,10 +1663,13 @@ function renderUserCard(container, l) {
         '<span class="fuc-status-tag">' + prog.rank.icon + ' ' + esc(rankTitle) + ' · Seviye ' + prog.rank.tier + '</span>' +
       '</div>' +
       '<div class="fuc-profile">' +
-        '<div class="fuc-av-box">' + avHTML + '</div>' +
+        '<div class="fuc-av-box" style="position:relative">' + avHTML +
+          '<button type="button" class="fuc-av-edit-btn" id="fuc-av-edit-btn" title="' + (l === 'tr' ? 'Profil Fotoğrafını Değiştir' : 'Change Profile Photo') + '">📷</button>' +
+        '</div>' +
         '<div class="fuc-info">' +
           '<h3 class="fuc-name">' + esc(user.username) + '</h3>' +
           '<p class="fuc-title">' + esc(user.title || (l === 'tr' ? 'Denge Arayıcısı' : 'Seeker of Balance')) + '</p>' +
+          (C && C.util && C.util.loyaltyBadgeHTML ? '<div class="fuc-loyalty-wrap" style="margin-top:.35rem">' + C.util.loyaltyBadgeHTML(user) + '</div>' : '') +
         '</div>' +
       '</div>' +
 
@@ -1711,6 +1717,15 @@ function renderUserCard(container, l) {
         '</button>' +
       '</div>' +
     '</div>';
+
+  var avBtn = container.querySelector('#fuc-av-edit-btn');
+  if (avBtn) {
+    avBtn.addEventListener('click', function () {
+      if (C && C.openProfile) {
+        C.openProfile(null, 'settings');
+      }
+    });
+  }
 
   var btn = container.querySelector('#fuc-pledge-btn');
   if (btn) {

@@ -32,7 +32,7 @@ window.SW_CONFIG = {
   /* Önbellek numarası: topluluk dosyalarını (community*.js, community.css)
      değiştirirseniz bu sayıyı artırın; tarayıcılar yeni sürümü hemen alır.
      (Sayfalardaki  ?v=16  ile aynı mantık.) */
-  assetVersion: '17',
+  assetVersion: '18',
 
   /* Veri önbellek numarası: data/*.json ve görsel manifesti "?v=<bu sayı>" ile istenir,
      böylece tarayıcı önbelleğinden gelir. data/ klasörünü değiştirip yayınladığınızda

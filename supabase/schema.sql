@@ -32,6 +32,8 @@ create table if not exists public.profiles (
   id             uuid primary key references auth.users(id) on delete cascade,
   username       text not null,
   avatar         text not null default 'initial',
+  avatar_url     text,
+  loyalty_badge  text,
   favorite_house text,
   title          text,
   role           text not null default 'member',
@@ -40,10 +42,14 @@ create table if not exists public.profiles (
   constraint profiles_role_chk     check (role in ('member', 'admin')),
   constraint profiles_username_len check (char_length(username) between 3 and 20),
   constraint profiles_username_chr check (username !~ '[\s<>"''`&]'),
-  constraint profiles_avatar_len   check (char_length(avatar) <= 24),
+  constraint profiles_avatar_len   check (char_length(avatar) <= 64),
   constraint profiles_house_len    check (favorite_house is null or char_length(favorite_house) <= 60),
   constraint profiles_title_chk    check (title is null or (char_length(title) <= 32 and title !~* 'vakan|admin|moderat'))
 );
+
+-- Var olan tablolar için geriye dönük uyumluluk kolonları
+alter table public.profiles add column if not exists avatar_url text;
+alter table public.profiles add column if not exists loyalty_badge text;
 
 create unique index if not exists profiles_username_lower_uidx
   on public.profiles (lower(username));

@@ -568,6 +568,30 @@
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+  position: relative;
+}
+.fuc-av-edit-btn {
+  position: absolute;
+  right: -4px;
+  bottom: -2px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--bloodb, #7a1414);
+  color: #fff;
+  border: 1px solid var(--gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: .68rem;
+  cursor: pointer;
+  transition: transform .15s, box-shadow .15s;
+  box-shadow: 0 2px 6px rgba(0,0,0,.7);
+  z-index: 5;
+}
+.fuc-av-edit-btn:hover {
+  transform: scale(1.15);
+  box-shadow: 0 0 8px rgba(196,150,42,.6);
 }
 .fuc-info { flex: 1; min-width: 0; margin-bottom: .2rem; }
 .fuc-name {

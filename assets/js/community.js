@@ -85,6 +85,14 @@ addStrings({
     p_comments: 'Yorumlar', p_suggestions: 'Öneriler', p_settings: 'Ayarlar',
     p_none_comments: 'Henüz yorum yok.', p_none_sugg: 'Henüz öneri yok.',
     p_house: 'Favori hane', p_no_house: '— Seçilmedi —', p_title: 'Unvan', p_avatar: 'Avatar',
+    p_loyalty: 'Sadakat Rozetleri', p_avatar_photo: 'Özel Profil Fotoğrafı',
+    p_upload_photo: 'Fotoğraf Yükle', p_photo_hint: 'Cihazından PNG, JPG veya WebP seç. Otomatik kırpılır.',
+    p_photo_url: 'veya Görsel URLsi', p_remove_photo: 'Fotoğrafı Kaldır',
+    p_active_badge: 'Birincil Sadakat Rozeti', p_badge_set: 'Sadakat rozeti seçildi.',
+    p_badge_unlocked: 'Kazanıldı', p_badge_locked: 'Kilitli', p_set_active_badge: 'Birincil Rozet Yap',
+    p_badge_current: 'Aktif Rozet', p_loyalty_sub: 'Destan arşivlerine ve hanene bağlılığınla kazandığın şeref nişanları.',
+    p_loyalty_active_title: 'Mevcut Birincil Rozetin', p_choose_photo: '📁 Cihazdan Fotoğraf Seç',
+    p_or_url: 'veya internet bağlantısı (URL) girin', p_heraldic_avatars: 'Veya Hanedan Simgelerinden Seç',
     p_saved: 'Profil güncellendi.', p_load_fail: 'Profil yüklenemedi.',
     stat_comments: 'yorum', stat_sugg: 'öneri',
     st_pending: 'Bekliyor', st_approved: 'Onaylandı', st_rejected: 'Reddedildi',
@@ -130,6 +138,14 @@ addStrings({
     p_comments: 'Comments', p_suggestions: 'Suggestions', p_settings: 'Settings',
     p_none_comments: 'No comments yet.', p_none_sugg: 'No suggestions yet.',
     p_house: 'Favorite house', p_no_house: '— None —', p_title: 'Title', p_avatar: 'Avatar',
+    p_loyalty: 'Loyalty Badges', p_avatar_photo: 'Custom Profile Photo',
+    p_upload_photo: 'Upload Photo', p_photo_hint: 'Pick PNG, JPG or WebP from your device. Auto-cropped.',
+    p_photo_url: 'or Image URL', p_remove_photo: 'Remove Photo',
+    p_active_badge: 'Featured Loyalty Badge', p_badge_set: 'Loyalty badge updated.',
+    p_badge_unlocked: 'Unlocked', p_badge_locked: 'Locked', p_set_active_badge: 'Set as Active Badge',
+    p_badge_current: 'Active Badge', p_loyalty_sub: 'Honors and badges earned through your loyalty to the chronicles and sworn house.',
+    p_loyalty_active_title: 'Your Current Active Badge', p_choose_photo: '📁 Choose Photo from Device',
+    p_or_url: 'or enter web image link (URL)', p_heraldic_avatars: 'Or Pick from Heraldic Crests',
     p_saved: 'Profile updated.', p_load_fail: 'Could not load the profile.',
     stat_comments: 'comments', stat_sugg: 'suggestions',
     st_pending: 'Pending', st_approved: 'Approved', st_rejected: 'Rejected',
@@ -348,14 +364,284 @@ function houseColors(houseId) {
   return [c1, c2];
 }
 
+/* ── KULLANICIYA ÖZEL PROFİL FOTOĞRAFI ──────────────────────── */
+function getCustomAvatar(prof) {
+  var p = prof || {};
+  if (p.avatar_url && typeof p.avatar_url === 'string' && p.avatar_url.trim()) return p.avatar_url.trim();
+  if (p.custom_avatar && typeof p.custom_avatar === 'string' && p.custom_avatar.trim()) return p.custom_avatar.trim();
+  if (p.avatar && typeof p.avatar === 'string') {
+    var a = p.avatar.trim();
+    if (a.indexOf('data:image/') === 0 || a.indexOf('http://') === 0 || a.indexOf('https://') === 0 || a.indexOf('assets/') === 0 || a.indexOf('/') === 0) {
+      return a;
+    }
+  }
+  try {
+    if (p.id) {
+      var c1 = localStorage.getItem('sw_avatar_uid_' + p.id);
+      if (c1) return c1;
+    }
+    if (p.username) {
+      var c2 = localStorage.getItem('sw_avatar_user_' + String(p.username).trim().toLowerCase());
+      if (c2) return c2;
+    }
+    if (S.user && (!p.id || p.id === S.user.id)) {
+      var cur = localStorage.getItem('sw_current_custom_avatar');
+      if (cur) return cur;
+    }
+  } catch (e) {}
+  return null;
+}
+
+function setCustomAvatar(prof, url) {
+  var p = prof || S.profile || {};
+  if (url) {
+    p.avatar_url = url;
+    p.avatar = 'custom';
+  } else {
+    delete p.avatar_url;
+    if (p.avatar === 'custom') p.avatar = 'initial';
+  }
+  try {
+    if (p.id) {
+      if (url) localStorage.setItem('sw_avatar_uid_' + p.id, url);
+      else localStorage.removeItem('sw_avatar_uid_' + p.id);
+    }
+    if (p.username) {
+      var unKey = 'sw_avatar_user_' + String(p.username).trim().toLowerCase();
+      if (url) localStorage.setItem(unKey, url);
+      else localStorage.removeItem(unKey);
+    }
+    if (S.user && (!p.id || p.id === S.user.id)) {
+      if (url) localStorage.setItem('sw_current_custom_avatar', url);
+      else localStorage.removeItem('sw_current_custom_avatar');
+    }
+  } catch (e) {}
+}
+
 function avatarHTML(prof, size) {
   var p = prof || {};
   var c = houseColors(p.favorite_house);
+  var photo = getCustomAvatar(p);
+  var sizeCls = 'sw-av-' + (size || 'md');
+  if (photo) {
+    return '<span class="sw-av ' + sizeCls + ' sw-av-photo" style="--av1:' + esc(c[0]) + ';--av2:' + esc(c[1]) + '">' +
+      '<img src="' + esc(photo) + '" class="sw-av-img" alt="' + esc(p.username || 'Avatar') + '" loading="lazy" onerror="this.style.display=\'none\';var fb=this.nextElementSibling;if(fb)fb.style.display=\'flex\';">' +
+      '<span class="sw-av-ch sw-av-fallback" style="display:none">' + esc(String(p.username || '?').trim().charAt(0).toLocaleUpperCase('tr')) + '</span>' +
+      '</span>';
+  }
   var key = ICONS[p.avatar] ? p.avatar : 'initial';
   var inner = key === 'initial'
     ? '<span class="sw-av-ch">' + esc(String(p.username || '?').trim().charAt(0).toLocaleUpperCase('tr')) + '</span>'
     : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + ICONS[key] + '</svg>';
-  return '<span class="sw-av sw-av-' + (size || 'md') + '" style="--av1:' + esc(c[0]) + ';--av2:' + esc(c[1]) + '">' + inner + '</span>';
+  return '<span class="sw-av ' + sizeCls + '" style="--av1:' + esc(c[0]) + ';--av2:' + esc(c[1]) + '">' + inner + '</span>';
+}
+
+/* ── SADAKAT ROZETLERİ (LOYALTY BADGES) KATALOĞU ────────────── */
+var LOYALTY_BADGES = [
+  {
+    id: 'house_apprentice',
+    category: 'house',
+    tier: 1,
+    icon: '🛡️',
+    name_tr: 'Yeminli Nefer',
+    name_en: 'Sworn Guard',
+    desc_tr: 'Seçtiği haneye bağlılık yemini etmiş sadık sancak neferi.',
+    desc_en: 'A loyal guard sworn to the banner of their chosen house.',
+    req_tr: 'Bir haneye bağlılık yemini et',
+    req_en: 'Pledge allegiance to a house',
+    check: function (p, s) { return !!p.favorite_house; }
+  },
+  {
+    id: 'house_bannerman',
+    category: 'house',
+    tier: 2,
+    icon: '⚔️',
+    name_tr: 'Sadık Sancaktar',
+    name_en: 'Devoted Bannerman',
+    desc_tr: 'Hanenin sancağını Kurultay ve Divan’da onurla dalgalandıran savaşçı.',
+    desc_en: 'A bannerman carrying the house standard with pride in the assembly.',
+    req_tr: 'Hane seç ve en az 3 yorum / yanıt yap',
+    req_en: 'Pledge to a house and post 3+ comments/replies',
+    check: function (p, s) { return !!p.favorite_house && ((s.comments || 0) >= 3 || (s.total || 0) >= 3); }
+  },
+  {
+    id: 'house_veteran',
+    category: 'house',
+    tier: 3,
+    icon: '🏰',
+    name_tr: 'Kıdemli Muhafız',
+    name_en: 'Veteran Defender',
+    desc_tr: 'Hanenin kadim değerlerini ve surlarını koruyan tecrübeli muhafız.',
+    desc_en: 'A seasoned defender safeguarding the bastion and lore of their house.',
+    req_tr: 'Hane seç ve en az 10 yorum veya 2 öneri sun',
+    req_en: 'Pledge to a house and post 10+ comments or 2 suggestions',
+    check: function (p, s) { return !!p.favorite_house && ((s.comments || 0) >= 10 || (s.total || 0) >= 10 || (s.suggs || 0) >= 2); }
+  },
+  {
+    id: 'house_champion',
+    category: 'house',
+    tier: 4,
+    icon: '👑',
+    name_tr: 'Hane Şampiyonu',
+    name_en: 'House Champion',
+    desc_tr: 'Hanenin en yüksek güvenini ve şanını kazanmış efsanevi temsilci.',
+    desc_en: 'A champion holding the highest glory of their sworn house.',
+    req_tr: 'En az 25 yorum veya yönetici rolü',
+    req_en: 'Reach 25+ comments or hold chronicler role',
+    check: function (p, s) { return !!p.favorite_house && ((s.comments || 0) >= 25 || (s.total || 0) >= 25 || p.role === 'admin'); }
+  },
+  {
+    id: 'divan_chronicler',
+    category: 'community',
+    tier: 2,
+    icon: '📜',
+    name_tr: 'Vakanüvis Yoldaşı',
+    name_en: 'Chronicler’s Companion',
+    desc_tr: 'Destan arşivine öneri veya düzeltme sunarak evrenin gelişimine omuz veren.',
+    desc_en: 'Contributed directly to the wiki lore with suggestions and corrections.',
+    req_tr: 'Vakanüvise en az 1 öneri sun veya yönetici ol',
+    req_en: 'Submit at least 1 suggestion or be a chronicler',
+    check: function (p, s) { return (s.suggs || 0) >= 1 || p.role === 'admin'; }
+  },
+  {
+    id: 'active_scribe',
+    category: 'community',
+    tier: 1,
+    icon: '🖋️',
+    name_tr: 'Divan Kâtibi',
+    name_en: 'Chamber Scribe',
+    desc_tr: 'Divan tartışmalarında ve mecliste düzenli fikir beyan eden usta kalem.',
+    desc_en: 'An active scribe frequently participating in council debates.',
+    req_tr: 'En az 5 yorum veya Kurultay kelamı paylaş',
+    req_en: 'Post at least 5 comments or topics in the council',
+    check: function (p, s) { return (s.comments || 0) >= 5 || (s.total || 0) >= 5; }
+  },
+  {
+    id: 'seal_master',
+    category: 'community',
+    tier: 3,
+    icon: '⭐',
+    name_tr: 'Mühür Efendisi',
+    name_en: 'Master of Seals',
+    desc_tr: 'Sözleri ve tahlilleri topluluk tarafından yüksek mühürlerle taltif edilen.',
+    desc_en: 'Acclaimed by the community with esteemed seals of approval.',
+    req_tr: 'Topluluktan en az 10 mühür takdiri topla',
+    req_en: 'Collect 10+ seals from fellow readers',
+    check: function (p, s) { return (s.seals || 0) >= 10; }
+  },
+  {
+    id: 'fate_weaver',
+    category: 'lore',
+    tier: 3,
+    icon: '🔮',
+    name_tr: 'Kader Dokuyucu',
+    name_en: 'Fate Weaver',
+    desc_tr: 'Destanın geleceğine dair derinlikli teoriler, kehanetler ve tahliller üreten.',
+    desc_en: 'A visionary crafting prophecies and profound theories on the saga.',
+    req_tr: 'Kurultay’da teori tartışmalarına katıl veya 8+ yorum yap',
+    req_en: 'Participate in prophecies or post 8+ discussions',
+    check: function (p, s) { return (s.comments || 0) >= 8 || (s.total || 0) >= 8; }
+  },
+  {
+    id: 'council_elder',
+    category: 'prestige',
+    tier: 4,
+    icon: '🏛️',
+    name_tr: 'Kadim Meclis Üyesi',
+    name_en: 'Council Elder',
+    desc_tr: 'Stallhart dünyasının ilk günlerinden beri sadakatle kütüphaneyi takip eden usta.',
+    desc_en: 'A venerable reader loyally following the chronicles through time.',
+    req_tr: 'Hesap tarihi 7+ gün veya Vakanüvislik',
+    req_en: 'Account active for 7+ days or chronicler role',
+    check: function (p, s) {
+      if (p.role === 'admin') return true;
+      if (p.created_at) {
+        var days = (Date.now() - new Date(p.created_at).getTime()) / (1000 * 60 * 60 * 24);
+        if (days >= 7) return true;
+      }
+      return (s.comments || 0) >= 15 || (s.total || 0) >= 15;
+    }
+  },
+  {
+    id: 'night_sentry',
+    category: 'lore',
+    tier: 2,
+    icon: '🌙',
+    name_tr: 'Gece Nöbetçisi',
+    name_en: 'Night Sentry',
+    desc_tr: 'Gece ve şafak vakitlerinde arşivlerin sessizliğinde sayfaları çeviren sadık gözcü.',
+    desc_en: 'A nocturnal reader keeping vigil over the sacred scrolls.',
+    req_tr: 'Arşivleri incele ve en az 1 yorum bırak',
+    req_en: 'Explore archives and post at least 1 comment',
+    check: function (p, s) { return (s.comments || 0) >= 1 || (s.total || 0) >= 1 || !!p.favorite_house; }
+  }
+];
+
+function getUnlockedLoyaltyBadges(prof, stats) {
+  var p = prof || {};
+  var s = stats || {};
+  if (s.total === undefined && s.comments === undefined) {
+    try {
+      var loc = localStorage.getItem('sw_allegiance_v1');
+      if (loc) {
+        var parsed = JSON.parse(loc);
+        s.comments = parsed.reply_count || 5;
+        s.seals = parsed.seals || 12;
+      }
+    } catch (e) {}
+  }
+  return LOYALTY_BADGES.filter(function (b) {
+    try { return b.check(p, s); } catch (e) { return false; }
+  });
+}
+
+function getLoyaltyBadge(prof, stats) {
+  var p = prof || {};
+  var targetId = p.loyalty_badge;
+  if (!targetId && p.id) {
+    try { targetId = localStorage.getItem('sw_loyalty_badge_' + p.id); } catch (e) {}
+  }
+  if (!targetId && p.username) {
+    try { targetId = localStorage.getItem('sw_loyalty_badge_user_' + String(p.username).trim().toLowerCase()); } catch (e) {}
+  }
+  if (!targetId && S.user && (!p.id || p.id === S.user.id)) {
+    try { targetId = localStorage.getItem('sw_current_loyalty_badge'); } catch (e) {}
+  }
+  if (targetId) {
+    for (var i = 0; i < LOYALTY_BADGES.length; i++) {
+      if (LOYALTY_BADGES[i].id === targetId) return LOYALTY_BADGES[i];
+    }
+  }
+  var unlocked = getUnlockedLoyaltyBadges(p, stats);
+  if (unlocked.length > 0) {
+    unlocked.sort(function (a, b) { return b.tier - a.tier; });
+    return unlocked[0];
+  }
+  return null;
+}
+
+function loyaltyBadgeHTML(prof, opts) {
+  var b = getLoyaltyBadge(prof, opts && opts.stats);
+  if (!b) return '';
+  var l = Lang.get();
+  var name = l === 'tr' ? b.name_tr : b.name_en;
+  var desc = l === 'tr' ? b.desc_tr : b.desc_en;
+  var showName = !opts || opts.compact !== true;
+  var tier = b.tier || 1;
+  return '<span class="sw-loyalty-badge tier-' + tier + '" title="' + esc(name + ' — ' + desc) + '" data-badge-id="' + esc(b.id) + '">' +
+    '<span class="sw-lb-icon">' + b.icon + '</span>' +
+    (showName ? '<span class="sw-lb-name">' + esc(name) + '</span>' : '') +
+    '</span>';
+}
+
+function saveUserLoyaltyBadge(prof, badgeId) {
+  var p = prof || S.profile || {};
+  p.loyalty_badge = badgeId;
+  try {
+    if (p.id) localStorage.setItem('sw_loyalty_badge_' + p.id, badgeId);
+    if (p.username) localStorage.setItem('sw_loyalty_badge_user_' + String(p.username).trim().toLowerCase(), badgeId);
+    if (S.user && (!p.id || p.id === S.user.id)) localStorage.setItem('sw_current_loyalty_badge', badgeId);
+  } catch (e) {}
 }
 
 /* Küçük arma (yorum satırında) */
@@ -661,7 +947,7 @@ function renderNav() {
   if (S.user) {
     var p = S.profile || { username: String(S.user.email || '?').split('@')[0] };
     var isAdmin = p.role === 'admin';
-    var badgeHTML = p.favorite_house ? crestBadge(p.favorite_house) : '';
+    var badgeHTML = (p.favorite_house ? crestBadge(p.favorite_house) : '') + loyaltyBadgeHTML(p, { compact: true });
     html = '<div class="nav-user' + (wasOpen ? ' open' : '') + '">' +
       '<button type="button" class="nav-user-btn" data-act="menu" aria-haspopup="menu" aria-expanded="' + wasOpen + '">' +
         avatarHTML(p, 'sm') + '<span class="nu-name">' + esc(p.username) + '</span>' + badgeHTML + '</button>' +
@@ -797,21 +1083,32 @@ async function openProfile(uid, tab) {
 function renderProfile(rec, c) {
   var p = c.prof, isAdmin = p.role === 'admin', h = Houses.get(p.favorite_house);
   var tab = c.tab;
-  if (!c.self && tab !== 'comments') tab = 'comments';
+  if (!c.self && tab !== 'comments' && tab !== 'loyalty') tab = 'comments';
+
+  var stats = { total: c.total, comments: c.comments.length, suggs: c.suggs.length, seals: (p.seals || 0) };
+  var activeBadge = getLoyaltyBadge(p, stats);
+  var unlockedBadges = getUnlockedLoyaltyBadges(p, stats);
+  var customPhoto = getCustomAvatar(p);
 
   var head =
     '<div class="sw-pf-head">' +
-      '<div class="sw-pf-av">' + avatarHTML(p, 'xl') + '</div>' +
+      '<div class="sw-pf-av' + (c.self ? ' can-edit' : '') + '">' +
+        avatarHTML(p, 'xl') +
+        (c.self ? '<button type="button" class="sw-pf-av-edit" data-act="quick-photo" title="' + esc(tt('p_upload_photo')) + '" aria-label="' + esc(tt('p_upload_photo')) + '">📷</button>' : '') +
+      '</div>' +
       '<div class="sw-pf-id">' +
         '<div class="sw-pf-name-row" style="display:flex;align-items:center;gap:.6rem;flex-wrap:wrap;margin-bottom:.2rem">' +
           '<h2 class="sw-h">' + esc(p.username) + '</h2>' +
           (p.favorite_house ? crestBadge(p.favorite_house, { showMotto: true }) : '') +
+          loyaltyBadgeHTML(p, { stats: stats }) +
         '</div>' +
         '<div class="sw-pf-role"><span class="sw-badge' + (isAdmin ? ' admin' : '') + '">' + esc(roleLabel(p.role)) + '</span>' +
           (p.title ? '<em>' + esc(titleLabel(p.title)) + '</em>' : '') + '</div>' +
         '<div class="sw-pf-meta">' + esc(tt('joined', { date: fmtDate(p.created_at) })) + '</div>' +
         '<div class="sw-pf-stats"><span><b>' + c.total + '</b> ' + esc(tt('stat_comments')) + '</span>' +
-          (c.self ? '<span><b>' + c.suggs.length + '</b> ' + esc(tt('stat_sugg')) + '</span>' : '') + '</div>' +
+          (c.self ? '<span><b>' + c.suggs.length + '</b> ' + esc(tt('stat_sugg')) + '</span>' : '') +
+          '<span><b>' + unlockedBadges.length + '</b> ' + esc(tt('p_loyalty')) + '</span>' +
+        '</div>' +
       '</div>' +
       (h ? '<div class="sw-pf-crest">' + crestBig(h.id) + '<div class="sw-pf-hinfo"><strong class="sw-pf-hname">' + esc(h.name) + '</strong>' +
         (h.motto ? '<span class="sw-pf-hmotto">“' + esc(Lang.t(h.motto)) + '”</span>' : '') +
@@ -821,8 +1118,9 @@ function renderProfile(rec, c) {
 
   var tabs = '<div class="sw-tabs" role="tablist">' +
     '<button type="button" role="tab" data-ptab="comments" class="' + (tab === 'comments' ? 'on' : '') + '">' + esc(tt('p_comments')) + '</button>' +
-    (c.self ? '<button type="button" role="tab" data-ptab="suggestions" class="' + (tab === 'suggestions' ? 'on' : '') + '">' + esc(tt('p_suggestions')) + '</button>' +
-              '<button type="button" role="tab" data-ptab="settings" class="' + (tab === 'settings' ? 'on' : '') + '">' + esc(tt('p_settings')) + '</button>' : '') +
+    (c.self ? '<button type="button" role="tab" data-ptab="suggestions" class="' + (tab === 'suggestions' ? 'on' : '') + '">' + esc(tt('p_suggestions')) + '</button>' : '') +
+    '<button type="button" role="tab" data-ptab="loyalty" class="' + (tab === 'loyalty' ? 'on' : '') + '">' + esc(tt('p_loyalty')) + '</button>' +
+    (c.self ? '<button type="button" role="tab" data-ptab="settings" class="' + (tab === 'settings' ? 'on' : '') + '">' + esc(tt('p_settings')) + '</button>' : '') +
     '</div>';
 
   var panel;
@@ -847,6 +1145,51 @@ function renderProfile(rec, c) {
             '</li>';
         }).join('') + '</ul>'
       : '<p class="sw-empty">' + esc(tt('p_none_sugg')) + '</p>';
+  } else if (tab === 'loyalty') {
+    var l = Lang.get();
+    var cardsHTML = LOYALTY_BADGES.map(function (b) {
+      var isUnlocked = unlockedBadges.some(function (ub) { return ub.id === b.id; });
+      var isActive = activeBadge && activeBadge.id === b.id;
+      var name = l === 'tr' ? b.name_tr : b.name_en;
+      var desc = l === 'tr' ? b.desc_tr : b.desc_en;
+      var req = l === 'tr' ? b.req_tr : b.req_en;
+      var tierLabel = l === 'tr' ? ('Kademe ' + b.tier) : ('Tier ' + b.tier);
+
+      var actionHTML = '';
+      if (isActive) {
+        actionHTML = '<span class="sw-lb-status active">★ ' + esc(tt('p_badge_current')) + '</span>';
+      } else if (isUnlocked && c.self) {
+        actionHTML = '<button type="button" class="sw-btn sw-lb-choose" data-choose-badge="' + esc(b.id) + '">★ ' + esc(tt('p_set_active_badge')) + '</button>';
+      } else if (isUnlocked) {
+        actionHTML = '<span class="sw-lb-status unlocked">✓ ' + esc(tt('p_badge_unlocked')) + '</span>';
+      } else {
+        actionHTML = '<span class="sw-lb-status locked">🔒 ' + esc(req) + '</span>';
+      }
+
+      return '<div class="sw-loyalty-card tier-' + b.tier + (isUnlocked ? ' unlocked' : ' locked') + (isActive ? ' active-card' : '') + '">' +
+        '<div class="sw-lc-top">' +
+          '<span class="sw-lc-emblem">' + b.icon + '</span>' +
+          '<div class="sw-lc-title-wrap">' +
+            '<h4 class="sw-lc-name">' + esc(name) + '</h4>' +
+            '<span class="sw-lc-tier">' + esc(tierLabel) + '</span>' +
+          '</div>' +
+        '</div>' +
+        '<p class="sw-lc-desc">' + esc(desc) + '</p>' +
+        '<div class="sw-lc-req"><strong>' + (l === 'tr' ? 'Kazanma Koşulu:' : 'Requirement:') + '</strong> ' + esc(req) + '</div>' +
+        '<div class="sw-lc-foot">' + actionHTML + '</div>' +
+      '</div>';
+    }).join('');
+
+    panel = '<div class="sw-loyalty-panel">' +
+      '<div class="sw-loyalty-intro">' +
+        '<div class="sw-loyalty-intro-text">' +
+          '<h3 class="sw-loyalty-h">🎖️ ' + esc(tt('p_loyalty')) + '</h3>' +
+          '<p class="sw-loyalty-sub">' + esc(tt('p_loyalty_sub')) + '</p>' +
+        '</div>' +
+        '<div class="sw-loyalty-count"><b>' + unlockedBadges.length + ' / ' + LOYALTY_BADGES.length + '</b> ' + esc(tt('p_badge_unlocked')) + '</div>' +
+      '</div>' +
+      '<div class="sw-loyalty-grid">' + cardsHTML + '</div>' +
+    '</div>';
   } else {
     var groups = {};
     Houses.all().forEach(function (hh) { var g = Lang.t(hh.province) || '—'; (groups[g] = groups[g] || []).push(hh); });
@@ -858,20 +1201,59 @@ function renderProfile(rec, c) {
     var titleOpts = '<option value="">—</option>' + TITLES.map(function (t) {
       return '<option value="' + esc(t[0]) + '"' + (t[0] === p.title ? ' selected' : '') + '>' + esc(Lang.get() === 'en' ? t[1] : t[0]) + '</option>';
     }).join('');
+
+    var badgeOpts = '<option value="">— ' + (Lang.get() === 'tr' ? 'Otomatik En Yüksek Rozet' : 'Auto Highest Badge') + ' —</option>' +
+      unlockedBadges.map(function (b) {
+        var bName = Lang.get() === 'tr' ? b.name_tr : b.name_en;
+        return '<option value="' + esc(b.id) + '"' + ((activeBadge && activeBadge.id === b.id) ? ' selected' : '') + '>' +
+          b.icon + ' ' + esc(bName) + ' (' + (Lang.get() === 'tr' ? 'Kademe ' : 'Tier ') + b.tier + ')</option>';
+      }).join('');
+
     var avs = AVATARS.map(function (a) {
-      return '<label class="sw-av-opt"><input type="radio" name="avatar" value="' + a + '"' + ((p.avatar || 'initial') === a ? ' checked' : '') + '>' +
+      return '<label class="sw-av-opt"><input type="radio" name="avatar" value="' + a + '"' + (((!customPhoto && p.avatar === a) || (!customPhoto && !p.avatar && a === 'initial')) ? ' checked' : '') + '>' +
         avatarHTML({ avatar: a, username: p.username, favorite_house: p.favorite_house }, 'md') + '</label>';
     }).join('');
+
     panel = '<form class="sw-form sw-pf-settings" novalidate>' +
-      '<div class="sw-l"><span>' + esc(tt('p_avatar')) + '</span><div class="sw-av-grid">' + avs + '</div></div>' +
-      '<label class="sw-l"><span>' + esc(tt('p_house')) + '</span><select class="sw-in" name="house">' + houseOpts + '</select></label>' +
-      '<label class="sw-l"><span>' + esc(tt('p_title')) + '</span><select class="sw-in" name="title">' + titleOpts + '</select></label>' +
+      /* 1. Özel Profil Fotoğrafı Yükleme Bölümü */
+      '<div class="sw-photo-sec">' +
+        '<label class="sw-l"><span class="sw-label-title">📸 ' + esc(tt('p_avatar_photo')) + '</span></label>' +
+        '<div class="sw-photo-box">' +
+          '<div class="sw-photo-preview-wrap">' +
+            '<div class="sw-photo-curr-av">' + avatarHTML(p, 'xl') + '</div>' +
+          '</div>' +
+          '<div class="sw-photo-controls">' +
+            '<input type="file" id="sw-photo-file-in" accept="image/png,image/jpeg,image/webp,image/gif" style="display:none">' +
+            '<div class="sw-photo-btn-group">' +
+              '<button type="button" class="sw-btn primary" id="sw-btn-pick-photo">' + esc(tt('p_choose_photo')) + '</button>' +
+              (customPhoto ? ' <button type="button" class="sw-btn danger" id="sw-btn-rm-photo">' + esc(tt('p_remove_photo')) + '</button>' : '') +
+            '</div>' +
+            '<p class="sw-photo-hint">' + esc(tt('p_photo_hint')) + '</p>' +
+            '<div class="sw-photo-url-row">' +
+              '<input type="url" class="sw-in" id="sw-photo-url-in" placeholder="' + esc(tt('p_or_url')) + '" value="' + (customPhoto && customPhoto.indexOf('data:') !== 0 ? esc(customPhoto) : '') + '">' +
+              '<button type="button" class="sw-btn" id="sw-btn-apply-url">' + esc(tt('save')) + '</button>' +
+            '</div>' +
+          '</div>' +
+        '</div>' +
+      '</div>' +
+
+      /* 2. Hanedan İkonları */
+      '<div class="sw-l"><span class="sw-label-title">' + esc(tt('p_heraldic_avatars')) + '</span><div class="sw-av-grid">' + avs + '</div></div>' +
+
+      /* 3. Birincil Sadakat Rozeti */
+      '<label class="sw-l"><span class="sw-label-title">🎖️ ' + esc(tt('p_active_badge')) + '</span>' +
+        '<select class="sw-in" name="loyalty_badge">' + badgeOpts + '</select>' +
+      '</label>' +
+
+      '<label class="sw-l"><span class="sw-label-title">' + esc(tt('p_house')) + '</span><select class="sw-in" name="house">' + houseOpts + '</select></label>' +
+      '<label class="sw-l"><span class="sw-label-title">' + esc(tt('p_title')) + '</span><select class="sw-in" name="title">' + titleOpts + '</select></label>' +
       '<div class="sw-err" role="alert" hidden></div>' +
       '<button class="sw-btn primary" type="submit">' + esc(tt('save')) + '</button></form>';
   }
 
   rec.body.innerHTML = head + tabs + '<div class="sw-pf-panel">' + panel + '</div>';
 
+  /* Sekme geçişi */
   rec.body.querySelector('.sw-tabs').addEventListener('click', function (e) {
     var b = e.target.closest && e.target.closest('[data-ptab]');
     if (!b || b.classList.contains('on')) return;
@@ -879,40 +1261,170 @@ function renderProfile(rec, c) {
     renderProfile(rec, c);
   });
 
-  var wd = rec.body.querySelector('.sw-pf-panel');
-  wd.addEventListener('click', async function (e) {
-    var b = e.target.closest && e.target.closest('[data-withdraw]');
-    if (!b) return;
-    if (!(await confirmBox(tt('withdraw_q'), tt('yes_withdraw'), true))) return;
-    try {
-      var r = await S.client.from('pending_suggestions').delete().eq('id', b.dataset.withdraw);
-      if (r.error) throw r.error;
-      toast(tt('withdrawn'));
-      openProfile(null, 'suggestions');
-    } catch (err) { toast(mapErr(err), true); }
+  /* Hızlı fotoğraf yükleme tetikleyicisi */
+  var quickPhotoBtn = rec.body.querySelector('[data-act="quick-photo"]');
+  if (quickPhotoBtn) {
+    quickPhotoBtn.addEventListener('click', function () {
+      c.tab = 'settings';
+      renderProfile(rec, c);
+      setTimeout(function () {
+        var pickBtn = rec.body.querySelector('#sw-btn-pick-photo');
+        if (pickBtn) pickBtn.click();
+      }, 50);
+    });
+  }
+
+  /* Sadakat rozeti seçimi */
+  var loyaltyBtns = rec.body.querySelectorAll('[data-choose-badge]');
+  Array.prototype.forEach.call(loyaltyBtns, function (btn) {
+    btn.addEventListener('click', async function () {
+      var badgeId = btn.dataset.chooseBadge;
+      saveUserLoyaltyBadge(p, badgeId);
+      if (S.user) {
+        try {
+          var client = await getClient();
+          await client.auth.updateUser({ data: { loyalty_badge: badgeId } });
+          await client.from('profiles').update({ loyalty_badge: badgeId }).eq('id', S.user.id);
+        } catch (e) { console.warn('Supabase loyalty badge sync note:', e); }
+      }
+      p.loyalty_badge = badgeId;
+      if (S.profile) S.profile.loyalty_badge = badgeId;
+      renderNav();
+      emit('PROFILE_UPDATED');
+      toast(tt('p_badge_set'));
+      renderProfile(rec, c);
+    });
   });
+
+  var wd = rec.body.querySelector('.sw-pf-panel');
+  if (wd) {
+    wd.addEventListener('click', async function (e) {
+      var b = e.target.closest && e.target.closest('[data-withdraw]');
+      if (!b) return;
+      if (!(await confirmBox(tt('withdraw_q'), tt('yes_withdraw'), true))) return;
+      try {
+        var r = await S.client.from('pending_suggestions').delete().eq('id', b.dataset.withdraw);
+        if (r.error) throw r.error;
+        toast(tt('withdrawn'));
+        openProfile(null, 'suggestions');
+      } catch (err) { toast(mapErr(err), true); }
+    });
+  }
 
   var form = rec.body.querySelector('.sw-pf-settings');
   if (form) {
+    var fileIn = form.querySelector('#sw-photo-file-in');
+    var pickPhotoBtn = form.querySelector('#sw-btn-pick-photo');
+    var rmPhotoBtn = form.querySelector('#sw-btn-rm-photo');
+    var urlIn = form.querySelector('#sw-photo-url-in');
+    var applyUrlBtn = form.querySelector('#sw-btn-apply-url');
+    var previewAv = form.querySelector('.sw-photo-curr-av');
+
+    if (pickPhotoBtn && fileIn) {
+      pickPhotoBtn.addEventListener('click', function () { fileIn.click(); });
+      fileIn.addEventListener('change', function () {
+        var file = fileIn.files && fileIn.files[0];
+        if (!file) return;
+        var reader = new FileReader();
+        reader.onload = function (evt) {
+          var img = new Image();
+          img.onload = function () {
+            var canvas = document.createElement('canvas');
+            var size = 180;
+            canvas.width = size; canvas.height = size;
+            var ctx = canvas.getContext('2d');
+            var minD = Math.min(img.width, img.height);
+            var sx = (img.width - minD) / 2;
+            var sy = (img.height - minD) / 2;
+            ctx.drawImage(img, sx, sy, minD, minD, 0, 0, size, size);
+            var dataUrl = canvas.toDataURL('image/jpeg', 0.85);
+            setCustomAvatar(p, dataUrl);
+            if (S.profile) setCustomAvatar(S.profile, dataUrl);
+            renderNav(); emit('PROFILE_UPDATED');
+            toast(tt('p_saved'));
+            renderProfile(rec, c);
+          };
+          img.src = evt.target.result;
+        };
+        reader.readAsDataURL(file);
+      });
+    }
+
+    if (applyUrlBtn && urlIn) {
+      applyUrlBtn.addEventListener('click', function () {
+        var u = urlIn.value.trim();
+        if (u) {
+          setCustomAvatar(p, u);
+          if (S.profile) setCustomAvatar(S.profile, u);
+          renderNav(); emit('PROFILE_UPDATED');
+          toast(tt('p_saved'));
+          renderProfile(rec, c);
+        }
+      });
+    }
+
+    if (rmPhotoBtn) {
+      rmPhotoBtn.addEventListener('click', function () {
+        setCustomAvatar(p, null);
+        if (S.profile) setCustomAvatar(S.profile, null);
+        renderNav(); emit('PROFILE_UPDATED');
+        toast(tt('p_saved'));
+        renderProfile(rec, c);
+      });
+    }
+
     form.elements.house.addEventListener('change', function () {
       var col = houseColors(form.elements.house.value);
       Array.prototype.forEach.call(form.querySelectorAll('.sw-av'), function (el) {
         el.style.setProperty('--av1', col[0]); el.style.setProperty('--av2', col[1]);
       });
     });
+
     form.addEventListener('submit', async function (e) {
       e.preventDefault();
       var errEl = form.querySelector('.sw-err'); errEl.hidden = true;
       var checked = form.querySelector('input[name=avatar]:checked');
-      var upd = { avatar: checked ? checked.value : 'initial', favorite_house: form.elements.house.value || null, title: form.elements.title.value || null };
+      var chosenHouse = form.elements.house.value || null;
+      var chosenTitle = form.elements.title.value || null;
+      var chosenBadge = form.elements.loyalty_badge ? form.elements.loyalty_badge.value : null;
+      
+      var customAv = getCustomAvatar(p);
+      var avVal = customAv ? 'custom' : (checked ? checked.value : 'initial');
+      
+      var upd = {
+        avatar: avVal,
+        favorite_house: chosenHouse,
+        title: chosenTitle
+      };
+
+      if (chosenBadge) {
+        saveUserLoyaltyBadge(p, chosenBadge);
+        if (S.profile) S.profile.loyalty_badge = chosenBadge;
+      }
+
       try {
-        var r = await S.client.from('profiles').update(upd).eq('id', S.user.id)
+        var client = await getClient();
+        // Update user metadata in Auth (stores custom avatar and loyalty badge forever)
+        try {
+          await client.auth.updateUser({
+            data: {
+              avatar_url: customAv || '',
+              loyalty_badge: chosenBadge || ''
+            }
+          });
+        } catch (metaErr) { console.warn('User metadata sync note:', metaErr); }
+
+        var r = await client.from('profiles').update(upd).eq('id', S.user.id)
           .select('id,username,avatar,favorite_house,title,role,is_banned,created_at').single();
         if (r.error) throw r.error;
-        S.profile = r.data;
+        
+        S.profile = Object.assign({}, r.data, {
+          avatar_url: customAv,
+          loyalty_badge: chosenBadge || p.loyalty_badge
+        });
         renderNav(); emit('PROFILE_UPDATED');
         toast(tt('p_saved'));
-        c.prof = r.data;
+        c.prof = S.profile;
         renderProfile(rec, c);
       } catch (err) { errEl.textContent = mapErr(err); errEl.hidden = false; }
     });
@@ -1022,8 +1534,18 @@ Object.assign(API, {
   addStrings: addStrings,
   ensureCSS: injectCSS,
   loadModule: loadModule,
+  loyalty: {
+    badges: LOYALTY_BADGES,
+    get: getLoyaltyBadge,
+    unlocked: getUnlockedLoyaltyBadges,
+    save: saveUserLoyaltyBadge,
+    html: loyaltyBadgeHTML
+  },
   util: {
     esc: esc, tt: tt, mapErr: mapErr, avatarHTML: avatarHTML, crestMini: crestMini, crestBadge: crestBadge, crestBig: crestBig,
+    loyaltyBadgeHTML: loyaltyBadgeHTML, getLoyaltyBadge: getLoyaltyBadge, getUnlockedLoyaltyBadges: getUnlockedLoyaltyBadges,
+    getCustomAvatar: getCustomAvatar, setCustomAvatar: setCustomAvatar, saveUserLoyaltyBadge: saveUserLoyaltyBadge,
+    LOYALTY_BADGES: LOYALTY_BADGES,
     houseColors: houseColors, titleLabel: titleLabel, roleLabel: roleLabel, fmtDate: fmtDate, timeAgo: timeAgo,
     slugify: slugify, toast: toast, confirmBox: confirmBox, Modal: Modal, Houses: Houses,
     pageLabel: pageLabel, pageUrl: pageUrl, typeLabel: typeLabel, TARGETS: TARGETS, ctxFor: ctxFor, TITLES: TITLES, AVATARS: AVATARS, ICONS: ICONS, sleep: sleep,

@@ -193,7 +193,8 @@ function create(el, type, id, opts) {
         '<div class="dv-who"><button type="button" class="dv-name" data-act="user" data-uid="' + esc(c.user_id) + '">' + esc(a.username) + '</button>' +
           (a.role === 'admin' ? '<span class="dv-badge admin">' + esc(tt('role_admin')) + '</span>' : '') +
           (a.title ? '<span class="dv-ttl">' + esc(U.titleLabel(a.title)) + '</span>' : '') +
-          (a.favorite_house ? U.crestBadge(a.favorite_house) : '') + '</div>' +
+          (a.favorite_house ? U.crestBadge(a.favorite_house) : '') +
+          (U.loyaltyBadgeHTML ? U.loyaltyBadgeHTML(a) : '') + '</div>' +
         '<time class="dv-time" datetime="' + esc(c.created_at) + '" title="' + esc(new Date(c.created_at).toLocaleString(U.locale())) + '">' + esc(U.timeAgo(c.created_at)) + '</time>' +
       '</div>' +
       (replyTo ? '<div class="dv-replyto">↳ ' + esc(replyTo) + '</div>' : '') +

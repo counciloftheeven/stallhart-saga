@@ -82,7 +82,7 @@ function fkHeadHTML(l) {
       <h1 class="fk-title">${esc(l === 'tr' ? thread.title : (thread.title_en || thread.title))}</h1>
       <div class="fk-meta">
         ${C.util.avatarHTML(prof, 'sm')}
-        <span><b>${esc(prof.username)}</b> ${prof.favorite_house && C ? C.util.crestBadge(prof.favorite_house) : ''} · ${esc(C.util.fmtDate ? C.util.fmtDate(thread.created_at) : '')}</span>
+        <span><b>${esc(prof.username)}</b> ${prof.favorite_house && C ? C.util.crestBadge(prof.favorite_house) : ''} ${C && C.util && C.util.loyaltyBadgeHTML ? C.util.loyaltyBadgeHTML(prof) : ''} · ${esc(C.util.fmtDate ? C.util.fmtDate(thread.created_at) : '')}</span>
         <span>·</span>
         <span>${thread.view_count || 0} ${l === 'tr' ? 'görüntülenme' : 'views'}</span>
       </div>
