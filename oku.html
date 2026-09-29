@@ -675,7 +675,7 @@ function render(keepPct) {
     '<p class="rd-meta">' + esc(meta.join(' · ')) + '</p></header>' +
     (tx.fallback ? '<p class="rd-notice">' + esc(T('enNote')) + '</p>' : '') +
     
-    /* Sesli Bölüm / Vakanüvis Anlatıcı Konsolu (Nöral AI & Cümle Kuyruğu) */
+    /* Sesli Bölüm / Vakanüvis Anlatıcı Konsolu (Nöral AI & Edebi Soluk Grupları) */
     '<div class="sw-audio-narrator-card" id="sw-narrator-card">' +
       '<div class="sw-an-topbar">' +
         '<div class="sw-an-left">' +
@@ -685,7 +685,7 @@ function render(keepPct) {
               '<h4>' + (l === 'tr' ? 'Vakanüvis Dinleme Modu' : 'Chronicler Audio Mode') + '</h4>' +
               '<span class="sw-an-badge" id="sw-an-badge">✦ ' + (l === 'tr' ? 'Microsoft Nöral AI' : 'Microsoft Neural AI') + '</span>' +
             '</div>' +
-            '<p id="sw-an-subinfo">' + (l === 'tr' ? cur.num + '. Bölüm 1.05x akıcı tempo ve takılmasız cümle kuyruğu ile seslendirilir.' : 'Chapter ' + cur.num + ' narration with 1.05x fluid tempo & gapless sentence queue.') + '</p>' +
+            '<p id="sw-an-subinfo">' + (l === 'tr' ? cur.num + '. Bölüm edebi soluk öbekleri, fonetik sözlük ve stüdyo akustiği ile seslendirilir.' : 'Chapter ' + cur.num + ' narration powered by fluent breath passages, phonetic lexicon & studio acoustics.') + '</p>' +
           '</div>' +
         '</div>' +
         '<div class="sw-an-top-actions">' +
@@ -693,7 +693,7 @@ function render(keepPct) {
             '<label for="sw-an-voice-sel">' + (l === 'tr' ? 'Ses:' : 'Voice:') + '</label>' +
             '<select id="sw-an-voice-sel" class="sw-an-select">' +
               (l === 'tr'
-                ? '<option value="tr-TR-AhmetNeural">👑 Ahmet (Bilge Anlatıcı - Nöral)</option>' +
+                ? '<option value="tr-TR-AhmetNeural">👑 Ahmet (Bilge Vakanüvis - Nöral)</option>' +
                   '<option value="tr-TR-EmelNeural">📜 Emel (Doğal Anlatıcı - Nöral)</option>' +
                   '<option value="browser">🌐 Cihaz Sesi (Web Speech)</option>'
                 : '<option value="en-US-GuyNeural">👑 Guy (Epic Chronicler - Neural)</option>' +
@@ -717,12 +717,12 @@ function render(keepPct) {
 
       '<div class="sw-an-main-controls">' +
         '<div class="sw-an-playback-btns">' +
-          '<button type="button" class="sw-an-ctrl-btn" id="sw-an-prev-btn" title="' + (l === 'tr' ? 'Önceki Cümle' : 'Previous Sentence') + '"><span>⏮</span></button>' +
+          '<button type="button" class="sw-an-ctrl-btn" id="sw-an-prev-btn" title="' + (l === 'tr' ? 'Önceki Pasaj' : 'Previous Passage') + '"><span>⏮</span></button>' +
           '<button type="button" class="sw-an-btn" id="sw-an-play-btn">' +
             '<span id="sw-an-btn-ic">▶</span>' +
             '<span id="sw-an-btn-txt">' + (l === 'tr' ? 'Dinle' : 'Listen') + '</span>' +
           '</button>' +
-          '<button type="button" class="sw-an-ctrl-btn" id="sw-an-next-btn" title="' + (l === 'tr' ? 'Sonraki Cümle' : 'Next Sentence') + '"><span>⏭</span></button>' +
+          '<button type="button" class="sw-an-ctrl-btn" id="sw-an-next-btn" title="' + (l === 'tr' ? 'Sonraki Pasaj' : 'Next Passage') + '"><span>⏭</span></button>' +
           '<button type="button" class="sw-an-ctrl-btn sm" id="sw-an-stop-btn" title="' + (l === 'tr' ? 'Durdur ve Başa Al' : 'Stop & Reset') + '"><span>⏹</span></button>' +
         '</div>' +
         '<div class="sw-an-progress-wrap">' +
@@ -731,13 +731,13 @@ function render(keepPct) {
           '</div>' +
           '<div class="sw-an-progress-meta">' +
             '<span class="sw-an-status" id="sw-an-status">' + (l === 'tr' ? 'Hazır (1.05x Nöral Akış)' : 'Ready (1.05x Neural Flow)') + '</span>' +
-            '<span class="sw-an-counter" id="sw-an-counter">0 / 0 ' + (l === 'tr' ? 'Cümle' : 'Sentences') + '</span>' +
+            '<span class="sw-an-counter" id="sw-an-counter">0 / 0 ' + (l === 'tr' ? 'Pasaj' : 'Passages') + '</span>' +
           '</div>' +
         '</div>' +
       '</div>' +
 
       '<div class="sw-an-subtitle-box" id="sw-an-subtitle-box" style="display:none;">' +
-        '<div class="sw-an-sub-label">' + (l === 'tr' ? '🎙️ Canlı Anlatılan Cümle:' : '🎙️ Live Spoken Sentence:') + '</div>' +
+        '<div class="sw-an-sub-label">' + (l === 'tr' ? '🎙️ Canlı Anlatılan Pasaj:' : '🎙️ Live Spoken Passage:') + '</div>' +
         '<div class="sw-an-sub-text" id="sw-an-sub-text">“...”</div>' +
       '</div>' +
     '</div>' +
@@ -1027,21 +1027,226 @@ let audioState = {
   playing: false,
   paused: false,
   buffering: false,
-  speed: 1.05,       // 1.05x akıcı tempo
+  speed: 1.05,       // 1.05x akıcı edebiyat temposu
   pitch: 1.0,        // Nötr perde kalibrasyonu
   voice: 'tr-TR-AhmetNeural', // Varsayılan bilge vakanüvis nöral sesi
   ambient: true,
   audioCtx: null,
   droneNode: null,
   gainNode: null,
+  warmthNode: null,
+  masterOut: null,
   
-  // Cümle Bazlı Kuyruk (Sentence Queue)
-  sentences: [],
+  // Soluk Grubu & Edebi Pasaj Kuyruğu
+  passages: [],
   currentIndex: 0,
   currentAudio: null,
   audioCache: new Map(), // index -> { url, audio }
   prefetching: new Set()
 };
+
+// Fantastik Hanedan, Tanrı, Karakter ve Yer İsimleri Telaffuz Uyumlaması
+function applyPhoneticDictionary(text, lang) {
+  if (lang !== 'tr') return text;
+  let s = String(text || '');
+
+  const PHONETICS = [
+    [/\bStallhart\b/g, 'Stalhart'],
+    [/\bStallhart'ın\b/g, "Stalhart'ın"],
+    [/\bStallhart'a\b/g, "Stalhart'a"],
+    [/\bStallhart'ta\b/g, "Stalhart'ta"],
+    [/\bGharion\b/g, 'Gariyon'],
+    [/\bGharion'un\b/g, "Gariyon'un"],
+    [/\bGharion'a\b/g, "Gariyon'a"],
+    [/\bGharion'da\b/g, "Gariyon'da"],
+    [/\bVeron\b/g, 'Veron'],
+    [/\bVeron'un\b/g, "Veron'un"],
+    [/\bVeron'a\b/g, "Veron'a"],
+    [/\bMabed\b/g, 'Mâbed'],
+    [/\bMabed'in\b/g, "Mâbed'in"],
+    [/\bNazeth\b/g, 'Nazet'],
+    [/\bNazeth'in\b/g, "Nazet'in"],
+    [/\bEanhar\b/g, 'Eyanhar'],
+    [/\bRaxes\b/g, 'Rakses'],
+    [/\bArava\b/g, 'Arâva'],
+    [/\bArava'nın\b/g, "Arâva'nın"],
+    [/\bArava'ya\b/g, "Arâva'ya"],
+    [/\bArava'da\b/g, "Arâva'da"],
+    [/\bGydor\b/g, 'Gidor'],
+    [/\bLidros\b/g, 'Lidros'],
+    [/\bLomera\b/g, 'Lomera'],
+    [/\bLodvez\b/g, 'Lodvez'],
+    [/\bVeleris\b/g, 'Veleris'],
+    [/\bVazmer\b/g, 'Vazmer'],
+    [/\bBrikon\b/g, 'Brikon'],
+    [/\bZetus\b/g, 'Zetus'],
+    [/\bHardir\b/g, 'Hardir'],
+    [/\bSolgar\b/g, 'Solgar'],
+    [/\bSolgar'ın\b/g, "Solgar'ın"],
+    [/\bKâtip\b/g, 'Kâtip'],
+    [/\bVakanüvis\b/g, 'Vakanüvis'],
+    // Roma Rakamları
+    [/\bVII\.\b/g, 'Yedinci'],
+    [/\bVI\.\b/g, 'Altıncı'],
+    [/\bV\.\b/g, 'Beşinci'],
+    [/\bIV\.\b/g, 'Dördüncü'],
+    [/\bIII\.\b/g, 'Üçüncü'],
+    [/\bII\.\b/g, 'İkinci'],
+    [/\bI\.\b/g, 'Birinci']
+  ];
+
+  for (const [re, rep] of PHONETICS) {
+    s = s.replace(re, rep);
+  }
+
+  // Edebi nefes düzenlemeleri:
+  // Üç nokta (...) ve uzun tireleri doğal nefes aralığına dönüştür
+  s = s.replace(/\.{3,}|\u2026/g, ', ');
+  s = s.replace(/\s*—\s*/g, ', ');
+  s = s.replace(/\.{2,}/g, '.');
+
+  return s;
+}
+
+// Paragraf veya 2-3 cümlelik doğal soluk gruplarını hazırla (İnsansı prosodi)
+function prepareNarratorPassages(raw, ch, l) {
+  if (!raw) return [];
+
+  const titleStr = l === 'tr'
+    ? (ch.num + '. Bölüm: ' + Lang.t(ch.title) + '.')
+    : ('Chapter ' + ch.num + ': ' + Lang.t(ch.title) + '.');
+
+  const passages = [{
+    text: titleStr,
+    speechText: applyPhoneticDictionary(titleStr, l),
+    display: titleStr
+  }];
+
+  // Paragraf ayrımı
+  const paragraphs = String(raw)
+    .split(/\n\s*\n/)
+    .map(p => cleanNarratorText(p))
+    .filter(p => p.length > 5);
+
+  for (const p of paragraphs) {
+    // Paragraf içindeki cümleleri ayır
+    const sentences = p
+      .replace(/([.!?]+)\s+/g, '$1|SPLIT|')
+      .split('|SPLIT|')
+      .map(s => s.trim())
+      .filter(s => s.length > 2);
+
+    if (sentences.length === 0) continue;
+
+    // 2-3 cümlelik doğal soluk grupları (~35-65 kelime)
+    let group = [];
+    let wordCount = 0;
+
+    for (const s of sentences) {
+      const sWords = s.split(/\s+/).length;
+      if (wordCount + sWords > 65 && group.length > 0) {
+        const chunk = group.join(' ');
+        passages.push({
+          text: chunk,
+          speechText: applyPhoneticDictionary(chunk, l),
+          display: chunk
+        });
+        group = [s];
+        wordCount = sWords;
+      } else {
+        group.push(s);
+        wordCount += sWords;
+      }
+    }
+
+    if (group.length > 0) {
+      const chunk = group.join(' ');
+      passages.push({
+        text: chunk,
+        speechText: applyPhoneticDictionary(chunk, l),
+        display: chunk
+      });
+    }
+  }
+
+  // Yedek: Paragraf ayrımı oluşmazsa düz metinden soluk grupları üret
+  if (passages.length <= 1) {
+    const plain = cleanNarratorText(raw);
+    const sentences = plain
+      .replace(/([.!?]+)\s+/g, '$1|SPLIT|')
+      .split('|SPLIT|')
+      .map(s => s.trim())
+      .filter(s => s.length > 2);
+
+    let group = [];
+    let wordCount = 0;
+    for (const s of sentences) {
+      const sWords = s.split(/\s+/).length;
+      if (wordCount + sWords > 60 && group.length > 0) {
+        const chunk = group.join(' ');
+        passages.push({
+          text: chunk,
+          speechText: applyPhoneticDictionary(chunk, l),
+          display: chunk
+        });
+        group = [s];
+        wordCount = sWords;
+      } else {
+        group.push(s);
+        wordCount += sWords;
+      }
+    }
+    if (group.length > 0) {
+      const chunk = group.join(' ');
+      passages.push({
+        text: chunk,
+        speechText: applyPhoneticDictionary(chunk, l),
+        display: chunk
+      });
+    }
+  }
+
+  return passages;
+}
+
+// Web Audio API ile Stüdyo Akustiği (Warmth EQ & Sibilans Yumuşatma)
+function applyStudioWarmth(audioObj) {
+  try {
+    const AudioCtx = window.AudioContext || window.webkitAudioContext;
+    if (!AudioCtx) return;
+    if (!audioState.audioCtx) audioState.audioCtx = new AudioCtx();
+    if (audioState.audioCtx.state === 'suspended') audioState.audioCtx.resume();
+
+    if (!audioState.warmthNode) {
+      // 180Hz'de vokal sıcaklık ve göğüs rezonansı EQ (+2.2dB)
+      const warmth = audioState.audioCtx.createBiquadFilter();
+      warmth.type = 'peaking';
+      warmth.frequency.setValueAtTime(180, audioState.audioCtx.currentTime);
+      warmth.Q.setValueAtTime(0.85, audioState.audioCtx.currentTime);
+      warmth.gain.setValueAtTime(2.2, audioState.audioCtx.currentTime);
+
+      // 5500Hz'de dijital sibilans yumuşatma (-1.5dB high-shelf)
+      const deEsser = audioState.audioCtx.createBiquadFilter();
+      deEsser.type = 'highshelf';
+      deEsser.frequency.setValueAtTime(5500, audioState.audioCtx.currentTime);
+      deEsser.gain.setValueAtTime(-1.5, audioState.audioCtx.currentTime);
+
+      warmth.connect(deEsser);
+      deEsser.connect(audioState.audioCtx.destination);
+
+      audioState.warmthNode = warmth;
+      audioState.masterOut = deEsser;
+    }
+
+    if (!audioObj._studioConnected) {
+      const src = audioState.audioCtx.createMediaElementSource(audioObj);
+      src.connect(audioState.warmthNode);
+      audioObj._studioConnected = true;
+    }
+  } catch (err) {
+    // Cross-origin veya browser kısıtı durumunda doğrudan yerel ses çalmaya devam eder
+  }
+}
 
 function startAmbientSound() {
   if (!audioState.ambient) return;
@@ -1104,55 +1309,6 @@ function cleanNarratorText(raw) {
     .trim();
 }
 
-function prepareNarratorSentences(raw, ch, l) {
-  const plain = cleanNarratorText(raw);
-  if (!plain) return [];
-
-  const titleStr = l === 'tr'
-    ? (ch.num + '. Bölüm: ' + Lang.t(ch.title) + '.')
-    : ('Chapter ' + ch.num + ': ' + Lang.t(ch.title) + '.');
-
-  // Noktalama işaretlerine göre cümlelere böl (. ! ? …)
-  const rawParts = plain
-    .replace(/([.!?…]+)\s+/g, '$1|SPLIT|')
-    .split('|SPLIT|')
-    .map(s => s.trim())
-    .filter(s => s.length > 2);
-
-  const sentences = [titleStr];
-
-  for (let s of rawParts) {
-    // Türkçe Roma rakamlarını doğal okunuşa dönüştür
-    if (l === 'tr') {
-      s = s.replace(/\bVII\.\b/g, 'Yedinci')
-           .replace(/\bVI\.\b/g, 'Altıncı')
-           .replace(/\bV\.\b/g, 'Beşinci')
-           .replace(/\bIV\.\b/g, 'Dördüncü')
-           .replace(/\bIII\.\b/g, 'Üçüncü')
-           .replace(/\bII\.\b/g, 'İkinci')
-           .replace(/\bI\.\b/g, 'Birinci');
-    }
-    // Çok uzun ve nefessiz cümleleri virgül veya noktalı virgülden böl
-    if (s.length > 260) {
-      const parts = s.split(/([,;])\s+/);
-      let buf = '';
-      for (let i = 0; i < parts.length; i++) {
-        if ((buf + parts[i]).length < 180) {
-          buf += parts[i];
-        } else {
-          if (buf.trim()) sentences.push(buf.trim());
-          buf = parts[i];
-        }
-      }
-      if (buf.trim()) sentences.push(buf.trim());
-    } else {
-      sentences.push(s);
-    }
-  }
-
-  return sentences;
-}
-
 function bindAudioNarrator(ch, tx, l) {
   const card = $('sw-narrator-card');
   if (!card) return;
@@ -1183,8 +1339,8 @@ function bindAudioNarrator(ch, tx, l) {
   }
   if (voiceSel) voiceSel.value = audioState.voice;
 
-  // Cümle kuyruğunu hazırla
-  audioState.sentences = prepareNarratorSentences(tx.text, ch, l);
+  // Edebi soluk pasajları kuyruğunu hazırla
+  audioState.passages = prepareNarratorPassages(tx.text, ch, l);
   audioState.currentIndex = 0;
   audioState.audioCache.clear();
   audioState.prefetching.clear();
@@ -1205,7 +1361,7 @@ function bindAudioNarrator(ch, tx, l) {
       audioState.prefetching.clear();
 
       if (audioState.playing && !audioState.paused) {
-        playSentence(audioState.currentIndex);
+        playPassage(audioState.currentIndex);
       }
     };
   }
@@ -1220,7 +1376,7 @@ function bindAudioNarrator(ch, tx, l) {
       audioState.prefetching.clear();
 
       if (audioState.playing && !audioState.paused) {
-        playSentence(audioState.currentIndex);
+        playPassage(audioState.currentIndex);
       }
     };
   });
@@ -1241,7 +1397,7 @@ function bindAudioNarrator(ch, tx, l) {
       if (!audioState.playing) {
         audioState.playing = true;
         audioState.paused = false;
-        playSentence(audioState.currentIndex);
+        playPassage(audioState.currentIndex);
       } else if (audioState.paused) {
         resumeAudio();
       } else {
@@ -1250,13 +1406,13 @@ function bindAudioNarrator(ch, tx, l) {
     };
   }
 
-  // Önceki Cümle
+  // Önceki Pasaj
   if (prevBtn) {
     prevBtn.onclick = () => {
       if (audioState.currentIndex > 0) {
         audioState.currentIndex--;
         if (audioState.playing && !audioState.paused) {
-          playSentence(audioState.currentIndex);
+          playPassage(audioState.currentIndex);
         } else {
           updateUI();
         }
@@ -1264,13 +1420,13 @@ function bindAudioNarrator(ch, tx, l) {
     };
   }
 
-  // Sonraki Cümle
+  // Sonraki Pasaj
   if (nextBtn) {
     nextBtn.onclick = () => {
-      if (audioState.currentIndex < audioState.sentences.length - 1) {
+      if (audioState.currentIndex < audioState.passages.length - 1) {
         audioState.currentIndex++;
         if (audioState.playing && !audioState.paused) {
-          playSentence(audioState.currentIndex);
+          playPassage(audioState.currentIndex);
         } else {
           updateUI();
         }
@@ -1289,12 +1445,12 @@ function bindAudioNarrator(ch, tx, l) {
 
   // UI Güncelleme Fonksiyonu
   function updateUI() {
-    const total = audioState.sentences.length;
+    const total = audioState.passages.length;
     const curNum = total > 0 ? (audioState.currentIndex + 1) : 0;
-    const curSentence = total > 0 ? audioState.sentences[audioState.currentIndex] : '';
+    const curItem = total > 0 ? audioState.passages[audioState.currentIndex] : null;
 
     if (counterEl) {
-      counterEl.textContent = l === 'tr' ? `${curNum} / ${total} Cümle` : `${curNum} / ${total} Sentences`;
+      counterEl.textContent = l === 'tr' ? `${curNum} / ${total} Pasaj` : `${curNum} / ${total} Passages`;
     }
     if (progressFill) {
       const pct = total > 0 ? ((curNum / total) * 100) : 0;
@@ -1302,9 +1458,9 @@ function bindAudioNarrator(ch, tx, l) {
     }
 
     if (subBox && subText) {
-      if (audioState.playing && curSentence) {
+      if (audioState.playing && curItem) {
         subBox.style.display = 'block';
-        subText.textContent = `“${curSentence}”`;
+        subText.textContent = `“${curItem.display || curItem.text}”`;
       } else if (!audioState.playing && audioState.currentIndex === 0) {
         subBox.style.display = 'none';
       }
@@ -1328,19 +1484,19 @@ function bindAudioNarrator(ch, tx, l) {
 
     if (statusEl) {
       if (audioState.buffering) {
-        statusEl.textContent = l === 'tr' ? '⌛ Nöral Ses Yükleniyor…' : '⌛ Neural Voice Buffering…';
+        statusEl.textContent = l === 'tr' ? '⌛ Nöral Ses Hazırlanıyor…' : '⌛ Neural Voice Preparing…';
       } else if (audioState.playing && !audioState.paused) {
-        const vName = audioState.voice.includes('Ahmet') ? 'Ahmet (Bilge)' :
-                      audioState.voice.includes('Emel') ? 'Emel (Doğal)' :
-                      audioState.voice.includes('Guy') ? 'Guy (Epic)' :
-                      audioState.voice.includes('Jenny') ? 'Jenny (Natural)' : 'Vakanüvis';
+        const vName = audioState.voice.includes('Ahmet') ? 'Ahmet (Nöral Vakanüvis)' :
+                      audioState.voice.includes('Emel') ? 'Emel (Nöral Doğal)' :
+                      audioState.voice.includes('Guy') ? 'Guy (Epic Narrator)' :
+                      audioState.voice.includes('Jenny') ? 'Jenny (Natural Narrator)' : 'Vakanüvis';
         statusEl.textContent = l === 'tr' ? `🎙️ ${vName} Anlatıyor…` : `🎙️ ${vName} Narrating…`;
       } else if (audioState.paused) {
         statusEl.textContent = l === 'tr' ? 'Duraklatıldı' : 'Paused';
       } else if (audioState.currentIndex >= total && total > 0) {
         statusEl.textContent = l === 'tr' ? '✓ Anlatım Tamamlandı' : '✓ Narration Finished';
       } else {
-        statusEl.textContent = l === 'tr' ? `Hazır (${audioState.speed}x Akış)` : `Ready (${audioState.speed}x Flow)`;
+        statusEl.textContent = l === 'tr' ? `Hazır (${audioState.speed}x Akış · Stüdyo Akustiği)` : `Ready (${audioState.speed}x Flow · Studio Acoustics)`;
       }
     }
   }
@@ -1351,17 +1507,11 @@ function bindAudioNarrator(ch, tx, l) {
     const rateStr = (pct >= 0 ? `+${pct}%` : `${pct}%`);
     const pitchStr = '+0Hz'; // Nötr perde kalibrasyonu
 
-    // Cümle sonundaki aşırı duraklama yaratan çoklu noktaları ve tireleri sadeleştir
-    const cleanSpeechText = String(text || '')
-      .replace(/\.{2,}/g, '.')
-      .replace(/[—–]\s*$/g, '.')
-      .trim();
-
     const res = await fetch('/api/tts', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        text: cleanSpeechText,
+        text,
         voice,
         rate: rateStr,
         pitch: pitchStr,
@@ -1375,14 +1525,14 @@ function bindAudioNarrator(ch, tx, l) {
 
   // Önceden Tamponlama (Pre-buffering / Zero-latency Queue)
   function preloadNext(idx) {
-    if (idx < 0 || idx >= audioState.sentences.length) return;
+    if (idx < 0 || idx >= audioState.passages.length) return;
     if (audioState.audioCache.has(idx) || audioState.prefetching.has(idx)) return;
     if (audioState.voice === 'browser') return;
 
     audioState.prefetching.add(idx);
-    const text = audioState.sentences[idx];
+    const passage = audioState.passages[idx];
 
-    fetchNeuralVoice(text, audioState.voice, audioState.speed)
+    fetchNeuralVoice(passage.speechText || passage.text, audioState.voice, audioState.speed)
       .then(url => {
         audioState.prefetching.delete(idx);
         const a = new Audio();
@@ -1397,11 +1547,11 @@ function bindAudioNarrator(ch, tx, l) {
       });
   }
 
-  // Cümleyi Çalma Mantığı
-  async function playSentence(idx) {
-    if (idx < 0 || idx >= audioState.sentences.length) {
+  // Pasajı Çalma Mantığı
+  async function playPassage(idx) {
+    if (idx < 0 || idx >= audioState.passages.length) {
       stopAudio();
-      audioState.currentIndex = audioState.sentences.length;
+      audioState.currentIndex = audioState.passages.length;
       updateUI();
       return;
     }
@@ -1411,7 +1561,7 @@ function bindAudioNarrator(ch, tx, l) {
     audioState.paused = false;
     updateUI();
 
-    // Bir sonraki iki cümleyi arka planda yükle
+    // Bir sonraki iki pasajı arka planda yükle
     preloadNext(idx + 1);
     preloadNext(idx + 2);
 
@@ -1431,7 +1581,8 @@ function bindAudioNarrator(ch, tx, l) {
       } else {
         audioState.buffering = true;
         updateUI();
-        const url = await fetchNeuralVoice(audioState.sentences[idx], audioState.voice, audioState.speed);
+        const passage = audioState.passages[idx];
+        const url = await fetchNeuralVoice(passage.speechText || passage.text, audioState.voice, audioState.speed);
         audioObj = new Audio(url);
         try { audioObj.load(); } catch (_) {}
         audioState.audioCache.set(idx, { url, audio: audioObj });
@@ -1450,16 +1601,19 @@ function bindAudioNarrator(ch, tx, l) {
 
       audioState.currentAudio = audioObj;
 
+      // Stüdyo Akustiği filtresini bağla
+      applyStudioWarmth(audioObj);
+
       let nextTriggered = false;
       const triggerNext = () => {
         if (nextTriggered) return;
         nextTriggered = true;
         if (audioState.playing && !audioState.paused) {
-          playSentence(idx + 1);
+          playPassage(idx + 1);
         }
       };
 
-      // Cümle bitimine ~60ms kala sıradaki cümleye pürüzsüz ve takılmasız akıcı geçiş
+      // Pasaj bitimine ~60ms kala sıradaki pasaja pürüzsüz ve takılmasız akıcı geçiş
       audioObj.ontimeupdate = () => {
         if (audioObj.duration && audioObj.currentTime >= Math.max(0.3, audioObj.duration - 0.06)) {
           triggerNext();
@@ -1471,7 +1625,7 @@ function bindAudioNarrator(ch, tx, l) {
       };
 
       audioObj.onerror = (e) => {
-        console.warn('Audio playback error, fallback to WebSpeech for sentence ' + idx, e);
+        console.warn('Audio playback error, fallback to WebSpeech for passage ' + idx, e);
         playWebSpeech(idx);
       };
 
@@ -1490,7 +1644,8 @@ function bindAudioNarrator(ch, tx, l) {
     if (!window.speechSynthesis) return;
     window.speechSynthesis.cancel();
 
-    const text = audioState.sentences[idx];
+    const passage = audioState.passages[idx];
+    const text = passage ? (passage.speechText || passage.text) : '';
     const utter = new SpeechSynthesisUtterance(text);
     utter.lang = l === 'tr' ? 'tr-TR' : 'en-US';
     utter.rate = audioState.speed; // 1.05x akıcı tempo
@@ -1514,13 +1669,13 @@ function bindAudioNarrator(ch, tx, l) {
 
     utter.onend = () => {
       if (audioState.playing && !audioState.paused) {
-        playSentence(idx + 1);
+        playPassage(idx + 1);
       }
     };
 
     utter.onerror = () => {
       if (audioState.playing && !audioState.paused) {
-        playSentence(idx + 1);
+        playPassage(idx + 1);
       }
     };
 
@@ -1547,17 +1702,17 @@ function bindAudioNarrator(ch, tx, l) {
         audioState.currentAudio.play();
         startAmbientSound();
       } catch (e) {
-        playSentence(audioState.currentIndex);
+        playPassage(audioState.currentIndex);
       }
     } else if (audioState.synth && audioState.synth.resume) {
       try {
         audioState.synth.resume();
         startAmbientSound();
       } catch (e) {
-        playSentence(audioState.currentIndex);
+        playPassage(audioState.currentIndex);
       }
     } else {
-      playSentence(audioState.currentIndex);
+      playPassage(audioState.currentIndex);
     }
     updateUI();
   }
