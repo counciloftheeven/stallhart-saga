@@ -948,6 +948,28 @@
   border-color: var(--gold);
   background: rgba(196, 150, 42, 0.1);
 }
+
+/* ── MOBİL UYUMLULUK VE TAŞMA ENGELLEME ───────────────── */
+@media (max-width: 768px) {
+  #lore-sec .inn { padding: 1.25rem 1rem 4rem; }
+  .lore-summary-strip { grid-template-columns: repeat(2, 1fr); gap: .75rem; margin-top: .5rem; }
+  .lore-toolbar { flex-direction: column; align-items: stretch; gap: .75rem; }
+  .lore-search-box { max-width: 100%; min-width: 0; width: 100%; }
+  .lore-filter-chips { overflow-x: auto; flex-wrap: nowrap; padding-bottom: .3rem; -webkit-overflow-scrolling: touch; }
+  .f-chip { flex-shrink: 0; }
+  .provinces-grid, .pantheon-grid, .theology-grid, .gls-cards-grid, .geo-features-grid, .imperial-dossier-grid {
+    grid-template-columns: 1fr !important;
+    gap: 1rem;
+  }
+  .lhb-left { flex-direction: column; gap: .8rem; min-width: 0; }
+  .lore-hierarchy-banner { padding: 1.15rem 1.1rem; }
+  .lhb-cta-btn { width: 100%; justify-content: center; }
+  .wp-table th, .wp-table td { padding: .55rem .75rem; font-size: .8rem; }
+}
+@media (max-width: 480px) {
+  .lore-summary-strip { grid-template-columns: 1fr; }
+  .lore-tab-btn { padding: .5rem .85rem; font-size: .82rem; }
+}
 </style>
 <script src="assets/js/router.js?v=3.0"></script>
 </head>

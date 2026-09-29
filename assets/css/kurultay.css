@@ -203,7 +203,7 @@
 /* ── KATEGORİ GRID DÜZENİ & PARŞÖMEN KARTLARI ────────────────── */
 .fc-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr));
   gap: 1.35rem;
   margin-bottom: 2.5rem;
 }
@@ -493,6 +493,9 @@
 @media (max-width: 680px) {
   .ft-stats, .ft-last { display: none; }
   .ft-row { padding: .85rem .9rem; gap: .75rem; }
+  .fc-grid, .sw-ledger-grid { grid-template-columns: 1fr !important; }
+  .fr-thread-title, .ft-title { word-break: break-word; overflow-wrap: break-word; }
+  .fr-user-card { margin-bottom: 1.25rem; }
 }
 
 /* ── KULLANICI KARTI (PROFİL & SANCAK ROZETİ) ───────────────── */
@@ -2270,7 +2273,7 @@ html[data-theme="light"] #fr-nt-form .sw-in:focus {
 }
 .sw-ledger-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr));
   gap: 1rem;
   max-height: 60vh;
   overflow-y: auto;

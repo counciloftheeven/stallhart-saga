@@ -155,9 +155,12 @@ html[data-theme="light"] #evren .btn-o:hover {
               border-color var(--theme-transition-duration) ease;
 }
 .fv-grid {
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
   gap: 1.5rem;
   margin-top: 2rem;
+}
+@media (max-width: 640px) {
+  .fv-grid { grid-template-columns: 1fr; gap: 1rem; }
 }
 .fv-card {
   text-decoration: none;

@@ -76,6 +76,15 @@ body{background:var(--bg);color:var(--parch);font-family:var(--font-body);font-s
 /* HINT */
 .hint-text{position:absolute;top:1rem;left:50%;transform:translateX(-50%);font-family:var(--font-display);font-style:italic;font-size:.7rem;color:var(--parchd);background:rgba(6,4,2,.78);border:1px solid var(--border);padding:.28rem .75rem;white-space:nowrap;pointer-events:none;transition:opacity 1s;z-index:10}
 .hint-text.gone{opacity:0}
+
+@media (max-width: 640px) {
+  .ttab { padding: .7rem 1.1rem; font-size: .82rem; min-height: 44px; }
+  .hint-text { white-space: normal; width: max-content; max-width: calc(100% - 2rem); font-size: .65rem; text-align: center; }
+  .ipanel { width: 100%; max-width: 100%; border-left: none; border-top: 1px solid var(--borderl); }
+  .ip-body { padding: 1.5rem 1.1rem; }
+  .ft-tools { top: auto; bottom: 1rem; left: 1rem; flex-direction: row; gap: 4px; }
+  .ft-btn { width: 40px; height: 40px; font-size: 1.2rem; }
+}
 </style>
 <script src="assets/js/router.js?v=3.0"></script>
 </head>

@@ -124,6 +124,16 @@
 .tag-filter-row{display:flex;gap:.4rem;flex-wrap:wrap;margin-bottom:1.25rem}
 .tag-chip{opacity:.82}
 .tag-chip.on{opacity:1;border-color:var(--goldd);color:var(--goldd);background:rgba(196,150,42,.08)}
+
+@media (max-width: 640px) {
+  #h-sec .inn { padding: 1.5rem 1rem 4rem !important; }
+  .hg, .kg { grid-template-columns: 1fr !important; }
+  .h-search-wrap { max-width: 100%; width: 100%; }
+  .prov-header { padding: .85rem 1rem; }
+  .prov-body { padding: .85rem 1rem 1.1rem; }
+  .tag-filter-row { overflow-x: auto; flex-wrap: nowrap; padding-bottom: .4rem; -webkit-overflow-scrolling: touch; }
+  .tag-chip { flex-shrink: 0; }
+}
 </style>
 <script src="assets/js/router.js?v=3.0"></script>
 </head>

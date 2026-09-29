@@ -147,7 +147,14 @@
 /* Özet alanı bazı bölümlerde çok uzun olabilir — listede 3 satırla sınırla */
 .ci-d { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
 .ci-first-line { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
-@media (max-width: 640px) { .ci-check { flex-wrap: wrap; } }
+@media (max-width: 640px) {
+  #bolumler-sec .inn { padding: 1.5rem 1rem 4rem !important; }
+  .arc-header { padding: .9rem 1rem; flex-wrap: wrap; gap: .4rem; }
+  .arc-count { margin-left: auto; }
+  .progress-wrap { padding: .85rem 1rem; gap: .75rem; }
+  .read-btn { padding: 6px 12px; font-size: .75rem; min-height: 36px; display: inline-flex; align-items: center; }
+  .ci-check { flex-wrap: wrap; margin-top: .4rem; }
+}
 </style>
 <script src="assets/js/router.js?v=3.0"></script>
 </head>

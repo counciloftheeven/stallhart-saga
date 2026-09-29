@@ -166,14 +166,41 @@ body.reader.rt-dark {
 .rd-toc-item.off { color: var(--parchd); font-style: italic; pointer-events: none; }
 
 @media (max-width: 640px) {
-  .rd-main { padding-left: 1rem; padding-right: 1rem; }
-  .rd-lbl { display: none; }
+  .rd-bar {
+    padding: env(safe-area-inset-top, 0px) max(.35rem, env(safe-area-inset-right, 0px)) 0 max(.35rem, env(safe-area-inset-left, 0px));
+    gap: .15rem;
+    overflow: hidden;
+  }
+  .rd-main { padding-left: .85rem; padding-right: .85rem; }
+  .rd-lbl { display: none !important; }
+  .rd-btn {
+    min-width: 35px;
+    width: 35px;
+    height: 36px;
+    min-height: 36px;
+    padding: 0;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .rd-btn svg { width: 17px; height: 17px; }
+  .rd-bar-title {
+    font-size: .84rem;
+    padding: 0 .25rem;
+    min-width: 0;
+  }
+  .sw-throne-flourish-slot { display: none !important; }
   .rd-nav { grid-template-columns: 1fr; }
   .rd-nav .next, .rd-nav .prev { grid-column: 1; text-align: left; }
   .rd-sheet, .rd-sheet-l {
-    top: auto; left: 0; right: 0; bottom: 0; width: 100%; max-height: 82vh; border-radius: 12px 12px 0 0; border-width: 1px 0 0;
+    top: auto; left: 0; right: 0; bottom: 0; width: 100%; max-height: 85vh; border-radius: 12px 12px 0 0; border-width: 1px 0 0;
     padding-bottom: calc(1.2rem + env(safe-area-inset-bottom, 0px));
   }
+}
+@media (max-width: 400px) {
+  .rd-bar { gap: .1rem; padding-left: .2rem; padding-right: .2rem; }
+  .rd-btn { min-width: 32px; width: 32px; height: 34px; min-height: 34px; }
+  .rd-btn#rd-install-btn { display: none !important; }
+  .rd-bar-title { font-size: .78rem; }
 }
 @media (prefers-reduced-motion: reduce) { .rd-bar, .rd-progress { transition: none; } html { scroll-behavior: auto; } }
 </style>

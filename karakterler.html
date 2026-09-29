@@ -131,6 +131,15 @@
 .tag-filter-row { display: flex; gap: .4rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
 .tag-chip { opacity: .82; }
 .tag-chip.on { opacity: 1; border-color: var(--goldd); color: var(--goldd); background: rgba(196,150,42,.08); }
+
+@media (max-width: 640px) {
+  .char-toolbar { flex-direction: column; align-items: stretch; gap: .75rem; }
+  .char-search-wrap { max-width: 100%; width: 100%; min-width: 0; }
+  .filter-sep { display: none; }
+  .char-count { margin-left: 0; text-align: right; }
+  .tag-filter-row { overflow-x: auto; flex-wrap: nowrap; padding-bottom: .4rem; -webkit-overflow-scrolling: touch; }
+  .tag-chip { flex-shrink: 0; }
+}
 </style>
 <script src="assets/js/router.js?v=3.0"></script>
 </head>

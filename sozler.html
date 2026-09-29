@@ -114,6 +114,15 @@ a.q-speaker:hover { color: var(--goldb); }
 .q-hero-attr { font-family:var(--font-display); font-size:.8rem; color:var(--gold); }
 .q-hero-refresh { background:none; border:1px solid var(--border); color:var(--parchd); font-family:var(--font-display); font-style:italic; font-size:.72rem; padding:.25rem .7rem; cursor:pointer; margin-top:.75rem; transition:.18s; }
 .q-hero-refresh:hover { border-color:var(--goldd); color:var(--gold); }
+
+@media (max-width: 640px) {
+  .q-hero { padding: 1.6rem 1rem 1.4rem; margin-bottom: 2rem; }
+  .q-hero-text { font-size: 1rem; line-height: 1.65; }
+  .q-toolbar { flex-direction: column; align-items: stretch; gap: .75rem; }
+  .q-search-wrap { max-width: 100%; width: 100%; min-width: 0; }
+  .q-count { margin-left: 0; text-align: right; }
+  .qc { padding: 1.25rem 1.15rem 1.1rem; }
+}
 </style>
 <script src="assets/js/router.js?v=3.0"></script>
 </head>

@@ -1407,16 +1407,35 @@ function initNav() {
   const ham   = document.getElementById('nav-ham');
   const links = document.getElementById('nav-links');
   if (ham && links) {
+    const closeMenu = () => {
+      links.classList.remove('open');
+      ham.setAttribute('aria-expanded', 'false');
+    };
     ham.addEventListener('click', e => {
       e.stopPropagation();
-      ham.setAttribute('aria-expanded', String(links.classList.toggle('open')));
+      const isOpen = links.classList.toggle('open');
+      ham.setAttribute('aria-expanded', String(isOpen));
+    });
+    // Menüdeki bir bağlantıya tıklandığında menüyü kapat
+    links.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => closeMenu());
     });
     document.addEventListener('click', e => {
       if (!ham.contains(e.target) && !links.contains(e.target)) {
-        links.classList.remove('open');
-        ham.setAttribute('aria-expanded', 'false');
+        closeMenu();
       }
     });
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && links.classList.contains('open')) {
+        closeMenu();
+        ham.focus();
+      }
+    });
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 1280 && links.classList.contains('open')) {
+        closeMenu();
+      }
+    }, { passive: true });
   }
 
   /* Ayarlar (⚙) açılır menüsü: yazı boyutu + dil + tema */
