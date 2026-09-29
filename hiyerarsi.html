@@ -59,7 +59,7 @@
   padding: 1.25rem 1.4rem;
   cursor: pointer;
   position: relative;
-  transition: all .2s ease;
+  transition: transform .2s ease, background .2s ease, box-shadow .2s ease, border-color .2s ease;
   user-select: none;
   display: flex;
   flex-direction: column;
@@ -72,11 +72,13 @@
   top: 0; left: 0; right: 0;
   height: 3px;
   background: transparent;
-  transition: background .2s;
+  transition: background .2s, height .2s;
 }
 
 .hy-stat-card:hover {
-  background: rgba(26, 36, 56, 0.95);
+  transform: translateY(-2px);
+  background: rgba(26, 36, 56, 0.98);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
 }
 
 .hy-stat-card.card-emperor::after { background: var(--gold); }
@@ -84,8 +86,13 @@
 .hy-stat-card.card-military::after { background: #8b0000; }
 .hy-stat-card.card-religious::after { background: #6b4b8a; }
 
+.hy-stat-card:hover::after {
+  height: 4px;
+}
+
 .hy-stat-card.active {
-  background: rgba(28, 38, 60, 0.98);
+  background: radial-gradient(ellipse at 50% 0%, rgba(45, 32, 20, 0.7), rgba(22, 32, 50, 0.98));
+  box-shadow: 0 0 16px rgba(184, 115, 51, 0.22);
 }
 
 .hy-stat-card.active::before {
@@ -93,8 +100,9 @@
   position: absolute;
   top: .6rem;
   right: .8rem;
-  font-size: .75rem;
+  font-size: .8rem;
   color: var(--goldb);
+  filter: drop-shadow(0 0 4px var(--goldb));
 }
 
 .hy-stat-header {
@@ -117,11 +125,18 @@
   border: 1px solid var(--border);
   color: var(--goldd);
   text-transform: uppercase;
+  transition: border-color .15s, color .15s;
+}
+
+.hy-stat-card:hover .hy-stat-badge {
+  border-color: var(--goldd);
+  color: var(--parchl);
 }
 
 .hy-stat-card.active .hy-stat-badge {
   border-color: var(--gold);
   color: var(--goldb);
+  background: rgba(184, 115, 51, 0.16);
 }
 
 .hy-stat-num {
@@ -708,56 +723,255 @@
   filter: grayscale(0.8);
 }
 
-/* ── BAĞLANTI ÇİZGİLERİ (TRUNK & BUS BAR) ───────────────────── */
-.hy-stem {
-  width: 2px;
-  height: 48px;
-  background: linear-gradient(to bottom, var(--gold), rgba(184, 115, 51, 0.6));
-  margin: 0 auto;
-  box-shadow: 0 0 12px rgba(184, 115, 51, 0.45);
-  transition: all .25s ease;
-}
-
-.hy-branch-nav {
-  position: relative;
+/* ── BAĞLANTI ÇİZGİLERİ (SVG HERALDIC FLOW CONNECTORS) ────────── */
+.hy-flow-connector-wrap {
   width: 100%;
-  max-width: 1300px;
-  margin: 0 auto 2.5rem;
+  max-width: 1360px;
+  height: 86px;
+  margin: -1.25rem auto 1.5rem;
+  position: relative;
+  pointer-events: none;
   transition: all .25s ease;
 }
 
-.hy-bus-bar {
-  width: 78%;
-  margin: 0 auto;
-  height: 2px;
-  background: linear-gradient(90deg, #b87333 0%, var(--goldb) 50%, #6b4b8a 100%);
-  box-shadow: 0 0 12px rgba(184, 115, 51, 0.35);
-  position: relative;
-  transition: width .3s ease;
+.hy-flow-svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  filter: drop-shadow(0 0 10px rgba(184, 115, 51, 0.35));
 }
 
-.hy-bus-bar::before, .hy-bus-bar::after {
-  content: "";
-  position: absolute;
-  top: -4px;
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
+.hy-flow-line {
+  fill: none;
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  transition: opacity .3s ease;
 }
-.hy-bus-bar::before { left: 0; background: #b87333; box-shadow: 0 0 8px #b87333; }
-.hy-bus-bar::after { right: 0; background: #6b4b8a; box-shadow: 0 0 8px #6b4b8a; }
 
-.hy-bus-center-node {
-  position: absolute;
-  top: -5px;
+.hy-flow-term, .hy-flow-apex-node {
+  filter: drop-shadow(0 0 6px currentColor);
+  transition: opacity .3s ease;
+}
+
+/* Eski Düz Çizgiler için Geriye Dönük Uyumluluk */
+.hy-stem { display: none; }
+.hy-branch-nav { display: none; }
+
+@media (max-width: 1080px) {
+  .hy-flow-connector-wrap {
+    display: none;
+  }
+}
+
+/* ── MOBİLDE KOL SEKME DOCK'U (MOBILE TABS) ─────────────────── */
+.hy-mobile-tabs {
+  display: none;
+}
+
+@media (max-width: 860px) {
+  .hy-mobile-tabs {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: .45rem;
+    overflow-x: auto;
+    padding: .5rem .25rem 1rem;
+    margin-bottom: 1.25rem;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .hy-mobile-tabs::-webkit-scrollbar { display: none; }
+  .hy-m-tab-btn {
+    background: rgba(16, 22, 33, 0.85);
+    border: 1px solid var(--border);
+    color: var(--parchd);
+    padding: .5rem .9rem;
+    border-radius: 4px;
+    font-family: var(--font-display);
+    font-size: .82rem;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: all .2s;
+    display: inline-flex;
+    align-items: center;
+    gap: .4rem;
+  }
+  .hy-m-tab-btn:hover {
+    color: var(--parchl);
+    border-color: var(--borderl);
+  }
+  .hy-m-tab-btn.active {
+    background: rgba(184, 115, 51, 0.24);
+    border-color: var(--gold);
+    color: var(--goldb);
+    font-weight: 600;
+    box-shadow: 0 0 12px rgba(184, 115, 51, 0.25);
+  }
+}
+
+/* ── YÜZEN SEYRÜSEFER ÇUBUĞU (FLOATING QUICK-JUMP DOCK) ───────── */
+.hy-quick-dock {
+  position: fixed;
+  bottom: 1.5rem;
   left: 50%;
-  transform: translateX(-50%);
-  width: 12px;
-  height: 12px;
+  transform: translateX(-50%) translateY(90px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  gap: .35rem;
+  background: rgba(12, 17, 28, 0.94);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(184, 115, 51, 0.45);
+  box-shadow: 0 12px 38px rgba(0, 0, 0, 0.8), 0 0 20px rgba(184, 115, 51, 0.25);
+  border-radius: 40px;
+  padding: .35rem .75rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: transform .3s cubic-bezier(.2,.8,.4,1), opacity .3s ease;
+  user-select: none;
+  max-width: 95vw;
+}
+
+.hy-quick-dock.visible {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+html[data-theme="light"] .hy-quick-dock {
+  background: rgba(244, 236, 216, 0.96);
+  border-color: rgba(125, 78, 34, 0.45);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25), 0 0 16px rgba(184, 115, 51, 0.2);
+}
+
+.hy-dock-btn {
+  background: none;
+  border: none;
+  color: var(--parchd);
+  font-family: var(--font-display);
+  font-size: .8rem;
+  padding: .35rem .65rem;
+  border-radius: 20px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: .35rem;
+  transition: all .18s;
+  white-space: nowrap;
+}
+
+.hy-dock-btn:hover {
+  color: var(--parchl);
+  background: rgba(184, 115, 51, 0.16);
+}
+
+.hy-dock-btn.active {
+  color: #fff;
+  background: rgba(184, 115, 51, 0.32);
+  font-weight: 600;
+}
+
+.hy-dock-cnt {
+  font-size: .68rem;
+  opacity: .8;
+  background: rgba(0, 0, 0, 0.4);
+  padding: 1px 5px;
+  border-radius: 8px;
+}
+
+.hy-dock-sep {
+  color: var(--goldd);
+  opacity: .4;
+  font-size: .75rem;
+}
+
+.hy-dock-top {
+  padding: .35rem .55rem;
+  font-size: .9rem;
+}
+
+/* ── KADEME BANNERLARI (TIER GROUP HEADERS) ─────────────────── */
+.hy-tier-banner {
+  display: flex;
+  align-items: center;
+  margin: 1.25rem 0 .75rem;
+  position: relative;
+}
+.hy-tier-banner:first-child {
+  margin-top: .25rem;
+}
+.hy-tier-banner::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(184, 115, 51, 0.35), transparent);
+  margin-left: .75rem;
+}
+.hy-tier-badge {
+  font-family: var(--font-display);
+  font-size: .72rem;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  padding: 2px 8px;
+  border-radius: 2px;
+  display: inline-flex;
+  align-items: center;
+  gap: .35rem;
+}
+.hy-tier-banner.tb-1 .hy-tier-badge {
+  background: rgba(184, 115, 51, 0.22);
+  color: var(--goldb);
+  border: 1px solid rgba(184, 115, 51, 0.45);
+}
+.hy-tier-banner.tb-2 .hy-tier-badge {
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--parchl);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+}
+.hy-tier-banner.tb-3 .hy-tier-badge {
+  background: rgba(0, 0, 0, 0.25);
+  color: var(--parchd);
+  border: 1px solid var(--border);
+}
+
+/* ── ALTIN/KIZIL AKIŞ HATTI (SOY KÜTÜĞÜ AKIŞI: 1. -> 2. -> 3. KADEME) ── */
+.hy-tier-lineage-flow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  margin: 1.15rem 0 .45rem;
+  height: 24px;
+}
+.hy-tier-lineage-flow::before,
+.hy-tier-lineage-flow::after {
+  content: "";
+  flex: 1;
+  height: 1.5px;
+  background: linear-gradient(90deg, transparent, rgba(184, 115, 51, 0.5), transparent);
+}
+.col-military .hy-tier-lineage-flow::before,
+.col-military .hy-tier-lineage-flow::after {
+  background: linear-gradient(90deg, transparent, rgba(139, 0, 0, 0.65), transparent);
+}
+.col-religious .hy-tier-lineage-flow::before,
+.col-religious .hy-tier-lineage-flow::after {
+  background: linear-gradient(90deg, transparent, rgba(107, 75, 138, 0.65), transparent);
+}
+.hy-tier-lineage-node {
+  width: 22px;
+  height: 22px;
   border-radius: 50%;
-  background: #8b0000;
-  border: 2px solid var(--gold);
-  box-shadow: 0 0 10px #8b0000;
+  border: 1px solid var(--gold);
+  background: rgba(12, 17, 28, 0.95);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: .65rem;
+  color: var(--goldb);
+  box-shadow: 0 0 12px rgba(184, 115, 51, 0.35);
+  margin: 0 .45rem;
 }
 
 /* ── ÜÇ ANA DİVAN SÜTUNU (COLUMNS) ──────────────────────────── */
@@ -774,7 +988,6 @@
     grid-template-columns: 1fr !important;
     gap: 2.5rem;
   }
-  .hy-bus-bar { display: none !important; }
 }
 
 .hy-col {
@@ -916,6 +1129,156 @@
 .hy-col.col-political .hy-office-card:hover::before { background: var(--gold); }
 .hy-col.col-military .hy-office-card:hover::before { background: #df6868; }
 .hy-col.col-religious .hy-office-card:hover::before { background: #bc9fe2; }
+
+/* ── KADEMELİ KART HİYERARŞİSİ (TIER 1, 2, 3) ─────────────────── */
+.hy-office-card.tier-1 {
+  background: radial-gradient(ellipse at 50% 0%, rgba(65, 42, 20, 0.65), var(--card));
+  border: 1.5px solid rgba(196, 150, 42, 0.65);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.55), 0 0 20px rgba(184, 115, 51, 0.22);
+  padding: 1.35rem 1.3rem;
+}
+
+.hy-office-card.tier-1:hover {
+  border-color: var(--goldb);
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.7), 0 0 28px rgba(184, 115, 51, 0.4);
+}
+
+.hy-office-card.tier-1 .hy-office-name {
+  font-size: 1.18rem;
+  font-weight: 700;
+  color: #fffaf0;
+  letter-spacing: .02em;
+}
+
+.hy-office-card.tier-1 .hy-off-rank-tag {
+  color: var(--goldb);
+  font-weight: 600;
+  letter-spacing: .12em;
+}
+
+/* Tier 1 ve Tier 2 için Portre / Düzen */
+.hy-office-main-layout {
+  display: flex;
+  align-items: center;
+  gap: 1.05rem;
+  margin-bottom: .6rem;
+}
+
+.hy-tier1-portrait {
+  width: 62px;
+  height: 62px;
+  border-radius: 50%;
+  border: 2px solid var(--goldb);
+  box-shadow: 0 0 16px rgba(184, 115, 51, 0.4), inset 0 0 8px rgba(0,0,0,0.6);
+  flex-shrink: 0;
+  overflow: hidden;
+  background: #080c16;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hy-tier1-portrait img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform .25s ease;
+}
+
+.hy-office-card.tier-1:hover .hy-tier1-portrait img {
+  transform: scale(1.1);
+}
+
+.hy-tier1-portrait-fallback {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  color: var(--goldb);
+  text-shadow: 0 0 10px rgba(184, 115, 51, 0.6);
+}
+
+/* Altın Köşebentler (Corner Flourishes) */
+.hy-corner-flourish {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  pointer-events: none;
+  opacity: .85;
+  transition: opacity .2s, width .2s, height .2s;
+}
+.hy-office-card:hover .hy-corner-flourish {
+  opacity: 1;
+  width: 16px;
+  height: 16px;
+}
+.hy-corner-flourish.cf-tl {
+  top: 4px; left: 4px;
+  border-top: 2px solid var(--goldb);
+  border-left: 2px solid var(--goldb);
+  box-shadow: -1px -1px 4px rgba(184, 115, 51, 0.4);
+}
+.hy-corner-flourish.cf-tr {
+  top: 4px; right: 4px;
+  border-top: 2px solid var(--goldb);
+  border-right: 2px solid var(--goldb);
+  box-shadow: 1px -1px 4px rgba(184, 115, 51, 0.4);
+}
+.hy-corner-flourish.cf-bl {
+  bottom: 4px; left: 4px;
+  border-bottom: 2px solid var(--goldb);
+  border-left: 2px solid var(--goldb);
+  box-shadow: -1px 1px 4px rgba(184, 115, 51, 0.4);
+}
+.hy-corner-flourish.cf-br {
+  bottom: 4px; right: 4px;
+  border-bottom: 2px solid var(--goldb);
+  border-right: 2px solid var(--goldb);
+  box-shadow: 1px 1px 4px rgba(184, 115, 51, 0.4);
+}
+
+.hy-office-card.tier-2 {
+  padding: 1.1rem 1.15rem;
+  border-color: rgba(255, 255, 255, 0.14);
+}
+.hy-office-card.tier-2:hover {
+  border-color: rgba(216, 148, 85, 0.65);
+}
+.hy-office-card.tier-2 .hy-office-name {
+  font-size: 1.04rem;
+  color: #f2ede4;
+}
+
+.hy-tier2-portrait {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(184, 115, 51, 0.55);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  flex-shrink: 0;
+  overflow: hidden;
+  background: #080c16;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hy-tier2-portrait img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hy-tier2-portrait-fallback {
+  font-family: var(--font-display);
+  font-size: .95rem;
+  color: var(--parchd);
+}
+
+.hy-office-card.tier-3 {
+  padding: .9rem 1rem;
+}
+.hy-office-card.tier-3 .hy-office-name {
+  font-size: .95rem;
+}
 
 .hy-office-top {
   display: flex;
@@ -1401,6 +1764,47 @@
   color: #000;
   border-color: var(--gold);
 }
+
+/* ── MOBİL FERMAN KÜTÜĞÜ (BOTTOM SHEET MODAL) ───────────────── */
+.hy-sheet-handle {
+  display: none;
+}
+
+@media (max-width: 680px) {
+  .hy-modal-scrim {
+    padding: 0;
+    align-items: flex-end;
+  }
+  .hy-modal-folio {
+    border-radius: 18px 18px 0 0;
+    max-height: 88vh;
+    border-bottom: none;
+    transform: translateY(100%);
+    box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.8), 0 0 24px rgba(184, 115, 51, 0.25);
+  }
+  .hy-modal-scrim.open .hy-modal-folio {
+    transform: translateY(0);
+  }
+  .hy-sheet-handle {
+    display: block;
+    width: 44px;
+    height: 5px;
+    border-radius: 3px;
+    background: rgba(184, 115, 51, 0.5);
+    margin: .75rem auto .2rem;
+    cursor: grab;
+    flex-shrink: 0;
+  }
+  .hy-modal-header {
+    padding: 1rem 1.4rem;
+  }
+  .hy-modal-body {
+    padding: 1.25rem 1.4rem;
+  }
+  .hy-modal-footer {
+    padding: .75rem 1.25rem;
+  }
+}
 </style>
 <script src="assets/js/router.js?v=3.0"></script>
 </head>
@@ -1583,12 +1987,42 @@
         <!-- Dinamik yüklenecek -->
       </div>
 
-      <!-- Dallanan Gövde & Bus Bar -->
-      <div class="hy-stem" id="hy-stem"></div>
-      <div class="hy-branch-nav" id="hy-branch-nav">
-        <div class="hy-bus-bar">
-          <div class="hy-bus-center-node"></div>
-        </div>
+      <!-- Kavisli Altın/Kızıl Akış Çizgileri (SVG Heraldic Flow Connectors) -->
+      <div class="hy-flow-connector-wrap" id="hy-flow-connector-wrap" aria-hidden="true">
+        <svg class="hy-flow-svg" viewBox="0 0 1000 86" preserveAspectRatio="none">
+          <defs>
+            <linearGradient id="flow-pol" x1="50%" y1="0%" x2="16.6%" y2="100%">
+              <stop offset="0%" stop-color="#C4962A" stop-opacity="0.9" />
+              <stop offset="65%" stop-color="#b87333" stop-opacity="0.85" />
+              <stop offset="100%" stop-color="#e09f53" stop-opacity="0.95" />
+            </linearGradient>
+            <linearGradient id="flow-mil" x1="50%" y1="0%" x2="50%" y2="100%">
+              <stop offset="0%" stop-color="#C4962A" stop-opacity="0.9" />
+              <stop offset="60%" stop-color="#8b0000" stop-opacity="0.9" />
+              <stop offset="100%" stop-color="#df6868" stop-opacity="0.95" />
+            </linearGradient>
+            <linearGradient id="flow-rel" x1="50%" y1="0%" x2="83.3%" y2="100%">
+              <stop offset="0%" stop-color="#C4962A" stop-opacity="0.9" />
+              <stop offset="65%" stop-color="#6b4b8a" stop-opacity="0.85" />
+              <stop offset="100%" stop-color="#bc9fe2" stop-opacity="0.95" />
+            </linearGradient>
+          </defs>
+          <path id="svg-path-pol" class="hy-flow-line line-pol" d="M 500,0 C 500,42 166,32 166,80" stroke="url(#flow-pol)" />
+          <path id="svg-path-mil" class="hy-flow-line line-mil" d="M 500,0 L 500,80" stroke="url(#flow-mil)" />
+          <path id="svg-path-rel" class="hy-flow-line line-rel" d="M 500,0 C 500,42 834,32 834,80" stroke="url(#flow-rel)" />
+          <circle id="svg-node-pol" class="hy-flow-term term-pol" cx="166" cy="80" r="5.5" fill="#e09f53" />
+          <circle id="svg-node-mil" class="hy-flow-term term-mil" cx="500" cy="80" r="6" fill="#df6868" />
+          <circle id="svg-node-rel" class="hy-flow-term term-rel" cx="834" cy="80" r="5.5" fill="#bc9fe2" />
+          <circle class="hy-flow-apex-node" cx="500" cy="2" r="5.5" fill="#C4962A" />
+        </svg>
+      </div>
+
+      <!-- Mobilde Kol Sekmeleri (Tabs) -->
+      <div class="hy-mobile-tabs" id="hy-mobile-tabs" role="tablist" aria-label="Mobil Kol Seçimi">
+        <button type="button" class="hy-m-tab-btn active" data-m-branch="all"><span>👑</span> Tümü</button>
+        <button type="button" class="hy-m-tab-btn" data-m-branch="political"><span>🏛️</span> Siyasi (Veron)</button>
+        <button type="button" class="hy-m-tab-btn" data-m-branch="military"><span>⚔️</span> Askeri (Gharion)</button>
+        <button type="button" class="hy-m-tab-btn" data-m-branch="religious"><span>⚖️</span> Dini (Mabed)</button>
       </div>
 
       <!-- Solo Kol Bannerı (Gerektiğinde Görünür) -->
@@ -1599,12 +2033,43 @@
         <!-- Dinamik yüklenecek -->
       </div>
     </main>
+
+    <!-- YÜZEN SEYRÜSEFER ÇUBUĞU (FLOATING QUICK-JUMP DOCK) -->
+    <aside class="hy-quick-dock" id="hy-quick-dock" aria-label="Hızlı Seyrüsefer">
+      <button type="button" class="hy-dock-btn" data-target="hy-apex-slot" title="İmparatorluk Tahtı">
+        <span class="hy-dock-icon">👑</span>
+        <span class="hy-dock-lbl" data-tr="Taht" data-en="Throne">Taht</span>
+      </button>
+      <span class="hy-dock-sep">·</span>
+      <button type="button" class="hy-dock-btn" data-target="col-political" title="Siyasi İdare (Veron)">
+        <span class="hy-dock-icon">🏛️</span>
+        <span class="hy-dock-lbl">Veron</span>
+        <span class="hy-dock-cnt" id="dock-cnt-pol">8</span>
+      </button>
+      <span class="hy-dock-sep">·</span>
+      <button type="button" class="hy-dock-btn" data-target="col-military" title="Askeri Teşkilat (Gharion)">
+        <span class="hy-dock-icon">⚔️</span>
+        <span class="hy-dock-lbl">Gharion</span>
+        <span class="hy-dock-cnt" id="dock-cnt-mil">5</span>
+      </button>
+      <span class="hy-dock-sep">·</span>
+      <button type="button" class="hy-dock-btn" data-target="col-religious" title="Dini Nizam (Mabed)">
+        <span class="hy-dock-icon">⚖️</span>
+        <span class="hy-dock-lbl">Mabed</span>
+        <span class="hy-dock-cnt" id="dock-cnt-rel">5</span>
+      </button>
+      <span class="hy-dock-sep">·</span>
+      <button type="button" class="hy-dock-btn hy-dock-top" id="hy-dock-top" title="Başa Dön">
+        <span class="hy-dock-icon">⬆</span>
+      </button>
+    </aside>
   </div>
 </section>
 
 <!-- DETAYLI BİLGİ EKRANI (FERMAN KÜTÜĞÜ MODALI) -->
 <div class="hy-modal-scrim" id="hy-modal-scrim" role="dialog" aria-modal="true" aria-labelledby="hy-modal-title">
   <div class="hy-modal-folio" role="document">
+    <div class="hy-sheet-handle" id="hy-sheet-handle" aria-hidden="true" title="Aşağı kaydırarak kapat"></div>
     <div class="hy-modal-header">
       <div class="hy-modal-title-wrap">
         <h2 id="hy-modal-title">Makam Detayı</h2>
@@ -1639,6 +2104,7 @@
   const { Lang, initWiki, esc } = Wiki;
 
   let HIERARCHY_DATA = null;
+  let charImageMap = {};
   const ALL_BRANCH_IDS = ['political', 'military', 'religious'];
   let visibleBranches = new Set(ALL_BRANCH_IDS);
   let selectedLevel = 'all';
@@ -1692,6 +2158,23 @@
       const res = await fetch('data/hierarchy.json');
       if (!res.ok) throw new Error('data/hierarchy.json yüklenemedi');
       HIERARCHY_DATA = await res.json();
+
+      // Karakter portrelerini önceden eşleştir
+      try {
+        const charRes = await fetch('data/characters.json');
+        if (charRes.ok) {
+          const charData = await charRes.json();
+          if (charData && Array.isArray(charData.characters)) {
+            charData.characters.forEach(c => {
+              if (c && c.id && c.image) {
+                charImageMap[c.id] = c.image;
+              }
+            });
+          }
+        }
+      } catch (e) {
+        console.warn('characters.json portrait fetch optional:', e);
+      }
 
       updateNavItems();
 
@@ -1793,6 +2276,17 @@
       if (el) el.textContent = count;
       const stripEl = document.getElementById('strip-cnt-' + b.id);
       if (stripEl) stripEl.textContent = `${count} ${isTr ? 'Makam' : 'Offices'}`;
+
+      if (b.id === 'political') {
+        const d = document.getElementById('dock-cnt-pol');
+        if (d) d.textContent = count;
+      } else if (b.id === 'military') {
+        const d = document.getElementById('dock-cnt-mil');
+        if (d) d.textContent = count;
+      } else if (b.id === 'religious') {
+        const d = document.getElementById('dock-cnt-rel');
+        if (d) d.textContent = count;
+      }
     });
   }
 
@@ -1934,36 +2428,41 @@
       `;
     }
 
-    // Şaft ve Veri Yolu (Stem & Connectors) Uyarlaması
-    const stem = document.getElementById('hy-stem');
-    const branchNav = document.getElementById('hy-branch-nav');
-    const busBar = document.querySelector('.hy-bus-bar');
-    const count = visibleBranches.size;
-
-    if (viewMode === 'grid') {
-      if (stem) stem.style.display = 'none';
-      if (branchNav) branchNav.style.display = 'none';
-    } else {
-      if (count === 0) {
-        if (stem) stem.style.display = 'none';
-        if (branchNav) branchNav.style.display = 'none';
-      } else if (count === 1) {
-        if (stem) { stem.style.display = 'block'; stem.style.height = '48px'; }
-        if (branchNav) branchNav.style.display = 'none';
-      } else if (count === 2) {
-        if (stem) { stem.style.display = 'block'; stem.style.height = '36px'; }
-        if (branchNav) {
-          branchNav.style.display = 'block';
-          if (busBar) busBar.style.width = '62%';
-        }
+    // Şaft ve Kavisli Akış Hatları (SVG Flow Connectors)
+    const flowWrap = document.getElementById('hy-flow-connector-wrap');
+    if (flowWrap) {
+      if (viewMode === 'grid' || visibleBranches.size === 0) {
+        flowWrap.style.display = 'none';
       } else {
-        if (stem) { stem.style.display = 'block'; stem.style.height = '48px'; }
-        if (branchNav) {
-          branchNav.style.display = 'block';
-          if (busBar) busBar.style.width = '78%';
-        }
+        flowWrap.style.display = 'block';
+        const pathPol = document.getElementById('svg-path-pol');
+        const nodePol = document.getElementById('svg-node-pol');
+        const pathMil = document.getElementById('svg-path-mil');
+        const nodeMil = document.getElementById('svg-node-mil');
+        const pathRel = document.getElementById('svg-path-rel');
+        const nodeRel = document.getElementById('svg-node-rel');
+
+        const hasPol = visibleBranches.has('political');
+        const hasMil = visibleBranches.has('military');
+        const hasRel = visibleBranches.has('religious');
+
+        if (pathPol) pathPol.style.opacity = hasPol ? '1' : '0.12';
+        if (nodePol) nodePol.style.opacity = hasPol ? '1' : '0.12';
+        if (pathMil) pathMil.style.opacity = hasMil ? '1' : '0.12';
+        if (nodeMil) nodeMil.style.opacity = hasMil ? '1' : '0.12';
+        if (pathRel) pathRel.style.opacity = hasRel ? '1' : '0.12';
+        if (nodeRel) nodeRel.style.opacity = hasRel ? '1' : '0.12';
       }
     }
+
+    // Mobil Sekmeler UI Senkronu
+    document.querySelectorAll('#hy-mobile-tabs .hy-m-tab-btn').forEach(btn => {
+      const b = btn.getAttribute('data-m-branch');
+      let isActive = false;
+      if (b === 'all') isActive = visibleBranches.size === 3;
+      else isActive = visibleBranches.size === 1 && visibleBranches.has(b);
+      btn.classList.toggle('active', isActive);
+    });
   }
 
   function render() {
@@ -2166,28 +2665,98 @@
         );
       }
 
+      let lastLevel = null;
       const officesHTML = offices.map(o => {
         const curName = getLocalized(o.current.name);
         const prevName = (o.predecessors && o.predecessors.length) ? getLocalized(o.predecessors[0].name) : '—';
         const rankTag = o.rank || (o.level ? `${o.level}. Kademe` : '');
+        const tierClass = o.level ? `tier-${o.level}` : '';
+
+        let bannerHTML = '';
+        if (selectedLevel === 'all' && !q && o.level && o.level !== lastLevel) {
+          let flowHTML = '';
+          if (lastLevel !== null) {
+            flowHTML = `<div class="hy-tier-lineage-flow" aria-hidden="true"><span class="hy-tier-lineage-node">▼</span></div>`;
+          }
+          lastLevel = o.level;
+          let tierBadgeText = '';
+          if (o.level === 1) tierBadgeText = l === 'tr' ? '✦ I. Kademe · Yüce Divan & Başkomutanlık' : '✦ Tier I · High Council & Marshalcy';
+          else if (o.level === 2) tierBadgeText = l === 'tr' ? '✦ II. Kademe · Eyalet Valileri & Saha Generalleri' : '✦ Tier II · Governors & Field Commanders';
+          else if (o.level === 3) tierBadgeText = l === 'tr' ? '✦ III. Kademe · Teşkilat, Mabed & Mühendislik' : '✦ Tier III · Chancellery & Legion Units';
+
+          bannerHTML = `${flowHTML}<div class="hy-tier-banner tb-${o.level}"><span class="hy-tier-badge">${tierBadgeText}</span></div>`;
+        }
+
+        const curImg = (o.current && o.current.image) ? o.current.image : (charImageMap[o.current?.charId] || '');
+        let portraitHTML = '';
+        if (o.level === 1) {
+          const initials = curName ? curName.split(' ').map(w => w[0]).filter(Boolean).slice(0, 2).join('') : '✦';
+          const imgMarkup = curImg
+            ? `<img src="${esc(curImg)}" alt="${esc(curName)}" onerror="this.parentElement.innerHTML='<span class=\\'hy-tier1-portrait-fallback\\'>${esc(initials)}</span>'">`
+            : `<span class="hy-tier1-portrait-fallback">${esc(initials)}</span>`;
+          portraitHTML = `<div class="hy-tier1-portrait" title="${esc(curName)}">${imgMarkup}</div>`;
+        } else if (o.level === 2) {
+          const initials = curName ? curName.split(' ').map(w => w[0]).filter(Boolean).slice(0, 2).join('') : '✦';
+          const imgMarkup = curImg
+            ? `<img src="${esc(curImg)}" alt="${esc(curName)}" onerror="this.parentElement.innerHTML='<span class=\\'hy-tier2-portrait-fallback\\'>${esc(initials)}</span>'">`
+            : `<span class="hy-tier2-portrait-fallback">${esc(initials)}</span>`;
+          portraitHTML = `<div class="hy-tier2-portrait" title="${esc(curName)}">${imgMarkup}</div>`;
+        }
+
+        const flourishesHTML = o.level === 1 ? `
+          <span class="hy-corner-flourish cf-tl" aria-hidden="true"></span>
+          <span class="hy-corner-flourish cf-tr" aria-hidden="true"></span>
+          <span class="hy-corner-flourish cf-bl" aria-hidden="true"></span>
+          <span class="hy-corner-flourish cf-br" aria-hidden="true"></span>
+        ` : '';
+
+        const mainLayoutHTML = (o.level === 1 || o.level === 2) ? `
+          <div class="hy-office-main-layout">
+            ${portraitHTML}
+            <div style="flex:1;min-width:0;">
+              <h3 class="hy-office-name">${esc(getLocalized(o.title))}</h3>
+              ${o.level === 1 ? `
+                <div class="hy-holder-line" style="margin-top:.25rem;">
+                  <span class="hy-holder-label">${l === 'tr' ? 'Makam Sahibi:' : 'Incumbent:'}</span>
+                  <span class="hy-holder-val" style="color:var(--goldb);">${esc(curName)}</span>
+                </div>
+              ` : ''}
+            </div>
+          </div>
+        ` : `
+          <h3 class="hy-office-name">${esc(getLocalized(o.title))}</h3>
+        `;
+
+        const holdersHTML = o.level === 1 ? `
+          <div class="hy-office-holders">
+            <div class="hy-holder-line">
+              <span class="hy-holder-label">${l === 'tr' ? 'Önceki:' : 'Previous:'}</span>
+              <span class="hy-holder-prev">${esc(prevName)}</span>
+            </div>
+          </div>
+        ` : `
+          <div class="hy-office-holders">
+            <div class="hy-holder-line">
+              <span class="hy-holder-label">${l === 'tr' ? 'Mevcut:' : 'Current:'}</span>
+              <span class="hy-holder-val">${esc(curName)}</span>
+            </div>
+            <div class="hy-holder-line">
+              <span class="hy-holder-label">${l === 'tr' ? 'Önceki:' : 'Previous:'}</span>
+              <span class="hy-holder-prev">${esc(prevName)}</span>
+            </div>
+          </div>
+        `;
 
         return `
-          <div class="hy-office-card" data-office-id="${esc(o.id)}" data-branch-id="${esc(b.id)}" tabindex="0" role="button">
+          ${bannerHTML}
+          <div class="hy-office-card ${tierClass}" data-office-id="${esc(o.id)}" data-branch-id="${esc(b.id)}" tabindex="0" role="button">
+            ${flourishesHTML}
             <div class="hy-office-top">
               <span class="hy-off-rank-tag">✦ ${esc(rankTag)}</span>
               <span class="hy-off-term">${esc(o.term || '')}</span>
             </div>
-            <h3 class="hy-office-name">${esc(getLocalized(o.title))}</h3>
-            <div class="hy-office-holders">
-              <div class="hy-holder-line">
-                <span class="hy-holder-label">${l === 'tr' ? 'Mevcut:' : 'Current:'}</span>
-                <span class="hy-holder-val">${esc(curName)}</span>
-              </div>
-              <div class="hy-holder-line">
-                <span class="hy-holder-label">${l === 'tr' ? 'Önceki:' : 'Previous:'}</span>
-                <span class="hy-holder-prev">${esc(prevName)}</span>
-              </div>
-            </div>
+            ${mainLayoutHTML}
+            ${holdersHTML}
             <div class="hy-card-arrow">
               <span>${l === 'tr' ? 'Detaylı Bilgi İncele ➔' : 'View Full Details ➔'}</span>
             </div>
@@ -2479,7 +3048,7 @@
     }
   });
 
-  // Metrik Özet Şeridi Tıklama Dinleyicisi
+  // Metrik Özet Şeridi Tıklama Dinleyicisi (Doğrudan İnteraktif Filtre)
   document.getElementById('hy-summary-strip')?.addEventListener('click', e => {
     const card = e.target.closest('[data-focus]');
     if (!card) return;
@@ -2490,13 +3059,196 @@
       if (empEl) {
         empEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
         empEl.classList.add('hy-card-highlight');
+        setTimeout(() => empEl.classList.remove('hy-card-highlight'), 2200);
       }
     } else {
-      soloBranch(focus);
-      const colEl = document.querySelector(`.hy-col.col-${focus}`);
-      if (colEl) colEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      // Zaten yalnızca bu kol açıksa, tekrar tıklandığında tüm kolları geri aç
+      if (visibleBranches.size === 1 && visibleBranches.has(focus)) {
+        showAllBranches();
+      } else {
+        soloBranch(focus);
+      }
+      setTimeout(() => {
+        const colEl = document.querySelector(`.hy-col.col-${focus}`);
+        if (colEl) {
+          colEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          colEl.classList.add('hy-card-highlight');
+          setTimeout(() => colEl.classList.remove('hy-card-highlight'), 2200);
+        }
+      }, 60);
     }
   });
+
+  // Mobilde Kol Sekmeleri (Tabs) Dinleyicisi
+  document.getElementById('hy-mobile-tabs')?.addEventListener('click', e => {
+    const btn = e.target.closest('[data-m-branch]');
+    if (!btn) return;
+    const mBranch = btn.getAttribute('data-m-branch');
+    if (mBranch === 'all') {
+      showAllBranches();
+      const apexEl = document.getElementById('hy-apex-slot');
+      if (apexEl) apexEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+      soloBranch(mBranch);
+      setTimeout(() => {
+        const colEl = document.querySelector(`.hy-col.col-${mBranch}`);
+        if (colEl) colEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 60);
+    }
+  });
+
+  // Yüzen Seyrüsefer Çubuğu (Floating Quick-Jump Dock)
+  (function initQuickDock() {
+    const dock = document.getElementById('hy-quick-dock');
+    if (!dock) return;
+
+    window.addEventListener('scroll', () => {
+      const scrollY = window.scrollY || document.documentElement.scrollTop;
+      if (scrollY > 280) {
+        dock.classList.add('visible');
+      } else {
+        dock.classList.remove('visible');
+      }
+
+      // Aktif kolu tespit et
+      const apex = document.getElementById('hy-apex-slot');
+      const colPol = document.querySelector('.hy-col.col-political');
+      const colMil = document.querySelector('.hy-col.col-military');
+      const colRel = document.querySelector('.hy-col.col-religious');
+
+      let currentTarget = null;
+      if (apex && apex.getBoundingClientRect().bottom > 100) {
+        currentTarget = 'hy-apex-slot';
+      } else {
+        const cols = [
+          { id: 'col-political', el: colPol },
+          { id: 'col-military', el: colMil },
+          { id: 'col-religious', el: colRel }
+        ].filter(c => c.el && c.el.offsetParent !== null);
+
+        let bestCol = null;
+        let minDiff = Infinity;
+        cols.forEach(c => {
+          const rect = c.el.getBoundingClientRect();
+          if (rect.top <= window.innerHeight * 0.45 && rect.bottom >= 0) {
+            const diff = Math.abs(rect.top);
+            if (diff < minDiff) {
+              minDiff = diff;
+              bestCol = c.id;
+            }
+          }
+        });
+        if (bestCol) currentTarget = bestCol;
+      }
+
+      dock.querySelectorAll('.hy-dock-btn[data-target]').forEach(btn => {
+        const t = btn.getAttribute('data-target');
+        btn.classList.toggle('active', t === currentTarget);
+      });
+    }, { passive: true });
+
+    dock.addEventListener('click', e => {
+      const btn = e.target.closest('.hy-dock-btn');
+      if (!btn) return;
+
+      if (btn.id === 'hy-dock-top') {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        return;
+      }
+
+      const target = btn.getAttribute('data-target');
+      if (target === 'hy-apex-slot') {
+        const apexEl = document.getElementById('hy-apex-slot');
+        if (apexEl) apexEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      } else if (target) {
+        const branchKey = target.replace('col-', '');
+        if (!visibleBranches.has(branchKey)) {
+          visibleBranches.add(branchKey);
+          saveState();
+          updateControlsUI();
+          render();
+        }
+        setTimeout(() => {
+          const colEl = document.querySelector(`.${target}`);
+          if (colEl) {
+            colEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            colEl.classList.add('hy-card-highlight');
+            setTimeout(() => colEl.classList.remove('hy-card-highlight'), 2000);
+          }
+        }, 60);
+      }
+    });
+  })();
+
+  // Mobil Ferman Kütüğü (Bottom Sheet Swipe-to-Dismiss)
+  (function initBottomSheetSwipe() {
+    const folio = document.querySelector('.hy-modal-folio');
+    const handle = document.getElementById('hy-sheet-handle');
+    const scrim = document.getElementById('hy-modal-scrim');
+    if (!folio || !handle || !scrim) return;
+
+    let startY = 0;
+    let currentY = 0;
+    let isDragging = false;
+    let startTime = 0;
+
+    function onTouchStart(e) {
+      if (window.innerWidth > 680) return;
+      const touch = e.touches[0];
+      const modalBody = document.getElementById('hy-modal-body');
+      if (e.target === handle || (modalBody && modalBody.scrollTop <= 0)) {
+        startY = touch.clientY;
+        currentY = startY;
+        isDragging = true;
+        startTime = Date.now();
+        folio.style.transition = 'none';
+      }
+    }
+
+    function onTouchMove(e) {
+      if (!isDragging) return;
+      const touch = e.touches[0];
+      const deltaY = touch.clientY - startY;
+      if (deltaY > 0) {
+        currentY = touch.clientY;
+        folio.style.transform = `translateY(${deltaY}px)`;
+        const progress = Math.min(deltaY / 260, 0.75);
+        scrim.style.backgroundColor = `rgba(5, 8, 15, ${0.88 * (1 - progress)})`;
+        if (e.cancelable) e.preventDefault();
+      } else {
+        folio.style.transform = 'translateY(0)';
+      }
+    }
+
+    function onTouchEnd() {
+      if (!isDragging) return;
+      isDragging = false;
+      folio.style.transition = 'transform .25s ease';
+      scrim.style.backgroundColor = '';
+
+      const deltaY = currentY - startY;
+      const duration = Date.now() - startTime;
+      const velocity = deltaY / Math.max(duration, 1);
+
+      if (deltaY > 75 || velocity > 0.45) {
+        folio.style.transform = 'translateY(100%)';
+        setTimeout(() => {
+          closeModal();
+          folio.style.transform = '';
+        }, 220);
+      } else {
+        folio.style.transform = 'translateY(0)';
+      }
+    }
+
+    handle.addEventListener('touchstart', onTouchStart, { passive: true });
+    handle.addEventListener('touchmove', onTouchMove, { passive: false });
+    handle.addEventListener('touchend', onTouchEnd, { passive: true });
+
+    folio.addEventListener('touchstart', onTouchStart, { passive: true });
+    folio.addEventListener('touchmove', onTouchMove, { passive: false });
+    folio.addEventListener('touchend', onTouchEnd, { passive: true });
+  })();
 
   // Kol Aç/Kapat Butonları Dinleyicisi
   document.getElementById('hy-branch-toggles')?.addEventListener('click', e => {

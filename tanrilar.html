@@ -222,11 +222,26 @@ html[data-theme="light"] {
 }
 .god-node:hover .god-node-img { transform: scale(1.12); }
 .god-label {
-  margin-top: .4rem; text-align: center; line-height: 1.25;
-  font-family: var(--font-display); font-size: clamp(.62rem,1vw,.74rem);
-  letter-spacing: .04em; white-space: nowrap;
+  margin-top: .35rem; text-align: center; line-height: 1.25;
+  font-family: var(--font-display); font-size: clamp(.56rem,1.1vw,.74rem);
+  letter-spacing: .03em; white-space: nowrap; pointer-events: none;
+  transition: transform .18s cubic-bezier(.2,.8,.4,1), opacity .18s ease;
 }
-.god-label small { display: block; font-size: .85em; opacity: .7; font-style: italic; }
+.god-label .gl-badge {
+  display: inline-block;
+  padding: 1px 5px;
+  border-radius: 3px;
+  background: rgba(12, 18, 31, .88);
+  border: 1px solid rgba(184,115,51,.25);
+  box-shadow: 0 1px 4px rgba(0,0,0,.5);
+  transition: all .18s cubic-bezier(.2,.8,.4,1);
+}
+html[data-theme="light"] .god-label .gl-badge {
+  background: rgba(244, 236, 216, .94);
+  border-color: rgba(125,78,34,.35);
+  color: #3b2310;
+}
+.god-label small { display: block; font-size: .84em; opacity: .75; font-style: italic; transition: color .18s ease, opacity .18s ease; }
 
 /* Sol (Düzen) düğüm rengi */
 .god-node.on-order .god-node-img { border: 2px solid #b87333; box-shadow: 0 0 16px rgba(184,115,51,.35); background: #f4ecd8; }
@@ -240,7 +255,480 @@ html[data-theme="light"] {
 .god-node.on-kaos .god-label { color: var(--parch); text-shadow: 0 0 6px var(--bg); }
 .god-node.on-kaos .god-label small { color: var(--parchd); }
 
-/* Alt bölüm — kısa açıklama + panteon listesi (metin erişilebilirliği için) */
+/* ── MOBİL DOKUNMA & AKTİF EFEKTLERİ (:active pseudo-class) ── */
+.god-node {
+  -webkit-tap-highlight-color: transparent;
+  outline: none;
+}
+/* Daireye dokunulduğunda (:active) veya odaklandığında en ön kata fırla */
+.god-node:active,
+.god-node:focus-visible {
+  z-index: 50 !important;
+}
+.god-node:active .god-node-img,
+.god-node:focus-visible .god-node-img {
+  transform: scale(1.18);
+}
+.god-node.on-order:active .god-node-img,
+.god-node.on-order:focus-visible .god-node-img {
+  border-color: #f0ab64;
+  box-shadow: 0 0 0 3px rgba(216,148,85,.55), 0 0 26px rgba(216,148,85,.75);
+}
+.god-node.on-kaos:active .god-node-img,
+.god-node.on-kaos:focus-visible .god-node-img {
+  border-color: #ff6b70;
+  box-shadow: 0 0 0 3px rgba(224,87,93,.55), 0 0 28px rgba(224,87,93,.75);
+}
+
+/* Dokunulduğunda metin kapsayıcısının (gl-badge) geçici olarak öne çıkması & belirginleşmesi */
+.god-node:active .god-label,
+.god-node:focus-visible .god-label {
+  transform: translateY(3px) scale(1.15);
+  z-index: 60;
+}
+.god-node:active .god-label .gl-badge,
+.god-node:focus-visible .god-label .gl-badge {
+  background: rgba(6, 10, 18, 0.98);
+  padding: 3px 9px;
+  border-radius: 4px;
+}
+.god-node.on-order:active .god-label .gl-badge,
+.god-node.on-order:focus-visible .god-label .gl-badge {
+  border-color: #d89455;
+  color: #fff;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.85), 0 0 14px rgba(216,148,85,.65);
+}
+.god-node.on-order:active .god-label .gl-badge small,
+.god-node.on-order:focus-visible .god-label .gl-badge small {
+  color: #fce2c5;
+  opacity: 1;
+}
+
+.god-node.on-kaos:active .god-label .gl-badge,
+.god-node.on-kaos:focus-visible .god-label .gl-badge {
+  border-color: #e0575d;
+  color: #fff;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.85), 0 0 14px rgba(224,87,93,.65);
+}
+.god-node.on-kaos:active .god-label .gl-badge small,
+.god-node.on-kaos:focus-visible .god-label .gl-badge small {
+  color: #ffd0d2;
+  opacity: 1;
+}
+
+html[data-theme="light"] .god-node:active .god-label .gl-badge,
+html[data-theme="light"] .god-node:focus-visible .god-label .gl-badge {
+  background: #ffffff;
+  color: #2b1807;
+  border-color: #b87333;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.25), 0 0 12px rgba(184,115,51,.45);
+}
+html[data-theme="light"] .god-node.on-order:active .god-label .gl-badge small,
+html[data-theme="light"] .god-node.on-order:focus-visible .god-label .gl-badge small {
+  color: #7d4e22;
+}
+html[data-theme="light"] .god-node.on-kaos:active .god-label .gl-badge small,
+html[data-theme="light"] .god-node.on-kaos:focus-visible .god-label .gl-badge small {
+  color: #8b0000;
+}
+
+/* Muhafız (Galdra) Merkez Dairesi :active */
+.god-galdra {
+  -webkit-tap-highlight-color: transparent;
+}
+.god-galdra:active,
+.god-galdra:focus-within {
+  z-index: 50 !important;
+}
+.god-galdra:active .galdra-core,
+.god-galdra:focus-within .galdra-core {
+  transform: scale(1.15);
+  box-shadow: 0 0 0 6px var(--cn-g-ring-h), 0 0 55px 16px var(--cn-g-glow-h);
+}
+.god-galdra:active .god-galdra-label,
+.god-galdra:focus-within .god-galdra-label {
+  transform: translateX(-50%) translateY(3px) scale(1.14);
+  background: rgba(8, 12, 22, 0.96);
+  border: 1px solid var(--gold);
+  border-radius: 4px;
+  padding: 3px 10px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.85), 0 0 14px rgba(184,115,51,.55);
+  color: #fff;
+  z-index: 60;
+}
+
+/* ── GÖRÜNÜM SEÇİCİ (VIEW TOGGLE) ───────────────────── */
+.council-view-toggle {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: .75rem;
+  margin: .25rem auto 1.75rem;
+  z-index: 5;
+  position: relative;
+  padding: 0 1rem;
+}
+.cv-tab-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  background: rgba(16, 22, 33, .8);
+  color: var(--parchd);
+  border: 1px solid rgba(184, 115, 51, .32);
+  padding: .6rem 1.25rem;
+  border-radius: 4px;
+  font-family: var(--font-display);
+  font-size: .84rem;
+  cursor: pointer;
+  transition: all .2s ease;
+  backdrop-filter: blur(4px);
+  -webkit-appearance: none;
+}
+.cv-tab-btn:hover {
+  color: var(--parchl);
+  border-color: var(--gold);
+  background: rgba(28, 38, 55, .9);
+}
+.cv-tab-btn.active {
+  color: #fff;
+  background: linear-gradient(135deg, rgba(184,115,51,.38), rgba(139,0,0,.28));
+  border-color: var(--gold);
+  box-shadow: 0 0 16px rgba(184,115,51,.28);
+}
+html[data-theme="light"] .cv-tab-btn {
+  background: rgba(244, 236, 216, .85);
+  color: var(--parchd);
+  border-color: rgba(125, 78, 34, .35);
+}
+html[data-theme="light"] .cv-tab-btn.active {
+  background: rgba(216, 148, 85, .25);
+  color: #4a2c0f;
+  border-color: #b87333;
+  box-shadow: 0 0 12px rgba(184,115,51,.2);
+}
+
+/* ── DENGE TERAZİSİ (KARŞIT ÇİFTLER AKIŞI) ───────────── */
+.balance-wrap {
+  grid-column: 1 / -1;
+  position: relative;
+  z-index: 4;
+  max-width: 860px;
+  width: min(95vw, 860px);
+  margin: .5rem auto 3.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  padding: 0 .5rem;
+}
+.balance-wrap.is-hidden { display: none !important; }
+.circle-wrap.is-hidden { display: none !important; }
+
+/* Muhafız Tahtı (Merkez Sıfır Noktası) */
+.galdra-throne {
+  background: radial-gradient(circle at 50% 30%, rgba(244,236,216,.08), rgba(12,18,31,.82));
+  border: 1px solid rgba(184,115,51,.45);
+  box-shadow: 0 0 35px rgba(184,115,51,.15);
+  border-radius: 8px;
+  padding: 1.4rem 1.2rem;
+  text-align: center;
+  position: relative;
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform .25s, border-color .25s, box-shadow .25s;
+}
+.galdra-throne:hover {
+  transform: translateY(-2px);
+  border-color: var(--gold);
+  box-shadow: 0 0 45px rgba(184,115,51,.32);
+}
+html[data-theme="light"] .galdra-throne {
+  background: radial-gradient(circle at 50% 30%, rgba(255,255,255,.95), rgba(244,236,216,.85));
+  border-color: rgba(184,115,51,.35);
+}
+.galdra-throne-kicker {
+  font-family: var(--font-display);
+  font-size: .72rem;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: .6rem;
+}
+.galdra-throne-core {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  margin-bottom: .65rem;
+  position: relative;
+  border: 2px solid #f4ecd8;
+  box-shadow: 0 0 0 5px var(--cn-g-ring), 0 0 32px var(--cn-g-glow);
+  overflow: hidden;
+  background: radial-gradient(circle at 35% 30%, #fffaf0, #e8d9b8 55%, #b87333 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.galdra-throne-core img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  position: relative;
+  z-index: 1;
+}
+.galdra-throne-core .galdra-fallback {
+  position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-display); font-size: 1.6rem; color: #4a3210;
+}
+.galdra-throne-title {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  color: var(--parchl);
+  margin-bottom: .25rem;
+}
+.galdra-throne-badge {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-size: .76rem;
+  letter-spacing: .1em;
+  color: var(--gold);
+  margin-bottom: .45rem;
+}
+.galdra-throne-sub {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: .84rem;
+  color: var(--parchd);
+  max-width: 520px;
+  line-height: 1.6;
+  margin: 0 auto;
+}
+
+/* Kutuplar Başlık Çubuğu */
+.balance-poles-bar {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: .5rem;
+  padding: .5rem 1rem;
+  margin-bottom: -.25rem;
+}
+.pole-label-order {
+  font-family: var(--font-display);
+  font-size: .84rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--cn-order-ink);
+  display: flex;
+  align-items: center;
+  gap: .4rem;
+}
+.pole-label-kaos {
+  font-family: var(--font-display);
+  font-size: .84rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--cn-kaos-ink);
+  justify-content: flex-end;
+  display: flex;
+  align-items: center;
+  gap: .4rem;
+  text-align: right;
+}
+.pole-scale-icon {
+  font-size: 1.15rem;
+  color: var(--gold);
+  opacity: .85;
+}
+
+/* Çift Kartı Sırası (Pair Row) */
+.balance-pair-row {
+  background: rgba(16, 22, 33, .65);
+  border: 1px solid rgba(184,115,51,.22);
+  border-radius: 8px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 4px 18px rgba(0,0,0,.25);
+  transition: border-color .2s, box-shadow .2s;
+}
+.balance-pair-row:hover {
+  border-color: rgba(184,115,51,.48);
+  box-shadow: 0 6px 24px rgba(0,0,0,.35);
+}
+html[data-theme="light"] .balance-pair-row {
+  background: rgba(255, 255, 255, .75);
+  border-color: rgba(125,78,34,.22);
+}
+
+/* Çift Başlığı */
+.pair-row-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: .65rem;
+  padding: .55rem 1rem;
+  background: rgba(12, 18, 31, .75);
+  border-bottom: 1px solid rgba(184,115,51,.15);
+  font-family: var(--font-display);
+  font-size: .76rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--parchd);
+}
+html[data-theme="light"] .pair-row-header {
+  background: rgba(244, 236, 216, .75);
+}
+.pair-row-header b {
+  color: var(--gold);
+  font-weight: normal;
+}
+.pair-row-header span.pr-divider {
+  opacity: .5;
+}
+.pair-row-header span.pr-theme {
+  color: var(--parchl);
+}
+
+/* Karşıt İki Kanat */
+.pair-row-grid {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: stretch;
+  position: relative;
+}
+.pair-divider-seam {
+  width: 1px;
+  background: linear-gradient(to bottom, transparent, rgba(184,115,51,.4) 20%, rgba(184,115,51,.4) 80%, transparent);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.pair-scale-badge {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: var(--bg);
+  border: 1px solid rgba(184,115,51,.35);
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: .75rem;
+  color: var(--gold);
+  z-index: 2;
+}
+
+/* Tanrı Kartı (Sol / Sağ) */
+.pair-god-card {
+  padding: .95rem .9rem;
+  text-decoration: none;
+  display: flex;
+  gap: .85rem;
+  align-items: center;
+  transition: background .2s;
+  position: relative;
+}
+.pair-god-card.side-order-card {
+  background: linear-gradient(90deg, var(--cn-order-glow) 0%, transparent 80%);
+}
+.pair-god-card.side-order-card:hover {
+  background: linear-gradient(90deg, rgba(216,148,85,.24) 0%, transparent 80%);
+}
+.pair-god-card.side-kaos-card {
+  background: linear-gradient(270deg, var(--cn-kaos-glow) 0%, transparent 80%);
+  flex-direction: row-reverse;
+  text-align: right;
+}
+.pair-god-card.side-kaos-card:hover {
+  background: linear-gradient(270deg, rgba(139,0,0,.35) 0%, transparent 80%);
+}
+
+/* Tanrı Avatarı */
+.pair-god-avatar {
+  width: 52px;
+  height: 52px;
+  min-width: 52px;
+  border-radius: 50%;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 10px rgba(0,0,0,.3);
+  transition: transform .2s, box-shadow .2s;
+}
+.pair-god-card:hover .pair-god-avatar {
+  transform: scale(1.08);
+}
+.side-order-card .pair-god-avatar {
+  border: 2px solid #b87333;
+  box-shadow: 0 0 14px rgba(184,115,51,.35);
+  background: #f4ecd8;
+}
+.side-kaos-card .pair-god-avatar {
+  border: 2px solid #8b0000;
+  box-shadow: 0 0 16px var(--cn-kaos-shadow);
+  background: #1a0d0d;
+}
+.pair-god-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  position: relative;
+  z-index: 1;
+}
+.pair-god-avatar .god-fallback {
+  position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-display); font-size: 1.15rem;
+  border-radius: 50%;
+}
+.side-order-card .pair-god-avatar .god-fallback { color: #7d4e22; background: #efe4c8; }
+.side-kaos-card .pair-god-avatar .god-fallback { color: #e0b9b9; background: #240f0f; }
+
+/* Tanrı Metinleri */
+.pair-god-info {
+  flex: 1;
+  min-width: 0;
+}
+.pair-god-epithet {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  line-height: 1.2;
+  margin-bottom: .2rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.side-order-card .pair-god-epithet { color: var(--cn-order-ink); }
+.side-kaos-card .pair-god-epithet { color: var(--cn-kaos-ink); }
+
+.pair-god-name {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: .8rem;
+  color: var(--parchd);
+  display: block;
+  margin-bottom: .2rem;
+}
+.pair-god-role {
+  font-size: .75rem;
+  color: var(--parch);
+  opacity: .85;
+  line-height: 1.45;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Alt bölüm — kısa açıklama */
 .council-note {
   grid-column: 1 / -1; z-index: 4;
   max-width: 760px; margin: 0 auto 5rem; padding: 0 2rem;
@@ -249,12 +737,73 @@ html[data-theme="light"] {
 }
 .council-note b { color: var(--gold); font-style: normal; }
 
+/* ── MOBİL UYUM (TELEFONLAR) ────────────────────────── */
 @media (max-width: 780px) {
   .council-split { grid-template-columns: 1fr; }
   .side-label, .side-faction-name { display: none; }
-  .circle-wrap { width: 94vw; margin-top: .5rem; }
-  .god-node { width: 15%; }
-  .god-galdra { width: 19%; }
+  .circle-wrap { width: min(95vw, 420px); margin-top: .5rem; }
+  .god-node { width: 14%; }
+  .god-galdra { width: 18%; }
+  .god-label { font-size: clamp(.55rem, 2vw, .68rem); }
+  .god-label small { font-size: .8em; }
+}
+
+@media (max-width: 640px) {
+  .balance-wrap {
+    width: 100%;
+    padding: 0 .4rem;
+    gap: .85rem;
+  }
+  .pair-god-card {
+    padding: .75rem .45rem;
+    gap: .5rem;
+  }
+  .pair-god-avatar {
+    width: 44px;
+    height: 44px;
+    min-width: 44px;
+  }
+  .pair-god-epithet {
+    font-size: .88rem;
+  }
+  .pair-god-name {
+    font-size: .72rem;
+    margin-bottom: 0;
+  }
+  .pair-god-role {
+    display: none; /* Mobilde yazılar sade, ferah ve unvan + isim odaklı kalır */
+  }
+  .pair-scale-badge {
+    width: 20px;
+    height: 20px;
+    font-size: .65rem;
+  }
+  .pair-row-header {
+    font-size: .68rem;
+    padding: .4rem .5rem;
+    gap: .4rem;
+  }
+  .pole-label-order, .pole-label-kaos {
+    font-size: .72rem;
+  }
+  .cv-tab-btn {
+    padding: .5rem .85rem;
+    font-size: .76rem;
+  }
+}
+
+@media (max-width: 380px) {
+  .pair-god-avatar {
+    width: 38px;
+    height: 38px;
+    min-width: 38px;
+  }
+  .pair-god-epithet {
+    font-size: .8rem;
+  }
+  .pair-god-name {
+    font-size: .66rem;
+  }
 }
 </style>
 <script src="assets/js/router.js?v=3.0"></script>
@@ -278,7 +827,23 @@ html[data-theme="light"] {
       </p>
     </div>
 
-    <div class="circle-wrap" id="circle-wrap">
+    <!-- Görünüm Seçici (View Toggle) -->
+    <div class="council-view-toggle" role="tablist" aria-label="Görünüm Seçimi">
+      <button type="button" class="cv-tab-btn active" id="btn-view-balance" role="tab" aria-selected="true">
+        <span class="cv-tab-icon">⚖️</span>
+        <span class="cv-tab-label" data-tr="Denge Terazisi (Karşıt Çiftler)" data-en="Balance Axis (Opposing Pairs)">Denge Terazisi (Karşıt Çiftler)</span>
+      </button>
+      <button type="button" class="cv-tab-btn" id="btn-view-circle" role="tab" aria-selected="false">
+        <span class="cv-tab-icon">⭕</span>
+        <span class="cv-tab-label" data-tr="Kadim Çember" data-en="Sacred Circle">Kadim Çember</span>
+      </button>
+    </div>
+
+    <!-- 1. Denge Terazisi / Karşıt Çiftler Akışı (Telefon ve Mobil için Optimize Edilmiş Eksen) -->
+    <div class="balance-wrap" id="balance-wrap" role="tabpanel" aria-labelledby="btn-view-balance"></div>
+
+    <!-- 2. Kadim Çember Şeması -->
+    <div class="circle-wrap is-hidden" id="circle-wrap" role="tabpanel" aria-labelledby="btn-view-circle">
       <div class="circle-ring"></div>
       <!-- .pair-line ve .god-node öğeleri JS ile eklenir -->
       <div class="god-galdra" id="galdra-node"></div>
@@ -314,19 +879,20 @@ const wireImgs = el => { try { if (el && typeof Wiki.wireGodImgs === 'function')
    Açılar -72°..+72° arası eşit aralıklarla, gerçek bir çember
    üstünde dururlar (x=cosθ·R, y=sinθ·R). */
 const ROWS = [
-  { light: 'veleris', dark: 'lodvez' },  // Bilge ↔ Desise — Hakikat / Yanılsama
-  { light: 'lidros',  dark: 'naldor' },  // Hakim ↔ İsyan — Yasa / İsyan
-  { light: 'gydor',   dark: 'nazeth' },  // Saatçi ↔ Zeval — Hafıza / Son
-  { light: 'lomera',  dark: 'garator' }, // Sükun ↔ Harp — ekvator, Galdra'yı çevreler
-  { light: 'brikon',  dark: 'vazmer' },  // Mimar ↔ Tufan — İnşa / Yıkım
-  { light: 'raxes',   dark: 'hardir' },  // Avcı ↔ İhtiras — Yetki / Doyumsuzluk
-  { light: 'eanhar',  dark: 'zetus' }    // Hekim ↔ Maraz — Şifa / Hastalık
+  { light: 'veleris', dark: 'lodvez', theme: { tr: 'Hakikat ↔ Yanılsama', en: 'Truth ↔ Illusion' }, num: 'I' },
+  { light: 'lidros',  dark: 'naldor', theme: { tr: 'Yasa ↔ İsyan', en: 'Law ↔ Rebellion' }, num: 'II' },
+  { light: 'gydor',   dark: 'nazeth', theme: { tr: 'Hafıza ↔ Son', en: 'Memory ↔ Oblivion' }, num: 'III' },
+  { light: 'lomera',  dark: 'garator', theme: { tr: 'Sükun ↔ Harp', en: 'Serenity ↔ Strife' }, num: 'IV' },
+  { light: 'brikon',  dark: 'vazmer', theme: { tr: 'İnşa ↔ Yıkım', en: 'Creation ↔ Deluge' }, num: 'V' },
+  { light: 'raxes',   dark: 'hardir', theme: { tr: 'Yetki ↔ İhtiras', en: 'Authority ↔ Desire' }, num: 'VI' },
+  { light: 'eanhar',  dark: 'zetus', theme: { tr: 'Şifa ↔ Maraz', en: 'Healing ↔ Pestilence' }, num: 'VII' }
 ];
 const ANGLES = [-72, -48, -24, 0, 24, 48, 72];
 const R = 40; /* dairenin yarıçapı, kap yüzdesi */
 
 let godsById = {};
 let currentLang = 'tr';
+let activeView = 'balance';
 
 function initials(name) {
   return (name || '').trim().slice(0, 1).toUpperCase();
@@ -343,12 +909,13 @@ function nodeMarkup(id, side) {
         <span class="god-fallback">${esc(initials(g.trueName))}</span>
         ${godImg(g)}
       </div>
-      <div class="god-label">${esc(epithet)}<small>${esc(g.trueName)}</small></div>
+      <div class="god-label"><span class="gl-badge">${esc(epithet)}<small>${esc(g.trueName)}</small></span></div>
     </a>`;
 }
 
 function layout() {
   const wrap = document.getElementById('circle-wrap');
+  if (!wrap) return;
   const lines = [];
   const nodes = [];
 
@@ -364,8 +931,7 @@ function layout() {
 
     /* denge çizgisi: sol düğümden sağ düğüme */
     const lineLen = dx * 2; /* % cinsinden, yaklaşık */
-    const angleDeg = 0; /* satır yatay, çünkü iki uç aynı y'de */
-    lines.push(`<div class="pair-line" style="top:${50+dy}%; left:${50-dx}%; width:${lineLen}%; transform:rotate(${angleDeg}deg);"></div>`);
+    lines.push(`<div class="pair-line" style="top:${50+dy}%; left:${50-dx}%; width:${lineLen}%;"></div>`);
 
     nodes.push(nodeMarkup(row.light, 'order'));
     nodes.push(nodeMarkup(row.dark, 'kaos'));
@@ -378,7 +944,7 @@ function layout() {
   /* Galdra */
   const galdra = godsById['galdra'];
   const gEl = document.getElementById('galdra-node');
-  if (galdra) {
+  if (galdra && gEl) {
     gEl.innerHTML = `
       <a class="galdra-core" href="${SWRoute.href('tanri', 'galdra')}">
         <span class="galdra-fallback">${esc(initials(galdra.trueName))}</span>
@@ -391,8 +957,151 @@ function layout() {
   wireImgs(wrap);
 }
 
+function renderBalanceAxis() {
+  const container = document.getElementById('balance-wrap');
+  if (!container) return;
+
+  const galdra = godsById['galdra'];
+  let html = '';
+
+  // 1. Muhafız Tahtı (Merkez Sıfır Noktası / Sworn Arbiter)
+  if (galdra) {
+    const epithet = Lang.t(galdra.epithet) || galdra.trueName;
+    const roleText = Lang.t(galdra.role) || '';
+    const kicker = currentLang === 'tr' ? '⚖️ KADİM BEKÇİ · TARAFI OLMAYAN TEK TAHT' : '⚖️ ANCIENT ARBITER · THE SWORN NEUTRAL ANCHOR';
+    const subTitle = currentLang === 'tr' ? 'On Beşinci Varlık · Crae\'nin Bekçisi' : 'The 15th Entity · Guardian of Crae';
+    html += `
+      <a class="galdra-throne" href="${SWRoute.href('tanri', 'galdra')}" title="${esc(epithet)} (${esc(galdra.trueName)})">
+        <span class="galdra-throne-kicker">${kicker}</span>
+        <div class="galdra-throne-core">
+          <span class="galdra-fallback">${esc(initials(galdra.trueName))}</span>
+          ${godImg(galdra)}
+        </div>
+        <h2 class="galdra-throne-title">${esc(epithet)} <span style="font-size:.85em;opacity:.8;font-style:italic">(${esc(galdra.trueName)})</span></h2>
+        <div class="galdra-throne-badge">${subTitle}</div>
+        ${roleText ? `<p class="galdra-throne-sub">${esc(roleText)}</p>` : ''}
+      </a>
+    `;
+  }
+
+  // 2. Kutuplar Başlık Çubuğu
+  const orderTitle = currentLang === 'tr' ? '⚔️ DÜZEN & AYDINLIK' : '⚔️ ORDER & LIGHT';
+  const chaosTitle = currentLang === 'tr' ? 'KAOS & KARANLIK 🔥' : 'CHAOS & DARKNESS 🔥';
+  html += `
+    <div class="balance-poles-bar">
+      <div class="pole-label-order"><span>${orderTitle}</span></div>
+      <div class="pole-scale-icon">⚖️</div>
+      <div class="pole-label-kaos"><span>${chaosTitle}</span></div>
+    </div>
+  `;
+
+  // 3. Yedi Denge Çifti
+  ROWS.forEach((row, index) => {
+    const lg = godsById[row.light];
+    const dg = godsById[row.dark];
+    if (!lg || !dg) return;
+
+    const lEpithet = Lang.t(lg.epithet) || lg.trueName;
+    const dEpithet = Lang.t(dg.epithet) || dg.trueName;
+    const lRole = Lang.t(lg.role) || '';
+    const dRole = Lang.t(dg.role) || '';
+    const themeStr = (row.theme && Lang.t(row.theme)) || '';
+    const pairNumStr = row.num || `${index + 1}`;
+    const pairHeaderTitle = currentLang === 'tr' ? `${pairNumStr}. DENGE ÇİFTİ` : `PAIR ${pairNumStr}`;
+
+    html += `
+      <div class="balance-pair-row" data-pair="${row.light}-${row.dark}">
+        <div class="pair-row-header">
+          <b>${pairHeaderTitle}</b>
+          ${themeStr ? `<span class="pr-divider">·</span><span class="pr-theme">${esc(themeStr)}</span>` : ''}
+        </div>
+        <div class="pair-row-grid">
+          <!-- Sol: Düzen Tanrısı -->
+          <a class="pair-god-card side-order-card" href="${SWRoute.href('tanri', row.light)}" title="${esc(lEpithet)} (${esc(lg.trueName)})">
+            <div class="pair-god-avatar">
+              <span class="god-fallback">${esc(initials(lg.trueName))}</span>
+              ${godImg(lg)}
+            </div>
+            <div class="pair-god-info">
+              <div class="pair-god-epithet">${esc(lEpithet)}</div>
+              <span class="pair-god-name">${esc(lg.trueName)}</span>
+              ${lRole ? `<p class="pair-god-role">${esc(lRole)}</p>` : ''}
+            </div>
+          </a>
+
+          <!-- Orta Terazi Seamı -->
+          <div class="pair-divider-seam">
+            <div class="pair-scale-badge" title="${esc(themeStr)}">⚖️</div>
+          </div>
+
+          <!-- Sağ: Kaos Tanrısı -->
+          <a class="pair-god-card side-kaos-card" href="${SWRoute.href('tanri', row.dark)}" title="${esc(dEpithet)} (${esc(dg.trueName)})">
+            <div class="pair-god-avatar">
+              <span class="god-fallback">${esc(initials(dg.trueName))}</span>
+              ${godImg(dg)}
+            </div>
+            <div class="pair-god-info">
+              <div class="pair-god-epithet">${esc(dEpithet)}</div>
+              <span class="pair-god-name">${esc(dg.trueName)}</span>
+              ${dRole ? `<p class="pair-god-role">${esc(dRole)}</p>` : ''}
+            </div>
+          </a>
+        </div>
+      </div>
+    `;
+  });
+
+  container.innerHTML = html;
+  wireImgs(container);
+}
+
+function setViewMode(mode) {
+  activeView = mode;
+  const btnBalance = document.getElementById('btn-view-balance');
+  const btnCircle = document.getElementById('btn-view-circle');
+  const wrapBalance = document.getElementById('balance-wrap');
+  const wrapCircle = document.getElementById('circle-wrap');
+
+  if (mode === 'circle') {
+    if (btnBalance) { btnBalance.classList.remove('active'); btnBalance.setAttribute('aria-selected', 'false'); }
+    if (btnCircle) { btnCircle.classList.add('active'); btnCircle.setAttribute('aria-selected', 'true'); }
+    if (wrapBalance) wrapBalance.classList.add('is-hidden');
+    if (wrapCircle) wrapCircle.classList.remove('is-hidden');
+    try { localStorage.setItem('sw-council-view', 'circle'); } catch(e){}
+    layout();
+  } else {
+    if (btnBalance) { btnBalance.classList.add('active'); btnBalance.setAttribute('aria-selected', 'true'); }
+    if (btnCircle) { btnCircle.classList.remove('active'); btnCircle.setAttribute('aria-selected', 'false'); }
+    if (wrapBalance) wrapBalance.classList.remove('is-hidden');
+    if (wrapCircle) wrapCircle.classList.add('is-hidden');
+    try { localStorage.setItem('sw-council-view', 'balance'); } catch(e){}
+    renderBalanceAxis();
+  }
+}
+
+function getInitialViewMode() {
+  try {
+    const saved = localStorage.getItem('sw-council-view');
+    if (saved === 'balance' || saved === 'circle') return saved;
+  } catch(e){}
+  // Varsayılan: mobilde ve telefonlarda Denge Terazisi görünümü
+  return 'balance';
+}
+
+function bindViewToggle() {
+  const btnBalance = document.getElementById('btn-view-balance');
+  const btnCircle = document.getElementById('btn-view-circle');
+  if (btnBalance) {
+    btnBalance.addEventListener('click', () => setViewMode('balance'));
+  }
+  if (btnCircle) {
+    btnCircle.addEventListener('click', () => setViewMode('circle'));
+  }
+}
+
 async function init() {
   try {
+    bindViewToggle();
     const data = await loadData('lore.json');
     (data.gods || []).forEach(g => { godsById[g.id] = g; });
 
@@ -403,6 +1112,10 @@ async function init() {
     if (kaosF)  document.getElementById('kaos-faction').innerHTML  = `<b>${esc(Lang.t(kaosF.name))}</b>${esc(Lang.t(kaosF.belief))}`;
 
     layout();
+    renderBalanceAxis();
+
+    const mode = getInitialViewMode();
+    setViewMode(mode);
   } catch (err) {
     console.error('lore.json yüklenemedi:', err);
     Wiki.renderError('circle-wrap', err);
@@ -412,7 +1125,10 @@ async function init() {
 function applyLang(l) {
   currentLang = l;
   document.documentElement.lang = l;
-  if (Object.keys(godsById).length) layout();
+  if (Object.keys(godsById).length) {
+    layout();
+    renderBalanceAxis();
+  }
 }
 
 initWiki({ onLangChange: applyLang });

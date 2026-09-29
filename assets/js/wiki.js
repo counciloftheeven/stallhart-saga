@@ -3158,6 +3158,7 @@ window.Wiki = {
   getBasePath, BASE_PATH, renderError, showFatal, Tags, Prefetch, SelectionLookup,
   Img, imgAttrs: Img.attrs, imgUrl: Img.url
 };
+window.Bookmarks = Bookmarks;
 window.ParchmentAtmosphere = ParchmentAtmosphere;
 
 })();

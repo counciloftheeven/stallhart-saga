@@ -4,6 +4,12 @@ import { fileURLToPath } from 'url';
 import compression from 'compression';
 import fs from 'fs';
 import { promises as fsp } from 'fs';
+import crypto from 'crypto';
+import { execFile } from 'child_process';
+import { promisify } from 'util';
+import { EdgeTTS } from 'node-edge-tts';
+
+const execFileAsync = promisify(execFile);
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -178,6 +184,74 @@ app.post('/api/replace-image', async (req, res) => {
   } catch (err) {
     console.error('replace-image hatası:', err);
     return res.status(500).json({ ok: false, error: err.message });
+  }
+});
+
+// 5. Nöral TTS (Edge-TTS Microsoft Nöral Ses Sentezi) API'si
+const TTS_CACHE_DIR = path.join(__dirname, 'assets', 'audio', 'tts_cache');
+if (!fs.existsSync(TTS_CACHE_DIR)) {
+  fs.mkdirSync(TTS_CACHE_DIR, { recursive: true });
+}
+
+// Edge-TTS çıktısındaki 1-2 saniyelik yapay boşluğu kırparak cümle geçişlerini akıcı yapar
+async function trimAudioSilence(inputPath, outputPath) {
+  try {
+    const tempPath = outputPath + '.trim.mp3';
+    const args = [
+      '-y', '-i', inputPath,
+      '-af', 'silenceremove=start_periods=1:start_duration=0.01:start_threshold=-42dB,areverse,silenceremove=start_periods=1:start_duration=0.04:start_threshold=-36dB,areverse',
+      '-c:a', 'libmp3lame', '-q:a', '4', tempPath
+    ];
+    await execFileAsync('ffmpeg', args);
+    if (fs.existsSync(tempPath)) {
+      await fsp.rename(tempPath, outputPath);
+      return true;
+    }
+  } catch (e) {
+    console.warn('Audio silence trim skipped/fallback:', e.message);
+  }
+  return false;
+}
+
+app.post('/api/tts', async (req, res) => {
+  try {
+    const { text, voice = 'tr-TR-AhmetNeural', rate = '+5%', pitch = '+0Hz', lang = 'tr-TR' } = req.body || {};
+    if (!text || typeof text !== 'string' || !text.trim()) {
+      return res.status(400).json({ ok: false, error: 'Seslendirilecek metin boş olamaz.' });
+    }
+
+    const cleanText = text.trim().slice(0, 1500); // Cümle/paragraf bazlı güvenlik sınırı
+    const hash = crypto.createHash('md5').update([cleanText, voice, rate, pitch].join('|')).digest('hex');
+    const fileName = `${hash}.mp3`;
+    const filePath = path.join(TTS_CACHE_DIR, fileName);
+    const audioUrl = `/assets/audio/tts_cache/${fileName}`;
+
+    if (fs.existsSync(filePath)) {
+      return res.json({ ok: true, url: audioUrl, cached: true, hash });
+    }
+
+    const tts = new EdgeTTS({
+      voice,
+      lang: lang || (voice.startsWith('en') ? 'en-US' : 'tr-TR'),
+      rate: rate || '+5%',
+      pitch: pitch || '+0Hz',
+      timeout: 12000
+    });
+
+    const rawPath = path.join(TTS_CACHE_DIR, `raw_${fileName}`);
+    await tts.ttsPromise(cleanText, rawPath);
+
+    const trimmed = await trimAudioSilence(rawPath, filePath);
+    if (!trimmed && fs.existsSync(rawPath)) {
+      await fsp.rename(rawPath, filePath);
+    } else {
+      try { await fsp.unlink(rawPath); } catch (_) {}
+    }
+
+    return res.json({ ok: true, url: audioUrl, cached: false, hash });
+  } catch (err) {
+    console.error('Edge-TTS sentez hatası:', err);
+    return res.status(500).json({ ok: false, error: err.message || 'Sentez başarısız' });
   }
 });
 
