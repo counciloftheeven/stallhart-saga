@@ -85,15 +85,22 @@ addStrings({
     p_comments: 'Yorumlar', p_suggestions: 'Öneriler', p_settings: 'Ayarlar',
     p_none_comments: 'Henüz yorum yok.', p_none_sugg: 'Henüz öneri yok.',
     p_house: 'Favori hane', p_no_house: '— Seçilmedi —', p_title: 'Unvan', p_avatar: 'Avatar',
-    p_loyalty: 'Sadakat Rozetleri', p_avatar_photo: 'Özel Profil Fotoğrafı',
-    p_upload_photo: 'Fotoğraf Yükle', p_photo_hint: 'Cihazından PNG, JPG veya WebP seç. Otomatik kırpılır.',
+    p_loyalty: 'Sadakat Rozetleri', p_avatar_photo: 'Profil Fotoğrafı (Galeri / Yükleme)',
+    p_upload_photo: 'Fotoğrafı Değiştir / Kırp', p_change_photo: 'Fotoğraf Değiştir',
+    p_photo_hint: 'Galeriden veya cihazından resim seçebilir, parmağınla taşıyarak ve yakınlaştırarak tam istediğin şekilde kırpabilirsin.',
     p_photo_url: 'veya Görsel URLsi', p_remove_photo: 'Fotoğrafı Kaldır',
+    p_recrop_photo: 'Fotoğrafı Yeniden Kırp',
     p_active_badge: 'Birincil Sadakat Rozeti', p_badge_set: 'Sadakat rozeti seçildi.',
     p_badge_unlocked: 'Kazanıldı', p_badge_locked: 'Kilitli', p_set_active_badge: 'Birincil Rozet Yap',
     p_badge_current: 'Aktif Rozet', p_loyalty_sub: 'Destan arşivlerine ve hanene bağlılığınla kazandığın şeref nişanları.',
-    p_loyalty_active_title: 'Mevcut Birincil Rozetin', p_choose_photo: '📁 Cihazdan Fotoğraf Seç',
+    p_loyalty_active_title: 'Mevcut Birincil Rozetin', p_choose_photo: '🖼️ Galeriden Fotoğraf Seç',
+    p_choose_different: '📁 Galeriden Başka Seç',
     p_or_url: 'veya internet bağlantısı (URL) girin', p_heraldic_avatars: 'Veya Hanedan Simgelerinden Seç',
     p_saved: 'Profil güncellendi.', p_load_fail: 'Profil yüklenemedi.',
+    crop_title: 'Fotoğrafı Kırp ve Ayarla', crop_btn: '✓ Kırp ve Kullan',
+    crop_rotate: 'Döndür (90°)', crop_center: 'Ortala / Sıfırla',
+    crop_hint: 'Parmağınla sürükleyerek veya yakınlaştırarak fotoğrafı altın halkanın içine yerleştirin.',
+    zoom_in: 'Yakınlaştır', zoom_out: 'Uzaklaştır',
     stat_comments: 'yorum', stat_sugg: 'öneri',
     st_pending: 'Bekliyor', st_approved: 'Onaylandı', st_rejected: 'Reddedildi',
     admin_note: 'Vakanüvis notu', withdraw: 'Geri çek', withdrawn: 'Öneri geri çekildi.',
@@ -138,15 +145,22 @@ addStrings({
     p_comments: 'Comments', p_suggestions: 'Suggestions', p_settings: 'Settings',
     p_none_comments: 'No comments yet.', p_none_sugg: 'No suggestions yet.',
     p_house: 'Favorite house', p_no_house: '— None —', p_title: 'Title', p_avatar: 'Avatar',
-    p_loyalty: 'Loyalty Badges', p_avatar_photo: 'Custom Profile Photo',
-    p_upload_photo: 'Upload Photo', p_photo_hint: 'Pick PNG, JPG or WebP from your device. Auto-cropped.',
+    p_loyalty: 'Loyalty Badges', p_avatar_photo: 'Profile Photo (Gallery / Upload)',
+    p_upload_photo: 'Change / Crop Photo', p_change_photo: 'Change Photo',
+    p_photo_hint: 'Pick an image from your device gallery. Pan, rotate, and zoom to crop your profile picture perfectly.',
     p_photo_url: 'or Image URL', p_remove_photo: 'Remove Photo',
+    p_recrop_photo: 'Recrop Current Photo',
     p_active_badge: 'Featured Loyalty Badge', p_badge_set: 'Loyalty badge updated.',
     p_badge_unlocked: 'Unlocked', p_badge_locked: 'Locked', p_set_active_badge: 'Set as Active Badge',
     p_badge_current: 'Active Badge', p_loyalty_sub: 'Honors and badges earned through your loyalty to the chronicles and sworn house.',
-    p_loyalty_active_title: 'Your Current Active Badge', p_choose_photo: '📁 Choose Photo from Device',
+    p_loyalty_active_title: 'Your Current Active Badge', p_choose_photo: '🖼️ Choose from Gallery',
+    p_choose_different: '📁 Choose Another Photo',
     p_or_url: 'or enter web image link (URL)', p_heraldic_avatars: 'Or Pick from Heraldic Crests',
     p_saved: 'Profile updated.', p_load_fail: 'Could not load the profile.',
+    crop_title: 'Crop & Adjust Photo', crop_btn: '✓ Crop & Use',
+    crop_rotate: 'Rotate (90°)', crop_center: 'Center / Reset',
+    crop_hint: 'Drag to position and zoom or pinch to fit inside the golden ring.',
+    zoom_in: 'Zoom In', zoom_out: 'Zoom Out',
     stat_comments: 'comments', stat_sugg: 'suggestions',
     st_pending: 'Pending', st_approved: 'Approved', st_rejected: 'Rejected',
     admin_note: 'Chronicler’s note', withdraw: 'Withdraw', withdrawn: 'Suggestion withdrawn.',
@@ -1043,6 +1057,351 @@ function excerpt(body) {
   return t.length > 150 ? t.slice(0, 149) + '…' : t;
 }
 
+/* ── GÖRSEL HAZIRLAMA & ETKİLEŞİMLİ FOTOĞRAF KIRPICI (AVATAR CROPPER) ── */
+function prepareImageForCropper(source, cb) {
+  if (source instanceof Image) {
+    if (source.complete && source.naturalWidth) {
+      scaleDownIfNeeded(source, cb);
+    } else {
+      source.onload = function () { scaleDownIfNeeded(source, cb); };
+    }
+    return;
+  }
+  var img = new Image();
+  img.crossOrigin = 'anonymous';
+  img.onload = function () { scaleDownIfNeeded(img, cb); };
+  img.onerror = function () {
+    toast(Lang.get() === 'tr' ? 'Görsel yüklenemedi. Geçerli bir resim seçin.' : 'Could not load image. Please select a valid picture.', true);
+  };
+  img.src = typeof source === 'string' ? source : '';
+}
+
+function scaleDownIfNeeded(rawImg, cb) {
+  var maxDim = 1600;
+  if (rawImg.width > maxDim || rawImg.height > maxDim) {
+    try {
+      var s = Math.min(maxDim / rawImg.width, maxDim / rawImg.height);
+      var scCvs = document.createElement('canvas');
+      scCvs.width = Math.max(1, Math.round(rawImg.width * s));
+      scCvs.height = Math.max(1, Math.round(rawImg.height * s));
+      var scCtx = scCvs.getContext('2d');
+      scCtx.drawImage(rawImg, 0, 0, scCvs.width, scCvs.height);
+      var downImg = new Image();
+      downImg.onload = function () { cb(downImg); };
+      downImg.src = scCvs.toDataURL('image/jpeg', 0.92);
+      return;
+    } catch (e) {
+      console.warn('scaleDown fallback', e);
+    }
+  }
+  cb(rawImg);
+}
+
+function openAvatarCropper(imgSource, onDone) {
+  prepareImageForCropper(imgSource, function (currentImg) {
+    var rec = Modal.open({
+      title: tt('crop_title'),
+      cls: 'sw-cropper-modal',
+      html:
+        '<div class="sw-crop-body">' +
+          '<div class="sw-crop-canvas-wrap" id="sw-crop-wrap">' +
+            '<canvas id="sw-crop-cvs" class="sw-crop-canvas" width="280" height="280"></canvas>' +
+          '</div>' +
+          '<p class="sw-crop-hint">' + esc(tt('crop_hint')) + '</p>' +
+          '<div class="sw-crop-ctrls">' +
+            '<div class="sw-crop-zoom-row">' +
+              '<button type="button" class="sw-crop-zoom-btn" id="sw-crop-zoom-out" aria-label="' + esc(tt('zoom_out')) + '">−</button>' +
+              '<input type="range" class="sw-crop-slider" id="sw-crop-zoom-slider" min="0.35" max="3.5" step="0.01" value="1">' +
+              '<button type="button" class="sw-crop-zoom-btn" id="sw-crop-zoom-in" aria-label="' + esc(tt('zoom_in')) + '">+</button>' +
+            '</div>' +
+            '<div class="sw-crop-tools-row">' +
+              '<button type="button" class="sw-btn" id="sw-crop-rot-btn">⟳ ' + esc(tt('crop_rotate')) + '</button>' +
+              '<button type="button" class="sw-btn" id="sw-crop-reset-btn">⤢ ' + esc(tt('crop_center')) + '</button>' +
+              '<button type="button" class="sw-btn" id="sw-crop-switch-btn">📁 ' + esc(tt('p_choose_different')) + '</button>' +
+              '<input type="file" id="sw-crop-switch-in" accept="image/png,image/jpeg,image/webp,image/gif,image/*" style="display:none">' +
+            '</div>' +
+          '</div>' +
+          '<div class="sw-crop-actions">' +
+            '<button type="button" class="sw-btn" id="sw-crop-cancel">' + esc(tt('cancel')) + '</button>' +
+            '<button type="button" class="sw-btn primary" id="sw-crop-save">✓ ' + esc(tt('crop_btn')) + '</button>' +
+          '</div>' +
+        '</div>'
+    });
+
+    var wrap = rec.body.querySelector('#sw-crop-wrap');
+    var canvas = rec.body.querySelector('#sw-crop-cvs');
+    if (!canvas) return;
+    var ctx = canvas.getContext('2d');
+    var cw = 280, ch = 280, cx = 140, cy = 140, R = 112;
+
+    var activeImg = currentImg;
+    var minDim = Math.min(activeImg.width, activeImg.height);
+    var baseScale = (R * 2) / (minDim || 1);
+    var userScale = 1;
+    var userX = 0;
+    var userY = 0;
+    var userRot = 0;
+
+    var slider = rec.body.querySelector('#sw-crop-zoom-slider');
+
+    function redraw() {
+      ctx.clearRect(0, 0, cw, ch);
+
+      // Çizim
+      ctx.save();
+      ctx.translate(cx + userX, cy + userY);
+      ctx.rotate((userRot * Math.PI) / 180);
+      var effScale = userScale * baseScale;
+      ctx.scale(effScale, effScale);
+      ctx.drawImage(activeImg, -activeImg.width / 2, -activeImg.height / 2);
+      ctx.restore();
+
+      // Maske
+      ctx.save();
+      ctx.fillStyle = 'rgba(6, 8, 14, 0.78)';
+      ctx.beginPath();
+      ctx.rect(0, 0, cw, ch);
+      ctx.arc(cx, cy, R, 0, Math.PI * 2, true);
+      ctx.fill();
+
+      // Altın halka çerçeve
+      ctx.strokeStyle = '#c4962a';
+      ctx.lineWidth = 2.5;
+      ctx.beginPath();
+      ctx.arc(cx, cy, R, 0, Math.PI * 2);
+      ctx.stroke();
+
+      // Kılavuz çizgileri
+      ctx.strokeStyle = 'rgba(196, 150, 42, 0.26)';
+      ctx.lineWidth = 1;
+      ctx.setLineDash([4, 4]);
+      ctx.beginPath();
+      ctx.moveTo(cx - R, cy); ctx.lineTo(cx + R, cy);
+      ctx.moveTo(cx, cy - R); ctx.lineTo(cx, cy + R);
+      ctx.stroke();
+      ctx.restore();
+    }
+
+    redraw();
+
+    function getScaleFactor() {
+      var r = canvas.getBoundingClientRect();
+      return {
+        sx: cw / (r.width || cw),
+        sy: ch / (r.height || ch)
+      };
+    }
+
+    // Sürükleme ve Dokunmatik Kontroller
+    var isDragging = false;
+    var startX = 0, startY = 0, initUserX = 0, initUserY = 0;
+    var initPinchDist = 0, initPinchScale = 1;
+
+    function onPointerDown(clientX, clientY) {
+      isDragging = true;
+      startX = clientX;
+      startY = clientY;
+      initUserX = userX;
+      initUserY = userY;
+      wrap.classList.add('dragging');
+    }
+
+    function onPointerMove(clientX, clientY) {
+      if (!isDragging) return;
+      var sf = getScaleFactor();
+      userX = initUserX + (clientX - startX) * sf.sx;
+      userY = initUserY + (clientY - startY) * sf.sy;
+      redraw();
+    }
+
+    function onPointerUp() {
+      isDragging = false;
+      wrap.classList.remove('dragging');
+    }
+
+    function onMouseDown(e) {
+      e.preventDefault();
+      onPointerDown(e.clientX, e.clientY);
+    }
+    function onMouseMove(e) {
+      onPointerMove(e.clientX, e.clientY);
+    }
+
+    wrap.addEventListener('mousedown', onMouseDown);
+    window.addEventListener('mousemove', onMouseMove);
+    window.addEventListener('mouseup', onPointerUp);
+
+    function onTouchStart(e) {
+      if (e.touches.length === 1) {
+        e.preventDefault();
+        onPointerDown(e.touches[0].clientX, e.touches[0].clientY);
+      } else if (e.touches.length === 2) {
+        e.preventDefault();
+        isDragging = false;
+        var dx = e.touches[0].clientX - e.touches[1].clientX;
+        var dy = e.touches[0].clientY - e.touches[1].clientY;
+        initPinchDist = Math.hypot(dx, dy);
+        initPinchScale = userScale;
+      }
+    }
+
+    function onTouchMove(e) {
+      if (e.touches.length === 1 && isDragging) {
+        e.preventDefault();
+        onPointerMove(e.touches[0].clientX, e.touches[0].clientY);
+      } else if (e.touches.length === 2 && initPinchDist > 0) {
+        e.preventDefault();
+        var dx = e.touches[0].clientX - e.touches[1].clientX;
+        var dy = e.touches[0].clientY - e.touches[1].clientY;
+        var dist = Math.hypot(dx, dy);
+        var factor = dist / initPinchDist;
+        var newScale = Math.max(0.35, Math.min(3.5, initPinchScale * factor));
+        userScale = newScale;
+        if (slider) slider.value = newScale;
+        redraw();
+      }
+    }
+
+    function onTouchEnd(e) {
+      if (e.touches.length === 0) {
+        onPointerUp();
+        initPinchDist = 0;
+      }
+    }
+
+    wrap.addEventListener('touchstart', onTouchStart, { passive: false });
+    window.addEventListener('touchmove', onTouchMove, { passive: false });
+    window.addEventListener('touchend', onTouchEnd);
+    window.addEventListener('touchcancel', onTouchEnd);
+
+    function cleanup() {
+      wrap.removeEventListener('mousedown', onMouseDown);
+      window.removeEventListener('mousemove', onMouseMove);
+      window.removeEventListener('mouseup', onPointerUp);
+      wrap.removeEventListener('touchstart', onTouchStart);
+      window.removeEventListener('touchmove', onTouchMove);
+      window.removeEventListener('touchend', onTouchEnd);
+      window.removeEventListener('touchcancel', onTouchEnd);
+    }
+
+    var origClose = rec.close;
+    rec.close = function () {
+      cleanup();
+      origClose();
+    };
+
+    // Tekerlek ile yakınlaştırma
+    wrap.addEventListener('wheel', function (e) {
+      e.preventDefault();
+      var delta = e.deltaY < 0 ? 0.08 : -0.08;
+      userScale = Math.max(0.35, Math.min(3.5, userScale + delta));
+      if (slider) slider.value = userScale;
+      redraw();
+    }, { passive: false });
+
+    if (slider) {
+      slider.addEventListener('input', function () {
+        userScale = parseFloat(slider.value) || 1;
+        redraw();
+      });
+    }
+
+    var zoomInBtn = rec.body.querySelector('#sw-crop-zoom-in');
+    var zoomOutBtn = rec.body.querySelector('#sw-crop-zoom-out');
+    if (zoomInBtn) {
+      zoomInBtn.addEventListener('click', function () {
+        userScale = Math.min(3.5, userScale + 0.15);
+        if (slider) slider.value = userScale;
+        redraw();
+      });
+    }
+    if (zoomOutBtn) {
+      zoomOutBtn.addEventListener('click', function () {
+        userScale = Math.max(0.35, userScale - 0.15);
+        if (slider) slider.value = userScale;
+        redraw();
+      });
+    }
+
+    var rotBtn = rec.body.querySelector('#sw-crop-rot-btn');
+    if (rotBtn) {
+      rotBtn.addEventListener('click', function () {
+        userRot = (userRot + 90) % 360;
+        redraw();
+      });
+    }
+
+    var resetBtn = rec.body.querySelector('#sw-crop-reset-btn');
+    if (resetBtn) {
+      resetBtn.addEventListener('click', function () {
+        userX = 0;
+        userY = 0;
+        userScale = 1;
+        userRot = 0;
+        if (slider) slider.value = 1;
+        redraw();
+      });
+    }
+
+    // Galeriden başka fotoğraf seçme düğmesi
+    var switchBtn = rec.body.querySelector('#sw-crop-switch-btn');
+    var switchIn = rec.body.querySelector('#sw-crop-switch-in');
+    if (switchBtn && switchIn) {
+      switchBtn.addEventListener('click', function () { switchIn.click(); });
+      switchIn.addEventListener('change', function () {
+        var f = switchIn.files && switchIn.files[0];
+        if (!f) return;
+        var r = new FileReader();
+        r.onload = function (ev) {
+          prepareImageForCropper(ev.target.result, function (newImg) {
+            activeImg = newImg;
+            minDim = Math.min(activeImg.width, activeImg.height);
+            baseScale = (R * 2) / (minDim || 1);
+            userX = 0;
+            userY = 0;
+            userScale = 1;
+            userRot = 0;
+            if (slider) slider.value = 1;
+            redraw();
+          });
+        };
+        r.readAsDataURL(f);
+        switchIn.value = '';
+      });
+    }
+
+    var cancelBtn = rec.body.querySelector('#sw-crop-cancel');
+    if (cancelBtn) {
+      cancelBtn.addEventListener('click', function () {
+        rec.close();
+      });
+    }
+
+    var saveBtn = rec.body.querySelector('#sw-crop-save');
+    if (saveBtn) {
+      saveBtn.addEventListener('click', function () {
+        var out = document.createElement('canvas');
+        var outSize = 256;
+        out.width = outSize;
+        out.height = outSize;
+        var octx = out.getContext('2d');
+        var outR = outSize / 2;
+        var factor = outR / R;
+
+        octx.translate(outR + userX * factor, outR + userY * factor);
+        octx.rotate((userRot * Math.PI) / 180);
+        var effScale = userScale * baseScale * factor;
+        octx.scale(effScale, effScale);
+        octx.drawImage(activeImg, -activeImg.width / 2, -activeImg.height / 2);
+
+        var dataUrl = out.toDataURL('image/jpeg', 0.88);
+        rec.close();
+        if (typeof onDone === 'function') onDone(dataUrl);
+      });
+    }
+  });
+}
+
 async function openProfile(uid, tab) {
   var self = !uid || (S.user && uid === S.user.id);
   if (S.restoring && !S.ready) { try { await getClient(); } catch (e) {} }
@@ -1090,30 +1449,43 @@ function renderProfile(rec, c) {
   var unlockedBadges = getUnlockedLoyaltyBadges(p, stats);
   var customPhoto = getCustomAvatar(p);
 
+  var crestHTML = h
+    ? '<div class="sw-pf-crest">' + crestBig(h.id) +
+        '<div class="sw-pf-hinfo">' +
+          '<strong class="sw-pf-hname">' + esc(h.name) + '</strong>' +
+          (h.motto ? '<span class="sw-pf-hmotto">“' + esc(Lang.t(h.motto)) + '”</span>' : '') +
+          (h.province ? '<small class="sw-pf-hprov">' + esc(Lang.t(h.province)) + '</small>' : '') +
+        '</div>' +
+      '</div>'
+    : '';
+
   var head =
     '<div class="sw-pf-head">' +
-      '<div class="sw-pf-av' + (c.self ? ' can-edit' : '') + '">' +
-        avatarHTML(p, 'xl') +
-        (c.self ? '<button type="button" class="sw-pf-av-edit" data-act="quick-photo" title="' + esc(tt('p_upload_photo')) + '" aria-label="' + esc(tt('p_upload_photo')) + '">📷</button>' : '') +
-      '</div>' +
-      '<div class="sw-pf-id">' +
-        '<div class="sw-pf-name-row" style="display:flex;align-items:center;gap:.6rem;flex-wrap:wrap;margin-bottom:.2rem">' +
-          '<h2 class="sw-h">' + esc(p.username) + '</h2>' +
-          (p.favorite_house ? crestBadge(p.favorite_house, { showMotto: true }) : '') +
-          loyaltyBadgeHTML(p, { stats: stats }) +
+      '<div class="sw-pf-main-row">' +
+        '<div class="sw-pf-av' + (c.self ? ' can-edit' : '') + '"' + (c.self ? ' data-act="quick-photo" title="' + esc(tt('p_upload_photo')) + '"' : '') + '>' +
+          avatarHTML(p, 'xl') +
+          (c.self ? '<button type="button" class="sw-pf-av-edit" data-act="quick-photo" title="' + esc(tt('p_upload_photo')) + '" aria-label="' + esc(tt('p_upload_photo')) + '">📷</button>' : '') +
         '</div>' +
-        '<div class="sw-pf-role"><span class="sw-badge' + (isAdmin ? ' admin' : '') + '">' + esc(roleLabel(p.role)) + '</span>' +
-          (p.title ? '<em>' + esc(titleLabel(p.title)) + '</em>' : '') + '</div>' +
-        '<div class="sw-pf-meta">' + esc(tt('joined', { date: fmtDate(p.created_at) })) + '</div>' +
-        '<div class="sw-pf-stats"><span><b>' + c.total + '</b> ' + esc(tt('stat_comments')) + '</span>' +
-          (c.self ? '<span><b>' + c.suggs.length + '</b> ' + esc(tt('stat_sugg')) + '</span>' : '') +
-          '<span><b>' + unlockedBadges.length + '</b> ' + esc(tt('p_loyalty')) + '</span>' +
+        '<div class="sw-pf-id">' +
+          '<div class="sw-pf-name-row">' +
+            '<h2 class="sw-h">' + esc(p.username) + '</h2>' +
+            (p.favorite_house ? crestBadge(p.favorite_house, { showMotto: true }) : '') +
+            loyaltyBadgeHTML(p, { stats: stats }) +
+          '</div>' +
+          '<div class="sw-pf-role"><span class="sw-badge' + (isAdmin ? ' admin' : '') + '">' + esc(roleLabel(p.role)) + '</span>' +
+            (p.title ? '<em>' + esc(titleLabel(p.title)) + '</em>' : '') + '</div>' +
+          '<div class="sw-pf-meta">' + esc(tt('joined', { date: fmtDate(p.created_at) })) + '</div>' +
+          '<div class="sw-pf-stats">' +
+            '<span><b>' + c.total + '</b> ' + esc(tt('stat_comments')) + '</span>' +
+            (c.self ? '<span><b>' + c.suggs.length + '</b> ' + esc(tt('stat_sugg')) + '</span>' : '') +
+            '<span><b>' + unlockedBadges.length + '</b> ' + esc(tt('p_loyalty')) + '</span>' +
+          '</div>' +
+          (c.self ? '<button type="button" class="sw-btn sw-pf-quick-btn" data-act="quick-photo">📷 ' + esc(tt('p_change_photo')) + '</button>' : '') +
         '</div>' +
       '</div>' +
-      (h ? '<div class="sw-pf-crest">' + crestBig(h.id) + '<div class="sw-pf-hinfo"><strong class="sw-pf-hname">' + esc(h.name) + '</strong>' +
-        (h.motto ? '<span class="sw-pf-hmotto">“' + esc(Lang.t(h.motto)) + '”</span>' : '') +
-        (h.province ? '<small class="sw-pf-hprov">' + esc(Lang.t(h.province)) + '</small>' : '') + '</div></div>' : '') +
+      crestHTML +
     '</div>' +
+    (c.self ? '<input type="file" id="sw-header-file-in" accept="image/png,image/jpeg,image/webp,image/gif,image/*" style="display:none">' : '') +
     (c.self && p.is_banned ? '<div class="sw-err">' + esc(tt('banned_note')) + '</div>' : '');
 
   var tabs = '<div class="sw-tabs" role="tablist">' +
@@ -1223,9 +1595,10 @@ function renderProfile(rec, c) {
             '<div class="sw-photo-curr-av">' + avatarHTML(p, 'xl') + '</div>' +
           '</div>' +
           '<div class="sw-photo-controls">' +
-            '<input type="file" id="sw-photo-file-in" accept="image/png,image/jpeg,image/webp,image/gif" style="display:none">' +
+            '<input type="file" id="sw-photo-file-in" accept="image/png,image/jpeg,image/webp,image/gif,image/*" style="display:none">' +
             '<div class="sw-photo-btn-group">' +
               '<button type="button" class="sw-btn primary" id="sw-btn-pick-photo">' + esc(tt('p_choose_photo')) + '</button>' +
+              (customPhoto ? ' <button type="button" class="sw-btn" id="sw-btn-recrop-photo">✂️ ' + esc(tt('p_recrop_photo')) + '</button>' : '') +
               (customPhoto ? ' <button type="button" class="sw-btn danger" id="sw-btn-rm-photo">' + esc(tt('p_remove_photo')) + '</button>' : '') +
             '</div>' +
             '<p class="sw-photo-hint">' + esc(tt('p_photo_hint')) + '</p>' +
@@ -1253,6 +1626,23 @@ function renderProfile(rec, c) {
 
   rec.body.innerHTML = head + tabs + '<div class="sw-pf-panel">' + panel + '</div>';
 
+  /* Ortak kırpılmış avatar kaydetme fonksiyonu */
+  function applyCroppedAvatar(croppedDataUrl) {
+    setCustomAvatar(p, croppedDataUrl);
+    if (S.profile) setCustomAvatar(S.profile, croppedDataUrl);
+    renderNav();
+    emit('PROFILE_UPDATED');
+    toast(tt('p_saved'));
+    renderProfile(rec, c);
+
+    if (S.user) {
+      getClient().then(function (client) {
+        client.auth.updateUser({ data: { avatar_url: croppedDataUrl } }).catch(function () {});
+        client.from('profiles').update({ avatar: 'custom' }).eq('id', S.user.id).catch(function () {});
+      }).catch(function () {});
+    }
+  }
+
   /* Sekme geçişi */
   rec.body.querySelector('.sw-tabs').addEventListener('click', function (e) {
     var b = e.target.closest && e.target.closest('[data-ptab]');
@@ -1261,16 +1651,29 @@ function renderProfile(rec, c) {
     renderProfile(rec, c);
   });
 
-  /* Hızlı fotoğraf yükleme tetikleyicisi */
-  var quickPhotoBtn = rec.body.querySelector('[data-act="quick-photo"]');
-  if (quickPhotoBtn) {
-    quickPhotoBtn.addEventListener('click', function () {
-      c.tab = 'settings';
-      renderProfile(rec, c);
-      setTimeout(function () {
-        var pickBtn = rec.body.querySelector('#sw-btn-pick-photo');
-        if (pickBtn) pickBtn.click();
-      }, 50);
+  /* Hızlı fotoğraf yükleme / doğrudan galeri seçimi */
+  var headerFileIn = rec.body.querySelector('#sw-header-file-in');
+  var quickPhotoBtns = rec.body.querySelectorAll('[data-act="quick-photo"]');
+  if (headerFileIn && quickPhotoBtns.length) {
+    Array.prototype.forEach.call(quickPhotoBtns, function (btn) {
+      btn.addEventListener('click', function (e) {
+        e.stopPropagation();
+        headerFileIn.click();
+      });
+    });
+    headerFileIn.addEventListener('change', function () {
+      var file = headerFileIn.files && headerFileIn.files[0];
+      if (!file) return;
+      var reader = new FileReader();
+      reader.onload = function (evt) {
+        prepareImageForCropper(evt.target.result, function (loadedImg) {
+          openAvatarCropper(loadedImg, function (croppedDataUrl) {
+            applyCroppedAvatar(croppedDataUrl);
+          });
+        });
+      };
+      reader.readAsDataURL(file);
+      headerFileIn.value = '';
     });
   }
 
@@ -1315,10 +1718,10 @@ function renderProfile(rec, c) {
   if (form) {
     var fileIn = form.querySelector('#sw-photo-file-in');
     var pickPhotoBtn = form.querySelector('#sw-btn-pick-photo');
+    var recropPhotoBtn = form.querySelector('#sw-btn-recrop-photo');
     var rmPhotoBtn = form.querySelector('#sw-btn-rm-photo');
     var urlIn = form.querySelector('#sw-photo-url-in');
     var applyUrlBtn = form.querySelector('#sw-btn-apply-url');
-    var previewAv = form.querySelector('.sw-photo-curr-av');
 
     if (pickPhotoBtn && fileIn) {
       pickPhotoBtn.addEventListener('click', function () { fileIn.click(); });
@@ -1327,39 +1730,36 @@ function renderProfile(rec, c) {
         if (!file) return;
         var reader = new FileReader();
         reader.onload = function (evt) {
-          var img = new Image();
-          img.onload = function () {
-            var canvas = document.createElement('canvas');
-            var size = 180;
-            canvas.width = size; canvas.height = size;
-            var ctx = canvas.getContext('2d');
-            var minD = Math.min(img.width, img.height);
-            var sx = (img.width - minD) / 2;
-            var sy = (img.height - minD) / 2;
-            ctx.drawImage(img, sx, sy, minD, minD, 0, 0, size, size);
-            var dataUrl = canvas.toDataURL('image/jpeg', 0.85);
-            setCustomAvatar(p, dataUrl);
-            if (S.profile) setCustomAvatar(S.profile, dataUrl);
-            renderNav(); emit('PROFILE_UPDATED');
-            toast(tt('p_saved'));
-            renderProfile(rec, c);
-          };
-          img.src = evt.target.result;
+          prepareImageForCropper(evt.target.result, function (loadedImg) {
+            openAvatarCropper(loadedImg, function (croppedDataUrl) {
+              applyCroppedAvatar(croppedDataUrl);
+            });
+          });
         };
         reader.readAsDataURL(file);
+        fileIn.value = '';
+      });
+    }
+
+    if (recropPhotoBtn && customPhoto) {
+      recropPhotoBtn.addEventListener('click', function () {
+        prepareImageForCropper(customPhoto, function (loadedImg) {
+          openAvatarCropper(loadedImg, function (croppedDataUrl) {
+            applyCroppedAvatar(croppedDataUrl);
+          });
+        });
       });
     }
 
     if (applyUrlBtn && urlIn) {
       applyUrlBtn.addEventListener('click', function () {
         var u = urlIn.value.trim();
-        if (u) {
-          setCustomAvatar(p, u);
-          if (S.profile) setCustomAvatar(S.profile, u);
-          renderNav(); emit('PROFILE_UPDATED');
-          toast(tt('p_saved'));
-          renderProfile(rec, c);
-        }
+        if (!u) return;
+        prepareImageForCropper(u, function (loadedImg) {
+          openAvatarCropper(loadedImg, function (croppedDataUrl) {
+            applyCroppedAvatar(croppedDataUrl);
+          });
+        });
       });
     }
 
