@@ -1358,7 +1358,6 @@ const NAV_LINKS = [
   { href: 'harita.html',      tr: 'Harita',      en: 'Map' },
   { href: 'bolumler.html',    tr: 'Bölümler',    en: 'Chapters' },
   { href: 'forum.html',       tr: 'Kurultay',    en: 'Kurultay' },
-  { href: 'soy-agaci.html',   tr: 'Soy Ağacı',   en: 'Family Tree' },
   { href: 'sozler.html',      tr: 'Sözler',      en: 'Quotes' }
 ];
 
