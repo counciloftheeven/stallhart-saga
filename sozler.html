@@ -19,7 +19,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Modern+Antiqua&amp;family=IM+Fell+English:ital@0;1&amp;family=Merriweather:ital,wght@0,400;0,700;1,400&amp;display=swap">
-<link rel="stylesheet" href="assets/css/styles.css?v=3.0">
+<link rel="stylesheet" href="assets/css/styles.css?v=3.1">
 <style>
 #quotes-sec { background: var(--bg); }
 
@@ -124,7 +124,7 @@ a.q-speaker:hover { color: var(--goldb); }
   .qc { padding: 1.25rem 1.15rem 1.1rem; }
 }
 </style>
-<script src="assets/js/router.js?v=3.0"></script>
+<script src="assets/js/router.js?v=3.1"></script>
 </head>
 <body>
 
@@ -141,8 +141,10 @@ a.q-speaker:hover { color: var(--goldb); }
     <div class="q-hero" id="q-hero">
       <p class="q-hero-text" id="hero-text">Yükleniyor…</p>
       <p class="q-hero-attr" id="hero-attr">—</p>
-      <br>
-      <button class="q-hero-refresh" id="hero-refresh" type="button">↻ Başka Söz</button>
+      <div style="display:flex;gap:.6rem;flex-wrap:wrap;justify-content:center;margin-top:1rem;">
+        <button class="q-hero-refresh" id="hero-refresh" type="button">↻ Başka Söz</button>
+        <button class="q-hero-refresh" id="hero-card-btn" type="button" style="background:rgba(196,150,42,.12);border-color:var(--goldd);color:var(--goldb);">🎨 Görsel Kart Oluştur</button>
+      </div>
     </div>
 
     <!-- Araç çubuğu -->
@@ -161,10 +163,10 @@ a.q-speaker:hover { color: var(--goldb); }
   </div>
 </section>
 
-<script src="assets/js/config.js?v=3.0"></script>
-<script src="assets/js/patches.js?v=3.0"></script>
-<script src="assets/js/wiki.js?v=3.0"></script>
-<script src="assets/js/community.js?v=3.0"></script>
+<script src="assets/js/config.js?v=3.1"></script>
+<script src="assets/js/patches.js?v=3.1"></script>
+<script src="assets/js/wiki.js?v=3.1"></script>
+<script src="assets/js/community.js?v=3.1"></script>
 <script>
 const { Lang, loadData, initWiki, esc } = Wiki;
 
@@ -191,15 +193,25 @@ async function init() {
 }
 
 /* ── RASTGELE HERO ─────────────────────────────────── */
+let currentHeroQuote = null;
 function randomHero() {
   if (!allQuotes.length) return;
-  const q = allQuotes[Math.floor(Math.random() * allQuotes.length)];
+  currentHeroQuote = allQuotes[Math.floor(Math.random() * allQuotes.length)];
   const t = obj => Lang.t(obj);
-  document.getElementById('hero-text').textContent = t(q.text);
-  document.getElementById('hero-attr').textContent = '— ' + t(q.speaker);
+  document.getElementById('hero-text').textContent = t(currentHeroQuote.text);
+  document.getElementById('hero-attr').textContent = '— ' + t(currentHeroQuote.speaker);
 }
 window.randomHero = randomHero;
 document.getElementById('hero-refresh').addEventListener('click', randomHero);
+document.getElementById('hero-card-btn').addEventListener('click', () => {
+  if (!currentHeroQuote) return;
+  const t = obj => Lang.t(obj);
+  Wiki.QuoteCard.open({
+    text: t(currentHeroQuote.text),
+    speaker: t(currentHeroQuote.speaker),
+    cite: Lang.get() === 'tr' ? 'Stallhart Destanı · Seçme Sözler' : 'The Stallhart Saga · Selected Quotes'
+  });
+});
 
 /* ── TEMA FİLTRELERİ ───────────────────────────────── */
 let themeListenerBound = false;
@@ -261,7 +273,7 @@ function render() {
     return;
   }
 
-  document.getElementById('quotes-grid').innerHTML = filtered.map(q => {
+  document.getElementById('quotes-grid').innerHTML = filtered.map((q, i) => {
     const speakerEl = q.speakerId
       ? `<a class="q-speaker" href="${SWRoute.href('karakter', q.speakerId)}">${esc(t(q.speaker))}</a>`
       : `<span class="q-speaker">${esc(t(q.speaker))}</span>`;
@@ -277,9 +289,47 @@ function render() {
           <div class="q-line"></div>
           ${speakerEl}
         </div>
+        <div class="qc-actions" style="display:flex;gap:.5rem;margin-top:1rem;padding-top:.7rem;border-top:1px solid rgba(196,150,42,.2);justify-content:flex-end;">
+          <button type="button" class="f-btn sm q-card-btn" data-qi="${i}" style="padding:.28rem .65rem;font-size:.74rem;display:inline-flex;align-items:center;gap:.3rem;">
+            <span>🎨</span> <span>${l === 'tr' ? 'Görsel Kart' : 'Image Card'}</span>
+          </button>
+          <button type="button" class="f-btn sm q-copy-btn" data-qi="${i}" style="padding:.28rem .65rem;font-size:.74rem;display:inline-flex;align-items:center;gap:.3rem;">
+            <span>📋</span> <span>${l === 'tr' ? 'Kopyala' : 'Copy'}</span>
+          </button>
+        </div>
       </div>`;
   }).join('');
-  Wiki.Tooltip.scan(document.getElementById('quotes-grid'));
+
+  const grid = document.getElementById('quotes-grid');
+  grid.querySelectorAll('.q-card-btn').forEach(btn => {
+    btn.onclick = () => {
+      const q = filtered[parseInt(btn.dataset.qi, 10)];
+      if (!q) return;
+      Wiki.QuoteCard.open({
+        text: t(q.text),
+        speaker: t(q.speaker),
+        cite: Lang.get() === 'tr' ? 'Stallhart Destanı · Seçme Sözler' : 'The Stallhart Saga · Selected Quotes',
+        theme: q.theme
+      });
+    };
+  });
+
+  grid.querySelectorAll('.q-copy-btn').forEach(btn => {
+    btn.onclick = () => {
+      const q = filtered[parseInt(btn.dataset.qi, 10)];
+      if (!q) return;
+      const shareText = `“${t(q.text)}”\n\n— ${t(q.speaker)}\nhttps://stallhart.com/sozler.html`;
+      navigator.clipboard.writeText(shareText).then(() => {
+        if (window.Community && Community.util && Community.util.toast) {
+          Community.util.toast(l === 'tr' ? 'Alıntı panoya kopyalandı!' : 'Quote copied to clipboard!');
+        } else if (Wiki.Toast) {
+          Wiki.Toast.show(l === 'tr' ? 'Alıntı panoya kopyalandı!' : 'Quote copied!');
+        }
+      });
+    };
+  });
+
+  Wiki.Tooltip.scan(grid);
 }
 
 /* ── ARAMA ─────────────────────────────────────────── */

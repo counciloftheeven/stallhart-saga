@@ -37,7 +37,7 @@ if (!ENABLED) {
   };
   API.mountComments = API.unmountComments = API.setContext = API.openAuth = API.openProfile = API.openSuggest = function () {};
   API.onAuth = function () { return function () {}; };
-  API.getState = function () { return { ready: true, user: null, profile: null, isAdmin: false }; };
+  API.getState = function () { return { ready: true, user: null, profile: null, isAdmin: false, isMod: false }; };
   return;
 }
 
@@ -78,7 +78,8 @@ addStrings({
     err_rate: 'Çok fazla deneme yapıldı. Biraz bekleyip tekrar dene.',
     err_denied: 'Bu işlem için yetkin yok (hesabın kısıtlanmış olabilir).',
     err_generic: 'Bir şeyler ters gitti.',
-    role_member: 'Kâtip', role_admin: 'Vakanüvis',
+    role_member: 'Kâtip', role_moderator: 'Meclis Muhafızı', role_admin: 'Vakanüvis',
+    mod_del: 'Sil (Mod)', mod_ban: 'Yasakla (Mod)', mod_banned_ok: 'Kullanıcı yasaklandı.',
     menu_profile: 'Profilim', menu_suggest: 'Öneri sun', menu_admin: 'Vakanüvis Paneli',
     account: 'Hesap',
     profile: 'Profil', p_notfound: 'Profil bulunamadı.', joined: 'Kayıt: {date}',
@@ -138,7 +139,8 @@ addStrings({
     err_rate: 'Too many attempts. Wait a moment and try again.',
     err_denied: 'You are not allowed to do this (your account may be restricted).',
     err_generic: 'Something went wrong.',
-    role_member: 'Scribe', role_admin: 'Chronicler',
+    role_member: 'Scribe', role_moderator: 'Council Warden', role_admin: 'Chronicler',
+    mod_del: 'Delete (Mod)', mod_ban: 'Ban (Mod)', mod_banned_ok: 'User has been banned.',
     menu_profile: 'My profile', menu_suggest: 'Submit suggestion', menu_admin: 'Chronicler panel',
     account: 'Account',
     profile: 'Profile', p_notfound: 'Profile not found.', joined: 'Joined {date}',
@@ -318,7 +320,13 @@ async function handleAuth(event, session) {
 }
 
 function getState() {
-  return { ready: S.ready, user: S.user, profile: S.profile, isAdmin: !!(S.profile && S.profile.role === 'admin') };
+  return {
+    ready: S.ready,
+    user: S.user,
+    profile: S.profile,
+    isAdmin: !!(S.profile && S.profile.role === 'admin'),
+    isMod: !!(S.profile && (S.profile.role === 'moderator' || S.profile.role === 'admin'))
+  };
 }
 function onAuth(fn) {
   S.listeners.push(fn);

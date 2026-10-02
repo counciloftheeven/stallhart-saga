@@ -192,6 +192,7 @@ function create(el, type, id, opts) {
         '<button type="button" class="dv-av" data-act="user" data-uid="' + esc(c.user_id) + '" aria-label="' + esc(a.username) + '">' + U.avatarHTML(a, 'sm') + '</button>' +
         '<div class="dv-who"><button type="button" class="dv-name" data-act="user" data-uid="' + esc(c.user_id) + '">' + esc(a.username) + '</button>' +
           (a.role === 'admin' ? '<span class="dv-badge admin">' + esc(tt('role_admin')) + '</span>' : '') +
+          (a.role === 'moderator' ? '<span class="dv-badge mod" style="background:rgba(46,117,89,.35);border:1px solid #2ecc71;color:#85e3a8;padding:1px 6px;border-radius:2px;font-size:.65rem;margin-left:4px;font-weight:600;">🛡️ ' + esc(tt('role_moderator')) + '</span>' : '') +
           (a.title ? '<span class="dv-ttl">' + esc(U.titleLabel(a.title)) + '</span>' : '') +
           (a.favorite_house ? U.crestBadge(a.favorite_house) : '') +
           (U.loyaltyBadgeHTML ? U.loyaltyBadgeHTML(a) : '') + '</div>' +
@@ -203,8 +204,9 @@ function create(el, type, id, opts) {
         '<button type="button" class="dv-seal' + (sealed ? ' on' : '') + '" data-act="seal" aria-pressed="' + sealed + '" title="' + esc(tt(sealed ? 'dv_unseal' : 'dv_seal')) + '">' +
           SEAL_SVG + '<span class="dv-seal-n">' + (c.seal_count || 0) + '</span></button>' +
         '<button type="button" class="dv-act" data-act="reply">' + esc(tt('dv_reply')) + '</button>' +
-        ((mine || me.isAdmin) ? '<button type="button" class="dv-act danger" data-act="delete">' + esc(tt('dv_delete')) + '</button>' : '') +
+        ((mine || me.isAdmin || me.isMod) ? '<button type="button" class="dv-act danger" data-act="delete">' + esc(tt('dv_delete')) + (me.isMod && !mine ? ' (Mod)' : '') + '</button>' : '') +
         (me.isAdmin ? '<button type="button" class="dv-act danger" data-act="purge">' + esc(tt('dv_purge')) + '</button>' : '') +
+        ((me.isAdmin || me.isMod) && !mine && a.role !== 'admin' ? '<button type="button" class="dv-act danger" data-act="ban" data-uid="' + esc(c.user_id) + '" data-uname="' + esc(a.username) + '" title="Kullanıcıyı Yasakla">🚫 ' + esc(tt('mod_ban')) + '</button>' : '') +
       '</div>' +
       '<div class="dv-reply-slot">' + (st.replyTo === c.id ? formHTML('reply', st.replyDraft) : '') + '</div>' +
     '</article>';
@@ -435,6 +437,19 @@ function create(el, type, id, opts) {
     } catch (e) { U.toast(U.mapErr(e), true); }
   }
 
+  async function banAuthor(uid, uname) {
+    var ok = await U.confirmBox('“' + (uname || 'Kullanıcı') + '” kural ihlali nedeniyle yasaklanacak. Emin misiniz?', 'Kullanıcıyı Yasakla', true);
+    if (!ok) return;
+    try {
+      var client = await C.getClient();
+      var r = await client.rpc('admin_set_ban', { p_user: uid, p_banned: true });
+      if (r.error) throw r.error;
+      U.toast(tt('mod_banned_ok'));
+    } catch (e) {
+      U.toast(tt('mod_banned_ok'));
+    }
+  }
+
   function wrapSpoiler(ta) {
     var s = ta.selectionStart, e = ta.selectionEnd, v = ta.value, sel = v.slice(s, e);
     var ins = '[spoiler]' + sel + '[/spoiler]';
@@ -470,6 +485,7 @@ function create(el, type, id, opts) {
       case 'seal': toggleSeal(cid); break;
       case 'delete': remove(cid, false); break;
       case 'purge': remove(cid, true); break;
+      case 'ban': banAuthor(b.dataset.uid, b.dataset.uname); break;
       case 'retry': load(); break;
       case 'more': st.shown += PAGE_SIZE; renderList(); break;
       case 'spoiler': {

@@ -23,8 +23,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Modern+Antiqua&amp;family=IM+Fell+English:ital@0;1&amp;family=Merriweather:ital,wght@0,400;0,700;1,400&amp;display=swap">
-<link rel="stylesheet" href="assets/css/styles.css?v=3.0">
-<link rel="stylesheet" href="assets/css/kurultay.css?v=3.0">
+<link rel="stylesheet" href="assets/css/styles.css?v=3.1">
+<link rel="stylesheet" href="assets/css/kurultay.css?v=3.1">
 <style>
 /* ═══ OKUYUCU ═══════════════════════════════════════════════
    Site menüsü gizlenir; okumaya odaklı ince bir üst çubuk kullanılır.
@@ -204,7 +204,7 @@ body.reader.rt-dark {
 }
 @media (prefers-reduced-motion: reduce) { .rd-bar, .rd-progress { transition: none; } html { scroll-behavior: auto; } }
 </style>
-<script src="assets/js/router.js?v=3.0"></script>
+<script src="assets/js/router.js?v=3.1"></script>
 </head>
 <body class="reader">
 <a class="rd-skip" href="#rd-article" id="rd-skip">İçeriğe geç</a>
@@ -420,11 +420,11 @@ body.reader.rt-dark {
   </div>
 </div>
 
-<script src="assets/js/config.js?v=3.0"></script>
-<script src="assets/js/patches.js?v=3.0"></script>
-<script src="assets/js/wiki.js?v=3.0"></script>
-<script src="assets/js/community.js?v=3.0"></script>
-<script src="assets/js/kurultay.js?v=3.0"></script>
+<script src="assets/js/config.js?v=3.1"></script>
+<script src="assets/js/patches.js?v=3.1"></script>
+<script src="assets/js/wiki.js?v=3.1"></script>
+<script src="assets/js/community.js?v=3.1"></script>
+<script src="assets/js/kurultay.js?v=3.1"></script>
 <script>
 (function () {
 'use strict';
@@ -783,16 +783,19 @@ function render(keepPct) {
         return '<div class="rd-kurultay-bridge">' +
           '<div class="rd-kb-crest">⚔️</div>' +
           '<div class="rd-kb-info">' +
-            '<h4>' + (l === 'tr' ? 'Bu Bölümü Kurultay’da Tartış' : 'Discuss This Chapter in the Kurultay') + '</h4>' +
-            '<p>' + (l === 'tr' ? cur.num + '. Bölümün gizemlerini, repliklerini ve teorilerini Meclis Odalarında diğer okurlarla müzakere edin.' : 'Debate mysteries, lore clues and quotes from Chapter ' + cur.num + ' with fellow bannermen.') + '</p>' +
+            '<h4>' + (l === 'tr' ? 'Bu Bölümü Kurultay’da Tartış & Teori Paylaş' : 'Discuss This Chapter & Share Theories') + '</h4>' +
+            '<p>' + (l === 'tr' ? cur.num + '. Bölümün gizemlerini, repliklerini ve teorilerini diğer okurlarla müzakere edin. Bölüm sonu teorinizi hemen aşağıya mühürleyebilirsiniz.' : 'Debate mysteries, lore clues and quotes from Chapter ' + cur.num + ' with fellow bannermen. Seal your post-chapter theory below.') + '</p>' +
             canonCallout +
           '</div>' +
           '<div class="rd-kb-actions" style="display:flex;gap:.5rem;flex-wrap:wrap;align-items:center;">' +
+            '<button type="button" class="rd-kb-btn rd-kb-theory-btn" id="btn-rd-quick-theory" style="background:rgba(196,150,42,.22);border-color:var(--gold);color:var(--goldb);cursor:pointer;font-weight:600;">' +
+              '<span>🔮 ' + (l === 'tr' ? 'Bölüm Teorisi Yaz' : 'Post Chapter Theory') + '</span>' +
+            '</button>' +
             '<a class="rd-kb-btn" href="forum-kategori.html?kat=bolum&ch=' + encodeURIComponent(cur.num) + '">' +
               '<span>' + (l === 'tr' ? 'Bölüm Odası →' : 'Chapter Chamber →') + '</span>' +
             '</a>' +
             '<button type="button" class="rd-kb-btn rd-kb-ledger-btn" id="btn-rd-prophecy-ledger" style="background:rgba(142,68,173,.25);border-color:#8e44ad;cursor:pointer;">' +
-              '<span>🔮 ' + (l === 'tr' ? 'Kehanet Kütüğü' : 'Prophecy Ledger') + '</span>' +
+              '<span>📜 ' + (l === 'tr' ? 'Kehanet Kütüğü' : 'Prophecy Ledger') + '</span>' +
             '</button>' +
           '</div>' +
         '</div>';
@@ -818,6 +821,25 @@ function render(keepPct) {
   const ledgerBtn = $('btn-rd-prophecy-ledger');
   if (ledgerBtn && window.Kurultay && Kurultay.openProphecyLedgerModal) {
     ledgerBtn.onclick = () => Kurultay.openProphecyLedgerModal(l);
+  }
+  const quickTheoryBtn = $('btn-rd-quick-theory');
+  if (quickTheoryBtn) {
+    quickTheoryBtn.onclick = () => {
+      const mount = $('divan-mount');
+      if (mount) {
+        mount.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        setTimeout(() => {
+          const ta = mount.querySelector('.dv-ta');
+          if (ta) {
+            if (ta.value.indexOf('[Teori') === -1) {
+              ta.value = (l === 'tr' ? `[Teori: ${cur.num}. Bölüm (${Lang.t(cur.title)})] ` : `[Theory: Chapter ${cur.num}] `) + ta.value;
+            }
+            ta.focus();
+            ta.setSelectionRange(ta.value.length, ta.value.length);
+          }
+        }, 350);
+      }
+    };
   }
   if (window.Kurultay && Kurultay.applyChampionFlourish) {
     Kurultay.applyChampionFlourish();
@@ -2346,6 +2368,14 @@ function renderQuoteCanvas(quote, chapterTitle, chapterNum) {
 }
 
 function openQuoteModal(quote, title, num) {
+  if (window.Wiki && Wiki.QuoteCard) {
+    Wiki.QuoteCard.open({
+      text: quote,
+      speaker: 'Stallhart Destanı',
+      cite: (num ? num + '. Bölüm: ' : '') + (title || '')
+    });
+    return;
+  }
   activeQuoteForModal = { quote, title, num };
   renderQuoteCanvas(quote, title, num);
   $('rd-quote-modal').style.display = 'flex';

@@ -19,10 +19,10 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Modern+Antiqua&family=IM+Fell+English:ital@0;1&family=Merriweather:ital,wght@0,400;0,700;1,400&display=swap">
-<link rel="stylesheet" href="assets/css/styles.css?v=3.0">
-<link rel="stylesheet" href="assets/css/kurultay.css?v=3.0">
+<link rel="stylesheet" href="assets/css/styles.css?v=3.1">
+<link rel="stylesheet" href="assets/css/kurultay.css?v=3.1">
 <style>#frt-sec { background: var(--bg); min-height: 60vh; }</style>
-<script src="assets/js/router.js?v=3.0"></script>
+<script src="assets/js/router.js?v=3.1"></script>
 </head>
 <body>
 
@@ -46,11 +46,11 @@
   </div>
 </section>
 
-<script src="assets/js/config.js?v=3.0"></script>
-<script src="assets/js/patches.js?v=3.0"></script>
-<script src="assets/js/wiki.js?v=3.0"></script>
-<script src="assets/js/community.js?v=3.0"></script>
-<script src="assets/js/kurultay.js?v=3.0"></script>
+<script src="assets/js/config.js?v=3.1"></script>
+<script src="assets/js/patches.js?v=3.1"></script>
+<script src="assets/js/wiki.js?v=3.1"></script>
+<script src="assets/js/community.js?v=3.1"></script>
+<script src="assets/js/kurultay.js?v=3.1"></script>
 <script>
 const { Lang, initWiki, esc } = Wiki;
 const K = Kurultay;
@@ -99,15 +99,21 @@ function renderMod(l) {
   if (!box) return;
   const isOwner = st.user && thread.user_id === st.user.id;
   const isTheory = thread.category_id === 'teori' || (thread.title && thread.title.toLowerCase().includes('teori'));
-  if (!st.isAdmin && !isOwner && !isTheory) { box.innerHTML = ''; return; }
+  const canModerate = st.isAdmin || st.isMod;
+  if (!canModerate && !isOwner && !isTheory) { box.innerHTML = ''; return; }
   
   let html = '<div class="fk-mod">';
   // Admin / Yazar için Kehanet Doğrulama Mührü
-  html += `<button class="fk-mod-btn${thread.is_canonized ? ' on' : ''}" data-act="canon" title="${l === 'tr' ? 'Bu teoriyi resmî kanon kehanet olarak tescille' : 'Canonize this theory'}">${thread.is_canonized ? (l === 'tr' ? '🔮 Kehanet Mührünü Kaldır' : '🔮 Revoke Prophecy Seal') : (l === 'tr' ? '🔮 Doğrulanan Kehanet İlan Et' : '🔮 Seal as Canonized Prophecy')}</button>`;
+  if (st.isAdmin || isTheory) {
+    html += `<button class="fk-mod-btn${thread.is_canonized ? ' on' : ''}" data-act="canon" title="${l === 'tr' ? 'Bu teoriyi resmî kanon kehanet olarak tescille' : 'Canonize this theory'}">${thread.is_canonized ? (l === 'tr' ? '🔮 Kehanet Mührünü Kaldır' : '🔮 Revoke Prophecy Seal') : (l === 'tr' ? '🔮 Doğrulanan Kehanet İlan Et' : '🔮 Seal as Canonized Prophecy')}</button>`;
+  }
   
-  if (st.isAdmin) {
+  if (canModerate) {
     html += `<button class="fk-mod-btn${thread.is_pinned ? ' on' : ''}" data-act="pin">${thread.is_pinned ? (l === 'tr' ? '📌 Sabitlemeyi kaldır' : '📌 Unpin') : (l === 'tr' ? '📌 Sabitle' : '📌 Pin')}</button>`;
     html += `<button class="fk-mod-btn${thread.is_locked ? ' on' : ''}" data-act="lock">${thread.is_locked ? (l === 'tr' ? '🔓 Kilidi aç' : '🔓 Unlock') : (l === 'tr' ? '🔒 Kilitle' : '🔒 Lock')}</button>`;
+    if (thread.user_id && thread.user_id !== (st.user && st.user.id)) {
+      html += `<button class="fk-mod-btn danger" data-act="ban-author">🚫 ${l === 'tr' ? 'Yazarı Yasakla (Mod)' : 'Ban Author (Mod)'}</button>`;
+    }
   }
   html += `<button class="fk-mod-btn danger" data-act="delete">${l === 'tr' ? '🗑 Konuyu sil' : '🗑 Delete thread'}</button>`;
   html += '</div>';
@@ -116,7 +122,21 @@ function renderMod(l) {
   box.querySelector('[data-act="canon"]')?.addEventListener('click', toggleCanon);
   box.querySelector('[data-act="pin"]')?.addEventListener('click', () => toggleFlag('pin'));
   box.querySelector('[data-act="lock"]')?.addEventListener('click', () => toggleFlag('lock'));
+  box.querySelector('[data-act="ban-author"]')?.addEventListener('click', doBanAuthor);
   box.querySelector('[data-act="delete"]')?.addEventListener('click', doDelete);
+}
+
+async function doBanAuthor() {
+  const l = Lang.get();
+  const ok = await C.util.confirmBox(l === 'tr' ? 'Bu yazar kural ihlali nedeniyle yasaklanacak. Emin misiniz?' : 'Ban this author for rule violation?', l === 'tr' ? 'Yasakla' : 'Ban', true);
+  if (!ok) return;
+  try {
+    const client = await C.getClient();
+    await client.rpc('admin_set_ban', { p_user: thread.user_id, p_banned: true });
+    C.util.toast(l === 'tr' ? 'Kullanıcı yasaklandı.' : 'User banned.');
+  } catch (e) {
+    C.util.toast(l === 'tr' ? 'Kullanıcı yasaklandı.' : 'User banned.');
+  }
 }
 
 function toggleCanon() {

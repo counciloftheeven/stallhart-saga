@@ -409,16 +409,34 @@ function drawUsers() {
   if (!rows.length) { v.innerHTML = bar + '<div class="empty-a">Kullanıcı bulunamadı.</div>'; bindUsBar(); return; }
   v.innerHTML = bar + '<div class="tbl-wrap"><table class="tbl"><thead><tr><th>Kullanıcı</th><th>E-posta</th><th>Rol</th><th>Kayıt</th><th>Yorum</th><th>Öneri</th><th></th></tr></thead><tbody>' +
     rows.map(function (r) {
-      var self = r.id === myId, admin = r.role === 'admin';
+      var self = r.id === myId, admin = r.role === 'admin', mod = r.role === 'moderator';
+      var roleBadge = admin
+        ? '<span class="pill admin">Vakanüvis (Admin)</span>'
+        : (mod ? '<span class="pill" style="background:rgba(46,117,89,.35);border:1px solid #2ecc71;color:#85e3a8;font-weight:600;">🛡️ Muhafız (Mod)</span>' : '<span class="pill neutral">Kâtip</span>');
+
+      var roleButtons = '';
+      if (!self) {
+        if (admin) {
+          roleButtons += '<button class="abtn sm" type="button" data-us="role" data-id="' + esc(r.id) + '" data-name="' + esc(r.username) + '" data-to="moderator">🛡️ Muhafız yap</button> ';
+          roleButtons += '<button class="abtn sm" type="button" data-us="role" data-id="' + esc(r.id) + '" data-name="' + esc(r.username) + '" data-to="member">Kâtip yap</button>';
+        } else if (mod) {
+          roleButtons += '<button class="abtn sm" type="button" data-us="role" data-id="' + esc(r.id) + '" data-name="' + esc(r.username) + '" data-to="admin">👑 Vakanüvis yap</button> ';
+          roleButtons += '<button class="abtn sm" type="button" data-us="role" data-id="' + esc(r.id) + '" data-name="' + esc(r.username) + '" data-to="member">Kâtip yap</button>';
+        } else {
+          roleButtons += '<button class="abtn sm" type="button" data-us="role" data-id="' + esc(r.id) + '" data-name="' + esc(r.username) + '" data-to="moderator" style="border-color:#2ecc71;color:#85e3a8;">🛡️ Muhafız yap</button> ';
+          roleButtons += '<button class="abtn sm" type="button" data-us="role" data-id="' + esc(r.id) + '" data-name="' + esc(r.username) + '" data-to="admin">👑 Vakanüvis yap</button>';
+        }
+      }
+
       return '<tr><td><div class="cell-name">' + esc(r.username) + (self ? ' <span class="cell-sub">(sen)</span>' : '') + '</div>' +
         (r.is_banned ? '<div class="cell-sub"><span class="pill ban">Yasaklı</span></div>' : '') + '</td>' +
         '<td><div class="cell-sub">' + esc(r.email || '') + '</div></td>' +
-        '<td><span class="pill ' + (admin ? 'admin' : 'neutral') + '">' + (admin ? 'Vakanüvis' : 'Kâtip') + '</span></td>' +
+        '<td>' + roleBadge + '</td>' +
         '<td><div class="cell-sub">' + esc(fdt(r.created_at)) + '</div></td>' +
         '<td>' + (r.comment_count || 0) + '</td><td>' + (r.suggestion_count || 0) + '</td>' +
         '<td class="cell-acts">' + (self ? '' :
-          '<button class="abtn sm" type="button" data-us="role" data-id="' + esc(r.id) + '" data-name="' + esc(r.username) + '" data-to="' + (admin ? 'member' : 'admin') + '">' + (admin ? 'Kâtip yap' : 'Vakanüvis yap') + '</button>' +
-          (admin ? '' : '<button class="abtn sm ' + (r.is_banned ? '' : 'danger') + '" type="button" data-us="ban" data-id="' + esc(r.id) + '" data-name="' + esc(r.username) + '" data-to="' + (r.is_banned ? '0' : '1') + '">' + (r.is_banned ? 'Yasağı kaldır' : 'Yasakla') + '</button>')) + '</td></tr>';
+          roleButtons +
+          (admin ? '' : ' <button class="abtn sm ' + (r.is_banned ? '' : 'danger') + '" type="button" data-us="ban" data-id="' + esc(r.id) + '" data-name="' + esc(r.username) + '" data-to="' + (r.is_banned ? '0' : '1') + '">' + (r.is_banned ? 'Yasağı kaldır' : 'Yasakla') + '</button>')) + '</td></tr>';
     }).join('') + '</tbody></table></div>';
   bindUsBar();
 }
@@ -554,8 +572,13 @@ view().addEventListener('click', function (e) {
   if (b.dataset.us) {
     var uid = b.dataset.id, name = b.dataset.name, to = b.dataset.to;
     if (b.dataset.us === 'role') {
-      A.confirmBox(to === 'admin' ? 'Vakanüvis yap' : 'Yetkiyi al',
-        '“' + name + '” ' + (to === 'admin' ? 'tüm yönetim paneline erişebilecek. Emin misin?' : 'artık yönetici olmayacak. Devam edilsin mi?'),
+      var roleTitle = to === 'admin' ? 'Vakanüvis yap' : (to === 'moderator' ? 'Meclis Muhafızı yap' : 'Kâtip yap');
+      var roleDesc = to === 'admin'
+        ? '“' + name + '” tüm yönetim paneline ve yönetici yetkilerine sahip olacak. Emin misin?'
+        : (to === 'moderator'
+          ? '“' + name + '” forum ve yorumlarda moderasyon (yorum silme, kullanıcı banlama) yetkisine sahip Meclis Muhafızı olacak. Emin misin?'
+          : '“' + name + '” normal üye (Kâtip) yetkilerine dönecek. Devam edilsin mi?');
+      A.confirmBox(roleTitle, roleDesc,
         function () { rpcThen('admin_set_role', { p_user: uid, p_role: to }, 'Rol güncellendi.', loadUsers); });
     } else {
       var ban = to === '1';

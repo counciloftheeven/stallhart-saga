@@ -1041,6 +1041,25 @@ const Search = (() => {
             bio: String(Lang.t(o.description) || '').substring(0, 120),
             url: base + 'hiyerarsi.html?office=' + o.id
           })));
+        }],
+        /* Kurultay Meclis Odaları & Başlıkları */
+        ['lore.json', () => {
+          const kurultayChambers = [
+            { id: 'bolum', name: { tr: 'Bölüm Müzakereleri (Kurultay)', en: 'Chapter Chamber (Kurultay)' }, sub: { tr: 'Bölüm incelemeleri, replikler ve sahne teorileri', en: 'Chapter reviews, lines & theories' } },
+            { id: 'teori', name: { tr: 'Teori & Kehanetler Divanı (Kurultay)', en: 'Theory & Prophecy Chamber (Kurultay)' }, sub: { tr: 'Kutsal kehanetler, gizemler ve okur tezleri', en: 'Sacred prophecies & theories' } },
+            { id: 'haneler', name: { tr: 'Hanedan Meclisleri (Kurultay)', en: 'House Councils (Kurultay)' }, sub: { tr: 'Stallhart, Selya, Solgar, Arhan siyasi tartışmaları', en: 'House political disputes' } },
+            { id: 'lore', name: { tr: 'Kadim Büyü & Dünya Düzeni (Kurultay)', en: 'Lore & Ancient Arts (Kurultay)' }, sub: { tr: 'On İki Tanrı, Khaan sihrî ve efsunlar', en: 'Twelve Gods, magic and lore' } },
+            { id: 'yazar-divani', name: { tr: 'Yazarın Divanı (Kurultay)', en: 'Author’s Divan (Kurultay)' }, sub: { tr: 'Kanon soruları, evren notları ve yazar yanıtları', en: 'Canon inquiries & AMA' } },
+            { id: 'sohbet', name: { tr: 'Serbest Meydan / Taverna (Kurultay)', en: 'The Tavern / Open Square (Kurultay)' }, sub: { tr: 'Kanon dışı serbest sohbetler ve okur muhabbeti', en: 'Open discussions' } }
+          ];
+          kurultayChambers.forEach(ch => push({
+            type: 'kurultay', typeLabel: { tr: 'Kurultay Konusu', en: 'Kurultay Topic' },
+            id: 'kch-' + ch.id,
+            name: Lang.t(ch.name),
+            sub: Lang.t(ch.sub),
+            bio: Lang.t(ch.sub),
+            url: base + 'forum-kategori.html?kat=' + ch.id
+          }));
         }]
       ];
 
@@ -1080,14 +1099,43 @@ const Search = (() => {
     });
   }
 
+  const RECENTS_KEY = 'sw-recent-searches';
+  function getRecents() {
+    try { return JSON.parse(localStorage.getItem(RECENTS_KEY) || '[]'); }
+    catch (e) { return []; }
+  }
+  function saveRecent(q) {
+    if (!q || q.length < 2) return;
+    try {
+      let list = getRecents().filter(x => x.toLowerCase() !== q.toLowerCase());
+      list.unshift(q);
+      localStorage.setItem(RECENTS_KEY, JSON.stringify(list.slice(0, 8)));
+    } catch (e) {}
+  }
+  function removeRecent(q) {
+    try {
+      let list = getRecents().filter(x => x !== q);
+      localStorage.setItem(RECENTS_KEY, JSON.stringify(list));
+    } catch (e) {}
+  }
+  function clearRecents() {
+    try { localStorage.removeItem(RECENTS_KEY); } catch (e) {}
+  }
+
+  let activeType = 'all';
+
   function query(q) {
     if (!q || q.length < 2) return [];
-    if (fuse) return fuse.search(q).slice(0, 12).map(r => r.item);
-    const lq = q.toLocaleLowerCase('tr');
-    return index.filter(i =>
-      String(i.name).toLocaleLowerCase('tr').includes(lq) ||
-      String(i.sub).toLocaleLowerCase('tr').includes(lq)
-    ).slice(0, 12);
+    let items = [];
+    if (fuse) items = fuse.search(q).slice(0, 20).map(r => r.item);
+    else {
+      const lq = q.toLocaleLowerCase('tr');
+      items = index.filter(i =>
+        String(i.name).toLocaleLowerCase('tr').includes(lq) ||
+        String(i.sub).toLocaleLowerCase('tr').includes(lq)
+      ).slice(0, 20);
+    }
+    return items;
   }
 
   function highlight(text, q) {
@@ -1101,7 +1149,7 @@ const Search = (() => {
       esc(text.slice(idx + q.length));
   }
 
-  const TYPE_ICON = { karakter: 'K', bolum: 'B', sozluk: 'S', hane: 'H', alinti: 'A', tanri: 'T', makam: 'M' };
+  const TYPE_ICON = { karakter: '👤', bolum: '📖', sozluk: '📜', hane: '🛡️', alinti: '❝', tanri: '⚖️', makam: '👑', kurultay: '⚔️' };
 
   let openFn = null, closeFn = null;
 
@@ -1117,7 +1165,43 @@ const Search = (() => {
     const overlay = document.getElementById('search-overlay');
     const input   = document.getElementById('search-input');
     const results = document.getElementById('search-results');
+    const tabsWrap = document.getElementById('search-tabs');
     if (!overlay || !input || !results) return;
+
+    function bindRecentListeners() {
+      const clrBtn = results.querySelector('#sr-clear-recents');
+      if (clrBtn) {
+        clrBtn.onclick = () => {
+          clearRecents();
+          render('', []);
+        };
+      }
+      results.querySelectorAll('.search-recent-tag').forEach(tag => {
+        tag.onclick = e => {
+          if (e.target.closest('.sr-tag-del')) {
+            e.stopPropagation();
+            removeRecent(e.target.dataset.del);
+            render('', []);
+            return;
+          }
+          const qVal = tag.dataset.recent;
+          input.value = qVal;
+          render(qVal, query(qVal));
+          input.focus();
+        };
+      });
+    }
+
+    if (tabsWrap) {
+      tabsWrap.addEventListener('click', e => {
+        const btn = e.target.closest('.search-tab');
+        if (!btn) return;
+        activeType = btn.dataset.type || 'all';
+        tabsWrap.querySelectorAll('.search-tab').forEach(b => b.classList.toggle('on', b === btn));
+        const q = input.value.trim();
+        render(q, query(q));
+      });
+    }
 
     openFn = function (initialQ) {
       overlay.classList.add('open');
@@ -1141,24 +1225,58 @@ const Search = (() => {
     function render(q, items) {
       const l = Lang.get();
       if (!q) {
+        const recents = getRecents();
+        if (recents.length > 0) {
+          results.innerHTML = `
+            <div class="search-recents">
+              <div class="search-recents-head">
+                <span>🕒 ${l === 'tr' ? 'Son Arananlar' : 'Recent Searches'}</span>
+                <button type="button" class="search-recents-clear" id="sr-clear-recents">${l === 'tr' ? '↺ Temizle' : '↺ Clear'}</button>
+              </div>
+              <div class="search-recents-list">
+                ${recents.map(r => `
+                  <span class="search-recent-tag" data-recent="${esc(r)}">
+                    <span>${esc(r)}</span>
+                    <span class="sr-tag-del" data-del="${esc(r)}" title="${l === 'tr' ? 'Sil' : 'Delete'}">×</span>
+                  </span>
+                `).join('')}
+              </div>
+            </div>
+            <p class="search-empty" style="padding-top:1.2rem">${l === 'tr' ? 'Karakter, bölüm, hane, tanrı veya Kurultay konusu ara…' : 'Search characters, chapters, houses, gods or Kurultay topics…'}</p>
+          `;
+          bindRecentListeners();
+          return;
+        }
         results.innerHTML = '<p class="search-empty">' +
-          (l === 'tr' ? 'Karakter, bölüm, hane veya lore terimi ara…'
-                      : 'Search characters, chapters, houses or lore terms…') + '</p>';
+          (l === 'tr' ? 'Karakter, bölüm, hane veya Kurultay konusu ara…'
+                      : 'Search characters, chapters, houses or Kurultay topics…') + '</p>';
         return;
       }
-      if (!items.length) {
+
+      // Kategori filtresi
+      let filtered = items;
+      if (activeType !== 'all') {
+        filtered = items.filter(it => it.type === activeType);
+      }
+      filtered = filtered.slice(0, 12);
+
+      if (!filtered.length) {
         results.innerHTML = '<p class="search-empty">' +
           (l === 'tr' ? 'Sonuç bulunamadı: ' : 'No results for: ') + esc(q) + '</p>';
         return;
       }
-      results.innerHTML = items.map((item, i) =>
-        '<a class="sr-item" href="' + esc(item.url) + '" data-idx="' + i + '">' +
+      results.innerHTML = filtered.map((item, i) =>
+        '<a class="sr-item" href="' + esc(item.url) + '" data-idx="' + i + '" data-q="' + esc(q) + '">' +
         '<div class="sr-icon">' + (TYPE_ICON[item.type] || '?') + '</div>' +
         '<div><div class="sr-name">' + highlight(item.name, q) + '</div>' +
         '<div class="sr-meta">' + highlight(item.sub, q) + '</div></div>' +
         '<div class="sr-type">' + esc(Lang.t(item.typeLabel)) + '</div></a>'
       ).join('');
       focusIdx = -1;
+
+      results.querySelectorAll('.sr-item').forEach(el => {
+        el.onclick = () => saveRecent(q);
+      });
     }
 
     input.addEventListener('keydown', e => {
@@ -1166,7 +1284,13 @@ const Search = (() => {
       if (e.key === 'ArrowDown') { e.preventDefault(); focusIdx = Math.min(focusIdx + 1, items.length - 1); }
       else if (e.key === 'ArrowUp') { e.preventDefault(); focusIdx = Math.max(focusIdx - 1, -1); }
       else if (e.key === 'Escape') { close(); return; }
-      else if (e.key === 'Enter' && focusIdx >= 0) { e.preventDefault(); if (items[focusIdx]) items[focusIdx].click(); return; }
+      else if (e.key === 'Enter') {
+        e.preventDefault();
+        const curQ = input.value.trim();
+        if (curQ) saveRecent(curQ);
+        if (focusIdx >= 0 && items[focusIdx]) items[focusIdx].click();
+        return;
+      }
       items.forEach((el, i) => el.classList.toggle('focused', i === focusIdx));
       if (focusIdx >= 0 && items[focusIdx]) items[focusIdx].scrollIntoView({ block: 'nearest' });
     });
@@ -1317,7 +1441,16 @@ function injectSearchOverlay() {
     '<circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="22" y2="22"/></svg>' +
     '<input type="search" id="search-input" data-tr="Karakter, bölüm, hane, terim…" data-en="Character, chapter, house, term…" data-i18n-attr="placeholder" placeholder="' +
     (l === 'tr' ? 'Karakter, bölüm, hane, terim…' : 'Character, chapter, house, term…') + '" autocomplete="off" spellcheck="false">' +
-    '<kbd id="search-close-kbd">Esc</kbd></div><div id="search-results"></div>' +
+    '<kbd id="search-close-kbd">Esc</kbd></div>' +
+    '<div class="search-tabs" id="search-tabs" role="tablist">' +
+    '<button type="button" class="search-tab on" data-type="all">' + (l === 'tr' ? 'Tümü' : 'All') + '</button>' +
+    '<button type="button" class="search-tab" data-type="karakter">' + (l === 'tr' ? '👤 Karakterler' : '👤 Characters') + '</button>' +
+    '<button type="button" class="search-tab" data-type="bolum">' + (l === 'tr' ? '📖 Bölümler' : '📖 Chapters') + '</button>' +
+    '<button type="button" class="search-tab" data-type="hane">' + (l === 'tr' ? '🛡️ Haneler' : '🛡️ Houses') + '</button>' +
+    '<button type="button" class="search-tab" data-type="tanri">' + (l === 'tr' ? '⚖️ Tanrılar' : '⚖️ Gods') + '</button>' +
+    '<button type="button" class="search-tab" data-type="kurultay">' + (l === 'tr' ? '⚔️ Kurultay' : '⚔️ Kurultay') + '</button>' +
+    '</div>' +
+    '<div id="search-results"></div>' +
     '<div class="search-footer">' +
     '<span data-tr="↑↓ Gezin" data-en="↑↓ Navigate">' + (l === 'tr' ? '↑↓ Gezin' : '↑↓ Navigate') + '</span>' +
     '<span data-tr="↵ Git" data-en="↵ Go">' + (l === 'tr' ? '↵ Git' : '↵ Go') + '</span>' +
@@ -1405,6 +1538,13 @@ function injectNav() {
 function initNav() {
   const ham   = document.getElementById('nav-ham');
   const links = document.getElementById('nav-links');
+  if (links) {
+    // Soy ağacı ana menüden ve açılır çekmeceden kaldırıldı — eski önbellek kalıntılarını da temizle
+    links.querySelectorAll('a[href*="soy-agaci"], a[data-page*="soy-agaci"]').forEach(a => {
+      const li = a.closest('li');
+      if (li) li.remove();
+    });
+  }
   if (ham && links) {
     const closeMenu = () => {
       links.classList.remove('open');
@@ -2417,81 +2557,302 @@ const SelectionLookup = (() => {
     } catch (e) { return null; }
   }
 
-  function openShareCardModal(quoteText) {
-    const l = Lang.get();
-    const cleanQuote = quoteText.trim();
-    const chNum = (window.location.hash || window.location.search || '').match(/\d+/) || ['I'];
-    const cite = l === 'tr' ? `Stallhart Destanı · Bölüm ${chNum[0]}` : `The Stallhart Saga · Chapter ${chNum[0]}`;
+  /* ── OKUYUCU ALINTI PAYLAŞIMI (CANVAS QUOTE GENERATOR) ────────── */
+  const QuoteCard = (() => {
+    let modalEl = null;
+    let currentOpts = null;
+    let activeFormat = 'story'; // 'story' (9:16) or 'post' (16:9)
 
-    let modal = document.getElementById('sw-quote-card-modal');
-    if (!modal) {
-      modal = document.createElement('div');
-      modal.id = 'sw-quote-card-modal';
-      modal.className = 'tc-modal-overlay';
-      document.body.appendChild(modal);
+    function open(options) {
+      if (typeof options === 'string') {
+        options = { text: options };
+      }
+      const l = Lang.get();
+      const chNum = (window.location.hash || window.location.search || '').match(/\d+/) || ['I'];
+      currentOpts = {
+        text: (options.text || '').trim(),
+        speaker: options.speaker || (l === 'tr' ? 'Stallhart Kadim Sözü' : 'Ancient Stallhart Proverb'),
+        cite: options.cite || (l === 'tr' ? `Stallhart Destanı · Bölüm ${chNum[0]}` : `The Stallhart Saga · Chapter ${chNum[0]}`),
+        theme: options.theme || ''
+      };
+
+      if (!modalEl) {
+        modalEl = document.createElement('div');
+        modalEl.id = 'sw-quote-card-modal';
+        modalEl.className = 'sw-qc-modal';
+        document.body.appendChild(modalEl);
+      }
+
+      renderModal();
+      modalEl.style.display = 'flex';
+      document.body.classList.add('tc-no-scroll');
+      drawCanvas();
     }
 
-    modal.innerHTML = `
-      <div class="tc-modal-dialog" style="max-width:560px;padding:1.5rem;background:#0d111b;border:1px solid #c4962a;box-shadow:0 15px 50px rgba(0,0,0,.85);">
-        <button type="button" class="tc-modal-close" id="sw-qc-close">✕</button>
-        <h3 style="font-family:var(--font-display);color:#f7d88b;margin:0 0 .5rem;font-size:1.1rem;display:flex;align-items:center;gap:.5rem">
-          <span>📜</span>
-          <span>${l === 'tr' ? 'Parşömen Aforizma Kartı' : 'Parchment Aphorism Card'}</span>
-        </h3>
-        <p style="font-size:.78rem;color:#9a8870;margin:0 0 1.2rem;font-style:italic">
-          ${l === 'tr' ? 'Bu alıntıyı sosyal medyada (X / Twitter) paylaşabilir veya panoya kopyalayabilirsiniz.' : 'Share this quote card to X/Twitter or copy to clipboard.'}
-        </p>
-        
-        <!-- Önizleme Kartı (Eskitilmiş Parşömen) -->
-        <div id="sw-qc-preview" style="position:relative;background:radial-gradient(ellipse at 50% 0%, #221a14 0%, #120f0d 95%);border:2px solid #c4962a;padding:2rem 2.2rem 1.8rem;border-radius:4px;box-shadow:inset 0 0 30px rgba(0,0,0,.7), 0 8px 24px rgba(0,0,0,.5);margin-bottom:1.25rem;">
-          <div style="position:absolute;top:1rem;left:1.25rem;font-size:1.6rem;opacity:.3;color:#c4962a;line-height:1">❝</div>
-          <div style="font-family:'IM Fell English',Georgia,serif;font-style:italic;font-size:1.15rem;line-height:1.65;color:#e8d8be;margin:1rem 0;position:relative;z-index:1;text-shadow:0 1px 2px rgba(0,0,0,.6)">
-            “${quoteText}”
-          </div>
-          <div style="display:flex;justify-content:space-between;align-items:center;margin-top:1.4rem;padding-top:.8rem;border-top:1px solid rgba(196,150,42,.3);font-family:var(--font-display);font-size:.76rem;color:#c4962a;">
-            <span>⚔️ ${cite}</span>
-            <span style="letter-spacing:.08em;opacity:.8">STALLHART.COM</span>
-          </div>
-        </div>
-
-        <div style="display:flex;gap:.8rem;flex-wrap:wrap;justify-content:flex-end">
-          <button type="button" class="btn-g" id="sw-qc-copy" style="padding:.5rem 1rem;font-size:.82rem">
-            📋 ${l === 'tr' ? 'Alıntıyı Kopyala' : 'Copy Quote'}
-          </button>
-          <button type="button" class="btn-g" id="sw-qc-share-x" style="padding:.5rem 1rem;font-size:.82rem;background:#1d9bf0;border-color:#1d9bf0;color:#fff">
-            𝕏 ${l === 'tr' ? 'X / Twitter’da Paylaş' : 'Share on X'}
-          </button>
-        </div>
-      </div>
-    `;
-
-    modal.hidden = false;
-    document.body.classList.add('tc-no-scroll');
-
-    const closeModal = () => {
-      modal.hidden = true;
+    function close() {
+      if (modalEl) modalEl.style.display = 'none';
       document.body.classList.remove('tc-no-scroll');
-    };
+    }
 
-    modal.querySelector('#sw-qc-close').onclick = closeModal;
-    modal.onclick = e => { if (e.target === modal) closeModal(); };
+    function renderModal() {
+      const l = Lang.get();
+      modalEl.innerHTML = `
+        <div class="sw-qc-dialog" role="dialog" aria-modal="true" aria-label="Alıntı Kartı Oluşturucu">
+          <button type="button" class="tc-modal-close" id="sw-qc-close-btn" style="position:absolute;top:1rem;right:1rem;background:none;border:none;color:#9a8870;font-size:1.2rem;cursor:pointer;">✕</button>
+          <h3 style="font-family:var(--font-display);color:#f7d88b;margin:0 0 .35rem;font-size:1.15rem;display:flex;align-items:center;gap:.5rem">
+            <span>📜</span>
+            <span>${l === 'tr' ? 'Parşömen Alıntı Kartı Oluşturucu' : 'Parchment Quote Card Generator'}</span>
+          </h3>
+          <p style="font-size:.78rem;color:#9a8870;margin:0 0 1rem;font-style:italic">
+            ${l === 'tr' ? 'Cümleyi Instagram Story veya Twitter formatında kart görseli (PNG) olarak indirin veya paylaşın.' : 'Export this quote as an Instagram Story or Twitter image card (PNG) or share instantly.'}
+          </p>
 
-    modal.querySelector('#sw-qc-copy').onclick = () => {
-      const shareText = `“${cleanQuote}”\n\n— ${cite}\nhttps://stallhart.com`;
-      navigator.clipboard.writeText(shareText).then(() => {
-        if (window.Community && Community.util && Community.util.toast) {
-          Community.util.toast(l === 'tr' ? 'Alıntı panoya kopyalandı!' : 'Quote copied to clipboard!');
-        } else if (Wiki.Toast && Wiki.Toast.show) {
-          Wiki.Toast.show(l === 'tr' ? 'Alıntı panoya kopyalandı!' : 'Quote copied!');
-        }
+          <!-- Format Seçimi -->
+          <div class="sw-qc-formats">
+            <button type="button" class="sw-qc-fmt-btn ${activeFormat === 'story' ? 'on' : ''}" data-fmt="story">
+              📱 Instagram Story (9:16)
+            </button>
+            <button type="button" class="sw-qc-fmt-btn ${activeFormat === 'post' ? 'on' : ''}" data-fmt="post">
+              𝕏 Twitter & Gönderi (16:9)
+            </button>
+          </div>
+
+          <!-- Canlı Canvas Önizleme -->
+          <div class="sw-qc-canvas-wrap">
+            <canvas id="sw-qc-canvas"></canvas>
+          </div>
+
+          <!-- Eylemler -->
+          <div class="sw-qc-actions">
+            <button type="button" class="btn-g" id="sw-qc-btn-copy" style="padding:.5rem .9rem;font-size:.82rem">
+              📋 ${l === 'tr' ? 'Metni Kopyala' : 'Copy Quote'}
+            </button>
+            <button type="button" class="btn-g" id="sw-qc-btn-x" style="padding:.5rem .9rem;font-size:.82rem;background:#1d9bf0;border-color:#1d9bf0;color:#fff">
+              𝕏 ${l === 'tr' ? 'X’te Paylaş' : 'Share on X'}
+            </button>
+            <button type="button" class="btn-g" id="sw-qc-btn-download" style="padding:.5rem 1.1rem;font-size:.85rem;background:linear-gradient(135deg,#c4962a,#8a671d);color:#fff;border-color:#ffd700;font-weight:700">
+              📥 ${l === 'tr' ? 'Görseli İndir (PNG)' : 'Download Image (PNG)'}
+            </button>
+          </div>
+        </div>
+      `;
+
+      modalEl.querySelector('#sw-qc-close-btn').onclick = close;
+      modalEl.onclick = e => { if (e.target === modalEl) close(); };
+
+      modalEl.querySelectorAll('.sw-qc-fmt-btn').forEach(b => {
+        b.onclick = () => {
+          activeFormat = b.dataset.fmt;
+          modalEl.querySelectorAll('.sw-qc-fmt-btn').forEach(btn => btn.classList.toggle('on', btn.dataset.fmt === activeFormat));
+          drawCanvas();
+        };
       });
-    };
 
-    modal.querySelector('#sw-qc-share-x').onclick = () => {
-      const tweetText = encodeURIComponent(`“${cleanQuote}”\n\n— ${cite}\n#Stallhart #DarkFantasy`);
-      const tweetUrl = encodeURIComponent(window.location.href);
-      window.open(`https://twitter.com/intent/tweet?text=${tweetText}&url=${tweetUrl}`, '_blank', 'noopener,noreferrer');
-    };
+      modalEl.querySelector('#sw-qc-btn-copy').onclick = () => {
+        const shareText = `“${currentOpts.text}”\n\n— ${currentOpts.speaker} (${currentOpts.cite})\nhttps://stallhart.com`;
+        navigator.clipboard.writeText(shareText).then(() => {
+          if (window.Community && Community.util && Community.util.toast) Community.util.toast(l === 'tr' ? 'Alıntı panoya kopyalandı!' : 'Quote copied!');
+          else if (Wiki.Toast) Wiki.Toast.show(l === 'tr' ? 'Alıntı panoya kopyalandı!' : 'Quote copied!');
+        });
+      };
+
+      modalEl.querySelector('#sw-qc-btn-x').onclick = () => {
+        const tweetText = encodeURIComponent(`“${currentOpts.text}”\n\n— ${currentOpts.speaker} (${currentOpts.cite})\n#Stallhart #DarkFantasy`);
+        const tweetUrl = encodeURIComponent(window.location.href);
+        window.open(`https://twitter.com/intent/tweet?text=${tweetText}&url=${tweetUrl}`, '_blank', 'noopener,noreferrer');
+      };
+
+      modalEl.querySelector('#sw-qc-btn-download').onclick = downloadImage;
+    }
+
+    function wrapText(ctx, text, maxWidth) {
+      const words = text.split(/\s+/);
+      const lines = [];
+      let currentLine = '';
+      for (let n = 0; n < words.length; n++) {
+        const testLine = currentLine ? (currentLine + ' ' + words[n]) : words[n];
+        const metrics = ctx.measureText(testLine);
+        if (metrics.width > maxWidth && n > 0) {
+          lines.push(currentLine);
+          currentLine = words[n];
+        } else {
+          currentLine = testLine;
+        }
+      }
+      if (currentLine) lines.push(currentLine);
+      return lines;
+    }
+
+    function drawCanvas() {
+      const canvas = document.getElementById('sw-qc-canvas');
+      if (!canvas || !currentOpts) return;
+      const ctx = canvas.getContext('2d');
+
+      const isStory = activeFormat === 'story';
+      const W = isStory ? 1080 : 1200;
+      const H = isStory ? 1920 : 675;
+
+      canvas.width = W;
+      canvas.height = H;
+
+      // 1. Zemin Degrade
+      const bgGrad = ctx.createRadialGradient(W / 2, H / 2, 80, W / 2, H / 2, Math.max(W, H) / 1.1);
+      bgGrad.addColorStop(0, '#1c1510');
+      bgGrad.addColorStop(0.5, '#0e1118');
+      bgGrad.addColorStop(1, '#05070a');
+      ctx.fillStyle = bgGrad;
+      ctx.fillRect(0, 0, W, H);
+
+      // 2. Parşömen / Yıldız tozu doku simülasyonu
+      ctx.fillStyle = 'rgba(196, 150, 42, 0.035)';
+      for (let i = 0; i < 90; i++) {
+        const rx = (Math.sin(i * 997) * 0.5 + 0.5) * W;
+        const ry = (Math.cos(i * 613) * 0.5 + 0.5) * H;
+        const rr = (Math.sin(i) * 0.5 + 0.5) * 2.5 + 0.8;
+        ctx.beginPath();
+        ctx.arc(rx, ry, rr, 0, Math.PI * 2);
+        ctx.fill();
+      }
+
+      // 3. Çift Altın Bordür & Köşe İşlemeleri
+      const pad = isStory ? 48 : 32;
+      const innerPad = pad + 14;
+
+      ctx.strokeStyle = '#c4962a';
+      ctx.lineWidth = 2.5;
+      ctx.strokeRect(pad, pad, W - pad * 2, H - pad * 2);
+
+      ctx.strokeStyle = 'rgba(196, 150, 42, 0.45)';
+      ctx.lineWidth = 1;
+      ctx.strokeRect(innerPad, innerPad, W - innerPad * 2, H - innerPad * 2);
+
+      const drawDiamond = (x, y, r) => {
+        ctx.save();
+        ctx.fillStyle = '#c4962a';
+        ctx.beginPath();
+        ctx.moveTo(x, y - r);
+        ctx.lineTo(x + r, y);
+        ctx.lineTo(x, y + r);
+        ctx.lineTo(x - r, y);
+        ctx.closePath();
+        ctx.fill();
+        ctx.restore();
+      };
+
+      drawDiamond(pad, pad, 8);
+      drawDiamond(W - pad, pad, 8);
+      drawDiamond(pad, H - pad, 8);
+      drawDiamond(W - pad, H - pad, 8);
+
+      // 4. Tepe Başlığı
+      ctx.save();
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'top';
+      ctx.fillStyle = '#f7d88b';
+      ctx.font = '600 ' + (isStory ? '28px' : '22px') + ' Georgia, serif';
+      ctx.letterSpacing = '4px';
+      const headY = isStory ? 120 : 64;
+      ctx.fillText('⚔️   S T A L L H A R T   D E S T A N I   ⚔️', W / 2, headY);
+      ctx.restore();
+
+      // 5. Dev Tırnak İşareti
+      ctx.save();
+      ctx.textAlign = 'center';
+      ctx.fillStyle = 'rgba(196, 150, 42, 0.28)';
+      ctx.font = 'italic ' + (isStory ? '160px' : '100px') + ' Georgia, serif';
+      const quoteMarkY = isStory ? 340 : 150;
+      ctx.fillText('❝', W / 2, quoteMarkY);
+      ctx.restore();
+
+      // 6. Alıntı Metni
+      ctx.save();
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillStyle = '#f5ede0';
+      ctx.shadowColor = 'rgba(0, 0, 0, 0.8)';
+      ctx.shadowBlur = 12;
+
+      const maxTextWidth = isStory ? W - 220 : W - 260;
+      const textLength = currentOpts.text.length;
+      let fontSize = isStory
+        ? (textLength < 80 ? 56 : textLength < 160 ? 46 : textLength < 280 ? 38 : 32)
+        : (textLength < 80 ? 40 : textLength < 160 ? 34 : textLength < 280 ? 28 : 24);
+
+      ctx.font = 'italic ' + fontSize + 'px "IM Fell English", "Merriweather", Georgia, serif';
+      const lineHeight = fontSize * 1.55;
+      let lines = wrapText(ctx, '“' + currentOpts.text + '”', maxTextWidth);
+
+      const totalBlockHeight = lines.length * lineHeight;
+      let startY = isStory
+        ? (H / 2 - totalBlockHeight / 2 - 20)
+        : (H / 2 - totalBlockHeight / 2 - 10);
+
+      lines.forEach((line, idx) => {
+        ctx.fillText(line, W / 2, startY + (idx * lineHeight));
+      });
+      ctx.restore();
+
+      // 7. Altın Ayraç Çizgisi ve Elmas
+      const dividerY = startY + totalBlockHeight + (isStory ? 70 : 35);
+      ctx.save();
+      ctx.strokeStyle = 'rgba(196, 150, 42, 0.5)';
+      ctx.lineWidth = 1.5;
+      const divWidth = isStory ? 280 : 200;
+      ctx.beginPath();
+      ctx.moveTo(W / 2 - divWidth, dividerY);
+      ctx.lineTo(W / 2 - 20, dividerY);
+      ctx.moveTo(W / 2 + 20, dividerY);
+      ctx.lineTo(W / 2 + divWidth, dividerY);
+      ctx.stroke();
+      drawDiamond(W / 2, dividerY, 7);
+      ctx.restore();
+
+      // 8. Konuşan / Sahibi
+      ctx.save();
+      ctx.textAlign = 'center';
+      ctx.fillStyle = '#f7d88b';
+      ctx.font = 'bold ' + (isStory ? '34px' : '26px') + ' Georgia, serif';
+      const speakerY = dividerY + (isStory ? 60 : 38);
+      ctx.fillText('— ' + currentOpts.speaker, W / 2, speakerY);
+
+      // Kaynak / Bölüm
+      ctx.fillStyle = '#bfa57a';
+      ctx.font = 'italic ' + (isStory ? '24px' : '19px') + ' Georgia, serif';
+      ctx.fillText(currentOpts.cite, W / 2, speakerY + (isStory ? 44 : 28));
+      ctx.restore();
+
+      // 9. Alt Bilgi
+      ctx.save();
+      ctx.textAlign = 'center';
+      ctx.fillStyle = 'rgba(196, 150, 42, 0.7)';
+      ctx.font = '600 ' + (isStory ? '20px' : '16px') + ' Georgia, serif';
+      ctx.letterSpacing = '3px';
+      const footY = H - (isStory ? 90 : 50);
+      ctx.fillText('STALLHART.COM · KARANLIK FANTAZİ DESTANI', W / 2, footY);
+      ctx.restore();
+    }
+
+    function downloadImage() {
+      const canvas = document.getElementById('sw-qc-canvas');
+      if (!canvas) return;
+      const dataUrl = canvas.toDataURL('image/png');
+      const a = document.createElement('a');
+      a.download = `stallhart-alinti-${activeFormat}.png`;
+      a.href = dataUrl;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      const l = Lang.get();
+      if (window.Community && Community.util && Community.util.toast) {
+        Community.util.toast(l === 'tr' ? 'Görsel kart başarıyla indirildi!' : 'Image card downloaded successfully!');
+      }
+    }
+
+    return { open, close, drawCanvas, downloadImage };
+  })();
+
+  function openShareCardModal(quoteText) {
+    QuoteCard.open(quoteText);
   }
 
   function ensureBubble() {
@@ -3173,9 +3534,10 @@ window.Wiki = {
   LivePatches,
   Lang, Theme, FontSize, ParchmentAtmosphere, loadData, Store, Search, Tooltip, Bookmarks, ReadTracker, Book,
   initWiki, injectNav, groupClass, esc, safeImg, godImgHTML, wireGodImgs, godImgSources,
-  getBasePath, BASE_PATH, renderError, showFatal, Tags, Prefetch, SelectionLookup,
+  getBasePath, BASE_PATH, renderError, showFatal, Tags, Prefetch, SelectionLookup, QuoteCard,
   Img, imgAttrs: Img.attrs, imgUrl: Img.url
 };
+window.QuoteCard = QuoteCard;
 window.Bookmarks = Bookmarks;
 window.ParchmentAtmosphere = ParchmentAtmosphere;
 

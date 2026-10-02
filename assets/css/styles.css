@@ -518,6 +518,138 @@ html[data-theme="light"] body::before {
   font-size: .75rem; color: var(--parchd); font-style: italic;
 }
 
+/* ── Gelişmiş Arama (Ctrl+K) Sekmeleri & Son Arananlar ─────────── */
+.search-tabs {
+  display: flex;
+  gap: .35rem;
+  padding: .5rem 1rem .6rem;
+  border-bottom: 1px solid var(--border);
+  overflow-x: auto;
+  scrollbar-width: none;
+  background: rgba(10, 14, 22, 0.4);
+}
+.search-tabs::-webkit-scrollbar { display: none; }
+.search-tab {
+  background: none;
+  border: 1px solid transparent;
+  color: var(--parchd);
+  font-family: var(--font-display);
+  font-size: .78rem;
+  padding: .3rem .65rem;
+  border-radius: 3px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all .15s ease;
+}
+.search-tab:hover {
+  color: var(--parchl);
+  border-color: rgba(196,150,42,.3);
+}
+.search-tab.on {
+  color: var(--gold);
+  border-color: var(--goldd);
+  background: rgba(196,150,42,.12);
+  font-weight: 600;
+}
+.search-recents {
+  padding: .85rem 1.25rem;
+  border-bottom: 1px solid rgba(61,42,20,.4);
+}
+.search-recents-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: .75rem;
+  color: var(--goldd);
+  font-family: var(--font-display);
+  margin-bottom: .6rem;
+}
+.search-recents-clear {
+  background: none;
+  border: none;
+  color: var(--parchd);
+  font-size: .7rem;
+  cursor: pointer;
+  padding: 2px 4px;
+}
+.search-recents-clear:hover { color: var(--gold); }
+.search-recents-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .4rem;
+}
+.search-recent-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: .35rem;
+  background: rgba(255,255,255,.04);
+  border: 1px solid var(--border);
+  color: var(--parchl);
+  padding: .25rem .6rem;
+  font-size: .76rem;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: border-color .15s;
+}
+.search-recent-tag:hover {
+  border-color: var(--goldd);
+  color: var(--goldb);
+}
+.search-recent-tag .sr-tag-del {
+  color: var(--parchd);
+  margin-left: 2px;
+  font-size: .75rem;
+  padding: 0 2px;
+}
+.search-recent-tag .sr-tag-del:hover {
+  color: #ff6b6b;
+}
+
+/* ── Alıntı Paylaşımı (Quote Generator) Modal & Canvas ─────────── */
+.sw-qc-modal {
+  position: fixed; inset: 0; z-index: 9999;
+  background: rgba(3, 5, 8, 0.88);
+  backdrop-filter: blur(8px);
+  display: flex; align-items: center; justify-content: center;
+  padding: 1rem;
+}
+.sw-qc-dialog {
+  background: #0d111b;
+  border: 1px solid var(--goldd);
+  box-shadow: 0 20px 60px rgba(0,0,0,.85);
+  max-width: 680px; width: 100%;
+  max-height: 94vh; overflow-y: auto;
+  border-radius: 4px; padding: 1.5rem;
+  position: relative;
+}
+.sw-qc-formats {
+  display: flex; gap: .5rem; margin-bottom: 1rem; justify-content: center;
+  flex-wrap: wrap;
+}
+.sw-qc-fmt-btn {
+  background: rgba(255,255,255,.05); border: 1px solid var(--border);
+  color: var(--parchd); padding: .45rem .9rem; border-radius: 3px;
+  font-family: var(--font-display); font-size: .82rem; cursor: pointer;
+  transition: all .18s ease;
+}
+.sw-qc-fmt-btn.on {
+  border-color: var(--gold); color: var(--gold);
+  background: rgba(196,150,42,.15);
+}
+.sw-qc-canvas-wrap {
+  display: flex; justify-content: center; align-items: center;
+  background: #06080d; padding: .75rem; border: 1px solid var(--border);
+  border-radius: 3px; margin-bottom: 1.25rem; min-height: 260px;
+}
+.sw-qc-canvas-wrap canvas {
+  max-width: 100%; max-height: 52vh;
+  object-fit: contain; box-shadow: 0 10px 30px rgba(0,0,0,.7);
+  border-radius: 2px;
+}
+.sw-qc-actions {
+  display: flex; gap: .75rem; flex-wrap: wrap; justify-content: flex-end;
+}
+
 /* ── ORTAK BÖLÜM STİLLERİ ───────────────────────────── */
 section { padding: 6rem 2rem; }
 .inn { max-width: 1100px; margin: 0 auto; width: 100%; }

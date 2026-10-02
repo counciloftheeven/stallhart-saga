@@ -469,7 +469,7 @@ var Allegiance = (function () {
           favorite_house: p.favorite_house || loc.favorite_house || 'stallhart',
           title: p.title || loc.title || 'Divan Üyesi',
           loyalty_badge: p.loyalty_badge || loc.loyalty_badge,
-          rank: st.isAdmin ? 'Baş Vakanüvis' : (p.role === 'admin' ? 'Vakanüvis' : (loc.rank || 'Yeminli Sancaktar')),
+          rank: st.isAdmin ? 'Baş Vakanüvis' : (p.role === 'admin' ? 'Vakanüvis' : (p.role === 'moderator' ? 'Meclis Muhafızı' : (loc.rank || 'Yeminli Sancaktar'))),
           seals: p.seals !== undefined ? p.seals : loc.seals,
           thread_count: loc.thread_count || 1,
           reply_count: loc.reply_count || 8,

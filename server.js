@@ -260,7 +260,9 @@ app.use(express.static(__dirname, {
   extensions: ['html'],
   index: 'index.html',
   setHeaders: (res, filePath) => {
-    if (/\.(?:webp|png|jpe?g|gif|svg|ico|woff2?|ttf|eot|mp3|wav|ogg)$/i.test(filePath)) {
+    if (/sw\.js$/i.test(filePath) || /manifest\.(?:json|webmanifest)$/i.test(filePath)) {
+      res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
+    } else if (/\.(?:webp|png|jpe?g|gif|svg|ico|woff2?|ttf|eot|mp3|wav|ogg)$/i.test(filePath)) {
       res.setHeader('Cache-Control', 'public, max-age=3600, stale-while-revalidate=86400');
     } else if (/\.(?:css|js)$/i.test(filePath)) {
       res.setHeader('Cache-Control', 'public, max-age=3600, stale-while-revalidate=86400');

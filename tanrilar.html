@@ -19,7 +19,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Modern+Antiqua&amp;family=IM+Fell+English:ital@0;1&amp;family=Merriweather:ital,wght@0,400;0,700;1,400&amp;display=swap">
-<link rel="stylesheet" href="assets/css/styles.css?v=3.0">
+<link rel="stylesheet" href="assets/css/styles.css?v=3.1">
 <style>
 /* ═══════════════════════════════════════════════════════
    DENGE KONSEYİ — sayfa, sitenin açık/koyu mod anahtarını İZLER.
@@ -631,14 +631,18 @@ html[data-theme="light"] .pair-row-header {
   display: flex;
   gap: .85rem;
   align-items: center;
-  transition: background .2s;
+  transition: transform .12s cubic-bezier(.2,.8,.4,1), box-shadow .2s ease, background .2s ease;
   position: relative;
+  overflow: hidden;
+  transform-style: preserve-3d;
+  will-change: transform;
 }
 .pair-god-card.side-order-card {
   background: linear-gradient(90deg, var(--cn-order-glow) 0%, transparent 80%);
 }
 .pair-god-card.side-order-card:hover {
   background: linear-gradient(90deg, rgba(216,148,85,.24) 0%, transparent 80%);
+  box-shadow: inset 0 0 20px rgba(216,148,85,.25), 0 8px 24px rgba(216,148,85,.18);
 }
 .pair-god-card.side-kaos-card {
   background: linear-gradient(270deg, var(--cn-kaos-glow) 0%, transparent 80%);
@@ -647,6 +651,34 @@ html[data-theme="light"] .pair-row-header {
 }
 .pair-god-card.side-kaos-card:hover {
   background: linear-gradient(270deg, rgba(139,0,0,.35) 0%, transparent 80%);
+  box-shadow: inset 0 0 20px rgba(180,30,30,.32), 0 8px 24px rgba(180,30,30,.22);
+}
+
+/* 3D Tilt Glare & Duman / Işıltı Katmanı */
+.card-glare {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  z-index: 2;
+  transition: opacity .25s ease;
+  border-radius: inherit;
+}
+.pair-god-card.is-tilting .card-glare,
+.galdra-throne.is-tilting .card-glare {
+  opacity: 1;
+}
+.pair-god-card.side-order-card .card-glare {
+  background: radial-gradient(circle at var(--gx, 50%) var(--gy, 50%), rgba(255, 235, 170, 0.42) 0%, rgba(216, 148, 85, 0.16) 45%, transparent 75%);
+  mix-blend-mode: screen;
+}
+.pair-god-card.side-kaos-card .card-glare {
+  background: radial-gradient(circle at var(--gx, 50%) var(--gy, 50%), rgba(255, 75, 75, 0.45) 0%, rgba(139, 0, 0, 0.22) 50%, transparent 80%);
+  mix-blend-mode: screen;
+}
+.galdra-throne .card-glare {
+  background: radial-gradient(circle at var(--gx, 50%) var(--gy, 50%), rgba(255, 255, 255, 0.5) 0%, rgba(196, 150, 42, 0.22) 50%, transparent 80%);
+  mix-blend-mode: screen;
 }
 
 /* Tanrı Avatarı */
@@ -806,7 +838,7 @@ html[data-theme="light"] .pair-row-header {
   }
 }
 </style>
-<script src="assets/js/router.js?v=3.0"></script>
+<script src="assets/js/router.js?v=3.1"></script>
 </head>
 <body>
 
@@ -862,10 +894,10 @@ html[data-theme="light"] .pair-row-header {
   </div>
 </section>
 
-<script src="assets/js/config.js?v=3.0"></script>
-<script src="assets/js/patches.js?v=3.0"></script>
-<script src="assets/js/wiki.js?v=3.0"></script>
-<script src="assets/js/community.js?v=3.0"></script>
+<script src="assets/js/config.js?v=3.1"></script>
+<script src="assets/js/patches.js?v=3.1"></script>
+<script src="assets/js/wiki.js?v=3.1"></script>
+<script src="assets/js/community.js?v=3.1"></script>
 <script>
 const { Lang, loadData, initWiki, esc } = Wiki;
 /* Görsel yardımcıları: wiki.js eski/önbellekteyse veya yüklenemediyse sayfa çökmez, baş harf rozeti kalır */
@@ -1053,6 +1085,48 @@ function renderBalanceAxis() {
 
   container.innerHTML = html;
   wireImgs(container);
+  wireGodCardTilt(container);
+}
+
+function wireGodCardTilt(container) {
+  if (!container) return;
+  const cards = container.querySelectorAll('.pair-god-card, .galdra-throne');
+  cards.forEach(card => {
+    let glare = card.querySelector('.card-glare');
+    if (!glare) {
+      glare = document.createElement('div');
+      glare.className = 'card-glare';
+      card.appendChild(glare);
+    }
+
+    const onMove = e => {
+      const rect = card.getBoundingClientRect();
+      const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+      const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+      const x = clientX - rect.left;
+      const y = clientY - rect.top;
+      const normX = Math.max(-1, Math.min(1, (x / rect.width) * 2 - 1));
+      const normY = Math.max(-1, Math.min(1, (y / rect.height) * 2 - 1));
+      const tiltX = (normY * -6.5).toFixed(2);
+      const tiltY = (normX * 6.5).toFixed(2);
+
+      card.classList.add('is-tilting');
+      card.style.setProperty('--gx', `${Math.round((x / rect.width) * 100)}%`);
+      card.style.setProperty('--gy', `${Math.round((y / rect.height) * 100)}%`);
+      card.style.transform = `perspective(900px) rotateX(${tiltX}deg) rotateY(${tiltY}deg) scale3d(1.025, 1.025, 1.025)`;
+    };
+
+    const onLeave = () => {
+      card.classList.remove('is-tilting');
+      card.style.transform = '';
+    };
+
+    card.addEventListener('mousemove', onMove, { passive: true });
+    card.addEventListener('mouseleave', onLeave);
+    card.addEventListener('touchmove', onMove, { passive: true });
+    card.addEventListener('touchend', onLeave);
+    card.addEventListener('touchcancel', onLeave);
+  });
 }
 
 function setViewMode(mode) {

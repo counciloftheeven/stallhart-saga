@@ -5,7 +5,7 @@
    ═══════════════════════════════════════════════════════════════ */
 'use strict';
 
-const CACHE_NAME = 'stallhart-v3';
+const CACHE_NAME = 'stallhart-v4';
 const PRECACHE_ASSETS = [
   '/',
   '/index.html',
@@ -21,26 +21,26 @@ const PRECACHE_ASSETS = [
   '/forum-kategori.html',
   '/forum-konu.html',
   '/assets/css/styles.css',
-  '/assets/css/styles.css?v=3.0',
+  '/assets/css/styles.css?v=3.1',
   '/assets/css/kurultay.css',
-  '/assets/css/kurultay.css?v=3.0',
+  '/assets/css/kurultay.css?v=3.1',
   '/assets/css/community.css',
-  '/assets/css/community.css?v=3.0',
+  '/assets/css/community.css?v=3.1',
   '/assets/css/harita.css',
-  '/assets/css/harita.css?v=3.0',
+  '/assets/css/harita.css?v=3.1',
   '/assets/js/router.js',
-  '/assets/js/router.js?v=3.0',
+  '/assets/js/router.js?v=3.1',
   '/assets/js/config.js',
-  '/assets/js/config.js?v=3.0',
+  '/assets/js/config.js?v=3.1',
   '/assets/js/patches.js',
-  '/assets/js/patches.js?v=3.0',
+  '/assets/js/patches.js?v=3.1',
   '/assets/js/wiki.js',
-  '/assets/js/wiki.js?v=3.0',
+  '/assets/js/wiki.js?v=3.1',
   '/assets/js/community.js',
-  '/assets/js/community.js?v=3.0',
+  '/assets/js/community.js?v=3.1',
   '/assets/js/community-divan.js',
   '/assets/js/kurultay.js',
-  '/assets/js/kurultay.js?v=3.0',
+  '/assets/js/kurultay.js?v=3.1',
   '/assets/js/travel-calc.js',
   '/data/book.json',
   '/data/chapters.json',
@@ -125,9 +125,9 @@ self.addEventListener('fetch', event => {
     return;
   }
 
-  // Statik Varlıklar (CSS, JS, Görseller): Stale-While-Revalidate
+  // Statik Varlıklar (CSS, JS, Görseller): Stale-While-Revalidate (sürüm parametrelerini dikkate alır)
   event.respondWith(
-    caches.match(req, { ignoreSearch: true }).then(cachedResponse => {
+    caches.match(req).then(cachedResponse => {
       const fetchPromise = fetch(req).then(networkResponse => {
         if (networkResponse && networkResponse.status === 200) {
           const responseToCache = networkResponse.clone();
