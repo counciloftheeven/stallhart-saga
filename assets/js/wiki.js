@@ -55,6 +55,11 @@ function getBasePath() { return BASE_PATH; }
    router.js her sayfanın <head>'inde yüklenir; eksikse açık bir hata verilir. */
 const R = window.SWRoute;
 if (!R) throw new Error('assets/js/router.js yüklenmemiş — sayfanın <head> bölümüne ekleyin.');
+if (R && R.TYPES && !R.TYPES.olay) {
+  R.TYPES.olay = 'olay-detay.html';
+  if (R.HAS_PARTS) R.HAS_PARTS.olay = 1;
+  if (R.ENTITY) R.ENTITY.olay = 1;
+}
 
 /* ── 2. HATA ŞERİDİ ──────────────────────────────────────────── */
 function showFatal(msg, detail) {

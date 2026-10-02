@@ -240,6 +240,67 @@
   </div>
 </div>
 
+<!-- ══ SAYFA KAYNAK KODU (HTML) DÜZENLEME MODALI ════════════ -->
+<div class="code-modal-back" id="code-modal-back">
+  <div class="code-modal" role="dialog" aria-modal="true" aria-labelledby="code-modal-title">
+    <div class="code-modal-head">
+      <div>
+        <h3 class="code-modal-title" id="code-modal-title">Sayfa Kaynak Kodu: <code id="code-modal-file-title">index.html</code></h3>
+        <p class="code-modal-sub" id="code-modal-sub">HTML dosyasını doğrudan sunucu üzerinde düzenleyin ve kalıcı olarak kaydedin.</p>
+      </div>
+      <div class="btn-row" style="margin:0">
+        <button class="abtn sm" id="code-modal-reload" type="button" title="Sunucudaki orijinal dosyayı yeniden yükle">↺ Yenile</button>
+        <button class="abtn sm" id="code-modal-preview" type="button" title="Değişiklikleri iframe'de canlı önizle">👁️ Önizle</button>
+        <button class="abtn sm" id="code-modal-close" type="button" aria-label="Kapat">✕</button>
+      </div>
+    </div>
+    <div class="code-modal-toolbar">
+      <div class="code-file-badge"><span class="code-badge-dot"></span> <span id="code-modal-file-path">index.html</span></div>
+      <div class="code-meta-info" id="code-modal-meta">Boyut: - · Son Değişiklik: -</div>
+      <div class="code-status-msg" id="code-modal-status"></div>
+    </div>
+    <div class="code-modal-body">
+      <div class="code-editor-wrap">
+        <textarea id="page-code-input" class="code-textarea" spellcheck="false" autocomplete="off" wrap="off" placeholder="HTML kaynak kodu yükleniyor..."></textarea>
+      </div>
+    </div>
+    <div class="code-modal-foot">
+      <span class="f-hint" style="margin:0;font-size:.74rem">Kısayol: <strong>Ctrl+S</strong> ile doğrudan kaydedebilirsiniz.</span>
+      <div class="btn-row" style="margin:0">
+        <button class="abtn" id="code-modal-cancel" type="button">Vazgeç</button>
+        <button class="abtn primary" id="code-modal-save" type="button">💾 Sunucuya Kaydet</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ CANLI SAYFA ÖNİZLEME (IFRAME VIEWPORT) MODALI ══════ -->
+<div class="preview-modal-back" id="preview-modal-back">
+  <div class="preview-modal" role="dialog" aria-modal="true" aria-labelledby="preview-modal-title">
+    <div class="preview-modal-head">
+      <div class="preview-title-wrap">
+        <h3 class="preview-modal-title" id="preview-modal-title">Canlı Önizleme</h3>
+        <span class="preview-url-tag" id="preview-modal-url">index.html</span>
+      </div>
+      <div class="preview-device-switch">
+        <button class="preview-device-btn on" data-device="desktop" type="button">💻 Masaüstü (100%)</button>
+        <button class="preview-device-btn" data-device="tablet" type="button">📱 Tablet (768px)</button>
+        <button class="preview-device-btn" data-device="mobile" type="button">📱 Mobil (390px)</button>
+      </div>
+      <div class="btn-row" style="margin:0">
+        <button class="abtn sm" id="preview-reload-btn" type="button" title="Sayfayı yeniden yükle">↺ Yenile</button>
+        <a class="abtn sm" id="preview-open-link" href="#" target="_blank" rel="noopener">Yeni Sekmede Aç ↗</a>
+        <button class="abtn sm" id="preview-close-btn" type="button" aria-label="Kapat">✕</button>
+      </div>
+    </div>
+    <div class="preview-modal-body" id="preview-modal-body">
+      <div class="preview-iframe-wrapper desktop" id="preview-iframe-wrapper">
+        <iframe id="page-preview-iframe" src="about:blank" title="Sayfa Önizleme"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- ══ DÜZENLEME ÇEKMECESİ ═══════════════════════════════ -->
 <div class="drawer-back" id="drawer-back"></div>
 <aside class="drawer" id="drawer" role="dialog" aria-modal="true" aria-labelledby="drawer-title">

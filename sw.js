@@ -5,7 +5,7 @@
    ═══════════════════════════════════════════════════════════════ */
 'use strict';
 
-const CACHE_NAME = 'stallhart-v4';
+const CACHE_NAME = 'stallhart-v5';
 const PRECACHE_ASSETS = [
   '/',
   '/index.html',
@@ -14,6 +14,7 @@ const PRECACHE_ASSETS = [
   '/karakterler.html',
   '/haneler.html',
   '/lore.html',
+  '/olay-detay.html',
   '/harita.html',
   '/sozler.html',
   '/hiyerarsi.html',
@@ -21,17 +22,13 @@ const PRECACHE_ASSETS = [
   '/forum-kategori.html',
   '/forum-konu.html',
   '/assets/css/styles.css',
-  '/assets/css/styles.css?v=3.1',
+  '/assets/css/styles.css?v=3.2',
   '/assets/css/kurultay.css',
-  '/assets/css/kurultay.css?v=3.1',
   '/assets/css/community.css',
-  '/assets/css/community.css?v=3.1',
   '/assets/css/harita.css',
-  '/assets/css/harita.css?v=3.1',
   '/assets/js/router.js',
-  '/assets/js/router.js?v=3.1',
+  '/assets/js/router.js?v=3.2',
   '/assets/js/config.js',
-  '/assets/js/config.js?v=3.1',
   '/assets/js/patches.js',
   '/assets/js/patches.js?v=3.1',
   '/assets/js/wiki.js',

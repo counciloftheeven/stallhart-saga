@@ -41,6 +41,15 @@ const ALLOWED_DATA_FILES = new Set([
   'pages.json'
 ]);
 
+const ALLOWED_HTML_FILES = new Set([
+  'index.html', 'bolumler.html', 'oku.html', 'karakterler.html',
+  'karakter-sablon.html', 'haneler.html', 'hane-detay.html', 'krallik-detay.html',
+  'tanrilar.html', 'tanri-detay.html', 'harita.html', 'hiyerarsi.html',
+  'soy-agaci.html', 'lore.html', 'olay-detay.html', 'sozler.html',
+  'forum.html', 'forum-kategori.html', 'forum-konu.html', '404.html',
+  'admin.html'
+]);
+
 // 1. Veri Kaydetme API'si (data/*.json doğrudan diske yazar)
 app.post('/api/save-data', async (req, res) => {
   try {
@@ -59,6 +68,56 @@ app.post('/api/save-data', async (req, res) => {
     return res.json({ ok: true, file, savedAt: new Date().toISOString() });
   } catch (err) {
     console.error('save-data hatası:', err);
+    return res.status(500).json({ ok: false, error: err.message });
+  }
+});
+
+// 1b. Sayfa Kaynak Kodu Okuma API'si (Tüm site sayfalarının HTML kodunu okur)
+app.get('/api/page-source', async (req, res) => {
+  try {
+    const file = String(req.query.file || '').trim();
+    if (!file || !ALLOWED_HTML_FILES.has(file)) {
+      return res.status(400).json({ ok: false, error: 'Geçersiz veya yetkisiz HTML dosyası: ' + file });
+    }
+    const filePath = path.join(__dirname, file);
+    if (!fs.existsSync(filePath)) {
+      return res.status(404).json({ ok: false, error: 'Dosya bulunamadı: ' + file });
+    }
+    const stat = await fsp.stat(filePath);
+    const content = await fsp.readFile(filePath, 'utf8');
+    return res.json({
+      ok: true,
+      file,
+      content,
+      size: stat.size,
+      mtime: stat.mtime.toISOString()
+    });
+  } catch (err) {
+    console.error('get-page-source hatası:', err);
+    return res.status(500).json({ ok: false, error: err.message });
+  }
+});
+
+// 1c. Sayfa Kaynak Kodu Kaydetme API'si (Tüm site sayfalarının HTML kodunu diske yazar)
+app.post('/api/save-page-source', async (req, res) => {
+  try {
+    const { file, content } = req.body || {};
+    if (!file || !ALLOWED_HTML_FILES.has(file)) {
+      return res.status(400).json({ ok: false, error: 'Geçersiz veya yetkisiz HTML dosyası: ' + file });
+    }
+    if (typeof content !== 'string' || !content.trim()) {
+      return res.status(400).json({ ok: false, error: 'Sayfa içeriği boş olamaz.' });
+    }
+    const filePath = path.join(__dirname, file);
+    await fsp.writeFile(filePath, content, 'utf8');
+    return res.json({
+      ok: true,
+      file,
+      savedAt: new Date().toISOString(),
+      size: Buffer.byteLength(content, 'utf8')
+    });
+  } catch (err) {
+    console.error('save-page-source hatası:', err);
     return res.status(500).json({ ok: false, error: err.message });
   }
 });

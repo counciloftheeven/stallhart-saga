@@ -3,7 +3,9 @@
     "index": {
       "id": "index",
       "name": "Ana Sayfa",
+      "category": "main",
       "path": "index.html",
+      "linkedData": "book.json",
       "title": {
         "tr": "The Stallhart Saga — Son İmparator",
         "en": "The Stallhart Saga — The Last Emperor"
@@ -12,6 +14,7 @@
         "tr": "Stallhart Destanı — Son İmparator, Türkçe dark fantasy epik roman ve evren ansiklopedisi.",
         "en": "The Stallhart Saga — The Last Emperor, epic dark fantasy chronicle and universe encyclopedia."
       },
+      "bannerImage": "assets/images/SIYASI_HARITA_onizleme.jpg",
       "hero": {
         "eyebrow": {
           "tr": "İMPARATORLUK KRONİĞİ & EVREN ANSİKLOPEDİSİ",
@@ -42,157 +45,323 @@
         "link": "hiyerarsi.html"
       }
     },
-    "hiyerarsi": {
-      "id": "hiyerarsi",
-      "name": "Yönetim Hiyerarşisi",
-      "path": "hiyerarsi.html",
+    "bolumler": {
+      "id": "bolumler",
+      "name": "Bölümler & Kitap",
+      "category": "main",
+      "path": "bolumler.html",
+      "linkedData": "chapters.json",
       "title": {
-        "tr": "Yönetici Kademesi & İmparatorluk Hiyerarşisi",
-        "en": "Imperial Hierarchy & Council of Offices"
+        "tr": "Stallhart Destanı — Bölümler & Okuma Sırası",
+        "en": "The Stallhart Saga — Chapters & Reading Order"
       },
       "description": {
-        "tr": "Stallhart İmparatorluğu yönetim kademesi: Kutsal Kan Doktrini, Siyasi, Askeri ve Dini makamlar.",
-        "en": "Offices of the Stallhart Empire: Holy Blood Doctrine, Political, Military, and Religious hierarchies."
+        "tr": "Epik romanın tüm bölümleri, kronolojik okuma sırası, cilt yapısı ve özetleri.",
+        "en": "All story chapters, chronological reading order, volume structure, and chapter synopses."
       },
       "bannerImage": "assets/images/SIYASI_HARITA_onizleme.jpg"
     },
-    "haneler": {
-      "id": "haneler",
-      "name": "Haneler & Devletler",
-      "path": "haneler.html",
+    "oku": {
+      "id": "oku",
+      "name": "Roman Okuyucu",
+      "category": "main",
+      "path": "oku.html",
+      "linkedData": "book.json",
       "title": {
-        "tr": "Soylu Haneler & Devletler",
-        "en": "Noble Houses & Sovereign Realms"
+        "tr": "Stallhart Destanı Okuyucu · Son İmparator",
+        "en": "The Stallhart Saga Reader · The Last Emperor"
       },
       "description": {
-        "tr": "İmparatorluk eyaletlerindeki soylu haneler, hanedan sembolleri, renkleri ve bağımsız krallıklar.",
-        "en": "Noble houses across imperial provinces, heraldry, banners, and sovereign kingdoms."
+        "tr": "Dark fantasy epik roman Stallhart Destanı'nı interaktif parşömen okuyucu ile okuyun.",
+        "en": "Read the dark fantasy epic The Stallhart Saga with the immersive interactive reader."
       },
       "bannerImage": "assets/images/SIYASI_HARITA_onizleme.jpg"
     },
     "karakterler": {
       "id": "karakterler",
-      "name": "Karakterler",
+      "name": "Karakter Arşivi",
+      "category": "archive",
       "path": "karakterler.html",
+      "linkedData": "characters.json",
       "title": {
-        "tr": "Karakter Arşivi",
-        "en": "Character Archives"
+        "tr": "Karakter Arşivi & Biyografiler",
+        "en": "Character Archives & Biographies"
       },
       "description": {
-        "tr": "Stallhart evrenindeki tüm karakterlerin yaşam öyküleri, unvanları ve hane bağları.",
-        "en": "Biographies, titles, and house allegiances of all figures in the Stallhart universe."
+        "tr": "Stallhart evrenindeki 129 karakterin yaşam öyküleri, unvanları, portreleri ve hane bağları.",
+        "en": "Biographies, titles, portraits, and allegiances of 129 characters in the Stallhart universe."
       },
       "bannerImage": "assets/images/characters/zeandor_stallhart01.png"
     },
-    "bolumler": {
-      "id": "bolumler",
-      "name": "Bölümler & Kitap",
-      "path": "bolumler.html",
+    "karakter-sablon": {
+      "id": "karakter-sablon",
+      "name": "Karakter Detay & Profil",
+      "category": "detail",
+      "path": "karakter-sablon.html",
+      "linkedData": "characters.json",
       "title": {
-        "tr": "Stallhart Destanı — Bölümler",
-        "en": "The Stallhart Saga — Chapters"
+        "tr": "Karakter Dosyası · Stallhart Wiki",
+        "en": "Character Dossier · Stallhart Wiki"
       },
       "description": {
-        "tr": "Epik romanın tüm bölümleri, kronolojik okuma sırası ve özeti.",
-        "en": "All story chapters, chronological reading order, and chapter synopses."
+        "tr": "Karakterin tam soyağacı, dahil olduğu hanedan, tarihi rolü ve diyalogları.",
+        "en": "Comprehensive character dossier, lineage, historical role, and dialogues."
+      },
+      "bannerImage": "assets/images/characters/zeandor_stallhart01.png"
+    },
+    "haneler": {
+      "id": "haneler",
+      "name": "Haneler & Devletler",
+      "category": "archive",
+      "path": "haneler.html",
+      "linkedData": "houses.json",
+      "title": {
+        "tr": "Soylu Haneler & Egemen Devletler",
+        "en": "Noble Houses & Sovereign Realms"
+      },
+      "description": {
+        "tr": "İmparatorluk eyaletlerindeki 45 soylu hane, sancaklar, armalar ve komşu bağımsız krallıklar.",
+        "en": "45 noble houses across imperial provinces, heraldic coats of arms, and neighboring sovereign kingdoms."
+      },
+      "bannerImage": "assets/images/SIYASI_HARITA_onizleme.jpg"
+    },
+    "hane-detay": {
+      "id": "hane-detay",
+      "name": "Soylu Hane Detay",
+      "category": "detail",
+      "path": "hane-detay.html",
+      "linkedData": "houses.json",
+      "title": {
+        "tr": "Hane Detayı · Stallhart Wiki",
+        "en": "House Detail · Stallhart Wiki"
+      },
+      "description": {
+        "tr": "Soylu hanenin kökeni, yerleşkesi, vasalları, arması ve hanedan üyeleri.",
+        "en": "Origins, seat, vassals, heraldry, and noble members of the house."
+      },
+      "bannerImage": "assets/images/SIYASI_HARITA_onizleme.jpg"
+    },
+    "krallik-detay": {
+      "id": "krallik-detay",
+      "name": "Devlet & Krallık Detay",
+      "category": "detail",
+      "path": "krallik-detay.html",
+      "linkedData": "kingdoms.json",
+      "title": {
+        "tr": "Devlet & Krallık Dosyası · Stallhart Wiki",
+        "en": "Sovereign Realm Dossier · Stallhart Wiki"
+      },
+      "description": {
+        "tr": "Egemen krallık veya imparatorluğun askeri gücü, nüfusu, ekonomisi ve diplomasi ilişkileri.",
+        "en": "Military strength, population, economy, and foreign diplomatic relations of the realm."
       },
       "bannerImage": "assets/images/SIYASI_HARITA_onizleme.jpg"
     },
     "tanrilar": {
       "id": "tanrilar",
       "name": "Tanrılar & Panteon",
+      "category": "archive",
       "path": "tanrilar.html",
+      "linkedData": "lore.json",
       "title": {
-        "tr": "Denge Konseyi Tanrıları",
-        "en": "Gods of the Balance Council"
+        "tr": "Denge Konseyi Tanrıları & İnançlar",
+        "en": "Gods of the Balance Council & Faiths"
       },
       "description": {
-        "tr": "Kadim Stallhart panteonu, tanrıların etki alanları, sembolleri ve tapınış ritüelleri.",
-        "en": "The ancient Stallhart pantheon, divine domains, sacred symbols, and worship rites."
+        "tr": "15 kadim tanrı, Denge Panteonu, ilahi alanlar, semboller ve tapınış ritüelleri.",
+        "en": "15 ancient deities, the Balance Pantheon, divine domains, sacred symbols, and worship rites."
+      },
+      "bannerImage": "assets/images/gods/galdra.png"
+    },
+    "tanri-detay": {
+      "id": "tanri-detay",
+      "name": "Tanrı Detay & Kült",
+      "category": "detail",
+      "path": "tanri-detay.html",
+      "linkedData": "lore.json",
+      "title": {
+        "tr": "İlah Detayı & Tapınak Kültü · Stallhart Wiki",
+        "en": "Deity Detail & Temple Cult · Stallhart Wiki"
+      },
+      "description": {
+        "tr": "Tanrının efsaneleri, kutsal günleri, mabetleri ve ruhani doktrinleri.",
+        "en": "Myths, holy festivals, shrines, and sacred doctrines of the deity."
       },
       "bannerImage": "assets/images/gods/galdra.png"
     },
     "harita": {
       "id": "harita",
       "name": "İnteraktif Harita",
+      "category": "tools",
       "path": "harita.html",
+      "linkedData": "maps.json",
       "title": {
-        "tr": "Siyasi & Coğrafi Harita",
-        "en": "Political & Geographic Map"
+        "tr": "Siyasi & Coğrafi İnteraktif Harita",
+        "en": "Interactive Political & Geographic Map"
       },
       "description": {
-        "tr": "Kıtanın siyasi sınırları, eyaletleri, kaleleri ve önemli coğrafi noktaları.",
-        "en": "Political borders, provinces, fortresses, and geographic landmarks."
+        "tr": "Kıtanın siyasi sınırları, eyaletleri, kaleleri, nehirleri ve rota hesaplama aracı.",
+        "en": "Political borders, provinces, fortresses, rivers, and regional travel route calculator."
       },
       "bannerImage": "assets/images/SIYASI_HARITA.jpg"
+    },
+    "hiyerarsi": {
+      "id": "hiyerarsi",
+      "name": "Yönetim Hiyerarşisi",
+      "category": "tools",
+      "path": "hiyerarsi.html",
+      "linkedData": "hierarchy.json",
+      "title": {
+        "tr": "Yönetici Kademesi & İmparatorluk Hiyerarşisi",
+        "en": "Imperial Hierarchy & Council of Offices"
+      },
+      "description": {
+        "tr": "Stallhart İmparatorluğu teşkilat şeması: Kutsal Kan Doktrini, Siyasi, Askeri ve Dini makamlar.",
+        "en": "Organizational tree of the Stallhart Empire: Holy Blood Doctrine, Political, Military, and Religious offices."
+      },
+      "bannerImage": "assets/images/SIYASI_HARITA_onizleme.jpg"
     },
     "soy-agaci": {
       "id": "soy-agaci",
       "name": "Soy Ağaçları",
+      "category": "tools",
       "path": "soy-agaci.html",
+      "linkedData": "familytree.json",
       "title": {
-        "tr": "Hane Soy Ağaçları",
-        "en": "Family Trees & Lineages"
+        "tr": "Hane Soy Ağaçları & Silsileler",
+        "en": "Family Trees & Dynastic Lineages"
       },
       "description": {
-        "tr": "İmparatorluk hanedanı ve soylu ailelerin akrabalık bağları ve soy silsilesi.",
-        "en": "Genealogies and lineage charts of the imperial dynasty and noble families."
+        "tr": "İmparatorluk hanedanı ve soylu ailelerin akrabalık bağları, evlilikleri ve soy silsilesi.",
+        "en": "Genealogies, marital alliances, and lineage charts of the imperial dynasty and noble houses."
       },
       "bannerImage": "assets/images/logo-stallhart.png"
     },
     "lore": {
       "id": "lore",
-      "name": "Tarihçe & Evren",
+      "name": "Evren Ansiklopedisi",
+      "category": "archive",
       "path": "lore.html",
+      "linkedData": "lore.json",
       "title": {
-        "tr": "Tarih Şeridi & Sözlük",
-        "en": "Timeline & Glossary"
+        "tr": "Evren Ansiklopedisi: Coğrafya, Tarih, İnanç & Lisan",
+        "en": "World Encyclopedia: Geography, History, Faith & Language"
       },
       "description": {
-        "tr": "Kıtanın bin yıllık tarihi, önemli kırılma noktaları ve terimler sözlüğü.",
-        "en": "Millennial history, crucial historical events, and glossary of universe terms."
+        "tr": "Stallhart kıtasının bin yıllık tarihi, eyaletleri, kavram sözlüğü ve Ortak Lisan grameri.",
+        "en": "Millennial history, provinces, glossary of terms, and Common Tongue grammar."
+      },
+      "bannerImage": "assets/images/SIYASI_HARITA_onizleme.jpg"
+    },
+    "olay-detay": {
+      "id": "olay-detay",
+      "name": "Önemli Olaylar & Savaşlar",
+      "category": "detail",
+      "path": "olay-detay.html",
+      "linkedData": "lore.json",
+      "title": {
+        "tr": "Önemli Olaylar & Savaşlar Wiki Arşivi",
+        "en": "Historic Events & Wars Wiki Archive"
+      },
+      "description": {
+        "tr": "Stallhart Destanı evrenindeki 77 önemli olay, meydan muharebeleri, barış antlaşmaları ve fermanların detaylı kroniği.",
+        "en": "Detailed chronicle of 77 pivotal events, pitched battles, peace treaties, and imperial decrees."
       },
       "bannerImage": "assets/images/SIYASI_HARITA_onizleme.jpg"
     },
     "sozler": {
       "id": "sozler",
       "name": "Sözler & Alıntılar",
+      "category": "archive",
       "path": "sozler.html",
+      "linkedData": "quotes.json",
       "title": {
-        "tr": "Sözler & Alıntılar",
-        "en": "Quotes & Sayings"
+        "tr": "Sözler, Aforizmalar & Alıntı Kartları",
+        "en": "Quotes, Sayings & Shareable Cards"
       },
       "description": {
-        "tr": "Hükümdarların, bilgelerin ve savaşçıların tarihe geçen sözleri.",
-        "en": "Famous sayings and philosophies of rulers, scholars, and warriors."
+        "tr": "Hükümdarların, bilgelerin ve komutanların tarihe geçen sözleri ve özelleştirilebilir alıntı kartları.",
+        "en": "Historic sayings of emperors, scholars, and commanders with custom shareable quote cards."
       },
       "bannerImage": "assets/images/logo-stallhart.png"
     },
     "forum": {
       "id": "forum",
       "name": "Topluluk & Forum",
+      "category": "community",
       "path": "forum.html",
+      "linkedData": "config.js",
       "title": {
-        "tr": "Stallhart Topluluk Forumu",
-        "en": "Stallhart Community Forum"
+        "tr": "Stallhart Kurultayı · Topluluk Forumu",
+        "en": "Stallhart Kurultay · Community Forum"
       },
       "description": {
-        "tr": "Evren tartışmaları, teoriler, karakter analizleri ve okur yorumları.",
-        "en": "Universe lore discussions, theories, character analysis, and reader reviews."
+        "tr": "Evren tartışmaları, okur teorileri, karakter analizleri ve hane kehanetleri.",
+        "en": "Universe lore discussions, fan theories, character debates, and reader polls."
       },
       "bannerImage": "assets/images/logo-stallhart.png"
     },
-    "olay": {
-      "id": "olay",
-      "name": "Önemli Olaylar & Savaşlar",
-      "path": "olay-detay.html",
+    "forum-kategori": {
+      "id": "forum-kategori",
+      "name": "Forum Kategori",
+      "category": "community",
+      "path": "forum-kategori.html",
+      "linkedData": "config.js",
       "title": {
-        "tr": "Önemli Olaylar & Savaşlar Wiki Arşivi",
-        "en": "Historic Events & Wars Wiki Archive"
+        "tr": "Forum Kategori Görünümü · Stallhart Kurultayı",
+        "en": "Forum Category · Stallhart Kurultay"
       },
       "description": {
-        "tr": "Stallhart Destanı evrenindeki önemli olaylar, savaşlar, fetihler, barış antlaşmaları ve fermanların detaylı kroniği.",
-        "en": "Detailed chronicle of pivotal events, wars, conquests, peace accords, and imperial decrees."
+        "tr": "Seçili kategorideki tüm tartışma başlıkları, yanıt sayıları ve aktif müzakereler.",
+        "en": "Discussion threads, reply metrics, and active debates in the selected category."
+      },
+      "bannerImage": "assets/images/logo-stallhart.png"
+    },
+    "forum-konu": {
+      "id": "forum-konu",
+      "name": "Forum Tartışma Başlığı",
+      "category": "community",
+      "path": "forum-konu.html",
+      "linkedData": "config.js",
+      "title": {
+        "tr": "Tartışma Başlığı · Stallhart Kurultayı",
+        "en": "Thread Debate · Stallhart Kurultay"
+      },
+      "description": {
+        "tr": "Okur yorumları, analizler, alıntılar ve katılımcı oyları.",
+        "en": "Reader discussions, in-depth analysis, quotes, and community votes."
+      },
+      "bannerImage": "assets/images/logo-stallhart.png"
+    },
+    "404": {
+      "id": "404",
+      "name": "404 Sayfa Bulunamadı",
+      "category": "system",
+      "path": "404.html",
+      "linkedData": "",
+      "title": {
+        "tr": "Yol Kayboldu (404) · Stallhart Wiki",
+        "en": "Path Lost (404) · Stallhart Wiki"
+      },
+      "description": {
+        "tr": "Aradığınız parşömen Kütüphane yangınında kül olmuş veya hiç yazılmamış.",
+        "en": "The scroll you seek has perished in the Great Library fire or was never inked."
+      },
+      "bannerImage": "assets/images/SIYASI_HARITA_onizleme.jpg"
+    },
+    "admin": {
+      "id": "admin",
+      "name": "Yönetim Paneli",
+      "category": "system",
+      "path": "admin.html",
+      "linkedData": "pages.json",
+      "title": {
+        "tr": "Yönetim Paneli · Stallhart Wiki",
+        "en": "Admin Console · Stallhart Wiki"
+      },
+      "description": {
+        "tr": "Stallhart Destanı içerik, sayfa, evren, görsel ve veri yönetim konsolu.",
+        "en": "Stallhart Saga content, pages, lore, media, and data management console."
       },
       "bannerImage": "assets/images/SIYASI_HARITA_onizleme.jpg"
     }

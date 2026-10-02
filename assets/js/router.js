@@ -40,7 +40,14 @@
 
 (function (w) {
 'use strict';
-if (w.SWRoute) return;
+if (w.SWRoute) {
+  if (w.SWRoute.TYPES && !w.SWRoute.TYPES.olay) {
+    w.SWRoute.TYPES.olay = 'olay-detay.html';
+    if (w.SWRoute.HAS_PARTS) w.SWRoute.HAS_PARTS.olay = 1;
+    if (w.SWRoute.ENTITY) w.SWRoute.ENTITY.olay = 1;
+  }
+  return;
+}
 
 /* Yol türü → sayfa dosyası. Yeni sayfa/tür eklemek için tek yer burasıdır. */
 var TYPES = {
@@ -86,7 +93,18 @@ function hash(type) {
 }
 /* Göreli sayfa adresi (siteye kök dizinden): href('karakter','zeandor') → 'karakter-sablon.html#/karakter/zeandor' */
 function href(type) {
-  if (!own(TYPES, type)) throw new Error('SWRoute: bilinmeyen tür ' + type);
+  if (type === 'olay' && !own(TYPES, 'olay')) {
+    TYPES.olay = 'olay-detay.html';
+    HAS_PARTS.olay = 1;
+    ENTITY.olay = 1;
+  }
+  if (!own(TYPES, type)) {
+    if (type === 'olay') {
+      var fallbackParts = Array.prototype.slice.call(arguments, 1).filter(function (p) { return p !== '' && p != null; });
+      return 'olay-detay.html' + hash.apply(null, ['olay'].concat(fallbackParts));
+    }
+    throw new Error('SWRoute: bilinmeyen tür ' + type);
+  }
   var parts = Array.prototype.slice.call(arguments, 1).filter(function (p) { return p !== '' && p != null; });
   if (!HAS_PARTS[type] || !parts.length) return TYPES[type];
   return TYPES[type] + hash.apply(null, [type].concat(parts));
