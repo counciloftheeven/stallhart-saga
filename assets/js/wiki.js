@@ -23,7 +23,15 @@
    ═══════════════════════════════════════════════════════════════ */
 'use strict';
 
+// Top-level global variable declarations for window and script scope
+var Wiki = (typeof window !== 'undefined' ? (window.Wiki = window.Wiki || {}) : {});
+var QuoteCard = (typeof window !== 'undefined' ? (window.QuoteCard = window.QuoteCard || {}) : {});
+
 (function () {
+  if (typeof window !== 'undefined') {
+    window.Wiki = window.Wiki || {};
+    window.QuoteCard = window.QuoteCard || {};
+  }
 
 /* ── 1. TEMEL YOL ─────────────────────────────────────────────
    wiki.js'in kendi URL'sinden site kökünü hesaplar. Böylece site
@@ -2525,164 +2533,7 @@ const Prefetch = (() => {
   return { init, trigger };
 })();
 
-/* ── 9c. METİN SEÇİMİNDE HIZLI TANIM & DİVAN DEFTERİ (Selection Lookup, Highlight & Share) ─────── */
-const SelectionLookup = (() => {
-  let bubble = null;
-  let activeText = '';
-  let activeRange = null;
-
-  const HIGHLIGHTS_KEY = 'sw-reader-highlights-v1';
-
-  function getHighlights() {
-    try {
-      const raw = localStorage.getItem(HIGHLIGHTS_KEY);
-      return raw ? JSON.parse(raw) : [];
-    } catch (e) { return []; }
-  }
-
-  function saveHighlight(text, note) {
-    try {
-      const list = getHighlights();
-      const chNum = (window.location.hash || window.location.search || '').match(/\d+/) || ['I'];
-      const item = {
-        id: 'hl-' + Date.now(),
-        text: text,
-        note: note || '',
-        ch: chNum[0] || 'I',
-        time: new Date().toISOString()
-      };
-      list.unshift(item);
-      localStorage.setItem(HIGHLIGHTS_KEY, JSON.stringify(list.slice(0, 100)));
-      return item;
-    } catch (e) { return null; }
-  }
-
-  function openShareCardModal(quoteText) {
-    if (window.QuoteCard) QuoteCard.open(quoteText);
-  }
-
-  function ensureBubble() {
-    if (bubble) return bubble;
-    bubble = document.createElement('div');
-    bubble.id = 'sw-selection-bubble';
-    bubble.className = 'sw-sel-bubble';
-    bubble.innerHTML = `
-      <button type="button" class="sw-sel-btn" id="sw-sel-highlight" title="Altın Mürekkeple İşaretle">
-        <span>🖋️</span>
-        <span class="sw-sel-lbl">Mühürle</span>
-      </button>
-      <button type="button" class="sw-sel-btn" id="sw-sel-card" title="Parşömen Kartı Oluştur & Paylaş">
-        <span>📜</span>
-        <span class="sw-sel-lbl">Paylaş</span>
-      </button>
-      <button type="button" class="sw-sel-btn" id="sw-sel-search" title="Ansiklopedide Ara">
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="22" y2="22"/></svg>
-        <span class="sw-sel-lbl">Ara</span>
-      </button>
-    `;
-    document.body.appendChild(bubble);
-
-    bubble.querySelector('#sw-sel-search').addEventListener('click', e => {
-      e.stopPropagation();
-      e.preventDefault();
-      const q = activeText;
-      hide();
-      Search.open(q);
-    });
-
-    bubble.querySelector('#sw-sel-highlight').addEventListener('click', e => {
-      e.stopPropagation();
-      e.preventDefault();
-      const q = activeText;
-      const l = Lang.get();
-      if (q) {
-        saveHighlight(q);
-        try {
-          const sel = window.getSelection();
-          if (sel && sel.rangeCount > 0) {
-            const range = sel.getRangeAt(0);
-            const mark = document.createElement('mark');
-            mark.className = 'sw-gold-highlight';
-            mark.title = l === 'tr' ? 'Divan Kütüğüne İşlenmiş Aforizma' : 'Saved Highlight';
-            range.surroundContents(mark);
-          }
-        } catch (err) {}
-        if (window.Community && Community.util && Community.util.toast) {
-          Community.util.toast(l === 'tr' ? 'Aforizma divan defterinize altın mürekkeple işlendi!' : 'Quote sealed in your personal codex!');
-        } else if (Wiki.Toast && Wiki.Toast.show) {
-          Wiki.Toast.show(l === 'tr' ? 'Aforizma kaydedildi!' : 'Quote saved!');
-        }
-      }
-      hide();
-    });
-
-    bubble.querySelector('#sw-sel-card').addEventListener('click', e => {
-      e.stopPropagation();
-      e.preventDefault();
-      const q = activeText;
-      hide();
-      if (q) openShareCardModal(q);
-    });
-
-    return bubble;
-  }
-
-  function hide() {
-    if (bubble) bubble.classList.remove('on');
-    activeText = '';
-  }
-
-  function check() {
-    const sel = window.getSelection();
-    if (!sel || sel.isCollapsed || sel.rangeCount === 0) {
-      hide();
-      return;
-    }
-    const text = sel.toString().trim();
-    if (text.length < 2 || text.length > 320) {
-      hide();
-      return;
-    }
-    const anchor = sel.anchorNode && (sel.anchorNode.nodeType === 3 ? sel.anchorNode.parentElement : sel.anchorNode);
-    if (!anchor || !anchor.closest('.book-body, .rd-article, .art-p, .lc, .cc-desc, main, article, #rd-body')) {
-      hide();
-      return;
-    }
-    activeText = text;
-    const range = sel.getRangeAt(0);
-    const rect = range.getBoundingClientRect();
-    if (!rect || (rect.width === 0 && rect.height === 0)) { hide(); return; }
-
-    const b = ensureBubble();
-    const l = Lang.get();
-    b.querySelector('#sw-sel-highlight .sw-sel-lbl').textContent = l === 'tr' ? 'Mühürle' : 'Highlight';
-    b.querySelector('#sw-sel-card .sw-sel-lbl').textContent = l === 'tr' ? 'Paylaş' : 'Share';
-    b.querySelector('#sw-sel-search .sw-sel-lbl').textContent = l === 'tr' ? 'Ara' : 'Search';
-    b.classList.add('on');
-
-    const bw = b.offsetWidth || 190;
-    const bh = b.offsetHeight || 34;
-    let left = rect.left + rect.width / 2 - bw / 2;
-    left = Math.max(10, Math.min(left, window.innerWidth - bw - 10));
-    let top = rect.top - bh - 8;
-    if (top < 10) top = rect.bottom + 8;
-    b.style.left = Math.round(left) + 'px';
-    b.style.top = Math.round(top) + 'px';
-  }
-
-  function init() {
-    document.addEventListener('mouseup', () => setTimeout(check, 30));
-    document.addEventListener('touchend', () => setTimeout(check, 80));
-    document.addEventListener('mousedown', e => {
-      if (bubble && !bubble.contains(e.target)) hide();
-    });
-    window.addEventListener('scroll', () => { if (bubble && bubble.classList.contains('on')) hide(); }, { passive: true });
-  }
-
-  return { init, hide, getHighlights, saveHighlight, openShareCardModal };
-})();
-
-/* ── 9d. OKUYUCU ALINTI PAYLAŞIMI (CANVAS QUOTE GENERATOR) ────────── */
+/* ── 9c. OKUYUCU ALINTI PAYLAŞIMI (CANVAS QUOTE GENERATOR) ────────── */
 const QuoteCard = (() => {
   let modalEl = null;
   let currentOpts = null;
@@ -2777,7 +2628,7 @@ const QuoteCard = (() => {
       const shareText = `“${currentOpts.text}”\n\n— ${currentOpts.speaker} (${currentOpts.cite})\nhttps://stallhart.com`;
       navigator.clipboard.writeText(shareText).then(() => {
         if (window.Community && Community.util && Community.util.toast) Community.util.toast(l === 'tr' ? 'Alıntı panoya kopyalandı!' : 'Quote copied!');
-        else if (Wiki.Toast) Wiki.Toast.show(l === 'tr' ? 'Alıntı panoya kopyalandı!' : 'Quote copied!');
+        else if (window.Wiki && window.Wiki.Toast) window.Wiki.Toast.show(l === 'tr' ? 'Alıntı panoya kopyalandı!' : 'Quote copied!');
       });
     };
 
@@ -2875,7 +2726,7 @@ const QuoteCard = (() => {
     ctx.textBaseline = 'top';
     ctx.fillStyle = '#f7d88b';
     ctx.font = '600 ' + (isStory ? '28px' : '22px') + ' Georgia, serif';
-    ctx.letterSpacing = '4px';
+    try { ctx.letterSpacing = '4px'; } catch (e) {}
     const headY = isStory ? 120 : 64;
     ctx.fillText('⚔️   S T A L L H A R T   D E S T A N I   ⚔️', W / 2, headY);
     ctx.restore();
@@ -2951,7 +2802,7 @@ const QuoteCard = (() => {
     ctx.textAlign = 'center';
     ctx.fillStyle = 'rgba(196, 150, 42, 0.7)';
     ctx.font = '600 ' + (isStory ? '20px' : '16px') + ' Georgia, serif';
-    ctx.letterSpacing = '3px';
+    try { ctx.letterSpacing = '3px'; } catch (e) {}
     const footY = H - (isStory ? 90 : 50);
     ctx.fillText('STALLHART.COM · KARANLIK FANTAZİ DESTANI', W / 2, footY);
     ctx.restore();
@@ -2974,6 +2825,174 @@ const QuoteCard = (() => {
   }
 
   return { open, close, drawCanvas, downloadImage };
+})();
+
+if (typeof window !== 'undefined') {
+  window.QuoteCard = QuoteCard;
+  if (window.Wiki) window.Wiki.QuoteCard = QuoteCard;
+}
+
+/* ── 9d. METİN SEÇİMİNDE HIZLI TANIM & DİVAN DEFTERİ (Selection Lookup, Highlight & Share) ─────── */
+const SelectionLookup = (() => {
+  let bubble = null;
+  let activeText = '';
+  let activeRange = null;
+
+  const HIGHLIGHTS_KEY = 'sw-reader-highlights-v1';
+
+  function getHighlights() {
+    try {
+      const raw = localStorage.getItem(HIGHLIGHTS_KEY);
+      return raw ? JSON.parse(raw) : [];
+    } catch (e) { return []; }
+  }
+
+  function saveHighlight(text, note) {
+    try {
+      const list = getHighlights();
+      const chNum = (window.location.hash || window.location.search || '').match(/\d+/) || ['I'];
+      const item = {
+        id: 'hl-' + Date.now(),
+        text: text,
+        note: note || '',
+        ch: chNum[0] || 'I',
+        time: new Date().toISOString()
+      };
+      list.unshift(item);
+      localStorage.setItem(HIGHLIGHTS_KEY, JSON.stringify(list.slice(0, 100)));
+      return item;
+    } catch (e) { return null; }
+  }
+
+  function openShareCardModal(quoteText) {
+    if (typeof QuoteCard !== 'undefined' && QuoteCard && QuoteCard.open) {
+      QuoteCard.open(quoteText);
+    } else if (typeof window !== 'undefined' && window.QuoteCard && window.QuoteCard.open) {
+      window.QuoteCard.open(quoteText);
+    } else if (typeof window !== 'undefined' && window.Wiki && window.Wiki.QuoteCard && window.Wiki.QuoteCard.open) {
+      window.Wiki.QuoteCard.open(quoteText);
+    }
+  }
+
+  function ensureBubble() {
+    if (bubble) return bubble;
+    bubble = document.createElement('div');
+    bubble.id = 'sw-selection-bubble';
+    bubble.className = 'sw-sel-bubble';
+    bubble.innerHTML = `
+      <button type="button" class="sw-sel-btn" id="sw-sel-highlight" title="Altın Mürekkeple İşaretle">
+        <span>🖋️</span>
+        <span class="sw-sel-lbl">Mühürle</span>
+      </button>
+      <button type="button" class="sw-sel-btn" id="sw-sel-card" title="Parşömen Kartı Oluştur & Paylaş">
+        <span>📜</span>
+        <span class="sw-sel-lbl">Paylaş</span>
+      </button>
+      <button type="button" class="sw-sel-btn" id="sw-sel-search" title="Ansiklopedide Ara">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="7"/><line x1="16.5" y1="16.5" x2="22" y2="22"/></svg>
+        <span class="sw-sel-lbl">Ara</span>
+      </button>
+    `;
+    document.body.appendChild(bubble);
+
+    bubble.querySelector('#sw-sel-search').addEventListener('click', e => {
+      e.stopPropagation();
+      e.preventDefault();
+      const q = activeText;
+      hide();
+      Search.open(q);
+    });
+
+    bubble.querySelector('#sw-sel-highlight').addEventListener('click', e => {
+      e.stopPropagation();
+      e.preventDefault();
+      const q = activeText;
+      const l = Lang.get();
+      if (q) {
+        saveHighlight(q);
+        try {
+          const sel = window.getSelection();
+          if (sel && sel.rangeCount > 0) {
+            const range = sel.getRangeAt(0);
+            const mark = document.createElement('mark');
+            mark.className = 'sw-gold-highlight';
+            mark.title = l === 'tr' ? 'Divan Kütüğüne İşlenmiş Aforizma' : 'Saved Highlight';
+            range.surroundContents(mark);
+          }
+        } catch (err) {}
+        if (window.Community && Community.util && Community.util.toast) {
+          Community.util.toast(l === 'tr' ? 'Aforizma divan defterinize altın mürekkeple işlendi!' : 'Quote sealed in your personal codex!');
+        } else if (window.Wiki && window.Wiki.Toast && window.Wiki.Toast.show) {
+          window.Wiki.Toast.show(l === 'tr' ? 'Aforizma kaydedildi!' : 'Quote saved!');
+        }
+      }
+      hide();
+    });
+
+    bubble.querySelector('#sw-sel-card').addEventListener('click', e => {
+      e.stopPropagation();
+      e.preventDefault();
+      const q = activeText;
+      hide();
+      if (q) openShareCardModal(q);
+    });
+
+    return bubble;
+  }
+
+  function hide() {
+    if (bubble) bubble.classList.remove('on');
+    activeText = '';
+  }
+
+  function check() {
+    const sel = window.getSelection();
+    if (!sel || sel.isCollapsed || sel.rangeCount === 0) {
+      hide();
+      return;
+    }
+    const text = sel.toString().trim();
+    if (text.length < 2 || text.length > 320) {
+      hide();
+      return;
+    }
+    const anchor = sel.anchorNode && (sel.anchorNode.nodeType === 3 ? sel.anchorNode.parentElement : sel.anchorNode);
+    if (!anchor || !anchor.closest('.book-body, .rd-article, .art-p, .lc, .cc-desc, main, article, #rd-body')) {
+      hide();
+      return;
+    }
+    activeText = text;
+    const range = sel.getRangeAt(0);
+    const rect = range.getBoundingClientRect();
+    if (!rect || (rect.width === 0 && rect.height === 0)) { hide(); return; }
+
+    const b = ensureBubble();
+    const l = Lang.get();
+    b.querySelector('#sw-sel-highlight .sw-sel-lbl').textContent = l === 'tr' ? 'Mühürle' : 'Highlight';
+    b.querySelector('#sw-sel-card .sw-sel-lbl').textContent = l === 'tr' ? 'Paylaş' : 'Share';
+    b.querySelector('#sw-sel-search .sw-sel-lbl').textContent = l === 'tr' ? 'Ara' : 'Search';
+    b.classList.add('on');
+
+    const bw = b.offsetWidth || 190;
+    const bh = b.offsetHeight || 34;
+    let left = rect.left + rect.width / 2 - bw / 2;
+    left = Math.max(10, Math.min(left, window.innerWidth - bw - 10));
+    let top = rect.top - bh - 8;
+    if (top < 10) top = rect.bottom + 8;
+    b.style.left = Math.round(left) + 'px';
+    b.style.top = Math.round(top) + 'px';
+  }
+
+  function init() {
+    document.addEventListener('mouseup', () => setTimeout(check, 30));
+    document.addEventListener('touchend', () => setTimeout(check, 80));
+    document.addEventListener('mousedown', e => {
+      if (bubble && !bubble.contains(e.target)) hide();
+    });
+    window.addEventListener('scroll', () => { if (bubble && bubble.classList.contains('on')) hide(); }, { passive: true });
+  }
+
+  return { init, hide, getHighlights, saveHighlight, openShareCardModal };
 })();
 
 /* ── 10. AÇILIŞ ──────────────────────────────────────────────── */
@@ -3530,15 +3549,25 @@ const Tags = (function () {
   return { defs: TAG_DEFS, label, chipsHTML, matches };
 })();
 
-window.Wiki = {
+Object.assign(window.Wiki, {
   LivePatches,
   Lang, Theme, FontSize, ParchmentAtmosphere, loadData, Store, Search, Tooltip, Bookmarks, ReadTracker, Book,
   initWiki, injectNav, groupClass, esc, safeImg, godImgHTML, wireGodImgs, godImgSources,
   getBasePath, BASE_PATH, renderError, showFatal, Tags, Prefetch, SelectionLookup, QuoteCard,
   Img, imgAttrs: Img.attrs, imgUrl: Img.url
-};
+});
 window.QuoteCard = QuoteCard;
 window.Bookmarks = Bookmarks;
 window.ParchmentAtmosphere = ParchmentAtmosphere;
+if (typeof globalThis !== 'undefined') {
+  globalThis.Wiki = window.Wiki;
+  globalThis.QuoteCard = QuoteCard;
+}
 
 })();
+
+// Global sync for Safari / WebKit window scope
+if (typeof window !== 'undefined') {
+  Wiki = window.Wiki;
+  QuoteCard = window.QuoteCard = (window.QuoteCard || (window.Wiki ? window.Wiki.QuoteCard : null));
+}

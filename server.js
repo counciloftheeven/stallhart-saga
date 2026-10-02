@@ -265,7 +265,7 @@ app.use(express.static(__dirname, {
     } else if (/\.(?:webp|png|jpe?g|gif|svg|ico|woff2?|ttf|eot|mp3|wav|ogg)$/i.test(filePath)) {
       res.setHeader('Cache-Control', 'public, max-age=3600, stale-while-revalidate=86400');
     } else if (/\.(?:css|js)$/i.test(filePath)) {
-      res.setHeader('Cache-Control', 'public, max-age=3600, stale-while-revalidate=86400');
+      res.setHeader('Cache-Control', 'no-cache, must-revalidate');
     } else if (/\.json$/i.test(filePath)) {
       res.setHeader('Cache-Control', 'no-cache');
     } else if (/\.html$/i.test(filePath)) {
