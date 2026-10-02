@@ -238,7 +238,7 @@ const Loader = (() => {
     const node = el; el = null;
     node.classList.add('lh-out');
     document.documentElement.classList.remove('sw-loading', 'sw-boot');   /* içerik artık görünür */
-    setTimeout(() => node.remove(), 250);
+    setTimeout(() => { if (node && node.remove) node.remove(); else if (node && node.parentNode) node.parentNode.removeChild(node); }, 250);
   }
 
   function finish() {
@@ -1571,7 +1571,7 @@ function initNav() {
       }
     });
     window.addEventListener('resize', () => {
-      if (window.innerWidth > 1280 && links.classList.contains('open')) {
+      if (window.innerWidth >= 768 && links.classList.contains('open')) {
         closeMenu();
       }
     }, { passive: true });
@@ -2557,302 +2557,8 @@ const SelectionLookup = (() => {
     } catch (e) { return null; }
   }
 
-  /* ── OKUYUCU ALINTI PAYLAŞIMI (CANVAS QUOTE GENERATOR) ────────── */
-  const QuoteCard = (() => {
-    let modalEl = null;
-    let currentOpts = null;
-    let activeFormat = 'story'; // 'story' (9:16) or 'post' (16:9)
-
-    function open(options) {
-      if (typeof options === 'string') {
-        options = { text: options };
-      }
-      const l = Lang.get();
-      const chNum = (window.location.hash || window.location.search || '').match(/\d+/) || ['I'];
-      currentOpts = {
-        text: (options.text || '').trim(),
-        speaker: options.speaker || (l === 'tr' ? 'Stallhart Kadim Sözü' : 'Ancient Stallhart Proverb'),
-        cite: options.cite || (l === 'tr' ? `Stallhart Destanı · Bölüm ${chNum[0]}` : `The Stallhart Saga · Chapter ${chNum[0]}`),
-        theme: options.theme || ''
-      };
-
-      if (!modalEl) {
-        modalEl = document.createElement('div');
-        modalEl.id = 'sw-quote-card-modal';
-        modalEl.className = 'sw-qc-modal';
-        document.body.appendChild(modalEl);
-      }
-
-      renderModal();
-      modalEl.style.display = 'flex';
-      document.body.classList.add('tc-no-scroll');
-      drawCanvas();
-    }
-
-    function close() {
-      if (modalEl) modalEl.style.display = 'none';
-      document.body.classList.remove('tc-no-scroll');
-    }
-
-    function renderModal() {
-      const l = Lang.get();
-      modalEl.innerHTML = `
-        <div class="sw-qc-dialog" role="dialog" aria-modal="true" aria-label="Alıntı Kartı Oluşturucu">
-          <button type="button" class="tc-modal-close" id="sw-qc-close-btn" style="position:absolute;top:1rem;right:1rem;background:none;border:none;color:#9a8870;font-size:1.2rem;cursor:pointer;">✕</button>
-          <h3 style="font-family:var(--font-display);color:#f7d88b;margin:0 0 .35rem;font-size:1.15rem;display:flex;align-items:center;gap:.5rem">
-            <span>📜</span>
-            <span>${l === 'tr' ? 'Parşömen Alıntı Kartı Oluşturucu' : 'Parchment Quote Card Generator'}</span>
-          </h3>
-          <p style="font-size:.78rem;color:#9a8870;margin:0 0 1rem;font-style:italic">
-            ${l === 'tr' ? 'Cümleyi Instagram Story veya Twitter formatında kart görseli (PNG) olarak indirin veya paylaşın.' : 'Export this quote as an Instagram Story or Twitter image card (PNG) or share instantly.'}
-          </p>
-
-          <!-- Format Seçimi -->
-          <div class="sw-qc-formats">
-            <button type="button" class="sw-qc-fmt-btn ${activeFormat === 'story' ? 'on' : ''}" data-fmt="story">
-              📱 Instagram Story (9:16)
-            </button>
-            <button type="button" class="sw-qc-fmt-btn ${activeFormat === 'post' ? 'on' : ''}" data-fmt="post">
-              𝕏 Twitter & Gönderi (16:9)
-            </button>
-          </div>
-
-          <!-- Canlı Canvas Önizleme -->
-          <div class="sw-qc-canvas-wrap">
-            <canvas id="sw-qc-canvas"></canvas>
-          </div>
-
-          <!-- Eylemler -->
-          <div class="sw-qc-actions">
-            <button type="button" class="btn-g" id="sw-qc-btn-copy" style="padding:.5rem .9rem;font-size:.82rem">
-              📋 ${l === 'tr' ? 'Metni Kopyala' : 'Copy Quote'}
-            </button>
-            <button type="button" class="btn-g" id="sw-qc-btn-x" style="padding:.5rem .9rem;font-size:.82rem;background:#1d9bf0;border-color:#1d9bf0;color:#fff">
-              𝕏 ${l === 'tr' ? 'X’te Paylaş' : 'Share on X'}
-            </button>
-            <button type="button" class="btn-g" id="sw-qc-btn-download" style="padding:.5rem 1.1rem;font-size:.85rem;background:linear-gradient(135deg,#c4962a,#8a671d);color:#fff;border-color:#ffd700;font-weight:700">
-              📥 ${l === 'tr' ? 'Görseli İndir (PNG)' : 'Download Image (PNG)'}
-            </button>
-          </div>
-        </div>
-      `;
-
-      modalEl.querySelector('#sw-qc-close-btn').onclick = close;
-      modalEl.onclick = e => { if (e.target === modalEl) close(); };
-
-      modalEl.querySelectorAll('.sw-qc-fmt-btn').forEach(b => {
-        b.onclick = () => {
-          activeFormat = b.dataset.fmt;
-          modalEl.querySelectorAll('.sw-qc-fmt-btn').forEach(btn => btn.classList.toggle('on', btn.dataset.fmt === activeFormat));
-          drawCanvas();
-        };
-      });
-
-      modalEl.querySelector('#sw-qc-btn-copy').onclick = () => {
-        const shareText = `“${currentOpts.text}”\n\n— ${currentOpts.speaker} (${currentOpts.cite})\nhttps://stallhart.com`;
-        navigator.clipboard.writeText(shareText).then(() => {
-          if (window.Community && Community.util && Community.util.toast) Community.util.toast(l === 'tr' ? 'Alıntı panoya kopyalandı!' : 'Quote copied!');
-          else if (Wiki.Toast) Wiki.Toast.show(l === 'tr' ? 'Alıntı panoya kopyalandı!' : 'Quote copied!');
-        });
-      };
-
-      modalEl.querySelector('#sw-qc-btn-x').onclick = () => {
-        const tweetText = encodeURIComponent(`“${currentOpts.text}”\n\n— ${currentOpts.speaker} (${currentOpts.cite})\n#Stallhart #DarkFantasy`);
-        const tweetUrl = encodeURIComponent(window.location.href);
-        window.open(`https://twitter.com/intent/tweet?text=${tweetText}&url=${tweetUrl}`, '_blank', 'noopener,noreferrer');
-      };
-
-      modalEl.querySelector('#sw-qc-btn-download').onclick = downloadImage;
-    }
-
-    function wrapText(ctx, text, maxWidth) {
-      const words = text.split(/\s+/);
-      const lines = [];
-      let currentLine = '';
-      for (let n = 0; n < words.length; n++) {
-        const testLine = currentLine ? (currentLine + ' ' + words[n]) : words[n];
-        const metrics = ctx.measureText(testLine);
-        if (metrics.width > maxWidth && n > 0) {
-          lines.push(currentLine);
-          currentLine = words[n];
-        } else {
-          currentLine = testLine;
-        }
-      }
-      if (currentLine) lines.push(currentLine);
-      return lines;
-    }
-
-    function drawCanvas() {
-      const canvas = document.getElementById('sw-qc-canvas');
-      if (!canvas || !currentOpts) return;
-      const ctx = canvas.getContext('2d');
-
-      const isStory = activeFormat === 'story';
-      const W = isStory ? 1080 : 1200;
-      const H = isStory ? 1920 : 675;
-
-      canvas.width = W;
-      canvas.height = H;
-
-      // 1. Zemin Degrade
-      const bgGrad = ctx.createRadialGradient(W / 2, H / 2, 80, W / 2, H / 2, Math.max(W, H) / 1.1);
-      bgGrad.addColorStop(0, '#1c1510');
-      bgGrad.addColorStop(0.5, '#0e1118');
-      bgGrad.addColorStop(1, '#05070a');
-      ctx.fillStyle = bgGrad;
-      ctx.fillRect(0, 0, W, H);
-
-      // 2. Parşömen / Yıldız tozu doku simülasyonu
-      ctx.fillStyle = 'rgba(196, 150, 42, 0.035)';
-      for (let i = 0; i < 90; i++) {
-        const rx = (Math.sin(i * 997) * 0.5 + 0.5) * W;
-        const ry = (Math.cos(i * 613) * 0.5 + 0.5) * H;
-        const rr = (Math.sin(i) * 0.5 + 0.5) * 2.5 + 0.8;
-        ctx.beginPath();
-        ctx.arc(rx, ry, rr, 0, Math.PI * 2);
-        ctx.fill();
-      }
-
-      // 3. Çift Altın Bordür & Köşe İşlemeleri
-      const pad = isStory ? 48 : 32;
-      const innerPad = pad + 14;
-
-      ctx.strokeStyle = '#c4962a';
-      ctx.lineWidth = 2.5;
-      ctx.strokeRect(pad, pad, W - pad * 2, H - pad * 2);
-
-      ctx.strokeStyle = 'rgba(196, 150, 42, 0.45)';
-      ctx.lineWidth = 1;
-      ctx.strokeRect(innerPad, innerPad, W - innerPad * 2, H - innerPad * 2);
-
-      const drawDiamond = (x, y, r) => {
-        ctx.save();
-        ctx.fillStyle = '#c4962a';
-        ctx.beginPath();
-        ctx.moveTo(x, y - r);
-        ctx.lineTo(x + r, y);
-        ctx.lineTo(x, y + r);
-        ctx.lineTo(x - r, y);
-        ctx.closePath();
-        ctx.fill();
-        ctx.restore();
-      };
-
-      drawDiamond(pad, pad, 8);
-      drawDiamond(W - pad, pad, 8);
-      drawDiamond(pad, H - pad, 8);
-      drawDiamond(W - pad, H - pad, 8);
-
-      // 4. Tepe Başlığı
-      ctx.save();
-      ctx.textAlign = 'center';
-      ctx.textBaseline = 'top';
-      ctx.fillStyle = '#f7d88b';
-      ctx.font = '600 ' + (isStory ? '28px' : '22px') + ' Georgia, serif';
-      ctx.letterSpacing = '4px';
-      const headY = isStory ? 120 : 64;
-      ctx.fillText('⚔️   S T A L L H A R T   D E S T A N I   ⚔️', W / 2, headY);
-      ctx.restore();
-
-      // 5. Dev Tırnak İşareti
-      ctx.save();
-      ctx.textAlign = 'center';
-      ctx.fillStyle = 'rgba(196, 150, 42, 0.28)';
-      ctx.font = 'italic ' + (isStory ? '160px' : '100px') + ' Georgia, serif';
-      const quoteMarkY = isStory ? 340 : 150;
-      ctx.fillText('❝', W / 2, quoteMarkY);
-      ctx.restore();
-
-      // 6. Alıntı Metni
-      ctx.save();
-      ctx.textAlign = 'center';
-      ctx.textBaseline = 'middle';
-      ctx.fillStyle = '#f5ede0';
-      ctx.shadowColor = 'rgba(0, 0, 0, 0.8)';
-      ctx.shadowBlur = 12;
-
-      const maxTextWidth = isStory ? W - 220 : W - 260;
-      const textLength = currentOpts.text.length;
-      let fontSize = isStory
-        ? (textLength < 80 ? 56 : textLength < 160 ? 46 : textLength < 280 ? 38 : 32)
-        : (textLength < 80 ? 40 : textLength < 160 ? 34 : textLength < 280 ? 28 : 24);
-
-      ctx.font = 'italic ' + fontSize + 'px "IM Fell English", "Merriweather", Georgia, serif';
-      const lineHeight = fontSize * 1.55;
-      let lines = wrapText(ctx, '“' + currentOpts.text + '”', maxTextWidth);
-
-      const totalBlockHeight = lines.length * lineHeight;
-      let startY = isStory
-        ? (H / 2 - totalBlockHeight / 2 - 20)
-        : (H / 2 - totalBlockHeight / 2 - 10);
-
-      lines.forEach((line, idx) => {
-        ctx.fillText(line, W / 2, startY + (idx * lineHeight));
-      });
-      ctx.restore();
-
-      // 7. Altın Ayraç Çizgisi ve Elmas
-      const dividerY = startY + totalBlockHeight + (isStory ? 70 : 35);
-      ctx.save();
-      ctx.strokeStyle = 'rgba(196, 150, 42, 0.5)';
-      ctx.lineWidth = 1.5;
-      const divWidth = isStory ? 280 : 200;
-      ctx.beginPath();
-      ctx.moveTo(W / 2 - divWidth, dividerY);
-      ctx.lineTo(W / 2 - 20, dividerY);
-      ctx.moveTo(W / 2 + 20, dividerY);
-      ctx.lineTo(W / 2 + divWidth, dividerY);
-      ctx.stroke();
-      drawDiamond(W / 2, dividerY, 7);
-      ctx.restore();
-
-      // 8. Konuşan / Sahibi
-      ctx.save();
-      ctx.textAlign = 'center';
-      ctx.fillStyle = '#f7d88b';
-      ctx.font = 'bold ' + (isStory ? '34px' : '26px') + ' Georgia, serif';
-      const speakerY = dividerY + (isStory ? 60 : 38);
-      ctx.fillText('— ' + currentOpts.speaker, W / 2, speakerY);
-
-      // Kaynak / Bölüm
-      ctx.fillStyle = '#bfa57a';
-      ctx.font = 'italic ' + (isStory ? '24px' : '19px') + ' Georgia, serif';
-      ctx.fillText(currentOpts.cite, W / 2, speakerY + (isStory ? 44 : 28));
-      ctx.restore();
-
-      // 9. Alt Bilgi
-      ctx.save();
-      ctx.textAlign = 'center';
-      ctx.fillStyle = 'rgba(196, 150, 42, 0.7)';
-      ctx.font = '600 ' + (isStory ? '20px' : '16px') + ' Georgia, serif';
-      ctx.letterSpacing = '3px';
-      const footY = H - (isStory ? 90 : 50);
-      ctx.fillText('STALLHART.COM · KARANLIK FANTAZİ DESTANI', W / 2, footY);
-      ctx.restore();
-    }
-
-    function downloadImage() {
-      const canvas = document.getElementById('sw-qc-canvas');
-      if (!canvas) return;
-      const dataUrl = canvas.toDataURL('image/png');
-      const a = document.createElement('a');
-      a.download = `stallhart-alinti-${activeFormat}.png`;
-      a.href = dataUrl;
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-      const l = Lang.get();
-      if (window.Community && Community.util && Community.util.toast) {
-        Community.util.toast(l === 'tr' ? 'Görsel kart başarıyla indirildi!' : 'Image card downloaded successfully!');
-      }
-    }
-
-    return { open, close, drawCanvas, downloadImage };
-  })();
-
   function openShareCardModal(quoteText) {
-    QuoteCard.open(quoteText);
+    if (window.QuoteCard) QuoteCard.open(quoteText);
   }
 
   function ensureBubble() {
@@ -2974,6 +2680,300 @@ const SelectionLookup = (() => {
   }
 
   return { init, hide, getHighlights, saveHighlight, openShareCardModal };
+})();
+
+/* ── 9d. OKUYUCU ALINTI PAYLAŞIMI (CANVAS QUOTE GENERATOR) ────────── */
+const QuoteCard = (() => {
+  let modalEl = null;
+  let currentOpts = null;
+  let activeFormat = 'story'; // 'story' (9:16) or 'post' (16:9)
+
+  function open(options) {
+    if (typeof options === 'string') {
+      options = { text: options };
+    }
+    const l = Lang.get();
+    const chNum = (window.location.hash || window.location.search || '').match(/\d+/) || ['I'];
+    currentOpts = {
+      text: (options.text || '').trim(),
+      speaker: options.speaker || (l === 'tr' ? 'Stallhart Kadim Sözü' : 'Ancient Stallhart Proverb'),
+      cite: options.cite || (l === 'tr' ? `Stallhart Destanı · Bölüm ${chNum[0]}` : `The Stallhart Saga · Chapter ${chNum[0]}`),
+      theme: options.theme || ''
+    };
+
+    if (!modalEl) {
+      modalEl = document.createElement('div');
+      modalEl.id = 'sw-quote-card-modal';
+      modalEl.className = 'sw-qc-modal';
+      document.body.appendChild(modalEl);
+    }
+
+    renderModal();
+    modalEl.style.display = 'flex';
+    document.body.classList.add('tc-no-scroll');
+    drawCanvas();
+  }
+
+  function close() {
+    if (modalEl) modalEl.style.display = 'none';
+    document.body.classList.remove('tc-no-scroll');
+  }
+
+  function renderModal() {
+    const l = Lang.get();
+    modalEl.innerHTML = `
+      <div class="sw-qc-dialog" role="dialog" aria-modal="true" aria-label="Alıntı Kartı Oluşturucu">
+        <button type="button" class="tc-modal-close" id="sw-qc-close-btn" style="position:absolute;top:1rem;right:1rem;background:none;border:none;color:#9a8870;font-size:1.2rem;cursor:pointer;">✕</button>
+        <h3 style="font-family:var(--font-display);color:#f7d88b;margin:0 0 .35rem;font-size:1.15rem;display:flex;align-items:center;gap:.5rem">
+          <span>📜</span>
+          <span>${l === 'tr' ? 'Parşömen Alıntı Kartı Oluşturucu' : 'Parchment Quote Card Generator'}</span>
+        </h3>
+        <p style="font-size:.78rem;color:#9a8870;margin:0 0 1rem;font-style:italic">
+          ${l === 'tr' ? 'Cümleyi Instagram Story veya Twitter formatında kart görseli (PNG) olarak indirin veya paylaşın.' : 'Export this quote as an Instagram Story or Twitter image card (PNG) or share instantly.'}
+        </p>
+
+        <!-- Format Seçimi -->
+        <div class="sw-qc-formats">
+          <button type="button" class="sw-qc-fmt-btn ${activeFormat === 'story' ? 'on' : ''}" data-fmt="story">
+            📱 Instagram Story (9:16)
+          </button>
+          <button type="button" class="sw-qc-fmt-btn ${activeFormat === 'post' ? 'on' : ''}" data-fmt="post">
+            𝕏 Twitter & Gönderi (16:9)
+          </button>
+        </div>
+
+        <!-- Canlı Canvas Önizleme -->
+        <div class="sw-qc-canvas-wrap">
+          <canvas id="sw-qc-canvas"></canvas>
+        </div>
+
+        <!-- Eylemler -->
+        <div class="sw-qc-actions">
+          <button type="button" class="btn-g" id="sw-qc-btn-copy" style="padding:.5rem .9rem;font-size:.82rem">
+            📋 ${l === 'tr' ? 'Metni Kopyala' : 'Copy Quote'}
+          </button>
+          <button type="button" class="btn-g" id="sw-qc-btn-x" style="padding:.5rem .9rem;font-size:.82rem;background:#1d9bf0;border-color:#1d9bf0;color:#fff">
+            𝕏 ${l === 'tr' ? 'X’te Paylaş' : 'Share on X'}
+          </button>
+          <button type="button" class="btn-g" id="sw-qc-btn-download" style="padding:.5rem 1.1rem;font-size:.85rem;background:linear-gradient(135deg,#c4962a,#8a671d);color:#fff;border-color:#ffd700;font-weight:700">
+            📥 ${l === 'tr' ? 'Görseli İndir (PNG)' : 'Download Image (PNG)'}
+          </button>
+        </div>
+      </div>
+    `;
+
+    modalEl.querySelector('#sw-qc-close-btn').onclick = close;
+    modalEl.onclick = e => { if (e.target === modalEl) close(); };
+
+    modalEl.querySelectorAll('.sw-qc-fmt-btn').forEach(b => {
+      b.onclick = () => {
+        activeFormat = b.dataset.fmt;
+        modalEl.querySelectorAll('.sw-qc-fmt-btn').forEach(btn => btn.classList.toggle('on', btn.dataset.fmt === activeFormat));
+        drawCanvas();
+      };
+    });
+
+    modalEl.querySelector('#sw-qc-btn-copy').onclick = () => {
+      const shareText = `“${currentOpts.text}”\n\n— ${currentOpts.speaker} (${currentOpts.cite})\nhttps://stallhart.com`;
+      navigator.clipboard.writeText(shareText).then(() => {
+        if (window.Community && Community.util && Community.util.toast) Community.util.toast(l === 'tr' ? 'Alıntı panoya kopyalandı!' : 'Quote copied!');
+        else if (Wiki.Toast) Wiki.Toast.show(l === 'tr' ? 'Alıntı panoya kopyalandı!' : 'Quote copied!');
+      });
+    };
+
+    modalEl.querySelector('#sw-qc-btn-x').onclick = () => {
+      const tweetText = encodeURIComponent(`“${currentOpts.text}”\n\n— ${currentOpts.speaker} (${currentOpts.cite})\n#Stallhart #DarkFantasy`);
+      const tweetUrl = encodeURIComponent(window.location.href);
+      window.open(`https://twitter.com/intent/tweet?text=${tweetText}&url=${tweetUrl}`, '_blank', 'noopener,noreferrer');
+    };
+
+    modalEl.querySelector('#sw-qc-btn-download').onclick = downloadImage;
+  }
+
+  function wrapText(ctx, text, maxWidth) {
+    const words = text.split(/\s+/);
+    const lines = [];
+    let currentLine = '';
+    for (let n = 0; n < words.length; n++) {
+      const testLine = currentLine ? (currentLine + ' ' + words[n]) : words[n];
+      const metrics = ctx.measureText(testLine);
+      if (metrics.width > maxWidth && n > 0) {
+        lines.push(currentLine);
+        currentLine = words[n];
+      } else {
+        currentLine = testLine;
+      }
+    }
+    if (currentLine) lines.push(currentLine);
+    return lines;
+  }
+
+  function drawCanvas() {
+    const canvas = document.getElementById('sw-qc-canvas');
+    if (!canvas || !currentOpts) return;
+    const ctx = canvas.getContext('2d');
+
+    const isStory = activeFormat === 'story';
+    const W = isStory ? 1080 : 1200;
+    const H = isStory ? 1920 : 675;
+
+    canvas.width = W;
+    canvas.height = H;
+
+    // 1. Zemin Degrade
+    const bgGrad = ctx.createRadialGradient(W / 2, H / 2, 80, W / 2, H / 2, Math.max(W, H) / 1.1);
+    bgGrad.addColorStop(0, '#1c1510');
+    bgGrad.addColorStop(0.5, '#0e1118');
+    bgGrad.addColorStop(1, '#05070a');
+    ctx.fillStyle = bgGrad;
+    ctx.fillRect(0, 0, W, H);
+
+    // 2. Parşömen / Yıldız tozu doku simülasyonu
+    ctx.fillStyle = 'rgba(196, 150, 42, 0.035)';
+    for (let i = 0; i < 90; i++) {
+      const rx = (Math.sin(i * 997) * 0.5 + 0.5) * W;
+      const ry = (Math.cos(i * 613) * 0.5 + 0.5) * H;
+      const rr = (Math.sin(i) * 0.5 + 0.5) * 2.5 + 0.8;
+      ctx.beginPath();
+      ctx.arc(rx, ry, rr, 0, Math.PI * 2);
+      ctx.fill();
+    }
+
+    // 3. Çift Altın Bordür & Köşe İşlemeleri
+    const pad = isStory ? 48 : 32;
+    const innerPad = pad + 14;
+
+    ctx.strokeStyle = '#c4962a';
+    ctx.lineWidth = 2.5;
+    ctx.strokeRect(pad, pad, W - pad * 2, H - pad * 2);
+
+    ctx.strokeStyle = 'rgba(196, 150, 42, 0.45)';
+    ctx.lineWidth = 1;
+    ctx.strokeRect(innerPad, innerPad, W - innerPad * 2, H - innerPad * 2);
+
+    const drawDiamond = (x, y, r) => {
+      ctx.save();
+      ctx.fillStyle = '#c4962a';
+      ctx.beginPath();
+      ctx.moveTo(x, y - r);
+      ctx.lineTo(x + r, y);
+      ctx.lineTo(x, y + r);
+      ctx.lineTo(x - r, y);
+      ctx.closePath();
+      ctx.fill();
+      ctx.restore();
+    };
+
+    drawDiamond(pad, pad, 8);
+    drawDiamond(W - pad, pad, 8);
+    drawDiamond(pad, H - pad, 8);
+    drawDiamond(W - pad, H - pad, 8);
+
+    // 4. Tepe Başlığı
+    ctx.save();
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'top';
+    ctx.fillStyle = '#f7d88b';
+    ctx.font = '600 ' + (isStory ? '28px' : '22px') + ' Georgia, serif';
+    ctx.letterSpacing = '4px';
+    const headY = isStory ? 120 : 64;
+    ctx.fillText('⚔️   S T A L L H A R T   D E S T A N I   ⚔️', W / 2, headY);
+    ctx.restore();
+
+    // 5. Dev Tırnak İşareti
+    ctx.save();
+    ctx.textAlign = 'center';
+    ctx.fillStyle = 'rgba(196, 150, 42, 0.28)';
+    ctx.font = 'italic ' + (isStory ? '160px' : '100px') + ' Georgia, serif';
+    const quoteMarkY = isStory ? 340 : 150;
+    ctx.fillText('❝', W / 2, quoteMarkY);
+    ctx.restore();
+
+    // 6. Alıntı Metni
+    ctx.save();
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillStyle = '#f5ede0';
+    ctx.shadowColor = 'rgba(0, 0, 0, 0.8)';
+    ctx.shadowBlur = 12;
+
+    const maxTextWidth = isStory ? W - 220 : W - 260;
+    const textLength = currentOpts.text.length;
+    let fontSize = isStory
+      ? (textLength < 80 ? 56 : textLength < 160 ? 46 : textLength < 280 ? 38 : 32)
+      : (textLength < 80 ? 40 : textLength < 160 ? 34 : textLength < 280 ? 28 : 24);
+
+    ctx.font = 'italic ' + fontSize + 'px "IM Fell English", "Merriweather", Georgia, serif';
+    const lineHeight = fontSize * 1.55;
+    let lines = wrapText(ctx, '“' + currentOpts.text + '”', maxTextWidth);
+
+    const totalBlockHeight = lines.length * lineHeight;
+    let startY = isStory
+      ? (H / 2 - totalBlockHeight / 2 - 20)
+      : (H / 2 - totalBlockHeight / 2 - 10);
+
+    lines.forEach((line, idx) => {
+      ctx.fillText(line, W / 2, startY + (idx * lineHeight));
+    });
+    ctx.restore();
+
+    // 7. Altın Ayraç Çizgisi ve Elmas
+    const dividerY = startY + totalBlockHeight + (isStory ? 70 : 35);
+    ctx.save();
+    ctx.strokeStyle = 'rgba(196, 150, 42, 0.5)';
+    ctx.lineWidth = 1.5;
+    const divWidth = isStory ? 280 : 200;
+    ctx.beginPath();
+    ctx.moveTo(W / 2 - divWidth, dividerY);
+    ctx.lineTo(W / 2 - 20, dividerY);
+    ctx.moveTo(W / 2 + 20, dividerY);
+    ctx.lineTo(W / 2 + divWidth, dividerY);
+    ctx.stroke();
+    drawDiamond(W / 2, dividerY, 7);
+    ctx.restore();
+
+    // 8. Konuşan / Sahibi
+    ctx.save();
+    ctx.textAlign = 'center';
+    ctx.fillStyle = '#f7d88b';
+    ctx.font = 'bold ' + (isStory ? '34px' : '26px') + ' Georgia, serif';
+    const speakerY = dividerY + (isStory ? 60 : 38);
+    ctx.fillText('— ' + currentOpts.speaker, W / 2, speakerY);
+
+    // Kaynak / Bölüm
+    ctx.fillStyle = '#bfa57a';
+    ctx.font = 'italic ' + (isStory ? '24px' : '19px') + ' Georgia, serif';
+    ctx.fillText(currentOpts.cite, W / 2, speakerY + (isStory ? 44 : 28));
+    ctx.restore();
+
+    // 9. Alt Bilgi
+    ctx.save();
+    ctx.textAlign = 'center';
+    ctx.fillStyle = 'rgba(196, 150, 42, 0.7)';
+    ctx.font = '600 ' + (isStory ? '20px' : '16px') + ' Georgia, serif';
+    ctx.letterSpacing = '3px';
+    const footY = H - (isStory ? 90 : 50);
+    ctx.fillText('STALLHART.COM · KARANLIK FANTAZİ DESTANI', W / 2, footY);
+    ctx.restore();
+  }
+
+  function downloadImage() {
+    const canvas = document.getElementById('sw-qc-canvas');
+    if (!canvas) return;
+    const dataUrl = canvas.toDataURL('image/png');
+    const a = document.createElement('a');
+    a.download = `stallhart-alinti-${activeFormat}.png`;
+    a.href = dataUrl;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    const l = Lang.get();
+    if (window.Community && Community.util && Community.util.toast) {
+      Community.util.toast(l === 'tr' ? 'Görsel kart başarıyla indirildi!' : 'Image card downloaded successfully!');
+    }
+  }
+
+  return { open, close, drawCanvas, downloadImage };
 })();
 
 /* ── 10. AÇILIŞ ──────────────────────────────────────────────── */

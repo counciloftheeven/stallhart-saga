@@ -243,12 +243,16 @@ html[data-theme="light"] body::before {
 ::-webkit-scrollbar-thumb { background: var(--border); }
 
 /* ── NAV ───────────────────────────────────────────────
-   Üç kademeli yerleşim (yalnızca CSS; --nav-h üst menü yüksekliğidir):
-     ≥1440px      tek satır: marka · menü (ortada) · araçlar
-     1281–1439px  iki satır: üstte marka + araçlar, altta menü
-     ≤1280px      hamburger menü
+   Gelişmiş duyarlı yerleşim (--nav-h üst menü yüksekliğidir):
+     Masaüstü, dizüstü ve tablet (≥768px):
+       Tek satırda: marka · tüm bölümler (Ana Sayfa, Karakterler, Haneler...) · araçlar.
+       Bölümler asla gizlenmez!
+     Mobil (<768px):
+       Üstte marka + araçlar + hamburger butonu,
+       Hemen altında parmakla kaydırılabilir yatay bölümler şeridi.
+       Hamburger'e basıldığında ise tam ekran açılır çekmece açılır.
    Sağ taraftaki araçlar: 🔍 (yalnızca simge), ⚙ (yazı boyutu + dil + tema),
-   profil. Kullanıcı adı yalnızca ≥1440px'te yazılır. */
+   profil/oturum. */
 :root { --nav-h: 54px; }
 #site-nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 200;
@@ -258,30 +262,37 @@ html[data-theme="light"] body::before {
 .nav-in {
   max-width: 1440px; margin: 0 auto;
   display: flex; align-items: center; justify-content: space-between;
-  padding: 0 2rem; height: var(--nav-h); gap: 1.25rem;
+  padding: 0 1.5rem; height: var(--nav-h); gap: 1rem;
   text-align: left; /* bazı sayfaların ortalanmış metni menüye sızmasın */
 }
 .nav-brand {
-  font-family: var(--font-display); font-size: 1.1rem;
+  font-family: var(--font-display); font-size: 1.15rem;
   color: var(--gold); letter-spacing: .02em;
   text-decoration: none; flex-shrink: 0;
+  font-weight: 700;
 }
 .nav-links {
-  display: flex; gap: clamp(.9rem, 1.3vw, 1.6rem); list-style: none; flex: 1;
+  display: flex; align-items: center; gap: clamp(.45rem, .95vw, 1.2rem); list-style: none; flex: 1;
   min-width: 0; overflow-x: auto; scrollbar-width: none; -ms-overflow-style: none;
+  justify-content: center;
+  padding: 0 .25rem;
 }
-/* "justify-content:center" taşınca sol kenarı kesiyordu; kenar boşluğu
-   hilesi ortalar ama sığmazsa soldan başlayıp kaydırılabilir kalır. */
-.nav-links > li:first-child { margin-left: auto; }
-.nav-links > li:last-child  { margin-right: auto; }
 .nav-links::-webkit-scrollbar { display: none; }
 .nav-links a {
-  font-family: var(--font-display); font-size: .82rem;
-  color: var(--parchd); text-decoration: none; transition: color .18s;
+  font-family: var(--font-display); font-size: clamp(.74rem, .88vw, .84rem);
+  color: var(--parchd); text-decoration: none; transition: color .18s, background .18s;
   white-space: nowrap; /* başlık fontu genişse bile kelime ortadan bölünmesin */
+  padding: .28rem .5rem; border-radius: 4px; display: inline-flex; align-items: center;
 }
-.nav-links a:hover,
-.nav-links a.active { color: var(--gold); }
+.nav-links a:hover {
+  color: var(--gold);
+  background: rgba(196,150,42,.09);
+}
+.nav-links a.active {
+  color: var(--goldb);
+  background: rgba(196,150,42,.15);
+  font-weight: 700;
+}
 .kurultay-dot { display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--bloodb); margin-left: 4px; vertical-align: middle; }
 .nav-r { display: flex; align-items: center; gap: .5rem; flex-shrink: 0; }
 
@@ -394,57 +405,160 @@ html[data-theme="light"] body::before {
 }
 .nav-ham span { display: block; width: 22px; height: 1.5px; background: var(--parchd); }
 
-/* İki satırlı mod: 1281–1439px */
-@media (min-width: 1281px) and (max-width: 1439px) {
-  :root { --nav-h: 96px; }
+/* ── DUYARLI MENÜ (Responsive Nav) ───────────────────
+   ≥768px: Tek satırda marka · tüm bölümler (ortada) · araçlar.
+           Bölümler asla gizlenmez; masaüstü, dizüstü ve tablette her zaman doğrudan görünür.
+   <768px: Mobil mod. Üstte marka + araçlar + hamburger,
+           hemen altında parmakla kaydırılabilir yatay bölümler şeridi
+           (Ana Sayfa, Karakterler, Haneler, Bölümler...).
+           Kullanıcı hamburger'a bastığında tam ekran açılır çekmece açılır. */
+@media (min-width: 768px) {
+  :root { --nav-h: 54px; }
   .nav-in {
-    display: grid; grid-template-columns: 1fr auto; grid-template-rows: 54px 1fr;
-    grid-template-areas: "brand tools" "menu menu";
-    align-items: center; gap: 0 1rem;
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: space-between;
+    height: var(--nav-h);
+    padding: 0 1.5rem;
+    gap: .75rem;
   }
-  .nav-brand { grid-area: brand; justify-self: start; }
-  .nav-r     { grid-area: tools; }
+  .nav-brand {
+    order: 1;
+    flex-shrink: 0;
+  }
   .nav-links {
-    grid-area: menu; align-self: stretch; align-items: center;
-    border-top: 1px solid var(--border); gap: clamp(1.1rem, 2vw, 2rem);
+    order: 2;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    min-width: 0;
+    height: var(--nav-h);
+    overflow-x: auto;
+    scrollbar-width: none;
+    gap: clamp(.4rem, .85vw, 1.15rem);
+    padding: 0 .25rem;
+  }
+  .nav-r {
+    order: 3;
+    flex-shrink: 0;
+  }
+  .nav-ham {
+    display: none !important;
   }
 }
 
-/* Hamburger: ≤1280px */
-@media (max-width: 1280px) {
-  .nav-links {
-    display: none; flex-direction: column;
-    position: absolute; top: var(--nav-h); left: 0; right: 0;
-    background: var(--nav-bg); border-bottom: 1px solid var(--border);
-    padding: 1.1rem 1.6rem 1.8rem; gap: .6rem;
-    overflow-x: visible; /* masaüstü satır-içi kaydırma modundan çık */
-    max-height: calc(100vh - var(--nav-h));
-    max-height: calc(100dvh - var(--nav-h));
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
-    box-shadow: 0 18px 48px rgba(0,0,0,.85);
+/* Mobil: <768px */
+@media (max-width: 767px) {
+  :root { --nav-h: 88px; }
+  .nav-in {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 0 .75rem;
+    height: auto;
+    min-height: var(--nav-h);
+    gap: 0;
   }
-  .nav-links > li {
-    border-bottom: 1px solid rgba(255,255,255,.04);
-  }
-  .nav-links > li:last-child {
-    border-bottom: none;
-  }
-  .nav-links > li:first-child { margin-left: 0; }
-  .nav-links > li:last-child  { margin-right: 0; }
-  .nav-links a {
+  .nav-brand {
+    height: 48px;
     display: flex;
     align-items: center;
-    min-height: 42px;
-    padding: .35rem 0;
-    font-size: .95rem;
+    order: 1;
+    font-size: 1.05rem;
   }
-  .nav-links.open { display: flex; }
-  .nav-ham { display: flex; }
-  .nav-r { gap: .4rem; }
+  .nav-r {
+    height: 48px;
+    display: flex;
+    align-items: center;
+    order: 2;
+    margin-left: auto;
+    gap: .35rem;
+  }
+  .nav-ham {
+    display: flex;
+  }
+  .nav-links {
+    order: 3;
+    width: 100%;
+    height: 40px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    gap: .4rem;
+    padding: .2rem 0 .4rem;
+    border-top: 1px solid var(--border);
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .nav-links::-webkit-scrollbar {
+    display: none;
+  }
+  .nav-links > li {
+    flex-shrink: 0;
+  }
+  .nav-links a {
+    font-size: .78rem;
+    padding: .22rem .55rem;
+    background: rgba(0,0,0,.22);
+    border: 1px solid rgba(196,150,42,.18);
+    border-radius: 4px;
+    white-space: nowrap;
+  }
+  .nav-links a.active {
+    background: rgba(196,150,42,.22);
+    border-color: var(--gold);
+    color: var(--goldb);
+  }
   .nav-set-panel {
     max-width: calc(100vw - 1.5rem);
     right: -6px;
+  }
+
+  /* Açılır tam ekran çekmece: hamburger açıldığında */
+  .nav-links.open {
+    position: fixed;
+    top: 48px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: calc(100vh - 48px);
+    height: calc(100dvh - 48px);
+    background: var(--nav-bg);
+    backdrop-filter: blur(14px);
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+    padding: 1.25rem 1.5rem 2.5rem;
+    gap: .5rem;
+    overflow-y: auto;
+    z-index: 350;
+    box-shadow: 0 18px 48px rgba(0,0,0,.85);
+    border-top: none;
+  }
+  .nav-links.open > li {
+    border-bottom: 1px solid rgba(255,255,255,.06);
+    flex-shrink: 0;
+  }
+  .nav-links.open > li:last-child {
+    border-bottom: none;
+  }
+  .nav-links.open a {
+    display: flex;
+    align-items: center;
+    min-height: 44px;
+    font-size: 1.05rem;
+    padding: .5rem .75rem;
+    background: none;
+    border: none;
+  }
+  .nav-links.open a.active {
+    color: var(--goldb);
+    background: rgba(196,150,42,.12);
+    border-left: 3px solid var(--gold);
   }
 }
 @media (max-width: 480px) {
