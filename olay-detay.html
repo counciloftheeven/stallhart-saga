@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title data-tr="Önemli Olay · Stallhart Wiki" data-en="Historic Event · Stallhart Wiki">Önemli Olay · Stallhart Wiki</title>
+<meta name="description" content="Stallhart Destanı — Evrendeki önemli olaylar, savaşlar, fetihler, barış antlaşmaları ve fermanların detaylı kroniği." data-tr="Stallhart Destanı — Evrendeki önemli olaylar, savaşlar, fetihler, barış antlaşmaları ve fermanların detaylı kroniği." data-en="The Stallhart Saga — Detailed chronicles of major events, wars, conquests, peace treaties, and imperial decrees." data-i18n-attr="content">
+<meta name="theme-color" content="#0c121f">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="The Stallhart Saga">
+<meta property="og:locale" content="tr_TR">
+<meta property="og:title" content="Önemli Olay · Stallhart Wiki">
+<meta property="og:description" content="Stallhart Destanı — Evrendeki önemli olaylar, savaşlar, fetihler, barış antlaşmaları ve fermanların detaylı kroniği.">
+<meta property="og:image" content="assets/images/SIYASI_HARITA_onizleme.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Önemli Olay · Stallhart Wiki">
+<meta name="twitter:description" content="Stallhart Destanı — Evrendeki önemli olaylar, savaşlar, fetihler, barış antlaşmaları ve fermanların detaylı kroniği.">
+<meta name="twitter:image" content="assets/images/SIYASI_HARITA_onizleme.jpg">
+<link rel="manifest" href="/manifest.json">
+<link rel="apple-touch-icon" href="assets/images/logo-stallhart.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Modern+Antiqua&amp;family=IM+Fell+English:ital@0;1&amp;family=Merriweather:ital,wght@0,400;0,700;1,400&amp;display=swap">
+<link rel="stylesheet" href="assets/css/styles.css?v=3.2">
+<script src="assets/js/router.js"></script>
+<style>
+body { background: var(--bg); color: var(--parch); }
+.wiki-layout {
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 6rem 1.5rem 4rem;
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 2.5rem;
+  align-items: start;
+}
+@media (max-width: 860px) {
+  .wiki-layout {
+    grid-template-columns: 1fr;
+    padding: 5rem 1.25rem 3rem;
+    gap: 2rem;
+  }
+}
+@media (max-width: 480px) {
+  .wiki-layout {
+    padding: 4.5rem .85rem 2.5rem;
+  }
+}
+
+/* ── BREADCRUMB ─────────────────────────────────────── */
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  font-size: .8rem;
+  color: var(--parchd);
+  margin-bottom: 1.5rem;
+  font-family: var(--font-display);
+  font-style: italic;
+  flex-wrap: wrap;
+}
+.breadcrumb a {
+  color: var(--goldd);
+  text-decoration: none;
+  transition: color .15s ease;
+}
+.breadcrumb a:hover { color: var(--gold); }
+.breadcrumb .sep { color: var(--border); }
+.breadcrumb .curr { color: var(--parchl); font-style: normal; }
+
+/* ── HERO & BAŞLIK ─────────────────────────────────── */
+.ev-hero-box {
+  background: linear-gradient(180deg, var(--card) 0%, var(--surface) 100%);
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--gold);
+  border-radius: 4px;
+  padding: 1.5rem 1.75rem;
+  margin-bottom: 2rem;
+  position: relative;
+  overflow: hidden;
+}
+.ev-hero-box.war { border-left-color: #8b0000; }
+.ev-hero-box.treaty { border-left-color: #2b7a4b; }
+.ev-hero-box.crisis { border-left-color: #c97a2b; }
+.ev-hero-box.ruler { border-left-color: var(--gold); }
+.ev-hero-box.religious { border-left-color: #3d6b8a; }
+
+.ev-kicker {
+  font-family: var(--font-display);
+  font-size: .75rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--goldd);
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+  margin-bottom: .6rem;
+  flex-wrap: wrap;
+}
+.ev-badge-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: .35rem;
+  padding: .2rem .65rem;
+  border-radius: 3px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  font-size: .7rem;
+  color: var(--parchl);
+  font-style: normal;
+}
+.ev-hero-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 3.2vw, 2.7rem);
+  color: var(--parchl);
+  line-height: 1.2;
+  margin: 0 0 .6rem;
+}
+.ev-hero-subtitle {
+  font-size: 1.02rem;
+  line-height: 1.7;
+  color: var(--parch);
+  font-style: italic;
+  margin: 0 0 1rem;
+}
+.ev-hero-meta {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+  padding-top: .75rem;
+  border-top: 1px solid rgba(255,255,255,.06);
+  font-size: .84rem;
+  color: var(--parchd);
+}
+.ev-hero-meta strong { color: var(--gold); font-family: var(--font-display); font-weight: normal; }
+
+/* ── MAKALENİN BÖLÜMLERİ ───────────────────────────── */
+.art-sec {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 1.5rem 1.75rem;
+  margin-bottom: 1.75rem;
+}
+.art-sec-head {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  color: var(--parchl);
+  margin: 0 0 1rem;
+  display: flex;
+  align-items: center;
+  gap: .6rem;
+  padding-bottom: .5rem;
+  border-bottom: 1px solid var(--border);
+}
+.art-sec-head svg {
+  width: 18px;
+  height: 18px;
+  stroke: var(--gold);
+  fill: none;
+  stroke-width: 2;
+  flex-shrink: 0;
+}
+.art-p {
+  font-size: .95rem;
+  line-height: 1.85;
+  color: var(--parch);
+  margin-bottom: 1rem;
+}
+.art-p:last-child { margin-bottom: 0; }
+.art-callout {
+  background: rgba(184,115,51,.08);
+  border: 1px solid var(--goldd);
+  border-left: 3px solid var(--gold);
+  border-radius: 3px;
+  padding: 1rem 1.25rem;
+  margin: 1.25rem 0;
+  font-style: italic;
+  font-size: .92rem;
+  line-height: 1.75;
+  color: var(--parchl);
+}
+
+/* ── TARAFLAR / FACTIONS TABLOSU ───────────────────── */
+.factions-dual-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+  margin: 1rem 0;
+}
+@media (max-width: 600px) {
+  .factions-dual-grid { grid-template-columns: 1fr; }
+}
+.faction-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 1rem 1.15rem;
+}
+.faction-title {
+  font-family: var(--font-display);
+  font-size: .85rem;
+  color: var(--goldd);
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  margin-bottom: .6rem;
+  border-bottom: 1px dashed rgba(255,255,255,.08);
+  padding-bottom: .3rem;
+}
+.faction-name {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  color: var(--parchl);
+  margin-bottom: .4rem;
+}
+.faction-desc {
+  font-size: .84rem;
+  color: var(--parchd);
+  line-height: 1.6;
+}
+
+/* ── BAĞLANTI ÇİPLERİ ──────────────────────────────── */
+.rel-chips-wrap {
+  display: flex;
+  gap: .5rem;
+  flex-wrap: wrap;
+  margin-top: .75rem;
+}
+.rel-link-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: .45rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--parch);
+  text-decoration: none;
+  font-family: var(--font-display);
+  font-size: .8rem;
+  padding: .35rem .75rem;
+  border-radius: 4px;
+  transition: all .15s ease;
+}
+.rel-link-chip:hover {
+  border-color: var(--goldd);
+  color: var(--parchl);
+  transform: translateY(-1px);
+}
+.rel-link-chip svg {
+  width: 14px;
+  height: 14px;
+  stroke: var(--goldd);
+  fill: none;
+  stroke-width: 2;
+}
+
+/* ── KRONOLOJİ GEZİNTİSİ (ÖNCEKİ / SONRAKİ) ────────── */
+.chronology-nav {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+@media (max-width: 580px) {
+  .chronology-nav { grid-template-columns: 1fr; }
+}
+.chrono-btn {
+  display: flex;
+  flex-direction: column;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 1rem 1.25rem;
+  text-decoration: none;
+  transition: all .2s ease;
+}
+.chrono-btn:hover {
+  border-color: var(--goldd);
+  background: var(--surface);
+  transform: translateY(-2px);
+}
+.chrono-kicker {
+  font-family: var(--font-display);
+  font-size: .7rem;
+  color: var(--goldd);
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  margin-bottom: .25rem;
+}
+.chrono-title {
+  font-family: var(--font-display);
+  font-size: .95rem;
+  color: var(--parchl);
+  line-height: 1.35;
+}
+.chrono-ks {
+  font-size: .75rem;
+  color: var(--parchd);
+  margin-top: .2rem;
+}
+
+/* ── SAĞ KENAR BİLGİ KUTUSU (INFOBOX) ──────────────── */
+.ev-infobox {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-top: 3px solid var(--gold);
+  border-radius: 4px;
+  padding: 1.25rem;
+  position: sticky;
+  top: calc(var(--nav-h, 54px) + 1.5rem);
+}
+.ev-infobox-head {
+  text-align: center;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 1rem;
+}
+.ev-infobox-ks {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  color: var(--goldb);
+  line-height: 1.2;
+}
+.ev-infobox-badge {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-size: .72rem;
+  padding: .2rem .6rem;
+  background: rgba(184,115,51,.12);
+  border: 1px solid var(--goldd);
+  border-radius: 3px;
+  color: var(--parchl);
+  margin-top: .4rem;
+}
+.ev-info-rows {
+  display: flex;
+  flex-direction: column;
+  gap: .65rem;
+  font-size: .84rem;
+}
+.ev-info-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: .75rem;
+  padding-bottom: .55rem;
+  border-bottom: 1px dashed rgba(255,255,255,.05);
+}
+.ev-info-row:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+.ev-info-k {
+  color: var(--parchd);
+  font-family: var(--font-display);
+  font-size: .78rem;
+  flex-shrink: 0;
+  max-width: 100px;
+}
+.ev-info-v {
+  color: var(--parchl);
+  text-align: right;
+  line-height: 1.5;
+  word-break: break-word;
+}
+.ev-info-v a {
+  color: var(--gold);
+  text-decoration: none;
+}
+.ev-info-v a:hover {
+  text-decoration: underline;
+}
+.ev-share-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: .5rem;
+  width: 100%;
+  margin-top: 1.25rem;
+  padding: .65rem 1rem;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  color: var(--parchl);
+  font-family: var(--font-display);
+  font-size: .84rem;
+  cursor: pointer;
+  transition: all .15s ease;
+}
+.ev-share-btn:hover {
+  border-color: var(--goldd);
+  background: rgba(184,115,51,.1);
+}
+.ev-share-btn svg {
+  width: 15px; height: 15px; stroke: currentColor; fill: none; stroke-width: 2;
+}
+
+/* ── LİSTE SEÇİCİ (OLAY BULUNAMADIĞINDA) ───────────── */
+.all-events-selector {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+}
+.ev-grid-jump {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1rem;
+  margin-top: 1.25rem;
+}
+.ev-jump-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: .85rem 1rem;
+  text-decoration: none;
+  transition: all .15s ease;
+  display: flex;
+  flex-direction: column;
+}
+.ev-jump-card:hover {
+  border-color: var(--goldd);
+  transform: translateY(-2px);
+}
+.ev-jump-ks {
+  font-family: var(--font-display);
+  font-size: .75rem;
+  color: var(--gold);
+}
+.ev-jump-name {
+  font-family: var(--font-display);
+  font-size: .88rem;
+  color: var(--parchl);
+  margin-top: .2rem;
+}
+</style>
+</head>
+<body>
+
+<main class="wiki-layout">
+  <!-- SOL / ANA İÇERİK SÜTUNU -->
+  <article class="wiki-main" id="content-main">
+    <div style="padding:2rem;text-align:center;color:var(--parchd);font-style:italic;">
+      Yükleniyor…
+    </div>
+  </article>
+
+  <!-- SAĞ / BİLGİ KUTUSU (INFOBOX) -->
+  <aside class="wiki-side" id="content-side"></aside>
+</main>
+
+<!-- DİVAN DEFTERİ / YORUMLAR ALANI -->
+<section style="max-width:1140px;margin:0 auto;padding:0 1.5rem 5rem;">
+  <div id="divan-mount"></div>
+</section>
+
+<script src="assets/js/wiki.js?v=3.2"></script>
+<script>
+'use strict';
+
+const { Lang, initWiki, esc, safeImg } = Wiki;
+
+let loreData = null;
+let charsData = null;
+let housesData = null;
+let kingdomsData = null;
+let geographyData = null;
+
+const CATEGORY_NAMES = {
+  war:       { tr: '⚔️ Savaş, Muharebe & Sefer', en: '⚔️ War, Battle & Campaign' },
+  treaty:    { tr: '📜 Antlaşma, Ferman & Barış', en: '📜 Treaty, Decree & Peace' },
+  crisis:    { tr: '🔥 Kriz, İsyan & Dönüm',     en: '🔥 Crisis, Rebellion & Turning' },
+  ruler:     { tr: '👑 Hanedan, Hükümdar & Çağ',  en: '👑 Dynasty, Ruler & Epoch' },
+  religious: { tr: '⚖️ Dinî & Ruhani Olay',      en: '⚖️ Religious & Sacred Event' }
+};
+
+function getEventCategory(e) {
+  const text = ((e.name?.tr || '') + ' ' + (e.desc?.tr || '')).toLowerCase();
+  if (/antlaşma|anlaşma|pakt|sulh|ferman|uzlaşma|doktrin|barış/.test(text) && !/savaş ilan etti|muharebe/.test(e.name?.tr || '')) {
+    return 'treaty';
+  }
+  if (e.type === 'war' || /savaş|muharebe|sefer|kuşatma|fetih|isyan|çatışma|taarruz|pusu/.test(text)) {
+    return 'war';
+  }
+  if (e.type === 'crisis') return 'crisis';
+  if (e.type === 'religious') return 'religious';
+  if (e.type === 'ruler') return 'ruler';
+  return 'war';
+}
+
+function resolveEntities(text) {
+  const lower = text.toLowerCase();
+  const matchedChars = [];
+  const matchedHouses = [];
+  const matchedKingdoms = [];
+
+  if (charsData) {
+    const list = charsData.characters || charsData;
+    list.forEach(c => {
+      const name = (c.name?.tr || c.name || '').toLowerCase();
+      if (name.length >= 4 && lower.includes(name)) {
+        matchedChars.push(c);
+      }
+    });
+  }
+
+  if (housesData && housesData.provinces) {
+    housesData.provinces.forEach(p => {
+      (p.houses || []).forEach(h => {
+        const name = (h.name?.tr || h.name || '').toLowerCase().replace(' hanesi', '').replace(' evi', '');
+        if (name.length >= 4 && lower.includes(name)) {
+          matchedHouses.push(h);
+        }
+      });
+    });
+  }
+
+  if (kingdomsData && kingdomsData.kingdoms) {
+    kingdomsData.kingdoms.forEach(k => {
+      const name = (k.name?.tr || k.name || '').toLowerCase().replace(' krallığı', '').replace(' imparatorluğu', '');
+      if (name.length >= 4 && lower.includes(name)) {
+        matchedKingdoms.push(k);
+      }
+    });
+  }
+
+  return { matchedChars, matchedHouses, matchedKingdoms };
+}
+
+async function loadAll() {
+  const [lore, chars, houses, kingdoms, geo] = await Promise.all([
+    Wiki.loadData('lore.json'),
+    Wiki.loadData('characters.json'),
+    Wiki.loadData('houses.json'),
+    Wiki.loadData('kingdoms.json'),
+    Wiki.loadData('geography.json')
+  ]);
+  loreData = lore;
+  charsData = chars;
+  housesData = houses;
+  kingdomsData = kingdoms;
+  geographyData = geo;
+}
+
+function render() {
+  if (!loreData || !loreData.events) return;
+  const l = Lang.get();
+  const t = obj => Lang.t(obj);
+
+  /* URL'den veya SWRoute'tan olay kimliğini belirle */
+  let evId = SWRoute.id('olay');
+  if (!evId) {
+    const m = location.search.match(/[?&]id=([^&#]+)/);
+    if (m) evId = decodeURIComponent(m[1]);
+  }
+  if (!evId && location.hash) {
+    const raw = location.hash.replace(/^#\/?/, '').replace(/^olay\//, '');
+    if (raw) evId = decodeURIComponent(raw);
+  }
+
+  const events = loreData.events || [];
+  let eventIndex = events.findIndex(e => e.id === evId);
+  let event = eventIndex >= 0 ? events[eventIndex] : null;
+
+  /* Kimlik belirtilmemişse ilk olayı göster veya genel liste sun */
+  if (!event && events.length) {
+    eventIndex = 0;
+    event = events[0];
+  }
+
+  if (!event) {
+    document.getElementById('content-main').innerHTML = `
+      <div class="art-sec">
+        <h1 style="color:var(--goldb);font-family:var(--font-display);">${l === 'tr' ? 'Olay Bulunamadı' : 'Event Not Found'}</h1>
+        <p class="art-p">${l === 'tr' ? 'Aradığınız olay arşivi mevcut değil.' : 'The requested event record does not exist.'}</p>
+        <p><a href="lore.html#tb-tarih" style="color:var(--gold);text-decoration:none;">${l === 'tr' ? '← Ansiklopedi Önemli Olaylar Sekmesine Dön' : '← Return to Significant Events'}</a></p>
+      </div>
+    `;
+    return;
+  }
+
+  const eventName = t(event.name) || (l === 'tr' ? 'İsimsiz Hadise' : 'Unnamed Event');
+  const eventDesc = t(event.desc) || '';
+  const eventCategory = getEventCategory(event);
+  const catLabel = t(CATEGORY_NAMES[eventCategory] || CATEGORY_NAMES.war);
+  const ksYear = event.ks === '?' ? (event.ruler ? (l === 'tr' ? 'Dönem İçi' : 'Reign Era') : (l === 'tr' ? 'Tarihsiz' : 'Undated')) : `KS ${event.ks}`;
+
+  /* Sayfa başlığı ve meta güncelle */
+  document.title = `${eventName} · ${l === 'tr' ? 'Önemli Olaylar Wiki' : 'Historic Events Wiki'} · Stallhart`;
+
+  /* İlgili varlıkları metinden eşle */
+  const combinedText = (event.name?.tr || '') + ' ' + (event.desc?.tr || '') + ' ' + (event.ruler || '');
+  const { matchedChars, matchedHouses, matchedKingdoms } = resolveEntities(combinedText);
+
+  /* Hükümdar karakter bağlantısını bul */
+  let rulerChar = null;
+  if (event.ruler && charsData) {
+    const list = charsData.characters || charsData;
+    const cleanRuler = event.ruler.toLowerCase().replace(/i̇|ı/g, 'i').replace(/[^a-z0-9 ]/g, '');
+    rulerChar = list.find(c => {
+      const cName = (c.name?.tr || c.name || '').toLowerCase().replace(/i̇|ı/g, 'i').replace(/[^a-z0-9 ]/g, '');
+      return cleanRuler.includes(cName) || cName.includes(cleanRuler);
+    });
+  }
+
+  /* Önceki ve Sonraki Olay */
+  const prevEvent = eventIndex > 0 ? events[eventIndex - 1] : null;
+  const nextEvent = eventIndex < events.length - 1 ? events[eventIndex + 1] : null;
+
+  /* SOL / ANA MAKALENİN OLUŞTURULMASI */
+  const mainHTML = `
+    <!-- BREADCRUMB -->
+    <nav class="breadcrumb" aria-label="Gezinme Yolu">
+      <a href="index.html">${l === 'tr' ? 'Ana Sayfa' : 'Home'}</a>
+      <span class="sep">/</span>
+      <a href="lore.html">${l === 'tr' ? 'Evren Ansiklopedisi' : 'World Encyclopedia'}</a>
+      <span class="sep">/</span>
+      <a href="lore.html#tb-tarih">${l === 'tr' ? 'Önemli Olaylar' : 'Significant Events'}</a>
+      <span class="sep">/</span>
+      <span class="curr">${esc(eventName)}</span>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <header class="ev-hero-box ${eventCategory}">
+      <div class="ev-kicker">
+        <span class="ev-badge-chip">${esc(catLabel)}</span>
+        <span>${esc(ksYear)}</span>
+        ${event.ruler ? `<span>·</span><span>📜 ${esc(event.ruler)}</span>` : ''}
+      </div>
+      <h1 class="ev-hero-title">${esc(eventName)}</h1>
+      <p class="ev-hero-subtitle">${esc(eventDesc.slice(0, 180))}${eventDesc.length > 180 ? '…' : ''}</p>
+      <div class="ev-hero-meta">
+        <div>${l === 'tr' ? 'Tarihsel Dönem:' : 'Epoch:'} <strong>${esc(ksYear)}</strong></div>
+        ${event.ruler ? `<div>${l === 'tr' ? 'Mühür Sahibi:' : 'Sealed by:'} <strong>${esc(event.ruler)}</strong></div>` : ''}
+        ${event.tags && event.tags.length ? `<div>${l === 'tr' ? 'Nitelik:' : 'Scope:'} <strong>${event.tags.map(tag => '#' + tag).join(', ')}</strong></div>` : ''}
+      </div>
+    </header>
+
+    <!-- 1. BÖLÜM: TARİHÎ GENEL BAKIŞ & KRONOLOJİK SEYİR -->
+    <section class="art-sec" id="sec-tarihce">
+      <h2 class="art-sec-head">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        <span>${l === 'tr' ? 'Tarihî Genel Bakış & Gelişimi' : 'Historical Overview & Context'}</span>
+      </h2>
+      <p class="art-p">${esc(eventDesc)}</p>
+      
+      <div class="art-callout">
+        <strong>${l === 'tr' ? 'Divan Başvakanüvisi Şerhi:' : 'Imperial Chronicler Annotation:'}</strong>
+        "${esc(eventName)}", ${ksYear} senesinde kıta jeopolitiğinde dengeleri kökünden sarsmış ve Stallhart Tahtı ile taşra eyaletleri arasındaki güç dengesini yeniden tayin etmiştir.
+      </div>
+    </section>
+
+    <!-- 2. BÖLÜM: TARAFLAR, İTTİFAKLAR VE KUMANDANLAR -->
+    <section class="art-sec" id="sec-taraflar">
+      <h2 class="art-sec-head">
+        <svg viewBox="0 0 24 24"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polygon points="2 17 12 22 22 17 12 12 2 17"/><polygon points="2 12 12 17 22 12 12 7 2 12"/></svg>
+        <span>${l === 'tr' ? 'Taraflar, Kumandanlar & Siyasi Güçler' : 'Factions, Commanders & Powers'}</span>
+      </h2>
+      <div class="factions-dual-grid">
+        <div class="faction-card">
+          <div class="faction-title">${l === 'tr' ? 'İmparatorluk & İttifak Cephesi' : 'Imperial & Coalition Side'}</div>
+          <div class="faction-name">${event.ruler ? esc(event.ruler) : 'Stallhart İmparatorluğu'}</div>
+          <div class="faction-desc">
+            ${l === 'tr' ? 'Kutsal Kan Doktrini ve Divan otoritesini savunan imparatorluk lejyonları ve sadık hanedan birlikleri.' : 'Imperial legions and loyalist bannerhouses defending the Crown.'}
+          </div>
+        </div>
+        <div class="faction-card">
+          <div class="faction-title">${l === 'tr' ? 'Karşı Taraf, Rakip veya Muhatap' : 'Opposing Realm / Faction'}</div>
+          <div class="faction-name">
+            ${matchedKingdoms.length ? esc(t(matchedKingdoms[0].name)) : (matchedHouses.length ? esc(t(matchedHouses[0].name)) : (l === 'tr' ? 'Taşra İsyanı / Bağımsız Güçler' : 'Regional Faction'))}
+          </div>
+          <div class="faction-desc">
+            ${l === 'tr' ? 'Savaş meydanında çarpışan ordular, bağımsızlık talep eden prenslikler ya da müzakere masasında hak iddia eden komşu krallıklar.' : 'Opposing hosts, rebel forces or foreign sovereigns participating in the engagement.'}
+          </div>
+        </div>
+      </div>
+
+      ${(matchedChars.length || matchedHouses.length || matchedKingdoms.length) ? `
+      <div style="margin-top:1.25rem;">
+        <div style="font-family:var(--font-display);font-size:.82rem;color:var(--goldd);margin-bottom:.4rem;">
+          ${l === 'tr' ? 'İlişkili Şahsiyetler, Haneler ve Diyarlar:' : 'Related Figures, Houses & Realms:'}
+        </div>
+        <div class="rel-chips-wrap">
+          ${matchedChars.map(c => `
+            <a href="${SWRoute.href('karakter', c.id)}" class="rel-link-chip" title="${esc(t(c.name))}">
+              <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+              <span>${esc(t(c.name))}</span>
+            </a>
+          `).join('')}
+          ${matchedHouses.map(h => `
+            <a href="${SWRoute.href('hane', h.id)}" class="rel-link-chip" title="${esc(t(h.name))}">
+              <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+              <span>${esc(t(h.name))}</span>
+            </a>
+          `).join('')}
+          ${matchedKingdoms.map(k => `
+            <a href="${SWRoute.href('devlet', k.id)}" class="rel-link-chip" title="${esc(t(k.name))}">
+              <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+              <span>${esc(t(k.name))}</span>
+            </a>
+          `).join('')}
+        </div>
+      </div>` : ''}
+    </section>
+
+    <!-- 3. BÖLÜM: ANTLAŞMA HÜKÜMLERİ, NETİCELER & ETKİ -->
+    <section class="art-sec" id="sec-neticeler">
+      <h2 class="art-sec-head">
+        <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+        <span>${eventCategory === 'treaty' ? (l === 'tr' ? 'Antlaşma Maddeleri & Hükümler' : 'Treaty Terms & Decrees') : (l === 'tr' ? 'Savaşın Neticesi & Diyara Etkisi' : 'Outcomes & Historical Impact')}</span>
+      </h2>
+      <p class="art-p">
+        ${eventCategory === 'treaty' 
+          ? (l === 'tr' ? 'Bu resmi mutabakat metni ile taraflar sınır hatlarını, vergi mükellefiyetlerini ve esir takasını kâğıda dökmüş; ferman mührüyle imparatorluk kanununa bağlanmıştır.' : 'Under this formal accord, borders, tribute obligations, and prisoner exchanges were enshrined into imperial statute.')
+          : (l === 'tr' ? 'Hadisenin ardından meydana gelen güç boşlukları ve fethedilen topraklar, sonraki nesiller boyunca sürecek siyasi intikamların ve yeni ittifakların kıvılcımını ateşlemiştir.' : 'The resulting vacuum of power and territorial realignment defined geopolitical rivalries for generations to come.')}
+      </p>
+      <p class="art-p">
+        ${l === 'tr' ? 'Tüm bu gelişmeler Divan Defterleri ve Kütüphane parşömenlerine kaydedilmiş; Stallhart Destanı’nın kırılma noktalarından biri olarak tarihe geçmiştir.' : 'All developments were recorded within the Imperial Great Library and Court annals, remaining key turning points of the Saga.'}
+      </p>
+    </section>
+
+    <!-- KRONOLOJİ GEZİNTİSİ (ÖNCEKİ / SONRAKİ) -->
+    <div class="chronology-nav">
+      ${prevEvent ? `
+        <a href="${SWRoute.href('olay', prevEvent.id)}" class="chrono-btn prev">
+          <span class="chrono-kicker">← ${l === 'tr' ? 'Önceki Hadise' : 'Previous Event'}</span>
+          <span class="chrono-title">${esc(t(prevEvent.name))}</span>
+          <span class="chrono-ks">${prevEvent.ks === '?' ? '' : 'KS ' + prevEvent.ks}</span>
+        </a>
+      ` : '<div></div>'}
+      ${nextEvent ? `
+        <a href="${SWRoute.href('olay', nextEvent.id)}" class="chrono-btn next" style="text-align:right;">
+          <span class="chrono-kicker">${l === 'tr' ? 'Sonraki Hadise' : 'Next Event'} →</span>
+          <span class="chrono-title">${esc(t(nextEvent.name))}</span>
+          <span class="chrono-ks">${nextEvent.ks === '?' ? '' : 'KS ' + nextEvent.ks}</span>
+        </a>
+      ` : '<div></div>'}
+    </div>
+  `;
+
+  /* SAĞ / BİLGİ KUTUSU (INFOBOX) OLUŞTURULMASI */
+  const sideHTML = `
+    <div class="ev-infobox">
+      <div class="ev-infobox-head">
+        <div class="ev-infobox-ks">${esc(ksYear)}</div>
+        <div class="ev-infobox-badge">${esc(catLabel)}</div>
+      </div>
+      <div class="ev-info-rows">
+        <div class="ev-info-row">
+          <span class="ev-info-k">${l === 'tr' ? 'Hadise:' : 'Event:'}</span>
+          <span class="ev-info-v"><strong>${esc(eventName)}</strong></span>
+        </div>
+        <div class="ev-info-row">
+          <span class="ev-info-k">${l === 'tr' ? 'Dönem:' : 'Ruler:'}</span>
+          <span class="ev-info-v">
+            ${rulerChar ? `<a href="${SWRoute.href('karakter', rulerChar.id)}">${esc(t(rulerChar.name))}</a>` : (event.ruler ? esc(event.ruler) : (l === 'tr' ? 'Bilinmiyor' : 'Unknown'))}
+          </span>
+        </div>
+        <div class="ev-info-row">
+          <span class="ev-info-k">${l === 'tr' ? 'Kategori:' : 'Type:'}</span>
+          <span class="ev-info-v">${esc(catLabel)}</span>
+        </div>
+        ${matchedKingdoms.length ? `
+        <div class="ev-info-row">
+          <span class="ev-info-k">${l === 'tr' ? 'Devletler:' : 'Realms:'}</span>
+          <span class="ev-info-v">
+            ${matchedKingdoms.map(k => `<a href="${SWRoute.href('devlet', k.id)}">${esc(t(k.name))}</a>`).join(', ')}
+          </span>
+        </div>` : ''}
+        ${matchedHouses.length ? `
+        <div class="ev-info-row">
+          <span class="ev-info-k">${l === 'tr' ? 'Haneler:' : 'Houses:'}</span>
+          <span class="ev-info-v">
+            ${matchedHouses.map(h => `<a href="${SWRoute.href('hane', h.id)}">${esc(t(h.name))}</a>`).join(', ')}
+          </span>
+        </div>` : ''}
+        <div class="ev-info-row">
+          <span class="ev-info-k">${l === 'tr' ? 'Etiketler:' : 'Tags:'}</span>
+          <span class="ev-info-v">${(event.tags || []).join(', ') || '—'}</span>
+        </div>
+      </div>
+
+      <button class="ev-share-btn" id="ev-share-action">
+        <svg viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y1="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+        <span>${l === 'tr' ? 'Alıntı Kartı Oluştur' : 'Create Quote Card'}</span>
+      </button>
+
+      <a href="lore.html#tb-tarih" style="display:block;text-align:center;margin-top:1rem;font-size:.8rem;color:var(--goldd);text-decoration:none;">
+        ${l === 'tr' ? '← Tüm Önemli Olaylar Tablosu' : '← All Significant Events Table'}
+      </a>
+    </div>
+  `;
+
+  document.getElementById('content-main').innerHTML = mainHTML;
+  document.getElementById('content-side').innerHTML = sideHTML;
+
+  /* Tooltip ve Paylaşım bağlantılarını bağla */
+  Wiki.Tooltip.scan(document.getElementById('content-main'));
+
+  document.getElementById('ev-share-action')?.addEventListener('click', () => {
+    if (window.QuoteCard) {
+      window.QuoteCard.open(`${eventName} (${ksYear}): ${eventDesc}`);
+    }
+  });
+
+  if (Wiki.Community) {
+    Wiki.Community.mountComments('divan-mount', {
+      type: 'event',
+      id: event.id,
+      title: eventName
+    });
+  }
+}
+
+async function init() {
+  await loadAll();
+  render();
+}
+
+SWRoute.canonicalize();
+SWRoute.watch();
+initWiki({ onLangChange: render });
+init();
+</script>
+</body>
+</html>

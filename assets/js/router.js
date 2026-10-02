@@ -50,6 +50,7 @@ var TYPES = {
   hane: 'hane-detay.html',
   tanri: 'tanri-detay.html',
   bolum: 'oku.html',
+  olay: 'olay-detay.html',
   /* bölümlü sayfalar: #/tür[/parça[/parça]] */
   harita: 'harita.html',
   evren: 'lore.html',
@@ -66,8 +67,8 @@ var TYPES = {
   hiyerarsi: 'hiyerarsi.html',
   ana: 'index.html'
 };
-var HAS_PARTS = { karakter: 1, devlet: 1, hane: 1, tanri: 1, bolum: 1, harita: 1, evren: 1, 'soy-agaci': 1, 'forum-kategori': 1, 'forum-konu': 1, hiyerarsi: 1 };
-var ENTITY = { karakter: 1, devlet: 1, hane: 1, tanri: 1, bolum: 1 };
+var HAS_PARTS = { karakter: 1, devlet: 1, hane: 1, tanri: 1, bolum: 1, olay: 1, harita: 1, evren: 1, 'soy-agaci': 1, 'forum-kategori': 1, 'forum-konu': 1, hiyerarsi: 1 };
+var ENTITY = { karakter: 1, devlet: 1, hane: 1, tanri: 1, bolum: 1, olay: 1 };
 /* Yönlendirme yapılmayan sayfalar: yönetim paneli kendi #görünüm hash'lerini kullanır */
 var NO_REDIRECT = { 'admin.html': 1, '404.html': 1 };
 
@@ -122,6 +123,7 @@ function fromLegacy(page, search, h) {
     case 'krallik-detay.html':   id = qs(search, 'id') || hs; return id ? { type: 'devlet', parts: [id], legacy: true } : null;
     case 'hane-detay.html':      id = qs(search, 'id') || hs; return id ? { type: 'hane', parts: [id], legacy: true } : null;
     case 'tanri-detay.html':     id = qs(search, 'id') || hs; return id ? { type: 'tanri', parts: [id], legacy: true } : null;
+    case 'olay-detay.html':      id = qs(search, 'id') || hs; return id ? { type: 'olay', parts: [id], legacy: true } : null;
     case 'oku.html':
       id = qs(search, 'b') || ((/^bolum-(\d+)$/.exec(hs) || [])[1] || '');
       return id ? { type: 'bolum', parts: [id], legacy: true } : null;

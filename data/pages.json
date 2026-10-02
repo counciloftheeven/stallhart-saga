@@ -181,6 +181,20 @@
         "en": "Universe lore discussions, theories, character analysis, and reader reviews."
       },
       "bannerImage": "assets/images/logo-stallhart.png"
+    },
+    "olay": {
+      "id": "olay",
+      "name": "Önemli Olaylar & Savaşlar",
+      "path": "olay-detay.html",
+      "title": {
+        "tr": "Önemli Olaylar & Savaşlar Wiki Arşivi",
+        "en": "Historic Events & Wars Wiki Archive"
+      },
+      "description": {
+        "tr": "Stallhart Destanı evrenindeki önemli olaylar, savaşlar, fetihler, barış antlaşmaları ve fermanların detaylı kroniği.",
+        "en": "Detailed chronicle of pivotal events, wars, conquests, peace accords, and imperial decrees."
+      },
+      "bannerImage": "assets/images/SIYASI_HARITA_onizleme.jpg"
     }
   }
 }

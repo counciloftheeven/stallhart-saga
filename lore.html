@@ -601,78 +601,369 @@
   background: var(--card);
   border: 1px solid var(--border);
   border-radius: 4px;
-  padding: 1.15rem 1.35rem;
-  transition: border-color .2s ease, transform .2s ease;
+  padding: 1.25rem 1.4rem;
+  transition: border-color .2s ease, transform .2s ease, box-shadow .2s ease;
 }
 .tl-modern-item:hover {
   border-color: var(--borderl);
+  box-shadow: 0 4px 14px rgba(0,0,0,.25);
   transform: translateX(3px);
 }
 .tl-modern-item::before {
   content: '';
   position: absolute;
-  left: -2rem; top: 1.3rem;
+  left: -2rem; top: 1.4rem;
   width: 12px; height: 12px;
   border-radius: 50%;
   background: var(--surface);
   border: 2px solid var(--gold);
   box-shadow: 0 0 8px rgba(184,115,51,.5);
 }
-.tl-modern-item.war::before       { border-color: var(--blood); box-shadow: 0 0 8px rgba(139,0,0,.5); }
-.tl-modern-item.crisis::before    { border-color: #8a5a2e; }
-.tl-modern-item.religious::before { border-color: #3d6b8a; }
+.tl-modern-item.war { border-left: 3px solid #8b0000; }
+.tl-modern-item.war::before { border-color: #8b0000; box-shadow: 0 0 8px rgba(139,0,0,.6); }
+.tl-modern-item.treaty { border-left: 3px solid #2b7a4b; }
+.tl-modern-item.treaty::before { border-color: #2b7a4b; box-shadow: 0 0 8px rgba(43,122,75,.6); }
+.tl-modern-item.crisis { border-left: 3px solid #c97a2b; }
+.tl-modern-item.crisis::before { border-color: #c97a2b; box-shadow: 0 0 8px rgba(201,122,43,.5); }
+.tl-modern-item.ruler { border-left: 3px solid var(--gold); }
+.tl-modern-item.ruler::before { border-color: var(--gold); }
+.tl-modern-item.religious { border-left: 3px solid #3d6b8a; }
+.tl-modern-item.religious::before { border-color: #3d6b8a; box-shadow: 0 0 8px rgba(61,107,138,.5); }
 
 .tl-item-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: .5rem;
+  gap: .75rem;
   flex-wrap: wrap;
-  margin-bottom: .45rem;
+  margin-bottom: .6rem;
 }
 .tl-item-ks {
   font-family: var(--font-display);
-  font-size: .95rem;
-  color: var(--gold);
+  font-size: 1rem;
+  color: var(--goldb);
   font-weight: bold;
 }
 .tl-item-badge {
   font-family: var(--font-display);
-  font-size: .68rem;
-  padding: .15rem .5rem;
+  font-size: .72rem;
+  padding: .2rem .55rem;
   border: 1px solid var(--border);
   border-radius: 3px;
   color: var(--parchd);
 }
+.tl-item-badge.war { border-color: #8b0000; color: #f28b82; background: rgba(139,0,0,.15); }
+.tl-item-badge.treaty { border-color: #2b7a4b; color: #81c995; background: rgba(43,122,75,.15); }
+.tl-item-badge.crisis { border-color: #c97a2b; color: #fdd663; background: rgba(201,122,43,.15); }
+.tl-item-badge.ruler { border-color: var(--goldd); color: var(--goldb); background: rgba(184,115,51,.15); }
+.tl-item-badge.religious { border-color: #3d6b8a; color: #8ab4f8; background: rgba(61,107,138,.15); }
+
+.tl-card-actions {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  margin-left: auto;
+}
+.tl-quick-view-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .35rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--parchd);
+  font-family: var(--font-display);
+  font-size: .74rem;
+  padding: .25rem .6rem;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: all .15s ease;
+}
+.tl-quick-view-btn:hover {
+  color: var(--parchl);
+  border-color: var(--borderl);
+  background: rgba(255,255,255,.05);
+}
+.tl-quick-view-btn svg { width: 13px; height: 13px; stroke: currentColor; fill: none; stroke-width: 2; }
+.tl-wiki-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .3rem;
+  background: rgba(184,115,51,.1);
+  border: 1px solid var(--goldd);
+  color: var(--goldb);
+  font-family: var(--font-display);
+  font-size: .74rem;
+  padding: .25rem .65rem;
+  border-radius: 3px;
+  text-decoration: none;
+  transition: all .15s ease;
+}
+.tl-wiki-btn:hover {
+  background: var(--gold);
+  color: #0c121f;
+  font-weight: bold;
+}
+
 .tl-item-title {
   font-family: var(--font-display);
-  font-size: 1.1rem;
+  font-size: 1.18rem;
   color: var(--parchl);
-  margin-bottom: .25rem;
+  margin-bottom: .3rem;
+  line-height: 1.3;
 }
 .tl-item-ruler {
-  font-size: .78rem;
+  font-size: .82rem;
   color: var(--goldd);
   font-style: italic;
   margin-bottom: .6rem;
 }
+.tl-item-ruler strong { font-style: normal; color: var(--goldb); }
 .tl-item-desc {
-  font-size: .88rem;
-  line-height: 1.7;
+  font-size: .92rem;
+  line-height: 1.75;
   color: var(--parch);
 }
-.tl-item-tags {
+.tl-item-entities {
   display: flex;
-  gap: .4rem;
+  gap: .45rem;
   flex-wrap: wrap;
   margin-top: .75rem;
+  padding-top: .6rem;
+  border-top: 1px dashed rgba(255,255,255,.06);
 }
-.tl-tag-chip {
+.tl-ent-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: .3rem;
   font-size: .72rem;
+  font-family: var(--font-display);
+  padding: .15rem .5rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 3px;
   color: var(--parchd);
-  font-style: italic;
+  text-decoration: none;
+  transition: all .15s ease;
+}
+.tl-ent-chip:hover {
+  color: var(--gold);
+  border-color: var(--goldd);
+}
+
+/* ── SPOTLIGHT ÖNE ÇIKAN SAVAŞLAR & ANTLAŞMALAR ───── */
+.ev-section-banner {
+  background: linear-gradient(180deg, var(--card) 0%, var(--surface) 100%);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 1.4rem 1.6rem;
+  margin-bottom: 2rem;
+}
+.ev-section-title {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  color: var(--parchl);
+  margin: 0 0 .4rem;
+}
+.ev-section-sub {
+  font-size: .92rem;
+  line-height: 1.7;
+  color: var(--parchd);
+  margin: 0;
+}
+.ev-spotlight-title {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  color: var(--goldb);
+  margin: 1.75rem 0 1rem;
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+}
+.ev-spotlight-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+.ev-spot-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 1.1rem;
+  display: flex;
+  flex-direction: column;
+  transition: all .2s ease;
+  position: relative;
+  overflow: hidden;
+}
+.ev-spot-card:hover {
+  border-color: var(--goldd);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0,0,0,.35);
+}
+.ev-spot-card::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  opacity: 0;
+  transition: opacity .2s ease;
+}
+.ev-spot-card:hover::after { opacity: 1; }
+.ev-spot-ks {
+  font-family: var(--font-display);
+  font-size: .8rem;
+  color: var(--gold);
+  font-weight: bold;
+}
+.ev-spot-type {
+  font-family: var(--font-display);
+  font-size: .68rem;
+  text-transform: uppercase;
+  color: var(--parchd);
+  margin-bottom: .25rem;
+}
+.ev-spot-name {
+  font-family: var(--font-display);
+  font-size: 1.02rem;
+  color: var(--parchl);
+  margin: .25rem 0 .45rem;
+  line-height: 1.3;
+}
+.ev-spot-desc {
+  font-size: .82rem;
+  line-height: 1.6;
+  color: var(--parchd);
+  flex: 1;
+}
+.ev-spot-link {
+  display: inline-flex;
+  align-items: center;
+  gap: .35rem;
+  font-family: var(--font-display);
+  font-size: .78rem;
+  color: var(--gold);
+  text-decoration: none;
+  margin-top: .75rem;
+  padding-top: .6rem;
+  border-top: 1px dashed rgba(255,255,255,.08);
+}
+.ev-spot-link:hover { color: var(--goldb); }
+
+/* Çağ Seçici Çubuğu */
+.lore-era-chips {
+  display: flex;
+  align-items: center;
+  gap: .4rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.25rem;
+  padding-bottom: .85rem;
+  border-bottom: 1px dashed rgba(255,255,255,.07);
+}
+.e-chip {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--parchd);
+  font-family: var(--font-display);
+  font-size: .74rem;
+  padding: .28rem .65rem;
+  border-radius: 4px;
   cursor: pointer;
-  transition: color .15s ease;
+  transition: all .15s ease;
+}
+.e-chip:hover { color: var(--parchl); border-color: var(--borderl); }
+.e-chip.on {
+  color: var(--parchl);
+  border-color: var(--gold);
+  background: rgba(184,115,51,.15);
+}
+
+/* ── HIZLI WIKI İNCELEME MODALI (DRAWER/DIALOG) ────── */
+.ev-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(5,8,14,.78);
+  backdrop-filter: blur(4px);
+  z-index: 1000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+.ev-modal-overlay.open { display: flex; animation: modalFade .2s ease-out; }
+@keyframes modalFade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.ev-modal-dialog {
+  background: var(--card);
+  border: 1px solid var(--goldd);
+  border-radius: 6px;
+  width: 100%;
+  max-width: 680px;
+  max-height: 85vh;
+  overflow-y: auto;
+  box-shadow: 0 12px 35px rgba(0,0,0,.6);
+  padding: 1.75rem;
+  position: relative;
+}
+.ev-modal-close {
+  position: absolute;
+  top: 1rem; right: 1rem;
+  background: none;
+  border: none;
+  color: var(--parchd);
+  font-size: 1.4rem;
+  cursor: pointer;
+  padding: .2rem .5rem;
+  line-height: 1;
+}
+.ev-modal-close:hover { color: var(--parchl); }
+.ev-modal-kicker {
+  font-family: var(--font-display);
+  font-size: .75rem;
+  color: var(--goldd);
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  margin-bottom: .35rem;
+}
+.ev-modal-title {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  color: var(--parchl);
+  margin: 0 0 .5rem;
+}
+.ev-modal-desc {
+  font-size: .95rem;
+  line-height: 1.8;
+  color: var(--parch);
+  margin: 1rem 0;
+}
+.ev-modal-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+  flex-wrap: wrap;
+}
+.ev-modal-link {
+  display: inline-flex;
+  align-items: center;
+  gap: .4rem;
+  background: var(--gold);
+  color: #0c121f;
+  font-family: var(--font-display);
+  font-size: .84rem;
+  font-weight: bold;
+  padding: .55rem 1.15rem;
+  border-radius: 4px;
+  text-decoration: none;
+  transition: background .15s ease;
+}
+.ev-modal-link:hover { background: var(--goldb); }
 }
 .tl-tag-chip:hover { color: var(--goldb); }
 
@@ -996,9 +1287,9 @@
         <div class="lore-stat-sub" data-tr="Düzen, Kaos ve Muhafız" data-en="Order, Chaos &amp; Protector">Düzen, Kaos ve Muhafız</div>
       </div>
       <div class="lore-stat-card" data-tab-target="tarih">
-        <div class="lore-stat-num" id="stat-events">60+</div>
-        <div class="lore-stat-title" data-tr="Tarihî Kronoloji" data-en="Chronicles">Tarihî Kronoloji</div>
-        <div class="lore-stat-sub" data-tr="KS ~0'dan günümüze" data-en="From KS ~0 to present">KS ~0'dan günümüze</div>
+        <div class="lore-stat-num" id="stat-events">77</div>
+        <div class="lore-stat-title" data-tr="Önemli Olaylar" data-en="Historic Events">Önemli Olaylar</div>
+        <div class="lore-stat-sub" data-tr="Savaşlar, Antlaşmalar &amp; Fermanlar" data-en="Wars, Treaties &amp; Decrees">Savaşlar, Antlaşmalar &amp; Fermanlar</div>
       </div>
       <div class="lore-stat-card" data-tab-target="soz">
         <div class="lore-stat-num" id="stat-glossary">50+</div>
@@ -1030,7 +1321,7 @@
         </button>
         <button class="lore-tab-btn" id="tb-tarih" data-tab="tarih">
           <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          <span data-tr="Tarih &amp; Kronoloji" data-en="History &amp; Chronology">Tarih &amp; Kronoloji</span>
+          <span data-tr="Önemli Olaylar &amp; Tarih" data-en="Historic Events &amp; History">Önemli Olaylar &amp; Tarih</span>
         </button>
         <button class="lore-tab-btn" id="tb-soz" data-tab="soz">
           <svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
@@ -1152,26 +1443,108 @@
     </div>
 
     <!-- ════════════════════════════════════════════════════════════
-         3. TAB: TARİH & KRONOLOJİ
+         3. TAB: ÖNEMLİ OLAYLAR, SAVAŞLAR & ANTLAŞMALAR
     ════════════════════════════════════════════════════════════ -->
     <div class="tab-p" id="tab-tarih">
+      <!-- ── BÖLÜM TANITIM VE BİLGİ BANDI ── -->
+      <div class="ev-section-banner">
+        <h2 class="ev-section-title" data-tr="Evrendeki Önemli Olaylar, Savaşlar &amp; Antlaşmalar" data-en="Historic Events, Wars &amp; Treaties">
+          Evrendeki Önemli Olaylar, Savaşlar &amp; Antlaşmalar
+        </h2>
+        <p class="ev-section-sub" data-tr="Stallhart İmparatorluğu ve çevre krallıkların kaderini tayin eden muharebeler, barış paktları, taht krizleri ve hanedan fermanlarının tam wiki kroniği." data-en="Comprehensive chronicle of decisive battles, peace treaties, succession crises, and imperial decrees that shaped the Stallhart Saga.">
+          Stallhart İmparatorluğu ve çevre krallıkların kaderini tayin eden muharebeler, barış paktları, taht krizleri ve hanedan fermanlarının tam wiki kroniği.
+        </p>
+      </div>
+
+      <!-- ── ÖNE ÇIKAN DÖNÜM NOKTALARI (SPOTLIGHTS) ── -->
+      <div class="ev-spotlight-box">
+        <div class="ev-spotlight-title">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <span data-tr="Tarihi Değiştiren Büyük Muharebeler ve Antlaşmalar" data-en="Pivotal Battles &amp; Historic Treaties">Tarihi Değiştiren Büyük Muharebeler ve Antlaşmalar</span>
+        </div>
+        <div class="ev-spotlight-grid">
+          <!-- 1. Örebas Seferi & Alyoren Zaferi -->
+          <div class="ev-spot-card">
+            <div class="ev-spot-type" style="color:#f28b82;">⚔️ Büyük Meydan Muharebesi</div>
+            <div class="ev-spot-ks">KS 1306</div>
+            <div class="ev-spot-name">Örebas Seferi &amp; Alyoren Zaferi</div>
+            <div class="ev-spot-desc">Merethorn'un sahte geri çekilme taktiğiyle 35.000 kişilik Stallhart ordusunun Örebas hatlarını çembere alıp kesin zafere ulaştığı sefer.</div>
+            <a href="olay-detay.html#/olay/ev-orebas-seferi-i-mparatorlugun-zirvesi-26" class="ev-spot-link">Detaylı Wiki İncelemesi →</a>
+          </div>
+
+          <!-- 2. Isonwell Antlaşması -->
+          <div class="ev-spot-card">
+            <div class="ev-spot-type" style="color:#81c995;">📜 Tarihi Barış Antlaşması</div>
+            <div class="ev-spot-ks">KS 1306</div>
+            <div class="ev-spot-name">Isonwell Barış Antlaşması</div>
+            <div class="ev-spot-desc">Alyoren yenilgisinin ardından Örebas Krallığı'nı ağır vergiye bağlayan ve sınır topraklarını Stallhart'a bırakan tarihi pakt.</div>
+            <a href="olay-detay.html#/olay/ev-orebas-seferi-i-mparatorlugun-zirvesi-26" class="ev-spot-link">Detaylı Wiki İncelemesi →</a>
+          </div>
+
+          <!-- 3. Kızılçay Muharebesi -->
+          <div class="ev-spot-card">
+            <div class="ev-spot-type" style="color:#f28b82;">⚔️ İç Savaş &amp; Taht Kavgası</div>
+            <div class="ev-spot-ks">KS 1275</div>
+            <div class="ev-spot-name">Kızılçay Muharebesi</div>
+            <div class="ev-spot-desc">Gaspçı Mazurekt'in Galetsha ihanetiyle yenildiği ve I. Atrion'un tahtı geri alıp Merhamet Hamlesi ile af ilan ettiği dönüm noktası.</div>
+            <a href="olay-detay.html#/olay/ev-kizilcay-muharebesi-18" class="ev-spot-link">Detaylı Wiki İncelemesi →</a>
+          </div>
+
+          <!-- 4. Bakırsu Vadisi & Uzlaşması -->
+          <div class="ev-spot-card">
+            <div class="ev-spot-type" style="color:#81c995;">📜 Gizli Pakt &amp; Uzlaşma</div>
+            <div class="ev-spot-ks">KS 1477 - 1481</div>
+            <div class="ev-spot-name">Bakırsu Vadisi Uzlaşması</div>
+            <div class="ev-spot-desc">Solgar ordusunun pusuya düşmesi sonrasında Zeandor'un Erthan ile yaptığı ve isyanı savaşsız çözen tarihi gizli mutabakat.</div>
+            <a href="olay-detay.html#/olay/ev-erthan-i-syani-ve-bakirsu-uzlasmasi-51" class="ev-spot-link">Detaylı Wiki İncelemesi →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── ÇAĞ / DÖNEM SEÇİCİ (ERA FILTER) ── -->
+      <div class="lore-era-chips" id="tl-era-filters">
+        <button class="e-chip on" data-era="all" data-tr="Tüm Çağlar (KS ~0 - 1491)" data-en="All Epochs">Tüm Çağlar (KS ~0 - 1491)</button>
+        <button class="e-chip" data-era="dawn" data-tr="Kuruluş Şafağı (1137-1163)" data-en="Dawn Era">Kuruluş Şafağı (1137-1163)</button>
+        <button class="e-chip" data-era="conquest" data-tr="Genişleme &amp; Fetihler (1197-1285)" data-en="Expansion">Genişleme &amp; Fetihler (1197-1285)</button>
+        <button class="e-chip" data-era="zenith" data-tr="İmparatorluk Zirvesi (1304-1388)" data-en="Zenith Era">İmparatorluk Zirvesi (1304-1388)</button>
+        <button class="e-chip" data-era="unrest" data-tr="İç Çatışmalar &amp; Karışıklık (1388-1441)" data-en="Unrest Era">İç Çatışmalar &amp; Karışıklık (1388-1441)</button>
+        <button class="e-chip" data-era="collapse" data-tr="Son Dönem &amp; Çöküş (1450-1491)" data-en="Final Collapse">Son Dönem &amp; Çöküş (1450-1491)</button>
+      </div>
+
+      <!-- ── ARAMA & KATEGORİ ARAÇ ÇUBUĞU ── -->
       <div class="lore-toolbar">
         <div class="lore-filter-chips" id="tl-filters">
-          <button class="f-chip on" data-tlf="all" id="tlf-all" data-tr="Tümü" data-en="All">Tümü</button>
-          <button class="f-chip" data-tlf="ruler" id="tlf-ruler" data-tr="👑 Hükümdar" data-en="👑 Ruler">👑 Hükümdar</button>
-          <button class="f-chip" data-tlf="war" id="tlf-war" data-tr="⚔️ Savaş &amp; Fetih" data-en="⚔️ War &amp; Conquest">⚔️ Savaş &amp; Fetih</button>
-          <button class="f-chip" data-tlf="crisis" id="tlf-crisis" data-tr="🔥 Kriz &amp; Dönüm" data-en="🔥 Crisis &amp; Turning">🔥 Kriz &amp; Dönüm</button>
-          <button class="f-chip" data-tlf="religious" id="tlf-religious" data-tr="⚖️ Dinî Olay" data-en="⚖️ Religious">⚖️ Dinî Olay</button>
+          <button class="f-chip on" data-tlf="all" id="tlf-all" data-tr="Tümü (77)" data-en="All (77)">Tümü (77)</button>
+          <button class="f-chip" data-tlf="war" id="tlf-war" data-tr="⚔️ Savaşlar &amp; Seferler" data-en="⚔️ Wars &amp; Sieges">⚔️ Savaşlar &amp; Seferler</button>
+          <button class="f-chip" data-tlf="treaty" id="tlf-treaty" data-tr="📜 Antlaşmalar &amp; Fermanlar" data-en="📜 Treaties &amp; Decrees">📜 Antlaşmalar &amp; Fermanlar</button>
+          <button class="f-chip" data-tlf="crisis" id="tlf-crisis" data-tr="🔥 Krizler &amp; İsyanlar" data-en="🔥 Crises &amp; Rebellions">🔥 Krizler &amp; İsyanlar</button>
+          <button class="f-chip" data-tlf="ruler" id="tlf-ruler" data-tr="👑 Hanedan &amp; Saltanat" data-en="👑 Rulers &amp; Dynasties">👑 Hanedan &amp; Saltanat</button>
+          <button class="f-chip" data-tlf="religious" id="tlf-religious" data-tr="⚖️ Dinî &amp; Kutsal Olaylar" data-en="⚖️ Sacred &amp; Religious">⚖️ Dinî &amp; Kutsal Olaylar</button>
         </div>
         <div class="lore-search-box">
           <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="22" y2="22"/></svg>
-          <input type="search" id="tl-search" class="lore-search-input" placeholder="Yıl, olay veya hükümdar ara…" autocomplete="off">
+          <input type="search" id="tl-search" class="lore-search-input" placeholder="Yıl, muharebe, antlaşma veya hükümdar ara…" autocomplete="off">
           <button class="lore-search-clear" id="tl-search-clear" aria-label="Temizle">✕</button>
         </div>
       </div>
 
       <div class="lore-count-info" id="tl-count" style="margin-bottom:1.5rem"></div>
       <div class="timeline-modern-wrap" id="timeline-wrap"></div>
+    </div>
+
+    <!-- ── HIZLI WIKI DOSYA İNCELEME MODALI ── -->
+    <div class="ev-modal-overlay" id="ev-quick-modal" role="dialog" aria-modal="true">
+      <div class="ev-modal-dialog">
+        <button class="ev-modal-close" id="ev-modal-close-btn" aria-label="Kapat">✕</button>
+        <div class="ev-modal-kicker" id="ev-modal-kicker">KS 1306 · SAVAŞ &amp; MUHAREBE</div>
+        <h3 class="ev-modal-title" id="ev-modal-title">Hadise Başlığı</h3>
+        <div style="font-size:.85rem;color:var(--goldd);font-style:italic;margin-bottom:1rem;" id="ev-modal-ruler">📜 Hükümdar</div>
+        <div class="ev-modal-desc" id="ev-modal-desc">Detaylı anlatım...</div>
+        <div class="ev-modal-footer">
+          <div style="font-size:.8rem;color:var(--parchd);" id="ev-modal-tags">#etiketler</div>
+          <a href="#" class="ev-modal-link" id="ev-modal-page-link">Tam Wiki Sayfasına Git ↗</a>
+        </div>
+      </div>
     </div>
 
     <!-- ════════════════════════════════════════════════════════════
@@ -1245,6 +1618,7 @@ let provQuery    = '';
 let activeFaction= 'all';
 let godsQuery    = '';
 let activeTlf    = 'all';
+let activeEra    = 'all';
 let tlQuery      = '';
 let activeGt     = 'all';
 let glsAlpha     = 'all';
@@ -1613,23 +1987,109 @@ function renderGods() {
   }
 }
 
-/* ── 3. TARİH TAB (ZAMAN ÇİZELGESİ) ───────────────── */
+/* ── 3. ÖNEMLİ OLAYLAR, SAVAŞLAR & ANTLAŞMALAR TABI ── */
+function getEventCategory(e) {
+  const text = ((e.name?.tr || '') + ' ' + (e.desc?.tr || '')).toLowerCase();
+  if (/antlaşma|anlaşma|pakt|sulh|ferman|uzlaşma|doktrin|barış/.test(text) && !/savaş ilan etti|muharebe/.test(e.name?.tr || '')) {
+    return 'treaty';
+  }
+  if (e.type === 'war' || /savaş|muharebe|sefer|kuşatma|fetih|isyan|çatışma|taarruz|pusu/.test(text)) {
+    return 'war';
+  }
+  if (e.type === 'crisis') return 'crisis';
+  if (e.type === 'religious') return 'religious';
+  if (e.type === 'ruler') return 'ruler';
+  return 'war';
+}
+
+function matchEra(e, era) {
+  if (era === 'all') return true;
+  let year = null;
+  const m = String(e.ks || '').match(/\d{4}/);
+  if (m) {
+    year = parseInt(m[0], 10);
+  } else {
+    const r = (e.ruler || '').toUpperCase();
+    if (r.includes('CRAES') && !r.includes('II.')) year = 1144;
+    else if (r.includes('NADİMA') && !r.includes('II.')) year = 1162;
+    else if (r.includes('GARNOR')) year = 1200;
+    else if (r.includes('SCIFELLA')) year = 1248;
+    else if (r.includes('II. CRAES') || r.includes('MAZUREKT') || r.includes('ATRİON')) year = 1275;
+    else if (r.includes('REMAL') && !r.includes('II.')) year = 1290;
+    else if (r.includes('MERETHORN')) year = 1306;
+    else if (r.includes('REANLOTH')) year = 1350;
+    else if (r.includes('II. LUN ALDRİS')) year = 1373;
+    else if (r.includes('JEGA CAL') || r.includes('II. NADİMA') || r.includes('LUNRYE')) year = 1395;
+    else if (r.includes('II. REMAL') || r.includes('RONES')) year = 1420;
+    else if (r.includes('ELRON') || r.includes('İMLOTH') || r.includes('AMADON')) year = 1460;
+    else if (r.includes('ZEANDOR')) year = 1480;
+  }
+  if (!year) return true;
+  if (era === 'dawn') return year >= 1137 && year <= 1165;
+  if (era === 'conquest') return year >= 1166 && year <= 1299;
+  if (era === 'zenith') return year >= 1300 && year <= 1388;
+  if (era === 'unrest') return year >= 1389 && year <= 1445;
+  if (era === 'collapse') return year >= 1446 && year <= 1495;
+  return true;
+}
+
+function openEventModal(id) {
+  const e = (loreData?.events || []).find(x => x.id === id);
+  if (!e) return;
+  const l = Lang.get();
+  const t = obj => Lang.t(obj);
+  const cat = getEventCategory(e);
+  const catNames = {
+    war:       l === 'tr' ? '⚔️ Savaş & Sefer' : '⚔️ War & Campaign',
+    treaty:    l === 'tr' ? '📜 Antlaşma & Ferman' : '📜 Treaty & Decree',
+    crisis:    l === 'tr' ? '🔥 Kriz & İsyan' : '🔥 Crisis & Turning',
+    ruler:     l === 'tr' ? '👑 Hanedan & Saltanat' : '👑 Dynasty & Reign',
+    religious: l === 'tr' ? '⚖️ Dinî Hadise' : '⚖️ Religious Event'
+  };
+  const ksText = e.ks === '?' ? (l === 'tr' ? 'Dönem İçi' : 'Reign Era') : `KS ${e.ks}`;
+
+  const kickerEl = document.getElementById('ev-modal-kicker');
+  const titleEl = document.getElementById('ev-modal-title');
+  const rulerEl = document.getElementById('ev-modal-ruler');
+  const descEl = document.getElementById('ev-modal-desc');
+  const tagsEl = document.getElementById('ev-modal-tags');
+  const pageLink = document.getElementById('ev-modal-page-link');
+
+  if (kickerEl) kickerEl.textContent = `${ksText} · ${catNames[cat] || cat}`;
+  if (titleEl) titleEl.textContent = t(e.name);
+  if (rulerEl) rulerEl.textContent = e.ruler ? `📜 ${l === 'tr' ? 'Dönem / Mühür: ' : 'Ruler: '} ${e.ruler}` : '';
+  if (descEl) descEl.textContent = t(e.desc);
+  if (tagsEl) tagsEl.textContent = (e.tags || []).map(tag => '#' + tag).join(' ');
+  if (pageLink) {
+    pageLink.href = SWRoute.href('olay', e.id);
+    pageLink.textContent = l === 'tr' ? 'Müstakil Wiki Sayfasına Git ↗' : 'Open Full Wiki Article ↗';
+  }
+  document.getElementById('ev-quick-modal')?.classList.add('open');
+}
+
+function closeEventModal() {
+  document.getElementById('ev-quick-modal')?.classList.remove('open');
+}
+
 function renderTimeline() {
   if (!loreData) return;
   const l = Lang.get();
   const t = obj => Lang.t(obj);
 
-  const typeLabels = {
-    ruler:    l === 'tr' ? '👑 Hükümdar'  : '👑 Ruler',
-    war:      l === 'tr' ? '⚔️ Savaş'     : '⚔️ War',
-    crisis:   l === 'tr' ? '🔥 Kriz'      : '🔥 Crisis',
-    religious:l === 'tr' ? '⚖️ Dinî Olay' : '⚖️ Religious'
+  const categoryLabels = {
+    war:       l === 'tr' ? '⚔️ Savaş & Sefer' : '⚔️ War & Campaign',
+    treaty:    l === 'tr' ? '📜 Antlaşma & Ferman' : '📜 Treaty & Decree',
+    crisis:    l === 'tr' ? '🔥 Kriz & İsyan' : '🔥 Crisis & Turning',
+    ruler:     l === 'tr' ? '👑 Hanedan & Saltanat' : '👑 Dynasty & Reign',
+    religious: l === 'tr' ? '⚖️ Dinî Hadise' : '⚖️ Religious Event'
   };
 
   const q = tlQuery.toLowerCase();
   const events = (loreData.events || []);
   const filtered = events.filter(e => {
-    if (activeTlf !== 'all' && e.type !== activeTlf) return false;
+    const cat = getEventCategory(e);
+    if (activeTlf !== 'all' && cat !== activeTlf && e.type !== activeTlf) return false;
+    if (activeEra !== 'all' && !matchEra(e, activeEra)) return false;
     if (!q) return true;
     const name = t(e.name).toLowerCase();
     const desc = t(e.desc).toLowerCase();
@@ -1640,29 +2100,44 @@ function renderTimeline() {
 
   const countEl = document.getElementById('tl-count');
   if (countEl) {
-    countEl.textContent = `${filtered.length} / ${events.length} ${l === 'tr' ? 'tarihî olay listeleniyor' : 'historical events listed'}`;
+    countEl.textContent = `${filtered.length} / ${events.length} ${l === 'tr' ? 'önemli olay ve muharebe listeleniyor' : 'events and battles listed'}`;
   }
 
   const wrap = document.getElementById('timeline-wrap');
   if (wrap) {
     if (!filtered.length) {
-      wrap.innerHTML = `<div class="empty-state">${l === 'tr' ? 'Aramanızla eşleşen tarihî olay bulunamadı.' : 'No historical events match your search.'}</div>`;
+      wrap.innerHTML = `<div class="empty-state">${l === 'tr' ? 'Seçili filtre veya aramayla eşleşen olay bulunamadı.' : 'No historic events match your filter or search.'}</div>`;
     } else {
-      wrap.innerHTML = filtered.map(e => `
-        <div class="tl-modern-item ${esc(e.type || '')} lc" id="${esc(e.id || '')}">
-          <div class="tl-item-header">
-            <span class="tl-item-ks">KS ${esc(e.ks)}</span>
-            <span class="tl-item-badge">${esc(typeLabels[e.type] || e.type)}</span>
+      wrap.innerHTML = filtered.map(e => {
+        const cat = getEventCategory(e);
+        const ksText = e.ks === '?' ? (l === 'tr' ? 'Dönem İçi' : 'Reign Era') : `KS ${esc(e.ks)}`;
+        return `
+          <div class="tl-modern-item ${cat} lc" id="${esc(e.id || '')}">
+            <div class="tl-item-header">
+              <div style="display:flex;align-items:center;gap:.6rem;flex-wrap:wrap;">
+                <span class="tl-item-ks">${ksText}</span>
+                <span class="tl-item-badge ${cat}">${categoryLabels[cat] || cat}</span>
+              </div>
+              <div class="tl-card-actions">
+                <button type="button" class="tl-quick-view-btn" data-ev-modal="${esc(e.id)}">
+                  <svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                  <span>${l === 'tr' ? 'Hızlı İncele' : 'Quick View'}</span>
+                </button>
+                <a href="${SWRoute.href('olay', e.id)}" class="tl-wiki-btn" title="${l === 'tr' ? 'Müstakil Wiki Sayfasını Aç' : 'Open Full Wiki Article'}">
+                  <span>${l === 'tr' ? 'Wiki Sayfası ↗' : 'Wiki Page ↗'}</span>
+                </a>
+              </div>
+            </div>
+            <h3 class="tl-item-title">${esc(t(e.name))}</h3>
+            ${e.ruler ? `<div class="tl-item-ruler">📜 ${l === 'tr' ? 'Dönem / Hükümdar: ' : 'Ruler: '} <strong>${esc(e.ruler)}</strong></div>` : ''}
+            <p class="tl-item-desc">${esc(t(e.desc))}</p>
+            ${(e.tags && e.tags.length) ? `
+              <div class="tl-item-tags">
+                ${e.tags.map(tag => `<span class="tl-tag-chip" data-tl-tag="${esc(tag)}">#${esc(tag)}</span>`).join('')}
+              </div>` : ''}
           </div>
-          <h3 class="tl-item-title">${esc(t(e.name))}</h3>
-          ${e.ruler ? `<div class="tl-item-ruler">📜 ${l === 'tr' ? 'Dönem / Hükümdar: ' : 'Ruler: '} ${esc(e.ruler)}</div>` : ''}
-          <p class="tl-item-desc">${esc(t(e.desc))}</p>
-          ${(e.tags && e.tags.length) ? `
-            <div class="tl-item-tags">
-              ${e.tags.map(tag => `<span class="tl-tag-chip" data-tl-tag="${esc(tag)}">#${esc(tag)}</span>`).join('')}
-            </div>` : ''}
-        </div>
-      `).join('');
+        `;
+      }).join('');
       Wiki.Tooltip.scan(wrap);
     }
   }
@@ -1992,7 +2467,7 @@ function setupEvents() {
     gInput.focus();
   });
 
-  /* Tarih Filtreleri & Arama */
+  /* Tarih & Kategori Filtreleri, Çağ Seçici ve Arama */
   document.getElementById('tl-filters')?.addEventListener('click', e => {
     const btn = e.target.closest('[data-tlf]');
     if (!btn) return;
@@ -2001,6 +2476,16 @@ function setupEvents() {
     activeTlf = btn.dataset.tlf;
     renderTimeline();
   });
+
+  document.getElementById('tl-era-filters')?.addEventListener('click', e => {
+    const btn = e.target.closest('[data-era]');
+    if (!btn) return;
+    document.querySelectorAll('#tl-era-filters .e-chip').forEach(b => b.classList.remove('on'));
+    btn.classList.add('on');
+    activeEra = btn.dataset.era;
+    renderTimeline();
+  });
+
   const tlInput = document.getElementById('tl-search');
   const tlClear = document.getElementById('tl-search-clear');
   tlInput?.addEventListener('input', function() {
@@ -2016,8 +2501,13 @@ function setupEvents() {
     tlInput.focus();
   });
 
-  /* Timeline Etiket Tıklamaları (Tag Filter) */
+  /* Hızlı Modal Açma ve Etiket Tıklamaları */
   document.getElementById('timeline-wrap')?.addEventListener('click', e => {
+    const modalBtn = e.target.closest('[data-ev-modal]');
+    if (modalBtn) {
+      openEventModal(modalBtn.dataset.evModal);
+      return;
+    }
     const tagEl = e.target.closest('[data-tl-tag]');
     if (!tagEl) return;
     const tag = tagEl.dataset.tlTag;
@@ -2028,6 +2518,15 @@ function setupEvents() {
       renderTimeline();
       window.scrollTo({ top: document.getElementById('tl-filters').offsetTop - 80, behavior: 'smooth' });
     }
+  });
+
+  /* Modal Kapatma */
+  document.getElementById('ev-modal-close-btn')?.addEventListener('click', closeEventModal);
+  document.getElementById('ev-quick-modal')?.addEventListener('click', e => {
+    if (e.target.id === 'ev-quick-modal') closeEventModal();
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') closeEventModal();
   });
 
   /* Sözlük Tür Filtreleri & Arama */

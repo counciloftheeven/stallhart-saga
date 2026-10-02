@@ -20,6 +20,7 @@
   <url><loc>BASE_URL/harita.html</loc><priority>0.7</priority></url>
   <url><loc>BASE_URL/soy-agaci.html</loc><priority>0.6</priority></url>
   <url><loc>BASE_URL/lore.html</loc><priority>0.7</priority></url>
+  <url><loc>BASE_URL/olay-detay.html</loc><priority>0.6</priority></url>
   <url><loc>BASE_URL/sozler.html</loc><priority>0.6</priority></url>
   <url><loc>BASE_URL/forum.html</loc><priority>0.6</priority></url>
   <url><loc>BASE_URL/forum-kategori.html</loc><priority>0.4</priority></url>
