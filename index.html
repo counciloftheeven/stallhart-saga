@@ -1,0 +1,1202 @@
+<!DOCTYPE html>
+<html lang="tr" id="r">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Stallhart Destanı — Son İmparator, Türkçe dark fantasy epik roman">
+<title>The Stallhart Saga</title>
+<meta name="theme-color" content="#0c121f">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="The Stallhart Saga">
+<meta property="og:locale" content="tr_TR">
+<meta property="og:title" content="The Stallhart Saga">
+<meta property="og:description" content="Stallhart Destanı — Son İmparator, Türkçe dark fantasy epik roman">
+<meta property="og:image" content="assets/images/logo-stallhart.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="The Stallhart Saga">
+<meta name="twitter:description" content="Stallhart Destanı — Son İmparator, Türkçe dark fantasy epik roman">
+<meta name="twitter:image" content="assets/images/logo-stallhart.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="apple-touch-icon" href="assets/images/logo-stallhart.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Modern+Antiqua&amp;family=IM+Fell+English:ital@0;1&amp;family=Merriweather:ital,wght@0,400;0,700;1,400&amp;display=swap">
+<link rel="stylesheet" href="assets/css/styles.css?v=3.2">
+<link rel="stylesheet" href="assets/css/kurultay.css?v=3.2">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Book",
+  "name": "The Stallhart Saga — Son İmparator",
+  "description": "Stallhart Destanı — Son İmparator, Türkçe dark fantasy epik roman ve evren ansiklopedisi.",
+  "inLanguage": "tr",
+  "genre": "Dark Fantasy, Epic Fantasy",
+  "author": {
+    "@type": "Person",
+    "name": "Azad Çelik"
+  }
+}
+</script>
+<style>
+/* ── İNDEX'E ÖZEL STİLLER ─────────────────────────── */
+.hero {
+  min-height: 100vh; display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  text-align: center; padding: 80px 2rem 5rem;
+  position: relative; overflow: hidden;
+}
+.hero::after {
+  content: ''; position: absolute; bottom: 0; left: 0; right: 0;
+  height: 200px; background: linear-gradient(to bottom, transparent, var(--bg));
+  pointer-events: none;
+}
+/* ── KADİM ÇARK & İMPARATORLUK MÜHRÜ (Stallhart Astrolabe Seal) ── */
+.hero-seal {
+  width: 176px;
+  height: 176px;
+  margin-bottom: 2.2rem;
+  display: block;
+  overflow: visible;
+  filter: drop-shadow(0 0 18px rgba(196,150,42,0.28));
+  transition: transform .45s cubic-bezier(0.2, 0.8, 0.2, 1), filter .45s ease;
+  cursor: pointer;
+}
+.hero-seal:hover {
+  transform: scale(1.05);
+  filter: drop-shadow(0 0 32px rgba(229,190,101,0.52));
+}
+.seal-outer-ring {
+  animation: seal-rot-cw 55s linear infinite;
+  transform-origin: 100px 100px;
+}
+.seal-mid-ring {
+  animation: seal-rot-ccw 38s linear infinite;
+  transform-origin: 100px 100px;
+}
+.seal-inner-ring {
+  animation: seal-rot-cw 24s linear infinite;
+  transform-origin: 100px 100px;
+}
+.seal-crown-glow {
+  animation: seal-pulse 3.6s ease-in-out infinite alternate;
+}
+@keyframes seal-rot-cw {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+@keyframes seal-rot-ccw {
+  from { transform: rotate(360deg); }
+  to { transform: rotate(0deg); }
+}
+@keyframes seal-pulse {
+  0% { opacity: 0.38; transform: scale(0.97); transform-origin: 100px 100px; }
+  100% { opacity: 0.95; transform: scale(1.03); transform-origin: 100px 100px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .seal-outer-ring,
+  .seal-mid-ring,
+  .seal-inner-ring,
+  .seal-crown-glow {
+    animation: none;
+  }
+}
+.hero-eye {
+  font-family: var(--font-display); font-style: italic;
+  font-size: .82rem; letter-spacing: .2em;
+  color: var(--goldd); margin-bottom: 2rem;
+}
+picture { display: contents; } /* <picture> yerleşimi bozmasın */
+.hero-logo {
+  width: 1000px; max-width: 92vw; height: auto; margin-bottom: 2.5rem;
+  display: block; filter: brightness(1.08) drop-shadow(0 0 18px rgba(196,150,42,.12));
+  transition: filter var(--theme-transition-duration, .35s) ease;
+}
+/* Logo gümüş/açık tonlarda çizildiği için ışık modunun parşömen
+   zemininde zor seçilir — renkleri tersine çevrilip koyulaştırılır. */
+html[data-theme="light"] .hero-logo {
+  filter: invert(1) brightness(.92) drop-shadow(0 0 14px rgba(138,90,30,.15));
+}
+.hero-q {
+  max-width: 500px; font-size: 1rem; font-style: italic;
+  color: var(--parchd); line-height: 1.88; margin-bottom: 2.5rem;
+  border-left: 2px solid var(--border); padding-left: 1.25rem; text-align: left;
+}
+.hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
+
+/* Evren */
+#evren { background: var(--deep); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.tab-p { display: none; }
+.tab-p.on { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+@media (max-width: 640px) { .tab-p.on { grid-template-columns: 1fr; } }
+
+/* Evren Bölümü Light Mod Stilleri */
+html[data-theme="light"] #evren {
+  background: var(--deep);
+  border-color: var(--border);
+}
+html[data-theme="light"] #evren .lc {
+  background: var(--surface);
+  border-color: var(--border);
+  box-shadow: 0 4px 14px rgba(70, 50, 25, 0.08);
+}
+html[data-theme="light"] #evren .lc:hover {
+  border-color: var(--borderl);
+  box-shadow: 0 6px 20px rgba(70, 50, 25, 0.12);
+}
+html[data-theme="light"] #evren .lc::before {
+  border-color: rgba(138, 90, 30, 0.2);
+}
+html[data-theme="light"] #evren .lc h3 {
+  color: var(--goldb);
+  font-weight: 700;
+}
+html[data-theme="light"] #evren .lc p {
+  color: #241c14;
+}
+html[data-theme="light"] #evren .tab-b.on {
+  color: var(--goldb);
+  font-weight: 700;
+}
+html[data-theme="light"] #evren .btn-o {
+  background: var(--surface);
+  color: var(--goldb);
+  border-color: var(--borderl);
+  box-shadow: 0 2px 8px rgba(70, 50, 25, 0.06);
+}
+html[data-theme="light"] #evren .btn-o:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+}
+
+/* Karakterler (önizleme) */
+#karakterler { background: var(--bg); }
+.chars-more {
+  margin-top: 2rem; text-align: center;
+}
+
+/* Bölümler (önizleme) */
+#bolumler { background: var(--deep); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.chapters-more { margin-top: 1.5rem; text-align: center; }
+
+/* Harita önizleme */
+#harita { background: var(--bg); }
+.map-w { border: 1px solid var(--border); overflow: hidden; background: var(--deep); }
+.map-w img { display: block; width: 100%; height: auto; }
+.map-btn-wrap { margin-top: 1.5rem; }
+
+/* SSS */
+#sss { background: var(--deep); border-top: 1px solid var(--border); }
+
+/* Ekran dışındaki bölümlerin yerleşim/boyama işi görünene kadar ertelenir */
+#evren, #karakterler, #bolumler, #forum-vitrini, #harita, #sss { content-visibility: auto; contain-intrinsic-size: auto 720px; }
+
+/* ── KURULTAY VİTRİNİ (Ana Sayfa) ── */
+#forum-vitrini {
+  background: radial-gradient(ellipse at 50% 20%, rgba(26, 16, 12, 0.4) 0%, rgba(10, 14, 23, 0.95) 70%);
+  border-top: 1px solid rgba(196,150,42,.2);
+  border-bottom: 1px solid rgba(196,150,42,.2);
+  transition: background-color var(--theme-transition-duration) ease,
+              border-color var(--theme-transition-duration) ease;
+}
+.fv-grid {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+@media (max-width: 640px) {
+  .fv-grid { grid-template-columns: 1fr; gap: 1rem; }
+}
+.fv-card {
+  text-decoration: none;
+  display: block;
+}
+.fv-card-inner {
+  background: radial-gradient(circle at top right, rgba(139,30,30,.25), rgba(14,18,28,.95));
+  border: 1px solid rgba(196,150,42,.35);
+  padding: 1.5rem;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 4px 16px rgba(0,0,0,.3);
+  transition: background var(--theme-transition-duration) ease,
+              border-color var(--theme-transition-duration) ease,
+              box-shadow var(--theme-transition-duration) ease,
+              transform .2s ease;
+}
+.fv-card:hover .fv-card-inner {
+  border-color: var(--gold);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0,0,0,.45);
+}
+.fv-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: .85rem;
+}
+.fv-icon {
+  display: inline-flex;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  align-items: center;
+  justify-content: center;
+  background: rgba(196,150,42,.15);
+  border: 1px solid var(--gold);
+  color: var(--gold);
+  transition: background-color var(--theme-transition-duration) ease,
+              border-color var(--theme-transition-duration) ease,
+              color var(--theme-transition-duration) ease;
+}
+.fv-card.fv-teori .fv-icon {
+  background: rgba(139,30,30,.2);
+  border-color: #8b1e1e;
+  color: #e5989b;
+}
+.fv-badge {
+  border: 1px solid rgba(196,150,42,.3);
+  color: var(--goldd);
+  font-size: .7rem;
+  padding: .25rem .6rem;
+  border-radius: 3px;
+  background: rgba(0,0,0,.25);
+  transition: background-color var(--theme-transition-duration) ease,
+              border-color var(--theme-transition-duration) ease,
+              color var(--theme-transition-duration) ease;
+}
+.fv-card .cc-name {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  color: var(--parchl);
+  margin-bottom: .4rem;
+  line-height: 1.3;
+  transition: color var(--theme-transition-duration) ease;
+}
+.fv-card:hover .cc-name {
+  color: var(--gold);
+}
+.fv-card .cc-desc {
+  font-size: .84rem;
+  color: var(--parchd);
+  line-height: 1.68;
+  flex: 1;
+  transition: color var(--theme-transition-duration) ease;
+}
+.fv-foot {
+  margin-top: 1.15rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px dashed rgba(196,150,42,.2);
+  padding-top: .65rem;
+  font-size: .78rem;
+  color: var(--goldd);
+  transition: border-color var(--theme-transition-duration) ease,
+              color var(--theme-transition-duration) ease;
+}
+.fv-foot .fv-tag {
+  font-style: italic;
+}
+.fv-card:hover .fv-action {
+  color: var(--gold);
+}
+.fv-poll-slot {
+  margin-top: 2.25rem;
+}
+.fv-poll-slot .sw-poll-card {
+  margin: 0;
+  border-radius: 2px;
+}
+.fv-poll-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: .75rem;
+  border-bottom: 1px solid rgba(196,150,42,.2);
+  padding-bottom: .5rem;
+  transition: border-color var(--theme-transition-duration) ease;
+}
+.fv-poll-title {
+  font-family: var(--font-display);
+  font-size: .86rem;
+  color: var(--gold);
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  transition: color var(--theme-transition-duration) ease;
+}
+.fv-poll-link {
+  font-size: .78rem;
+  color: var(--goldd);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: .3rem;
+  transition: color .18s ease;
+}
+.fv-poll-link:hover {
+  color: var(--gold);
+}
+.fv-cta-wrap {
+  text-align: center;
+  margin-top: 2.25rem;
+}
+.fv-cta-wrap .btn-g {
+  padding: .75rem 2rem;
+  font-size: .92rem;
+}
+
+/* ── IŞIK TEMASI (Kurultay Vitrini / Light Mode) ── */
+html[data-theme="light"] #forum-vitrini {
+  background:
+    radial-gradient(ellipse 80% 60% at 15% 15%, rgba(139,0,0,.04) 0%, transparent 100%),
+    radial-gradient(ellipse 60% 80% at 85% 85%, rgba(138,90,30,.06) 0%, transparent 100%),
+    radial-gradient(circle at center, transparent 55%, rgba(138,90,30,.07) 100%),
+    var(--bg);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+html[data-theme="light"] .fv-card-inner {
+  background: var(--surface);
+  border-color: var(--border);
+  box-shadow: 0 4px 14px rgba(70, 50, 25, 0.08);
+}
+html[data-theme="light"] .fv-card:hover .fv-card-inner {
+  border-color: var(--borderl);
+  box-shadow: 0 8px 24px rgba(70, 50, 25, 0.14);
+}
+html[data-theme="light"] .fv-icon {
+  background: radial-gradient(circle, rgba(138, 90, 30, 0.14), rgba(244, 236, 216, 0.9));
+  border-color: var(--borderl);
+  color: var(--gold);
+}
+html[data-theme="light"] .fv-card.fv-teori .fv-icon {
+  background: radial-gradient(circle, rgba(163, 50, 50, 0.12), rgba(244, 236, 216, 0.9));
+  border-color: var(--blood);
+  color: var(--bloodb);
+}
+html[data-theme="light"] .fv-card:hover .fv-icon {
+  border-color: var(--goldb);
+  color: var(--goldb);
+}
+html[data-theme="light"] .fv-badge {
+  background: var(--deep);
+  border-color: var(--border);
+  color: var(--goldb);
+  font-weight: 600;
+}
+html[data-theme="light"] .fv-card .cc-name {
+  color: var(--parchl);
+  font-weight: 700;
+}
+html[data-theme="light"] .fv-card:hover .cc-name {
+  color: var(--gold);
+}
+html[data-theme="light"] .fv-card .cc-desc {
+  color: #241c14; /* Koyu, net ve okunaklı metin */
+}
+html[data-theme="light"] .fv-foot {
+  border-top-color: var(--border);
+  color: var(--goldb);
+}
+html[data-theme="light"] .fv-card:hover .fv-action {
+  color: var(--gold);
+}
+html[data-theme="light"] .fv-poll-slot .sw-poll-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  box-shadow: 0 4px 18px rgba(70, 50, 25, 0.08);
+}
+html[data-theme="light"] .fv-poll-slot .sw-poll-card::before {
+  content: '';
+  position: absolute;
+  inset: 5px;
+  border: 1px solid rgba(138, 90, 30, 0.14);
+  pointer-events: none;
+}
+html[data-theme="light"] .fv-poll-header {
+  border-bottom-color: var(--border);
+}
+html[data-theme="light"] .fv-poll-title {
+  color: var(--goldb);
+  font-weight: 700;
+}
+html[data-theme="light"] .fv-poll-link {
+  color: var(--gold);
+}
+html[data-theme="light"] .fv-poll-link:hover {
+  color: var(--goldb);
+}
+html[data-theme="light"] #forum-vitrini .btn-g {
+  background: var(--gold);
+  color: #fff;
+  box-shadow: 0 2px 10px rgba(138, 90, 30, 0.2);
+}
+html[data-theme="light"] #forum-vitrini .btn-g:hover {
+  background: var(--goldb);
+  box-shadow: 0 4px 14px rgba(138, 90, 30, 0.3);
+}
+</style>
+<script src="assets/js/router.js?v=3.2"></script>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <svg class="hero-seal" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Stallhart Hanedan Mührü">
+    <defs>
+      <!-- Altın ve Mücevher Degradeleri -->
+      <linearGradient id="sg-main" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#fff4d4"/>
+        <stop offset="22%" stop-color="#e8c26f"/>
+        <stop offset="48%" stop-color="#c4962a"/>
+        <stop offset="78%" stop-color="#8a5a18"/>
+        <stop offset="100%" stop-color="#54330a"/>
+      </linearGradient>
+      <linearGradient id="sg-bright" x1="0%" y1="100%" x2="100%" y2="0%">
+        <stop offset="0%" stop-color="#ffd56b"/>
+        <stop offset="50%" stop-color="#ffffff"/>
+        <stop offset="100%" stop-color="#e0a838"/>
+      </linearGradient>
+      <linearGradient id="sg-dark" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#4a3010"/>
+        <stop offset="100%" stop-color="#1f1304"/>
+      </linearGradient>
+      <radialGradient id="sg-glow" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stop-color="#f5c762" stop-opacity="0.35"/>
+        <stop offset="45%" stop-color="#c4962a" stop-opacity="0.14"/>
+        <stop offset="100%" stop-color="#c4962a" stop-opacity="0"/>
+      </radialGradient>
+      <radialGradient id="sg-disc" cx="45%" cy="38%" r="65%">
+        <stop offset="0%" stop-color="#261c12"/>
+        <stop offset="55%" stop-color="#140f09"/>
+        <stop offset="100%" stop-color="#07090f"/>
+      </radialGradient>
+      <radialGradient id="sg-ruby" cx="35%" cy="35%" r="65%">
+        <stop offset="0%" stop-color="#ff7b7b"/>
+        <stop offset="45%" stop-color="#b81d1d"/>
+        <stop offset="100%" stop-color="#420404"/>
+      </radialGradient>
+      <radialGradient id="sg-sapphire" cx="35%" cy="35%" r="65%">
+        <stop offset="0%" stop-color="#93c5fd"/>
+        <stop offset="45%" stop-color="#2563eb"/>
+        <stop offset="100%" stop-color="#0f172a"/>
+      </radialGradient>
+      <radialGradient id="sg-gold-gem" cx="35%" cy="35%" r="65%">
+        <stop offset="0%" stop-color="#ffffff"/>
+        <stop offset="50%" stop-color="#fde047"/>
+        <stop offset="100%" stop-color="#b45309"/>
+      </radialGradient>
+      <filter id="sg-shadow" x="-20%" y="-20%" width="140%" height="140%">
+        <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#000000" flood-opacity="0.6"/>
+      </filter>
+
+      <!-- 30 Derecelik Kadran Dilimi Şablonu (12 Kez Tekrarlanır: 72 Hassas Çentik) -->
+      <g id="sg-sector">
+        <line x1="100" y1="4" x2="100" y2="17" stroke="url(#sg-bright)" stroke-width="1.6" stroke-linecap="round"/>
+        <line x1="100" y1="4" x2="100" y2="9.5" stroke="#8a5e18" stroke-width="0.75" stroke-linecap="round" transform="rotate(5 100 100)"/>
+        <line x1="100" y1="4" x2="100" y2="9.5" stroke="#8a5e18" stroke-width="0.75" stroke-linecap="round" transform="rotate(10 100 100)"/>
+        <line x1="100" y1="4" x2="100" y2="13.5" stroke="url(#sg-main)" stroke-width="1.1" stroke-linecap="round" transform="rotate(15 100 100)"/>
+        <polygon points="100,5 101.4,7.2 100,9.4 98.6,7.2" fill="url(#sg-bright)" transform="rotate(15 100 100)"/>
+        <line x1="100" y1="4" x2="100" y2="9.5" stroke="#8a5e18" stroke-width="0.75" stroke-linecap="round" transform="rotate(20 100 100)"/>
+        <line x1="100" y1="4" x2="100" y2="9.5" stroke="#8a5e18" stroke-width="0.75" stroke-linecap="round" transform="rotate(25 100 100)"/>
+      </g>
+
+      <!-- 45 Derecelik Yörünge Yıldız Düğümü Şablonu -->
+      <g id="sg-node">
+        <circle cx="100" cy="32" r="2.2" fill="none" stroke="url(#sg-bright)" stroke-width="0.75"/>
+        <circle cx="100" cy="32" r="1" fill="url(#sg-bright)"/>
+      </g>
+
+      <!-- Güneş Işını Şablonu -->
+      <g id="sg-ray">
+        <path d="M98.6,56 L100,44 L101.4,56 Z" fill="url(#sg-main)"/>
+        <line x1="100" y1="56" x2="100" y2="47" stroke="url(#sg-bright)" stroke-width="0.6"/>
+      </g>
+    </defs>
+
+    <!-- 0. Zemin Büyü Halesi -->
+    <circle cx="100" cy="100" r="98" fill="url(#sg-glow)"/>
+
+    <!-- 1. Dış Astronomik Çark (Saat Yönünde Döner) -->
+    <g class="seal-outer-ring">
+      <circle cx="100" cy="100" r="97" fill="none" stroke="url(#sg-main)" stroke-width="1.6"/>
+      <circle cx="100" cy="100" r="93" fill="none" stroke="#5c3f1e" stroke-width="0.8"/>
+      <!-- 12 Dilim = 72 Derece Çentiği + 12 Elmas İm -->
+      <use href="#sg-sector" transform="rotate(0 100 100)"/>
+      <use href="#sg-sector" transform="rotate(30 100 100)"/>
+      <use href="#sg-sector" transform="rotate(60 100 100)"/>
+      <use href="#sg-sector" transform="rotate(90 100 100)"/>
+      <use href="#sg-sector" transform="rotate(120 100 100)"/>
+      <use href="#sg-sector" transform="rotate(150 100 100)"/>
+      <use href="#sg-sector" transform="rotate(180 100 100)"/>
+      <use href="#sg-sector" transform="rotate(210 100 100)"/>
+      <use href="#sg-sector" transform="rotate(240 100 100)"/>
+      <use href="#sg-sector" transform="rotate(270 100 100)"/>
+      <use href="#sg-sector" transform="rotate(300 100 100)"/>
+      <use href="#sg-sector" transform="rotate(330 100 100)"/>
+      <!-- 4 Ana Yön İmparatorluk Güneş Haçları (K, D, G, B) -->
+      <g transform="translate(100, 3.5)">
+        <polygon points="0,-3.5 1.5,0 0,3.5 -1.5,0" fill="url(#sg-bright)"/>
+        <circle cx="0" cy="0" r="0.8" fill="#fff"/>
+      </g>
+      <g transform="translate(196.5, 100)">
+        <polygon points="0,-1.5 3.5,0 0,1.5 -3.5,0" fill="url(#sg-bright)"/>
+        <circle cx="0" cy="0" r="0.8" fill="#fff"/>
+      </g>
+      <g transform="translate(100, 196.5)">
+        <polygon points="0,-3.5 1.5,0 0,3.5 -1.5,0" fill="url(#sg-bright)"/>
+        <circle cx="0" cy="0" r="0.8" fill="#fff"/>
+      </g>
+      <g transform="translate(3.5, 100)">
+        <polygon points="0,-1.5 3.5,0 0,1.5 -3.5,0" fill="url(#sg-bright)"/>
+        <circle cx="0" cy="0" r="0.8" fill="#fff"/>
+      </g>
+    </g>
+
+    <!-- 2. Orta Usturlap & Yörünge Çarkı (Saat Yönünün Tersine Döner) -->
+    <g class="seal-mid-ring">
+      <circle cx="100" cy="100" r="76" fill="none" stroke="url(#sg-main)" stroke-width="1.2"/>
+      <circle cx="100" cy="100" r="68" fill="none" stroke="#c4962a" stroke-width="0.8" stroke-dasharray="2.5, 4.5" opacity="0.65"/>
+      <circle cx="100" cy="100" r="60" fill="none" stroke="url(#sg-dark)" stroke-width="0.9"/>
+      <!-- 12 Göksel Kavis Çizgisi -->
+      <line x1="100" y1="24" x2="100" y2="40" stroke="url(#sg-main)" stroke-width="0.9" opacity="0.7" transform="rotate(0 100 100)"/>
+      <line x1="100" y1="24" x2="100" y2="40" stroke="url(#sg-main)" stroke-width="0.9" opacity="0.7" transform="rotate(30 100 100)"/>
+      <line x1="100" y1="24" x2="100" y2="40" stroke="url(#sg-main)" stroke-width="0.9" opacity="0.7" transform="rotate(60 100 100)"/>
+      <line x1="100" y1="24" x2="100" y2="40" stroke="url(#sg-main)" stroke-width="0.9" opacity="0.7" transform="rotate(90 100 100)"/>
+      <line x1="100" y1="24" x2="100" y2="40" stroke="url(#sg-main)" stroke-width="0.9" opacity="0.7" transform="rotate(120 100 100)"/>
+      <line x1="100" y1="24" x2="100" y2="40" stroke="url(#sg-main)" stroke-width="0.9" opacity="0.7" transform="rotate(150 100 100)"/>
+      <line x1="100" y1="24" x2="100" y2="40" stroke="url(#sg-main)" stroke-width="0.9" opacity="0.7" transform="rotate(180 100 100)"/>
+      <line x1="100" y1="24" x2="100" y2="40" stroke="url(#sg-main)" stroke-width="0.9" opacity="0.7" transform="rotate(210 100 100)"/>
+      <line x1="100" y1="24" x2="100" y2="40" stroke="url(#sg-main)" stroke-width="0.9" opacity="0.7" transform="rotate(240 100 100)"/>
+      <line x1="100" y1="24" x2="100" y2="40" stroke="url(#sg-main)" stroke-width="0.9" opacity="0.7" transform="rotate(270 100 100)"/>
+      <line x1="100" y1="24" x2="100" y2="40" stroke="url(#sg-main)" stroke-width="0.9" opacity="0.7" transform="rotate(300 100 100)"/>
+      <line x1="100" y1="24" x2="100" y2="40" stroke="url(#sg-main)" stroke-width="0.9" opacity="0.7" transform="rotate(330 100 100)"/>
+      <!-- 8 Gezegen/Yıldız Düğümü -->
+      <use href="#sg-node" transform="rotate(22.5 100 100)"/>
+      <use href="#sg-node" transform="rotate(67.5 100 100)"/>
+      <use href="#sg-node" transform="rotate(112.5 100 100)"/>
+      <use href="#sg-node" transform="rotate(157.5 100 100)"/>
+      <use href="#sg-node" transform="rotate(202.5 100 100)"/>
+      <use href="#sg-node" transform="rotate(247.5 100 100)"/>
+      <use href="#sg-node" transform="rotate(292.5 100 100)"/>
+      <use href="#sg-node" transform="rotate(337.5 100 100)"/>
+    </g>
+
+    <!-- 3. İç Güneş Işınları Çarkı (Saat Yönünde Döner) -->
+    <g class="seal-inner-ring">
+      <circle cx="100" cy="100" r="56" fill="none" stroke="url(#sg-main)" stroke-width="1.1"/>
+      <use href="#sg-ray" transform="rotate(0 100 100)"/>
+      <use href="#sg-ray" transform="rotate(22.5 100 100)"/>
+      <use href="#sg-ray" transform="rotate(45 100 100)"/>
+      <use href="#sg-ray" transform="rotate(67.5 100 100)"/>
+      <use href="#sg-ray" transform="rotate(90 100 100)"/>
+      <use href="#sg-ray" transform="rotate(112.5 100 100)"/>
+      <use href="#sg-ray" transform="rotate(135 100 100)"/>
+      <use href="#sg-ray" transform="rotate(157.5 100 100)"/>
+      <use href="#sg-ray" transform="rotate(180 100 100)"/>
+      <use href="#sg-ray" transform="rotate(202.5 100 100)"/>
+      <use href="#sg-ray" transform="rotate(225 100 100)"/>
+      <use href="#sg-ray" transform="rotate(247.5 100 100)"/>
+      <use href="#sg-ray" transform="rotate(270 100 100)"/>
+      <use href="#sg-ray" transform="rotate(292.5 100 100)"/>
+      <use href="#sg-ray" transform="rotate(315 100 100)"/>
+      <use href="#sg-ray" transform="rotate(337.5 100 100)"/>
+    </g>
+
+    <!-- 4. Merkez Madalyon & Kadim İmparatorluk Tacı (Sabit ve Haşmetli) -->
+    <g class="seal-core" filter="url(#sg-shadow)">
+      <!-- Madalyon Gövdesi -->
+      <circle cx="100" cy="100" r="43" fill="url(#sg-disc)" stroke="url(#sg-main)" stroke-width="2"/>
+      <circle cx="100" cy="100" r="39.5" fill="none" stroke="url(#sg-dark)" stroke-width="0.9"/>
+
+      <!-- 4 Altın Perçin Çivisi -->
+      <polygon points="100,58.5 101.5,60 100,61.5 98.5,60" fill="url(#sg-bright)"/>
+      <polygon points="139.5,98.5 141,100 139.5,101.5 138,100" fill="url(#sg-bright)"/>
+      <polygon points="100,138.5 101.5,140 100,141.5 98.5,140" fill="url(#sg-bright)"/>
+      <polygon points="60.5,98.5 62,100 60.5,101.5 59,100" fill="url(#sg-bright)"/>
+
+      <!-- Taç Altı Nefes Alan Altın Parıltı -->
+      <circle cx="100" cy="98" r="26" fill="url(#sg-glow)" class="seal-crown-glow"/>
+
+      <!-- ═══ KADİM CRAES STALLHART TACI (Imperial Stallhart Diadem) ═══ -->
+      <g class="seal-crown-group" transform="translate(0, -1)">
+        <!-- Taç Kadife / Gölgeli Gövde Dolgusu -->
+        <path d="M78,111 Q83,97 88,91 Q94,101 100,83 Q106,101 112,91 Q117,97 122,111 Q100,114.5 78,111 Z"
+              fill="url(#sg-dark)" opacity="0.85"/>
+
+        <!-- Taç Altın Gövdesi (Kabartmalı) -->
+        <path d="M78,111 Q83,97 88,91 Q94,101 100,83 Q106,101 112,91 Q117,97 122,111 Q100,114.5 78,111 Z"
+              fill="none" stroke="url(#sg-main)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+
+        <!-- Taç İç Vurgu Çizgileri -->
+        <path d="M88,92 L94,103 M112,92 L106,103 M100,84 L100,105"
+              stroke="url(#sg-bright)" stroke-width="0.9" opacity="0.55" stroke-linecap="round"/>
+
+        <!-- Taç Zirve Mücevherleri & İncileri -->
+        <!-- Merkez Zirve: İmparatorluk Yıldızı -->
+        <circle cx="100" cy="80.5" r="2.2" fill="url(#sg-bright)"/>
+        <polygon points="100,76.5 101.3,79.5 104.5,80.5 101.3,81.5 100,84.5 98.7,81.5 95.5,80.5 98.7,79.5" fill="#ffffff"/>
+        <!-- Yan Tepe İncileri -->
+        <circle cx="88" cy="89" r="1.8" fill="url(#sg-bright)"/>
+        <circle cx="88" cy="89" r="0.8" fill="#ffffff"/>
+        <circle cx="112" cy="89" r="1.8" fill="url(#sg-bright)"/>
+        <circle cx="112" cy="89" r="0.8" fill="#ffffff"/>
+        <!-- Dış Köşe İncileri -->
+        <circle cx="77.5" cy="107" r="1.4" fill="url(#sg-main)"/>
+        <circle cx="122.5" cy="107" r="1.4" fill="url(#sg-main)"/>
+
+        <!-- Taç Altın Alın Çemberi (Circlet Headband) -->
+        <path d="M76,111.5 Q100,115.5 124,111.5 L124,115.5 Q100,119.5 76,115.5 Z"
+              fill="url(#sg-main)" stroke="#4d300d" stroke-width="0.6"/>
+        <path d="M76.5,112 Q100,116 123.5,112"
+              fill="none" stroke="url(#sg-bright)" stroke-width="0.8"/>
+
+        <!-- Alın Çemberindeki 5 Kıymetli Taş (Ortada Yakut, Yanlarda Safir & Topaz) -->
+        <!-- Merkez: Kraliyet Yakutu -->
+        <ellipse cx="100" cy="114" rx="3.2" ry="2" fill="url(#sg-ruby)" stroke="url(#sg-bright)" stroke-width="0.6"/>
+        <!-- Yan Safirler -->
+        <circle cx="89" cy="113.6" r="1.5" fill="url(#sg-sapphire)" stroke="url(#sg-main)" stroke-width="0.5"/>
+        <circle cx="111" cy="113.6" r="1.5" fill="url(#sg-sapphire)" stroke="url(#sg-main)" stroke-width="0.5"/>
+        <!-- Dış Topazlar -->
+        <circle cx="80.5" cy="113" r="1.1" fill="url(#sg-gold-gem)"/>
+        <circle cx="119.5" cy="113" r="1.1" fill="url(#sg-gold-gem)"/>
+
+        <!-- Tacın Kalbinde Parlayan Kutsal Kor (Glow Ember) -->
+        <g transform="translate(100, 100)">
+          <polygon points="0,-4 1.2,-1.2 4,0 1.2,1.2 0,4 -1.2,1.2 -4,0 -1.2,-1.2" fill="url(#sg-bright)"/>
+          <circle cx="0" cy="0" r="1.2" fill="#ffffff"/>
+        </g>
+      </g>
+    </g>
+  </svg>
+  <p class="hero-eye" id="hero-eye">Stallhart Destanı · Cilt I</p>
+  <picture><source type="image/webp"
+    srcset="assets/images/logo-stallhart-480w.webp 480w, assets/images/logo-stallhart-960w.webp 960w, assets/images/logo-stallhart.webp 1400w"
+    sizes="(max-width: 1086px) 92vw, 1000px">
+  <img src="assets/images/logo-stallhart.png" class="hero-logo"
+       width="1400" height="506" decoding="async" fetchpriority="high"
+       alt="The Stallhart Saga" id="hero-logo"
+       onerror="var s=this.previousElementSibling;if(s&&s.tagName==='SOURCE'){s.remove();this.src=this.getAttribute('src');}else{this.style.display='none';var f=document.getElementById('hero-title-fallback');if(f){f.classList.remove('sr-only');f.style.display='block';}}"></picture>
+  <!-- Logo görseli görsel olarak "The Stallhart Saga" başlığını taşıyor (alt metni de bunu içeriyor),
+       ama arama motorlarının sayfada gerçek bir metinsel <h1> görmesi için bu başlık her zaman
+       DOM'da tutuluyor — sr-only ile sadece görsel olarak gizleniyor (display:none değil).
+       Logo yüklenemezse onerror ile görünür hale gelip yedek başlık olarak devreye giriyor. -->
+  <h1 id="hero-title-fallback" class="sr-only" data-tr="Stallhart Destanı — Son İmparator" data-en="The Stallhart Saga — The Last Emperor" style="font-family:var(--font-display); font-size:clamp(2rem,5vw,3.5rem); color:var(--parchl); margin-bottom:2.5rem; letter-spacing:.05em;">
+    Stallhart Destanı — Son İmparator
+  </h1>
+  <blockquote class="hero-q" id="hero-q">
+    "İmparatorluklar taştan değil, itaatten inşa edilir.<br>
+    Ve itaat, her zaman bir günün gelip çatacağını bilir."
+  </blockquote>
+  <div id="hero-resume-card" class="hero-resume" hidden></div>
+  <div class="hero-ctas">
+    <a href="#bolumler" class="btn-g" id="cta1">Bölümleri Oku</a>
+    <a href="karakterler.html" class="btn-o" id="cta2">Karakterler</a>
+  </div>
+</section>
+
+<!-- EVREN -->
+<section id="evren">
+  <div class="inn">
+    <div class="sec-h">
+      <h2 class="sec-t" id="ev-title">Evren</h2>
+      <p class="sec-s" id="ev-sub">Stallhart İmparatorluğu'nun tarihi, coğrafyası, inançları ve yasaları.</p>
+      <span class="rule"></span>
+    </div>
+    <div class="tabs tabs-wrap">
+      <button class="tab-b on" id="tb-cog" data-tr="Coğrafya" data-en="Geography">Coğrafya</button>
+      <button class="tab-b" id="tb-din" data-tr="Din &amp; İnanç" data-en="Faith &amp; Religion">Din &amp; İnanç</button>
+      <button class="tab-b" id="tb-sih" data-tr="Sihir" data-en="Magic">Sihir</button>
+      <button class="tab-b" id="tb-siy" data-tr="Siyaset" data-en="Politics">Siyaset</button>
+    </div>
+    <!-- Coğrafya -->
+    <div class="tab-p on" id="tab-cog">
+      <div class="lc"><h3 data-tr="Stallhart İmparatorluğu" data-en="The Stallhart Empire">Stallhart İmparatorluğu</h3><p data-tr="Gümüş Yol Boğazı ile ikiye ayrılan kıtanın büyük bölümüne hükmeden Stallhart İmparatorluğu, onlarca eyaleti bünyesinde barındırır. Başkent Başsancak topraklarında yer alır." data-en="Ruling most of the continent split by the Silver Way strait, the Stallhart Empire holds dozens of provinces. The capital sits in the Başsancak province.">Gümüş Yol Boğazı ile ikiye ayrılan kıtanın büyük bölümüne hükmeden Stallhart İmparatorluğu, onlarca eyaleti bünyesinde barındırır. Başkent Başsancak topraklarında yer alır.</p></div>
+      <div class="lc"><h3 data-tr="Gümüş Yol Boğazı" data-en="The Silver Way">Gümüş Yol Boğazı</h3><p data-tr="Kıtanın en stratejik su yolu. Kuzeyde Garall (Z'ela) ile güneyde Todfa ve Gom Ara arasında uzanan bu boğaz, doğuyla batı arasındaki ticareti ve askerî hareketliliği belirler." data-en="The continent's most strategic waterway. Stretching from Garall (Z'ela) in the north to Todfa and Gom Ara in the south, this strait governs trade and military movement between east and west.">Kıtanın en stratejik su yolu. Kuzeyde Garall (Z'ela) ile güneyde Todfa ve Gom Ara arasında uzanan bu boğaz, doğuyla batı arasındaki ticareti ve askerî hareketliliği belirler.</p></div>
+      <div class="lc"><h3 data-tr="Kuzey Eyaletleri" data-en="The Northern Provinces">Kuzey Eyaletleri</h3><p data-tr="Galetsha ve Memanth, imparatorluğun sert kuzey sınırlarını oluştururlar. Sarp dağlar, ormanlar ve geçit vermez vadilerle dolu bu topraklar askerî stratejinin merkezindedir." data-en="Galetsha and Memanth form the empire's harsh northern frontier. Covered in steep mountains, forests and impassable valleys, this land is central to military strategy.">Galetsha ve Memanth, imparatorluğun sert kuzey sınırlarını oluştururlar. Sarp dağlar, ormanlar ve geçit vermez vadilerle dolu bu topraklar askerî stratejinin merkezindedir.</p></div>
+      <div class="lc"><h3 data-tr="Adalar &amp; Güney" data-en="Islands &amp; South">Adalar &amp; Güney</h3><p data-tr="Selya, Khasinya ve Pilkard adaları deniz gücünün temelidir. Selya stratejik konumuyla öne çıkar; bilge Celios Selya'nın yönetiminde yarı özerk bir yapı sürdürür." data-en="The islands of Selya, Khasinya and Pilkard are the foundation of naval power. Selya stands out for its strategic position, maintaining a semi-autonomous structure under the wise Celios Selya.">Selya, Khasinya ve Pilkard adaları deniz gücünün temelidir. Selya stratejik konumuyla öne çıkar; bilge Celios Selya'nın yönetiminde yarı özerk bir yapı sürdürür.</p></div>
+    </div>
+    <!-- Din -->
+    <div class="tab-p" id="tab-din">
+      <div class="lc sp"><h3 data-tr="Denge Konseyi" data-en="The Council of the Even">Denge Konseyi</h3><p data-tr="İmparatorluğun resmî dini Denge Konseyi öğretisi, Kaos ve Düzen tanrıları arasındaki denge ilkesine dayanır. Kaos tanrıları: Nazeth, Naldor, Garator, Lodvez, Vazmer, Zetus, Hardir. Düzen tanrıları: Gydor, Lidros, Lomera, Veleris, Brikon, Eanhar, Raxes. Tarafsız Galdra tüm inançların üzerindedir." data-en="The empire's official religion, the doctrine of the Council of the Even, rests on the principle of balance between the gods of Chaos and Order. Chaos gods: Nazeth, Naldor, Garator, Lodvez, Vazmer, Zetus, Hardir. Order gods: Gydor, Lidros, Lomera, Veleris, Brikon, Eanhar, Raxes. The neutral Galdra stands above all faiths.">İmparatorluğun resmî dini Denge Konseyi öğretisi, Kaos ve Düzen tanrıları arasındaki denge ilkesine dayanır. Kaos tanrıları: Nazeth, Naldor, Garator, Lodvez, Vazmer, Zetus, Hardir. Düzen tanrıları: Gydor, Lidros, Lomera, Veleris, Brikon, Eanhar, Raxes. Tarafsız Galdra tüm inançların üzerindedir.</p></div>
+      <div class="lc"><h3 data-tr="İlk Anne İnancı" data-en="The First Mother Faith">İlk Anne İnancı</h3><p data-tr="Yasak İlk Anne inancı yüzyıllar önce yasaklanmıştır. Üç Yapraklı Yonca sembolüyle tanınan bu inanç; madenlerde, ninnilerde ve gizli el yazmalarıyla yaşamaya devam eder." data-en="The forbidden First Mother faith was outlawed centuries ago. Known by the Three-Leafed Clover symbol, this faith survives in mines, lullabies and secret manuscripts.">Yasak İlk Anne inancı yüzyıllar önce yasaklanmıştır. Üç Yapraklı Yonca sembolüyle tanınan bu inanç; madenlerde, ninnilerde ve gizli el yazmalarıyla yaşamaya devam eder.</p></div>
+      <div class="lc"><h3 data-tr="Kutsal Kan Doktrini" data-en="The Holy Blood Doctrine">Kutsal Kan Doktrini</h3><p data-tr="Kurucu Craes Stallhart, esaretten döndükten sonra Stallhart soyunun ilahi kandan geldiğini ilan etti. Arathen Krallığı bu iddiayı küfür olarak reddeder." data-en="Founder Craes Stallhart, after returning from captivity, proclaimed that the Stallhart bloodline descended from divine blood. The Kingdom of Arathen rejects this claim as blasphemy.">Kurucu Craes Stallhart, esaretten döndükten sonra Stallhart soyunun ilahi kandan geldiğini ilan etti. Arathen Krallığı bu iddiayı küfür olarak reddeder.</p></div>
+    </div>
+    <!-- Sihir -->
+    <div class="tab-p" id="tab-sih">
+      <div class="lc"><h3 data-tr="Khaan" data-en="Khaan">Khaan</h3><p data-tr="En eski bilinen sihir biçimi. Ruhsal enerjiyi doğrudan bedenden çekerek güce dönüştürür; uygulayıcı ne kadar ileri giderse bedeni o kadar tükenir. Mutlak yasak." data-en="The oldest known form of magic. It draws spiritual energy directly from the body and converts it into power; the further a practitioner goes, the more their body is consumed. Absolutely forbidden.">En eski bilinen sihir biçimi. Ruhsal enerjiyi doğrudan bedenden çekerek güce dönüştürür; uygulayıcı ne kadar ileri giderse bedeni o kadar tükenir. Mutlak yasak.</p></div>
+      <div class="lc"><h3 data-tr="Loth İllüzyon Sihrî" data-en="Loth Illusion Magic">Loth İllüzyon Sihrî</h3><p data-tr="Algıyı ve gerçekliğin görünümünü manipüle eden Loth sihrî, yanılsama ve gizleme sanatıdır. En sık izlerde bulunan yasak sihir türüdür." data-en="Manipulating perception and the appearance of reality, Loth magic is the art of illusion and concealment. It is the most commonly traced form of forbidden magic.">Algıyı ve gerçekliğin görünümünü manipüle eden Loth sihrî, yanılsama ve gizleme sanatıdır. En sık izlerde bulunan yasak sihir türüdür.</p></div>
+      <div class="lc"><h3 data-tr="Gylian Kaos Sihrî" data-en="Gylian Chaos Magic">Gylian Kaos Sihrî</h3><p data-tr="Kaos tanrılarından ilham alan Gylian sihrî, yıkım güçlerine çağrı yapan en tehlikeli daldır. Denge Konseyi tarafından şeytani kabul edilir." data-en="Inspired by the Chaos gods, Gylian magic is the most dangerous branch, calling upon forces of destruction. It is considered demonic by the Council of the Even.">Kaos tanrılarından ilham alan Gylian sihrî, yıkım güçlerine çağrı yapan en tehlikeli daldır. Denge Konseyi tarafından şeytani kabul edilir.</p></div>
+      <div class="lc"><h3 data-tr="Yasağın Sebebi" data-en="The Reason for the Ban">Yasağın Sebebi</h3><p data-tr="Sihir hiyerarşik iktidarı tehdit eder. Doğuştan güçlü olan biri, soy veya toprak hakkı olmaksızın iktidar talep edebilir. Karabıçaklar bu yasağın yürütücüsüdür." data-en="Magic threatens hierarchical power. Someone born powerful could claim authority without lineage or land rights. The Black Claws enforce this ban.">Sihir hiyerarşik iktidarı tehdit eder. Doğuştan güçlü olan biri, soy veya toprak hakkı olmaksızın iktidar talep edebilir. Karabıçaklar bu yasağın yürütücüsüdür.</p></div>
+    </div>
+    <!-- Siyaset -->
+    <div class="tab-p" id="tab-siy">
+      <div class="lc"><h3 data-tr="Kuruluş &amp; Hanedan" data-en="Founding &amp; Dynasty">Kuruluş &amp; Hanedan</h3><p data-tr="Stallhart İmparatorluğu KS 1144'te kuruldu. Hanedan çöküşü Rones (demir disiplin) → Elron (pasiflik) → İmloth (çürüme) seyriyle açıklanır." data-en="The Stallhart Empire was founded in KS 1144. The dynasty's decline is explained through the arc of Rones (iron discipline) → Elron (passivity) → Imloth (rot).">Stallhart İmparatorluğu KS 1144'te kuruldu. Hanedan çöküşü Rones (demir disiplin) → Elron (pasiflik) → İmloth (çürüme) seyriyle açıklanır.</p></div>
+      <div class="lc"><h3 data-tr="Eyalet Valileri" data-en="Provincial Governors">Eyalet Valileri</h3><p data-tr="Her biri bir Melik, Vali ya da Kont tarafından yönetilen eyaletler, merkezi otorite zayıfladıkça fiilen yarı özerk hale gelir ve iç çatışmanın tohumunu eker." data-en="Each governed by a Governor King, a Governor or a Count, the provinces become effectively semi-autonomous as central authority weakens, sowing the seeds of internal conflict.">Her biri bir Melik, Vali ya da Kont tarafından yönetilen eyaletler, merkezi otorite zayıfladıkça fiilen yarı özerk hale gelir ve iç çatışmanın tohumunu eker.</p></div>
+      <div class="lc"><h3 data-tr="Yabancı Güçler" data-en="Foreign Powers">Yabancı Güçler</h3><p data-tr="Batıda Zelaina Elfin İmparatorluğu binyıllardan beri seçimle yönetilir. Doğuda Arathen Krallığı imparatorluğu içten çökertmeye kararlıdır. Garchar ise büyük güçlerin oyuncağına dönmüştür." data-en="To the west, the Zelaina Elven Empire has been ruled by election for millennia. To the east, the Kingdom of Arathen is determined to collapse the empire from within. Garchar, meanwhile, has become a plaything of the great powers.">Batıda Zelaina Elfin İmparatorluğu binyıllardan beri seçimle yönetilir. Doğuda Arathen Krallığı imparatorluğu içten çökertmeye kararlıdır. Garchar ise büyük güçlerin oyuncağına dönmüştür.</p></div>
+      <div class="lc"><h3 data-tr="Karabıçaklar" data-en="The Black Claws">Karabıçaklar</h3><p data-tr="Amadon Stallhart'ın kurduğu gizli polis. Muhalifleri, sihir kullanıcılarını ve yasak inanç mensuplarını takip eder. İmparatorluğun en korku salıcı kurumlarından biridir." data-en="The secret police founded by Amadon Stallhart. They track dissidents, magic users and members of forbidden faiths. One of the empire's most feared institutions.">Amadon Stallhart'ın kurduğu gizli polis. Muhalifleri, sihir kullanıcılarını ve yasak inanç mensuplarını takip eder. İmparatorluğun en korku salıcı kurumlarından biridir.</p></div>
+    </div>
+    <div style="text-align: center; margin-top: 2rem;">
+      <a href="hiyerarsi.html" class="btn-o" style="display:inline-flex;align-items:center;gap:.6rem;padding:.7rem 1.4rem;">
+        <span>👑</span>
+        <span data-tr="İmparatorluk Yönetim Hiyerarşisi (Siyasi, Askeri, Dini Ağaç) ➔" data-en="Imperial Administrative Hierarchy (Civil, Military, Religious Tree) ➔">İmparatorluk Yönetim Hiyerarşisi (Siyasi, Askeri, Dini Ağaç) ➔</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURED KARAKTERLER -->
+<section id="karakterler">
+  <div class="inn">
+    <div class="sec-h">
+      <h2 class="sec-t" id="chars-title">Öne Çıkan Karakterler</h2>
+      <p class="sec-s" id="chars-sub">Stallhart Destanı'nın kilit isimleri.</p>
+      <span class="rule"></span>
+    </div>
+    <div class="cg" id="featured-chars">
+      <!-- wiki.js ile JSON'dan yüklenir -->
+      <div style="color:var(--parchd); font-style:italic; font-size:.88rem;">Yükleniyor…</div>
+    </div>
+    <div class="chars-more">
+      <a href="karakterler.html" class="btn-o" id="chars-all-btn">Tüm Karakterler</a>
+    </div>
+  </div>
+</section>
+
+<!-- BÖLÜMLER ÖNİZLEME -->
+<section id="bolumler">
+  <div class="inn">
+    <div class="sec-h">
+      <h2 class="sec-t" id="chaps-title">Son Bölümler</h2>
+      <p class="sec-s" id="chaps-sub">Stallhart Destanı Cilt I — devam eden roman.</p>
+      <span class="rule"></span>
+    </div>
+    <div class="cl" id="featured-chapters">
+      <div style="padding:1.5rem 2rem; color:var(--parchd); font-style:italic; font-size:.88rem;">Yükleniyor…</div>
+    </div>
+    <div class="chapters-more">
+      <a href="bolumler.html" class="btn-o" id="chaps-all-btn">Tüm Bölümler</a>
+    </div>
+  </div>
+</section>
+
+<!-- KURULTAY / FORUM VİTRİNİ -->
+<section id="forum-vitrini">
+  <div class="inn">
+    <div class="sw-throne-flourish-slot" style="margin-bottom:1.15rem;display:flex;justify-content:center;"></div>
+    <nav class="fr-crumb" aria-label="Breadcrumb" style="margin-bottom: 1.25rem;">
+      <a href="index.html" data-tr="Ana Sayfa" data-en="Home">Ana Sayfa</a>
+      <span>›</span>
+      <a href="forum.html" data-tr="Kurultay" data-en="Forum">Kurultay</a>
+      <span>›</span>
+      <strong data-tr="Meclis Odaları" data-en="Chambers">Meclis Odaları</strong>
+    </nav>
+    <div class="sec-h">
+      <h2 class="sec-t" data-tr="Kurultay · Meclis Odaları" data-en="The Kurultay · Assembly Chambers">Kurultay · Meclis Odaları</h2>
+      <p class="sec-s" data-tr="Denge Konseyi fermanları, kadim teoriler, bölüm tahlilleri ve hanedan sadakat tartışmaları." data-en="Council of the Even decrees, ancient theories, chapter critiques, and dynastic allegiance debates.">Denge Konseyi fermanları, kadim teoriler, bölüm tahlilleri ve hanedan sadakat tartışmaları.</p>
+      <span class="rule"></span>
+    </div>
+
+    <div class="cg fv-grid">
+      <a href="forum-kategori.html?kat=denge-konseyi" class="cc fv-card fv-denge">
+        <div class="cc-bg fv-card-inner">
+          <div class="fv-top">
+            <span class="fv-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3v18M6 8l6-5 6 5M3 13l3-5 3 5a3 3 0 0 1-6 0zM15 13l3-5 3 5a3 3 0 0 1-6 0z"/><path d="M6 21h12"/></svg>
+            </span>
+            <span class="badge fv-badge" data-tr="84 Müzakere" data-en="84 Debates">84 Müzakere</span>
+          </div>
+          <h3 class="cc-name" data-tr="Denge Konseyi Tartışmaları" data-en="Council of the Even Discussions">Denge Konseyi Tartışmaları</h3>
+          <p class="cc-desc" data-tr="Düzen ve Kaos dengesi, kadim On İki Tanrı’nın fermanları ve KS 0 sonrası evrenin mukadderatı." data-en="Cosmic balance of Order & Chaos, decrees of the Twelve Gods, and the fate of the realm.">Düzen ve Kaos dengesi, kadim On İki Tanrı’nın fermanları ve KS 0 sonrası evrenin mukadderatı.</p>
+          <div class="fv-foot">
+            <span class="fv-action" data-tr="Müzakerelere Katıl →" data-en="Join Debates →">Müzakerelere Katıl →</span>
+            <span class="fv-tag" data-tr="Kadim İnanç" data-en="Ancient Faith">Kadim İnanç</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="forum-kategori.html?kat=teori" class="cc fv-card fv-teori">
+        <div class="cc-bg fv-card-inner">
+          <div class="fv-top">
+            <span class="fv-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M2 12h3M19 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/></svg>
+            </span>
+            <span class="badge fv-badge" data-tr="196 Kehanet" data-en="196 Prophecies">196 Kehanet</span>
+          </div>
+          <h3 class="cc-name" data-tr="Teori Köşesi & Gizemler" data-en="Theory Corner & Mysteries">Teori Köşesi & Gizemler</h3>
+          <p class="cc-desc" data-tr="Kadim kehanetler, kayıp soy bağları, Son İmparator’un ardındaki gizemler ve ipucu avı." data-en="Ancient prophecies, hidden bloodlines, unresolved secrets of the Last Emperor, and deep lore deductions.">Kadim kehanetler, kayıp soy bağları, Son İmparator’un ardındaki gizemler ve ipucu avı.</p>
+          <div class="fv-foot">
+            <span class="fv-action" data-tr="Kehanetleri Çöz →" data-en="Unravel Prophecies →">Kehanetleri Çöz →</span>
+            <span class="fv-tag" data-tr="Gizli İpuçları" data-en="Hidden Clues">Gizli İpuçları</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="forum-kategori.html?kat=bolum" class="cc fv-card fv-bolum">
+        <div class="cc-bg fv-card-inner">
+          <div class="fv-top">
+            <span class="fv-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/><line x1="9" y1="7" x2="16" y2="7"/><line x1="9" y1="11" x2="14" y2="11"/></svg>
+            </span>
+            <span class="badge fv-badge" data-tr="142 Tahlil" data-en="142 Reviews">142 Tahlil</span>
+          </div>
+          <h3 class="cc-name" data-tr="Bölüm Yorumları & Okuma Kulübü" data-en="Chapter Discussions & Reading Club">Bölüm Yorumları & Okuma Kulübü</h3>
+          <p class="cc-desc" data-tr="Yayınlanan her bölümün tahlili, kritik sahne reaksiyonları, aforizmalar ve okur tartışmaları." data-en="Chapter breakdowns, critical scene reactions, aphorisms, and lively reader discussions.">Yayınlanan her bölümün tahlili, kritik sahne reaksiyonları, aforizmalar ve okur tartışmaları.</p>
+          <div class="fv-foot">
+            <span class="fv-action" data-tr="Bölüm Tahlillerine Git →" data-en="To Chapter Critiques →">Bölüm Tahlillerine Git →</span>
+            <span class="fv-tag" data-tr="Okuma Meclisi" data-en="Reading Assembly">Okuma Meclisi</span>
+          </div>
+        </div>
+      </a>
+    </div>
+
+    <!-- İNTERAKTİF KURULTAY OYLAMASI (POLL PREVIEW CARD) -->
+    <div id="vitrin-poll-slot" class="fv-poll-slot"></div>
+
+    <div class="fv-cta-wrap" style="display:flex;justify-content:center;gap:.75rem;flex-wrap:wrap;align-items:center;">
+      <a href="forum.html" class="btn-g" data-tr="Kurultay Forumuna Gir (Tüm Meclis Odaları)" data-en="Enter Kurultay Forum (All Chambers)">Kurultay Forumuna Gir (Tüm Meclis Odaları)</a>
+      <button type="button" class="btn-o" id="btn-vitrin-open-ledger" style="padding:.75rem 1.4rem;font-size:.85rem;cursor:pointer;">
+        🔮 <span data-tr="Kadim Kehanet Kütüğü" data-en="The Prophecy Ledger">Kadim Kehanet Kütüğü</span>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- HARİTA ÖNİZLEME -->
+<section id="harita">
+  <div class="inn">
+    <div class="sec-h">
+      <h2 class="sec-t" data-tr="İmparatorluk Haritası" data-en="Empire Map">İmparatorluk Haritası</h2>
+      <p class="sec-s" data-tr="Stallhart İmparatorluğu'nun siyasi haritası." data-en="Political map of the Stallhart Empire.">Stallhart İmparatorluğu'nun siyasi haritası.</p>
+      <span class="rule"></span>
+    </div>
+    <div class="map-w">
+      <picture><source type="image/webp" srcset="assets/images/SIYASI_HARITA_onizleme.webp">
+      <img src="assets/images/SIYASI_HARITA_onizleme.jpg" width="1800" height="1325"
+           loading="lazy" decoding="async"
+           alt="Stallhart İmparatorluğu Haritası" id="map-preview" data-tr="Stallhart İmparatorluğu Haritası" data-en="Map of the Stallhart Empire" data-i18n-attr="alt"
+           onerror="var s=this.previousElementSibling;if(s&&s.tagName==='SOURCE'){s.remove();this.src=this.getAttribute('src');}else{var w=this.closest('.map-w');if(w)w.innerHTML='&lt;p style=&quot;padding:3rem;text-align:center;color:var(--parchd);font-style:italic&quot;&gt;Harita görseli bulunamadı.&lt;/p&gt;';}"></picture>
+    </div>
+    <div class="map-btn-wrap">
+      <a href="harita.html" class="btn-o" data-tr="İnteraktif Haritayı Aç" data-en="Open Interactive Map">İnteraktif Haritayı Aç</a>
+    </div>
+  </div>
+</section>
+
+<!-- SSS -->
+<section id="sss">
+  <div class="inn">
+    <div class="sec-h">
+      <h2 class="sec-t" id="fq-title">Sıkça Sorulan Sorular</h2>
+      <p class="sec-s" id="fq-sub">Evren hakkında en çok merak edilenler.</p>
+      <span class="rule"></span>
+    </div>
+    <div class="faq">
+      <div class="fi">
+        <div class="fq"><span data-tr="Stallhart Destanı ne tür bir hikâye?" data-en="What kind of story is the Stallhart Saga?">Stallhart Destanı ne tür bir hikâye?</span>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </div>
+        <div class="fb2"><p data-tr="Bir imparatorluğun çöküşünü üç kuşaktan anlatan Türkçe dark fantasy destanıdır. George R.R. Martin'in etkisiyle şekillenmiş; saray entrikası, askerî çatışma, dinî siyaset ve karakter odaklı trajedileri bir arada barındıran çok ciltlik bir roman projesinin ilk kitabıdır." data-en="It is a Turkish-language dark fantasy saga telling the fall of an empire across three generations. Shaped by the influence of George R.R. Martin, it is the first book of a multi-volume novel project blending court intrigue, military conflict, religious politics and character-driven tragedy.">Bir imparatorluğun çöküşünü üç kuşaktan anlatan Türkçe dark fantasy destanıdır. George R.R. Martin'in etkisiyle şekillenmiş; saray entrikası, askerî çatışma, dinî siyaset ve karakter odaklı trajedileri bir arada barındıran çok ciltlik bir roman projesinin ilk kitabıdır.</p></div>
+      </div>
+      <div class="fi">
+        <div class="fq"><span data-tr="İmparatorlukta sihir neden yasak?" data-en="Why is magic forbidden in the empire?">İmparatorlukta sihir neden yasak?</span>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </div>
+        <div class="fb2"><p data-tr="Sihir hiyerarşik iktidarı tehdit eder. Doğuştan güçlü olan biri, soy veya toprak hakkı olmaksızın iktidar talep edebilir. Khaan, Loth ve Gylian olmak üzere üç sihir okulu vardır; hepsi kesinlikle yasaklanmıştır. Karabıçaklar yasağın yürütücüsüdür." data-en="Magic threatens hierarchical power. Someone born powerful could claim authority without lineage or land rights. There are three schools of magic — Khaan, Loth and Gylian — all strictly forbidden. The Black Claws enforce this ban.">Sihir hiyerarşik iktidarı tehdit eder. Doğuştan güçlü olan biri, soy veya toprak hakkı olmaksızın iktidar talep edebilir. Khaan, Loth ve Gylian olmak üzere üç sihir okulu vardır; hepsi kesinlikle yasaklanmıştır. Karabıçaklar yasağın yürütücüsüdür.</p></div>
+      </div>
+      <div class="fi">
+        <div class="fq"><span data-tr="İlk Anne inancı nedir ve neden tehlikeli?" data-en="What is the First Mother faith, and why is it dangerous?">İlk Anne inancı nedir ve neden tehlikeli?</span>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </div>
+        <div class="fb2"><p data-tr="İmparatorluktan önceki kadim bir inanç sistemidir. Üç Yapraklı Yonca sembolüyle tanınır. İnananlara göre hiçbir insan diğerinden daha kutsal değildir — bu fikir Stallhart'ın Kutsal Kan Doktriniyle doğrudan çatışır." data-en="It is an ancient belief system predating the empire, recognized by the Three-Leafed Clover symbol. Believers hold that no person is more sacred than another — an idea that directly conflicts with Stallhart's Holy Blood Doctrine.">İmparatorluktan önceki kadim bir inanç sistemidir. Üç Yapraklı Yonca sembolüyle tanınır. İnananlara göre hiçbir insan diğerinden daha kutsal değildir — bu fikir Stallhart'ın Kutsal Kan Doktriniyle doğrudan çatışır.</p></div>
+      </div>
+      <div class="fi">
+        <div class="fq"><span data-tr="Zeandor nasıl imparator oldu?" data-en="How did Zeandor become emperor?">Zeandor nasıl imparator oldu?</span>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </div>
+        <div class="fb2"><p data-tr="Amadon'un ölüm döşeğinde yazdığı mühürlü fermanlar Zeandor'u halef belirledi. Ancak bu yükseliş Erthan'ın isyanını bastırmasıyla mümkün oldu. İronik olan şu: Erthan'ın isyanı hem Amadon ve Edun Solgar'ın meşruiyetini yerle bir etti hem de Zeandor'un tahta çıkış zeminini hazırladı." data-en="Amadon's sealed decrees, written on his deathbed, named Zeandor as heir. But this rise was only possible through his suppression of Erthan's rebellion. Ironically, Erthan's rebellion both shattered Amadon and Edun Solgar's legitimacy and paved the ground for Zeandor's ascent to the throne.">Amadon'un ölüm döşeğinde yazdığı mühürlü fermanlar Zeandor'u halef belirledi. Ancak bu yükseliş Erthan'ın isyanını bastırmasıyla mümkün oldu. İronik olan şu: Erthan'ın isyanı hem Amadon ve Edun Solgar'ın meşruiyetini yerle bir etti hem de Zeandor'un tahta çıkış zeminini hazırladı.</p></div>
+      </div>
+      <div class="fi">
+        <div class="fq"><span data-tr="Arathen neden Stallhart'a karşı?" data-en="Why is Arathen against Stallhart?">Arathen neden Stallhart'a karşı?</span>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </div>
+        <div class="fb2"><p data-tr="Arathen, Stallhart'ın Kutsal Kan Doktrini'ni küfür olarak reddeder. Kral Leno Kridas sabırlı ve hesaplı; yıllar içinde istihbarat, suikast ve sihirle güçlendirilmiş savaş topu geliştirme yoluyla imparatorluğu içten çökertmeyi planlar." data-en="Arathen rejects Stallhart's Holy Blood Doctrine as blasphemy. King Leno Kridas is patient and calculating; over the years he plans to collapse the empire from within through espionage, assassination and the development of magic-enhanced siege cannons.">Arathen, Stallhart'ın Kutsal Kan Doktrini'ni küfür olarak reddeder. Kral Leno Kridas sabırlı ve hesaplı; yıllar içinde istihbarat, suikast ve sihirle güçlendirilmiş savaş topu geliştirme yoluyla imparatorluğu içten çökertmeyi planlar.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- wiki.js -->
+<script src="assets/js/config.js?v=3.2"></script>
+<script src="assets/js/patches.js?v=3.2"></script>
+<script src="assets/js/wiki.js?v=3.2"></script>
+<script src="assets/js/community.js?v=3.2"></script>
+<script src="assets/js/kurultay.js?v=3.2"></script>
+<script>
+const { Lang, loadData, initWiki, groupClass, esc } = Wiki;
+
+/* Wiki'yi başlat — nav, arama, altbilgi ve dil düğmesi burada kuruluyor */
+initWiki({ onLangChange: () => { applyStaticLang(Lang.get()); renderFeatured(); } });
+
+/* Logo ve harita önizlemesi: WebP → orijinal → metin/uyarı düşüşü, <img>'in
+   satır-içi onerror'unda yapılır (betik yüklenmeden gelen hataları da yakalar). */
+
+/* Tab sistemi */
+(function() {
+  const tabs = ['cog','din','sih','siy'];
+  tabs.forEach((id, i) => {
+    document.getElementById('tb-' + id).addEventListener('click', function() {
+      document.querySelectorAll('.tab-b').forEach(b => b.classList.remove('on'));
+      document.querySelectorAll('.tab-p').forEach(p => p.classList.remove('on'));
+      this.classList.add('on');
+      document.getElementById('tab-' + id).classList.add('on');
+    });
+  });
+})();
+
+/* Sabit metinlerin dil karşılıkları */
+const STATIC_TEXT = {
+  'hero-eye':   { tr: 'Stallhart Destanı · Cilt I', en: 'The Stallhart Saga · Vol. I' },
+  'cta1':       { tr: 'Bölümleri Oku', en: 'Read the Chapters' },
+  'cta2':       { tr: 'Karakterler', en: 'Characters' },
+  'ev-title':   { tr: 'Evren', en: 'The World' },
+  'ev-sub':     { tr: 'Stallhart İmparatorluğu\'nun tarihi, coğrafyası, inançları ve yasaları.',
+                  en: 'History, geography, faiths and laws of the Stallhart Empire.' },
+  'fq-title':   { tr: 'Sıkça Sorulan Sorular', en: 'Frequently Asked Questions' },
+  'fq-sub':     { tr: 'Evren hakkında en çok merak edilenler.', en: 'The most common questions about the world.' }
+};
+function applyStaticLang(l) {
+  document.documentElement.lang = l;
+  Object.keys(STATIC_TEXT).forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.textContent = STATIC_TEXT[id][l];
+  });
+  document.title = l === 'tr' ? 'The Stallhart Saga' : 'The Stallhart Saga';
+  const desc = l === 'tr'
+    ? 'Stallhart Destanı — Son İmparator, Türkçe dark fantasy epik roman'
+    : 'The Stallhart Saga — The Last Emperor, a dark fantasy epic';
+  const md = document.querySelector('meta[name="description"]'); if (md) md.setAttribute('content', desc);
+  const ogd = document.querySelector('meta[property="og:description"]'); if (ogd) ogd.setAttribute('content', desc);
+  const ogl = document.querySelector('meta[property="og:locale"]'); if (ogl) ogl.setAttribute('content', l === 'tr' ? 'tr_TR' : 'en_US');
+}
+
+/* Öne çıkan karakterler — JSON'dan ilk 6 protagonist */
+const FEATURED_IDS = ['zeandor','amadon','erthan','edlas','celios','leno-kridas'];
+
+async function renderFeatured() {
+  const l = Lang.get();
+  const t = obj => Lang.t(obj);
+
+  /* Başlıklar */
+  document.getElementById('chars-title').textContent  = l === 'tr' ? 'Öne Çıkan Karakterler' : 'Featured Characters';
+  document.getElementById('chars-sub').textContent    = l === 'tr' ? 'Stallhart Destanı\'nın kilit isimleri.' : 'The key figures of the Stallhart Saga.';
+  document.getElementById('chaps-title').textContent  = l === 'tr' ? 'Son Bölümler' : 'Latest Chapters';
+  document.getElementById('chaps-sub').textContent    = l === 'tr' ? 'Stallhart Destanı Cilt I — devam eden roman.' : 'The Stallhart Saga Vol. I — ongoing novel.';
+  document.getElementById('chars-all-btn').textContent = l === 'tr' ? 'Tüm Karakterler →' : 'All Characters →';
+  document.getElementById('chaps-all-btn').textContent = l === 'tr' ? 'Tüm Bölümler →' : 'All Chapters →';
+
+  try {
+    /* Karakterler */
+    const cData = await loadData('characters.json');
+    const featured = cData.characters.filter(c => FEATURED_IDS.includes(c.id));
+    const sortOrder = FEATURED_IDS.reduce((a,id,i) => (a[id]=i, a), {});
+    featured.sort((a,b) => (sortOrder[a.id]||0) - (sortOrder[b.id]||0));
+
+    document.getElementById('featured-chars').innerHTML = featured.map(c => `
+      <a class="cc ${groupClass(c.group)}" href="${SWRoute.href('karakter', c.id)}">
+        <div class="cc-dot ${c.status}"></div>
+        <p class="cc-house">${esc(t(c.house))}</p>
+        <h3 class="cc-name">${esc(t(c.name))}</h3>
+        <p class="cc-role">${esc(t(c.title))}</p>
+        <p class="cc-desc">${esc(t(c.bio).substring(0,120))}…</p>
+        ${t(c.epi) ? `<span class="cc-epi">${esc(t(c.epi))}</span>` : ''}
+      </a>
+    `).join('');
+
+    /* Bölümler — ilk 4 */
+    const bData = await loadData('chapters.json');
+    const first4 = bData.chapters.slice(0, 4);
+    document.getElementById('featured-chapters').innerHTML = first4.map(ch => `
+      <div class="ci${!ch.free ? ' dim' : ''}" id="bolum-${ch.id}">
+        <div class="ci-v">${esc(Lang.eraTag(ch.ks))}</div>
+        <div>
+          <div class="ci-n">${esc(ch.num)}. ${esc(t(ch.title))}${!ch.free ? ' <span style="font-size:.7rem;color:var(--goldd);font-style:italic">(kilitli)</span>' : ''}</div>
+          <div class="ci-d">${esc(t(ch.synopsis).substring(0,140))}…</div>
+        </div>
+        <div class="ci-p">${esc(t(ch.pov))}</div>
+      </div>
+    `).join('');
+
+    Wiki.Tooltip.scan(document.getElementById('featured-chars'));
+    Wiki.Tooltip.scan(document.getElementById('featured-chapters'));
+  } catch(e) {
+    console.error('Veri yüklenemedi:', e);
+    Wiki.renderError('featured-chars', e);
+    document.getElementById('featured-chapters').innerHTML = '';
+  }
+}
+
+function checkResume() {
+  try {
+    const box = document.getElementById('hero-resume-card');
+    if (!box) return;
+    const l = Lang.get();
+
+    // 1. Kayıtlı ayraçları kontrol et
+    const bookmarks = (window.Wiki && Wiki.Bookmarks && Wiki.Bookmarks.get) ? Wiki.Bookmarks.get() : [];
+    const latestBm = bookmarks[0] || null;
+
+    // 2. Son okuma ilerlemesini kontrol et
+    let lastRead = null;
+    try {
+      const raw = localStorage.getItem('sw-last-read');
+      if (raw) lastRead = JSON.parse(raw);
+    } catch (e) {}
+
+    // İkisi de yoksa kartı gizle
+    if (!latestBm && (!lastRead || !lastRead.id)) {
+      box.hidden = true;
+      box.innerHTML = '';
+      return;
+    }
+
+    // Öncelik: Kullanıcı açıkça ayraç koymuşsa ayracı öne çıkar, yoksa son okunan konumu göster
+    const isBookmark = !!latestBm;
+    const primary = isBookmark ? latestBm : lastRead;
+    const chapId = primary.chapterId || primary.id;
+    const title = (typeof primary.title === 'object' ? Lang.t(primary.title) : (primary.chapterTitle || primary.title)) || '';
+    const chapNum = primary.chapterNum || primary.num || '';
+    const pct = Math.round((primary.pct || 0) * 100);
+    const pIdx = (typeof primary.pIdx === 'number') ? primary.pIdx : null;
+    const snippet = primary.snippet ? primary.snippet.trim() : '';
+
+    // Doğrudan paragrafa atlama bağlantısı
+    const targetUrl = SWRoute.href('bolum', chapId) + (pIdx !== null ? `#p-${pIdx}` : '');
+
+    // Rozet & bilgi
+    const badgeHtml = isBookmark
+      ? `<span class="hr-badge">🔖 ${l === 'tr' ? 'Kayıtlı Ayraç' : 'Saved Bookmark'}</span>`
+      : `<span class="hr-badge" style="background:rgba(196,150,42,.12);border-color:rgba(196,150,42,.35);color:var(--goldd);">📖 ${l === 'tr' ? 'Okuma İlerlemesi' : 'Reading Progress'}</span>`;
+
+    const subDetails = [
+      pIdx !== null ? (l === 'tr' ? `Paragraf ${pIdx + 1}` : `Paragraph ${pIdx + 1}`) : '',
+      pct > 0 ? `%${pct}` : ''
+    ].filter(Boolean).join(' · ');
+
+    // Birden fazla ayraç varsa diğer ayraçlar için hızlı atlama çipleri
+    let otherPillsHtml = '';
+    if (bookmarks.length > 1) {
+      const otherBms = bookmarks.slice(1, 4);
+      otherPillsHtml = `
+        <div class="hr-extra-bookmarks">
+          <span class="hr-extra-lbl">${l === 'tr' ? 'Diğer Ayraçlar:' : 'Other Bookmarks:'}</span>
+          ${otherBms.map(b => {
+            const bTitle = (typeof b.title === 'object' ? Lang.t(b.title) : (b.chapterTitle || b.title)) || '';
+            const bPIdx = (typeof b.pIdx === 'number') ? b.pIdx : null;
+            const bUrl = SWRoute.href('bolum', b.chapterId || b.id) + (bPIdx !== null ? `#p-${bPIdx}` : '');
+            return `
+              <a class="hr-extra-chip" href="${bUrl}" title="${esc(bTitle)}">
+                <span>🔖</span>
+                <span>${esc(b.chapterNum ? `${b.chapterNum}. Bölüm` : bTitle)}${bPIdx !== null ? ` (P.${bPIdx + 1})` : ''}</span>
+              </a>
+            `;
+          }).join('')}
+        </div>
+      `;
+    }
+
+    box.innerHTML = `
+      <a class="hero-resume-link" href="${targetUrl}" aria-label="${l === 'tr' ? 'Kaldığın yerden bölüme devam et' : 'Resume reading chapter'}">
+        <span class="hr-icon">${isBookmark ? '🔖' : '📖'}</span>
+        <span class="hr-text">
+          ${badgeHtml}
+          <strong>${esc(chapNum ? `${chapNum}. ` : '')}${esc(title)}</strong>
+          ${subDetails ? `<small>${esc(subDetails)}</small>` : ''}
+          ${snippet ? `<div class="hr-snippet">“${esc(snippet)}”</div>` : ''}
+        </span>
+        <span class="hr-arrow" aria-hidden="true">→</span>
+      </a>
+      ${otherPillsHtml}
+    `;
+    box.hidden = false;
+  } catch (e) {
+    console.warn('Hero resume check error:', e);
+  }
+}
+
+function renderVitrinPoll() {
+  const slot = document.getElementById('vitrin-poll-slot');
+  if (!slot || !window.Kurultay) return;
+  const l = Lang.get();
+  const pollThread = Kurultay.FALLBACK_THREADS.find(t => t.id === 'f-hane-1') || Kurultay.FALLBACK_THREADS.find(t => !!t.poll);
+  if (!pollThread || !Kurultay.renderPollCard) return;
+
+  const cardHtml = Kurultay.renderPollCard(pollThread, l);
+  slot.innerHTML = `
+    <div style="max-width: 860px; margin: 0 auto;">
+      <div class="fv-poll-header">
+        <span class="fv-poll-title">
+          <span>⚖️</span>
+          <span>${l === 'tr' ? 'Haftanın Meclis Oylaması' : 'Assembly Ballot of the Week'}</span>
+        </span>
+        <a class="fv-poll-link" href="forum-konu.html?id=${encodeURIComponent(pollThread.id)}">
+          <span>${l === 'tr' ? 'Tartışmaya Katıl' : 'Join Discussion'}</span>
+          <span>→</span>
+        </a>
+      </div>
+      ${cardHtml}
+    </div>
+  `;
+
+  // Oylama etkileşimini bağla
+  const pollBtn = slot.querySelector('[data-poll-submit]');
+  if (pollBtn) {
+    pollBtn.addEventListener('click', () => {
+      const checked = slot.querySelector(`input[name="poll_choice_${pollThread.id}"]:checked`);
+      if (!checked) {
+        if (window.Community && Community.util && Community.util.toast) {
+          Community.util.toast(l === 'tr' ? 'Lütfen önce mührünüzü basacağınız haneyi seçin.' : 'Please select an option before casting your vote.', true);
+        } else if (window.Wiki && Wiki.Community && Wiki.Community.util && Wiki.Community.util.toast) {
+          Wiki.Community.util.toast(l === 'tr' ? 'Lütfen önce mührünüzü basacağınız haneyi seçin.' : 'Please select an option before casting your vote.', true);
+        } else if (Wiki.Toast && Wiki.Toast.show) {
+          Wiki.Toast.show(l === 'tr' ? 'Lütfen önce bir seçenek işaretleyin.' : 'Please select an option first.');
+        }
+        return;
+      }
+      Kurultay.votePoll(pollThread.id, checked.value);
+      if (window.Community && Community.util && Community.util.toast) {
+        Community.util.toast(l === 'tr' ? 'Oyunuz Kurultay Divanı’na mühürlendi (+25 Şan)!' : 'Your vote has been recorded (+25 Renown)!');
+      } else if (Wiki.Toast && Wiki.Toast.show) {
+        Wiki.Toast.show(l === 'tr' ? 'Oyunuz kaydedildi (+25 Şan)!' : 'Vote recorded (+25 Renown)!');
+      }
+      renderVitrinPoll();
+    });
+  }
+
+  const ledgerBtn = document.getElementById('btn-vitrin-open-ledger');
+  if (ledgerBtn && window.Kurultay && Kurultay.openProphecyLedgerModal) {
+    ledgerBtn.onclick = () => Kurultay.openProphecyLedgerModal(l);
+  }
+  if (window.Kurultay && Kurultay.applyChampionFlourish) {
+    Kurultay.applyChampionFlourish();
+  }
+}
+
+applyStaticLang(Lang.get());
+renderFeatured();
+checkResume();
+renderVitrinPoll();
+if (window.Kurultay && Kurultay.applyChampionFlourish) Kurultay.applyChampionFlourish();
+document.addEventListener('langchange', () => {
+  applyStaticLang(Lang.get());
+  checkResume();
+  renderVitrinPoll();
+  if (window.Kurultay && Kurultay.applyChampionFlourish) Kurultay.applyChampionFlourish();
+});
+document.addEventListener('bookmarkschange', checkResume);
+</script>
+</body>
+</html>

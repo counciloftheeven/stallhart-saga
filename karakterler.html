@@ -1,0 +1,1346 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Stallhart Destanı — Karakter Rehberi" data-tr="Stallhart Destanı — Karakter Rehberi" data-en="The Stallhart Saga — Character Guide" data-i18n-attr="content">
+<title data-tr="Karakterler · Stallhart Wiki" data-en="Characters · Stallhart Wiki">Karakterler · Stallhart Wiki</title>
+<meta name="theme-color" content="#0c121f">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="The Stallhart Saga">
+<meta property="og:locale" content="tr_TR">
+<meta property="og:title" content="Karakterler · Stallhart Wiki">
+<meta property="og:description" content="Stallhart Destanı — Karakter Rehberi">
+<meta property="og:image" content="assets/images/logo-stallhart.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Karakterler · Stallhart Wiki">
+<meta name="twitter:description" content="Stallhart Destanı — Karakter Rehberi">
+<meta name="twitter:image" content="assets/images/logo-stallhart.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Modern+Antiqua&amp;family=IM+Fell+English:ital@0;1&amp;family=Merriweather:ital,wght@0,400;0,700;1,400&amp;display=swap">
+<link rel="stylesheet" href="assets/css/styles.css?v=3.2">
+<link rel="stylesheet" href="assets/css/familytree.css?v=3.2">
+<style>
+#karakterler-sec { background: var(--bg); padding-top: 2rem; }
+
+/* ── ANA SEKMELER (Karakter Rehberi / Soy Ağacı) ── */
+.char-tabs-bar {
+  display: flex;
+  justify-content: center;
+  gap: .75rem;
+  padding: .5rem 1rem 1.75rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--deep);
+  position: relative;
+  z-index: 5;
+}
+.ctb-btn {
+  font-family: var(--font-display);
+  font-size: .95rem;
+  letter-spacing: .06em;
+  color: var(--parchd);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: .65rem 1.6rem;
+  cursor: pointer;
+  transition: all .2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: .55rem;
+  border-radius: 2px;
+}
+.ctb-btn:hover {
+  color: var(--parchl);
+  border-color: var(--goldd);
+}
+.ctb-btn.on {
+  color: var(--gold);
+  border-color: var(--gold);
+  background: rgba(196,150,42,.12);
+  box-shadow: 0 0 14px rgba(196,150,42,.18);
+}
+.ctb-icon {
+  font-size: 1.05rem;
+  line-height: 1;
+}
+
+html[data-theme="light"] .char-tabs-bar {
+  background: var(--deep);
+  border-color: var(--border);
+}
+html[data-theme="light"] .ctb-btn {
+  background: var(--surface);
+  color: var(--parch);
+  border-color: var(--border);
+}
+html[data-theme="light"] .ctb-btn.on {
+  background: rgba(138,90,30,.12);
+  color: var(--gold);
+  border-color: var(--gold);
+}
+
+/* ── SOY AĞACI GÖRÜNÜMÜ ── */
+#view-tree {
+  display: none;
+  flex-direction: column;
+  height: 82vh;
+  min-height: 640px;
+  position: relative;
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+}
+#view-tree.on {
+  display: flex;
+}
+
+/* TREE TABS */
+.tree-tabs {
+  flex-shrink: 0;
+  display: flex;
+  background: rgba(6,4,2,.98);
+  border-bottom: 1px solid var(--border);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.tree-tabs::-webkit-scrollbar { display: none; }
+.ttab {
+  font-family: var(--font-display);
+  font-size: .88rem;
+  font-style: italic;
+  color: var(--parchd);
+  background: none;
+  border: none;
+  padding: .85rem 1.6rem;
+  cursor: pointer;
+  position: relative;
+  transition: color .18s;
+  white-space: nowrap;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+}
+.ttab::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--gold);
+  transform: scaleX(0);
+  transition: transform .2s;
+}
+.ttab.on { color: var(--gold); }
+.ttab.on::after { transform: scaleX(1); }
+.ttab:hover { color: var(--parchl); }
+.ttab-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; opacity: .85; }
+
+/* TREE LAYOUT & PANZOOM */
+.tree-layout {
+  flex: 1;
+  display: flex;
+  overflow: hidden;
+  position: relative;
+}
+.tree-layout .ft-view {
+  flex: 1;
+  min-width: 0;
+  height: 100%;
+}
+.ft-tools {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  z-index: 20;
+}
+.ft-btn {
+  width: 34px;
+  height: 34px;
+  background: rgba(8,5,2,.88);
+  border: 1px solid var(--border);
+  color: var(--parchd);
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: .18s;
+  backdrop-filter: blur(4px);
+}
+.ft-btn:hover { border-color: var(--goldd); color: var(--gold); }
+.ft-empty {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-style: italic;
+  color: var(--parchd);
+  padding: 2rem;
+  text-align: center;
+}
+
+/* Bilgi paneli eklentileri */
+.ip-badge {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: .66rem;
+  padding: .12rem .55rem;
+  margin: 0 .35rem .85rem 0;
+  border: 1px solid;
+}
+.ip-badge.legit { color: var(--goldb); border-color: var(--goldb); }
+.ip-badge.illegit { color: var(--bloodb); border-color: var(--blood); }
+.ip-rel { display: flex; flex-wrap: wrap; gap: .3rem; margin-top: .1rem; }
+.ip-rel button {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: .72rem;
+  color: var(--goldd);
+  background: none;
+  border: 1px solid var(--border);
+  padding: .12rem .55rem;
+  cursor: pointer;
+  transition: .18s;
+}
+.ip-rel button:hover { color: var(--gold); border-color: var(--goldd); }
+.ip-char-go {
+  display: block;
+  width: 100%;
+  margin-top: .75rem;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: .76rem;
+  color: var(--goldd);
+  text-decoration: none;
+  text-align: center;
+  border: 1px solid var(--border);
+  padding: .35rem .7rem;
+  background: rgba(196,150,42,.06);
+  cursor: pointer;
+  transition: .18s;
+}
+.ip-char-go:hover { color: var(--gold); border-color: var(--goldd); background: rgba(196,150,42,.12); }
+
+/* INFO PANEL */
+.ipanel {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 290px;
+  background: rgba(8,5,2,.97);
+  border-left: 1px solid var(--border);
+  transform: translateX(100%);
+  transition: transform .28s ease;
+  z-index: 100;
+  overflow-y: auto;
+  backdrop-filter: blur(8px);
+}
+.ipanel.open { transform: translateX(0); }
+.ip-close {
+  position: absolute;
+  top: .9rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  color: var(--parchd);
+  cursor: pointer;
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  z-index: 10;
+  transition: color .18s;
+  line-height: 1;
+}
+.ip-close:hover { color: var(--gold); }
+.ip-body { padding: 2rem 1.5rem; }
+.ip-eye {
+  font-family: var(--font-display);
+  font-size: .63rem;
+  letter-spacing: .15em;
+  color: var(--goldd);
+  margin-bottom: .4rem;
+  font-style: italic;
+}
+.ip-name {
+  font-family: var(--font-display);
+  font-size: 1.45rem;
+  color: var(--parchl);
+  line-height: 1.15;
+  margin-bottom: .2rem;
+}
+.ip-title { font-size: .82rem; font-style: italic; color: var(--gold); margin-bottom: .85rem; }
+.ip-rule { width: 55px; height: 1px; background: linear-gradient(to right,var(--goldd),transparent); margin-bottom: .9rem; }
+.ip-sl {
+  font-family: var(--font-display);
+  font-size: .63rem;
+  letter-spacing: .12em;
+  color: var(--goldd);
+  margin-bottom: .35rem;
+  margin-top:.85rem;
+}
+.ip-val { font-size: .82rem; color: var(--parchd); line-height: 1.75; font-style: italic; }
+.ip-ks {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-size: .68rem;
+  border: 1px solid var(--border);
+  padding: .15rem .55rem;
+  color: var(--goldd);
+  font-style: italic;
+  margin-bottom: .85rem;
+}
+.ip-epi {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: .75rem;
+  color: var(--bloodb);
+  padding-top: .75rem;
+  border-top: 1px solid var(--border);
+  margin-top: .75rem;
+}
+
+/* HINT */
+.hint-text {
+  position: absolute;
+  top: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: .7rem;
+  color: var(--parchd);
+  background: rgba(6,4,2,.78);
+  border: 1px solid var(--border);
+  padding: .28rem .75rem;
+  white-space: nowrap;
+  pointer-events: none;
+  transition: opacity 1s;
+  z-index: 10;
+}
+.hint-text.gone { opacity: 0; }
+
+/* Arama + filtre çubuğu */
+.char-toolbar {
+  display: flex;
+  flex-direction: column;
+  gap: .85rem;
+  margin-bottom: 1.8rem;
+  background: rgba(14, 10, 6, 0.55);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 1rem 1.15rem;
+}
+.ct-primary-row {
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+  flex-wrap: wrap;
+}
+.ct-filter-row {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+  padding-top: .65rem;
+  border-top: 1px dashed rgba(184,115,51,.2);
+}
+.ct-pill-group {
+  display: flex;
+  align-items: center;
+  gap: .35rem;
+  flex-wrap: wrap;
+}
+.ct-select {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--parch);
+  font-family: var(--font-display);
+  font-size: .82rem;
+  padding: .45rem .85rem;
+  border-radius: 2px;
+  outline: none;
+  cursor: pointer;
+  transition: border-color .2s;
+  min-height: 38px;
+}
+.ct-select:hover, .ct-select:focus {
+  border-color: var(--gold);
+}
+.ct-clear-btn {
+  background: none;
+  border: none;
+  color: var(--parchd);
+  cursor: pointer;
+  font-size: .85rem;
+  padding: 2px 6px;
+}
+.ct-clear-btn:hover { color: var(--parchl); }
+.ct-reset-btn {
+  font-size: .78rem;
+  padding: .35rem .65rem;
+  color: var(--parchd);
+}
+
+.char-search-wrap {
+  display: flex; align-items: center; gap: .6rem;
+  background: var(--surface); border: 1px solid var(--border);
+  padding: .4rem 1rem; flex: 1; min-width: 200px; max-width: 360px;
+}
+.char-search-wrap svg {
+  width: 14px; height: 14px; flex-shrink: 0;
+  stroke: var(--goldd); fill: none; stroke-width: 1.8; stroke-linecap: round;
+}
+#char-search {
+  flex: 1; background: none; border: none; outline: none;
+  font-family: var(--font-display); font-size: .88rem;
+  color: var(--parchl); caret-color: var(--gold);
+}
+#char-search::placeholder { color: var(--parchd); }
+
+/* Karakter Görsel Durum Damgaları (Seals) */
+.cc {
+  position: relative;
+  overflow: hidden;
+  transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease;
+}
+.cc:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0,0,0,.35);
+}
+.cc.status-deceased {
+  border-color: rgba(120, 25, 25, 0.45);
+  background: radial-gradient(circle at top right, rgba(45, 12, 12, 0.25), var(--card) 75%);
+}
+.cc.status-deceased::before, .cc.status-deceased::after {
+  border-color: rgba(180, 40, 40, 0.5);
+}
+.cc.status-deceased .cc-name {
+  color: #e4d7cb;
+}
+.cc.status-deceased .cc-desc {
+  opacity: .88;
+}
+.cc.status-alive {
+  border-color: rgba(196, 150, 42, 0.35);
+}
+.cc.status-historical {
+  border-color: rgba(135, 110, 75, 0.35);
+  background: radial-gradient(circle at top right, rgba(40, 30, 18, 0.3), var(--card) 75%);
+}
+
+.cc-status-seal {
+  position: absolute;
+  top: .85rem;
+  right: .85rem;
+  display: inline-flex;
+  align-items: center;
+  gap: .25rem;
+  font-family: var(--font-display);
+  font-size: .6rem;
+  letter-spacing: .12em;
+  font-weight: 500;
+  text-transform: uppercase;
+  padding: .18rem .5rem;
+  border-radius: 2px;
+  line-height: 1;
+  user-select: none;
+  z-index: 2;
+}
+.seal-deceased {
+  background: linear-gradient(135deg, rgba(82, 14, 14, 0.95), rgba(42, 8, 8, 0.98));
+  border: 1px solid rgba(220, 60, 60, 0.65);
+  color: #ffc4c4;
+  box-shadow: 0 2px 8px rgba(180, 20, 20, 0.35);
+}
+.seal-alive {
+  background: linear-gradient(135deg, rgba(28, 20, 10, 0.95), rgba(50, 35, 15, 0.98));
+  border: 1px solid rgba(212, 175, 55, 0.65);
+  color: #faeac4;
+  box-shadow: 0 2px 8px rgba(212, 175, 55, 0.25);
+}
+.seal-historical {
+  background: linear-gradient(135deg, rgba(28, 24, 20, 0.95), rgba(40, 32, 26, 0.98));
+  border: 1px solid rgba(160, 130, 95, 0.5);
+  color: #e0d4c5;
+}
+
+.filter-sep {
+  width: 1px; height: 20px; background: var(--border); flex-shrink: 0;
+}
+
+/* Karakter sayacı */
+.char-count {
+  margin-left: auto;
+  font-family: var(--font-display); font-style: italic;
+  font-size: .78rem; color: var(--parchd);
+}
+
+/* Boş durum */
+.chars-empty {
+  grid-column: 1/-1; text-align: center;
+  padding: 3rem; font-style: italic; color: var(--parchd); font-size: .9rem;
+}
+
+/* Durum rozeti */
+.status-badge {
+  display: inline-flex; align-items: center; gap: 4px;
+  font-size: .68rem; font-family: var(--font-display); font-style: italic;
+  padding: 2px 7px; border: 1px solid;
+}
+.status-badge.alive      { color: var(--goldd);  border-color: var(--goldd); }
+.status-badge.deceased   { color: var(--bloodb); border-color: var(--bloodb); }
+.status-badge.historical { color: var(--parchd); border-color: var(--border); }
+
+/* Yer imi düğmesi */
+.cc-bookmark {
+  position: absolute; bottom: 1rem; right: 1rem;
+  background: none; border: 1px solid var(--border);
+  color: var(--parchd); font-size: .7rem; padding: 2px 6px;
+  cursor: pointer; transition: .15s; font-family: var(--font-display);
+  font-style: italic; z-index: 1;
+}
+.cc-bookmark:hover     { border-color: var(--goldd); color: var(--gold); }
+.cc-bookmark.bookmarked { border-color: var(--goldd); color: var(--gold); background: rgba(196,150,42,.08); }
+
+/* Sadece yer imleri butonu */
+.f-btn.bookmarks-only.on { border-color: var(--goldd); color: var(--goldd); }
+
+/* Modal ilişkiler */
+.modal-rels { margin-top: 1.25rem; }
+.modal-rels-title {
+  font-family: var(--font-display); font-style: italic;
+  font-size: .78rem; color: var(--goldd); margin-bottom: .6rem;
+}
+.modal-rels-list { display: flex; flex-wrap: wrap; gap: .5rem; }
+.modal-rel-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: .35rem;
+  font-size: .76rem;
+  padding: .32rem .75rem;
+  border: 1px solid var(--border);
+  color: var(--parch);
+  background: var(--surface);
+  cursor: pointer;
+  transition: all .18s ease;
+  text-decoration: none;
+  font-family: var(--font-display);
+  border-radius: 3px;
+  position: relative;
+}
+.modal-rel-tag.ally {
+  border-left: 3px solid var(--gold);
+}
+.modal-rel-tag.ally:hover {
+  border-color: var(--goldd);
+  color: var(--goldb);
+  box-shadow: 0 0 10px rgba(196,150,42,.3);
+  transform: translateY(-1px);
+}
+.modal-rel-tag.enemy {
+  border-left: 3px solid #d33838;
+}
+.modal-rel-tag.enemy:hover {
+  border-color: #d33838;
+  color: #ff7575;
+  box-shadow: 0 0 10px rgba(184,20,20,.35);
+  transform: translateY(-1px);
+}
+
+/* Etiket filtre çipleri */
+.tag-filter-row { display: flex; gap: .4rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
+.tag-chip { opacity: .82; }
+.tag-chip.on { opacity: 1; border-color: var(--goldd); color: var(--goldd); background: rgba(196,150,42,.08); }
+
+@media (max-width: 640px) {
+  #view-tree { height: 75vh; min-height: 520px; }
+  .ttab { padding: .7rem 1.1rem; font-size: .82rem; min-height: 44px; }
+  .hint-text { white-space: normal; width: max-content; max-width: calc(100% - 2rem); font-size: .65rem; text-align: center; }
+  .ipanel { width: 100%; max-width: 100%; border-left: none; border-top: 1px solid var(--borderl); }
+  .ip-body { padding: 1.5rem 1.1rem; }
+  .ft-tools { top: auto; bottom: 1rem; left: 1rem; flex-direction: row; gap: 4px; }
+  .ft-btn { width: 40px; height: 40px; font-size: 1.2rem; }
+  .char-tabs-bar { padding: .25rem .75rem 1.25rem; }
+  .ctb-btn { padding: .55rem 1.1rem; font-size: .88rem; }
+  .char-toolbar { flex-direction: column; align-items: stretch; gap: .75rem; }
+  .char-search-wrap { max-width: 100%; width: 100%; min-width: 0; }
+  .filter-sep { display: none; }
+  .char-count { margin-left: 0; text-align: right; }
+  .tag-filter-row { overflow-x: auto; flex-wrap: nowrap; padding-bottom: .4rem; -webkit-overflow-scrolling: touch; }
+  .tag-chip { flex-shrink: 0; }
+}
+</style>
+<script src="assets/js/router.js?v=3.2"></script>
+</head>
+<body>
+
+<section id="karakterler-sec">
+  <div class="page-hero">
+    <p class="page-hero-eye" data-tr="Stallhart Destanı · Cilt I" data-en="The Stallhart Saga · Vol. I">Stallhart Destanı · Cilt I</p>
+    <h1 class="page-hero-title" id="page-title">Karakter Rehberi</h1>
+    <p class="page-hero-sub" id="page-sub">İmparatorluğun tüm önemli isimleri — hanedanlar, isyancılar, düşmanlar.</p>
+  </div>
+
+  <!-- Ana Sekmeler (Karakter Rehberi / Soy Ağacı) -->
+  <div class="char-tabs-bar" role="tablist" aria-label="Karakter Rehberi Bölümleri">
+    <button class="ctb-btn on" id="tab-chars" type="button" role="tab" aria-selected="true" aria-controls="view-chars" data-tab="chars">
+      <span class="ctb-icon">👤</span>
+      <span data-tr="Karakter Rehberi" data-en="Character Guide">Karakter Rehberi</span>
+    </button>
+    <button class="ctb-btn" id="tab-tree" type="button" role="tab" aria-selected="false" aria-controls="view-tree" data-tab="tree">
+      <span class="ctb-icon">🌳</span>
+      <span data-tr="Soy Ağacı" data-en="Family Tree">Soy Ağacı</span>
+    </button>
+  </div>
+
+  <!-- SEKME 1: Karakterler Listesi -->
+  <div id="view-chars" class="tab-view on">
+    <div class="inn" style="padding: 2.5rem 2rem 6rem;">
+      <!-- Akıllı Çoklu Filtre Çubuğu -->
+      <div class="char-toolbar">
+        <div class="ct-primary-row">
+          <!-- Yazı araması -->
+          <div class="char-search-wrap">
+            <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="22" y2="22"/></svg>
+            <input type="search" id="char-search" placeholder="İsim, unvan veya kelime ara…" autocomplete="off">
+            <button type="button" id="char-search-clear" class="ct-clear-btn" aria-label="Aramayı Temizle" style="display:none">✕</button>
+          </div>
+
+          <!-- Eyalet / Köken Seçimi -->
+          <select class="ct-select" id="f-province" aria-label="Eyalet veya Bölge">
+            <option value="all">📍 Tüm Eyalet & Bölgeler</option>
+          </select>
+
+          <!-- Sıralama -->
+          <select class="ct-select" id="f-sort" aria-label="Sıralama">
+            <option value="default">↕ Sıralama: Varsayılan</option>
+            <option value="name-asc">A → Z (İsim)</option>
+            <option value="name-desc">Z → A (İsim)</option>
+            <option value="house">Haneye Göre</option>
+            <option value="status">Yaşama Göre (Önce Hayatta)</option>
+          </select>
+
+          <!-- Filtreleri Sıfırla -->
+          <button type="button" class="f-btn ct-reset-btn" id="f-reset" title="Tüm filtreleri sıfırla">↺ Sıfırla</button>
+
+          <!-- Yer İmleri -->
+          <button class="f-btn bookmarks-only" id="f-bookmarks">☆ Yer İmleri</button>
+
+          <!-- Karakter Sayacı -->
+          <span class="char-count" id="char-count"></span>
+        </div>
+
+        <div class="ct-filter-row">
+          <!-- Hane filtreleri -->
+          <div class="ct-pill-group">
+            <span class="fb-label" id="lbl-filter">Hane:</span>
+            <button class="f-btn on" data-group="all" id="f-all">Tümü</button>
+            <button class="f-btn" data-group="stallhart" id="f-stallhart">İmparatorluk</button>
+            <button class="f-btn" data-group="arhan" id="f-arhan">Arhan</button>
+            <button class="f-btn" data-group="solgar" id="f-solgar">Solgar</button>
+            <button class="f-btn" data-group="selya" id="f-selya">Selya</button>
+            <button class="f-btn" data-group="rebel" id="f-rebel">İsyancılar</button>
+            <button class="f-btn" data-group="arathen" id="f-arathen">Arathen</button>
+          </div>
+
+          <!-- Durum filtresi -->
+          <div class="ct-pill-group">
+            <span class="fb-label">Durum:</span>
+            <button class="f-btn on" data-status="all" id="f-status-all">Tümü</button>
+            <button class="f-btn" data-status="alive" id="f-alive">✨ Yaşıyor</button>
+            <button class="f-btn" data-status="deceased" id="f-deceased">🩸 Ölü / Mevt</button>
+            <button class="f-btn" data-status="historical" id="f-historical">📜 Tarihsel</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Etiket filtreleri -->
+      <div class="tag-filter-row" id="tag-filters"></div>
+
+      <!-- Karakter ızgarası -->
+      <div class="cg" id="char-grid" data-skeleton="cards"></div>
+    </div>
+  </div>
+
+  <!-- SEKME 2: Soy Ağacı -->
+  <div id="view-tree" class="tab-view" style="display:none;">
+    <!-- Hane Sekmeleri (Stallhart, Selya, Solgar, Arhan, Galet) -->
+    <div class="tree-tabs" id="tree-tabs" role="tablist"></div>
+
+    <div class="tree-layout">
+      <div class="ft-view" id="ft-view">
+        <div class="ft-stage" id="ft-stage"></div>
+        <div class="hint-text" id="hint">Sürükle: kaydır &nbsp;·&nbsp; Tekerlek: yakınlaştır &nbsp;·&nbsp; Kutuya tıkla: bilgi</div>
+        <div class="ft-tools">
+          <button class="ft-btn" id="zi" type="button" aria-label="Yakınlaştır" data-tr="Yakınlaştır" data-en="Zoom in" data-i18n-attr="aria-label">+</button>
+          <button class="ft-btn" id="zo" type="button" aria-label="Uzaklaştır" data-tr="Uzaklaştır" data-en="Zoom out" data-i18n-attr="aria-label">−</button>
+          <button class="ft-btn" id="zf" type="button" aria-label="Sığdır" title="Sığdır" data-tr="Sığdır" data-en="Fit to screen" data-i18n-attr="aria-label,title">⤢</button>
+        </div>
+        <div class="ft-empty" id="ft-empty" style="display:none"></div>
+      </div>
+
+      <!-- Ağaç Bilgi Paneli -->
+      <div class="ipanel" id="ipanel">
+        <button class="ip-close" id="ip-close" type="button" aria-label="Kapat">✕</button>
+        <div class="ip-body" id="ip-body"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Karakter Detay Modali -->
+<div class="modal-overlay" id="char-modal" role="dialog" aria-modal="true" aria-labelledby="modal-name">
+  <div class="modal" id="modal-inner">
+    <button class="modal-close" id="modal-close" aria-label="Kapat" data-tr="Kapat" data-en="Close" data-i18n-attr="aria-label">✕</button>
+    <div class="modal-body" id="modal-body"></div>
+  </div>
+</div>
+
+<script src="assets/js/config.js?v=3.2"></script>
+<script src="assets/js/patches.js?v=3.2"></script>
+<script src="assets/js/wiki.js?v=3.2"></script>
+<script src="assets/js/community.js?v=3.2"></script>
+<script src="assets/js/familytree.js?v=3.2"></script>
+<script>
+const { Lang, loadData, initWiki, groupClass, Bookmarks, esc } = Wiki;
+
+let allChars = [];
+let activeGroup  = 'all';
+let activeStatus = 'all';
+let activeProvince = 'all';
+let activeSort   = 'default';
+let bookmarksOnly = false;
+let searchQuery  = '';
+let charMap = {}; /* id → char */
+let hashHandled = false;
+let activeTags = new Set();
+let tagListenerBound = false;
+
+/* ── ANA SEKME YÖNETİMİ (Karakter Rehberi & Soy Ağacı) ── */
+let currentMainTab = 'chars';
+const tabCharsBtn = document.getElementById('tab-chars');
+const tabTreeBtn  = document.getElementById('tab-tree');
+const viewChars   = document.getElementById('view-chars');
+const viewTree    = document.getElementById('view-tree');
+
+function switchMainTab(tab, subTreeId) {
+  currentMainTab = tab;
+  if (tab === 'tree') {
+    tabCharsBtn.classList.remove('on');
+    tabCharsBtn.setAttribute('aria-selected', 'false');
+    tabTreeBtn.classList.add('on');
+    tabTreeBtn.setAttribute('aria-selected', 'true');
+    viewChars.style.display = 'none';
+    viewTree.classList.add('on');
+    viewTree.style.display = 'flex';
+
+    if (!treeLoaded) {
+      initTrees(subTreeId);
+    } else {
+      if (subTreeId) {
+        const found = TREES.find(t => t.id === subTreeId);
+        if (found) showTree(found, true);
+      }
+      setTimeout(() => {
+        if (PZ && curTree) {
+          drawTree();
+          PZ.fit();
+        }
+      }, 50);
+    }
+  } else {
+    tabTreeBtn.classList.remove('on');
+    tabTreeBtn.setAttribute('aria-selected', 'false');
+    tabCharsBtn.classList.add('on');
+    tabCharsBtn.setAttribute('aria-selected', 'true');
+    viewTree.classList.remove('on');
+    viewTree.style.display = 'none';
+    viewChars.style.display = '';
+  }
+}
+
+tabCharsBtn.addEventListener('click', () => {
+  switchMainTab('chars');
+  history.replaceState(null, '', location.pathname);
+});
+tabTreeBtn.addEventListener('click', () => {
+  switchMainTab('tree');
+  history.replaceState(null, '', curTree ? SWRoute.hash('soy-agaci', curTree.id) : '#soy-agaci');
+});
+
+/* ── ETİKET FİLTRELERİ ────────────────────────────── */
+function buildTagFilters() {
+  const l = Lang.get();
+  const wrap = document.getElementById('tag-filters');
+  if (!wrap) return;
+  const present = new Set();
+  allChars.forEach(c => (c.tags || []).forEach(tg => present.add(tg)));
+  wrap.innerHTML = Wiki.Tags.chipsHTML(activeTags, l, present);
+
+  if (tagListenerBound) return;
+  tagListenerBound = true;
+  wrap.addEventListener('click', e => {
+    const btn = e.target.closest('[data-tag]');
+    if (!btn) return;
+    const id = btn.dataset.tag;
+    if (activeTags.has(id)) activeTags.delete(id); else activeTags.add(id);
+    render();
+  });
+}
+
+/* ── VERİ YÜKLENDİ ────────────────────────────────── */
+async function init() {
+  try {
+    const data = await loadData('characters.json');
+    allChars = data.characters || [];
+    allChars.forEach(c => { charMap[c.id] = c; });
+    populateProvinces();
+    applyLang(Lang.get());
+    handleRoute();
+  } catch (err) {
+    console.error('characters.json yüklenemedi:', err);
+    Wiki.renderError('char-grid', err);
+    document.getElementById('char-count').textContent = '';
+  }
+}
+
+function populateProvinces() {
+  const select = document.getElementById('f-province');
+  if (!select) return;
+  const provinces = new Set();
+  allChars.forEach(c => {
+    const b = Lang.t(c.birth);
+    if (b && b.length > 2 && b.length < 40 && !b.includes('?') && !b.includes('—')) provinces.add(b.trim());
+    const a = Lang.t(c.alleg);
+    if (a && a.length > 2 && a.length < 40 && !a.includes('?')) provinces.add(a.trim());
+  });
+  const sorted = Array.from(provinces).sort((a,b) => a.localeCompare(b, 'tr'));
+  const l = Lang.get();
+  select.innerHTML = `<option value="all">${l === 'tr' ? '📍 Tüm Eyalet & Bölgeler' : '📍 All Regions & Origins'}</option>` +
+    sorted.map(p => `<option value="${esc(p)}">${esc(p)}</option>`).join('');
+}
+
+function statusSealHTML(status, l) {
+  if (status === 'deceased') {
+    return `<div class="cc-status-seal seal-deceased" title="${l === 'tr' ? 'Hayatını Kaybetti' : 'Deceased'}"><span>🩸 ${l === 'tr' ? 'MEVT' : 'FALLEN'}</span></div>`;
+  }
+  if (status === 'alive') {
+    return `<div class="cc-status-seal seal-alive" title="${l === 'tr' ? 'Hayatta' : 'Alive'}"><span>✨ ${l === 'tr' ? 'HAYATTA' : 'ALIVE'}</span></div>`;
+  }
+  if (status === 'historical') {
+    return `<div class="cc-status-seal seal-historical" title="${l === 'tr' ? 'Tarihî Şahsiyet' : 'Historical'}"><span>📜 ${l === 'tr' ? 'TARİHÎ' : 'HISTORIC'}</span></div>`;
+  }
+  return '';
+}
+
+/* ── RENDER KARAKTERLER ───────────────────────────── */
+function render() {
+  const l   = Lang.get();
+  const t   = obj => Lang.t(obj);
+  const bms = Bookmarks.get();
+  buildTagFilters();
+
+  let filtered = allChars.filter(c => {
+    if (bookmarksOnly && !bms.includes(c.id)) return false;
+    if (activeGroup  !== 'all' && c.group !== activeGroup)  return false;
+    if (activeStatus !== 'all' && c.status !== activeStatus) return false;
+    if (activeProvince !== 'all') {
+      const birth = (t(c.birth) || '').toLowerCase();
+      const alleg = (t(c.alleg) || '').toLowerCase();
+      const target = activeProvince.toLowerCase();
+      if (!birth.includes(target) && !alleg.includes(target)) return false;
+    }
+    if (!Wiki.Tags.matches(c.tags, activeTags)) return false;
+    if (searchQuery) {
+      const q = searchQuery.toLowerCase();
+      if (!t(c.name).toLowerCase().includes(q) &&
+          !t(c.house).toLowerCase().includes(q) &&
+          !t(c.title).toLowerCase().includes(q) &&
+          !t(c.bio).toLowerCase().includes(q) &&
+          !t(c.alleg).toLowerCase().includes(q) &&
+          !t(c.birth).toLowerCase().includes(q) &&
+          !t(c.weapon).toLowerCase().includes(q)) return false;
+    }
+    return true;
+  });
+
+  // Sıralama
+  if (activeSort === 'name-asc') {
+    filtered.sort((a, b) => t(a.name).localeCompare(t(b.name), 'tr'));
+  } else if (activeSort === 'name-desc') {
+    filtered.sort((a, b) => t(b.name).localeCompare(t(a.name), 'tr'));
+  } else if (activeSort === 'house') {
+    filtered.sort((a, b) => t(a.house).localeCompare(t(b.house), 'tr'));
+  } else if (activeSort === 'status') {
+    const order = { alive: 1, deceased: 2, historical: 3 };
+    filtered.sort((a, b) => (order[a.status] || 9) - (order[b.status] || 9));
+  }
+
+  /* Sayaç */
+  document.getElementById('char-count').textContent =
+    `${filtered.length} / ${allChars.length} ${l === 'tr' ? 'karakter' : 'characters'}`;
+
+  // Reset butonu görünürlüğü
+  const hasFilter = activeGroup !== 'all' || activeStatus !== 'all' || activeProvince !== 'all' || activeSort !== 'default' || bookmarksOnly || searchQuery || activeTags.size > 0;
+  const resetBtn = document.getElementById('f-reset');
+  if (resetBtn) resetBtn.style.display = hasFilter ? 'inline-flex' : 'none';
+
+  const clearBtn = document.getElementById('char-search-clear');
+  if (clearBtn) clearBtn.style.display = searchQuery ? 'inline-block' : 'none';
+
+  if (filtered.length === 0) {
+    document.getElementById('char-grid').innerHTML =
+      `<div class="chars-empty">${l === 'tr' ? 'Sonuç bulunamadı.' : 'No results found.'}</div>`;
+    return;
+  }
+
+  document.getElementById('char-grid').innerHTML = filtered.map(c => {
+    const isBookmarked = bms.includes(c.id);
+    const bio = t(c.bio);
+    return `
+      <div class="cc ${groupClass(c.group)} status-${c.status}" title="${esc(t(c.name))}"
+           data-id="${c.id}" role="article"
+           style="cursor:pointer; padding-bottom:3rem;">
+        ${statusSealHTML(c.status, l)}
+        <p class="cc-house">${esc(t(c.house))}</p>
+        <h3 class="cc-name">${esc(t(c.name))}</h3>
+        <p class="cc-role">${esc(t(c.title))}</p>
+        <p class="cc-desc">${esc(bio.substring(0, 130))}${bio.length > 130 ? '…' : ''}</p>
+        ${t(c.epi) ? `<span class="cc-epi">${esc(t(c.epi))}</span>` : ''}
+        <button class="cc-bookmark ${isBookmarked ? 'bookmarked' : ''}"
+                data-bm="${c.id}"
+                aria-label="${isBookmarked ? 'Yer imini kaldır' : 'Yer imi ekle'}">
+          ${isBookmarked ? '★' : '☆'}
+        </button>
+      </div>`;
+  }).join('');
+
+  Wiki.Tooltip.scan(document.getElementById('char-grid'));
+
+  /* URL hash → modal aç (yalnızca ilk render'da karakter modali ise) */
+  if (!hashHandled && location.hash) {
+    hashHandled = true;
+    handleRoute();
+  }
+}
+
+/* ── MODAL ─────────────────────────────────────────── */
+function openModal(id) {
+  const c = charMap[id];
+  if (!c) return;
+  const l = Lang.get();
+  const t = obj => Lang.t(obj);
+  history.replaceState(null, '', `#${id}`);
+
+  const statusLabel = {
+    alive:      l === 'tr' ? 'Yaşıyor' : 'Alive',
+    deceased:   l === 'tr' ? 'Hayatını Kaybetti' : 'Deceased',
+    historical: l === 'tr' ? 'Tarihsel' : 'Historical'
+  }[c.status] || c.status;
+
+  /* İlişkiler (Dost: Altın ✦, Düşman: Kan Kırmızı ⚔) */
+  const allyTags = (c.allies || []).map(aid => {
+    const ac = charMap[aid];
+    return ac
+      ? `<span class="modal-rel-tag ally" data-open="${aid}"><span style="color:var(--goldb);font-size:.75rem">✦</span> ${esc(t(ac.name))}</span>`
+      : `<span class="modal-rel-tag ally"><span style="color:var(--goldb);font-size:.75rem">✦</span> ${esc(aid)}</span>`;
+  }).join('');
+  const enemyTags = (c.enemies || []).map(eid => {
+    const ec = charMap[eid];
+    return ec
+      ? `<span class="modal-rel-tag enemy" data-open="${eid}"><span style="color:#f06a6a;font-size:.75rem">⚔</span> ${esc(t(ec.name))}</span>`
+      : `<span class="modal-rel-tag enemy"><span style="color:#f06a6a;font-size:.75rem">⚔</span> ${esc(eid)}</span>`;
+  }).join('');
+
+  document.getElementById('modal-body').innerHTML = `
+    <p class="modal-house ${groupClass(c.group)}" style="font-family:var(--font-display);font-style:italic;font-size:.78rem;letter-spacing:.1em;margin-bottom:.4rem;color:var(--c-${groupClass(c.group)},var(--goldd))">
+      ${esc(t(c.house))}
+    </p>
+    <h2 class="modal-name" id="modal-name">${esc(t(c.name))}</h2>
+    <p class="modal-title">${esc(t(c.title))}</p>
+
+    ${t(c.quote) ? `<blockquote class="modal-quote">"${esc(t(c.quote))}"</blockquote>` : ''}
+
+    <p class="modal-bio">${esc(t(c.bio))}</p>
+
+    <dl class="modal-meta">
+      <dt>${l === 'tr' ? 'Durum' : 'Status'}</dt>
+      <dd><span class="status-badge ${c.status}">${statusLabel}</span></dd>
+      ${c.birth?.tr || c.birth?.en
+        ? `<dt>${l === 'tr' ? 'Doğum Yeri' : 'Birthplace'}</dt>
+           <dd>${esc(t(c.birth))}</dd>` : ''}
+      ${c.alleg?.tr || c.alleg?.en
+        ? `<dt>${l === 'tr' ? 'Bağlılık' : 'Allegiance'}</dt>
+           <dd>${esc(t(c.alleg))}</dd>` : ''}
+      ${Lang.t(c.weapon)
+        ? `<dt>${l === 'tr' ? 'Silah / Eşya' : 'Weapon / Item'}</dt>
+           <dd>${esc(Lang.t(c.weapon))}</dd>` : ''}
+      ${c.chapters?.length
+        ? `<dt>${l === 'tr' ? 'Bölümler' : 'Chapters'}</dt>
+           <dd>${c.chapters.map(ch => esc(ch)).join(', ')}</dd>` : ''}
+    </dl>
+
+    ${allyTags ? `
+      <div class="modal-rels">
+        <div class="modal-rels-title">${l === 'tr' ? '↑ Müttefikler' : '↑ Allies'}</div>
+        <div class="modal-rels-list">${allyTags}</div>
+      </div>` : ''}
+    ${enemyTags ? `
+      <div class="modal-rels">
+        <div class="modal-rels-title">${l === 'tr' ? '↓ Düşmanlar / Rakipler' : '↓ Enemies / Rivals'}</div>
+        <div class="modal-rels-list">${enemyTags}</div>
+      </div>` : ''}
+
+    ${t(c.epi) ? `<div class="modal-epi">${esc(t(c.epi))}</div>` : ''}
+  `;
+
+  Wiki.Tooltip.scan(document.getElementById('modal-body'));
+  document.getElementById('char-modal').classList.add('open');
+  document.getElementById('modal-close').focus();
+}
+
+function closeModal() {
+  document.getElementById('char-modal').classList.remove('open');
+  history.replaceState(null, '', location.pathname);
+}
+
+/* ── FİLTRE KONTROLLER ──────────────────────────────── */
+document.querySelectorAll('[data-group]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('[data-group]').forEach(b => b.classList.remove('on'));
+    btn.classList.add('on');
+    activeGroup = btn.dataset.group;
+    render();
+  });
+});
+
+document.querySelectorAll('[data-status]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    if (activeStatus === btn.dataset.status) {
+      btn.classList.remove('on');
+      activeStatus = 'all';
+    } else {
+      document.querySelectorAll('[data-status]').forEach(b => b.classList.remove('on'));
+      btn.classList.add('on');
+      activeStatus = btn.dataset.status;
+    }
+    render();
+  });
+});
+
+/* Kart tıklaması + yer imi düğmesi */
+document.getElementById('char-grid').addEventListener('click', e => {
+  const bm = e.target.closest('.cc-bookmark');
+  if (bm) {
+    e.stopPropagation();
+    const id = bm.dataset.bm;
+    const added = Bookmarks.toggle(id);
+    bm.textContent = added ? '★' : '☆';
+    bm.classList.toggle('bookmarked', added);
+    bm.setAttribute('aria-label', added ? 'Yer imini kaldır' : 'Yer imi ekle');
+    if (bookmarksOnly) render();
+    return;
+  }
+  const card = e.target.closest('.cc[data-id]');
+  if (card) window.location.href = SWRoute.href('karakter', card.dataset.id);
+});
+
+document.getElementById('f-bookmarks').addEventListener('click', function() {
+  bookmarksOnly = !bookmarksOnly;
+  this.classList.toggle('on', bookmarksOnly);
+  render();
+});
+
+document.getElementById('char-search').addEventListener('input', function() {
+  searchQuery = this.value.trim();
+  render();
+});
+
+/* ── MODAL KAPATMA ──────────────────────────────────── */
+document.getElementById('modal-body').addEventListener('click', e => {
+  const tag = e.target.closest('[data-open]');
+  if (tag) openModal(tag.dataset.open);
+});
+
+document.getElementById('modal-close').addEventListener('click', closeModal);
+document.getElementById('char-modal').addEventListener('click', e => {
+  if (e.target === document.getElementById('char-modal')) closeModal();
+});
+
+/* ═══════════════════════════════════════════════════════
+   SOY AĞACI MOTORU & ETKİLEŞİMİ (Karakter Rehberi Entegrasyonu)
+   ═══════════════════════════════════════════════════════ */
+const STATUS_LABEL = {
+  alive:      { tr: 'Hayatta',          en: 'Alive' },
+  deceased:   { tr: 'Hayatını Kaybetti', en: 'Deceased' },
+  historical: { tr: 'Tarihsel Figür',   en: 'Historical Figure' }
+};
+
+let TREES = [], curTree = null, PZ = null, activeTreeId = null, treeLoaded = false;
+const treeView  = document.getElementById('ft-view');
+const treeStage = document.getElementById('ft-stage');
+
+function buildTreeTabs() {
+  const box = document.getElementById('tree-tabs');
+  if (!box) return;
+  box.innerHTML = TREES.map(t =>
+    '<button class="ttab' + (curTree && curTree.id === t.id ? ' on' : '') + '" role="tab" data-tree="' + esc(t.id) + '">' +
+    '<span class="ttab-dot" style="background:' + esc(t.accent) + '"></span>' + esc(Lang.t(t.name)) + '</button>'
+  ).join('');
+}
+
+document.getElementById('tree-tabs').addEventListener('click', e => {
+  const b = e.target.closest('.ttab');
+  if (!b) return;
+  const t = TREES.find(x => x.id === b.dataset.tree);
+  if (!t) return;
+  showTree(t, true);
+  try { history.replaceState(null, '', SWRoute.hash('soy-agaci', t.id)); } catch (_) {}
+});
+
+function showTree(t, refit) {
+  curTree = t;
+  activeTreeId = null;
+  closeTreeInfo();
+  buildTreeTabs();
+  drawTree();
+  if (refit && PZ) PZ.fit();
+  const on = document.querySelector('.ttab.on');
+  if (on && on.scrollIntoView) on.scrollIntoView({ inline: 'center', block: 'nearest' });
+}
+
+function drawTree() {
+  if (!curTree || !treeStage || !PZ) return;
+  const l = Lang.get();
+  const r = FamilyTree.render(curTree, { lang: l, selectedId: activeTreeId });
+  treeStage.innerHTML = r.svg;
+  PZ.setSize(r.w, r.h);
+  curTree._boxes = r.boxes;
+  curTree._ox = r.ox || 0;
+  curTree._oy = r.oy || 0;
+}
+
+function excerpt(s, n) {
+  s = String(s || '').replace(/\s+/g, ' ').trim();
+  if (s.length <= n) return s;
+  const cut = s.slice(0, n);
+  const i = cut.lastIndexOf(' ');
+  return (i > n * 0.6 ? cut.slice(0, i) : cut).replace(/[.,;:\s]+$/, '') + '…';
+}
+
+function relBtns(ids) {
+  return '<div class="ip-rel">' + ids.map(id => {
+    const q = curTree.people.find(x => x.id === id);
+    if (!q) return '';
+    return '<button type="button" data-go="' + esc(id) + '">' + esc(Lang.t(q.box.name) || Lang.t(q.name)) + '</button>';
+  }).join('') + '</div>';
+}
+
+function showTreeInfo(id) {
+  const p = curTree && curTree.people.find(x => x.id === id);
+  if (!p) return;
+  activeTreeId = id;
+  const l = Lang.get();
+  document.querySelectorAll('#ft-stage .fn').forEach(el => el.classList.toggle('active', el.dataset.id === id));
+  const ch = (p.characterId && charMap[p.characterId]) || null;
+  const name = Lang.t(p.name) || Lang.t(p.box.name);
+  const title = Lang.t(p.title) || (ch && Lang.t(ch.title)) || '';
+  const status = p.status || (ch && ch.status) || '';
+  const sl = Lang.t(STATUS_LABEL[status]) || '';
+  const desc = Lang.t(p.desc) || (ch ? excerpt(Lang.t(ch.bio), 340) : '');
+  const epi = Lang.t(p.epi) || (ch && Lang.t(ch.epi)) || '';
+  const g = FamilyTree.graph(curTree);
+  const fa = p.fatherId && g.byId[p.fatherId] ? [p.fatherId] : [];
+  const mo = p.motherId && g.byId[p.motherId] ? [p.motherId] : [];
+  const other = g.parents[id].filter(x => !fa.includes(x) && !mo.includes(x));
+  const sp = g.spouses[id], kids = g.children[id];
+  const lbl = (tr, en) => '<p class="ip-sl">' + (l === 'tr' ? tr : en) + '</p>';
+  const badge = p.legitimacy ? '<span class="ip-badge ' + p.legitimacy + '">' + esc(Lang.t(FamilyTree.LEGIT_LABELS[p.legitimacy])) + '</span>' : '';
+
+  const charActionBtn = ch
+    ? '<button type="button" class="ip-char-go" data-char-detail="' + esc(p.characterId) + '">' +
+      (l === 'tr' ? '👤 Karakter Bilgisini Aç' : '👤 View Character Details') +
+      '</button>'
+    : (p.characterId ? '<a class="ip-char-go" href="' + SWRoute.href('karakter', p.characterId) + '">' + (l === 'tr' ? '→ Karakter sayfasına git ↗' : '→ Go to character page ↗') + '</a>' : '');
+
+  document.getElementById('ip-body').innerHTML =
+    '<p class="ip-eye">' + esc(Lang.t(p.family) || Lang.t(curTree.name)) + '</p>' +
+    '<h2 class="ip-name">' + esc(name) + '</h2>' +
+    (title ? '<p class="ip-title">' + esc(title) + '</p>' : '') +
+    (p.ks ? '<span class="ip-ks">' + esc(Lang.t(p.ks)) + '</span> ' : '') + badge +
+    '<div class="ip-rule"></div>' +
+    (sl ? lbl('DURUM', 'STATUS') + '<p class="ip-val">' + esc(sl) + '</p>' : '') +
+    (desc ? lbl('AÇIKLAMA', 'DESCRIPTION') + '<p class="ip-val">' + esc(desc) + '</p>' : '') +
+    (fa.length ? lbl('BABA', 'FATHER') + relBtns(fa) : '') +
+    (mo.length ? lbl('ANNE', 'MOTHER') + relBtns(mo) : '') +
+    (other.length ? lbl('EBEVEYN', 'PARENT') + relBtns(other) : '') +
+    (sp.length ? lbl('EŞ', 'SPOUSE') + relBtns(sp) : '') +
+    (kids.length ? lbl('ÇOCUKLAR', 'CHILDREN') + relBtns(kids) : '') +
+    (epi ? '<p class="ip-epi">' + esc(epi) + '</p>' : '') +
+    charActionBtn;
+
+  document.getElementById('ipanel').classList.add('open');
+}
+
+function closeTreeInfo() {
+  activeTreeId = null;
+  const ip = document.getElementById('ipanel');
+  if (ip) ip.classList.remove('open');
+  document.querySelectorAll('#ft-stage .fn').forEach(el => el.classList.remove('active'));
+}
+
+/* Ağaç görünümü tıklama delegasyonu */
+treeView.addEventListener('click', e => {
+  const n = e.target.closest('.fn');
+  if (n) { showTreeInfo(n.dataset.id); return; }
+  if (!e.target.closest('.ft-tools') && !e.target.closest('#ipanel')) closeTreeInfo();
+});
+
+document.getElementById('ip-body').addEventListener('click', e => {
+  const b = e.target.closest('[data-go]');
+  if (b) {
+    const id = b.dataset.go, box = curTree._boxes && curTree._boxes[id];
+    showTreeInfo(id);
+    if (box) PZ.centerOn({ x: box.x - (curTree._ox || 0), y: box.y - (curTree._oy || 0), w: box.w, h: box.h });
+    return;
+  }
+  const charBtn = e.target.closest('[data-char-detail]');
+  if (charBtn) {
+    const cid = charBtn.dataset.charDetail;
+    switchMainTab('chars');
+    openModal(cid);
+    return;
+  }
+});
+
+document.getElementById('ip-close').addEventListener('click', closeTreeInfo);
+document.getElementById('zi').onclick = () => PZ && PZ.zoomBy(1.25);
+document.getElementById('zo').onclick = () => PZ && PZ.zoomBy(0.8);
+document.getElementById('zf').onclick = () => PZ && PZ.fit();
+
+setTimeout(() => {
+  const h = document.getElementById('hint');
+  if (h) h.classList.add('gone');
+}, 5500);
+
+/* PanZoom Başlat */
+PZ = FamilyTree.panzoom(treeView, treeStage, { ignore: e => !!e.target.closest('.ft-tools') });
+window.addEventListener('resize', () => {
+  if (curTree && currentMainTab === 'tree' && PZ) PZ.fit();
+});
+
+async function initTrees(targetId) {
+  if (treeLoaded) return;
+  try {
+    const ft = await loadData('familytree.json');
+    TREES = (ft.trees || []).map(FamilyTree.normalize).sort((a, b) => (a.order || 0) - (b.order || 0));
+    treeLoaded = true;
+    if (!TREES.length) {
+      const em = document.getElementById('ft-empty');
+      if (em) {
+        em.style.display = 'flex';
+        em.textContent = Lang.get() === 'tr' ? 'Henüz soy ağacı eklenmemiş.' : 'No family trees yet.';
+      }
+      return;
+    }
+    const want = targetId || SWRoute.id('soy-agaci');
+    const selected = TREES.find(t => t.id === want) || TREES[0];
+    showTree(selected, true);
+  } catch (err) {
+    console.error('Soy ağacı verisi yüklenemedi:', err);
+    const em = document.getElementById('ft-empty');
+    if (em) em.style.display = 'flex';
+  }
+}
+
+/* ── KLAVYE KISAYOLLARI ─────────────────────────────── */
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') {
+    closeModal();
+    closeTreeInfo();
+  } else if (currentMainTab === 'tree') {
+    if (e.key === '+' || e.key === '=') PZ && PZ.zoomBy(1.25);
+    else if (e.key === '-') PZ && PZ.zoomBy(0.8);
+    else if (e.key === '0') PZ && PZ.fit();
+  }
+});
+
+/* ── ADRES / HASH YÖNETİMİ ─────────────────────────── */
+function handleRoute() {
+  const h = location.hash;
+  if (!h) return;
+  if (h === '#soy-agaci' || h.startsWith('#/soy-agaci') || h.startsWith('#soy-agaci/')) {
+    const segs = h.replace(/^#\/?soy-agaci\/?/, '').split('/').filter(Boolean);
+    const subTreeId = segs[0] || '';
+    switchMainTab('tree', subTreeId);
+  } else {
+    let cid = h.startsWith('#/karakter/') ? h.slice(11) : h.slice(1);
+    cid = SWRoute.dec(cid);
+    if (charMap[cid]) {
+      switchMainTab('chars');
+      openModal(cid);
+    }
+  }
+}
+window.addEventListener('hashchange', handleRoute);
+
+/* ── DİL ─────────────────────────────────────────────── */
+function applyLang(l) {
+  document.documentElement.lang = l;
+  document.getElementById('page-title').textContent =
+    l === 'tr' ? 'Karakter Rehberi' : 'Character Guide';
+  document.getElementById('page-sub').textContent =
+    l === 'tr' ? 'İmparatorluğun tüm önemli isimleri — hanedanlar, isyancılar, düşmanlar.'
+                : 'All major figures of the empire — dynasties, rebels, enemies.';
+  document.getElementById('lbl-filter').textContent = l === 'tr' ? 'Hane:' : 'House:';
+  document.getElementById('char-search').placeholder = l === 'tr' ? 'İsim ara…' : 'Search name…';
+
+  /* Ana Sekmeler */
+  const tabCharsLabel = document.querySelector('#tab-chars span[data-tr]');
+  if (tabCharsLabel) tabCharsLabel.textContent = l === 'tr' ? tabCharsLabel.dataset.tr : tabCharsLabel.dataset.en;
+  const tabTreeLabel = document.querySelector('#tab-tree span[data-tr]');
+  if (tabTreeLabel) tabTreeLabel.textContent = l === 'tr' ? tabTreeLabel.dataset.tr : tabTreeLabel.dataset.en;
+
+  /* Ağaç İpuçları */
+  const hintEl = document.getElementById('hint');
+  if (hintEl) {
+    hintEl.innerHTML = l === 'tr'
+      ? 'Sürükle: kaydır &nbsp;·&nbsp; Tekerlek: yakınlaştır &nbsp;·&nbsp; Kutuya tıkla: bilgi'
+      : 'Drag: pan &nbsp;·&nbsp; Wheel: zoom &nbsp;·&nbsp; Click a box: details';
+  }
+
+  /* Filtre etiketleri */
+  const labels = {
+    'f-all':'tr:Tümü|en:All', 'f-stallhart':'tr:İmparatorluk|en:Imperial',
+    'f-arhan':'tr:Arhan|en:Arhan', 'f-solgar':'tr:Solgar|en:Solgar',
+    'f-selya':'tr:Selya|en:Selya', 'f-rebel':'tr:İsyancılar|en:Rebels',
+    'f-arathen':'tr:Arathen|en:Arathen',
+    'f-alive':'tr:Yaşıyor|en:Alive', 'f-deceased':'tr:Ölü|en:Deceased',
+    'f-historical':'tr:Tarihsel|en:Historical',
+    'f-bookmarks':'tr:☆ Yer İmleri|en:☆ Bookmarks'
+  };
+  Object.entries(labels).forEach(([id, val]) => {
+    const el = document.getElementById(id);
+    if (el) el.textContent = val.split('|').find(v => v.startsWith(l+':')).slice(3);
+  });
+
+  render();
+  if (treeLoaded) {
+    buildTreeTabs();
+    drawTree();
+    if (activeTreeId) showTreeInfo(activeTreeId);
+  }
+}
+
+initWiki({ onLangChange: applyLang });
+init();
+</script>
+</body>
+</html>

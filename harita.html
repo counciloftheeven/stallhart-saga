@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title data-tr="Harita · Stallhart Wiki" data-en="Map · Stallhart Wiki">Harita · Stallhart Wiki</title>
+<meta name="description" content="Stallhart İmparatorluğu&#x27;nun etkileşimli haritaları — yakınlaştır, gez, işaretlere tıkla." data-tr="Stallhart İmparatorluğu&#x27;nun etkileşimli haritaları — yakınlaştır, gez, işaretlere tıkla." data-en="Interactive maps of the Stallhart Empire — zoom, pan, click on markers." data-i18n-attr="content">
+<meta name="theme-color" content="#0c121f">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="The Stallhart Saga">
+<meta property="og:locale" content="tr_TR">
+<meta property="og:title" content="Harita · Stallhart Wiki">
+<meta property="og:description" content="Stallhart İmparatorluğu&#x27;nun etkileşimli haritaları — yakınlaştır, gez, işaretlere tıkla.">
+<meta property="og:image" content="assets/images/logo-stallhart.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Harita · Stallhart Wiki">
+<meta name="twitter:description" content="Stallhart İmparatorluğu&#x27;nun etkileşimli haritaları — yakınlaştır, gez, işaretlere tıkla.">
+<meta name="twitter:image" content="assets/images/logo-stallhart.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="apple-touch-icon" href="assets/images/logo-stallhart.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Modern+Antiqua&amp;family=IM+Fell+English:ital@0;1&amp;family=Merriweather:ital,wght@0,400;0,700;1,400&amp;display=swap">
+<link rel="stylesheet" href="assets/css/styles.css?v=3.2">
+<link rel="stylesheet" href="assets/css/harita.css?v=3.6">
+<script src="assets/js/router.js?v=3.2"></script>
+</head>
+<body class="mp-page">
+
+<!-- v16: Harita artık doğrudan açılmaz. Önce sekmeler (İmparatorluk / Dünya …)
+     ve harita kartları gelir; harita seçilince görüntüleyici açılır.
+     Sekmeler, görsel ve lejant data/maps.json'dan gelir; yönetim panelinde
+     Haritalar bölümünden yeni sekme + PNG eklenebilir. -->
+<main class="mp" id="mp">
+
+  <header class="mp-bar" id="mp-bar">
+    <button class="mp-home" id="mp-home" type="button" aria-label="Haritalar">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+      <span id="mp-home-t">Haritalar</span>
+    </button>
+    <div class="mp-tabs" id="mp-tabs" role="tablist" aria-label="Haritalar"></div>
+  </header>
+
+  <!-- Açılış: harita seçimi -->
+  <section class="mp-landing" id="mp-landing">
+    <div class="mp-lead">
+      <div class="mp-eyebrow" id="mp-eyebrow">Stallhart Destanı</div>
+      <h1 class="mp-h1" id="mp-h1">Haritalar</h1>
+      <p class="mp-sub" id="mp-sub">Görüntülemek istediğiniz haritayı bir sekmeden ya da aşağıdaki kartlardan seçin.</p>
+      <span class="mp-rule"></span>
+    </div>
+    <div class="mp-cards" id="mp-cards"><div class="mp-empty-all"><span class="sw-loading">Haritalar yükleniyor</span></div></div>
+  </section>
+
+  <!-- Görüntüleyici -->
+  <section class="mp-view" id="mp-view" hidden>
+    <div class="map-outer" id="outer" tabindex="0" role="application" aria-label="İnteraktif harita">
+
+      <div class="map-inner" id="inner">
+        <div class="map-wrap" id="wrap"><img id="map-img" alt="" decoding="async" hidden></div>
+      </div>
+
+      <!-- Parşömen Doku & Kenar Karartma (Vignette) -->
+      <div class="map-vignette" id="map-vignette" aria-hidden="true"></div>
+
+      <!-- Konum Arama Çubuğu (Şehir, dağ, nehir, eyalet) -->
+      <div class="map-search-wrap" id="map-search-wrap" data-ui>
+        <div class="map-search-box">
+          <svg class="map-search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <input type="text" class="map-search-input" id="map-search-input" placeholder="Şehir, dağ, göl, eyalet ara..." autocomplete="off" spellcheck="false" aria-label="Haritada konum ara">
+          <button type="button" class="map-search-clear" id="map-search-clear" aria-label="Aramayı temizle" hidden>✕</button>
+        </div>
+        <div class="map-search-results" id="map-search-results" hidden role="listbox" aria-label="Arama sonuçları"></div>
+      </div>
+
+      <!-- Antik Pusula Gülü & Dinamik Ölçek Çubuğu -->
+      <div class="map-compass-scale" id="map-compass-scale" data-ui>
+        <div class="map-compass" id="map-compass" title="Pusula Gülü (Kuzey)" aria-hidden="true">
+          <svg viewBox="0 0 100 100" class="compass-svg">
+            <circle cx="50" cy="50" r="46" class="cp-ring-out" />
+            <circle cx="50" cy="50" r="41" class="cp-ring-in" />
+            <!-- Ana Yönler -->
+            <polygon points="50,7 54,42 50,48 46,42" class="cp-point-n" />
+            <polygon points="50,7 46,42 50,48" class="cp-point-n-shade" />
+            <polygon points="50,93 54,58 50,52 46,58" class="cp-point-s" />
+            <polygon points="50,93 46,58 50,52" class="cp-point-s-shade" />
+            <polygon points="93,50 58,54 52,50 58,46" class="cp-point-e" />
+            <polygon points="93,50 58,46 52,50" class="cp-point-e-shade" />
+            <polygon points="7,50 42,54 48,50 42,46" class="cp-point-w" />
+            <polygon points="7,50 42,46 48,50" class="cp-point-w-shade" />
+            <!-- Ara Yönler -->
+            <polygon points="80,20 54,46 50,50 50,46" class="cp-point-sub" />
+            <polygon points="20,20 46,46 50,50 46,50" class="cp-point-sub" />
+            <polygon points="80,80 54,54 50,50 54,50" class="cp-point-sub" />
+            <polygon points="20,80 46,54 50,50 50,54" class="cp-point-sub" />
+            <circle cx="50" cy="50" r="6" class="cp-center" />
+            <circle cx="50" cy="50" r="2.5" class="cp-center-core" />
+            <text x="50" y="18" class="cp-label cp-label-n" text-anchor="middle">K</text>
+            <text x="50" y="89" class="cp-label" text-anchor="middle">G</text>
+            <text x="85" y="53.5" class="cp-label" text-anchor="middle">D</text>
+            <text x="15" y="53.5" class="cp-label" text-anchor="middle">B</text>
+          </svg>
+        </div>
+        <div class="map-scale-box" id="map-scale-box" title="Dinamik Harita Ölçeği (Yakınlaştırmaya göre güncellenir)">
+          <div class="map-scale-bar-track">
+            <div class="map-scale-bar" id="map-scale-bar" style="width: 100px;">
+              <span class="scale-tick tick-start"></span>
+              <span class="scale-tick tick-mid"></span>
+              <span class="scale-tick tick-end"></span>
+            </div>
+          </div>
+          <div class="map-scale-labels">
+            <span class="scale-val" id="scale-val">50 Fersah</span>
+            <span class="scale-sub" id="scale-sub">~250 km · ~2 Gün Atlı</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Serbest Mesafe Ölçüm HUD Çubuğu -->
+      <div class="ruler-hud" id="ruler-hud" data-ui hidden>
+        <div class="ruler-hud-icon">📐</div>
+        <div class="ruler-hud-info">
+          <div class="ruler-hud-title" id="ruler-hud-title">Mesafe Ölçüm Cetveli</div>
+          <div class="ruler-hud-stats" id="ruler-stats">
+            <span class="ruler-dist" id="ruler-dist">Haritada noktalara tıklayarak ölçüm yapın</span>
+            <span class="ruler-times" id="ruler-times"></span>
+          </div>
+        </div>
+        <div class="ruler-hud-actions">
+          <button type="button" class="ruler-btn ruler-btn-clear" id="ruler-clear" title="Ölçüm noktalarını temizle">Temizle</button>
+          <button type="button" class="ruler-btn ruler-btn-close" id="ruler-close" title="Cetvel modunu kapat">✕</button>
+        </div>
+      </div>
+
+      <div class="map-state" id="map-state" hidden>
+        <div class="map-state-box" id="map-state-box"></div>
+      </div>
+
+      <!-- Küçük Bilgi Penceresi (Hover & Tıklama Bilgi Kartı) -->
+      <div class="map-popover" id="map-popover" data-ui hidden aria-live="polite">
+        <div class="pop-header">
+          <div class="pop-badge-row">
+            <span class="pop-badge" id="pop-badge">Şehir</span>
+            <span class="pop-prov" id="pop-prov"></span>
+          </div>
+          <button class="pop-close" id="pop-close" type="button" aria-label="Kapat" title="Kapat">✕</button>
+        </div>
+        <div class="pop-title" id="pop-title"></div>
+        <div class="pop-desc" id="pop-desc"></div>
+        <div class="pop-actions">
+          <a class="pop-wiki-btn" id="pop-wiki-btn" href="#">
+            <span id="pop-wiki-text">📖 Wiki Sayfasına Git</span>
+            <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </a>
+          <button class="pop-detail-btn" id="pop-detail-btn" type="button">
+            <span id="pop-detail-text">Ayrıntılar</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="toolbar" id="toolbar" data-ui>
+        <button class="tb" id="zoom-in" type="button" title="Yakınlaştır" aria-label="Yakınlaştır"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+        <button class="tb" id="zoom-out" type="button" title="Uzaklaştır" aria-label="Uzaklaştır"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+        <button class="tb" id="zoom-reset" type="button" title="Görünümü sığdır" aria-label="Görünümü sığdır"><svg viewBox="0 0 24 24"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-3.5"/></svg></button>
+        <button class="tb" id="ruler-toggle" type="button" title="Serbest Mesafe Ölçüm Cetveli" aria-label="Mesafe Cetveli" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.3 8.7 8.7 21.3c-.4.4-1 .4-1.4 0l-6-6c-.4-.4-.4-1 0-1.4L13.9 1.3c.4-.4 1-.4 1.4 0l6 6c.4.4.4 1 0 1.4Z"/><path d="m14.5 3.5 2 2"/><path d="m11.5 6.5 2 2"/><path d="m8.5 9.5 2 2"/><path d="m5.5 12.5 2 2"/></svg></button>
+        <button class="tb is-active" id="regions-toggle" type="button" title="Eyalet Alanları & Sınırları (Aç/Kapat)" aria-label="Eyalet Katmanı" aria-pressed="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg></button>
+        <button class="tb is-active" id="cities-toggle" type="button" title="Şehirler & Kaleler (Aç/Kapat)" aria-label="Şehirler" aria-pressed="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M5 21V7l8-4v18"/><path d="M19 21V11l-6-3"/></svg></button>
+        <button class="tb is-active" id="geo-toggle" type="button" title="Dağlar, Göller ve Nehirler (Aç/Kapat)" aria-label="Coğrafi Katman" aria-pressed="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m8 3 4 8 5-5 5 15H2L8 3z"/></svg></button>
+        <button class="tb is-active" id="labels-toggle" type="button" title="Tüm İsim Etiketleri (Aç/Kapat)" aria-label="Harita İsimleri" aria-pressed="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7V4h16v3"/><path d="M9 20h6"/><path d="M12 4v16"/></svg></button>
+        <button class="tb is-active" id="vignette-toggle" type="button" title="Parşömen Doku &amp; Kenar Karartma (Aç/Kapat)" aria-label="Parşömen Efekti" aria-pressed="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></button>
+        <button class="tb" id="leg-toggle" type="button" title="Lejant" aria-label="Lejant" aria-pressed="false" aria-controls="legend"><svg viewBox="0 0 24 24"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><circle cx="3.5" cy="6" r="1"/><circle cx="3.5" cy="12" r="1"/><circle cx="3.5" cy="18" r="1"/></svg></button>
+        <button class="tb" id="travel-toggle" type="button" title="Mesafe &amp; Seyahat Hesaplayıcı" aria-label="Seyahat Hesaplayıcı"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg></button>
+      </div>
+
+      <div class="hint" id="hint" data-ui>—</div>
+      <div class="zbadge" id="zbadge" data-ui>%100</div>
+
+      <aside class="legend" id="legend" data-ui aria-label="Lejant">
+        <div class="legend-head">
+          <div class="legend-title" id="leg-title">Lejant</div>
+          <button class="legend-x" id="leg-close" type="button" aria-label="Lejantı kapat"><svg viewBox="0 0 24 24"><line x1="5" y1="5" x2="19" y2="19"/><line x1="19" y1="5" x2="5" y2="19"/></svg></button>
+        </div>
+        <div class="legend-list" id="leg-items"></div>
+      </aside>
+
+      <aside class="ipanel" id="ipanel" data-ui aria-label="Ayrıntı">
+        <div class="ip-header">
+          <button class="ip-close" id="ip-close" type="button" aria-label="Kapat" data-tr="Kapat" data-en="Close" data-i18n-attr="aria-label"><svg viewBox="0 0 24 24"><line x1="5" y1="5" x2="19" y2="19"/><line x1="19" y1="5" x2="5" y2="19"/></svg></button>
+          <div class="ip-eye" id="ip-eye"></div>
+          <div class="ip-color-bar" id="ip-color-bar"></div>
+          <h2 class="ip-name" id="ip-name"></h2>
+          <p class="ip-capital" id="ip-capital"></p>
+        </div>
+        <div class="ip-body" id="ip-body"></div>
+      </aside>
+
+    </div>
+  </section>
+
+</main>
+
+<script src="assets/js/config.js?v=3.2"></script>
+<script src="assets/js/patches.js?v=3.2"></script>
+<script src="assets/js/wiki.js?v=3.2"></script>
+<script src="assets/js/community.js?v=3.2"></script>
+<script src="assets/js/travel-calc.js"></script>
+<script src="assets/js/harita.js?v=3.6"></script>
+</body>
+</html>

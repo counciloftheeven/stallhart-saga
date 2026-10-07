@@ -1,0 +1,8 @@
+{
+  "name": "The Stallhart Saga",
+  "description": "Stallhart Destanı — Son İmparator, Türkçe dark fantasy epik roman",
+  "permissions": [],
+  "capabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

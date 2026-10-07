@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title data-tr="Kurultay · Stallhart Wiki" data-en="The Kurultay · Stallhart Wiki">Kurultay · Stallhart Wiki</title>
+<meta name="description" content="Stallhart Destanı Kurultay — konu ve yanıtlar." data-tr="Stallhart Destanı Kurultay — konu ve yanıtlar." data-en="The Stallhart Saga Kurultay — thread and replies." data-i18n-attr="content">
+<meta name="theme-color" content="#0c121f">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="The Stallhart Saga">
+<meta property="og:locale" content="tr_TR" data-tr="tr_TR" data-en="en_US" data-i18n-attr="content">
+<meta property="og:title" content="Kurultay · Stallhart Wiki">
+<meta property="og:description" content="Stallhart Destanı Kurultay — konu ve yanıtlar.">
+<meta property="og:image" content="assets/images/logo-stallhart.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Kurultay · Stallhart Wiki">
+<meta name="twitter:description" content="Stallhart Destanı Kurultay — konu ve yanıtlar.">
+<meta name="twitter:image" content="assets/images/logo-stallhart.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Modern+Antiqua&family=IM+Fell+English:ital@0;1&family=Merriweather:ital,wght@0,400;0,700;1,400&display=swap">
+<link rel="stylesheet" href="assets/css/styles.css?v=3.2">
+<link rel="stylesheet" href="assets/css/kurultay.css?v=3.2">
+<style>#frt-sec { background: var(--bg); min-height: 60vh; }</style>
+<script src="assets/js/router.js?v=3.2"></script>
+</head>
+<body>
+
+<section id="frt-sec">
+  <div class="inn" style="padding:2.5rem 2rem 6rem;max-width:900px">
+    <nav class="fr-crumb" aria-label="Breadcrumb">
+      <a href="index.html" id="fr-crumb-root" data-tr="Ana Sayfa" data-en="Home">Ana Sayfa</a><span>›</span>
+      <a href="forum.html" id="fr-crumb-home" data-tr="Kurultay" data-en="Forum">Kurultay</a><span>›</span>
+      <a href="forum-kategori.html?kat=" id="fr-crumb-cat">…</a><span>›</span>
+      <strong id="fr-crumb-cur">…</strong>
+    </nav>
+
+    <div id="fk-content"><p style="padding:2rem 0;color:var(--parchd);font-style:italic">Yükleniyor…</p></div>
+
+    <div id="fk-locked-note" class="fk-locked-note" hidden>
+      <svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="9" rx="1"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>
+      <span id="l-locked-msg">Bu konu kilitlendi; yeni yanıt eklenemez, geçmiş yanıtlar okunabilir.</span>
+    </div>
+
+    <div id="kurultay-mount"></div>
+  </div>
+</section>
+
+<script src="assets/js/config.js?v=3.2"></script>
+<script src="assets/js/patches.js?v=3.2"></script>
+<script src="assets/js/wiki.js?v=3.2"></script>
+<script src="assets/js/community.js?v=3.2"></script>
+<script src="assets/js/kurultay.js?v=3.2"></script>
+<script>
+const { Lang, initWiki, esc } = Wiki;
+const K = Kurultay;
+const C = Wiki.Community;
+
+const threadId = new URLSearchParams(location.search).get('id') || '';
+let thread = null, cat = null;
+
+function fkHeadHTML(l) {
+  const prof = thread.profiles || { username: '?', avatar: 'initial' };
+  const rawBody = l === 'tr' ? thread.body : (thread.body_en || thread.body);
+  const richBodyHTML = K.renderRichBody ? K.renderRichBody(rawBody, l) : esc(rawBody);
+  const canonBannerHTML = K.renderCanonBanner ? K.renderCanonBanner(thread, l) : '';
+  const authorDecreeHTML = K.renderAuthorDecree ? K.renderAuthorDecree(thread, l) : '';
+  const pollHTML = (thread.poll && K.renderPollCard) ? K.renderPollCard(thread, l) : '';
+  const reactionsHTML = K.renderReactionsBar ? K.renderReactionsBar(thread.id, l) : '';
+
+  return `
+    ${canonBannerHTML}
+    ${authorDecreeHTML}
+    <div class="fk-head">
+      <div class="fk-tags">
+        <span class="ft-tag${thread.category_id === 'duyuru' ? ' duyuru' : ''}">${esc(K.catLabel(cat, l))}</span>
+        ${thread.is_pinned ? `<span class="ft-tag" style="border-color:var(--gold);color:var(--gold)">${l === 'tr' ? 'Sabitlenmiş' : 'Pinned'}</span>` : ''}
+        ${thread.is_canonized ? `<span class="ft-tag" style="border-color:#b784f7;color:#d5abff">🔮 ${l === 'tr' ? 'Doğrulanan Kehanet' : 'Canonized'}</span>` : ''}
+        ${thread.poll ? `<span class="ft-tag" style="border-color:#64b5f6;color:#90caf9">📊 ${l === 'tr' ? 'Anket' : 'Poll'}</span>` : ''}
+        ${thread.is_locked ? `<span class="ft-tag">${l === 'tr' ? 'Kilitli' : 'Locked'}</span>` : ''}
+      </div>
+      <h1 class="fk-title">${esc(l === 'tr' ? thread.title : (thread.title_en || thread.title))}</h1>
+      <div class="fk-meta">
+        ${C.util.avatarHTML(prof, 'sm')}
+        <span><b>${esc(prof.username)}</b> ${prof.favorite_house && C ? C.util.crestBadge(prof.favorite_house) : ''} ${C && C.util && C.util.loyaltyBadgeHTML ? C.util.loyaltyBadgeHTML(prof) : ''} · ${esc(C.util.fmtDate ? C.util.fmtDate(thread.created_at) : '')}</span>
+        <span>·</span>
+        <span>${thread.view_count || 0} ${l === 'tr' ? 'görüntülenme' : 'views'}</span>
+      </div>
+      <div class="fk-body">${richBodyHTML}</div>
+      ${pollHTML}
+      ${reactionsHTML}
+      <div id="fk-mod"></div>
+    </div>`;
+}
+
+function renderMod(l) {
+  const st = C.getState();
+  const box = document.getElementById('fk-mod');
+  if (!box) return;
+  const isOwner = st.user && thread.user_id === st.user.id;
+  const isTheory = thread.category_id === 'teori' || (thread.title && thread.title.toLowerCase().includes('teori'));
+  const canModerate = st.isAdmin || st.isMod;
+  if (!canModerate && !isOwner && !isTheory) { box.innerHTML = ''; return; }
+  
+  let html = '<div class="fk-mod">';
+  // Admin / Yazar için Kehanet Doğrulama Mührü
+  if (st.isAdmin || isTheory) {
+    html += `<button class="fk-mod-btn${thread.is_canonized ? ' on' : ''}" data-act="canon" title="${l === 'tr' ? 'Bu teoriyi resmî kanon kehanet olarak tescille' : 'Canonize this theory'}">${thread.is_canonized ? (l === 'tr' ? '🔮 Kehanet Mührünü Kaldır' : '🔮 Revoke Prophecy Seal') : (l === 'tr' ? '🔮 Doğrulanan Kehanet İlan Et' : '🔮 Seal as Canonized Prophecy')}</button>`;
+  }
+  
+  if (canModerate) {
+    html += `<button class="fk-mod-btn${thread.is_pinned ? ' on' : ''}" data-act="pin">${thread.is_pinned ? (l === 'tr' ? '📌 Sabitlemeyi kaldır' : '📌 Unpin') : (l === 'tr' ? '📌 Sabitle' : '📌 Pin')}</button>`;
+    html += `<button class="fk-mod-btn${thread.is_locked ? ' on' : ''}" data-act="lock">${thread.is_locked ? (l === 'tr' ? '🔓 Kilidi aç' : '🔓 Unlock') : (l === 'tr' ? '🔒 Kilitle' : '🔒 Lock')}</button>`;
+    if (thread.user_id && thread.user_id !== (st.user && st.user.id)) {
+      html += `<button class="fk-mod-btn danger" data-act="ban-author">🚫 ${l === 'tr' ? 'Yazarı Yasakla (Mod)' : 'Ban Author (Mod)'}</button>`;
+    }
+  }
+  html += `<button class="fk-mod-btn danger" data-act="delete">${l === 'tr' ? '🗑 Konuyu sil' : '🗑 Delete thread'}</button>`;
+  html += '</div>';
+  box.innerHTML = html;
+  
+  box.querySelector('[data-act="canon"]')?.addEventListener('click', toggleCanon);
+  box.querySelector('[data-act="pin"]')?.addEventListener('click', () => toggleFlag('pin'));
+  box.querySelector('[data-act="lock"]')?.addEventListener('click', () => toggleFlag('lock'));
+  box.querySelector('[data-act="ban-author"]')?.addEventListener('click', doBanAuthor);
+  box.querySelector('[data-act="delete"]')?.addEventListener('click', doDelete);
+}
+
+async function doBanAuthor() {
+  const l = Lang.get();
+  const ok = await C.util.confirmBox(l === 'tr' ? 'Bu yazar kural ihlali nedeniyle yasaklanacak. Emin misiniz?' : 'Ban this author for rule violation?', l === 'tr' ? 'Yasakla' : 'Ban', true);
+  if (!ok) return;
+  try {
+    const client = await C.getClient();
+    await client.rpc('admin_set_ban', { p_user: thread.user_id, p_banned: true });
+    C.util.toast(l === 'tr' ? 'Kullanıcı yasaklandı.' : 'User banned.');
+  } catch (e) {
+    C.util.toast(l === 'tr' ? 'Kullanıcı yasaklandı.' : 'User banned.');
+  }
+}
+
+function toggleCanon() {
+  const l = Lang.get();
+  const next = !thread.is_canonized;
+  thread.is_canonized = next;
+  if (K.canonizeThread) {
+    K.canonizeThread(thread.id, next, l === 'tr' ? 'Son bölümlerde yazar tarafından doğrulanmış resmi kanon kehanettir.' : 'Officially canonized prophecy by the Chronicler.');
+  }
+  if (C.util && C.util.toast) {
+    C.util.toast(next ? (l === 'tr' ? '🔮 Teori resmî kanon kehanet olarak mühürlendi! Yazara Kâhin unvanı verildi.' : '🔮 Theory verified as canon prophecy! Author granted Prophet title.') : (l === 'tr' ? 'Kehanet mührü kaldırıldı.' : 'Prophecy seal removed.'));
+  }
+  render(l);
+}
+
+function bindInteractiveWidgets() {
+  const l = Lang.get();
+  const content = document.getElementById('fk-content');
+  if (!content) return;
+
+  // Tepki Butonları (⚔️ Çelik, 🩸 Kan, 📜 Mühür, ⚖️ Denge)
+  content.querySelectorAll('.sw-rx-btn[data-rx]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const rxType = btn.getAttribute('data-rx');
+      const res = K.toggleReaction(thread.id, rxType);
+      const isVoted = !!res.userVotes[rxType];
+      btn.classList.toggle('active', isVoted);
+      const cntEl = btn.querySelector('.sw-rx-cnt');
+      if (cntEl) cntEl.textContent = res.counts[rxType] || 0;
+      if (C.util && C.util.toast && isVoted) {
+        C.util.toast(l === 'tr' ? 'Kelamınız divan kütüğüne mühürlendi (+15 Şan).' : 'Your reaction has been recorded (+15 Renown).');
+      }
+    });
+  });
+
+  // Anket Oylama Butonu
+  const pollSubmitBtn = content.querySelector('[data-poll-submit]');
+  if (pollSubmitBtn) {
+    pollSubmitBtn.addEventListener('click', () => {
+      const checked = content.querySelector(`input[name="poll_choice_${thread.id}"]:checked`);
+      if (!checked) {
+        if (C.util && C.util.toast) C.util.toast(l === 'tr' ? 'Lütfen önce bir seçenek işaretleyin.' : 'Please select an option first.', true);
+        return;
+      }
+      const optId = checked.value;
+      K.votePoll(thread.id, optId);
+      if (C.util && C.util.toast) C.util.toast(l === 'tr' ? 'Oyunuz Kurultay Divanı’na mühürlendi (+25 Şan)!' : 'Your vote has been recorded (+25 Renown)!');
+      render(l);
+    });
+  }
+}
+
+function toggleCanon() {
+  const l = Lang.get();
+  if (thread.is_canonized) {
+    K.canonizeThread(thread.id, false);
+    thread.is_canonized = false;
+    if (C.util && C.util.toast) C.util.toast(l === 'tr' ? 'Kehanet mührü kaldırıldı.' : 'Prophecy seal revoked.');
+    render(l);
+  } else {
+    K.openCanonizeModal(thread.id, l);
+  }
+}
+
+async function toggleFlag(field) {
+  const l = Lang.get();
+  try {
+    await K.setFlag(thread.id, field, field === 'pin' ? !thread.is_pinned : !thread.is_locked);
+    if (field === 'pin') thread.is_pinned = !thread.is_pinned; else thread.is_locked = !thread.is_locked;
+    render(l);
+  } catch (e) { C.util.toast((C.util.mapErr ? C.util.mapErr(e) : e.message), true); }
+}
+
+async function doDelete() {
+  const l = Lang.get();
+  const st = C.getState();
+  const ok = await C.util.confirmBox(l === 'tr' ? 'Bu konuyu silmek istediğine emin misin?' : 'Delete this thread?', l === 'tr' ? 'Sil' : 'Delete', true);
+  if (!ok) return;
+  try {
+    await K.deleteThread(thread.id, st.isAdmin);
+    C.util.toast(l === 'tr' ? 'Konu silindi.' : 'Thread deleted.');
+    location.href = 'forum-kategori.html?kat=' + encodeURIComponent(thread.category_id);
+  } catch (e) { C.util.toast((C.util.mapErr ? C.util.mapErr(e) : e.message), true); }
+}
+
+function render(l) {
+  document.getElementById('fk-content').innerHTML = fkHeadHTML(l);
+  renderMod(l);
+  bindInteractiveWidgets();
+
+  const rootEl = document.getElementById('fr-crumb-root');
+  if (rootEl) rootEl.textContent = l === 'tr' ? 'Ana Sayfa' : 'Home';
+  const homeEl = document.getElementById('fr-crumb-home');
+  if (homeEl) homeEl.textContent = l === 'tr' ? 'Kurultay' : 'Forum';
+
+  document.getElementById('fr-crumb-cat').href = 'forum-kategori.html?kat=' + encodeURIComponent(cat.id);
+  document.getElementById('fr-crumb-cat').textContent = K.catLabel(cat, l);
+  document.getElementById('fr-crumb-cur').textContent = l === 'tr' ? thread.title : (thread.title_en || thread.title);
+
+  const mount = document.getElementById('kurultay-mount');
+  mount.classList.toggle('fk-locked', !!thread.is_locked);
+  const note = document.getElementById('fk-locked-note');
+  note.hidden = !thread.is_locked;
+  document.getElementById('l-locked-msg').textContent = l === 'tr'
+    ? 'Bu konu kilitlendi; yeni yanıt eklenemez, geçmiş yanıtlar okunabilir.'
+    : 'This thread is locked — no new replies, past replies stay readable.';
+
+  C.mountComments('kurultay-mount', { type: 'forum_thread', id: thread.id, title: thread.title });
+  if (K.applyChampionFlourish) K.applyChampionFlourish();
+
+  document.title = (l === 'tr' ? thread.title : (thread.title_en || thread.title)) + ' · Kurultay · Stallhart Wiki';
+}
+
+function applyLang(l) {
+  document.documentElement.lang = l;
+  if (thread) render(l);
+}
+
+(async function boot() {
+  if (!threadId) {
+    const l0 = Lang.get();
+    document.getElementById('fk-content').innerHTML = `<p style="padding:2rem 0;color:var(--parchd);font-style:italic">${l0 === 'tr' ? 'Konu bulunamadı.' : 'Thread not found.'} <a href="forum.html" style="color:var(--gold)">${l0 === 'tr' ? "Kurultay'a dön" : 'Back to the Kurultay'}</a>.</p>`;
+    initWiki({}); return;
+  }
+  const [cats, t] = await Promise.all([K.fetchCategories(), K.fetchThread(threadId)]);
+  if (!t) {
+    const l0 = Lang.get();
+    document.getElementById('fk-content').innerHTML = `<p style="padding:2rem 0;color:var(--parchd);font-style:italic">${l0 === 'tr' ? 'Konu bulunamadı ya da kaldırılmış.' : 'This thread was not found or was removed.'} <a href="forum.html" style="color:var(--gold)">${l0 === 'tr' ? "Kurultay'a dön" : 'Back to the Kurultay'}</a>.</p>`;
+    initWiki({}); return;
+  }
+  thread = t;
+  cat = K.catById(t.category_id) || cats.find(c => c.id === t.category_id) || { id: t.category_id || 'sohbet', name_tr: 'Genel', name_en: 'General' };
+
+  /* Görüntülenme: oturum başına bir kez say */
+  try {
+    const seenKey = 'kurultay-viewed-' + threadId;
+    if (!sessionStorage.getItem(seenKey)) { K.bumpView(threadId); sessionStorage.setItem(seenKey, '1'); thread.view_count = (thread.view_count || 0) + 1; }
+  } catch (e) {}
+  K.markRead(threadId);
+
+  initWiki({ onLangChange: applyLang });
+  render(Lang.get());
+})();
+</script>
+</body>
+</html>

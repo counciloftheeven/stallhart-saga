@@ -1,0 +1,2743 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Stallhart Destanı — Evren Ansiklopedisi: Tarih, Coğrafya, İnançlar, Kronoloji ve Ortak Lisan" data-tr="Stallhart Destanı — Evren Ansiklopedisi: Tarih, Coğrafya, İnançlar, Kronoloji ve Ortak Lisan" data-en="The Stallhart Saga — World Encyclopedia: History, Geography, Faiths, Chronology and Common Tongue" data-i18n-attr="content">
+<title data-tr="Evren Ansiklopedisi · Stallhart Wiki" data-en="World Encyclopedia · Stallhart Wiki">Evren Ansiklopedisi · Stallhart Wiki</title>
+<meta name="theme-color" content="#0c121f">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="The Stallhart Saga">
+<meta property="og:locale" content="tr_TR">
+<meta property="og:title" content="Evren Ansiklopedisi · Stallhart Wiki">
+<meta property="og:description" content="Stallhart Destanı — Evren Ansiklopedisi: Tarih, Coğrafya, İnançlar, Kronoloji ve Ortak Lisan">
+<meta property="og:image" content="assets/images/logo-stallhart.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Evren Ansiklopedisi · Stallhart Wiki">
+<meta name="twitter:description" content="Stallhart Destanı — Evren Ansiklopedisi: Tarih, Coğrafya, İnançlar, Kronoloji ve Ortak Lisan">
+<meta name="twitter:image" content="assets/images/logo-stallhart.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="apple-touch-icon" href="assets/images/logo-stallhart.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Modern+Antiqua&amp;family=IM+Fell+English:ital@0;1&amp;family=Merriweather:ital,wght@0,400;0,700;1,400&amp;display=swap">
+<link rel="stylesheet" href="assets/css/styles.css?v=3.2">
+<style>
+/* ── EVREN ANSİKLOPEDİSİ MODERN STİL SİSTEMİ ─────────── */
+#lore-sec { background: var(--bg); min-height: 100vh; padding: 0; }
+#lore-sec .inn { padding: 2rem 1.5rem 6rem; max-width: 1200px; margin: 0 auto; }
+
+/* ── METRİK ÖZET ÇUBUĞU (Hero altı) ───────────────── */
+.lore-summary-strip {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+  margin: -1rem 0 2.5rem;
+}
+.lore-stat-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 1rem 1.25rem;
+  border-radius: 4px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease;
+}
+.lore-stat-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--goldd);
+  box-shadow: 0 6px 16px rgba(0,0,0,.35);
+}
+.lore-stat-card::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  opacity: 0;
+  transition: opacity .2s ease;
+}
+.lore-stat-card:hover::after,
+.lore-stat-card.active::after {
+  opacity: 1;
+}
+.lore-stat-card.active {
+  border-color: var(--gold);
+  background: rgba(184,115,51,.08);
+}
+.lore-stat-num {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  color: var(--goldb);
+  line-height: 1.1;
+  margin-bottom: .25rem;
+}
+.lore-stat-title {
+  font-family: var(--font-display);
+  font-size: .82rem;
+  color: var(--parchl);
+  letter-spacing: .03em;
+}
+.lore-stat-sub {
+  font-size: .72rem;
+  color: var(--parchd);
+  font-style: italic;
+  margin-top: .15rem;
+}
+
+/* ── SEKMELER (MODERN SEGMENTED NAV) ───────────────── */
+.lore-nav-container {
+  position: sticky;
+  top: var(--nav-h, 54px);
+  z-index: 95;
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 2.2rem;
+  padding: .65rem 0;
+  transition: box-shadow .2s ease;
+}
+.lore-nav-bar {
+  display: flex;
+  align-items: center;
+  gap: .55rem;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+  padding: 2px 4px;
+  /* Yumuşak kenar silinme maskeleri (scroll fade) */
+  --mask-l: 0px;
+  --mask-r: 0px;
+  mask-image: linear-gradient(to right, transparent 0, black var(--mask-l, 0px), black calc(100% - var(--mask-r, 0px)), transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0, black var(--mask-l, 0px), black calc(100% - var(--mask-r, 0px)), transparent 100%);
+}
+.lore-nav-bar::-webkit-scrollbar { display: none; }
+.lore-tab-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .55rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--parchd);
+  font-family: var(--font-display);
+  font-size: .88rem;
+  padding: .65rem 1.25rem;
+  border-radius: 4px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all .2s ease;
+}
+.lore-tab-btn:hover {
+  color: var(--parchl);
+  border-color: var(--borderl);
+  background: rgba(255,255,255,.03);
+}
+.lore-tab-btn.on {
+  color: var(--parchl);
+  border-color: var(--gold);
+  background: linear-gradient(180deg, rgba(184,115,51,.15) 0%, rgba(184,115,51,.05) 100%);
+  box-shadow: 0 0 12px rgba(184,115,51,.18);
+}
+.lore-tab-btn svg {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 1.8;
+}
+
+/* Tab Paneller */
+.tab-p { display: none; }
+.tab-p.on { display: block; animation: tabFade .25s ease-out; }
+@keyframes tabFade {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── ARAMA & KONTROL ARAÇ ÇUBUĞU ───────────────────── */
+.lore-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.5rem;
+}
+.lore-search-box {
+  display: flex;
+  align-items: center;
+  gap: .6rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: .5rem 1rem;
+  flex: 1;
+  min-width: 260px;
+  max-width: 440px;
+  transition: border-color .2s ease, box-shadow .2s ease;
+}
+.lore-search-box:focus-within {
+  border-color: var(--goldd);
+  box-shadow: 0 0 8px rgba(184,115,51,.25);
+}
+.lore-search-box svg {
+  width: 15px; height: 15px;
+  stroke: var(--goldd);
+  fill: none;
+  stroke-width: 2;
+  flex-shrink: 0;
+}
+.lore-search-input {
+  flex: 1;
+  background: none;
+  border: none;
+  outline: none;
+  font-family: var(--font-body);
+  font-size: .88rem;
+  color: var(--parchl);
+  caret-color: var(--gold);
+}
+.lore-search-input::placeholder { color: var(--parchd); }
+.lore-search-clear {
+  background: none;
+  border: none;
+  color: var(--parchd);
+  cursor: pointer;
+  font-size: .85rem;
+  display: none;
+  padding: 0 .2rem;
+}
+.lore-search-clear.visible { display: block; }
+.lore-search-clear:hover { color: var(--parchl); }
+
+/* Filtre Butonları */
+.lore-filter-chips {
+  display: flex;
+  align-items: center;
+  gap: .4rem;
+  flex-wrap: wrap;
+}
+.f-chip {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--parchd);
+  font-family: var(--font-display);
+  font-size: .78rem;
+  padding: .35rem .75rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all .15s ease;
+}
+.f-chip:hover {
+  color: var(--parchl);
+  border-color: var(--borderl);
+}
+.f-chip.on {
+  color: var(--parchl);
+  border-color: var(--goldd);
+  background: rgba(184,115,51,.12);
+}
+
+.lore-count-info {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: .8rem;
+  color: var(--parchd);
+}
+
+/* ── BÖLÜM BAŞLIKLARI ──────────────────────────────── */
+.lore-sec-title {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  color: var(--parchl);
+  margin: 2rem 0 1rem;
+  display: flex;
+  align-items: center;
+  gap: .6rem;
+}
+.lore-sec-title::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+  margin-left: .5rem;
+}
+
+/* ── 1. COĞRAFYA TAB ───────────────────────────────── */
+/* İmparatorluk Dosyası (Dossier) */
+.imperial-dossier-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1rem;
+  margin-bottom: 2.5rem;
+}
+.dossier-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  padding: 1.1rem 1.25rem;
+  border-radius: 4px;
+  position: relative;
+  transition: border-color .2s ease, transform .2s ease;
+}
+.dossier-card:hover {
+  border-color: var(--borderl);
+  transform: translateY(-2px);
+}
+.dossier-card-kicker {
+  font-family: var(--font-display);
+  font-size: .7rem;
+  letter-spacing: .12em;
+  color: var(--goldd);
+  text-transform: uppercase;
+  margin-bottom: .35rem;
+}
+.dossier-card-val {
+  font-family: var(--font-body);
+  font-size: .94rem;
+  line-height: 1.6;
+  color: var(--parchl);
+}
+
+/* Doğal Coğrafya Akordeon/Koleksiyon */
+.geo-features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.25rem;
+  margin-bottom: 2.5rem;
+}
+.geo-feat-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 1.25rem;
+  border-radius: 4px;
+}
+.geo-feat-head {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  font-family: var(--font-display);
+  font-size: .98rem;
+  color: var(--parchl);
+  margin-bottom: .85rem;
+  padding-bottom: .5rem;
+  border-bottom: 1px solid var(--border);
+}
+.geo-feat-item {
+  margin-bottom: .75rem;
+  padding-bottom: .6rem;
+  border-bottom: 1px dashed rgba(58,47,36,.4);
+}
+.geo-feat-item:last-child {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom: none;
+}
+.geo-feat-name {
+  font-family: var(--font-display);
+  font-size: .88rem;
+  color: var(--gold);
+  margin-bottom: .2rem;
+}
+.geo-feat-desc {
+  font-size: .8rem;
+  line-height: 1.6;
+  color: var(--parchd);
+}
+
+/* Eyalet Kartları */
+.provinces-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1.25rem;
+  margin-bottom: 2.5rem;
+}
+.prov-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  padding: 1.25rem 1.35rem;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: all .2s ease;
+  position: relative;
+}
+.prov-card:hover {
+  border-color: var(--goldd);
+  box-shadow: 0 8px 20px rgba(0,0,0,.4);
+  transform: translateY(-2px);
+}
+.prov-card-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: .5rem;
+  margin-bottom: .75rem;
+}
+.prov-card-title {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  color: var(--parchl);
+}
+.prov-map-link {
+  font-family: var(--font-display);
+  font-size: .72rem;
+  color: var(--goldd);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: .3rem;
+  border: 1px solid var(--border);
+  padding: .2rem .5rem;
+  border-radius: 3px;
+  transition: all .15s ease;
+}
+.prov-map-link:hover {
+  border-color: var(--gold);
+  color: var(--goldb);
+  background: rgba(184,115,51,.08);
+}
+.prov-meta-row {
+  font-size: .82rem;
+  line-height: 1.65;
+  margin-bottom: .45rem;
+  color: var(--parch);
+}
+.prov-meta-label {
+  color: var(--goldd);
+  font-family: var(--font-display);
+  font-size: .76rem;
+  letter-spacing: .02em;
+}
+
+/* Dünya Güç Sıralaması Tablosu */
+.tbl-wrap-lore {
+  overflow-x: auto;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  background: var(--card);
+  margin-bottom: 1.5rem;
+}
+.wp-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 540px;
+}
+.wp-table th {
+  background: var(--surface);
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: .74rem;
+  color: var(--goldd);
+  text-align: left;
+  padding: .75rem 1rem;
+  border-bottom: 1px solid var(--border);
+  white-space: nowrap;
+}
+.wp-table td {
+  padding: .7rem 1rem;
+  border-bottom: 1px solid rgba(58,47,36,.35);
+  font-size: .86rem;
+  color: var(--parch);
+  vertical-align: middle;
+}
+.wp-table tr:last-child td { border-bottom: none; }
+.wp-table tr:hover td { background: rgba(184,115,51,.06); }
+.wp-table tr.wp-self td {
+  color: var(--parchl);
+  background: rgba(184,115,51,.1);
+  font-weight: bold;
+}
+.wp-rank-num {
+  font-family: var(--font-display);
+  font-size: .95rem;
+  color: var(--gold);
+}
+.wp-meter-wrap {
+  display: flex;
+  align-items: center;
+  gap: .6rem;
+  min-width: 130px;
+}
+.wp-meter-bg {
+  flex: 1;
+  height: 6px;
+  background: var(--deep);
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  overflow: hidden;
+}
+.wp-meter-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--goldd), var(--goldb));
+  border-radius: 2px;
+}
+
+/* ── 2. DİN & İNANÇ TAB ────────────────────────────── */
+.pantheon-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1.25rem;
+  margin-bottom: 2.5rem;
+}
+.god-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  padding: 1.35rem;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: all .2s ease;
+  position: relative;
+}
+.god-card:hover {
+  border-color: var(--goldd);
+  box-shadow: 0 8px 24px rgba(0,0,0,.45);
+  transform: translateY(-2px);
+}
+.god-card-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: .75rem;
+  margin-bottom: .6rem;
+}
+.god-card-title {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  color: var(--parchl);
+  line-height: 1.2;
+}
+.god-card-true-name {
+  font-family: var(--font-body);
+  font-size: .8rem;
+  color: var(--goldd);
+  font-style: italic;
+  margin-top: .15rem;
+}
+.god-card-faction {
+  font-family: var(--font-display);
+  font-size: .68rem;
+  padding: .2rem .55rem;
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  white-space: nowrap;
+}
+.god-card-faction.order   { border-color: #2a4a6c; color: #6a9ac9; background: rgba(42,74,108,.15); }
+.god-card-faction.chaos   { border-color: var(--blood); color: #c95a5a; background: rgba(94,0,0,.15); }
+.god-card-faction.neutral { border-color: var(--gold); color: var(--goldb); background: rgba(184,115,51,.15); }
+
+.god-card-role {
+  font-size: .85rem;
+  line-height: 1.65;
+  color: var(--parch);
+  margin-bottom: .85rem;
+}
+.god-card-quote {
+  font-size: .8rem;
+  font-style: italic;
+  color: var(--parchd);
+  line-height: 1.6;
+  border-left: 2px solid var(--border);
+  padding-left: .75rem;
+  margin-bottom: 1rem;
+}
+.god-card-btn {
+  align-self: flex-start;
+  font-family: var(--font-display);
+  font-size: .78rem;
+  color: var(--gold);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: .35rem;
+  transition: color .15s ease, transform .15s ease;
+}
+.god-card-btn:hover {
+  color: var(--goldb);
+  transform: translateX(3px);
+}
+
+/* Fraksiyon & Doktrin Kartları */
+.theology-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1.25rem;
+  margin-bottom: 2rem;
+}
+.theology-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 1.35rem;
+  border-radius: 4px;
+}
+.theology-title {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  color: var(--parchl);
+  margin-bottom: .5rem;
+}
+
+/* ── 3. TARİH TAB (ZAMAN ÇİZELGESİ) ───────────────── */
+.timeline-modern-wrap {
+  position: relative;
+  padding-left: 2rem;
+  margin: 1.5rem 0 3rem;
+}
+.timeline-modern-wrap::before {
+  content: '';
+  position: absolute;
+  top: 0; bottom: 0; left: 7px;
+  width: 2px;
+  background: linear-gradient(180deg, var(--gold), var(--border) 80%, transparent);
+}
+.tl-modern-item {
+  position: relative;
+  margin-bottom: 2rem;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 1.25rem 1.4rem;
+  transition: border-color .2s ease, transform .2s ease, box-shadow .2s ease;
+}
+.tl-modern-item:hover {
+  border-color: var(--borderl);
+  box-shadow: 0 4px 14px rgba(0,0,0,.25);
+  transform: translateX(3px);
+}
+.tl-modern-item::before {
+  content: '';
+  position: absolute;
+  left: -2rem; top: 1.4rem;
+  width: 12px; height: 12px;
+  border-radius: 50%;
+  background: var(--surface);
+  border: 2px solid var(--gold);
+  box-shadow: 0 0 8px rgba(184,115,51,.5);
+}
+.tl-modern-item.war { border-left: 3px solid #8b0000; }
+.tl-modern-item.war::before { border-color: #8b0000; box-shadow: 0 0 8px rgba(139,0,0,.6); }
+.tl-modern-item.treaty { border-left: 3px solid #2b7a4b; }
+.tl-modern-item.treaty::before { border-color: #2b7a4b; box-shadow: 0 0 8px rgba(43,122,75,.6); }
+.tl-modern-item.crisis { border-left: 3px solid #c97a2b; }
+.tl-modern-item.crisis::before { border-color: #c97a2b; box-shadow: 0 0 8px rgba(201,122,43,.5); }
+.tl-modern-item.ruler { border-left: 3px solid var(--gold); }
+.tl-modern-item.ruler::before { border-color: var(--gold); }
+.tl-modern-item.religious { border-left: 3px solid #3d6b8a; }
+.tl-modern-item.religious::before { border-color: #3d6b8a; box-shadow: 0 0 8px rgba(61,107,138,.5); }
+
+.tl-item-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: .75rem;
+  flex-wrap: wrap;
+  margin-bottom: .6rem;
+}
+.tl-item-ks {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  color: var(--goldb);
+  font-weight: bold;
+}
+.tl-item-badge {
+  font-family: var(--font-display);
+  font-size: .72rem;
+  padding: .2rem .55rem;
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  color: var(--parchd);
+}
+.tl-item-badge.war { border-color: #8b0000; color: #f28b82; background: rgba(139,0,0,.15); }
+.tl-item-badge.treaty { border-color: #2b7a4b; color: #81c995; background: rgba(43,122,75,.15); }
+.tl-item-badge.crisis { border-color: #c97a2b; color: #fdd663; background: rgba(201,122,43,.15); }
+.tl-item-badge.ruler { border-color: var(--goldd); color: var(--goldb); background: rgba(184,115,51,.15); }
+.tl-item-badge.religious { border-color: #3d6b8a; color: #8ab4f8; background: rgba(61,107,138,.15); }
+
+.tl-card-actions {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  margin-left: auto;
+}
+.tl-quick-view-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .35rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--parchd);
+  font-family: var(--font-display);
+  font-size: .74rem;
+  padding: .25rem .6rem;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: all .15s ease;
+}
+.tl-quick-view-btn:hover {
+  color: var(--parchl);
+  border-color: var(--borderl);
+  background: rgba(255,255,255,.05);
+}
+.tl-quick-view-btn svg { width: 13px; height: 13px; stroke: currentColor; fill: none; stroke-width: 2; }
+.tl-wiki-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .3rem;
+  background: rgba(184,115,51,.1);
+  border: 1px solid var(--goldd);
+  color: var(--goldb);
+  font-family: var(--font-display);
+  font-size: .74rem;
+  padding: .25rem .65rem;
+  border-radius: 3px;
+  text-decoration: none;
+  transition: all .15s ease;
+}
+.tl-wiki-btn:hover {
+  background: var(--gold);
+  color: #0c121f;
+  font-weight: bold;
+}
+
+.tl-item-title {
+  font-family: var(--font-display);
+  font-size: 1.18rem;
+  color: var(--parchl);
+  margin-bottom: .3rem;
+  line-height: 1.3;
+}
+.tl-item-ruler {
+  font-size: .82rem;
+  color: var(--goldd);
+  font-style: italic;
+  margin-bottom: .6rem;
+}
+.tl-item-ruler strong { font-style: normal; color: var(--goldb); }
+.tl-item-desc {
+  font-size: .92rem;
+  line-height: 1.75;
+  color: var(--parch);
+}
+.tl-item-entities {
+  display: flex;
+  gap: .45rem;
+  flex-wrap: wrap;
+  margin-top: .75rem;
+  padding-top: .6rem;
+  border-top: 1px dashed rgba(255,255,255,.06);
+}
+.tl-ent-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: .3rem;
+  font-size: .72rem;
+  font-family: var(--font-display);
+  padding: .15rem .5rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  color: var(--parchd);
+  text-decoration: none;
+  transition: all .15s ease;
+}
+.tl-ent-chip:hover {
+  color: var(--gold);
+  border-color: var(--goldd);
+}
+
+/* ── SPOTLIGHT ÖNE ÇIKAN SAVAŞLAR & ANTLAŞMALAR ───── */
+.ev-section-banner {
+  background: linear-gradient(180deg, var(--card) 0%, var(--surface) 100%);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 1.4rem 1.6rem;
+  margin-bottom: 2rem;
+}
+.ev-section-title {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  color: var(--parchl);
+  margin: 0 0 .4rem;
+}
+.ev-section-sub {
+  font-size: .92rem;
+  line-height: 1.7;
+  color: var(--parchd);
+  margin: 0;
+}
+.ev-spotlight-title {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  color: var(--goldb);
+  margin: 1.75rem 0 1rem;
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+}
+.ev-spotlight-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+.ev-spot-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 1.1rem;
+  display: flex;
+  flex-direction: column;
+  transition: all .2s ease;
+  position: relative;
+  overflow: hidden;
+}
+.ev-spot-card:hover {
+  border-color: var(--goldd);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0,0,0,.35);
+}
+.ev-spot-card::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  opacity: 0;
+  transition: opacity .2s ease;
+}
+.ev-spot-card:hover::after { opacity: 1; }
+.ev-spot-ks {
+  font-family: var(--font-display);
+  font-size: .8rem;
+  color: var(--gold);
+  font-weight: bold;
+}
+.ev-spot-type {
+  font-family: var(--font-display);
+  font-size: .68rem;
+  text-transform: uppercase;
+  color: var(--parchd);
+  margin-bottom: .25rem;
+}
+.ev-spot-name {
+  font-family: var(--font-display);
+  font-size: 1.02rem;
+  color: var(--parchl);
+  margin: .25rem 0 .45rem;
+  line-height: 1.3;
+}
+.ev-spot-desc {
+  font-size: .82rem;
+  line-height: 1.6;
+  color: var(--parchd);
+  flex: 1;
+}
+.ev-spot-link {
+  display: inline-flex;
+  align-items: center;
+  gap: .35rem;
+  font-family: var(--font-display);
+  font-size: .78rem;
+  color: var(--gold);
+  text-decoration: none;
+  margin-top: .75rem;
+  padding-top: .6rem;
+  border-top: 1px dashed rgba(255,255,255,.08);
+}
+.ev-spot-link:hover { color: var(--goldb); }
+
+/* Çağ Seçici Çubuğu */
+.lore-era-chips {
+  display: flex;
+  align-items: center;
+  gap: .4rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.25rem;
+  padding-bottom: .85rem;
+  border-bottom: 1px dashed rgba(255,255,255,.07);
+}
+.e-chip {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--parchd);
+  font-family: var(--font-display);
+  font-size: .74rem;
+  padding: .28rem .65rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all .15s ease;
+}
+.e-chip:hover { color: var(--parchl); border-color: var(--borderl); }
+.e-chip.on {
+  color: var(--parchl);
+  border-color: var(--gold);
+  background: rgba(184,115,51,.15);
+}
+
+/* ── HIZLI WIKI İNCELEME MODALI (DRAWER/DIALOG) ────── */
+.ev-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(5,8,14,.78);
+  backdrop-filter: blur(4px);
+  z-index: 1000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+.ev-modal-overlay.open { display: flex; animation: modalFade .2s ease-out; }
+@keyframes modalFade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.ev-modal-dialog {
+  background: var(--card);
+  border: 1px solid var(--goldd);
+  border-radius: 6px;
+  width: 100%;
+  max-width: 680px;
+  max-height: 85vh;
+  overflow-y: auto;
+  box-shadow: 0 12px 35px rgba(0,0,0,.6);
+  padding: 1.75rem;
+  position: relative;
+}
+.ev-modal-close {
+  position: absolute;
+  top: 1rem; right: 1rem;
+  background: none;
+  border: none;
+  color: var(--parchd);
+  font-size: 1.4rem;
+  cursor: pointer;
+  padding: .2rem .5rem;
+  line-height: 1;
+}
+.ev-modal-close:hover { color: var(--parchl); }
+.ev-modal-kicker {
+  font-family: var(--font-display);
+  font-size: .75rem;
+  color: var(--goldd);
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  margin-bottom: .35rem;
+}
+.ev-modal-title {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  color: var(--parchl);
+  margin: 0 0 .5rem;
+}
+.ev-modal-desc {
+  font-size: .95rem;
+  line-height: 1.8;
+  color: var(--parch);
+  margin: 1rem 0;
+}
+.ev-modal-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+  flex-wrap: wrap;
+}
+.ev-modal-link {
+  display: inline-flex;
+  align-items: center;
+  gap: .4rem;
+  background: var(--gold);
+  color: #0c121f;
+  font-family: var(--font-display);
+  font-size: .84rem;
+  font-weight: bold;
+  padding: .55rem 1.15rem;
+  border-radius: 4px;
+  text-decoration: none;
+  transition: background .15s ease;
+}
+.ev-modal-link:hover { background: var(--goldb); }
+}
+.tl-tag-chip:hover { color: var(--goldb); }
+
+/* ── 4. SÖZLÜK TAB ─────────────────────────────────── */
+.alpha-jump-bar {
+  display: flex;
+  gap: .25rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.25rem;
+  padding: .5rem 0;
+}
+.alpha-btn {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--parchd);
+  font-family: var(--font-display);
+  font-size: .74rem;
+  width: 28px; height: 28px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: all .15s ease;
+}
+.alpha-btn:hover,
+.alpha-btn.on {
+  border-color: var(--gold);
+  color: var(--parchl);
+  background: rgba(184,115,51,.12);
+}
+.gls-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+  gap: 1.15rem;
+  margin-bottom: 2.5rem;
+}
+.gls-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  padding: 1.2rem;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: all .2s ease;
+}
+.gls-card:hover {
+  border-color: var(--borderl);
+  box-shadow: 0 6px 16px rgba(0,0,0,.3);
+  transform: translateY(-2px);
+}
+.gls-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: .5rem;
+  margin-bottom: .4rem;
+}
+.gls-card-type {
+  font-family: var(--font-display);
+  font-size: .68rem;
+  color: var(--goldd);
+  text-transform: uppercase;
+  letter-spacing: .06em;
+}
+.gls-card-term {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  color: var(--parchl);
+  margin-bottom: .45rem;
+}
+.gls-card-def {
+  font-size: .86rem;
+  line-height: 1.65;
+  color: var(--parch);
+}
+
+/* ── 5. ORTAK LİSAN TAB ────────────────────────────── */
+.lang-grammar-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 1.5rem;
+  border-radius: 4px;
+  margin-bottom: 2rem;
+}
+.lang-phrases-wrap {
+  display: flex;
+  gap: .5rem;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+}
+.lang-phrase-item {
+  background: var(--card);
+  border: 1px solid var(--border);
+  padding: .35rem .75rem;
+  border-radius: 4px;
+  font-family: var(--font-display);
+  font-size: .84rem;
+  color: var(--goldb);
+  cursor: help;
+  transition: all .15s ease;
+}
+.lang-phrase-item:hover {
+  border-color: var(--gold);
+  background: rgba(184,115,51,.1);
+}
+.words-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1rem;
+  margin-bottom: 2.5rem;
+}
+.word-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  padding: 1rem 1.15rem;
+  border-radius: 4px;
+  transition: all .2s ease;
+}
+.word-card:hover {
+  border-color: var(--goldd);
+  transform: translateY(-2px);
+}
+.word-card-top {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: .5rem;
+  margin-bottom: .25rem;
+}
+.word-term {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  color: var(--goldb);
+}
+.word-pos {
+  font-size: .7rem;
+  color: var(--parchd);
+  font-style: italic;
+}
+.word-meaning {
+  font-size: .88rem;
+  color: var(--parchl);
+  line-height: 1.5;
+  margin-bottom: .35rem;
+}
+.word-example {
+  font-size: .76rem;
+  color: var(--goldd);
+  font-style: italic;
+  line-height: 1.4;
+  border-top: 1px dashed rgba(58,47,36,.4);
+  padding-top: .35rem;
+  margin-top: .35rem;
+}
+
+/* Boş durum */
+.empty-state {
+  text-align: center;
+  padding: 3rem 1.5rem;
+  color: var(--parchd);
+  font-style: italic;
+  font-family: var(--font-display);
+  font-size: .95rem;
+}
+
+.lc.yer-hl {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+  transition: outline-color .4s;
+}
+
+/* ── LORE HİYERARŞİ PORTAL BANNERI & NAV ──────────────── */
+.lore-hierarchy-banner {
+  background: radial-gradient(ellipse at 80% 0%, rgba(45, 28, 16, 0.85), rgba(14, 18, 28, 0.95));
+  border: 1px solid var(--goldd);
+  border-radius: 6px;
+  padding: 1.5rem 1.8rem;
+  margin: 1.5rem 0 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4), 0 0 20px rgba(196, 150, 42, 0.12);
+  position: relative;
+  overflow: hidden;
+}
+.lore-hierarchy-banner::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+.lhb-left {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.25rem;
+  flex: 1;
+  min-width: 280px;
+}
+.lhb-emblem {
+  font-size: 2.2rem;
+  background: rgba(196, 150, 42, 0.12);
+  border: 1px solid var(--goldd);
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.lhb-badge {
+  font-family: var(--font-display);
+  font-size: .72rem;
+  color: var(--goldd);
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  margin-bottom: .25rem;
+}
+.lhb-title {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  color: var(--parchl);
+  margin: 0 0 .4rem;
+}
+.lhb-desc {
+  font-size: .86rem;
+  color: var(--parch);
+  line-height: 1.6;
+  margin: 0;
+  max-width: 680px;
+}
+.lhb-cta-btn {
+  background: linear-gradient(135deg, rgba(139, 30, 30, 0.9), rgba(196, 150, 42, 0.95));
+  border: 1px solid var(--gold);
+  color: #fff !important;
+  font-family: var(--font-display);
+  font-size: .88rem;
+  padding: .75rem 1.4rem;
+  border-radius: 4px;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  transition: all .2s ease;
+  white-space: nowrap;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
+}
+.lhb-cta-btn:hover {
+  filter: brightness(1.15);
+  box-shadow: 0 6px 20px rgba(196, 150, 42, 0.4);
+  transform: translateY(-2px);
+}
+.lore-stat-card.lore-hierarchy-card {
+  border-color: rgba(196, 150, 42, 0.4);
+  background: rgba(196, 150, 42, 0.06);
+}
+.lore-stat-card.lore-hierarchy-card:hover {
+  border-color: var(--gold);
+  background: rgba(196, 150, 42, 0.12);
+}
+.lore-hierarchy-nav-link {
+  text-decoration: none;
+  border-color: rgba(196, 150, 42, 0.35);
+  color: var(--goldd);
+}
+.lore-hierarchy-nav-link:hover {
+  color: var(--gold);
+  border-color: var(--gold);
+  background: rgba(196, 150, 42, 0.1);
+}
+
+/* ── MOBİL UYUMLULUK VE TAŞMA ENGELLEME ───────────────── */
+@media (max-width: 768px) {
+  #lore-sec .inn { padding: 1.25rem 1rem 4rem; }
+  .lore-summary-strip { grid-template-columns: repeat(2, 1fr); gap: .75rem; margin-top: .5rem; }
+  .lore-toolbar { flex-direction: column; align-items: stretch; gap: .75rem; }
+  .lore-search-box { max-width: 100%; min-width: 0; width: 100%; }
+  .lore-filter-chips { overflow-x: auto; flex-wrap: nowrap; padding-bottom: .3rem; -webkit-overflow-scrolling: touch; }
+  .f-chip { flex-shrink: 0; }
+  .provinces-grid, .pantheon-grid, .theology-grid, .gls-cards-grid, .geo-features-grid, .imperial-dossier-grid {
+    grid-template-columns: 1fr !important;
+    gap: 1rem;
+  }
+  .lhb-left { flex-direction: column; gap: .8rem; min-width: 0; }
+  .lore-hierarchy-banner { padding: 1.15rem 1.1rem; }
+  .lhb-cta-btn { width: 100%; justify-content: center; }
+  .wp-table th, .wp-table td { padding: .55rem .75rem; font-size: .8rem; }
+}
+@media (max-width: 480px) {
+  .lore-summary-strip { grid-template-columns: 1fr; }
+  .lore-tab-btn { padding: .5rem .85rem; font-size: .82rem; }
+}
+</style>
+<script src="assets/js/router.js?v=3.2"></script>
+</head>
+<body>
+
+<section id="lore-sec">
+  <div class="page-hero">
+    <p class="page-hero-eye" data-tr="Stallhart Destanı · Cilt I" data-en="The Stallhart Saga · Vol. I">Stallhart Destanı · Cilt I</p>
+    <h1 class="page-hero-title" id="page-title">Evren Ansiklopedisi</h1>
+    <p class="page-hero-sub" id="page-sub">Stallhart İmparatorluğu'nun tarihi, coğrafyası, inançları, kronolojisi ve sözlüğü.</p>
+  </div>
+
+  <div class="inn">
+    <!-- ── METRİK ÖZET ÇUBUĞU ── -->
+    <div class="lore-summary-strip" id="lore-summary-strip">
+      <div class="lore-stat-card active" data-tab-target="cog">
+        <div class="lore-stat-num" id="stat-provinces">13</div>
+        <div class="lore-stat-title" data-tr="Eyalet &amp; Dünya" data-en="Provinces &amp; World">Eyalet &amp; Dünya</div>
+        <div class="lore-stat-sub" data-tr="Taç diyarından sınırlara" data-en="From Crownland to frontiers">Taç diyarından sınırlara</div>
+      </div>
+      <div class="lore-stat-card" data-tab-target="din">
+        <div class="lore-stat-num" id="stat-gods">15</div>
+        <div class="lore-stat-title" data-tr="Denge Panteonu" data-en="Pantheon of the Even">Denge Panteonu</div>
+        <div class="lore-stat-sub" data-tr="Düzen, Kaos ve Muhafız" data-en="Order, Chaos &amp; Protector">Düzen, Kaos ve Muhafız</div>
+      </div>
+      <div class="lore-stat-card" data-tab-target="tarih">
+        <div class="lore-stat-num" id="stat-events">77</div>
+        <div class="lore-stat-title" data-tr="Önemli Olaylar" data-en="Historic Events">Önemli Olaylar</div>
+        <div class="lore-stat-sub" data-tr="Savaşlar, Antlaşmalar &amp; Fermanlar" data-en="Wars, Treaties &amp; Decrees">Savaşlar, Antlaşmalar &amp; Fermanlar</div>
+      </div>
+      <div class="lore-stat-card" data-tab-target="soz">
+        <div class="lore-stat-num" id="stat-glossary">50+</div>
+        <div class="lore-stat-title" data-tr="Kavram Sözlüğü" data-en="Lore Glossary">Kavram Sözlüğü</div>
+        <div class="lore-stat-sub" data-tr="Unvanlar, sihir ve terimler" data-en="Titles, magic &amp; terms">Unvanlar, sihir ve terimler</div>
+      </div>
+      <div class="lore-stat-card" data-tab-target="dil">
+        <div class="lore-stat-num" id="stat-lang">480+</div>
+        <div class="lore-stat-title" data-tr="Ortak Lisan" data-en="Common Tongue">Ortak Lisan</div>
+        <div class="lore-stat-sub" data-tr="Kadim sözcük hazinesi" data-en="Ancient vocabulary">Kadim sözcük hazinesi</div>
+      </div>
+      <a href="hiyerarsi.html" class="lore-stat-card lore-hierarchy-card" style="text-decoration:none;" title="İmparatorluk Yönetim Hiyerarşisi ve Teşkilat Şeması">
+        <div class="lore-stat-num" style="color:var(--goldb)">👑 3 Kol</div>
+        <div class="lore-stat-title" data-tr="Yönetici Kademesi" data-en="Imperial Hierarchy">Yönetici Kademesi</div>
+        <div class="lore-stat-sub" data-tr="Siyasi, Askeri &amp; Dini ➔" data-en="Civil, Military &amp; Faith ➔">Siyasi, Askeri &amp; Dini ➔</div>
+      </a>
+    </div>
+
+    <!-- ── NAVİGASYON SEKMELERİ ── -->
+    <div class="lore-nav-container" id="lore-nav-container">
+      <nav class="lore-nav-bar" id="lore-tabs" aria-label="Ansiklopedi Bölümleri">
+        <button class="lore-tab-btn on" id="tb-cog" data-tab="cog">
+          <svg viewBox="0 0 24 24"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></svg>
+          <span data-tr="Coğrafya &amp; Dünya" data-en="Geography &amp; World">Coğrafya &amp; Dünya</span>
+        </button>
+        <button class="lore-tab-btn" id="tb-din" data-tab="din">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
+          <span data-tr="Din &amp; İnanç" data-en="Faith &amp; Religion">Din &amp; İnanç</span>
+        </button>
+        <button class="lore-tab-btn" id="tb-tarih" data-tab="tarih">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          <span data-tr="Önemli Olaylar &amp; Tarih" data-en="Historic Events &amp; History">Önemli Olaylar &amp; Tarih</span>
+        </button>
+        <button class="lore-tab-btn" id="tb-soz" data-tab="soz">
+          <svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+          <span data-tr="Kavram Sözlüğü" data-en="Lore Glossary">Kavram Sözlüğü</span>
+        </button>
+        <button class="lore-tab-btn" id="tb-dil" data-tab="dil">
+          <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          <span data-tr="Ortak Lisan" data-en="Common Tongue">Ortak Lisan</span>
+        </button>
+        <a href="hiyerarsi.html" class="lore-tab-btn lore-hierarchy-nav-link" title="İmparatorluk Yönetim Hiyerarşisi">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+          <span data-tr="Yönetici Kademesi ↗" data-en="Hierarchy ↗">Yönetici Kademesi ↗</span>
+        </a>
+      </nav>
+    </div>
+
+    <!-- ════════════════════════════════════════════════════════════
+         1. TAB: COĞRAFYA & DÜNYA
+    ════════════════════════════════════════════════════════════ -->
+    <div class="tab-p on" id="tab-cog">
+      <h2 class="lore-sec-title">
+        <span data-tr="İmparatorluk Dosyası &amp; Genel Bakış" data-en="Imperial Dossier &amp; Overview">İmparatorluk Dosyası &amp; Genel Bakış</span>
+      </h2>
+      <div id="cog-overview" class="imperial-dossier-grid"></div>
+
+      <!-- ── İMPARATORLUK YÖNETİM HİYERARŞİSİ PORTAL BANNERI ── -->
+      <div class="lore-hierarchy-banner">
+        <div class="lhb-left">
+          <div class="lhb-emblem">⚜️</div>
+          <div class="lhb-info">
+            <div class="lhb-badge" data-tr="ARAVA TAÇ SARAYI DİVANI" data-en="IMPERIAL HIGH DIWAN">ARAVA TAÇ SARAYI DİVANI</div>
+            <h3 class="lhb-title" data-tr="İmparatorluk Yönetim Kademesi &amp; Teşkilat Hiyerarşisi" data-en="Imperial Administrative Order &amp; Hierarchy">İmparatorluk Yönetim Kademesi &amp; Teşkilat Hiyerarşisi</h3>
+            <p class="lhb-desc" data-tr="İmparator Zeandor Stallhart'ın mutlak hükümdarlığından dallanan Siyasi Divan (Veron), Askeri Ordu (Gharion) ve Dini Mabed teşkilatı; makamlar, yetkiler ve selefler kütüğü." data-en="The imperial administration radiating from Emperor Zeandor Stallhart into Civil Council (Veron), Military (Gharion), and Priesthood (Mabed) orders with complete prerogatives and lineage.">
+              İmparator Zeandor Stallhart'ın mutlak hükümdarlığından dallanan Siyasi Divan (Veron), Askeri Ordu (Gharion) ve Dini Mabed teşkilatı; makamlar, yetkiler ve selefler kütüğü.
+            </p>
+          </div>
+        </div>
+        <a href="hiyerarsi.html" class="lhb-cta-btn">
+          <span data-tr="Hiyerarşi Şemasına Git" data-en="Explore Hierarchy Tree">Hiyerarşi Şemasına Git</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+        </a>
+      </div>
+
+      <h2 class="lore-sec-title">
+        <span data-tr="Doğal Coğrafya &amp; Kadim İşaretler" data-en="Natural Geography &amp; Ancient Landmarks">Doğal Coğrafya &amp; Kadim İşaretler</span>
+      </h2>
+      <div class="geo-features-grid" id="geo-features-wrap"></div>
+
+      <!-- ── MESAFE & SEYAHAT SÜRESİ HESAPLAYICI ── -->
+      <h2 class="lore-sec-title" style="margin-top:2.5rem">
+        <span data-tr="Mesafe &amp; Seyahat Süresi Hesaplayıcı" data-en="Continental Travel &amp; March Calculator">Mesafe &amp; Seyahat Süresi Hesaplayıcı</span>
+      </h2>
+      <div id="lore-travel-calc-mount"></div>
+
+      <div class="lore-toolbar" style="margin-top:2.5rem">
+        <div>
+          <h2 class="lore-sec-title" style="margin:0 0 .25rem;border:none;">
+            <span data-tr="Eyaletler Rehberi" data-en="Guide to Provinces">Eyaletler Rehberi</span>
+          </h2>
+          <div class="lore-count-info" id="prov-count"></div>
+        </div>
+        <div class="lore-search-box">
+          <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="22" y2="22"/></svg>
+          <input type="search" id="prov-search" class="lore-search-input" placeholder="Eyalet veya şehir ara…" autocomplete="off">
+          <button class="lore-search-clear" id="prov-search-clear" aria-label="Temizle">✕</button>
+        </div>
+      </div>
+      <div id="cog-provinces" class="provinces-grid"></div>
+
+      <h2 class="lore-sec-title" style="margin-top:3rem">
+        <span data-tr="Dünya Güç Sıralaması" data-en="World Power Ranking">Dünya Güç Sıralaması</span>
+      </h2>
+      <div class="tbl-wrap-lore">
+        <table class="wp-table" id="wp-table">
+          <thead>
+            <tr>
+              <th style="width:50px">#</th>
+              <th data-tr="Devlet / Güç" data-en="State / Power">Devlet / Güç</th>
+              <th data-tr="Güç Puanı" data-en="Power Score" style="width:180px">Güç Puanı</th>
+              <th data-tr="Tahmini Nüfus" data-en="Est. Population">Tahmini Nüfus</th>
+              <th data-tr="Askerî Varlık" data-en="Military Power">Askerî Varlık</th>
+            </tr>
+          </thead>
+          <tbody id="wp-tbody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ════════════════════════════════════════════════════════════
+         2. TAB: DİN & İNANÇ
+    ════════════════════════════════════════════════════════════ -->
+    <div class="tab-p" id="tab-din">
+      <div class="lore-toolbar">
+        <div class="lore-filter-chips" id="gods-faction-filters">
+          <button class="f-chip on" data-faction="all" data-tr="Tüm Tanrılar" data-en="All Gods">Tüm Tanrılar</button>
+          <button class="f-chip" data-faction="order" data-tr="Düzen Tanrıları" data-en="Order Gods">Düzen Tanrıları</button>
+          <button class="f-chip" data-faction="chaos" data-tr="Kaos Tanrıları" data-en="Chaos Gods">Kaos Tanrıları</button>
+          <button class="f-chip" data-faction="neutral" data-tr="Tarafsız (Muhafız)" data-en="Neutral (Protector)">Tarafsız (Muhafız)</button>
+        </div>
+        <div class="lore-search-box">
+          <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="22" y2="22"/></svg>
+          <input type="search" id="gods-search" class="lore-search-input" placeholder="Tanrı veya unvan ara…" autocomplete="off">
+          <button class="lore-search-clear" id="gods-search-clear" aria-label="Temizle">✕</button>
+        </div>
+      </div>
+
+      <div class="lore-count-info" id="gods-count" style="margin-bottom:1rem"></div>
+      <div class="pantheon-grid" id="pantheon-grid"></div>
+
+      <h2 class="lore-sec-title">
+        <span data-tr="Konsey İçi Teolojik Fraksiyonlar" data-en="Council's Internal Theological Factions">Konsey İçi Teolojik Fraksiyonlar</span>
+      </h2>
+      <div class="theology-grid" id="factions-wrap"></div>
+
+      <h2 class="lore-sec-title">
+        <span data-tr="Doktrinler &amp; Yasaklı Mezhepler" data-en="Doctrines &amp; Forbidden Cults">Doktrinler &amp; Yasaklı Mezhepler</span>
+      </h2>
+      <div class="theology-grid" id="cults-wrap"></div>
+    </div>
+
+    <!-- ════════════════════════════════════════════════════════════
+         3. TAB: ÖNEMLİ OLAYLAR, SAVAŞLAR & ANTLAŞMALAR
+    ════════════════════════════════════════════════════════════ -->
+    <div class="tab-p" id="tab-tarih">
+      <!-- ── BÖLÜM TANITIM VE BİLGİ BANDI ── -->
+      <div class="ev-section-banner">
+        <h2 class="ev-section-title" data-tr="Evrendeki Önemli Olaylar, Savaşlar &amp; Antlaşmalar" data-en="Historic Events, Wars &amp; Treaties">
+          Evrendeki Önemli Olaylar, Savaşlar &amp; Antlaşmalar
+        </h2>
+        <p class="ev-section-sub" data-tr="Stallhart İmparatorluğu ve çevre krallıkların kaderini tayin eden muharebeler, barış paktları, taht krizleri ve hanedan fermanlarının tam wiki kroniği." data-en="Comprehensive chronicle of decisive battles, peace treaties, succession crises, and imperial decrees that shaped the Stallhart Saga.">
+          Stallhart İmparatorluğu ve çevre krallıkların kaderini tayin eden muharebeler, barış paktları, taht krizleri ve hanedan fermanlarının tam wiki kroniği.
+        </p>
+      </div>
+
+      <!-- ── ÖNE ÇIKAN DÖNÜM NOKTALARI (SPOTLIGHTS) ── -->
+      <div class="ev-spotlight-box">
+        <div class="ev-spotlight-title">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <span data-tr="Tarihi Değiştiren Büyük Muharebeler ve Antlaşmalar" data-en="Pivotal Battles &amp; Historic Treaties">Tarihi Değiştiren Büyük Muharebeler ve Antlaşmalar</span>
+        </div>
+        <div class="ev-spotlight-grid">
+          <!-- 1. Örebas Seferi & Alyoren Zaferi -->
+          <div class="ev-spot-card">
+            <div class="ev-spot-type" style="color:#f28b82;">⚔️ Büyük Meydan Muharebesi</div>
+            <div class="ev-spot-ks">KS 1306</div>
+            <div class="ev-spot-name">Örebas Seferi &amp; Alyoren Zaferi</div>
+            <div class="ev-spot-desc">Merethorn'un sahte geri çekilme taktiğiyle 35.000 kişilik Stallhart ordusunun Örebas hatlarını çembere alıp kesin zafere ulaştığı sefer.</div>
+            <a href="olay-detay.html#/olay/ev-orebas-seferi-i-mparatorlugun-zirvesi-26" class="ev-spot-link">Detaylı Wiki İncelemesi →</a>
+          </div>
+
+          <!-- 2. Isonwell Antlaşması -->
+          <div class="ev-spot-card">
+            <div class="ev-spot-type" style="color:#81c995;">📜 Tarihi Barış Antlaşması</div>
+            <div class="ev-spot-ks">KS 1306</div>
+            <div class="ev-spot-name">Isonwell Barış Antlaşması</div>
+            <div class="ev-spot-desc">Alyoren yenilgisinin ardından Örebas Krallığı'nı ağır vergiye bağlayan ve sınır topraklarını Stallhart'a bırakan tarihi pakt.</div>
+            <a href="olay-detay.html#/olay/ev-orebas-seferi-i-mparatorlugun-zirvesi-26" class="ev-spot-link">Detaylı Wiki İncelemesi →</a>
+          </div>
+
+          <!-- 3. Kızılçay Muharebesi -->
+          <div class="ev-spot-card">
+            <div class="ev-spot-type" style="color:#f28b82;">⚔️ İç Savaş &amp; Taht Kavgası</div>
+            <div class="ev-spot-ks">KS 1275</div>
+            <div class="ev-spot-name">Kızılçay Muharebesi</div>
+            <div class="ev-spot-desc">Gaspçı Mazurekt'in Galetsha ihanetiyle yenildiği ve I. Atrion'un tahtı geri alıp Merhamet Hamlesi ile af ilan ettiği dönüm noktası.</div>
+            <a href="olay-detay.html#/olay/ev-kizilcay-muharebesi-18" class="ev-spot-link">Detaylı Wiki İncelemesi →</a>
+          </div>
+
+          <!-- 4. Bakırsu Vadisi & Uzlaşması -->
+          <div class="ev-spot-card">
+            <div class="ev-spot-type" style="color:#81c995;">📜 Gizli Pakt &amp; Uzlaşma</div>
+            <div class="ev-spot-ks">KS 1477 - 1481</div>
+            <div class="ev-spot-name">Bakırsu Vadisi Uzlaşması</div>
+            <div class="ev-spot-desc">Solgar ordusunun pusuya düşmesi sonrasında Zeandor'un Erthan ile yaptığı ve isyanı savaşsız çözen tarihi gizli mutabakat.</div>
+            <a href="olay-detay.html#/olay/ev-erthan-i-syani-ve-bakirsu-uzlasmasi-51" class="ev-spot-link">Detaylı Wiki İncelemesi →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── ÇAĞ / DÖNEM SEÇİCİ (ERA FILTER) ── -->
+      <div class="lore-era-chips" id="tl-era-filters">
+        <button class="e-chip on" data-era="all" data-tr="Tüm Çağlar (KS ~0 - 1491)" data-en="All Epochs">Tüm Çağlar (KS ~0 - 1491)</button>
+        <button class="e-chip" data-era="dawn" data-tr="Kuruluş Şafağı (1137-1163)" data-en="Dawn Era">Kuruluş Şafağı (1137-1163)</button>
+        <button class="e-chip" data-era="conquest" data-tr="Genişleme &amp; Fetihler (1197-1285)" data-en="Expansion">Genişleme &amp; Fetihler (1197-1285)</button>
+        <button class="e-chip" data-era="zenith" data-tr="İmparatorluk Zirvesi (1304-1388)" data-en="Zenith Era">İmparatorluk Zirvesi (1304-1388)</button>
+        <button class="e-chip" data-era="unrest" data-tr="İç Çatışmalar &amp; Karışıklık (1388-1441)" data-en="Unrest Era">İç Çatışmalar &amp; Karışıklık (1388-1441)</button>
+        <button class="e-chip" data-era="collapse" data-tr="Son Dönem &amp; Çöküş (1450-1491)" data-en="Final Collapse">Son Dönem &amp; Çöküş (1450-1491)</button>
+      </div>
+
+      <!-- ── ARAMA & KATEGORİ ARAÇ ÇUBUĞU ── -->
+      <div class="lore-toolbar">
+        <div class="lore-filter-chips" id="tl-filters">
+          <button class="f-chip on" data-tlf="all" id="tlf-all" data-tr="Tümü (77)" data-en="All (77)">Tümü (77)</button>
+          <button class="f-chip" data-tlf="war" id="tlf-war" data-tr="⚔️ Savaşlar &amp; Seferler" data-en="⚔️ Wars &amp; Sieges">⚔️ Savaşlar &amp; Seferler</button>
+          <button class="f-chip" data-tlf="treaty" id="tlf-treaty" data-tr="📜 Antlaşmalar &amp; Fermanlar" data-en="📜 Treaties &amp; Decrees">📜 Antlaşmalar &amp; Fermanlar</button>
+          <button class="f-chip" data-tlf="crisis" id="tlf-crisis" data-tr="🔥 Krizler &amp; İsyanlar" data-en="🔥 Crises &amp; Rebellions">🔥 Krizler &amp; İsyanlar</button>
+          <button class="f-chip" data-tlf="ruler" id="tlf-ruler" data-tr="👑 Hanedan &amp; Saltanat" data-en="👑 Rulers &amp; Dynasties">👑 Hanedan &amp; Saltanat</button>
+          <button class="f-chip" data-tlf="religious" id="tlf-religious" data-tr="⚖️ Dinî &amp; Kutsal Olaylar" data-en="⚖️ Sacred &amp; Religious">⚖️ Dinî &amp; Kutsal Olaylar</button>
+        </div>
+        <div class="lore-search-box">
+          <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="22" y2="22"/></svg>
+          <input type="search" id="tl-search" class="lore-search-input" placeholder="Yıl, muharebe, antlaşma veya hükümdar ara…" autocomplete="off">
+          <button class="lore-search-clear" id="tl-search-clear" aria-label="Temizle">✕</button>
+        </div>
+      </div>
+
+      <div class="lore-count-info" id="tl-count" style="margin-bottom:1.5rem"></div>
+      <div class="timeline-modern-wrap" id="timeline-wrap"></div>
+    </div>
+
+    <!-- ── HIZLI WIKI DOSYA İNCELEME MODALI ── -->
+    <div class="ev-modal-overlay" id="ev-quick-modal" role="dialog" aria-modal="true">
+      <div class="ev-modal-dialog">
+        <button class="ev-modal-close" id="ev-modal-close-btn" aria-label="Kapat">✕</button>
+        <div class="ev-modal-kicker" id="ev-modal-kicker">KS 1306 · SAVAŞ &amp; MUHAREBE</div>
+        <h3 class="ev-modal-title" id="ev-modal-title">Hadise Başlığı</h3>
+        <div style="font-size:.85rem;color:var(--goldd);font-style:italic;margin-bottom:1rem;" id="ev-modal-ruler">📜 Hükümdar</div>
+        <div class="ev-modal-desc" id="ev-modal-desc">Detaylı anlatım...</div>
+        <div class="ev-modal-footer">
+          <div style="font-size:.8rem;color:var(--parchd);" id="ev-modal-tags">#etiketler</div>
+          <a href="#" class="ev-modal-link" id="ev-modal-page-link">Tam Wiki Sayfasına Git ↗</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ════════════════════════════════════════════════════════════
+         4. TAB: KAVRAM SÖZLÜĞÜ
+    ════════════════════════════════════════════════════════════ -->
+    <div class="tab-p" id="tab-soz">
+      <div class="lore-toolbar">
+        <div class="lore-filter-chips" id="gls-type-filters">
+          <button class="f-chip on" data-gt="all" data-tr="Tümü" data-en="All">Tümü</button>
+          <button class="f-chip" data-gt="geo" data-tr="Coğrafya" data-en="Geography">Coğrafya</button>
+          <button class="f-chip" data-gt="title" data-tr="Unvan" data-en="Title">Unvan</button>
+          <button class="f-chip" data-gt="political" data-tr="Siyasi" data-en="Political">Siyasi</button>
+          <button class="f-chip" data-gt="military" data-tr="Askerî" data-en="Military">Askerî</button>
+          <button class="f-chip" data-gt="religious" data-tr="Dinî" data-en="Religious">Dinî</button>
+          <button class="f-chip" data-gt="magic" data-tr="Sihir" data-en="Magic">Sihir</button>
+        </div>
+        <div class="lore-search-box">
+          <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="22" y2="22"/></svg>
+          <input type="search" id="gls-search" class="lore-search-input" placeholder="Terim veya açıklama ara…" autocomplete="off">
+          <button class="lore-search-clear" id="gls-search-clear" aria-label="Temizle">✕</button>
+        </div>
+      </div>
+
+      <div class="alpha-jump-bar" id="gls-alpha-bar"></div>
+      <div class="lore-count-info" id="gls-count" style="margin-bottom:1rem"></div>
+      <div class="gls-cards-grid" id="gls-grid"></div>
+    </div>
+
+    <!-- ════════════════════════════════════════════════════════════
+         5. TAB: ORTAK LİSAN
+    ════════════════════════════════════════════════════════════ -->
+    <div class="tab-p" id="tab-dil">
+      <div class="lang-grammar-card" id="dil-grammar"></div>
+
+      <div class="lore-toolbar">
+        <div class="lore-filter-chips" id="dil-pos-filters">
+          <button class="f-chip on" data-pos="all" data-tr="Tüm Türler" data-en="All Types">Tüm Türler</button>
+          <button class="f-chip" data-pos="isim" data-tr="İsimler" data-en="Nouns">İsimler</button>
+          <button class="f-chip" data-pos="fiil" data-tr="Fiiller" data-en="Verbs">Fiiller</button>
+          <button class="f-chip" data-pos="sıfat" data-tr="Sıfatlar" data-en="Adjectives">Sıfatlar</button>
+          <button class="f-chip" data-pos="deyim" data-tr="Kalıplar &amp; Deyimler" data-en="Phrases &amp; Idioms">Kalıplar &amp; Deyimler</button>
+        </div>
+        <div class="lore-search-box">
+          <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="22" y2="22"/></svg>
+          <input type="search" id="dil-search" class="lore-search-input" placeholder="Sözcük veya anlam ara…" autocomplete="off">
+          <button class="lore-search-clear" id="dil-search-clear" aria-label="Temizle">✕</button>
+        </div>
+      </div>
+
+      <div class="lore-count-info" id="dil-count" style="margin-bottom:1rem"></div>
+      <div class="words-grid" id="dil-grid"></div>
+    </div>
+  </div>
+</section>
+
+<script src="assets/js/config.js?v=3.2"></script>
+<script src="assets/js/patches.js?v=3.2"></script>
+<script src="assets/js/wiki.js?v=3.2"></script>
+<script src="assets/js/community.js?v=3.2"></script>
+<script src="assets/js/travel-calc.js"></script>
+<script>
+const { Lang, loadData, initWiki, esc } = Wiki;
+
+let loreData   = null;
+let geoData    = null;
+let langData   = null;
+
+/* Arama ve Filtre Durumları */
+let activeTab    = 'cog';
+let provQuery    = '';
+let activeFaction= 'all';
+let godsQuery    = '';
+let activeTlf    = 'all';
+let activeEra    = 'all';
+let tlQuery      = '';
+let activeGt     = 'all';
+let glsAlpha     = 'all';
+let glsQuery     = '';
+let activePos    = 'all';
+let dilQuery     = '';
+
+/* ── YARDIMCI: SLUG & DİL ─────────────────────────── */
+function yerSlug(name) {
+  if (window.Wiki && Wiki.Book) return Wiki.Book.slug(name);
+  const map = { 'ı':'i','İ':'i','ş':'s','Ş':'s','ğ':'g','Ğ':'g','ü':'u','Ü':'u','ö':'o','Ö':'o','ç':'c','Ç':'c' };
+  return String(name || '').replace(/[ıİşŞğĞüÜöÖçÇ]/g, m => map[m]).toLowerCase().trim().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '').substring(0, 60);
+}
+
+/* ── 1. COĞRAFYA TAB ÇİZİMİ ───────────────────────── */
+function renderGeography() {
+  const l = Lang.get();
+  const t = obj => Lang.t(obj);
+
+  /* 1.1 İmparatorluk Genel Bakış (Dossier) */
+  const ov = geoData && geoData.overview;
+  const overviewEl = document.getElementById('cog-overview');
+  if (overviewEl && ov) {
+    const items = [
+      { kicker: l === 'tr' ? 'Başkent' : 'Capital', val: t(ov.capital) },
+      { kicker: l === 'tr' ? 'Kuruluş & Statü' : 'Founding & Status', val: t(ov.founding) },
+      { kicker: l === 'tr' ? 'Nüfus Varlığı' : 'Population', val: t(ov.population) },
+      { kicker: l === 'tr' ? 'Kara Kuvvetleri' : 'Standing Army', val: t(ov.army) },
+      { kicker: l === 'tr' ? 'Yüzölçümü' : 'Territory Area', val: t(ov.area) },
+      { kicker: l === 'tr' ? 'Dünya Sıralaması' : 'World Rank', val: t(ov.worldRank) },
+      { kicker: l === 'tr' ? 'Hükümet Yapısı' : 'Government', val: t(ov.government) },
+      { kicker: l === 'tr' ? 'Veraset Kanunu' : 'Succession', val: t(ov.succession) },
+      { kicker: l === 'tr' ? 'İmparatorluk Doktrini' : 'Doctrine', val: t(ov.doctrine) }
+    ];
+    overviewEl.innerHTML = items.filter(i => i.val).map(i => `
+      <div class="dossier-card">
+        <div class="dossier-card-kicker">${esc(i.kicker)}</div>
+        <div class="dossier-card-val">${esc(i.val)}</div>
+      </div>
+    `).join('');
+  }
+
+  /* 1.2 Doğal Coğrafya (Büyük Su Yolları, Nehirler, Dağlar, Ormanlar) */
+  const geoFeatEl = document.getElementById('geo-features-wrap');
+  if (geoFeatEl && geoData) {
+    const cont = geoData.continent || {};
+    const rivers = geoData.rivers || [];
+    const mountains = geoData.mountains || [];
+    const forests = geoData.forests || [];
+
+    geoFeatEl.innerHTML = `
+      <div class="geo-feat-card">
+        <div class="geo-feat-head">
+          <span>🌊</span>
+          <span>${l === 'tr' ? 'Büyük Su Yolları & Boğazlar' : 'Major Waterways & Straits'}</span>
+        </div>
+        ${cont.silverRoad ? `
+          <div class="geo-feat-item">
+            <div class="geo-feat-name">${l === 'tr' ? 'Gümüş Yol Boğazı' : 'The Silver Way'}</div>
+            <div class="geo-feat-desc">${esc(t(cont.silverRoad))}</div>
+          </div>` : ''}
+        ${cont.narrowestStrait ? `
+          <div class="geo-feat-item">
+            <div class="geo-feat-name">${l === 'tr' ? 'En Dar Geçit' : 'The Narrowest Crossing'}</div>
+            <div class="geo-feat-desc">${esc(t(cont.narrowestStrait))}</div>
+          </div>` : ''}
+        ${cont.westOcean ? `
+          <div class="geo-feat-item">
+            <div class="geo-feat-name">${l === 'tr' ? 'Gamhuyha Dev Denizi' : 'Gamhuyha Great Sea'}</div>
+            <div class="geo-feat-desc">${esc(t(cont.westOcean))}</div>
+          </div>` : ''}
+      </div>
+
+      <div class="geo-feat-card">
+        <div class="geo-feat-head">
+          <span>🏞️</span>
+          <span>${l === 'tr' ? 'Başlıca Nehirler' : 'Major Rivers'}</span>
+        </div>
+        ${rivers.map(r => `
+          <div class="geo-feat-item">
+            <div class="geo-feat-name">${esc(t(r.name))}</div>
+            <div class="geo-feat-desc">${esc(t(r.desc))}</div>
+          </div>
+        `).join('')}
+      </div>
+
+      <div class="geo-feat-card">
+        <div class="geo-feat-head">
+          <span>🏔️</span>
+          <span>${l === 'tr' ? 'Dağ Silsileleri' : 'Mountain Ranges'}</span>
+        </div>
+        ${mountains.map(m => `
+          <div class="geo-feat-item">
+            <div class="geo-feat-name">${esc(t(m.name))}</div>
+            <div class="geo-feat-desc">${esc(t(m.desc))}</div>
+          </div>
+        `).join('')}
+      </div>
+
+      <div class="geo-feat-card">
+        <div class="geo-feat-head">
+          <span>🌲</span>
+          <span>${l === 'tr' ? 'Kadim Ormanlar' : 'Ancient Forests'}</span>
+        </div>
+        ${forests.map(f => `
+          <div class="geo-feat-item">
+            <div class="geo-feat-name">${esc(t(f.name))}</div>
+            <div class="geo-feat-desc">${esc(t(f.desc))}</div>
+          </div>
+        `).join('')}
+      </div>
+    `;
+  }
+
+  /* 1.3 Eyaletler Rehberi */
+  const provinces = (geoData && geoData.provinces) || [];
+  const q = provQuery.toLowerCase();
+  const filteredProvinces = provinces.filter(p => {
+    if (!q) return true;
+    const name = t(p.name).toLowerCase();
+    const cities = t(p.cities).toLowerCase();
+    const economy = t(p.economy).toLowerCase();
+    const neighbors = t(p.neighbors).toLowerCase();
+    return name.includes(q) || cities.includes(q) || economy.includes(q) || neighbors.includes(q);
+  });
+
+  const provCountEl = document.getElementById('prov-count');
+  if (provCountEl) {
+    provCountEl.textContent = `${filteredProvinces.length} / ${provinces.length} ${l === 'tr' ? 'eyalet gösteriliyor' : 'provinces displayed'}`;
+  }
+
+  const provEl = document.getElementById('cog-provinces');
+  if (provEl) {
+    if (!filteredProvinces.length) {
+      provEl.innerHTML = `<div class="empty-state" style="grid-column:1/-1;">${l === 'tr' ? 'Aramanızla eşleşen eyalet bulunamadı.' : 'No provinces found matching your query.'}</div>`;
+    } else {
+      provEl.innerHTML = filteredProvinces.map(p => {
+        const slug = yerSlug(t(p.name) || '');
+        const mapUrl = SWRoute ? SWRoute.href('harita', 'imparatorluk', slug) : `harita.html#/harita/imparatorluk/${slug}`;
+        return `
+          <div class="prov-card lc" id="yer-${esc(slug)}">
+            <div>
+              <div class="prov-card-head">
+                <h3 class="prov-card-title">${esc(t(p.name))}</h3>
+                <a href="${mapUrl}" class="prov-map-link" title="${l==='tr'?'Haritada odaklan':'View on map'}">
+                  <span>🗺️</span>
+                  <span>${l === 'tr' ? 'Harita' : 'Map'}</span>
+                </a>
+              </div>
+
+              ${t(p.cities) ? `
+                <div class="prov-meta-row">
+                  <span class="prov-meta-label">${l === 'tr' ? 'Başlıca Şehirler: ' : 'Main Cities: '}</span>
+                  <span>${esc(t(p.cities))}</span>
+                </div>` : ''}
+
+              ${t(p.economy) ? `
+                <div class="prov-meta-row">
+                  <span class="prov-meta-label">${l === 'tr' ? 'Geçim &amp; Ticaret: ' : 'Economy &amp; Trade: '}</span>
+                  <span>${esc(t(p.economy))}</span>
+                </div>` : ''}
+
+              ${t(p.neighbors) ? `
+                <div class="prov-meta-row">
+                  <span class="prov-meta-label">${l === 'tr' ? 'Komşular: ' : 'Neighbors: '}</span>
+                  <span style="color:var(--parchd)">${esc(t(p.neighbors))}</span>
+                </div>` : ''}
+
+              ${t(p.flag) ? `
+                <div class="prov-meta-row" style="font-style:italic;color:var(--parchd);font-size:.78rem;margin-top:.4rem;">
+                  <span class="prov-meta-label" style="font-style:normal">${l === 'tr' ? 'Sancak: ' : 'Standard: '}</span>
+                  <span>${esc(t(p.flag))}</span>
+                </div>` : ''}
+            </div>
+          </div>
+        `;
+      }).join('');
+      Wiki.Tooltip.scan(provEl);
+    }
+  }
+
+  /* 1.4 Dünya Güç Sıralaması Tablosu */
+  const wp = (geoData && geoData.worldPowers) || [];
+  const tbody = document.getElementById('wp-tbody');
+  if (tbody) {
+    if (!wp.length) {
+      tbody.innerHTML = `<tr><td colspan="5" class="empty-state">${l === 'tr' ? 'Sıralama verisi bulunamadı.' : 'No ranking data found.'}</td></tr>`;
+    } else {
+      tbody.innerHTML = wp.map(w => {
+        const isStallhart = w.name && Lang.t(w.name).indexOf('Stallhart') >= 0;
+        const score = w.score != null ? w.score : 0;
+        const pct = Math.min(100, Math.max(0, (score / 10) * 100));
+        return `
+          <tr class="${isStallhart ? 'wp-self' : ''}">
+            <td class="wp-rank-num">#${esc(w.rank)}</td>
+            <td>
+              <strong>${esc(t(w.name))}</strong>
+              ${isStallhart ? `<span style="color:var(--gold);font-size:.75rem;margin-left:.4rem">👑 ${l==='tr'?'Hükümran Devlet':'Sovereign Realm'}</span>` : ''}
+            </td>
+            <td>
+              <div class="wp-meter-wrap">
+                <span style="font-family:var(--font-display);font-size:.84rem">${score.toFixed(2)}</span>
+                <div class="wp-meter-bg">
+                  <div class="wp-meter-fill" style="width:${pct}%"></div>
+                </div>
+              </div>
+            </td>
+            <td>${esc(w.population ? w.population.toLocaleString('tr-TR') : '—')}</td>
+            <td>${esc(w.military ? w.military.toLocaleString('tr-TR') : '—')}</td>
+          </tr>
+        `;
+      }).join('');
+    }
+  }
+
+  /* 1.5 Mesafe & Seyahat Süresi Hesaplayıcı */
+  if (window.SWTravel && window.SWTravel.mountWidget) {
+    window.SWTravel.mountWidget('lore-travel-calc-mount');
+  }
+}
+
+/* ── 2. DİN & İNANÇ TAB ÇİZİMİ ─────────────────────── */
+function renderGods() {
+  const l = Lang.get();
+  const t = obj => Lang.t(obj);
+  const gods = (loreData && loreData.gods) || [];
+  const factions = (loreData && loreData.factions) || [];
+  const cults = (loreData && loreData.cults) || [];
+
+  /* 2.1 Tanrılar Grid */
+  const q = godsQuery.toLowerCase();
+  const filteredGods = gods.filter(g => {
+    if (activeFaction !== 'all') {
+      if (activeFaction === 'neutral' && g.faction !== 'neutral') return false;
+      if (activeFaction === 'order') {
+        const orderMembers = ['Lidros', 'Brikon', 'Gydor', 'Lomera', 'Veleris', 'Eanhar'];
+        if (g.faction !== 'order' && !orderMembers.includes(g.trueName)) return false;
+      }
+      if (activeFaction === 'chaos') {
+        const chaosMembers = ['Garator', 'Hardir', 'Lodvez', 'Naldor', 'Nazeth', 'Vazmer', 'Zetus'];
+        if (g.faction !== 'chaos' && !chaosMembers.includes(g.trueName)) return false;
+      }
+    }
+    if (!q) return true;
+    const name = (g.trueName || '').toLowerCase();
+    const epithet = t(g.epithet).toLowerCase();
+    const role = t(g.role).toLowerCase();
+    return name.includes(q) || epithet.includes(q) || role.includes(q);
+  });
+
+  const godsCountEl = document.getElementById('gods-count');
+  if (godsCountEl) {
+    godsCountEl.textContent = `${filteredGods.length} / ${gods.length} ${l === 'tr' ? 'ilahî varlık listeleniyor' : 'divine beings listed'}`;
+  }
+
+  const pEl = document.getElementById('pantheon-grid');
+  if (pEl) {
+    if (!filteredGods.length) {
+      pEl.innerHTML = `<div class="empty-state" style="grid-column:1/-1;">${l === 'tr' ? 'Aramanızla eşleşen tanrı bulunamadı.' : 'No deities found matching your query.'}</div>`;
+    } else {
+      pEl.innerHTML = filteredGods.map(g => {
+        const factionLabel = {
+          order:   l === 'tr' ? 'Düzen Panteonu' : 'Order Pantheon',
+          chaos:   l === 'tr' ? 'Kaos Panteonu' : 'Chaos Pantheon',
+          neutral: l === 'tr' ? 'Tarafsız / Denge' : 'Neutral / Balance'
+        }[g.faction] || (l === 'tr' ? 'Denge Konseyi' : 'Council of the Even');
+
+        const detailUrl = SWRoute ? SWRoute.href('tanri', g.id) : `tanri-detay.html#/tanri/${esc(g.id)}`;
+
+        return `
+          <div class="god-card lc" id="tanri-${esc(g.id)}">
+            <div>
+              <div class="god-card-top">
+                <div>
+                  <h3 class="god-card-title">${esc(t(g.epithet))}</h3>
+                  <div class="god-card-true-name">${esc(g.trueName)}</div>
+                </div>
+                <span class="god-card-faction ${esc(g.faction || 'neutral')}">${esc(factionLabel)}</span>
+              </div>
+              <p class="god-card-role">${esc(t(g.role))}</p>
+              ${t(g.psychology) ? `
+                <div class="god-card-quote">
+                  "${esc(t(g.psychology).substring(0, 150))}${t(g.psychology).length > 150 ? '…' : ''}"
+                </div>` : ''}
+              ${t(g.ritual) ? `
+                <div style="font-size:.76rem;color:var(--parchd);margin-bottom:.85rem;line-height:1.5">
+                  <strong style="color:var(--goldd)">${l === 'tr' ? 'Yemin / Ayin: ' : 'Oath / Ritual: '}</strong>
+                  ${esc(t(g.ritual).substring(0, 110))}${t(g.ritual).length > 110 ? '…' : ''}
+                </div>` : ''}
+            </div>
+            <a href="${detailUrl}" class="god-card-btn">
+              <span>${l === 'tr' ? 'İlahî Kaydı İncele' : 'View Divine Dossier'}</span>
+              <span>→</span>
+            </a>
+          </div>
+        `;
+      }).join('');
+      Wiki.Tooltip.scan(pEl);
+    }
+  }
+
+  /* 2.2 Fraksiyonlar */
+  const factionsWrap = document.getElementById('factions-wrap');
+  if (factionsWrap) {
+    if (!factions.length) {
+      factionsWrap.innerHTML = `<p class="empty-state">${l === 'tr' ? 'Fraksiyon verisi bulunamadı.' : 'No faction data.'}</p>`;
+    } else {
+      factionsWrap.innerHTML = factions.map(f => `
+        <div class="theology-card lc" id="grup-${esc(f.id)}">
+          <h3 class="theology-title" style="color:var(--goldb)">${esc(t(f.name))}</h3>
+          <p style="font-size:.88rem;line-height:1.7;color:var(--parch);margin-bottom:.85rem">
+            <strong>${l === 'tr' ? 'Doktrin &amp; İtikat: ' : 'Doctrine &amp; Belief: '}</strong>
+            ${esc(t(f.belief))}
+          </p>
+          ${t(f.imperialTie) ? `
+            <p style="font-size:.82rem;line-height:1.6;color:var(--parchd);border-left:2px solid var(--goldd);padding-left:.65rem;margin-bottom:.85rem">
+              <strong style="color:var(--gold)">${l === 'tr' ? 'İmparatorluk Bağlantısı: ' : 'Imperial Tie: '}</strong>
+              ${esc(t(f.imperialTie))}
+            </p>` : ''}
+          ${(f.members || []).length ? `
+            <div style="font-size:.78rem;color:var(--parchd);font-style:italic">
+              <strong style="color:var(--goldd)">${l === 'tr' ? 'Öne Çıkan Üyeler: ' : 'Prominent Members: '}</strong>
+              ${esc(f.members.join(', '))}
+            </div>` : ''}
+        </div>
+      `).join('');
+      Wiki.Tooltip.scan(factionsWrap);
+    }
+  }
+
+  /* 2.3 Doktrinler & Kültler */
+  const cultsWrap = document.getElementById('cults-wrap');
+  if (cultsWrap) {
+    const defaultCults = cults.map(c => `
+      <div class="theology-card lc" id="grup-${esc(c.id)}">
+        <h3 class="theology-title">${esc(t(c.name))}</h3>
+        <p style="font-size:.84rem;color:var(--goldd);margin-bottom:.4rem">
+          <strong>${l === 'tr' ? 'Statü: ' : 'Status: '}</strong>
+          ${esc(t(c.status))}
+        </p>
+        <p style="font-size:.84rem;color:var(--goldd);margin-bottom:.6rem">
+          <strong>${l === 'tr' ? 'Sembol: ' : 'Symbol: '}</strong>
+          ${esc(t(c.symbol))}
+        </p>
+        <p style="font-size:.88rem;line-height:1.7;color:var(--parch)">${esc(t(c.desc))}</p>
+      </div>
+    `).join('');
+
+    const holyBloodCard = `
+      <div class="theology-card lc" id="grup-kutsal-kan">
+        <h3 class="theology-title" style="color:var(--goldb)">${l === 'tr' ? 'Kutsal Kan Doktrini' : 'The Holy Blood Doctrine'}</h3>
+        <p style="font-size:.84rem;color:var(--gold);margin-bottom:.4rem">
+          <strong>${l === 'tr' ? 'Statü: ' : 'Status: '}</strong>
+          ${l === 'tr' ? 'Resmî Devlet Dini &amp; İmparatorluk Meşruiyeti' : 'Official State Religion &amp; Imperial Legitimacy'}
+        </p>
+        <p style="font-size:.88rem;line-height:1.7;color:var(--parch)">
+          ${l === 'tr'
+            ? "Kurucu I. Craes Stallhart'ın ilan ettiği; Stallhart soyunun tanrısal kandan geldiğini ve bu soya ilahi bir yönetme hakkı verdiğini savunan resmî doktrin. Arathen Krallığı bu iddiayı küfür olarak reddeder."
+            : "The doctrine proclaimed by Founder Craes Stallhart I: it holds that the Stallhart bloodline descends from divine blood and that this lineage grants a divine right to rule. The Kingdom of Arathen rejects this claim as blasphemy."}
+        </p>
+      </div>
+    `;
+
+    cultsWrap.innerHTML = defaultCults + holyBloodCard;
+    Wiki.Tooltip.scan(cultsWrap);
+  }
+}
+
+/* ── 3. ÖNEMLİ OLAYLAR, SAVAŞLAR & ANTLAŞMALAR TABI ── */
+function getEventCategory(e) {
+  const text = ((e.name?.tr || '') + ' ' + (e.desc?.tr || '')).toLowerCase();
+  if (/antlaşma|anlaşma|pakt|sulh|ferman|uzlaşma|doktrin|barış/.test(text) && !/savaş ilan etti|muharebe/.test(e.name?.tr || '')) {
+    return 'treaty';
+  }
+  if (e.type === 'war' || /savaş|muharebe|sefer|kuşatma|fetih|isyan|çatışma|taarruz|pusu/.test(text)) {
+    return 'war';
+  }
+  if (e.type === 'crisis') return 'crisis';
+  if (e.type === 'religious') return 'religious';
+  if (e.type === 'ruler') return 'ruler';
+  return 'war';
+}
+
+function matchEra(e, era) {
+  if (era === 'all') return true;
+  let year = null;
+  const m = String(e.ks || '').match(/\d{4}/);
+  if (m) {
+    year = parseInt(m[0], 10);
+  } else {
+    const r = (e.ruler || '').toUpperCase();
+    if (r.includes('CRAES') && !r.includes('II.')) year = 1144;
+    else if (r.includes('NADİMA') && !r.includes('II.')) year = 1162;
+    else if (r.includes('GARNOR')) year = 1200;
+    else if (r.includes('SCIFELLA')) year = 1248;
+    else if (r.includes('II. CRAES') || r.includes('MAZUREKT') || r.includes('ATRİON')) year = 1275;
+    else if (r.includes('REMAL') && !r.includes('II.')) year = 1290;
+    else if (r.includes('MERETHORN')) year = 1306;
+    else if (r.includes('REANLOTH')) year = 1350;
+    else if (r.includes('II. LUN ALDRİS')) year = 1373;
+    else if (r.includes('JEGA CAL') || r.includes('II. NADİMA') || r.includes('LUNRYE')) year = 1395;
+    else if (r.includes('II. REMAL') || r.includes('RONES')) year = 1420;
+    else if (r.includes('ELRON') || r.includes('İMLOTH') || r.includes('AMADON')) year = 1460;
+    else if (r.includes('ZEANDOR')) year = 1480;
+  }
+  if (!year) return true;
+  if (era === 'dawn') return year >= 1137 && year <= 1165;
+  if (era === 'conquest') return year >= 1166 && year <= 1299;
+  if (era === 'zenith') return year >= 1300 && year <= 1388;
+  if (era === 'unrest') return year >= 1389 && year <= 1445;
+  if (era === 'collapse') return year >= 1446 && year <= 1495;
+  return true;
+}
+
+function openEventModal(id) {
+  const e = (loreData?.events || []).find(x => x.id === id);
+  if (!e) return;
+  const l = Lang.get();
+  const t = obj => Lang.t(obj);
+  const cat = getEventCategory(e);
+  const catNames = {
+    war:       l === 'tr' ? '⚔️ Savaş & Sefer' : '⚔️ War & Campaign',
+    treaty:    l === 'tr' ? '📜 Antlaşma & Ferman' : '📜 Treaty & Decree',
+    crisis:    l === 'tr' ? '🔥 Kriz & İsyan' : '🔥 Crisis & Turning',
+    ruler:     l === 'tr' ? '👑 Hanedan & Saltanat' : '👑 Dynasty & Reign',
+    religious: l === 'tr' ? '⚖️ Dinî Hadise' : '⚖️ Religious Event'
+  };
+  const ksText = e.ks === '?' ? (l === 'tr' ? 'Dönem İçi' : 'Reign Era') : `KS ${e.ks}`;
+
+  const kickerEl = document.getElementById('ev-modal-kicker');
+  const titleEl = document.getElementById('ev-modal-title');
+  const rulerEl = document.getElementById('ev-modal-ruler');
+  const descEl = document.getElementById('ev-modal-desc');
+  const tagsEl = document.getElementById('ev-modal-tags');
+  const pageLink = document.getElementById('ev-modal-page-link');
+
+  if (kickerEl) kickerEl.textContent = `${ksText} · ${catNames[cat] || cat}`;
+  if (titleEl) titleEl.textContent = t(e.name);
+  if (rulerEl) rulerEl.textContent = e.ruler ? `📜 ${l === 'tr' ? 'Dönem / Mühür: ' : 'Ruler: '} ${e.ruler}` : '';
+  if (descEl) descEl.textContent = t(e.desc);
+  if (tagsEl) tagsEl.textContent = (e.tags || []).map(tag => '#' + tag).join(' ');
+  if (pageLink) {
+    pageLink.href = SWRoute.href('olay', e.id);
+    pageLink.textContent = l === 'tr' ? 'Müstakil Wiki Sayfasına Git ↗' : 'Open Full Wiki Article ↗';
+  }
+  document.getElementById('ev-quick-modal')?.classList.add('open');
+}
+
+function closeEventModal() {
+  document.getElementById('ev-quick-modal')?.classList.remove('open');
+}
+
+function renderTimeline() {
+  if (!loreData) return;
+  const l = Lang.get();
+  const t = obj => Lang.t(obj);
+
+  const categoryLabels = {
+    war:       l === 'tr' ? '⚔️ Savaş & Sefer' : '⚔️ War & Campaign',
+    treaty:    l === 'tr' ? '📜 Antlaşma & Ferman' : '📜 Treaty & Decree',
+    crisis:    l === 'tr' ? '🔥 Kriz & İsyan' : '🔥 Crisis & Turning',
+    ruler:     l === 'tr' ? '👑 Hanedan & Saltanat' : '👑 Dynasty & Reign',
+    religious: l === 'tr' ? '⚖️ Dinî Hadise' : '⚖️ Religious Event'
+  };
+
+  const q = tlQuery.toLowerCase();
+  const events = (loreData.events || []);
+  const filtered = events.filter(e => {
+    const cat = getEventCategory(e);
+    if (activeTlf !== 'all' && cat !== activeTlf && e.type !== activeTlf) return false;
+    if (activeEra !== 'all' && !matchEra(e, activeEra)) return false;
+    if (!q) return true;
+    const name = t(e.name).toLowerCase();
+    const desc = t(e.desc).toLowerCase();
+    const ks   = String(e.ks || '').toLowerCase();
+    const ruler= (e.ruler || '').toLowerCase();
+    return name.includes(q) || desc.includes(q) || ks.includes(q) || ruler.includes(q);
+  });
+
+  const countEl = document.getElementById('tl-count');
+  if (countEl) {
+    countEl.textContent = `${filtered.length} / ${events.length} ${l === 'tr' ? 'önemli olay ve muharebe listeleniyor' : 'events and battles listed'}`;
+  }
+
+  const wrap = document.getElementById('timeline-wrap');
+  if (wrap) {
+    if (!filtered.length) {
+      wrap.innerHTML = `<div class="empty-state">${l === 'tr' ? 'Seçili filtre veya aramayla eşleşen olay bulunamadı.' : 'No historic events match your filter or search.'}</div>`;
+    } else {
+      wrap.innerHTML = filtered.map(e => {
+        const cat = getEventCategory(e);
+        const ksText = e.ks === '?' ? (l === 'tr' ? 'Dönem İçi' : 'Reign Era') : `KS ${esc(e.ks)}`;
+        return `
+          <div class="tl-modern-item ${cat} lc" id="${esc(e.id || '')}">
+            <div class="tl-item-header">
+              <div style="display:flex;align-items:center;gap:.6rem;flex-wrap:wrap;">
+                <span class="tl-item-ks">${ksText}</span>
+                <span class="tl-item-badge ${cat}">${categoryLabels[cat] || cat}</span>
+              </div>
+              <div class="tl-card-actions">
+                <button type="button" class="tl-quick-view-btn" data-ev-modal="${esc(e.id)}">
+                  <svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                  <span>${l === 'tr' ? 'Hızlı İncele' : 'Quick View'}</span>
+                </button>
+                <a href="${SWRoute.href('olay', e.id)}" class="tl-wiki-btn" title="${l === 'tr' ? 'Müstakil Wiki Sayfasını Aç' : 'Open Full Wiki Article'}">
+                  <span>${l === 'tr' ? 'Wiki Sayfası ↗' : 'Wiki Page ↗'}</span>
+                </a>
+              </div>
+            </div>
+            <h3 class="tl-item-title">${esc(t(e.name))}</h3>
+            ${e.ruler ? `<div class="tl-item-ruler">📜 ${l === 'tr' ? 'Dönem / Hükümdar: ' : 'Ruler: '} <strong>${esc(e.ruler)}</strong></div>` : ''}
+            <p class="tl-item-desc">${esc(t(e.desc))}</p>
+            ${(e.tags && e.tags.length) ? `
+              <div class="tl-item-tags">
+                ${e.tags.map(tag => `<span class="tl-tag-chip" data-tl-tag="${esc(tag)}">#${esc(tag)}</span>`).join('')}
+              </div>` : ''}
+          </div>
+        `;
+      }).join('');
+      Wiki.Tooltip.scan(wrap);
+    }
+  }
+}
+
+/* ── 4. SÖZLÜK TAB ─────────────────────────────────── */
+const typeNames = {
+  geo:       { tr:'Coğrafya',  en:'Geography' },
+  title:     { tr:'Unvan',     en:'Title' },
+  political: { tr:'Siyasi',    en:'Political' },
+  military:  { tr:'Askerî',    en:'Military' },
+  religious: { tr:'Dinî',      en:'Religious' },
+  magic:     { tr:'Sihir',     en:'Magic' }
+};
+
+function renderGlossary() {
+  if (!loreData) return;
+  const l = Lang.get();
+  const t = obj => Lang.t(obj);
+  const glossary = loreData.glossary || [];
+
+  /* Alfabe çubuğu oluştur (bir kez) */
+  const alphaBar = document.getElementById('gls-alpha-bar');
+  if (alphaBar && !alphaBar.children.length) {
+    const letters = ['Tümü', 'A', 'B', 'C', 'Ç', 'D', 'E', 'F', 'G', 'H', 'I', 'İ', 'K', 'L', 'M', 'N', 'O', 'Ö', 'P', 'R', 'S', 'Ş', 'T', 'U', 'Ü', 'V', 'Y', 'Z'];
+    alphaBar.innerHTML = letters.map(char => `
+      <button class="alpha-btn ${char === 'Tümü' ? 'on' : ''}" data-alpha="${char === 'Tümü' ? 'all' : char}">${char}</button>
+    `).join('');
+    alphaBar.addEventListener('click', e => {
+      const btn = e.target.closest('[data-alpha]');
+      if (!btn) return;
+      document.querySelectorAll('#gls-alpha-bar .alpha-btn').forEach(b => b.classList.remove('on'));
+      btn.classList.add('on');
+      glsAlpha = btn.dataset.alpha;
+      renderGlossary();
+    });
+  }
+
+  const q = glsQuery.toLowerCase();
+  const filtered = glossary.filter(g => {
+    if (activeGt !== 'all' && g.type !== activeGt) return false;
+    const term = t(g.term);
+    const def = t(g.def);
+    if (glsAlpha !== 'all') {
+      const firstLetter = term.charAt(0).toLocaleUpperCase('tr');
+      if (firstLetter !== glsAlpha) return false;
+    }
+    if (q) {
+      if (!term.toLowerCase().includes(q) && !def.toLowerCase().includes(q)) return false;
+    }
+    return true;
+  });
+
+  const countEl = document.getElementById('gls-count');
+  if (countEl) {
+    countEl.textContent = `${filtered.length} / ${glossary.length} ${l === 'tr' ? 'kavram listeleniyor' : 'terms listed'}`;
+  }
+
+  const grid = document.getElementById('gls-grid');
+  if (grid) {
+    if (!filtered.length) {
+      grid.innerHTML = `<div class="empty-state" style="grid-column:1/-1;">${l === 'tr' ? 'Aramanızla eşleşen kavram bulunamadı.' : 'No glossary terms match your search.'}</div>`;
+    } else {
+      grid.innerHTML = filtered.map(g => `
+        <div class="gls-card lc" id="${esc(g.id)}">
+          <div>
+            <div class="gls-card-top">
+              <span class="gls-card-type">${esc(t(typeNames[g.type] || { tr:g.type, en:g.type }))}</span>
+            </div>
+            <h3 class="gls-card-term">${esc(t(g.term))}</h3>
+            <p class="gls-card-def">${esc(t(g.def))}</p>
+          </div>
+        </div>
+      `).join('');
+      Wiki.Tooltip.scan(grid);
+    }
+  }
+}
+
+/* ── 5. ORTAK LİSAN TAB ────────────────────────────── */
+function renderLanguage() {
+  const l = Lang.get();
+  const t = obj => Lang.t(obj);
+  const g = (langData && langData.grammar) || {};
+
+  /* Dil Bilgisi & İfadeler */
+  const gEl = document.getElementById('dil-grammar');
+  if (gEl) {
+    gEl.innerHTML = `
+      <h3 style="font-family:var(--font-display);font-size:1.3rem;color:var(--parchl);margin-bottom:.5rem;">
+        ${l === 'tr' ? 'Ortak Lisan Fonetik &amp; Dil Bilgisi' : 'Common Tongue Phonetics &amp; Grammar'}
+      </h3>
+      ${g.phonetics ? `<p style="font-size:.88rem;line-height:1.7;color:var(--parch);margin-bottom:.6rem">${esc(t(g.phonetics))}</p>` : ''}
+      ${g.morphology ? `<p style="font-size:.84rem;line-height:1.65;color:var(--parchd)">${esc(t(g.morphology))}</p>` : ''}
+      ${(g.templatePhrases && g.templatePhrases.length) ? `
+        <div style="margin-top:1rem">
+          <div style="font-family:var(--font-display);font-size:.78rem;color:var(--goldd);margin-bottom:.4rem;text-transform:uppercase;letter-spacing:.08em;">
+            ${l === 'tr' ? 'Kalıp Cümleler &amp; Özdeyişler' : 'Sample Phrases &amp; Idioms'}
+          </div>
+          <div class="lang-phrases-wrap">
+            ${g.templatePhrases.map(p => `
+              <div class="lang-phrase-item" title="${esc(t(p.meaning))}">
+                <span>🗣️ "${esc(p.phrase)}"</span>
+                <span style="font-size:.75rem;color:var(--parchd);font-style:italic;margin-left:.3rem">(${esc(t(p.meaning))})</span>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+      ` : ''}
+    `;
+  }
+
+  /* Sözlük Arama & POS Filtresi */
+  const dict = (langData && langData.dictionary) || [];
+  const q = dilQuery.trim().toLocaleLowerCase('tr');
+
+  const filtered = dict.filter(d => {
+    if (activePos !== 'all') {
+      const pos = (d.pos || '').toLowerCase();
+      if (activePos === 'isim' && !pos.includes('isim') && !pos.includes('noun')) return false;
+      if (activePos === 'fiil' && !pos.includes('fiil') && !pos.includes('verb')) return false;
+      if (activePos === 'sıfat' && !pos.includes('sıfat') && !pos.includes('adj')) return false;
+      if (activePos === 'deyim' && !pos.includes('deyim') && !pos.includes('phrase') && !pos.includes('kalıp')) return false;
+    }
+    if (q) {
+      const word = (d.word || '').toLocaleLowerCase('tr');
+      const meaning = (d.meaning || '').toLocaleLowerCase('tr');
+      if (!word.includes(q) && !meaning.includes(q)) return false;
+    }
+    return true;
+  });
+
+  const countEl = document.getElementById('dil-count');
+  const DIL_LIMIT = 80;
+  if (countEl) {
+    countEl.textContent = `${filtered.length} / ${dict.length} ${l === 'tr' ? 'sözcük listeleniyor' : 'words listed'}`
+      + (filtered.length > DIL_LIMIT ? ` (${l === 'tr' ? 'ilk ' + DIL_LIMIT + ' gösteriliyor, arayarak daraltabilirsiniz' : 'showing first ' + DIL_LIMIT + ', refine with search'})` : '');
+  }
+
+  const shown = filtered.slice(0, DIL_LIMIT);
+  function formatPos(pos) {
+    if (!pos || l === 'tr') return pos || '';
+    let s = pos;
+    const map = [
+      ['Özel İsim (Kadın Akraba Unvanı)', 'Proper Noun (Female Kinship Title)'],
+      ['Özel İsim (Yerleşke)', 'Proper Noun (Settlement)'],
+      ['Özel İsim (Şehir)', 'Proper Noun (City)'],
+      ['Özel İsim (Köy)', 'Proper Noun (Village)'],
+      ['Özel İsim (Kale)', 'Proper Noun (Fortress)'],
+      ['Özel İsim (Nehir)', 'Proper Noun (River)'],
+      ['Özel İsim (Dağ)', 'Proper Noun (Mountain)'],
+      ['Özel İsim (Orman)', 'Proper Noun (Forest)'],
+      ['Özel İsim (Göl/Deniz)', 'Proper Noun (Lake/Sea)'],
+      ['Özel İsim (Deniz)', 'Proper Noun (Sea)'],
+      ['Özel İsim (Çöl)', 'Proper Noun (Desert)'],
+      ['Özel İsim (Geçit)', 'Proper Noun (Pass)'],
+      ['Özel İsim', 'Proper Noun'],
+      ['Bileşik İsim (Silah/Yaratık Adı)', 'Compound Noun (Weapon/Creature)'],
+      ['Bileşik İsim (Yaratık/Unvan)', 'Compound Noun (Creature/Title)'],
+      ['Bileşik İsim (Yaratık)', 'Compound Noun (Creature)'],
+      ['Bileşik İsim (Silah/Hane)', 'Compound Noun (Weapon/House)'],
+      ['Bileşik İsim (Hane/Silah)', 'Compound Noun (House/Weapon)'],
+      ['Bileşik İsim (Soy Adı/Silah)', 'Compound Noun (Surname/Weapon)'],
+      ['Bileşik İsim (Hane/Soy Adı)', 'Compound Noun (House/Surname)'],
+      ['Bileşik İsim', 'Compound Noun'],
+      ['Köken Kök', 'Root Stem'],
+      ['Kök', 'Root'],
+      ['Selamlama Kalıbı', 'Greeting Phrase'],
+      ['Dua Kalıbı', 'Prayer Phrase'],
+      ['Dua/Veda Kalıbı', 'Prayer / Farewell Phrase'],
+      ['Teşekkür Kalıbı', 'Thanking Phrase'],
+      ['Cümle Kalıbı', 'Sentence Pattern'],
+      ['Fiil Kalıbı', 'Verb Pattern'],
+      ['Çoğul İsim', 'Plural Noun'],
+      ['İsim (Dini/Teolojik)', 'Noun (Theological)'],
+      ['İsim (Dini)', 'Noun (Religious)'],
+      ['İsim (Askeri)', 'Noun (Military)'],
+      ['İsim (Silah)', 'Noun (Weapon)'],
+      ['İsim (Unvan)', 'Noun (Title)'],
+      ['İsim (Renk)', 'Noun (Color)'],
+      ['İsim (Nesne)', 'Noun (Object)'],
+      ['İsim (Gündelik Eşya)', 'Noun (Everyday Item)'],
+      ['İsim (Mimari)', 'Noun (Architecture)'],
+      ['İsim (Soyut)', 'Noun (Abstract)'],
+      ['İsim / Unvan', 'Noun / Title'],
+      ['İsim / Sıfat', 'Noun / Adjective'],
+      ['Sıfat/İsim', 'Adjective / Noun'],
+      ['İsim', 'Noun'],
+      ['Fiil (Geçmiş)', 'Verb (Past)'],
+      ['Fiil (Gelecek)', 'Verb (Future)'],
+      ['Fiil (Bileşik)', 'Compound Verb'],
+      ['Fiil (Temel)', 'Base Verb'],
+      ['Fiil', 'Verb'],
+      ['Sıfat', 'Adjective'],
+      ['Zamir', 'Pronoun'],
+      ['Zaman Zarfı', 'Time Adverb'],
+      ['Zarf', 'Adverb'],
+      ['Bağlaç', 'Conjunction'],
+      ['Edat', 'Preposition'],
+      ['Ünlem', 'Interjection'],
+      ['Bileşik Unvan', 'Compound Title'],
+      ['Unvan', 'Title']
+    ];
+    for (const [trTerm, enTerm] of map) {
+      if (s.includes(trTerm)) s = s.replace(trTerm, enTerm);
+    }
+    return s;
+  }
+  const grid = document.getElementById('dil-grid');
+  if (grid) {
+    if (!shown.length) {
+      grid.innerHTML = `<div class="empty-state" style="grid-column:1/-1;">${l === 'tr' ? 'Aramanızla eşleşen sözcük bulunamadı.' : 'No words found matching your query.'}</div>`;
+    } else {
+      grid.innerHTML = shown.map(d => `
+        <div class="word-card lc">
+          <div class="word-card-top">
+            <span class="word-term">${esc(d.word)}</span>
+            <span class="word-pos">${esc(formatPos(d.pos))}</span>
+          </div>
+          <div class="word-meaning">${esc(d.meaning)}</div>
+          ${d.example ? `<div class="word-example">"${esc(d.example)}"</div>` : ''}
+        </div>
+      `).join('');
+    }
+  }
+}
+
+/* ── TAB GEÇİŞ SİSTEMİ ────────────────────────────── */
+function updateLoreNavMask() {
+  const bar = document.getElementById('lore-tabs');
+  if (!bar) return;
+  const sl = bar.scrollLeft;
+  const max = bar.scrollWidth - bar.clientWidth;
+  const canLeft = sl > 6;
+  const canRight = max - sl > 6;
+  bar.style.setProperty('--mask-l', canLeft ? '28px' : '0px');
+  bar.style.setProperty('--mask-r', canRight ? '32px' : '0px');
+}
+
+function initLoreNavScrollMask() {
+  const bar = document.getElementById('lore-tabs');
+  if (!bar) return;
+  bar.addEventListener('scroll', updateLoreNavMask, { passive: true });
+  window.addEventListener('resize', updateLoreNavMask, { passive: true });
+  setTimeout(updateLoreNavMask, 120);
+}
+
+function switchTab(id) {
+  activeTab = id;
+  document.querySelectorAll('.lore-tab-btn').forEach(b => {
+    const isTarget = b.dataset.tab === id;
+    b.classList.toggle('on', isTarget);
+    if (isTarget) {
+      try { b.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' }); } catch (e) {}
+    }
+  });
+  document.querySelectorAll('.lore-stat-card').forEach(c => {
+    c.classList.toggle('active', c.dataset.tabTarget === id);
+  });
+  document.querySelectorAll('.tab-p').forEach(p => {
+    p.classList.toggle('on', p.id === 'tab-' + id);
+  });
+
+  if (id === 'cog') renderGeography();
+  if (id === 'din') renderGods();
+  if (id === 'tarih') renderTimeline();
+  if (id === 'soz') renderGlossary();
+  if (id === 'dil') renderLanguage();
+  setTimeout(updateLoreNavMask, 160);
+}
+
+/* ── ETKİNLİK BAĞLANTILARI ─────────────────────────── */
+function setupEvents() {
+  /* Tab Bar Tıklamaları */
+  document.querySelectorAll('.lore-tab-btn').forEach(btn => {
+    btn.addEventListener('click', function(e) {
+      if (!this.dataset.tab) return;
+      switchTab(this.dataset.tab);
+    });
+  });
+
+  /* Hero Metrik Kart Tıklamaları */
+  document.querySelectorAll('.lore-stat-card').forEach(card => {
+    card.addEventListener('click', function(e) {
+      if (!this.dataset.tabTarget) return;
+      switchTab(this.dataset.tabTarget);
+    });
+  });
+
+  /* Coğrafya Eyalet Arama */
+  const pInput = document.getElementById('prov-search');
+  const pClear = document.getElementById('prov-search-clear');
+  pInput?.addEventListener('input', function() {
+    provQuery = this.value.trim();
+    pClear?.classList.toggle('visible', Boolean(provQuery));
+    renderGeography();
+  });
+  pClear?.addEventListener('click', function() {
+    pInput.value = '';
+    provQuery = '';
+    this.classList.remove('visible');
+    renderGeography();
+    pInput.focus();
+  });
+
+  /* Tanrılar Fraksiyon Filtresi & Arama */
+  document.getElementById('gods-faction-filters')?.addEventListener('click', e => {
+    const btn = e.target.closest('[data-faction]');
+    if (!btn) return;
+    document.querySelectorAll('#gods-faction-filters .f-chip').forEach(b => b.classList.remove('on'));
+    btn.classList.add('on');
+    activeFaction = btn.dataset.faction;
+    renderGods();
+  });
+  const gInput = document.getElementById('gods-search');
+  const gClear = document.getElementById('gods-search-clear');
+  gInput?.addEventListener('input', function() {
+    godsQuery = this.value.trim();
+    gClear?.classList.toggle('visible', Boolean(godsQuery));
+    renderGods();
+  });
+  gClear?.addEventListener('click', function() {
+    gInput.value = '';
+    godsQuery = '';
+    this.classList.remove('visible');
+    renderGods();
+    gInput.focus();
+  });
+
+  /* Tarih & Kategori Filtreleri, Çağ Seçici ve Arama */
+  document.getElementById('tl-filters')?.addEventListener('click', e => {
+    const btn = e.target.closest('[data-tlf]');
+    if (!btn) return;
+    document.querySelectorAll('#tl-filters .f-chip').forEach(b => b.classList.remove('on'));
+    btn.classList.add('on');
+    activeTlf = btn.dataset.tlf;
+    renderTimeline();
+  });
+
+  document.getElementById('tl-era-filters')?.addEventListener('click', e => {
+    const btn = e.target.closest('[data-era]');
+    if (!btn) return;
+    document.querySelectorAll('#tl-era-filters .e-chip').forEach(b => b.classList.remove('on'));
+    btn.classList.add('on');
+    activeEra = btn.dataset.era;
+    renderTimeline();
+  });
+
+  const tlInput = document.getElementById('tl-search');
+  const tlClear = document.getElementById('tl-search-clear');
+  tlInput?.addEventListener('input', function() {
+    tlQuery = this.value.trim();
+    tlClear?.classList.toggle('visible', Boolean(tlQuery));
+    renderTimeline();
+  });
+  tlClear?.addEventListener('click', function() {
+    tlInput.value = '';
+    tlQuery = '';
+    this.classList.remove('visible');
+    renderTimeline();
+    tlInput.focus();
+  });
+
+  /* Hızlı Modal Açma ve Etiket Tıklamaları */
+  document.getElementById('timeline-wrap')?.addEventListener('click', e => {
+    const modalBtn = e.target.closest('[data-ev-modal]');
+    if (modalBtn) {
+      openEventModal(modalBtn.dataset.evModal);
+      return;
+    }
+    const tagEl = e.target.closest('[data-tl-tag]');
+    if (!tagEl) return;
+    const tag = tagEl.dataset.tlTag;
+    if (tlInput) {
+      tlInput.value = tag;
+      tlQuery = tag;
+      tlClear?.classList.add('visible');
+      renderTimeline();
+      window.scrollTo({ top: document.getElementById('tl-filters').offsetTop - 80, behavior: 'smooth' });
+    }
+  });
+
+  /* Modal Kapatma */
+  document.getElementById('ev-modal-close-btn')?.addEventListener('click', closeEventModal);
+  document.getElementById('ev-quick-modal')?.addEventListener('click', e => {
+    if (e.target.id === 'ev-quick-modal') closeEventModal();
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') closeEventModal();
+  });
+
+  /* Sözlük Tür Filtreleri & Arama */
+  document.getElementById('gls-type-filters')?.addEventListener('click', e => {
+    const btn = e.target.closest('[data-gt]');
+    if (!btn) return;
+    document.querySelectorAll('#gls-type-filters .f-chip').forEach(b => b.classList.remove('on'));
+    btn.classList.add('on');
+    activeGt = btn.dataset.gt;
+    renderGlossary();
+  });
+  const glsInput = document.getElementById('gls-search');
+  const glsClear = document.getElementById('gls-search-clear');
+  glsInput?.addEventListener('input', function() {
+    glsQuery = this.value.trim();
+    glsClear?.classList.toggle('visible', Boolean(glsQuery));
+    renderGlossary();
+  });
+  glsClear?.addEventListener('click', function() {
+    glsInput.value = '';
+    glsQuery = '';
+    this.classList.remove('visible');
+    renderGlossary();
+    glsInput.focus();
+  });
+
+  /* Dil POS Filtreleri & Arama */
+  document.getElementById('dil-pos-filters')?.addEventListener('click', e => {
+    const btn = e.target.closest('[data-pos]');
+    if (!btn) return;
+    document.querySelectorAll('#dil-pos-filters .f-chip').forEach(b => b.classList.remove('on'));
+    btn.classList.add('on');
+    activePos = btn.dataset.pos;
+    renderLanguage();
+  });
+  const dilInput = document.getElementById('dil-search');
+  const dilClear = document.getElementById('dil-search-clear');
+  dilInput?.addEventListener('input', function() {
+    dilQuery = this.value;
+    dilClear?.classList.toggle('visible', Boolean(dilQuery));
+    renderLanguage();
+  });
+  dilClear?.addEventListener('click', function() {
+    dilInput.value = '';
+    dilQuery = '';
+    this.classList.remove('visible');
+    renderLanguage();
+    dilInput.focus();
+  });
+}
+
+/* ── HASH YÖNLENDİRMESİ ───────────────────────────── */
+function checkHash() {
+  const params = new URLSearchParams(location.search);
+  const qParam = params.get('q') || (location.hash.includes('?q=') ? new URLSearchParams(location.hash.split('?')[1]).get('q') : '');
+
+  const cr = SWRoute.current();
+  const id = cr && cr.type === 'evren' ? cr.id : '';
+
+  if (qParam) {
+    switchTab('cog');
+    setTimeout(() => {
+      const pInput = document.getElementById('prov-search');
+      if (pInput) {
+        pInput.value = qParam;
+        pInput.dispatchEvent(new Event('input', { bubbles: true }));
+      }
+    }, 180);
+  }
+
+  if (!id) return;
+
+  const inGlossary = (loreData?.glossary || []).some(g => g.id === id);
+  const inTimeline = (loreData?.events || []).some(e => e.id === id);
+  const inGods     = (loreData?.gods || []).some(g => g.id === id);
+
+  /* Eyalet bağlantısı: #yer-<eyalet> */
+  if (/^yer-/.test(id)) {
+    switchTab('cog');
+    setTimeout(() => {
+      const el = document.getElementById(id);
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        el.classList.add('yer-hl');
+        setTimeout(() => el.classList.remove('yer-hl'), 3200);
+      }
+    }, 180);
+    return;
+  }
+
+  /* Coğrafya ya da Dünya güç tablosu */
+  if (id === 'cog' || id === 'dunya') {
+    switchTab('cog');
+    if (id === 'dunya') setTimeout(() => document.getElementById('wp-table')?.scrollIntoView({ behavior: 'smooth', block: 'center' }), 180);
+    return;
+  }
+
+  /* Din grubu / kült */
+  if (/^grup-/.test(id) || inGods || /^tanri-/.test(id)) {
+    switchTab('din');
+    setTimeout(() => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'center' }), 180);
+    return;
+  }
+
+  /* Sözlük */
+  if (inGlossary) {
+    switchTab('soz');
+    setTimeout(() => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'center' }), 150);
+    return;
+  }
+
+  /* Tarih */
+  if (inTimeline) {
+    switchTab('tarih');
+    setTimeout(() => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'center' }), 150);
+  }
+}
+
+/* ── DİL DEĞİŞİKLİĞİ ───────────────────────────────── */
+function applyLang(l) {
+  document.documentElement.lang = l;
+  document.getElementById('page-title').textContent = l === 'tr' ? 'Evren Ansiklopedisi' : 'World Encyclopedia';
+  document.getElementById('page-sub').textContent = l === 'tr'
+    ? 'Stallhart İmparatorluğu\'nun tarihi, coğrafyası, inançları, kronolojisi ve sözlüğü.'
+    : 'The history, geography, faiths, chronology and lexicon of the Stallhart Empire.';
+
+  /* Tab başlıkları */
+  const tabMap = {
+    'tb-cog':   { tr:'Coğrafya & Dünya', en:'Geography & World' },
+    'tb-din':   { tr:'Din & İnanç',      en:'Faith & Religion' },
+    'tb-tarih': { tr:'Tarih & Kronoloji',en:'History & Chronology' },
+    'tb-soz':   { tr:'Kavram Sözlüğü',   en:'Lore Glossary' },
+    'tb-dil':   { tr:'Ortak Lisan',      en:'Common Tongue' }
+  };
+  Object.entries(tabMap).forEach(([id, lbl]) => {
+    const el = document.getElementById(id);
+    if (el) {
+      const span = el.querySelector('span');
+      if (span) span.textContent = lbl[l];
+    }
+  });
+
+  /* Placeholders */
+  const pSearch = document.getElementById('prov-search');
+  if (pSearch) pSearch.placeholder = l === 'tr' ? 'Eyalet veya şehir ara…' : 'Search province or city…';
+  const gSearch = document.getElementById('gods-search');
+  if (gSearch) gSearch.placeholder = l === 'tr' ? 'Tanrı veya unvan ara…' : 'Search deity or epithet…';
+  const tlSearch = document.getElementById('tl-search');
+  if (tlSearch) tlSearch.placeholder = l === 'tr' ? 'Yıl, olay veya hükümdar ara…' : 'Search year, event or ruler…';
+  const glsSearch = document.getElementById('gls-search');
+  if (glsSearch) glsSearch.placeholder = l === 'tr' ? 'Terim veya açıklama ara…' : 'Search term or definition…';
+  const dilSearch = document.getElementById('dil-search');
+  if (dilSearch) dilSearch.placeholder = l === 'tr' ? 'Sözcük veya anlam ara…' : 'Search word or meaning…';
+
+  /* Aktif sekmeyi tazele */
+  switchTab(activeTab);
+}
+
+/* ── BAŞLATMA (INIT) ───────────────────────────────── */
+async function init() {
+  try {
+    loreData = await loadData('lore.json');
+  } catch (err) {
+    console.error('lore.json yüklenemedi:', err);
+    loreData = { events: [], glossary: [], gods: [], factions: [], cults: [] };
+  }
+  try {
+    geoData = await loadData('geography.json');
+  } catch (err) {
+    console.error('geography.json yüklenemedi:', err);
+    geoData = { provinces: [], worldPowers: [], overview: {}, continent: {}, rivers: [], mountains: [], forests: [] };
+  }
+  try {
+    langData = await loadData('language.json');
+  } catch (err) {
+    console.error('language.json yüklenemedi:', err);
+    langData = { grammar: {}, dictionary: [] };
+  }
+
+  /* Metrik sayaçlarını doldur */
+  const provCount = (geoData?.provinces || []).length || 13;
+  const godsCount = (loreData?.gods || []).length || 15;
+  const evCount   = (loreData?.events || []).length || 60;
+  const glsCount  = (loreData?.glossary || []).length || 50;
+  const langCount = (langData?.dictionary || []).length || 480;
+
+  const sp = document.getElementById('stat-provinces');
+  if (sp) sp.textContent = provCount;
+  const sg = document.getElementById('stat-gods');
+  if (sg) sg.textContent = godsCount;
+  const se = document.getElementById('stat-events');
+  if (se) se.textContent = evCount + '+';
+  const ss = document.getElementById('stat-glossary');
+  if (ss) ss.textContent = glsCount + '+';
+  const sl = document.getElementById('stat-lang');
+  if (sl) sl.textContent = langCount + '+';
+
+  setupEvents();
+  renderGeography();
+  renderGods();
+  renderTimeline();
+  renderGlossary();
+  renderLanguage();
+  initLoreNavScrollMask();
+  checkHash();
+}
+
+initWiki({ onLangChange: applyLang });
+applyLang(Lang.get());
+init();
+window.addEventListener('hashchange', checkHash);
+</script>
+</body>
+</html>

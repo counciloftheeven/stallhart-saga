@@ -1,0 +1,343 @@
+import express from 'express';
+import path from 'path';
+import { fileURLToPath } from 'url';
+import compression from 'compression';
+import fs from 'fs';
+import { promises as fsp } from 'fs';
+import crypto from 'crypto';
+import { execFile } from 'child_process';
+import { promisify } from 'util';
+import { EdgeTTS } from 'node-edge-tts';
+
+const execFileAsync = promisify(execFile);
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+const app = express();
+const PORT = process.env.PORT || 3000;
+const HOST = '0.0.0.0';
+
+// Sunucu Tarafı Sıkıştırma (Gzip / Deflate)
+app.use(compression({
+  filter: (req, res) => {
+    if (req.headers['x-no-compression']) return false;
+    return compression.filter(req, res);
+  },
+  threshold: 512,
+  level: 6
+}));
+
+// Body parsers for JSON data & base64 image uploads
+app.use(express.json({ limit: '60mb' }));
+app.use(express.urlencoded({ extended: true, limit: '60mb' }));
+
+// ═══ API ENDPOINTS ═════════════════════════════════════════
+
+const ALLOWED_DATA_FILES = new Set([
+  'characters.json', 'chapters.json', 'book.json', 'quotes.json',
+  'lore.json', 'houses.json', 'kingdoms.json', 'familytree.json',
+  'geography.json', 'language.json', 'maps.json', 'hierarchy.json',
+  'pages.json'
+]);
+
+const ALLOWED_HTML_FILES = new Set([
+  'index.html', 'bolumler.html', 'oku.html', 'karakterler.html',
+  'karakter-sablon.html', 'haneler.html', 'hane-detay.html', 'krallik-detay.html',
+  'tanrilar.html', 'tanri-detay.html', 'harita.html', 'hiyerarsi.html',
+  'soy-agaci.html', 'lore.html', 'olay-detay.html', 'sozler.html',
+  'forum.html', 'forum-kategori.html', 'forum-konu.html', '404.html',
+  'admin.html'
+]);
+
+// 1. Veri Kaydetme API'si (data/*.json doğrudan diske yazar)
+app.post('/api/save-data', async (req, res) => {
+  try {
+    const { file, data } = req.body;
+    if (!file || !ALLOWED_DATA_FILES.has(file)) {
+      return res.status(400).json({ ok: false, error: 'Geçersiz veri dosyası adı: ' + file });
+    }
+    if (data === undefined) {
+      return res.status(400).json({ ok: false, error: 'Veri içeriği boş olamaz.' });
+    }
+
+    const dataPath = path.join(__dirname, 'data', file);
+    const content = JSON.stringify(data, null, 2) + '\n';
+    await fsp.writeFile(dataPath, content, 'utf8');
+
+    return res.json({ ok: true, file, savedAt: new Date().toISOString() });
+  } catch (err) {
+    console.error('save-data hatası:', err);
+    return res.status(500).json({ ok: false, error: err.message });
+  }
+});
+
+// 1b. Sayfa Kaynak Kodu Okuma API'si (Tüm site sayfalarının HTML kodunu okur)
+app.get('/api/page-source', async (req, res) => {
+  try {
+    const file = String(req.query.file || '').trim();
+    if (!file || !ALLOWED_HTML_FILES.has(file)) {
+      return res.status(400).json({ ok: false, error: 'Geçersiz veya yetkisiz HTML dosyası: ' + file });
+    }
+    const filePath = path.join(__dirname, file);
+    if (!fs.existsSync(filePath)) {
+      return res.status(404).json({ ok: false, error: 'Dosya bulunamadı: ' + file });
+    }
+    const stat = await fsp.stat(filePath);
+    const content = await fsp.readFile(filePath, 'utf8');
+    return res.json({
+      ok: true,
+      file,
+      content,
+      size: stat.size,
+      mtime: stat.mtime.toISOString()
+    });
+  } catch (err) {
+    console.error('get-page-source hatası:', err);
+    return res.status(500).json({ ok: false, error: err.message });
+  }
+});
+
+// 1c. Sayfa Kaynak Kodu Kaydetme API'si (Tüm site sayfalarının HTML kodunu diske yazar)
+app.post('/api/save-page-source', async (req, res) => {
+  try {
+    const { file, content } = req.body || {};
+    if (!file || !ALLOWED_HTML_FILES.has(file)) {
+      return res.status(400).json({ ok: false, error: 'Geçersiz veya yetkisiz HTML dosyası: ' + file });
+    }
+    if (typeof content !== 'string' || !content.trim()) {
+      return res.status(400).json({ ok: false, error: 'Sayfa içeriği boş olamaz.' });
+    }
+    const filePath = path.join(__dirname, file);
+    await fsp.writeFile(filePath, content, 'utf8');
+    return res.json({
+      ok: true,
+      file,
+      savedAt: new Date().toISOString(),
+      size: Buffer.byteLength(content, 'utf8')
+    });
+  } catch (err) {
+    console.error('save-page-source hatası:', err);
+    return res.status(500).json({ ok: false, error: err.message });
+  }
+});
+
+// 2. Görsel Listesi API'si (assets/images altındaki tüm görselleri tarar)
+async function scanImages(dir, baseDir = '') {
+  let results = [];
+  try {
+    const entries = await fsp.readdir(dir, { withFileTypes: true });
+    for (const entry of entries) {
+      const fullPath = path.join(dir, entry.name);
+      const relPath = path.posix.join('assets/images', baseDir, entry.name);
+      if (entry.isDirectory()) {
+        const sub = await scanImages(fullPath, path.posix.join(baseDir, entry.name));
+        results = results.concat(sub);
+      } else if (/\.(webp|png|jpe?g|gif|svg|ico)$/i.test(entry.name)) {
+        try {
+          const stat = await fsp.stat(fullPath);
+          const ext = path.extname(entry.name).toLowerCase().replace('.', '');
+          let category = 'general';
+          if (relPath.includes('/characters/')) category = 'characters';
+          else if (relPath.includes('/kingdoms/')) category = 'kingdoms';
+          else if (relPath.includes('/gods/')) category = 'gods';
+          else if (relPath.includes('/maps/')) category = 'maps';
+          else if (relPath.includes('/banners/')) category = 'banners';
+          else if (relPath.includes('/chapters/')) category = 'chapters';
+
+          results.push({
+            path: relPath,
+            name: entry.name,
+            ext,
+            size: stat.size,
+            mtime: stat.mtime.toISOString(),
+            category
+          });
+        } catch (_) {}
+      }
+    }
+  } catch (err) {
+    console.warn('scanImages dizin okunamadı:', dir, err.message);
+  }
+  return results;
+}
+
+app.get('/api/images', async (req, res) => {
+  try {
+    const imagesDir = path.join(__dirname, 'assets', 'images');
+    const images = await scanImages(imagesDir);
+    return res.json({ ok: true, images });
+  } catch (err) {
+    return res.status(500).json({ ok: false, error: err.message });
+  }
+});
+
+// 3. Yeni Görsel Yükleme API'si (Base64 veriyi diske yazar)
+app.post('/api/upload-image', async (req, res) => {
+  try {
+    const { fileName, folder = 'general', dataUrl, targetPath } = req.body;
+    if (!dataUrl) {
+      return res.status(400).json({ ok: false, error: 'Görsel veri URL\'si (dataUrl) eksik.' });
+    }
+
+    // Base64 çözümleme
+    const matches = dataUrl.match(/^data:image\/([a-zA-Z0-9+.-]+);base64,(.+)$/);
+    if (!matches) {
+      return res.status(400).json({ ok: false, error: 'Geçersiz Base64 formatı.' });
+    }
+    const rawExt = matches[1].replace('jpeg', 'jpg');
+    const base64Data = matches[2];
+    const buffer = Buffer.from(base64Data, 'base64');
+
+    let finalRelPath = '';
+    if (targetPath && /^assets\/images\/[a-zA-Z0-9_\-\.\/]+$/i.test(targetPath)) {
+      finalRelPath = targetPath.replace(/\\/g, '/');
+    } else {
+      const safeFolder = String(folder || 'general').replace(/[^a-zA-Z0-9_-]/g, '');
+      const rawName = String(fileName || ('resim-' + Date.now())).replace(/\.[a-zA-Z0-9]+$/, '');
+      const cleanName = rawName.replace(/[^a-zA-Z0-9_\-]/g, '_') + '.' + rawExt;
+      finalRelPath = `assets/images/${safeFolder}/${cleanName}`;
+    }
+
+    const fullDest = path.join(__dirname, finalRelPath);
+    await fsp.mkdir(path.dirname(fullDest), { recursive: true });
+    await fsp.writeFile(fullDest, buffer);
+
+    return res.json({
+      ok: true,
+      path: finalRelPath,
+      name: path.basename(finalRelPath),
+      size: buffer.length
+    });
+  } catch (err) {
+    console.error('upload-image hatası:', err);
+    return res.status(500).json({ ok: false, error: err.message });
+  }
+});
+
+// 4. Mevcut Görseli Doğrudan Değiştirme API'si
+app.post('/api/replace-image', async (req, res) => {
+  try {
+    const { targetPath, dataUrl } = req.body;
+    if (!targetPath || !targetPath.startsWith('assets/images/')) {
+      return res.status(400).json({ ok: false, error: 'Hedef görsel yolu assets/images/ altında olmalıdır.' });
+    }
+    if (targetPath.includes('..')) {
+      return res.status(400).json({ ok: false, error: 'Geçersiz yol karakteri.' });
+    }
+    if (!dataUrl) {
+      return res.status(400).json({ ok: false, error: 'Görsel verisi eksik.' });
+    }
+
+    const matches = dataUrl.match(/^data:image\/([a-zA-Z0-9+.-]+);base64,(.+)$/);
+    if (!matches) {
+      return res.status(400).json({ ok: false, error: 'Geçersiz Base64 formatı.' });
+    }
+    const buffer = Buffer.from(matches[2], 'base64');
+    const fullDest = path.join(__dirname, targetPath);
+
+    await fsp.mkdir(path.dirname(fullDest), { recursive: true });
+    await fsp.writeFile(fullDest, buffer);
+
+    return res.json({ ok: true, path: targetPath, size: buffer.length, updated: true });
+  } catch (err) {
+    console.error('replace-image hatası:', err);
+    return res.status(500).json({ ok: false, error: err.message });
+  }
+});
+
+// 5. Nöral TTS (Edge-TTS Microsoft Nöral Ses Sentezi) API'si
+const TTS_CACHE_DIR = path.join(__dirname, 'assets', 'audio', 'tts_cache');
+if (!fs.existsSync(TTS_CACHE_DIR)) {
+  fs.mkdirSync(TTS_CACHE_DIR, { recursive: true });
+}
+
+// Edge-TTS çıktısındaki 1-2 saniyelik yapay boşluğu kırparak cümle geçişlerini akıcı yapar
+async function trimAudioSilence(inputPath, outputPath) {
+  try {
+    const tempPath = outputPath + '.trim.mp3';
+    const args = [
+      '-y', '-i', inputPath,
+      '-af', 'silenceremove=start_periods=1:start_duration=0.01:start_threshold=-42dB,areverse,silenceremove=start_periods=1:start_duration=0.04:start_threshold=-36dB,areverse',
+      '-c:a', 'libmp3lame', '-q:a', '4', tempPath
+    ];
+    await execFileAsync('ffmpeg', args);
+    if (fs.existsSync(tempPath)) {
+      await fsp.rename(tempPath, outputPath);
+      return true;
+    }
+  } catch (e) {
+    console.warn('Audio silence trim skipped/fallback:', e.message);
+  }
+  return false;
+}
+
+app.post('/api/tts', async (req, res) => {
+  try {
+    const { text, voice = 'tr-TR-AhmetNeural', rate = '+5%', pitch = '+0Hz', lang = 'tr-TR' } = req.body || {};
+    if (!text || typeof text !== 'string' || !text.trim()) {
+      return res.status(400).json({ ok: false, error: 'Seslendirilecek metin boş olamaz.' });
+    }
+
+    const cleanText = text.trim().slice(0, 1500); // Cümle/paragraf bazlı güvenlik sınırı
+    const hash = crypto.createHash('md5').update([cleanText, voice, rate, pitch].join('|')).digest('hex');
+    const fileName = `${hash}.mp3`;
+    const filePath = path.join(TTS_CACHE_DIR, fileName);
+    const audioUrl = `/assets/audio/tts_cache/${fileName}`;
+
+    if (fs.existsSync(filePath)) {
+      return res.json({ ok: true, url: audioUrl, cached: true, hash });
+    }
+
+    const tts = new EdgeTTS({
+      voice,
+      lang: lang || (voice.startsWith('en') ? 'en-US' : 'tr-TR'),
+      rate: rate || '+5%',
+      pitch: pitch || '+0Hz',
+      timeout: 12000
+    });
+
+    const rawPath = path.join(TTS_CACHE_DIR, `raw_${fileName}`);
+    await tts.ttsPromise(cleanText, rawPath);
+
+    const trimmed = await trimAudioSilence(rawPath, filePath);
+    if (!trimmed && fs.existsSync(rawPath)) {
+      await fsp.rename(rawPath, filePath);
+    } else {
+      try { await fsp.unlink(rawPath); } catch (_) {}
+    }
+
+    return res.json({ ok: true, url: audioUrl, cached: false, hash });
+  } catch (err) {
+    console.error('Edge-TTS sentez hatası:', err);
+    return res.status(500).json({ ok: false, error: err.message || 'Sentez başarısız' });
+  }
+});
+
+// HTTP Önbellekleme Başlıkları (Cache-Control)
+app.use(express.static(__dirname, {
+  extensions: ['html'],
+  index: 'index.html',
+  setHeaders: (res, filePath) => {
+    if (/sw\.js$/i.test(filePath) || /manifest\.(?:json|webmanifest)$/i.test(filePath)) {
+      res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
+    } else if (/\.(?:webp|png|jpe?g|gif|svg|ico|woff2?|ttf|eot|mp3|wav|ogg)$/i.test(filePath)) {
+      res.setHeader('Cache-Control', 'public, max-age=3600, stale-while-revalidate=86400');
+    } else if (/\.(?:css|js)$/i.test(filePath)) {
+      res.setHeader('Cache-Control', 'no-cache, must-revalidate');
+    } else if (/\.json$/i.test(filePath)) {
+      res.setHeader('Cache-Control', 'no-cache');
+    } else if (/\.html$/i.test(filePath)) {
+      res.setHeader('Cache-Control', 'no-cache');
+    }
+  }
+}));
+
+// Fallback 404 handler
+app.use((req, res) => {
+  res.status(404).sendFile(path.join(__dirname, '404.html'));
+});
+
+app.listen(PORT, HOST, () => {
+  console.log(`Server listening on http://${HOST}:${PORT}`);
+});
