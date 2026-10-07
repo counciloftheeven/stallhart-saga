@@ -1010,28 +1010,6 @@ function buildOverlay(map, w, h) {
       style: 'fill:' + col + '; stroke:' + col + ';'
     });
     gRegions.appendChild(pg);
-
-    // Eyalet İsim Etiketi (Merkezde Büyük İmparatorluk Başlığı)
-    const legName = (leg ? (L(leg.name) || r.id) : r.id).split(' / ')[0].toUpperCase();
-    const pos = r.labelPos || [
-      Math.round(r.points.reduce((s, p) => s + p[0], 0) / r.points.length),
-      Math.round(r.points.reduce((s, p) => s + p[1], 0) / r.points.length)
-    ];
-    const subText = r.sub ? L(r.sub) : (str('featEyalet') || 'Eyaleti');
-
-    const rg = svgNode('g', {
-      class: 'mo-region-label-group',
-      'data-region': r.id,
-      transform: 'translate(' + pos[0] + ',' + pos[1] + ')'
-    });
-    const rt = svgNode('text', { class: 'mo-region-label', x: 0, y: 0, 'text-anchor': 'middle' });
-    rt.textContent = legName;
-    const rsub = svgNode('text', { class: 'mo-region-sub', x: 0, y: 40, 'text-anchor': 'middle' });
-    rsub.textContent = subText.toUpperCase();
-
-    rg.appendChild(rt);
-    rg.appendChild(rsub);
-    gRegions.appendChild(rg);
   });
 
   // 2. Nehirler

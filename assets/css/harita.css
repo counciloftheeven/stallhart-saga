@@ -172,48 +172,9 @@ html.mp-fixed #site-footer { display: none; }
   filter: drop-shadow(0 0 32px var(--goldb, #f0c050)) drop-shadow(0 0 60px rgba(255, 230, 140, 0.95));
 }
 
-/* ── EYALET İSİM ETİKETLERİ (GRAND IMPERIAL TYPOGRAPHY) ── */
+/* ── EYALET İSİM ETİKETLERİ (Harita üstünden kaldırıldı, yalnızca alana gelindiğinde pencere açılır) ── */
 .mo-region-label-group {
-  cursor: pointer;
-  pointer-events: all;
-  user-select: none;
-  transition: transform .25s ease, filter .25s ease;
-}
-.mo-region-label {
-  font-family: var(--font-display, "Cinzel", "Times New Roman", serif);
-  font-size: 74px;
-  font-weight: 900;
-  letter-spacing: 6px;
-  text-transform: uppercase;
-  fill: #ffffff;
-  stroke: #0a0806;
-  stroke-width: 11px;
-  paint-order: stroke fill;
-  stroke-linejoin: round;
-  transition: fill .2s ease, stroke .2s ease, filter .2s ease;
-  pointer-events: none;
-}
-.mo-region-sub {
-  font-family: var(--font-display, "Cinzel", "Times New Roman", serif);
-  font-size: 30px;
-  font-weight: 700;
-  letter-spacing: 5px;
-  text-transform: uppercase;
-  fill: #ffd32a;
-  stroke: #080605;
-  stroke-width: 6px;
-  paint-order: stroke fill;
-  stroke-linejoin: round;
-  pointer-events: none;
-}
-.mo-region-label-group:hover .mo-region-label {
-  fill: #ffe685;
-  stroke: #221203;
-  stroke-width: 20px;
-  filter: drop-shadow(0 0 28px rgba(255, 215, 90, 0.98));
-}
-.mo-region-label-group:hover .mo-region-sub {
-  fill: #ffffff;
+  display: none !important;
 }
 
 /* ── NEHİRLER ── */
@@ -221,7 +182,7 @@ html.mp-fixed #site-footer { display: none; }
   fill: none;
   stroke: #00b4d8;
   stroke-opacity: 0.95;
-  stroke-width: 16; /* %30 inceltildi: 23px -> 16px */
+  stroke-width: 11; /* %30 daha inceltildi: 16px -> 11px */
   stroke-linecap: round;
   stroke-linejoin: round;
   cursor: pointer;
@@ -231,13 +192,13 @@ html.mp-fixed #site-footer { display: none; }
 .mo-river:hover {
   stroke: #48cae4;
   stroke-opacity: 1;
-  stroke-width: 20; /* %30 inceltildi: 29px -> 20px */
+  stroke-width: 14; /* %30 daha inceltildi: 20px -> 14px */
   filter: drop-shadow(0 0 10px rgba(72, 202, 228, 1)) drop-shadow(0 0 22px rgba(0, 180, 216, 0.9));
 }
 .mo-river.is-active, .mo-river.is-selected {
   stroke: #caf0f8;
   stroke-opacity: 1;
-  stroke-width: 21; /* %30 inceltildi: 30px -> 21px */
+  stroke-width: 15; /* %30 daha inceltildi: 21px -> 15px */
   filter: drop-shadow(0 0 12px rgba(202, 240, 248, 1)) drop-shadow(0 0 26px rgba(72, 202, 228, 1));
 }
 .mo-river-label-group {
