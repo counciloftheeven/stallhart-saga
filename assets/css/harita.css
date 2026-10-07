@@ -154,7 +154,6 @@ html.mp-fixed #site-footer { display: none; }
   pointer-events: all;
   transition: fill-opacity .25s ease, stroke .25s ease, stroke-width .25s ease, stroke-dasharray .25s ease, stroke-opacity .25s ease, filter .25s ease;
   fill-opacity: 0.28;
-  filter: drop-shadow(0 0 16px rgba(0, 0, 0, 0.95));
 }
 .mo-region:hover {
   fill-opacity: 0.45 !important;
@@ -191,7 +190,6 @@ html.mp-fixed #site-footer { display: none; }
   stroke-width: 11px;
   paint-order: stroke fill;
   stroke-linejoin: round;
-  filter: drop-shadow(0 3px 12px rgba(0, 0, 0, 0.98));
   transition: fill .2s ease, stroke .2s ease, filter .2s ease;
   pointer-events: none;
 }
@@ -206,7 +204,6 @@ html.mp-fixed #site-footer { display: none; }
   stroke-width: 6px;
   paint-order: stroke fill;
   stroke-linejoin: round;
-  filter: drop-shadow(0 2px 7px rgba(0, 0, 0, 0.95));
   pointer-events: none;
 }
 .mo-region-label-group:hover .mo-region-label {
@@ -224,24 +221,23 @@ html.mp-fixed #site-footer { display: none; }
   fill: none;
   stroke: #00b4d8;
   stroke-opacity: 0.95;
-  stroke-width: 23;
+  stroke-width: 16; /* %30 inceltildi: 23px -> 16px */
   stroke-linecap: round;
   stroke-linejoin: round;
   cursor: pointer;
   pointer-events: all;
-  filter: drop-shadow(0 0 8px rgba(0, 180, 216, 0.85)) drop-shadow(0 0 14px rgba(0, 0, 0, 0.8));
   transition: stroke .2s, stroke-width .2s, stroke-opacity .2s, filter .2s;
 }
 .mo-river:hover {
   stroke: #48cae4;
   stroke-opacity: 1;
-  stroke-width: 29;
+  stroke-width: 20; /* %30 inceltildi: 29px -> 20px */
   filter: drop-shadow(0 0 10px rgba(72, 202, 228, 1)) drop-shadow(0 0 22px rgba(0, 180, 216, 0.9));
 }
 .mo-river.is-active, .mo-river.is-selected {
   stroke: #caf0f8;
   stroke-opacity: 1;
-  stroke-width: 30;
+  stroke-width: 21; /* %30 inceltildi: 30px -> 21px */
   filter: drop-shadow(0 0 12px rgba(202, 240, 248, 1)) drop-shadow(0 0 26px rgba(72, 202, 228, 1));
 }
 .mo-river-label-group {
@@ -260,7 +256,6 @@ html.mp-fixed #site-footer { display: none; }
   stroke-width: 6px;
   stroke-linejoin: round;
   paint-order: stroke fill;
-  filter: drop-shadow(0 3px 12px rgba(0, 0, 0, 0.98));
 }
 
 /* ── NOKTA / İŞARET KATMANI (CITIES, MOUNTAINS, LAKES) ── */
@@ -299,8 +294,7 @@ html.mp-fixed #site-footer { display: none; }
   fill: #e63946;
   stroke: #4d0e06;
   stroke-width: 1.8;
-  filter: drop-shadow(0 0 6px #e63946);
-  transition: fill .15s;
+  transition: fill .15s, filter .15s;
 }
 .mp-sehir-slit {
   fill: #ffeaa7;
@@ -309,7 +303,6 @@ html.mp-fixed #site-footer { display: none; }
   fill: #ffd700;
   stroke: #523b08;
   stroke-width: 1.2;
-  filter: drop-shadow(0 0 8px #ffd700);
 }
 .mo-sehir:hover .mp-sehir-body {
   fill: #34281e;
@@ -319,6 +312,9 @@ html.mp-fixed #site-footer { display: none; }
 .mo-sehir:hover .mp-sehir-gate {
   fill: #ff4757;
   filter: drop-shadow(0 0 8px #ff4757);
+}
+.mo-sehir:hover .mp-sehir-crown {
+  filter: drop-shadow(0 0 8px #ffd700);
 }
 .mo-sehir.is-active .mp-sehir-body,
 .mo-sehir.is-selected .mp-sehir-body {
@@ -384,8 +380,7 @@ html.mp-fixed #site-footer { display: none; }
   fill: #0077b6;
   stroke: #00b4d8;
   stroke-width: 2.4;
-  filter: drop-shadow(0 0 10px rgba(0, 180, 216, 0.8));
-  transition: fill .15s, stroke .15s, stroke-width .15s;
+  transition: fill .15s, stroke .15s, stroke-width .15s, filter .15s;
 }
 .mp-gol-rip {
   fill: none;
@@ -408,6 +403,7 @@ html.mp-fixed #site-footer { display: none; }
   fill: #03045e;
   stroke: #ffffff;
   stroke-width: 4.6;
+  filter: drop-shadow(0 0 16px #00b4d8);
 }
 
 /* ── ŞEHİR, DAĞ, GÖL METİN ETİKETLERİ (MAP LABELS) ── */
@@ -425,14 +421,12 @@ html.mp-fixed #site-footer { display: none; }
   user-select: none;
   display: none;
   transition: fill .18s ease, stroke .18s ease, filter .18s ease;
-  filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.95));
 }
 .mo-label-capital {
   font-size: 38px;
   font-weight: 900;
   fill: #ffeaa7;
   stroke-width: 12px;
-  filter: drop-shadow(0 0 18px rgba(255, 215, 90, 0.95)) drop-shadow(0 4px 14px rgba(0, 0, 0, 0.98));
 }
 .mo-label-dag {
   font-size: 28px;
@@ -484,6 +478,36 @@ html.mp-fixed #site-footer { display: none; }
 .hide-labels .mo-river-label-group,
 .hide-labels .mo-region-label-group {
   display: none !important;
+}
+
+/* ── KADEMELİ DETAY (LEVEL OF DETAIL / LOD) ──
+   Uzak zoomda (< %140) yalnızca başkentler ve eyaletler görünür.
+   Zoom ettikçe şehirler, dağlar ve göller kademeli olarak açılır. */
+.map-overlay.lod-far .mo-layer-cities .mo-point:not(.mo-capital),
+.map-overlay.lod-far .mo-layer-mountains,
+.map-overlay.lod-far .mo-layer-lakes {
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+  transition: opacity .25s ease, visibility .25s;
+}
+.map-overlay.lod-mid .mo-layer-mountains,
+.map-overlay.lod-mid .mo-layer-lakes {
+  opacity: 0.85;
+}
+.map-overlay .mo-point {
+  transition: opacity .25s ease, filter .2s ease;
+}
+
+/* ── ZOOM VE SÜRÜKLERKEN FİLTRELERİ & VIGNETTE'İ GEÇİCİ KAPATMA (is-moving) ── */
+.map-outer.is-moving .map-vignette {
+  opacity: 0 !important;
+  pointer-events: none;
+}
+.map-outer.is-moving .map-overlay,
+.map-outer.is-moving .map-overlay * {
+  filter: none !important;
+  box-shadow: none !important;
 }
 
 /* ── KÜÇÜK BİLGİ PENCERESİ (Hover & Tıklama Bilgi Kartı) ─────── */
@@ -824,6 +848,22 @@ html.mp-fixed.mp-info-open .sw-fab { right: calc(min(22rem, 100vw) + .8rem); }
 
 /* ── MOBİL / DAR EKRAN ─────────────────────────────────────── */
 @media (max-width: 720px) {
+  /* Mobilde GPU tasarrufu ve akıcı kaydırma için backdrop-filter kapatılır */
+  .mp-page *,
+  .map-popover,
+  .toolbar .tb,
+  .zbadge,
+  .hint,
+  .legend,
+  .ipanel,
+  .map-search-box,
+  .map-search-results,
+  .map-scale-box,
+  .ruler-hud {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+
   .mp-landing { padding: 1.8rem 1rem 3rem; }
   .mp-lead { margin-bottom: 1.6rem; }
   .mp-home { padding: 0 .85rem; }

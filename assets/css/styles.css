@@ -452,6 +452,11 @@ html[data-theme="light"] body::before {
 /* Mobil: <768px (Mobilde yalnızca hamburger menü) */
 @media (max-width: 767px) {
   :root { --nav-h: 54px; }
+  /* Mobilde GPU tasarrufu ve akıcı kaydırma için backdrop-filter kapatılır */
+  #main-nav, .nav-backdrop, .sw-modal, .sw-card, .sw-fab, .search-modal, .menu-panel {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
   .nav-in {
     display: flex;
     align-items: center;

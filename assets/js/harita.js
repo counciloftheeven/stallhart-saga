@@ -51,7 +51,9 @@ const STR = {
     rulerClear: 'Temizle',
     rulerClose: 'Kapat',
     vignette: 'Parşömen Doku & Kenar Karartma',
-    fersah: 'Fersah'
+    fersah: 'Fersah',
+    retry: 'Yeniden Dene',
+    timeoutErr: 'Harita görseli zaman aşımına uğradı (bağlantı zaman aşımı veya dosya erişilemiyor).'
   },
   en: {
     pageTitle: 'Map', eyebrow: 'The Stallhart Saga', h1: 'Maps',
@@ -79,7 +81,9 @@ const STR = {
     rulerClear: 'Clear',
     rulerClose: 'Close',
     vignette: 'Parchment & Vignette Effect',
-    fersah: 'Leagues'
+    fersah: 'Leagues',
+    retry: 'Retry',
+    timeoutErr: 'Map image loading timed out (connection timeout or file unavailable).'
   }
 };
 const str = k => (STR[Lang.get()] || STR.tr)[k] || STR.tr[k] || k;
@@ -369,11 +373,29 @@ function updateScaleBar() {
 }
 
 let animRaf = 0;
+let movingTimer = 0;
+function markMoving() {
+  outer.classList.add('is-moving');
+  clearTimeout(movingTimer);
+  movingTimer = setTimeout(() => {
+    if (pts.size === 0 && !animRaf) {
+      outer.classList.remove('is-moving');
+    }
+  }, 220);
+}
+function stopMoving() {
+  clearTimeout(movingTimer);
+  if (pts.size === 0 && !animRaf) {
+    outer.classList.remove('is-moving');
+  }
+}
+
 function smoothPanTo(targetMapX, targetMapY, targetScale, callback) {
   if (animRaf) {
     cancelAnimationFrame(animRaf);
     animRaf = 0;
   }
+  markMoving();
   const ow = outer.clientWidth;
   const oh = outer.clientHeight;
   const startVx = vx;
@@ -403,9 +425,11 @@ function smoothPanTo(targetMapX, targetMapY, targetScale, callback) {
     updateButtons();
 
     if (progress < 1) {
+      markMoving();
       animRaf = requestAnimationFrame(step);
     } else {
       animRaf = 0;
+      stopMoving();
       if (typeof callback === 'function') callback();
     }
   }
@@ -414,7 +438,13 @@ function smoothPanTo(targetMapX, targetMapY, targetScale, callback) {
 
 function applyT() {
   inner.style.transform = 'translate(' + vx + 'px,' + vy + 'px) scale(' + vs + ')';
-  if (overlayEl && fitScale) overlayEl.classList.toggle('lbl-on', vs / fitScale >= 1.7);
+  if (overlayEl && fitScale) {
+    const zoomRatio = vs / fitScale;
+    overlayEl.classList.toggle('lbl-on', zoomRatio >= 1.7);
+    overlayEl.classList.toggle('lod-far', zoomRatio < 1.4);
+    overlayEl.classList.toggle('lod-mid', zoomRatio >= 1.4 && zoomRatio < 2.0);
+    overlayEl.classList.toggle('lod-near', zoomRatio >= 2.0);
+  }
   $('zbadge').textContent = fitScale ? (Lang.get() === 'tr' ? '%' + Math.round(vs / fitScale * 100) : Math.round(vs / fitScale * 100) + '%') : '';
   updateScaleBar();
 }
@@ -432,6 +462,7 @@ function updateButtons() {
 }
 function zoomAt(factor, cx, cy) {
   if (!ready) return;
+  markMoving();
   const next = clamp(vs * factor, minSc, maxSc);
   if (next === vs) return;
   vx = cx - (cx - vx) * (next / vs);
@@ -465,7 +496,11 @@ function setState(kind, extra) {
       '<div class="map-state-t">' + esc(str('emptyT')) + '</div><p class="map-state-d">' + esc(str('emptyD')) + '</p>';
   } else {
     box.innerHTML = '<div class="map-state-t">' + esc(str('errT')) + '</div>' +
-      '<p class="map-state-d">' + esc(str('errD')) + '<br><code>' + esc(extra) + '</code></p>';
+      '<p class="map-state-d">' + esc(extra || str('errD')) + '</p>' +
+      '<button type="button" class="abtn sm" id="map-retry-btn" style="margin-top:.85rem;background:var(--gold);color:#fff;border:1px solid var(--goldd);padding:.4rem 1.1rem;cursor:pointer;border-radius:4px;font-family:var(--font-display);">' +
+      esc(str('retry')) + '</button>';
+    const btn = $('map-retry-btn');
+    if (btn) btn.onclick = () => { if (cur) loadMapImage(cur); };
   }
 }
 
@@ -484,9 +519,19 @@ function loadMapImage(map) {
   setState('loading');
 
   let settled = false;
+  const timeoutTimer = setTimeout(() => {
+    if (tok !== loadToken || settled) return;
+    settled = true;
+    img.hidden = true;
+    ready = false;
+    setState('error', str('timeoutErr') + '<br><code>' + esc(src) + '</code>');
+    updateButtons();
+  }, 12000);
+
   const ok = () => {
     if (tok !== loadToken || settled) return;
     settled = true;
+    clearTimeout(timeoutTimer);
     iw = img.naturalWidth || img.width || 5848;
     ih = img.naturalHeight || img.height || 4304;
     img.style.width = iw + 'px'; img.style.height = ih + 'px';
@@ -498,11 +543,11 @@ function loadMapImage(map) {
   const bad = () => {
     if (tok !== loadToken || settled) return;
     settled = true;
-    iw = 5848; ih = 4304;
-    img.hidden = false;
-    ready = true; setState(null);
-    buildOverlay(map, iw, ih);
-    fit(); showHint();
+    clearTimeout(timeoutTimer);
+    img.hidden = true;
+    ready = false;
+    setState('error', str('errD') + '<br><code>' + esc(src) + '</code>');
+    updateButtons();
   };
   img.onload = ok; img.onerror = bad;
   img.src = src;
@@ -776,16 +821,31 @@ function svgNode(tag, attrs) {
   return el;
 }
 
-function createDarkFantasyMarker(kind, x, y, markerR, featId, name) {
-  const isCapital = featId === 'arava';
+function isCapitalCity(map, f) {
+  if (!f) return false;
+  if (f.id === 'arava') return true;
+  const nm = (f.name || '').toLowerCase();
+  if (nm.includes('arava') || nm.includes('capital') || nm.includes('merkez şehir')) return true;
+  if (map && map.legend) {
+    for (let i = 0; i < map.legend.length; i++) {
+      const leg = map.legend[i];
+      const cap = (L(leg.capital) || '').toLowerCase();
+      if (cap && (cap.includes(nm) || nm.includes(cap))) return true;
+    }
+  }
+  return false;
+}
+
+function createDarkFantasyMarker(kind, x, y, markerR, featId, name, isCapital) {
   const g = svgNode('g', {
     class: 'mo-point mo-' + kind + (isCapital ? ' mo-capital' : ''),
     'data-feat': featId,
+    'data-kind': kind,
     transform: 'translate(' + x + ',' + y + ')'
   });
 
-  // Dark Fantasy pin ölçeği (5848x4304 harita uzayına göre altın oran)
-  const scale = 2.7;
+  // Dark Fantasy pin ölçeği: %30 ufaltıldı (2.7 * 0.7 = 1.89)
+  const scale = 1.89;
 
   // Geniş görünmez etkileşim alanı
   const hit = svgNode('circle', {
@@ -830,7 +890,7 @@ function createDarkFantasyMarker(kind, x, y, markerR, featId, name) {
     g.appendChild(slit);
 
     if (isCapital) {
-      // Arava İmparatorluk Tahtı Altın Taç Simgesi
+      // Arava / Başkent İmparatorluk Tahtı Altın Taç Simgesi
       const crown = svgNode('path', {
         class: 'mp-sehir-crown',
         d: 'M 0,-24 L 3.5,-17 L 9,-17 L 4.5,-12 L 7,-5 L 0,-10 L -7,-5 L -4.5,-12 L -9,-17 L -3.5,-17 Z',
@@ -894,7 +954,7 @@ function createDarkFantasyMarker(kind, x, y, markerR, featId, name) {
 
   // Harita Üzerinde Şehir / Dağ / Göl İsim Etiketi
   if (name) {
-    const labelY = Math.round(17 * scale) + 30;
+    const labelY = Math.round(17 * scale) + 24;
     const label = svgNode('text', {
       class: 'mo-label mo-label-' + kind + (isCapital ? ' mo-label-capital' : ''),
       x: 0,
@@ -915,6 +975,7 @@ function clearOverlay() {
   if (rSvg && rSvg.parentNode) rSvg.parentNode.removeChild(rSvg);
   clearActiveSvg();
 }
+
 function buildOverlay(map, w, h) {
   clearOverlay();
   const hasRegions = map.regions && map.regions.length;
@@ -922,7 +983,7 @@ function buildOverlay(map, w, h) {
   if (!hasRegions && !hasFeatures) return;
 
   const svg = svgNode('svg', { class: 'map-overlay', viewBox: '0 0 ' + w + ' ' + h, width: w, height: h });
-  const markerR = Math.max(10, Math.round(w / 280));
+  const markerR = Math.max(7, Math.round(w / 400));
 
   // Katman Grupları (z-order ve bağımsız açıp/kapatma için)
   const gRegions = svgNode('g', { class: 'mo-layer-regions' });
@@ -931,9 +992,15 @@ function buildOverlay(map, w, h) {
   const gMountains = svgNode('g', { class: 'mo-layer-mountains' });
   const gCities = svgNode('g', { class: 'mo-layer-cities' });
 
+  // Tek olay dinleyicisi için dizinler (Index maps)
+  const regionIndex = new Map();
+  const featureIndex = new Map();
+
   // 1. Eyalet Poligonları ve Eyalet Başlıkları
   (map.regions || []).forEach(r => {
     const leg = map.legend.find(i => i.id === r.id);
+    regionIndex.set(r.id, { r, leg });
+
     const pts = r.points.map(p => p[0] + ',' + p[1]).join(' ');
     const col = leg ? leg.color : '#8a7a5a';
     const pg = svgNode('polygon', {
@@ -942,41 +1009,10 @@ function buildOverlay(map, w, h) {
       'data-region': r.id,
       style: 'fill:' + col + '; stroke:' + col + ';'
     });
-
-    const onRegionEnter = e => {
-      const wikiUrl = getEntityWikiUrl(leg, 'eyalet', null);
-      const cap = leg ? L(leg.capital) : '';
-      const ruler = leg ? L(leg.ruler) : '';
-      let desc = leg ? L(leg.desc) : '';
-      if (cap || ruler) {
-        desc = (cap ? '★ ' + str('capital') + ': ' + cap : '') + (ruler ? ' · ' + ruler : '') + (desc ? ' — ' + desc : '');
-      }
-      showPopover({
-        kind: 'eyalet',
-        badgeText: '👑 ' + (str('featEyalet') || 'Eyalet'),
-        provName: '',
-        title: leg ? (L(leg.name) || leg.id) : r.id,
-        desc: desc,
-        wikiUrl: wikiUrl,
-        target: pg,
-        onDetail: () => selectItem(r.id, pg)
-      }, e.clientX, e.clientY);
-    };
-
-    pg.addEventListener('mouseenter', onRegionEnter);
-    pg.addEventListener('mousemove', e => positionPopover(e.clientX, e.clientY));
-    pg.addEventListener('mouseleave', scheduleHidePopover);
-    pg.addEventListener('click', e => {
-      e.stopPropagation();
-      if (moved <= 6) {
-        hidePopover(0);
-        selectItem(r.id, pg);
-      }
-    });
     gRegions.appendChild(pg);
 
     // Eyalet İsim Etiketi (Merkezde Büyük İmparatorluk Başlığı)
-    const legName = (leg ? (L(leg.name) || r.id) : r.id).split(' / ')[0].toUpperCase();   /* uzun çift adlarda yalnızca ilk ad: etiket çakışmasını önler */
+    const legName = (leg ? (L(leg.name) || r.id) : r.id).split(' / ')[0].toUpperCase();
     const pos = r.labelPos || [
       Math.round(r.points.reduce((s, p) => s + p[0], 0) / r.points.length),
       Math.round(r.points.reduce((s, p) => s + p[1], 0) / r.points.length)
@@ -995,49 +1031,18 @@ function buildOverlay(map, w, h) {
 
     rg.appendChild(rt);
     rg.appendChild(rsub);
-
-    rg.addEventListener('mouseenter', onRegionEnter);
-    rg.addEventListener('mousemove', e => positionPopover(e.clientX, e.clientY));
-    rg.addEventListener('mouseleave', scheduleHidePopover);
-    rg.addEventListener('click', e => {
-      e.stopPropagation();
-      if (moved <= 6) {
-        hidePopover(0);
-        selectItem(r.id, pg);
-      }
-    });
-
     gRegions.appendChild(rg);
   });
 
   // 2. Nehirler
   (map.features.nehir || []).forEach(f => {
+    featureIndex.set(f.id, { f, kind: 'nehir' });
     const pts = f.points.map(p => p[0] + ',' + p[1]).join(' ');
-    const pl = svgNode('polyline', { class: 'mo-river', points: pts, 'data-feat': f.id });
-
-    pl.addEventListener('mouseenter', e => {
-      const prov = getFeatureProvince(map, f, 'nehir');
-      const desc = getFeatureDesc(f, 'nehir', prov);
-      const wikiUrl = getEntityWikiUrl(f, 'nehir', prov);
-      showPopover({
-        kind: 'nehir',
-        badgeText: '🌊 ' + str('featNehir'),
-        provName: prov ? L(prov.name) : '',
-        title: f.name,
-        desc: desc,
-        wikiUrl: wikiUrl,
-        target: pl,
-        onDetail: () => openFeature(f, 'nehir', pl)
-      }, e.clientX, e.clientY);
-    });
-    pl.addEventListener('mousemove', e => positionPopover(e.clientX, e.clientY));
-    pl.addEventListener('mouseleave', scheduleHidePopover);
-    pl.addEventListener('click', e => {
-      e.stopPropagation();
-      if (moved <= 6) {
-        hidePopover(0);
-        openFeature(f, 'nehir', pl);
-      }
+    const pl = svgNode('polyline', {
+      class: 'mo-river',
+      points: pts,
+      'data-feat': f.id,
+      'data-kind': 'nehir'
     });
     gRivers.appendChild(pl);
 
@@ -1072,37 +1077,108 @@ function buildOverlay(map, w, h) {
 
   // 3. Göller, Dağlar, Şehirler
   ['gol', 'dag', 'sehir'].forEach(kind => {
-    const iconMap = { sehir: '🏛️ ', dag: '🏔️ ', gol: '💧 ' };
     const targetGroup = kind === 'gol' ? gLakes : (kind === 'dag' ? gMountains : gCities);
 
     (map.features[kind] || []).forEach(f => {
-      const shape = createDarkFantasyMarker(kind, f.x, f.y, markerR, f.id, f.name);
-
-      shape.addEventListener('mouseenter', e => {
-        const prov = getFeatureProvince(map, f, kind);
-        const desc = getFeatureDesc(f, kind, prov);
-        const wikiUrl = getEntityWikiUrl(f, kind, prov);
-        showPopover({
-          kind: kind,
-          badgeText: (iconMap[kind] || '') + str(FEAT_LABEL_KEY[kind]),
-          provName: prov ? L(prov.name) : '',
-          title: f.name,
-          desc: desc,
-          wikiUrl: wikiUrl,
-          target: shape,
-          onDetail: () => openFeature(f, kind, shape)
-        }, e.clientX, e.clientY);
-      });
-      shape.addEventListener('mouseleave', scheduleHidePopover);
-      shape.addEventListener('click', e => {
-        e.stopPropagation();
-        if (moved <= 6) {
-          hidePopover(0);
-          openFeature(f, kind, shape);
-        }
-      });
+      const isCap = kind === 'sehir' && isCapitalCity(map, f);
+      featureIndex.set(f.id, { f, kind, isCap });
+      const shape = createDarkFantasyMarker(kind, f.x, f.y, markerR, f.id, f.name, isCap);
       targetGroup.appendChild(shape);
     });
+  });
+
+  svg.appendChild(gRegions);
+  svg.appendChild(gRivers);
+  svg.appendChild(gLakes);
+  svg.appendChild(gMountains);
+  svg.appendChild(gCities);
+
+  // ── TEK OLAY DİNLENEYİCİSİ (Event Delegation — 624 ayrı dinleyici yerine tek merkez) ──
+  let lastHoverEl = null;
+
+  svg.addEventListener('mouseover', e => {
+    const hit = e.target.closest && e.target.closest('[data-feat], [data-region]');
+    if (!hit) {
+      if (lastHoverEl) {
+        lastHoverEl = null;
+        scheduleHidePopover();
+      }
+      return;
+    }
+    if (hit === lastHoverEl) {
+      positionPopover(e.clientX, e.clientY);
+      return;
+    }
+    lastHoverEl = hit;
+
+    if (hit.dataset.region) {
+      const rid = hit.dataset.region;
+      const data = regionIndex.get(rid);
+      if (!data) return;
+      const leg = data.leg;
+      const wikiUrl = getEntityWikiUrl(leg, 'eyalet', null);
+      const cap = leg ? L(leg.capital) : '';
+      const ruler = leg ? L(leg.ruler) : '';
+      let desc = leg ? L(leg.desc) : '';
+      if (cap || ruler) {
+        desc = (cap ? '★ ' + str('capital') + ': ' + cap : '') + (ruler ? ' · ' + ruler : '') + (desc ? ' — ' + desc : '');
+      }
+      showPopover({
+        kind: 'eyalet',
+        badgeText: '👑 ' + (str('featEyalet') || 'Eyalet'),
+        provName: '',
+        title: leg ? (L(leg.name) || leg.id) : rid,
+        desc: desc,
+        wikiUrl: wikiUrl,
+        target: hit,
+        onDetail: () => selectItem(rid, hit)
+      }, e.clientX, e.clientY);
+    } else if (hit.dataset.feat) {
+      const fid = hit.dataset.feat;
+      const data = featureIndex.get(fid);
+      if (!data) return;
+      const f = data.f;
+      const kind = data.kind;
+      const iconMap = { sehir: '🏛️ ', dag: '🏔️ ', gol: '💧 ', nehir: '🌊 ' };
+      const prov = getFeatureProvince(map, f, kind);
+      const desc = getFeatureDesc(f, kind, prov);
+      const wikiUrl = getEntityWikiUrl(f, kind, prov);
+      showPopover({
+        kind: kind,
+        badgeText: (iconMap[kind] || '') + str(FEAT_LABEL_KEY[kind]),
+        provName: prov ? L(prov.name) : '',
+        title: f.name,
+        desc: desc,
+        wikiUrl: wikiUrl,
+        target: hit,
+        onDetail: () => openFeature(f, kind, hit)
+      }, e.clientX, e.clientY);
+    }
+  });
+
+  svg.addEventListener('mousemove', e => {
+    if (lastHoverEl) positionPopover(e.clientX, e.clientY);
+  });
+
+  svg.addEventListener('mouseout', e => {
+    if (!e.relatedTarget || !svg.contains(e.relatedTarget)) {
+      lastHoverEl = null;
+      scheduleHidePopover();
+    }
+  });
+
+  svg.addEventListener('click', e => {
+    if (moved > 6) return;
+    const hit = e.target.closest && e.target.closest('[data-feat], [data-region]');
+    if (!hit) return;
+    e.stopPropagation();
+    hidePopover(0);
+    if (hit.dataset.region) {
+      selectItem(hit.dataset.region, hit);
+    } else if (hit.dataset.feat) {
+      const data = featureIndex.get(hit.dataset.feat);
+      if (data) openFeature(data.f, data.kind, hit);
+    }
   });
 
   svg.appendChild(gRegions);
@@ -1197,11 +1273,13 @@ outer.addEventListener('pointerdown', e => {
   if (pts.size === 1) {
     moved = 0; panStart = { x: e.clientX, y: e.clientY, vx: vx, vy: vy };
     outer.classList.add('dragging');
+    markMoving();
     if (e.pointerType === 'mouse') outer.focus({ preventScroll: true });
   } else if (pts.size === 2) {
     const p = Array.from(pts.values());
     pinch = { d: dist(p[0], p[1]), mx: (p[0].x + p[1].x) / 2, my: (p[0].y + p[1].y) / 2 };
     panStart = null; moved = 99;                            /* çoklu dokunuş "tıklama" sayılmasın */
+    markMoving();
   }
 });
 outer.addEventListener('pointermove', e => {
@@ -1209,6 +1287,7 @@ outer.addEventListener('pointermove', e => {
   pts.set(e.pointerId, { x: e.clientX, y: e.clientY });
   if (!ready) return;
   if (pts.size >= 2 && pinch) {
+    markMoving();
     const p = Array.from(pts.values());
     const d = dist(p[0], p[1]), mx = (p[0].x + p[1].x) / 2, my = (p[0].y + p[1].y) / 2;
     const r = outer.getBoundingClientRect();
@@ -1219,7 +1298,10 @@ outer.addEventListener('pointermove', e => {
   } else if (panStart) {
     const dx = e.clientX - panStart.x, dy = e.clientY - panStart.y;
     moved = Math.max(moved, Math.abs(dx) + Math.abs(dy));
-    if (moved > 3) userMoved = true;
+    if (moved > 3) {
+      userMoved = true;
+      markMoving();
+    }
     vx = panStart.vx + dx; vy = panStart.vy + dy;
     clampPan(); schedT();
   }
@@ -1232,6 +1314,7 @@ function endPointer(e) {
     panStart = { x: p.x, y: p.y, vx: vx, vy: vy };
   } else if (pts.size === 0) {
     panStart = null; outer.classList.remove('dragging');
+    stopMoving();
   }
 }
 outer.addEventListener('pointerup', endPointer);
@@ -1608,6 +1691,7 @@ outer.addEventListener('contextmenu', e => {
 outer.addEventListener('wheel', e => {
   if (e.target.closest('[data-ui]') || !ready) return;
   e.preventDefault();
+  markMoving();
   const unit = e.deltaMode === 1 ? 16 : (e.deltaMode === 2 ? 400 : 1);
   const k = e.ctrlKey ? .01 : .0018;                        /* dokunmatik yüzey sıkıştırması ctrl+tekerlek gelir */
   const r = outer.getBoundingClientRect();

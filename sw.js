@@ -5,7 +5,30 @@
    ═══════════════════════════════════════════════════════════════ */
 'use strict';
 
-const CACHE_NAME = 'stallhart-v7';
+const CACHE_NAME = 'stallhart-v8';
+const MAX_CACHE_ENTRIES = 60;
+
+// Önbellek üst sınırı koruması (Cache Eviction / FIFO)
+async function limitCacheSize(cacheName, maxItems) {
+  try {
+    const cache = await caches.open(cacheName);
+    const keys = await cache.keys();
+    if (keys.length > maxItems) {
+      const toDelete = keys.length - maxItems;
+      for (let i = 0; i < toDelete; i++) {
+        await cache.delete(keys[i]);
+      }
+    }
+  } catch (e) {
+    console.warn('[PWA SW] Cache trim error:', e);
+  }
+}
+
+// Büyük harita görselleri (önbelleğe alınmaz, doğrudan ağdan çekilir)
+function isLargeImage(pathname) {
+  const p = pathname.toLowerCase();
+  return p.includes('siyasi_harita') || p.includes('/maps/') || p.includes('harita00');
+}
 const PRECACHE_ASSETS = [
   '/',
   '/index.html',
@@ -122,13 +145,24 @@ self.addEventListener('fetch', event => {
     return;
   }
 
+  // Büyük harita görsellerini önbelleğe alma — doğrudan ağdan sun (hafıza taşmasını önler)
+  if (isLargeImage(url.pathname)) {
+    event.respondWith(
+      fetch(req).catch(() => caches.match(req))
+    );
+    return;
+  }
+
   // Statik Varlıklar (CSS, JS, Görseller): Stale-While-Revalidate (sürüm parametrelerini dikkate alır)
   event.respondWith(
     caches.match(req).then(cachedResponse => {
       const fetchPromise = fetch(req).then(networkResponse => {
         if (networkResponse && networkResponse.status === 200) {
           const responseToCache = networkResponse.clone();
-          caches.open(CACHE_NAME).then(cache => cache.put(req, responseToCache));
+          caches.open(CACHE_NAME).then(async cache => {
+            await cache.put(req, responseToCache);
+            limitCacheSize(CACHE_NAME, MAX_CACHE_ENTRIES);
+          });
         }
         return networkResponse;
       }).catch(() => cachedResponse);

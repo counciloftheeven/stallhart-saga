@@ -128,26 +128,37 @@ function setSyncStatus(isClean) {
 }
 
 function save(file, silent) {
-  if (Store.write(file, DB[file])) {
-    renderSidebarState();
-    // Sunucu tarafına anında kalıcı yaz (disk persistence)
-    fetch('/api/save-data', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ file, data: DB[file] })
-    }).then(res => res.json()).then(data => {
-      if (data && data.ok) {
-        setSyncStatus(true);
-        if (!silent) toast(file + ' sunucuya ve belleğe kaydedildi.');
-      }
-    }).catch(err => {
-      console.warn('Sunucuya kaydedilemedi:', err);
-      setSyncStatus(false);
-    });
-    return true;
+  try {
+    if (Store.write(file, DB[file])) {
+      renderSidebarState();
+      // Sunucu tarafına anında kalıcı yaz (disk persistence)
+      fetch('/api/save-data', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ file, data: DB[file] })
+      }).then(res => res.json()).then(data => {
+        if (data && data.ok) {
+          setSyncStatus(true);
+          if (!silent) toast(file + ' sunucuya ve belleğe kaydedildi.');
+        }
+      }).catch(err => {
+        console.warn('Sunucuya kaydedilemedi:', err);
+        setSyncStatus(false);
+      });
+      return true;
+    }
+    const hasDataUrl = JSON.stringify(DB[file] || '').includes('data:image/');
+    if (hasDataUrl) {
+      toast('Tarayıcı hafıza sınırı (~5 MB) aşıldı! Yüklenen görselleri localStorage yerine indirip depo yolu (assets/images/...) olarak kaydedin.', true);
+    } else {
+      toast('Kaydedilemedi — tarayıcı depolama alanı (~5 MB) dolu olabilir.', true);
+    }
+    return false;
+  } catch (err) {
+    console.error('save hatası:', err);
+    toast('Tarayıcı hafıza sınırı (~5 MB) aşıldı! Lütfen data URL yerine depo yolu kullanın.', true);
+    return false;
   }
-  toast('Kaydedilemedi — tarayıcı depolama alanı dolu olabilir.', true);
-  return false;
 }
 
 async function syncAllToServer() {
@@ -1424,6 +1435,7 @@ function bindKgImg(key, state, baseName) {
     try {
       state[key] = await kgProcessImage(f, cfg);
       paintPath(); paintPreview();
+      toast('Görsel geçici data URL olarak yüklendi. Tarayıcı localStorage (~5 MB) sınırı nedeniyle lütfen görseli indirip depo yolu (assets/images/' + (cfg.dir || 'general') + '/...) olarak kaydedin.');
     } catch (e) { toast(e.message || 'Görsel işlenemedi.', true); }
   });
   path.addEventListener('input', () => { state[key] = path.value.trim(); paintPreview(); });

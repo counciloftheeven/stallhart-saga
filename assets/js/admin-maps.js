@@ -451,19 +451,27 @@ function buildClean(errs) {
 }
 
 function saveEditor() {
-  var errs = [], out = buildClean(errs);
-  showErrors(errs);
-  if (errs.length) { toast('Formda düzeltilecek ' + errs.length + ' şey var.', true); return; }
-  var maps = list(), prev = maps.slice();
-  if (ME.isNew) maps.push(out); else maps[ME.idx] = out;
-  if (!persist()) {                            /* depolama dolu → belleği eski hâline döndür */
-    data().maps = prev;
-    toast('Kaydedilemedi — tarayıcı depolaması dolu olabilir. Görseli yükleme yerine depo yoluyla verin.', true);
-    return;
+  try {
+    var errs = [], out = buildClean(errs);
+    showErrors(errs);
+    if (errs.length) { toast('Formda düzeltilecek ' + errs.length + ' şey var.', true); return; }
+    var maps = list(), prev = maps.slice();
+    if (ME.isNew) maps.push(out); else maps[ME.idx] = out;
+    if (!persist()) {                            /* depolama dolu → belleği eski hâline döndür */
+      data().maps = prev;
+      var isData = /^data:/i.test(out.image);
+      toast(isData
+        ? 'Tarayıcı hafıza sınırı (~5 MB) aşıldı! Görseli indirin ve assets/images/maps/ depo yolu olarak kaydedin.'
+        : 'Kaydedilemedi — tarayıcı depolaması dolu olabilir. Görseli yükleme yerine depo yoluyla verin.', true);
+      return;
+    }
+    ME.dirty = false;
+    toast('Harita kaydedildi.');
+    renderList();
+  } catch (err) {
+    console.error('saveEditor hatası:', err);
+    toast('Kayıt hatası: Tarayıcı hafıza sınırı (~5 MB) aşıldı. Depo yolu kullanın.', true);
   }
-  ME.dirty = false;
-  toast('Harita kaydedildi.');
-  renderList();
 }
 
 /* ── OLAY BAĞLAMA (tek seferlik, #view üzerinde) ─────────── */
@@ -543,7 +551,7 @@ function onChange(e) {
     B.kgProcessImage(f, IMG_CFG).then(function (url) {
       if (!ME) return;
       ME.work.image = url; markDirty(); paintImg();
-      toast(url.length > 3500000 ? 'Görsel yüklendi ama büyük — kaydedilemezse depo yolunu kullanın.' : 'Görsel yüklendi.');
+      toast('Görsel geçici data URL olarak yüklendi. Tarayıcı localStorage (~5 MB) sınırı nedeniyle lütfen görseli indirip assets/images/maps/ depo yolu olarak kaydedin.');
     }).catch(function (err) { toast((err && err.message) || 'Görsel işlenemedi.', true); });
     return;
   }
