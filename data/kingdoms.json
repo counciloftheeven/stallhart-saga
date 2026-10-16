@@ -1,0 +1,698 @@
+{
+  "kingdoms": [
+    {
+      "id": "stallhart-empire",
+      "type": "empire",
+      "status": "active",
+      "name": {
+        "tr": "Stallhart İmparatorluğu",
+        "en": "Stallhart Empire"
+      },
+      "capital": {
+        "tr": "Arava (Başsancak)",
+        "en": "Arava (Başsancak)"
+      },
+      "ruler": {
+        "tr": "İmparator Zeandor Stallhart",
+        "en": "Emperor Zeandor Stallhart"
+      },
+      "rulerId": "zeandor",
+      "founded": "KS 1144",
+      "government": null,
+      "population": {
+        "official": null,
+        "actual": null
+      },
+      "area": "7.000.000-7.500.000 km²",
+      "currency": null,
+      "religion": {
+        "tr": "Denge Konseyi",
+        "en": "Council of Balance"
+      },
+      "color": "#C4962A",
+      "flag": {
+        "tr": "Siyah-beyaz dama, ortada altın taçlı kalkan. Meşe dalları ve dikenler.",
+        "en": "Black-white checkerboard, central shield with golden crown. Oak branches and thorns."
+      },
+      "desc": {
+        "tr": "I. Craes Stallhart tarafından KS 1144'te kurulan bu imparatorluk, kıtanın büyük bölümünü on üç eyalet aracılığıyla yönetir. Stallhart Hanedanı Kutsal Kan Doktrini'ne dayanarak ilahi yönetme hakkını savunur.",
+        "en": "Founded by Craes Stallhart I in KS 1144, this empire governs most of the continent through thirteen provinces. The Stallhart Dynasty defends its divine right to rule based on the Holy Blood Doctrine."
+      },
+      "strengths": {
+        "tr": [
+          "On üç eyalet",
+          "Karabıçaklar istihbarat örgütü",
+          "Gümüş Yol Boğazı kontrolü",
+          "Güçlü süvari orduları"
+        ],
+        "en": [
+          "Thirteen provinces",
+          "Black Claws intelligence organization",
+          "Control of Silver Way Strait",
+          "Strong cavalry armies"
+        ]
+      },
+      "weaknesses": {
+        "tr": [
+          "Hanedan iç çatışmaları",
+          "Eyalet özerkleşme eğilimi",
+          "Arathen istihbaratı",
+          "Yasak inanç hareketleri"
+        ],
+        "en": [
+          "Dynastic internal conflicts",
+          "Provincial autonomy tendencies",
+          "Arathen intelligence",
+          "Banned faith movements"
+        ]
+      },
+      "relations": {
+        "tr": {
+          "arathen-kingdom": "Aktif düşmanlık",
+          "zelaina-empire": "Soğuk diplomatik ilişki",
+          "garchar": "Nüfuz mücadelesi"
+        },
+        "en": {
+          "arathen-kingdom": "Active hostility",
+          "zelaina-empire": "Cold diplomatic relations",
+          "garchar": "Influence competition"
+        }
+      },
+      "garrison": {
+        "tr": [],
+        "en": []
+      },
+      "exports": {
+        "tr": [],
+        "en": []
+      },
+      "history": [],
+      "rulerTitle": {
+        "tr": "",
+        "en": ""
+      },
+      "flagImage": "assets/images/kingdoms/stallhart01.png"
+    },
+    {
+      "id": "arathen-kingdom",
+      "type": "kingdom",
+      "status": "active",
+      "name": {
+        "tr": "Arathen Krallığı",
+        "en": "Kingdom of Arathen"
+      },
+      "capital": {
+        "tr": "Arathen Başkenti",
+        "en": "Arathen Capital"
+      },
+      "ruler": {
+        "tr": "Kral Leno Kridas",
+        "en": "King Leno Kridas"
+      },
+      "rulerId": "leno-kridas",
+      "founded": null,
+      "government": null,
+      "population": {
+        "official": null,
+        "actual": null
+      },
+      "area": null,
+      "currency": null,
+      "religion": {
+        "tr": "Kutsal Kan Doktrini'ni küfür kabul eder",
+        "en": "Considers the Holy Blood Doctrine blasphemous"
+      },
+      "color": "#2A2A5C",
+      "flag": {
+        "tr": "Henüz belgelenmedi.",
+        "en": "Not yet documented."
+      },
+      "desc": {
+        "tr": "Doğu komşusu. Kral Leno Kridas sabırlı ve hesaplı bir yönetici; Stallhart'ı doğrudan savaşla değil suikast, istihbarat ve sihirle güçlendirilmiş savaş silahlarıyla içten çökertmeyi planlar.",
+        "en": "Eastern neighbor. King Leno Kridas is a patient and calculating ruler who plans to destroy Stallhart from within through assassination, intelligence, and magic-enhanced weapons rather than direct war."
+      },
+      "strengths": {
+        "tr": [
+          "Güçlü istihbarat ağı (Eron Gjin)",
+          "Sabır ve uzun vadeli planlama",
+          "Büyü araştırması (savaş topları)",
+          "İç ajan ağı (Galetsha ittifakı)"
+        ],
+        "en": [
+          "Strong intelligence network (Eron Gjin)",
+          "Patience and long-term planning",
+          "Magic research (siege cannons)",
+          "Internal agent network (Galetsha alliance)"
+        ]
+      },
+      "weaknesses": {
+        "tr": [
+          "Açık savaş gücü belirsiz",
+          "Kral Leno'nun deneyimsizliği (24 yaş)",
+          "Babasının gölgesi"
+        ],
+        "en": [
+          "Open warfare capability uncertain",
+          "King Leno's inexperience (age 24)",
+          "Father's shadow"
+        ]
+      },
+      "relations": {
+        "tr": {
+          "stallhart-empire": "Aktif düşmanlık (gizli)",
+          "zelaina-empire": "Bilinmiyor"
+        },
+        "en": {
+          "stallhart-empire": "Active hostility (covert)",
+          "zelaina-empire": "Unknown"
+        }
+      },
+      "garrison": {
+        "tr": [],
+        "en": []
+      },
+      "exports": {
+        "tr": [],
+        "en": []
+      },
+      "history": [],
+      "rulerTitle": {
+        "tr": "",
+        "en": ""
+      },
+      "flagImage": "assets/images/kingdoms/Arathen.png"
+    },
+    {
+      "id": "zelaina-empire",
+      "type": "empire",
+      "status": "active",
+      "name": {
+        "tr": "Zelaina Elfin İmparatorluğu",
+        "en": "Zelaina Elven Empire"
+      },
+      "capital": {
+        "tr": "Bilinmiyor",
+        "en": "Unknown"
+      },
+      "ruler": {
+        "tr": "Seçimle belirlenen lider (dönemsel)",
+        "en": "Elected leader (periodic)"
+      },
+      "rulerId": null,
+      "founded": null,
+      "government": null,
+      "population": {
+        "official": null,
+        "actual": null
+      },
+      "area": null,
+      "currency": null,
+      "religion": {
+        "tr": "Elfin geleneği",
+        "en": "Elven tradition"
+      },
+      "color": "#2E8B57",
+      "flag": {
+        "tr": "Henüz belgelenmedi.",
+        "en": "Not yet documented."
+      },
+      "desc": {
+        "tr": "Batı komşusu. Binyıllardan beri seçimle yönetilen antik Elfin imparatorluğu. Uzun ömürlülükleri ve birikimli bilgelikleri onları tehlikeli diplomasi ortakları kılar. Stallhart'ın hanedan yönetimi anlayışına soğuk bakar.",
+        "en": "Western neighbor. Ancient Elven empire governed by election for millennia. Their longevity and accumulated wisdom make them dangerous diplomatic partners. Cold toward Stallhart's dynastic rule philosophy."
+      },
+      "strengths": {
+        "tr": [
+          "Binyıllık deneyim",
+          "Seçimle meşruiyet",
+          "Elflerin uzun ömrü ve birikimi",
+          "Güçlü büyü geleneği (muhtemelen)"
+        ],
+        "en": [
+          "Millennia of experience",
+          "Democratic legitimacy",
+          "Elven longevity and accumulated knowledge",
+          "Strong magic tradition (presumably)"
+        ]
+      },
+      "weaknesses": {
+        "tr": [
+          "İç siyasi süreçler yavaş",
+          "İnsan devletleriyle sınırlı anlayış"
+        ],
+        "en": [
+          "Slow internal political processes",
+          "Limited understanding of human states"
+        ]
+      },
+      "relations": {
+        "tr": {
+          "stallhart-empire": "Soğuk diplomatik ilişki",
+          "arathen-kingdom": "Bilinmiyor"
+        },
+        "en": {
+          "stallhart-empire": "Cold diplomatic relations",
+          "arathen-kingdom": "Unknown"
+        }
+      },
+      "garrison": [],
+      "exports": [],
+      "history": []
+    },
+    {
+      "id": "garchar",
+      "type": "state",
+      "status": "contested",
+      "name": {
+        "tr": "Garchar",
+        "en": "Garchar"
+      },
+      "capital": {
+        "tr": "Bilinmiyor",
+        "en": "Unknown"
+      },
+      "ruler": {
+        "tr": "İstikrarsız (çekişmeli)",
+        "en": "Unstable (contested)"
+      },
+      "rulerId": null,
+      "founded": null,
+      "government": null,
+      "population": {
+        "official": null,
+        "actual": null
+      },
+      "area": null,
+      "currency": null,
+      "religion": {
+        "tr": "Bilinmiyor",
+        "en": "Unknown"
+      },
+      "color": "#8B4513",
+      "flag": {
+        "tr": "Henüz belgelenmedi.",
+        "en": "Not yet documented."
+      },
+      "desc": {
+        "tr": "Büyük güçlerin oyuncağına dönmüş küçük devlet. Hem Stallhart hem Arathen hem de Zelaina'nın nüfuz mücadelesinde tampon bölge konumunda. İç istikrarsızlığı onu sürekli dış müdahaleye açık bırakır.",
+        "en": "A small state that has become a plaything of great powers. A buffer zone in the influence struggle between Stallhart, Arathen, and Zelaina. Its internal instability leaves it perpetually open to foreign intervention."
+      },
+      "strengths": {
+        "tr": [
+          "Stratejik konum (tampon bölge)"
+        ],
+        "en": [
+          "Strategic location (buffer zone)"
+        ]
+      },
+      "weaknesses": {
+        "tr": [
+          "Süregelen iç istikrarsızlık",
+          "Büyük güçlere bağımlılık"
+        ],
+        "en": [
+          "Persistent internal instability",
+          "Dependency on great powers"
+        ]
+      },
+      "relations": {
+        "tr": {
+          "stallhart-empire": "Nüfuz rekabeti",
+          "arathen-kingdom": "Nüfuz rekabeti",
+          "zelaina-empire": "Nüfuz rekabeti"
+        },
+        "en": {
+          "stallhart-empire": "Influence rivalry",
+          "arathen-kingdom": "Influence rivalry",
+          "zelaina-empire": "Influence rivalry"
+        }
+      },
+      "garrison": [],
+      "exports": [],
+      "history": []
+    },
+    {
+      "id": "orebas",
+      "type": "state",
+      "status": "active",
+      "name": {
+        "tr": "Örebas",
+        "en": "Örebas"
+      },
+      "capital": {
+        "tr": "Bilinmiyor",
+        "en": "Unknown"
+      },
+      "ruler": {
+        "tr": "Bilinmiyor",
+        "en": "Unknown"
+      },
+      "rulerId": null,
+      "founded": null,
+      "government": null,
+      "population": {
+        "official": null,
+        "actual": null
+      },
+      "area": null,
+      "currency": null,
+      "religion": {
+        "tr": "Bilinmiyor",
+        "en": "Unknown"
+      },
+      "color": "#556B2F",
+      "flag": {
+        "tr": "Henüz belgelenmedi.",
+        "en": "Not yet documented."
+      },
+      "desc": {
+        "tr": "Stallhart ile diplomatik temas kuran devlet. Elçi Ellan, Bölüm I'de başkente gider; bu ziyaret imparatorlukla Örebas arasındaki hassas ilişkinin göstergesidir.",
+        "en": "A state in diplomatic contact with Stallhart. Envoy Ellan travels to the capital in Chapter I, indicating the delicate relationship between the empire and Örebas."
+      },
+      "strengths": {
+        "tr": [
+          "Diplomatik denge politikası"
+        ],
+        "en": [
+          "Diplomatic balancing policy"
+        ]
+      },
+      "weaknesses": {
+        "tr": [
+          "Stallhart ile güç dengesi bilinmiyor"
+        ],
+        "en": [
+          "Power balance with Stallhart unknown"
+        ]
+      },
+      "relations": {
+        "tr": {
+          "stallhart-empire": "Aktif diplomasi (temkinli)"
+        },
+        "en": {
+          "stallhart-empire": "Active diplomacy (cautious)"
+        }
+      },
+      "garrison": [],
+      "exports": [],
+      "history": []
+    },
+    {
+      "id": "burria",
+      "type": "kingdom",
+      "status": "independent",
+      "name": {
+        "tr": "Burria",
+        "en": "Burria"
+      },
+      "capital": {
+        "tr": "Bilinmiyor",
+        "en": "Unknown"
+      },
+      "ruler": {
+        "tr": "Yerel yönetim (eski haraç ödeyicisi)",
+        "en": "Local rule (former tributary)"
+      },
+      "rulerId": null,
+      "founded": null,
+      "government": null,
+      "population": {
+        "official": null,
+        "actual": null
+      },
+      "area": null,
+      "currency": null,
+      "religion": {
+        "tr": "Bilinmiyor",
+        "en": "Unknown"
+      },
+      "color": "#8B6914",
+      "flag": {
+        "tr": "Bilinmiyor.",
+        "en": "Unknown."
+      },
+      "desc": {
+        "tr": "II. Lun Aldris tarafından KS 1373'te fethedilen bölge; Rones döneminde haraca bağlandı; Elron'un pasif yönetiminde KS 1452 civarında kalıcı olarak kaybedildi. Stallhart'ın en büyük toprak kaybının simgesi.",
+        "en": "Region conquered by Lun Aldris II in KS 1373; bound in tribute under Rones; permanently lost around KS 1452 during Elron's passive reign. Symbol of Stallhart's greatest territorial loss."
+      },
+      "strengths": {
+        "tr": [
+          "Tam bağımsızlığını kazandı"
+        ],
+        "en": [
+          "Achieved full independence"
+        ]
+      },
+      "weaknesses": {
+        "tr": [
+          "Stallhart yeniden fetih riski (teorik)"
+        ],
+        "en": [
+          "Stallhart reconquest risk (theoretical)"
+        ]
+      },
+      "relations": {
+        "tr": {
+          "stallhart-empire": "Eski bağımlı — şimdi bağımsız"
+        },
+        "en": {
+          "stallhart-empire": "Former dependency — now independent"
+        }
+      },
+      "garrison": [],
+      "exports": [],
+      "history": []
+    }
+  ],
+  "worldPowers": [
+    {
+      "rank": 1,
+      "name": {
+        "tr": "Zelaina (Elf İmparatorluğu)",
+        "en": ""
+      },
+      "score": 10,
+      "population": 10500000,
+      "military": 150000
+    },
+    {
+      "rank": 2,
+      "name": {
+        "tr": "Stallhart İmparatorluğu",
+        "en": ""
+      },
+      "score": 9.95,
+      "population": 14000000,
+      "military": 140000
+    },
+    {
+      "rank": 3,
+      "name": {
+        "tr": "Rei Krallığı (Otbeind)",
+        "en": ""
+      },
+      "score": 7.77,
+      "population": 8500000,
+      "military": 95000
+    },
+    {
+      "rank": 4,
+      "name": {
+        "tr": "Arathen Krallığı",
+        "en": ""
+      },
+      "score": 7.5,
+      "population": 9000000,
+      "military": 100000
+    },
+    {
+      "rank": 5,
+      "name": {
+        "tr": "Gastenia",
+        "en": ""
+      },
+      "score": 7.22,
+      "population": 9500000,
+      "military": 105000
+    },
+    {
+      "rank": 6,
+      "name": {
+        "tr": "Selanharla",
+        "en": ""
+      },
+      "score": 6.57,
+      "population": 6500000,
+      "military": 82000
+    },
+    {
+      "rank": 7,
+      "name": {
+        "tr": "Esma Yatta",
+        "en": ""
+      },
+      "score": 6.5,
+      "population": 7000000,
+      "military": 80000
+    },
+    {
+      "rank": 8,
+      "name": {
+        "tr": "Grathen",
+        "en": ""
+      },
+      "score": 6.5,
+      "population": 7200000,
+      "military": 78000
+    },
+    {
+      "rank": 9,
+      "name": {
+        "tr": "Oushalux",
+        "en": ""
+      },
+      "score": 6.5,
+      "population": 7000000,
+      "military": 80000
+    },
+    {
+      "rank": 10,
+      "name": {
+        "tr": "Assigrat",
+        "en": ""
+      },
+      "score": 6.44,
+      "population": 6800000,
+      "military": 75000
+    },
+    {
+      "rank": 11,
+      "name": {
+        "tr": "Galantha Ada Devletleri",
+        "en": ""
+      },
+      "score": 6.23,
+      "population": 5500000,
+      "military": 70000
+    },
+    {
+      "rank": 12,
+      "name": {
+        "tr": "Vox Miysa",
+        "en": ""
+      },
+      "score": 6,
+      "population": 8000000,
+      "military": 65000
+    },
+    {
+      "rank": 13,
+      "name": {
+        "tr": "Burria (Bağımsız)",
+        "en": ""
+      },
+      "score": 5.76,
+      "population": 4800000,
+      "military": 55000
+    },
+    {
+      "rank": 14,
+      "name": {
+        "tr": "Xyloristan",
+        "en": ""
+      },
+      "score": 5.5,
+      "population": 4200000,
+      "military": 52000
+    },
+    {
+      "rank": 15,
+      "name": {
+        "tr": "Örebas Krallığı",
+        "en": ""
+      },
+      "score": 5.45,
+      "population": 4000000,
+      "military": 50000
+    },
+    {
+      "rank": 16,
+      "name": {
+        "tr": "Melerya",
+        "en": ""
+      },
+      "score": 5.24,
+      "population": 3800000,
+      "military": 45000
+    },
+    {
+      "rank": 17,
+      "name": {
+        "tr": "Selmakh Prensliği",
+        "en": ""
+      },
+      "score": 5.2,
+      "population": 3500000,
+      "military": 42000
+    },
+    {
+      "rank": 18,
+      "name": {
+        "tr": "Burria Prensliği",
+        "en": ""
+      },
+      "score": 5.13,
+      "population": 3200000,
+      "military": 40000
+    },
+    {
+      "rank": 19,
+      "name": {
+        "tr": "Lehm İna",
+        "en": ""
+      },
+      "score": 5.11,
+      "population": 3000000,
+      "military": 38000
+    },
+    {
+      "rank": 20,
+      "name": {
+        "tr": "Quizei Seha Şehir Devletleri",
+        "en": ""
+      },
+      "score": 5.1,
+      "population": 2800000,
+      "military": 37000
+    },
+    {
+      "rank": 21,
+      "name": {
+        "tr": "Tgronyz",
+        "en": ""
+      },
+      "score": 5.03,
+      "population": 2500000,
+      "military": 35000
+    },
+    {
+      "rank": 22,
+      "name": {
+        "tr": "Shonya",
+        "en": ""
+      },
+      "score": 4.9,
+      "population": 2000000,
+      "military": 30000
+    },
+    {
+      "rank": 23,
+      "name": {
+        "tr": "Kalasess",
+        "en": ""
+      },
+      "score": 4.34,
+      "population": 1500000,
+      "military": 20000
+    }
+  ]
+}

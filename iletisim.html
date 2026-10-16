@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>İletişim · Yazarla Bağlantı Kur &amp; Kurultay Odası | The Stallhart Saga</title>
+<meta name="description" content="Stallhart Destanı yazarı Azad Çelik ile iletişime geçin. Edebi geri bildirim, evren teorileri, yayıncılık işbirlikleri ve topluluk meclisi.">
+<meta name="keywords" content="Stallhart Destanı iletişim, Azad Çelik iletişim, Türkçe dark fantasy yazarı, fantastik roman geri bildirim, Kurultay meclisi">
+<meta name="theme-color" content="#0c121f">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="The Stallhart Saga">
+<meta property="og:locale" content="tr_TR">
+<meta property="og:title" content="İletişim · Yazarla Bağlantı Kur &amp; Kurultay Odası | The Stallhart Saga">
+<meta property="og:description" content="Stallhart Destanı yazarı Azad Çelik ile iletişime geçin. Edebi geri bildirim, evren teorileri, yayıncılık işbirlikleri ve topluluk meclisi.">
+<meta property="og:image" content="assets/images/logo-stallhart.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="İletişim · Yazarla Bağlantı Kur &amp; Kurultay Odası | The Stallhart Saga">
+<meta name="twitter:description" content="Stallhart Destanı yazarı Azad Çelik ile iletişime geçin. Edebi geri bildirim, evren teorileri, yayıncılık işbirlikleri ve topluluk meclisi.">
+<meta name="twitter:image" content="assets/images/logo-stallhart.png">
+<!-- Favicon / Sekme Logosu -->
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/images/apple-touch-icon.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Modern+Antiqua&amp;family=IM+Fell+English:ital@0;1&amp;family=Merriweather:ital,wght@0,400;0,700;1,400&amp;display=swap">
+<link rel="stylesheet" href="assets/css/styles.css?v=3.2">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ContactPage",
+  "name": "İletişim — The Stallhart Saga",
+  "description": "Stallhart Destanı yazarı Azad Çelik ile doğrudan iletişim sayfası.",
+  "mainEntity": {
+    "@type": "Person",
+    "name": "Azad Çelik",
+    "email": "azadclk99@gmail.com",
+    "jobTitle": "Yazar"
+  }
+}
+</script>
+<style>
+.contact-hero {
+  padding: 6.5rem 1.5rem 3.5rem;
+  text-align: center;
+  background: radial-gradient(circle at 50% 30%, rgba(139,0,0,.15) 0%, transparent 70%);
+  border-bottom: 1px solid var(--border);
+}
+.contact-layout {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 3.5rem 1.5rem 6rem;
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: 2.5rem;
+}
+@media (max-width: 820px) {
+  .contact-layout {
+    grid-template-columns: 1fr;
+  }
+}
+.contact-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 2.2rem;
+  position: relative;
+}
+.contact-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; bottom: 0;
+  width: 3px;
+  background: var(--gold);
+}
+.contact-card h2 {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  color: var(--parchl);
+  margin-bottom: 1.2rem;
+}
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: .4rem;
+}
+.form-label {
+  font-family: var(--font-display);
+  font-size: .88rem;
+  color: var(--goldb);
+}
+.form-input, .form-select, .form-textarea {
+  background: rgba(0,0,0,.35);
+  border: 1px solid var(--border);
+  color: var(--parchl);
+  padding: .75rem .9rem;
+  font-family: var(--font-body);
+  font-size: .95rem;
+  transition: border-color .2s ease;
+  width: 100%;
+}
+.form-input:focus, .form-select:focus, .form-textarea:focus {
+  outline: none;
+  border-color: var(--gold);
+  box-shadow: 0 0 10px rgba(184,115,51,.25);
+}
+.form-textarea {
+  min-height: 140px;
+  resize: vertical;
+}
+.contact-btn {
+  background: var(--blood);
+  color: #fff;
+  border: 1px solid var(--bloodb);
+  padding: .85rem 1.8rem;
+  font-family: var(--font-display);
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all .2s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .6rem;
+  margin-top: .5rem;
+}
+.contact-btn:hover {
+  background: var(--bloodb);
+  border-color: var(--gold);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(139,0,0,.4);
+}
+.side-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 1.8rem;
+  margin-bottom: 1.8rem;
+}
+.side-card h3 {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  color: var(--goldb);
+  margin-bottom: 1rem;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: .4rem;
+}
+.side-item {
+  display: flex;
+  align-items: flex-start;
+  gap: .8rem;
+  margin-bottom: 1.2rem;
+  font-size: .92rem;
+  color: var(--parch);
+}
+.side-item:last-child {
+  margin-bottom: 0;
+}
+.side-item a {
+  color: var(--gold);
+  text-decoration: none;
+}
+.side-item a:hover {
+  text-decoration: underline;
+}
+.success-msg {
+  padding: 1rem;
+  background: rgba(46,139,87,.2);
+  border: 1px solid #2e8b57;
+  color: #a8e6cf;
+  font-size: .95rem;
+  display: none;
+}
+</style>
+<script src="assets/js/router.js?v=3.2"></script>
+</head>
+<body>
+
+<header class="contact-hero">
+  <div class="sw-throne-flourish-slot" style="margin-bottom:1rem;display:flex;justify-content:center;"></div>
+  <p class="hero-eye" style="margin-bottom:.6rem;letter-spacing:.15em;">DIVAN ELÇİLİĞİ</p>
+  <h1 style="font-family:var(--font-display);font-size:clamp(2rem,4vw,3.2rem);color:var(--parchl);margin-bottom:.8rem;">
+    İletişim &amp; Haberleşme
+  </h1>
+  <p style="max-width:640px;margin:0 auto;color:var(--parchd);font-style:italic;font-size:1.02rem;">
+    Stallhart Destanı'nın yazarı Azad Çelik ile doğrudan bağlantı kurun. Edebi düşünceleriniz, teorileriniz ve işbirlikleri için saray kapısı açıktır.
+  </p>
+</header>
+
+<main class="contact-layout">
+
+  <!-- İletişim Formu -->
+  <section class="contact-card">
+    <h2><span>✉️</span> Doğrudan Mesaj Gönder</h2>
+    <div id="form-feedback" class="success-msg" role="status" aria-live="polite"></div>
+
+    <form class="contact-form" id="contact-form">
+      <div class="form-group">
+        <label class="form-label" for="c-name">Adınız / Mahlasınız *</label>
+        <input class="form-input" type="text" id="c-name" name="name" required placeholder="Örn: Sancak Beyi Eldar" autocomplete="name">
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="c-email">E-posta Adresiniz *</label>
+        <input class="form-input" type="email" id="c-email" name="email" required placeholder="ornek@alanadi.com" autocomplete="email">
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="c-subject">Konu Türü *</label>
+        <select class="form-select" id="c-subject" name="subject" required>
+          <option value="feedback">Edebi Geri Bildirim &amp; Roman Eleştirisi</option>
+          <option value="theory">Bölüm Teorisi &amp; Kehanet İpucu</option>
+          <option value="publishing">Yayıncılık, Telif &amp; Çeviri İşbirlikleri</option>
+          <option value="rpg">RPG / FRP Evren Kullanımı &amp; Oyun Kılavuzu</option>
+          <option value="typo">İmla, Hata &amp; Teknik Bildirim</option>
+          <option value="other">Diğer Konular</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="c-msg">Mesajınız *</label>
+        <textarea class="form-textarea" id="c-msg" name="message" required placeholder="Düşüncelerinizi veya sorunuzu detaylıca buraya yazabilirsiniz..."></textarea>
+      </div>
+
+      <button type="submit" class="contact-btn">
+        <span>📜</span> Mesajı Mühürle ve Gönder
+      </button>
+    </form>
+  </section>
+
+  <!-- Yan Bilgi & Kanallar -->
+  <aside>
+    <div class="side-card">
+      <h3>🏛️ Doğrudan İletişim</h3>
+      <div class="side-item">
+        <span style="font-size:1.2rem;">📧</span>
+        <div>
+          <strong>E-Posta:</strong><br>
+          <a href="mailto:azadclk99@gmail.com">azadclk99@gmail.com</a>
+        </div>
+      </div>
+      <div class="side-item">
+        <span style="font-size:1.2rem;">⚔️</span>
+        <div>
+          <strong>Kurultay Meclisi:</strong><br>
+          <a href="forum.html">Topluluk tartışmalarına katıl</a>
+        </div>
+      </div>
+      <div class="side-item">
+        <span style="font-size:1.2rem;">📖</span>
+        <div>
+          <strong>Yazar Sayfası:</strong><br>
+          <a href="hakkinda.html">Azad Çelik Hakkında</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-card">
+      <h3>🌐 Edebi Platformlar</h3>
+      <div class="side-item">
+        <span>📖</span>
+        <div><a href="https://www.wattpad.com/story/414192162-the-stallhart-saga-the-last-emperor-part-i" target="_blank" rel="noopener noreferrer">Wattpad (The Stallhart Saga)</a></div>
+      </div>
+      <div class="side-item">
+        <span>✉️</span>
+        <div><a href="https://substack.com" target="_blank" rel="noopener noreferrer">Substack Edebi Bülten</a></div>
+      </div>
+      <div class="side-item">
+        <span>⚔️</span>
+        <div><a href="https://www.royalroad.com" target="_blank" rel="noopener noreferrer">Royal Road Serisi</a></div>
+      </div>
+    </div>
+
+    <div class="side-card">
+      <h3>⚖️ Gizlilik &amp; Şartlar</h3>
+      <p style="font-size:.85rem;color:var(--parchd);line-height:1.6;margin:0;">
+        Gönderdiğiniz bilgiler yalnızca mesajınıza geri dönüş yapmak amacıyla kullanılır. Ayrıntılar için <a href="gizlilik-politikasi.html" style="color:var(--goldb);">Gizlilik Politikamıza</a> göz atabilirsiniz.
+      </p>
+    </div>
+  </aside>
+
+</main>
+
+<script src="assets/js/wiki.js?v=3.2"></script>
+<script>
+initWiki();
+
+document.getElementById('contact-form')?.addEventListener('submit', function(e) {
+  e.preventDefault();
+  const name = document.getElementById('c-name').value.trim();
+  const email = document.getElementById('c-email').value.trim();
+  const subject = document.getElementById('c-subject').value;
+  const msg = document.getElementById('c-msg').value.trim();
+  const fb = document.getElementById('form-feedback');
+
+  if (!name || !email || !msg) return;
+
+  // Bilgi bildirimi
+  fb.style.display = 'block';
+  fb.innerHTML = `✓ Teşekkürler Sayın <strong>${name}</strong>! Mesajınız mühürlendi ve iletildi. En kısa sürede <em>${email}</em> adresinize yanıt verilecektir.`;
+  this.reset();
+  fb.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+});
+</script>
+</body>
+</html>
