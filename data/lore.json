@@ -1824,7 +1824,7 @@
       "id": "galdra",
       "epithet": {
         "tr": "Muhafız",
-        "en": "The Aegis / The Protector"
+        "en": "The Protector"
       },
       "trueName": "Galdra",
       "faction": "neutral",
@@ -1884,7 +1884,7 @@
       "id": "naldor",
       "epithet": {
         "tr": "İsyan",
-        "en": "The Defiant / The Mutineer"
+        "en": "The Defiant"
       },
       "trueName": "Naldor",
       "faction": "kaos",
@@ -2033,8 +2033,8 @@
     {
       "id": "vazmer",
       "epithet": {
-        "tr": "Tufan / Afet",
-        "en": "The Deluge / The Tempest"
+        "tr": "Afet",
+        "en": "The Deluge"
       },
       "trueName": "Vazmer",
       "faction": "kaos",
@@ -2093,8 +2093,8 @@
     {
       "id": "lidros",
       "epithet": {
-        "tr": "Hakim / Hakem",
-        "en": "The Adjudicator / The Arbiter"
+        "tr": "Hakem",
+        "en": "The Adjudicator"
       },
       "trueName": "Lidros",
       "faction": "order",
@@ -2123,8 +2123,8 @@
     {
       "id": "eanhar",
       "epithet": {
-        "tr": "Şifa / Hekim",
-        "en": "The Healer / The Wellspring"
+        "tr": "Şifa",
+        "en": "The Wellspring"
       },
       "trueName": "Eanhar",
       "faction": "order",
@@ -2154,7 +2154,7 @@
       "id": "veleris",
       "epithet": {
         "tr": "Bilge",
-        "en": "The Luminary / The Sage / The Erudite"
+        "en": "The Luminary"
       },
       "trueName": "Veleris",
       "faction": "order",
@@ -2184,7 +2184,7 @@
       "id": "lomera",
       "epithet": {
         "tr": "Sükun",
-        "en": "The Serene / The Serenity"
+        "en": "The Serene"
       },
       "trueName": "Lomera",
       "faction": "order",
@@ -2214,7 +2214,7 @@
       "id": "raxes",
       "epithet": {
         "tr": "Avcı",
-        "en": "The Hunter / The Predatory Hand"
+        "en": "The Hunter"
       },
       "trueName": "Raxes",
       "faction": "order",
@@ -2244,7 +2244,7 @@
       "id": "brikon",
       "epithet": {
         "tr": "Mimar",
-        "en": "The Architect / The Mason"
+        "en": "The Architect"
       },
       "trueName": "Brikon",
       "faction": "order",
