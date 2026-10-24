@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title data-tr="Tanrı Detayı &amp; İnanç Sistemi · Denge Konseyi | The Stallhart Saga" data-en="Deity Details &amp; Worship · Council of the Even | The Stallhart Saga">Tanrı Detayı &amp; İnanç Sistemi · Denge Konseyi | The Stallhart Saga</title>
+<meta name="description" content="Denge Konseyi tanrısının kutsal yetki alanı, sembolü, mitolojisi ve inanan krallıkları. Türkçe dark fantasy tanrılar rehberi ve RPG panteon tasarımı." data-tr="Denge Konseyi tanrısının kutsal yetki alanı, sembolü, mitolojisi ve inanan krallıkları. Türkçe dark fantasy tanrılar rehberi ve RPG panteon tasarımı." data-en="Holy domain, crest, mythology and worshiping realms of a deity of the Council of the Even. Turkish dark fantasy RPG pantheon guide." data-i18n-attr="content">
+<meta name="keywords" content="Denge Konseyi tanrıları, Stallhart mitolojisi, RPG panteon tasarımı, Türkçe dark fantasy tanrılar rehberi, Council of the Even gods, Galdra, Nazeth, Gydor, Lidros">
+<meta name="theme-color" content="#0c121f">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="The Stallhart Saga">
+<meta property="og:locale" content="tr_TR">
+<meta property="og:title" content="Tanrı Detayı &amp; İnanç Sistemi · Denge Konseyi | The Stallhart Saga">
+<meta property="og:description" content="Denge Konseyi tanrısının kutsal yetki alanı, sembolü, mitolojisi ve inanan krallıkları. Türkçe dark fantasy tanrılar rehberi ve RPG panteon tasarımı.">
+<meta property="og:image" content="assets/images/logo-stallhart.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Tanrı Detayı &amp; İnanç Sistemi · Denge Konseyi | The Stallhart Saga">
+<meta name="twitter:description" content="Denge Konseyi tanrısının kutsal yetki alanı, sembolü, mitolojisi ve inanan krallıkları. Türkçe dark fantasy tanrılar rehberi ve RPG panteon tasarımı.">
+<meta name="twitter:image" content="assets/images/logo-stallhart.png">
+
+<!-- Favicon / Sekme Logosu -->
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/images/apple-touch-icon.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Modern+Antiqua&amp;family=IM+Fell+English:ital@0;1&amp;family=Merriweather:ital,wght@0,400;0,700;1,400&amp;display=swap">
+<link rel="stylesheet" href="assets/css/styles.css?v=3.2">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ItemPage",
+  "name": "Tanrı Detayı — Denge Konseyi",
+  "description": "Stallhart Destanı panteonundaki bir tanrının mitolojisi ve yetki alanı."
+}
+</script>
+<style>
+body { background: var(--bg); }
+
+/* Üst Hızlı Tanrı Seçici Şeridi (Deity Switcher) */
+.deity-switcher-bar {
+  background: rgba(10, 14, 23, 0.95);
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1rem;
+  position: sticky;
+  top: 54px;
+  z-index: 40;
+  backdrop-filter: blur(8px);
+}
+html[data-theme="light"] .deity-switcher-bar {
+  background: rgba(244, 236, 216, 0.95);
+}
+.deity-switcher-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: .45rem;
+  overflow-x: auto;
+  padding-bottom: .2rem;
+  scrollbar-width: thin;
+}
+.deity-switcher-inner::-webkit-scrollbar { height: 4px; }
+.deity-switcher-inner::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+
+.deity-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: .4rem;
+  padding: .28rem .65rem;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--parchd);
+  font-family: var(--font-display);
+  font-size: .75rem;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: all .15s ease;
+  flex-shrink: 0;
+}
+.deity-chip:hover {
+  border-color: var(--gold);
+  color: var(--parchl);
+  transform: translateY(-1px);
+}
+.deity-chip.active {
+  border-color: var(--gold);
+  background: rgba(196, 150, 42, 0.16);
+  color: var(--gold);
+  font-weight: 700;
+  box-shadow: 0 0 10px rgba(196, 150, 42, 0.25);
+}
+.deity-chip-avatar {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: .65rem;
+  background: var(--deep);
+  border: 1px solid var(--border);
+  position: relative;
+  overflow: hidden;
+}
+.deity-chip-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  inset: 0;
+}
+
+/* Sayfa Düzeni */
+.wiki-layout {
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 4rem;
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 2.5rem;
+  align-items: start;
+}
+@media (max-width: 860px) {
+  .wiki-layout { grid-template-columns: 1fr; padding: 1.5rem 1rem 3rem; }
+}
+
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  font-size: .78rem;
+  color: var(--parchd);
+  margin-bottom: 1.25rem;
+  font-family: var(--font-display);
+  font-style: italic;
+  flex-wrap: wrap;
+}
+.breadcrumb a { color: var(--goldd); text-decoration: none; transition: color .15s; }
+.breadcrumb a:hover { color: var(--gold); }
+.breadcrumb span { color: var(--border); }
+
+.art-eyebrow {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: .72rem;
+  letter-spacing: .15em;
+  color: var(--goldd);
+  margin-bottom: .4rem;
+  text-transform: uppercase;
+}
+.art-title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 3.5vw, 2.8rem);
+  color: var(--parchl);
+  line-height: 1.15;
+  margin-bottom: .25rem;
+}
+.art-subtitle {
+  font-size: .96rem;
+  color: var(--gold);
+  font-style: italic;
+  margin-bottom: 1rem;
+}
+.art-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .4rem;
+  margin-bottom: 1.5rem;
+}
+.art-tag {
+  font-family: var(--font-display);
+  font-size: .72rem;
+  padding: .25rem .65rem;
+  border: 1px solid var(--border);
+  color: var(--parchd);
+  font-style: italic;
+  text-decoration: none;
+  transition: .15s;
+  border-radius: 3px;
+  background: var(--surface);
+}
+.art-tag:hover { border-color: var(--goldd); color: var(--parchl); }
+.art-tag.status {
+  border-color: var(--g-accent, var(--goldd));
+  color: var(--g-accent, var(--goldd));
+  font-weight: 600;
+  background: rgba(0,0,0,.15);
+}
+
+.toc {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 1rem 1.25rem;
+  margin-bottom: 2rem;
+  border-radius: 4px;
+}
+.toc-title {
+  font-family: var(--font-display);
+  font-size: .8rem;
+  color: var(--gold);
+  margin-bottom: .6rem;
+  font-style: italic;
+  letter-spacing: .06em;
+}
+.toc-list {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: .35rem .8rem;
+  padding: 0;
+  margin: 0;
+}
+.toc-list a {
+  font-family: var(--font-display);
+  font-size: .8rem;
+  color: var(--goldd);
+  text-decoration: none;
+  transition: color .15s;
+}
+.toc-list a:hover { color: var(--gold); text-decoration: underline; }
+
+.art-h2 {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  color: var(--parchl);
+  margin: 2.2rem 0 .9rem;
+  padding-top: .6rem;
+  border-top: 1px solid var(--border);
+  scroll-margin-top: 110px;
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+}
+.art-h2:first-of-type { border-top: none; margin-top: 0; }
+.art-p { font-size: .96rem; line-height: 1.95; color: var(--parch); margin-bottom: 1.25rem; }
+.art-p.muted { color: var(--parchd); font-style: italic; font-size: .88rem; }
+
+/* Tanrı Sembol & İkonografi Kartı */
+.g-emblem-wrap {
+  display: flex;
+  align-items: center;
+  gap: 1.6rem;
+  padding: 1.6rem;
+  margin-bottom: 2rem;
+  background: linear-gradient(145deg, rgba(16, 22, 33, .95), rgba(8, 11, 18, .98));
+  border: 1px solid var(--border);
+  border-left: 5px solid var(--g-accent, var(--gold));
+  border-radius: 6px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 6px 24px rgba(0,0,0,.3);
+}
+html[data-theme="light"] .g-emblem-wrap {
+  background: linear-gradient(145deg, rgba(255, 255, 255, .96), rgba(244, 236, 216, .9));
+}
+.g-emblem {
+  width: 96px;
+  height: 96px;
+  flex-shrink: 0;
+  position: relative;
+  border-radius: 50%;
+  background: rgba(0,0,0,.45);
+  border: 2px solid var(--gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  font-family: var(--font-display);
+  font-size: 2.2rem;
+  color: var(--parchl);
+  box-shadow: 0 0 20px rgba(196, 150, 42, 0.25);
+}
+.g-emblem img { width: 100%; height: 100%; object-fit: cover; position: absolute; inset: 0; z-index: 1; }
+.g-emblem-text { position: relative; font-size: .92rem; line-height: 1.75; color: var(--parch); }
+.g-emblem-text strong {
+  display: block;
+  font-style: normal;
+  font-family: var(--font-display);
+  font-size: .74rem;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: .35rem;
+}
+
+/* Etimoloji Kutusu */
+.etym-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--gold);
+  border-radius: 4px;
+  padding: 1.25rem 1.4rem;
+  margin-bottom: 1.5rem;
+}
+.etym-breakdown {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  color: var(--parchl);
+  margin-bottom: .45rem;
+}
+.etym-gloss {
+  font-size: .88rem;
+  color: var(--goldd);
+  font-style: italic;
+  line-height: 1.6;
+}
+
+/* Karşı Kutup Karşılaştırma Kutusu */
+.pair-balance-box {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 1.4rem;
+  margin-bottom: 1.8rem;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 1.25rem;
+  align-items: center;
+}
+@media (max-width: 640px) {
+  .pair-balance-box { grid-template-columns: 1fr; text-align: center; }
+}
+.pair-col { display: flex; flex-direction: column; gap: .35rem; }
+.pair-col-head { font-family: var(--font-display); font-size: .72rem; letter-spacing: .1em; text-transform: uppercase; color: var(--parchd); }
+.pair-col-god {
+  display: flex;
+  align-items: center;
+  gap: .8rem;
+  text-decoration: none;
+  padding: .65rem .85rem;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  background: var(--deep);
+  transition: all .15s ease;
+}
+.pair-col-god:hover {
+  border-color: var(--gold);
+  background: rgba(196, 150, 42, 0.08);
+}
+.pair-scale-divider {
+  font-size: 1.8rem;
+  color: var(--gold);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Yan Panel (Quick Facts / Gib) */
+.gib {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 1.25rem 1.4rem;
+  margin-bottom: 1.35rem;
+}
+.gib-head {
+  font-family: var(--font-display);
+  font-size: .8rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  font-style: italic;
+  color: var(--g-accent, var(--goldd));
+  margin-bottom: .9rem;
+  padding-bottom: .6rem;
+  border-bottom: 1px solid var(--border);
+}
+.gib-rows { display: flex; flex-direction: column; gap: .7rem; }
+.gib-row { display: flex; flex-direction: column; gap: .15rem; }
+.gib-k { font-family: var(--font-display); font-size: .7rem; letter-spacing: .08em; text-transform: uppercase; color: var(--parchd); }
+.gib-v { font-size: .9rem; color: var(--parchl); line-height: 1.5; }
+.gib-v a { color: var(--goldd); text-decoration: none; }
+.gib-v a:hover { color: var(--gold); text-decoration: underline; }
+.gib-v.undoc { color: var(--parchd); font-style: italic; }
+
+.side-gods-list {
+  display: flex;
+  flex-direction: column;
+  gap: .35rem;
+  max-height: 380px;
+  overflow-y: auto;
+  padding-right: .3rem;
+  scrollbar-width: thin;
+}
+.side-god-item {
+  display: flex;
+  align-items: center;
+  gap: .65rem;
+  padding: .4rem .6rem;
+  border-radius: 4px;
+  text-decoration: none;
+  border: 1px solid transparent;
+  transition: all .15s ease;
+}
+.side-god-item:hover {
+  background: var(--deep);
+  border-color: var(--border);
+}
+.side-god-item.active {
+  background: rgba(196, 150, 42, 0.12);
+  border-color: var(--gold);
+}
+.side-god-avatar {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-size: .75rem;
+  background: var(--deep);
+  border: 1px solid var(--border);
+  position: relative;
+  overflow: hidden;
+}
+.side-god-avatar img { width: 100%; height: 100%; object-fit: cover; position: absolute; inset: 0; }
+.side-god-name { font-size: .82rem; color: var(--parchl); font-family: var(--font-display); }
+.side-god-sub { font-size: .72rem; color: var(--parchd); font-style: italic; }
+
+.not-found { padding: 4rem 1rem; text-align: center; }
+.not-found h2 { font-family: var(--font-display); font-size: 1.8rem; color: var(--parchl); margin-bottom: .75rem; }
+.not-found a { color: var(--gold); text-decoration: none; font-family: var(--font-display); font-style: italic; }
+
+.skel { background: linear-gradient(90deg, var(--surface) 25%, var(--deep) 50%, var(--surface) 75%); background-size: 200% 100%; animation: skelShine 1.4s ease-in-out infinite; }
+@keyframes skelShine { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+.skel-line { height: 14px; border-radius: 2px; margin-bottom: .6rem; }
+</style>
+<script src="assets/js/router.js?v=3.2"></script>
+</head>
+<body>
+
+<!-- Hızlı Tanrı Seçici Üst Barı (Tüm 15 Tanrı Arasında Hızlı Geçiş) -->
+<nav class="deity-switcher-bar" aria-label="Tanrı Seçimi">
+  <div class="deity-switcher-inner" id="deity-switcher">
+    <!-- JS ile 15 tanrının hızlı düğmeleri buraya doldurulur -->
+  </div>
+</nav>
+
+<div class="wiki-layout" id="wiki-root">
+  <main id="content-main">
+    <div class="skel skel-line" style="width:35%"></div>
+    <div class="skel skel-line" style="width:65%;height:32px;margin-bottom:1rem"></div>
+    <div class="skel skel-line" style="width:100%"></div>
+    <div class="skel skel-line" style="width:95%"></div>
+    <div class="skel skel-line" style="width:88%"></div>
+  </main>
+  <aside id="content-side">
+    <div class="skel" style="height:320px;border-radius:6px"></div>
+  </aside>
+</div>
+
+<script src="assets/js/config.js?v=3.2"></script>
+<script src="assets/js/patches.js?v=3.2"></script>
+<script src="assets/js/wiki.js?v=3.2"></script>
+<script src="assets/js/community.js?v=3.2"></script>
+<script>
+'use strict';
+const { Lang, loadData, initWiki, esc } = Wiki;
+
+const godImg = g => { try { return typeof Wiki.godImgHTML === 'function' ? Wiki.godImgHTML(g) : ''; } catch (e) { return ''; } };
+const wireImgs = el => { try { if (el && typeof Wiki.wireGodImgs === 'function') Wiki.wireGodImgs(el); } catch (e) {} };
+
+const PAIRS = [
+  ['veleris', 'lodvez'], ['lidros', 'naldor'], ['gydor', 'nazeth'],
+  ['lomera', 'garator'], ['brikon', 'vazmer'], ['raxes', 'hardir'],
+  ['eanhar', 'zetus']
+];
+
+function pairOf(id) {
+  for (const [a, b] of PAIRS) {
+    if (a === id) return b;
+    if (b === id) return a;
+  }
+  return null;
+}
+
+const FACTION_LABEL = {
+  order:   { tr: 'Ordo (Düzen) Fraksiyonu — "Demir Yumruk"', en: 'Ordo (Order) Faction — "The Iron Fist"' },
+  kaos:    { tr: 'Kaos Fraksiyonu — "Zincirsiz Ateş"', en: 'Chaos Faction — "The Unchained Fire"' },
+  neutral: { tr: 'Tarafsız Bekçi — Crae\'nin Muhafızı', en: 'Neutral Guardian — Protector of Crae' }
+};
+
+const FACTION_COLOR = {
+  order:   '#d89455',
+  kaos:    '#e0575d',
+  neutral: '#C4962A'
+};
+
+let allGods = {};
+let allGodsList = [];
+let factionsData = [];
+let cultsData = [];
+let langDict = [];
+
+function getGodId() {
+  const parsed = SWRoute.id('tanri');
+  if (parsed && allGods[parsed]) return parsed;
+  // Varsayılan: Merkezdeki Denge Tanrısı Galdra (Crae'nin Muhafızı)
+  return 'galdra';
+}
+
+async function init() {
+  try {
+    const [lore, language] = await Promise.all([
+      loadData('lore.json'),
+      loadData('language.json').catch(() => null)
+    ]);
+    allGodsList = lore.gods || [];
+    allGodsList.forEach(g => { allGods[g.id] = g; });
+    factionsData = lore.factions || [];
+    cultsData = lore.cults || [];
+    langDict = (language && language.dictionary) || [];
+
+    renderSwitcher();
+    render();
+  } catch (err) {
+    console.error('Tanrı verisi yüklenemedi:', err);
+    Wiki.renderError('content-main', err);
+    const side = document.getElementById('content-side');
+    if (side) side.innerHTML = '';
+  }
+}
+
+function renderSwitcher() {
+  const container = document.getElementById('deity-switcher');
+  if (!container) return;
+  const curId = getGodId();
+  const l = Lang.get();
+
+  let html = '';
+  allGodsList.forEach(g => {
+    const isActive = g.id === curId;
+    const ep = Lang.t(g.epithet) || g.trueName;
+    html += `
+      <a class="deity-chip ${isActive ? 'active' : ''}" href="${SWRoute.href('tanri', g.id)}" title="${esc(ep)} (${esc(g.trueName)})">
+        <span class="deity-chip-avatar">
+          ${godImg(g)}
+          <span>${esc((g.trueName || '?').trim()[0] || '?')}</span>
+        </span>
+        <span>${esc(ep)} <small style="opacity:.75">(${esc(g.trueName)})</small></span>
+      </a>
+    `;
+  });
+  container.innerHTML = html;
+  wireImgs(container);
+}
+
+function findDictMatch(trueName) {
+  const norm = s => (s || '').toLowerCase().replace(/[^a-zçğıöşü]/gi, '');
+  const target = norm(trueName);
+  if (!target) return null;
+  return langDict.find(e => norm(e.word).indexOf(target) === 0) || null;
+}
+
+function render() {
+  const l = Lang.get();
+  const t = o => Lang.t(o);
+  const id = getGodId();
+  const g = allGods[id];
+  const und = l === 'tr' ? 'Henüz belirtilmemiş' : 'Not yet specified';
+
+  renderSwitcher();
+
+  if (!g) {
+    document.getElementById('content-main').innerHTML = `
+      <div class="not-found">
+        <h2>${l === 'tr' ? 'Tanrı Bulunamadı' : 'God Not Found'}</h2>
+        <p style="color:var(--parchd);font-style:italic">${l === 'tr' ? 'Aradığınız tanrı Denge Konseyi kayıtlarında bulunamadı.' : 'The deity you are searching for is not registered in the Council chronicles.'}</p>
+        <br><a href="${SWRoute.href('tanri', 'galdra')}">← ${l === 'tr' ? 'Muhafız Galdra Sayfasına Git' : 'Go to Guardian Galdra Page'}</a>
+      </div>`;
+    document.getElementById('content-side').innerHTML = '';
+    return;
+  }
+
+  const factionColor = FACTION_COLOR[g.faction] || '#C4962A';
+  const factionLabel = (FACTION_LABEL[g.faction] || {})[l] || g.faction;
+
+  const wrap = document.getElementById('wiki-root');
+  if (wrap) wrap.style.setProperty('--g-accent', factionColor);
+
+  const epithetTr = (g.epithet && g.epithet.tr) ? g.epithet.tr : g.trueName;
+  const epithetEn = (g.epithet && g.epithet.en) ? g.epithet.en : g.trueName;
+  const currentEpithet = l === 'tr' ? epithetTr : epithetEn;
+  const altEpithet = l === 'tr' ? epithetEn : epithetTr;
+
+  const godPageTitle = l === 'tr'
+    ? `${epithetTr} (${g.trueName}) · Denge Konseyi Tanrı Rehberi | The Stallhart Saga`
+    : `${epithetEn} (${g.trueName}) · Council of the Even Deity Guide | The Stallhart Saga`;
+  document.title = godPageTitle;
+  document.documentElement.lang = l;
+
+  try {
+    const roleSnippet = t(g.role || '').slice(0, 140);
+    const desc = l === 'tr'
+      ? `${epithetTr} (${g.trueName}): Denge Konseyi'nin ${factionLabel} tanrısı. ${roleSnippet}... Türkçe dark fantasy mitolojisi ve RPG evren tasarımları.`
+      : `${epithetEn} (${g.trueName}): Deity of the ${factionLabel} in the Council of the Even. ${roleSnippet}... Stallhart dark fantasy universe and pantheon guide.`;
+
+    const descEl = document.querySelector('meta[name="description"]');
+    if (descEl) descEl.content = desc;
+    const ogTitle = document.querySelector('meta[property="og:title"]');
+    if (ogTitle) ogTitle.content = godPageTitle;
+    const twTitle = document.querySelector('meta[name="twitter:title"]');
+    if (twTitle) twTitle.content = godPageTitle;
+    const ogDesc = document.querySelector('meta[property="og:description"]');
+    if (ogDesc) ogDesc.content = desc;
+    const twDesc = document.querySelector('meta[name="twitter:description"]');
+    if (twDesc) twDesc.content = desc;
+  } catch (e) {}
+
+  const symbol = t(g.symbol) || '';
+  const etymologyText = t(g.etymology) || '';
+  const dictMatch = findDictMatch(g.trueName);
+
+  const partnerId = id === 'galdra' ? null : pairOf(id);
+  const partner = partnerId ? allGods[partnerId] : null;
+
+  const currentFaction = factionsData.find(f => f.id === g.faction) || null;
+  const imperialTieText = currentFaction ? t(currentFaction.imperialTie) : '';
+
+  // Ana İçerik Bloğu
+  const mainHTML = `
+    <div>
+      <nav class="breadcrumb">
+        <a href="index.html">${l === 'tr' ? 'Ana Sayfa' : 'Home'}</a><span>›</span>
+        <a href="tanrilar.html">${l === 'tr' ? 'Denge Konseyi' : 'Council of the Even'}</a><span>›</span>
+        <strong style="color:var(--parchl)">${esc(currentEpithet)}</strong>
+      </nav>
+
+      <div class="art-eyebrow">${esc(factionLabel)}</div>
+      <h1 class="art-title">${esc(currentEpithet)}</h1>
+      <p class="art-subtitle">${esc(g.trueName)}${altEpithet ? ` · "${esc(altEpithet)}"` : ''}</p>
+
+      <div class="art-tags">
+        <span class="art-tag status">${esc(factionLabel)}</span>
+        ${symbol ? `<span class="art-tag">${l === 'tr' ? 'Kutsal Sembol' : 'Sacred Symbol'}: ${esc(symbol)}</span>` : ''}
+        ${id === 'galdra'
+          ? `<span class="art-tag" style="border-color:var(--gold);color:var(--gold)">${l === 'tr' ? '⚖️ Tek Tarafsız Taht' : '⚖️ Sole Neutral Anchor'}</span>`
+          : `<span class="art-tag">${l === 'tr' ? 'Kozmik Karşıtlık' : 'Cosmic Opposition'}: ${partner ? esc(t(partner.epithet) || partner.trueName) : ''}</span>`
+        }
+      </div>
+
+      <div class="toc">
+        <div class="toc-title">📜 ${l === 'tr' ? 'İçindekiler & Kutsal Bölümler' : 'Table of Contents'}</div>
+        <ul class="toc-list">
+          <li><a href="#sembol">1. ${l === 'tr' ? 'Sembol & İkonografi' : 'Symbol & Iconography'}</a></li>
+          <li><a href="#gorev">2. ${l === 'tr' ? 'Görevi & Kutsal Alanı' : 'Divine Role & Domain'}</a></li>
+          <li><a href="#psikoloji">3. ${l === 'tr' ? 'Psikoloji & Tapınım Biçimi' : 'Psychology & Worship'}</a></li>
+          <li><a href="#rituel">4. ${l === 'tr' ? 'Kutsal Ritüeller & Yeminler' : 'Sacred Rituals & Oaths'}</a></li>
+          <li><a href="#dil">5. ${l === 'tr' ? 'Dilbilimsel Köken (Ortak Lisan)' : 'Linguistic Etymology'}</a></li>
+          <li><a href="#karsit">6. ${l === 'tr' ? 'Dengeleyici Karşı Kutup' : 'Balancing Counter-Pole'}</a></li>
+          <li><a href="#imparatorluk">7. ${l === 'tr' ? 'İmparatorluk Nizamı & Doktrin' : 'Imperial Order & Doctrine'}</a></li>
+        </ul>
+      </div>
+
+      <!-- 1. Sembol & İkonografi -->
+      <div class="g-emblem-wrap" id="sembol">
+        <div class="g-emblem">
+          ${godImg(g)}
+          <span>${esc((g.trueName || '?').trim()[0] || '?')}</span>
+        </div>
+        <div class="g-emblem-text">
+          <strong>${l === 'tr' ? 'KUTSAL SEMBOL & İKONOGRAFİ' : 'SACRED SYMBOL & ICONOGRAPHY'}</strong>
+          ${symbol ? esc(symbol) : und}
+          <div style="margin-top:.45rem;font-size:.82rem;color:var(--parchd);font-style:italic">
+            ${l === 'tr'
+              ? 'Tapınak mabetlerinde, askeri sancaklarda ve Denge Konseyi kayıtlarında kullanılan kutsal tasvir.'
+              : 'The sacred depiction inscribed within high sanctums, imperial banners, and Council of the Even chronicles.'}
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. Görevi & Kutsal Alanı -->
+      <h2 class="art-h2" id="gorev">📜 ${l === 'tr' ? 'Görevi & Kutsal Alanı' : 'Divine Role & Domain'}</h2>
+      ${SWRich.para(Lang.html(g.role), 'art-p') || '<p class="art-p">' + und + '</p>'}
+
+      <!-- 3. Psikoloji & Tapınım Biçimi -->
+      <h2 class="art-h2" id="psikoloji">🧠 ${l === 'tr' ? 'Psikoloji & Tapınım Biçimi' : 'Psychology & Worship'}</h2>
+      ${SWRich.para(Lang.html(g.psychology), 'art-p') || '<p class="art-p">' + und + '</p>'}
+
+      <!-- 4. Kutsal Ritüeller, Yeminler & Adaklar -->
+      <h2 class="art-h2" id="rituel">🕯️ ${l === 'tr' ? 'Kutsal Ritüeller, Yeminler & Adaklar' : 'Sacred Rituals, Oaths & Libations'}</h2>
+      ${SWRich.para(Lang.html(g.ritual), 'art-p') || '<p class="art-p">' + und + '</p>'}
+
+      <!-- 5. Dilbilimsel Köken -->
+      <h2 class="art-h2" id="dil">🔤 ${l === 'tr' ? 'Dilbilimsel Köken & Konsey Lisanı' : 'Linguistic Etymology & Council Dialect'}</h2>
+      ${etymologyText ? `
+        <div class="etym-card">
+          <div class="etym-breakdown">✨ ${esc(etymologyText)}</div>
+          <div class="etym-gloss">
+            ${l === 'tr'
+              ? 'Kadim Konsey lisanının köklerinden türetilmiş teolojik isim analizi. İsmin her hecesi tanrının evrendeki kozmik dengesini ve varoluş amacını simgeler.'
+              : 'Theological breakdown derived from archaic Council root syllables. Each phoneme reflects the deity\'s cosmic equilibrium and metaphysical function.'}
+          </div>
+        </div>
+      ` : ''}
+
+      ${dictMatch ? `
+        <div class="etym-card" style="border-left-color:var(--border)">
+          <div class="etym-breakdown" style="font-size:1rem;color:var(--goldd)">📚 ${esc(dictMatch.word)}</div>
+          <div class="etym-gloss">
+            <strong>${l === 'tr' ? 'Köken:' : 'Origin:'}</strong> ${esc(dictMatch.origin || '')} · 
+            <strong>${l === 'tr' ? 'Anlam:' : 'Meaning:'}</strong> ${esc(dictMatch.meaning || '')}
+          </div>
+        </div>
+      ` : ''}
+
+      <!-- 6. Dengeleyici Karşı Kutup -->
+      <h2 class="art-h2" id="karsit">⚖️ ${l === 'tr' ? 'Dengeleyici Karşı Kutup & Kozmik Terazi' : 'Balancing Counter-Pole & Cosmic Equilibrium'}</h2>
+      ${id === 'galdra' ? `
+        <div class="pair-balance-box" style="grid-template-columns:1fr;">
+          <div class="pair-col">
+            <span class="pair-col-head" style="color:var(--gold)">⚖️ ${l === 'tr' ? 'TARAFI OLMAYAN TEK MERKEZ' : 'THE UNALIGNED CENTRAL ANCHOR'}</span>
+            <p class="art-p" style="margin-bottom:.5rem">
+              ${l === 'tr'
+                ? 'Galdra, Denge Konseyi\'nin tam merkezinde yer alır ve karşıt kutbu bulunmayan <b>tek tarafsız tanrıdır</b>. Evrenin çatısı olan Crae\'nin bekçisidir; tanrılar arasındaki savaşın dünyayı yok etmesini engelleyen mutlak savunma gücüdür.'
+                : 'Galdra sits at the dead center of the Council and is the <b>sole neutral deity</b> without an opposing counter-pole. As guardian of Crae, the cosmic vault, Galdra constitutes the inviolable defense preventing war among deities from annihilating mortal life.'}
+            </p>
+            <p class="art-p muted" style="margin:0">
+              ${l === 'tr'
+                ? 'İnanca göre Galdra ölümsüz tek bir fert değil, yarı tanrı yarı insan bir makamdır; miyadı dolduğunda konsey tanrıları yeni bir muhafız seçer.'
+                : 'According to doctrine, Galdra is not an immutable individual, but an exalted half-god half-human title; once their mantle concludes, the Council convenes to elect a new successor.'}
+            </p>
+          </div>
+        </div>
+      ` : partner ? `
+        <div class="pair-balance-box">
+          <div class="pair-col">
+            <span class="pair-col-head">${l === 'tr' ? 'Aktif Tanrı' : 'Current Deity'} (${esc(g.faction.toUpperCase())})</span>
+            <div class="pair-col-god" style="border-color:var(--g-accent)">
+              <div class="pair-col-god-avatar" style="width:36px;height:36px;border-radius:50%;overflow:hidden;position:relative;background:var(--deep);border:1px solid var(--border)">
+                ${godImg(g)}
+                <span style="display:flex;align-items:center;justify-content:center;height:100%;font-family:var(--font-display)">${esc(g.trueName[0])}</span>
+              </div>
+              <div>
+                <strong style="color:var(--parchl);font-size:.9rem">${esc(currentEpithet)}</strong>
+                <div style="font-size:.76rem;color:var(--parchd);font-style:italic">${esc(g.trueName)}</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="pair-scale-divider">⚖️</div>
+
+          <div class="pair-col">
+            <span class="pair-col-head">${l === 'tr' ? 'Kozmik Karşı Kutup' : 'Cosmic Counterpart'} (${esc(partner.faction.toUpperCase())})</span>
+            <a class="pair-col-god" href="${SWRoute.href('tanri', partner.id)}">
+              <div class="pair-col-god-avatar" style="width:36px;height:36px;border-radius:50%;overflow:hidden;position:relative;background:var(--deep);border:1px solid var(--border)">
+                ${godImg(partner)}
+                <span style="display:flex;align-items:center;justify-content:center;height:100%;font-family:var(--font-display)">${esc(partner.trueName[0])}</span>
+              </div>
+              <div>
+                <strong style="color:var(--gold);font-size:.9rem">${esc(t(partner.epithet) || partner.trueName)}</strong>
+                <div style="font-size:.76rem;color:var(--parchd);font-style:italic">${esc(partner.trueName)} →</div>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <p class="art-p">
+          ${l === 'tr'
+            ? `Denge Konseyi teolojisinde <b>${esc(epithetTr)}</b> tek başına var olamaz. Karşısında duran <b>${esc(t(partner.epithet) || partner.trueName)}</b> ile aralarındaki kozmik gerilim, evrenin ne mutlak donmuş bir tiranlığa ne de kontrolsüz bir yok oluşa sürüklenmesini sağlar.`
+            : `In Council theology, <b>${esc(epithetEn)}</b> cannot exist in isolation. The eternal tension with <b>${esc(t(partner.epithet) || partner.trueName)}</b> ensures the cosmos neither freezes into tyrannical stagnation nor collapses into rampant annihilation.`}
+        </p>
+      ` : `
+        <p class="art-p muted">${und}</p>
+      `}
+
+      <!-- 7. İmparatorluk Nizamı & Doktrin -->
+      <h2 class="art-h2" id="imparatorluk">🏛️ ${l === 'tr' ? 'İmparatorluk Nizamı & Doktrin' : 'Imperial Order & Doctrine'}</h2>
+      <p class="art-p">
+        ${imperialTieText ? esc(imperialTieText) : (
+          l === 'tr'
+            ? 'Stallhart İmparatorluğu\'nun Kutsal Kan Doktrini, Denge Konseyi\'nin ruhani otoritesini tahtın meşruiyetiyle birleştirir. Kanunlar, mahkemeler ve askeri yeminler bu teolojik denge üzerine inşa edilmiştir.'
+            : 'Stallhart\'s Holy Blood Doctrine links the divine authority of the Council of the Even to sovereign imperial rule. Imperial tribunals, civil statutes, and military oaths are deeply grounded in this celestial balance.'
+        )}
+      </p>
+    </div>
+  `;
+
+  // Yan Panel Bilgileri (Quick Facts)
+  const sideHTML = `
+    <div class="gib">
+      <div class="gib-head">${l === 'tr' ? 'Hızlı Bilgi' : 'Quick Facts'}</div>
+      <div class="gib-rows">
+        <div class="gib-row">
+          <span class="gib-k">${l === 'tr' ? 'Gerçek İsim' : 'True Name'}</span>
+          <span class="gib-v"><strong>${esc(g.trueName)}</strong></span>
+        </div>
+        <div class="gib-row">
+          <span class="gib-k">${l === 'tr' ? 'Kutsal Epitet (TR)' : 'Sacred Epithet (TR)'}</span>
+          <span class="gib-v">${esc(epithetTr)}</span>
+        </div>
+        <div class="gib-row">
+          <span class="gib-k">${l === 'tr' ? 'Kutsal Epitet (EN)' : 'Divine Epithet (EN)'}</span>
+          <span class="gib-v">${esc(epithetEn)}</span>
+        </div>
+        <div class="gib-row">
+          <span class="gib-k">${l === 'tr' ? 'Fraksiyon' : 'Faction'}</span>
+          <span class="gib-v" style="color:var(--g-accent);font-weight:700">${esc(factionLabel)}</span>
+        </div>
+        <div class="gib-row">
+          <span class="gib-k">${l === 'tr' ? 'Kutsal Sembol' : 'Holy Symbol'}</span>
+          <span class="gib-v">${symbol ? esc(symbol) : und}</span>
+        </div>
+        <div class="gib-row">
+          <span class="gib-k">${l === 'tr' ? 'Karşı Kutup' : 'Counterpart'}</span>
+          <span class="gib-v">
+            ${id === 'galdra'
+              ? (l === 'tr' ? 'Tarafsız (Karşıtı Yok)' : 'Neutral (No Counterpart)')
+              : partner ? `<a href="${SWRoute.href('tanri', partner.id)}">${esc(t(partner.epithet) || partner.trueName)} (${esc(partner.trueName)})</a>` : und}
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <div class="gib">
+      <div class="gib-head">${l === 'tr' ? 'Denge Konseyi Panteonu' : 'Council Pantheon'}</div>
+      <div class="side-gods-list">
+        ${allGodsList.map(item => {
+          const isCurrent = item.id === g.id;
+          const itEp = Lang.t(item.epithet) || item.trueName;
+          return `
+            <a class="side-god-item ${isCurrent ? 'active' : ''}" href="${SWRoute.href('tanri', item.id)}">
+              <span class="side-god-avatar">
+                ${godImg(item)}
+                <span>${esc((item.trueName || '?')[0])}</span>
+              </span>
+              <div>
+                <div class="side-god-name">${esc(itEp)}</div>
+                <div class="side-god-sub">${esc(item.trueName)} · ${esc(item.faction)}</div>
+              </div>
+            </a>
+          `;
+        }).join('')}
+      </div>
+    </div>
+
+    <div class="gib">
+      <div class="gib-head">${l === 'tr' ? 'Panteon Görünümü' : 'Council Overview'}</div>
+      <a href="tanrilar.html" class="art-tag" style="display:inline-block;width:100%;text-align:center;box-sizing:border-box">
+        ${l === 'tr' ? '← Denge Konseyi Sayfasına Dön' : '← Back to the Council Pantheon'}
+      </a>
+    </div>
+  `;
+
+  document.getElementById('content-main').innerHTML = mainHTML;
+  document.getElementById('content-side').innerHTML = sideHTML;
+
+  Wiki.Tooltip.scan(document.getElementById('content-main'));
+  wireImgs(document.getElementById('content-main'));
+  wireImgs(document.getElementById('content-side'));
+}
+
+SWRoute.canonicalize();
+SWRoute.watch();
+initWiki({ onLangChange: render });
+init();
+</script>
+</body>
+</html>

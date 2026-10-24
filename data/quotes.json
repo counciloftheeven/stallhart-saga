@@ -1,0 +1,320 @@
+{
+  "themes": [
+    {
+      "id": "all",
+      "tr": "Tümü",
+      "en": "All"
+    },
+    {
+      "id": "kader",
+      "tr": "Kader",
+      "en": "Fate"
+    },
+    {
+      "id": "inanc",
+      "tr": "İnanç",
+      "en": "Faith"
+    },
+    {
+      "id": "iktidar",
+      "tr": "İktidar",
+      "en": "Power"
+    },
+    {
+      "id": "guven",
+      "tr": "Güven",
+      "en": "Trust"
+    },
+    {
+      "id": "tarih",
+      "tr": "Tarih",
+      "en": "History"
+    },
+    {
+      "id": "savas",
+      "tr": "Savaş",
+      "en": "War"
+    },
+    {
+      "id": "adalet",
+      "tr": "Adalet",
+      "en": "Justice"
+    }
+  ],
+  "quotes": [
+    {
+      "text": {
+        "tr": "Güneşe savaş açıyorsan, karanlıkta üşümeye razı geleceksin.",
+        "en": "If you declare war on the sun, you will resign yourself to freezing in the dark."
+      },
+      "speaker": {
+        "tr": "Evren · Anonim",
+        "en": "Universe · Anonymous"
+      },
+      "theme": "kader",
+      "tags": []
+    },
+    {
+      "text": {
+        "tr": "İlahi bir gerçeklik oylamayla seçilmez, fetihle dayatılır. Yeterince kan döküldüğünde, en hastalıklı zihnin hezeyanları bile evrensel bir dine dönüşür.",
+        "en": "Divine truth is not chosen by vote — it is imposed by conquest. When enough blood is spilled, even the ravings of the most diseased mind become a universal religion."
+      },
+      "speaker": {
+        "tr": "Evren · Anonim",
+        "en": "Universe · Anonymous"
+      },
+      "theme": "inanc",
+      "tags": []
+    },
+    {
+      "text": {
+        "tr": "Eğer tanrın adına yeterince boyun vurursan, sana 'elçi' diyerek önünde eğilirler. Kılıcın körse, sen sadece kendi zihninin zindanında çürüyen tehlikeli bir hastasındır.",
+        "en": "If you cut off enough heads in the name of your god, they call you a prophet and bow before you. If your blade is dull, you are merely a dangerous patient rotting in the prison of your own mind."
+      },
+      "speaker": {
+        "tr": "Evren · Anonim",
+        "en": "Universe · Anonymous"
+      },
+      "theme": "inanc",
+      "tags": []
+    },
+    {
+      "text": {
+        "tr": "Zindanlarda zincirlenmiş bir adamın gaipten duyduğu seslere 'delilik' derler. Aynı sesleri altın bir tahtta oturan duyduğunda ise onun adı 'ilahi vahiy' olur.",
+        "en": "When a man chained in a dungeon hears voices from beyond, they call it madness. When the same voices reach someone seated on a golden throne, they call it divine revelation."
+      },
+      "speaker": {
+        "tr": "Evren · Anonim",
+        "en": "Universe · Anonymous"
+      },
+      "theme": "iktidar",
+      "tags": []
+    },
+    {
+      "text": {
+        "tr": "Bir deliyi peygamber yapan şey göklerden duyduğu fısıltılar değil, yeryüzünde o fısıltılar için kan dökecek ordusunun büyüklüğüdür.",
+        "en": "What makes a madman a prophet is not the whispers he hears from the heavens — it is the size of the army willing to spill blood for those whispers on earth."
+      },
+      "speaker": {
+        "tr": "Evren · Anonim",
+        "en": "Universe · Anonymous"
+      },
+      "theme": "inanc",
+      "tags": []
+    },
+    {
+      "text": {
+        "tr": "Kaderini yazan kalemleri kırmaya niyetliysen, o kalemlerden senin için güzel bir son yazmalarını bekleyemezsin. Kendi destanımı kendi kanımla yazacağım.",
+        "en": "If you intend to break the quills that write your fate, you cannot expect a beautiful ending to be written for you. I will write my own epic with my own blood."
+      },
+      "speaker": {
+        "tr": "Evren · Anonim",
+        "en": "Universe · Anonymous"
+      },
+      "theme": "kader",
+      "tags": []
+    },
+    {
+      "text": {
+        "tr": "Bu dünyada tereddütsüz sırtımı yaslayabileceğim tek şey, kendi kılıcımın kabzasıdır. Geri kalan herkes, henüz ihanet vaktini bekleyen müttefik kılıklı yabancılardır.",
+        "en": "The only thing in this world I can lean against without hesitation is the hilt of my own sword. Everyone else is a stranger in ally's clothing, merely waiting for their moment to betray."
+      },
+      "speaker": {
+        "tr": "Evren · Anonim",
+        "en": "Universe · Anonymous"
+      },
+      "theme": "guven",
+      "tags": []
+    },
+    {
+      "text": {
+        "tr": "Beni sırtımdan vuracak birini bulamazsınız; çünkü ben, hiç kimseye sırtımı dönecek kadar şefkatli bir aptal olmadım.",
+        "en": "You will find no one to strike me from behind — for I was never foolish enough, or tender enough, to turn my back on anyone."
+      },
+      "speaker": {
+        "tr": "Evren · Anonim",
+        "en": "Universe · Anonymous"
+      },
+      "theme": "guven",
+      "tags": []
+    },
+    {
+      "text": {
+        "tr": "Tarih, masumların kanıyla yazılır ama daima galiplerin mürekkebiyle imzalanır.",
+        "en": "History is written in the blood of the innocent, but it is always signed in the ink of the victorious."
+      },
+      "speaker": {
+        "tr": "Evren · Anonim",
+        "en": "Universe · Anonymous"
+      },
+      "theme": "tarih",
+      "tags": []
+    },
+    {
+      "text": {
+        "tr": "Ben haklı olduğum için yenilmez değilim. Yenilmez olduğum için, bana 'haksızsın' diyemiyorlar.",
+        "en": "I am not invincible because I am right. They cannot call me wrong because I am invincible."
+      },
+      "speaker": {
+        "tr": "Evren · Anonim",
+        "en": "Universe · Anonymous"
+      },
+      "theme": "iktidar",
+      "tags": []
+    },
+    {
+      "text": {
+        "tr": "Suçlu ile kahraman arasındaki tek fark, celladı kimin kiraladığıdır.",
+        "en": "The only difference between the guilty and the hero is who hired the executioner."
+      },
+      "speaker": {
+        "tr": "Evren · Anonim",
+        "en": "Universe · Anonymous"
+      },
+      "theme": "tarih",
+      "tags": []
+    },
+    {
+      "text": {
+        "tr": "İmparatorluklar taştan değil, itaatten inşa edilir. Ve itaat, her zaman bir günün gelip çatacağını bilir.",
+        "en": "Empires are not built from stone — they are built from obedience. And obedience always knows a day of reckoning will come."
+      },
+      "speaker": {
+        "tr": "Evren · Anonim",
+        "en": "Universe · Anonymous"
+      },
+      "theme": "iktidar",
+      "tags": []
+    },
+    {
+      "text": {
+        "tr": "Taht, oturulacak yer değil; taşınacak yüktür.",
+        "en": "The throne is not a place to sit — it is a burden to carry."
+      },
+      "speaker": {
+        "tr": "Zeandor Stallhart",
+        "en": "Zeandor Stallhart"
+      },
+      "speakerId": "zeandor",
+      "theme": "iktidar",
+      "tags": []
+    },
+    {
+      "text": {
+        "tr": "Bir imparatorluğu taştan inşa ederler. Ben onu korkudan inşa ettim.",
+        "en": "They build empires from stone. I built mine from fear."
+      },
+      "speaker": {
+        "tr": "Amadon Stallhart",
+        "en": "Amadon Stallhart"
+      },
+      "speakerId": "amadon",
+      "theme": "iktidar",
+      "tags": []
+    },
+    {
+      "text": {
+        "tr": "Adalet, güçlünün verdiği bir hediye değildir. Zayıfın aldığı bir haktır.",
+        "en": "Justice is not a gift given by the powerful. It is a right taken by the weak."
+      },
+      "speaker": {
+        "tr": "Erthan",
+        "en": "Erthan"
+      },
+      "speakerId": "erthan",
+      "theme": "adalet",
+      "tags": []
+    },
+    {
+      "text": {
+        "tr": "Tanrılar bizi terk etmedi. Biz onları terk ettik — yasalar yoluyla.",
+        "en": "The gods did not abandon us. We abandoned them — through laws."
+      },
+      "speaker": {
+        "tr": "Edlas Arhan",
+        "en": "Edlas Arhan"
+      },
+      "speakerId": "edlas",
+      "theme": "inanc",
+      "tags": []
+    },
+    {
+      "text": {
+        "tr": "Sürgün ceza değildir. Sürgün, savaşçıya silahlarını seçmeyi öğretir.",
+        "en": "Exile is not punishment. Exile teaches the warrior to choose their weapons."
+      },
+      "speaker": {
+        "tr": "Celios Selya",
+        "en": "Celios Selya"
+      },
+      "speakerId": "celios",
+      "theme": "kader",
+      "tags": []
+    },
+    {
+      "text": {
+        "tr": "Bilgi kılıcın keskinliğidir. Ama sevgi kılıcı köreltir.",
+        "en": "Knowledge is the blade's edge. But love blunts it."
+      },
+      "speaker": {
+        "tr": "Fihor Arhan",
+        "en": "Fihor Arhan"
+      },
+      "speakerId": "fihor",
+      "theme": "guven",
+      "tags": []
+    },
+    {
+      "text": {
+        "tr": "İktidar, elde tutanın değil onu şekillendirenin elindedir.",
+        "en": "Power belongs not to the one who holds it, but to the one who shapes it."
+      },
+      "speaker": {
+        "tr": "Edun Solgar",
+        "en": "Edun Solgar"
+      },
+      "speakerId": "edun-solgar",
+      "theme": "iktidar",
+      "tags": []
+    },
+    {
+      "text": {
+        "tr": "İmparatorluklar kılıçla değil, zamanla yıkılır. Ben sadece zamanın yanında duruyorum.",
+        "en": "Empires are not destroyed by swords but by time. I simply stand beside time."
+      },
+      "speaker": {
+        "tr": "Leno Kridas",
+        "en": "Leno Kridas"
+      },
+      "speakerId": "leno-kridas",
+      "theme": "tarih",
+      "tags": []
+    },
+    {
+      "text": {
+        "tr": "Birleşik halk yenilmezdir. Toprak ise onun ödülüdür.",
+        "en": "A united people is invincible. Land is merely their reward."
+      },
+      "speaker": {
+        "tr": "I. Craes Stallhart",
+        "en": "Craes Stallhart I"
+      },
+      "speakerId": "craes",
+      "theme": "savas",
+      "tags": []
+    },
+    {
+      "text": {
+        "tr": "Disiplin imparatorluğun sütunudur. Gevşetme.",
+        "en": "Discipline is the empire's pillar. Do not loosen it."
+      },
+      "speaker": {
+        "tr": "Rones Stallhart",
+        "en": "Rones Stallhart"
+      },
+      "speakerId": "rones",
+      "theme": "iktidar",
+      "tags": []
+    }
+  ]
+}
