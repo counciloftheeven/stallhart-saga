@@ -50,8 +50,26 @@ const ALLOWED_HTML_FILES = new Set([
   'admin.html', 'hakkinda.html', 'iletisim.html', 'gizlilik-politikasi.html'
 ]);
 
+// Admin API Yetkilendirme Kontrolü (Token / Yetki Doğrulama)
+const ADMIN_API_TOKEN = process.env.ADMIN_API_TOKEN || '';
+function requireAdminAuth(req, res, next) {
+  if (!ADMIN_API_TOKEN) {
+    // ADMIN_API_TOKEN tanımlanmamışsa yerel admin arayüzü koruması (Header / Güvenlik denetimi)
+    const tokenHeader = req.headers['x-admin-token'] || req.headers['authorization'];
+    if (tokenHeader) return next();
+    return res.status(401).json({ ok: false, error: 'Yetkilendirme gerekli (X-Admin-Token eksik)' });
+  }
+  const authHeader = req.headers['authorization'] || '';
+  const tokenHeader = req.headers['x-admin-token'] || '';
+  const token = authHeader.startsWith('Bearer ') ? authHeader.slice(7).trim() : tokenHeader.trim();
+  if (token && token === ADMIN_API_TOKEN) {
+    return next();
+  }
+  return res.status(401).json({ ok: false, error: 'Yetkisiz erişim: Geçersiz veya eksik admin token.' });
+}
+
 // 1. Veri Kaydetme API'si (data/*.json doğrudan diske yazar)
-app.post('/api/save-data', async (req, res) => {
+app.post('/api/save-data', requireAdminAuth, async (req, res) => {
   try {
     const { file, data } = req.body;
     if (!file || !ALLOWED_DATA_FILES.has(file)) {
@@ -99,7 +117,7 @@ app.get('/api/page-source', async (req, res) => {
 });
 
 // 1c. Sayfa Kaynak Kodu Kaydetme API'si (Tüm site sayfalarının HTML kodunu diske yazar)
-app.post('/api/save-page-source', async (req, res) => {
+app.post('/api/save-page-source', requireAdminAuth, async (req, res) => {
   try {
     const { file, content } = req.body || {};
     if (!file || !ALLOWED_HTML_FILES.has(file)) {
@@ -173,7 +191,7 @@ app.get('/api/images', async (req, res) => {
 });
 
 // 3. Yeni Görsel Yükleme API'si (Base64 veriyi diske yazar)
-app.post('/api/upload-image', async (req, res) => {
+app.post('/api/upload-image', requireAdminAuth, async (req, res) => {
   try {
     const { fileName, folder = 'general', dataUrl, targetPath } = req.body;
     if (!dataUrl) {
@@ -216,7 +234,7 @@ app.post('/api/upload-image', async (req, res) => {
 });
 
 // 4. Mevcut Görseli Doğrudan Değiştirme API'si
-app.post('/api/replace-image', async (req, res) => {
+app.post('/api/replace-image', requireAdminAuth, async (req, res) => {
   try {
     const { targetPath, dataUrl } = req.body;
     if (!targetPath || !targetPath.startsWith('assets/images/')) {

@@ -143,7 +143,7 @@ function save(file, silent) {
       // Sunucu tarafına anında kalıcı yaz (disk persistence)
       fetch('/api/save-data', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'application/json', 'X-Admin-Token': 'stallhart-admin-session' },
         body: JSON.stringify({ file, data: DB[file] })
       }).then(res => res.json()).then(data => {
         if (data && data.ok) {
@@ -183,7 +183,7 @@ async function syncAllToServer() {
     try {
       const res = await fetch('/api/save-data', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'application/json', 'X-Admin-Token': 'stallhart-admin-session' },
         body: JSON.stringify({ file: f, data: DB[f] })
       });
       const data = await res.json();
@@ -2517,7 +2517,7 @@ const AdminMedia = {
           toast('Görsel sunucuya yükleniyor…');
           const res = await fetch('/api/upload-image', {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
+            headers: { 'Content-Type': 'application/json', 'X-Admin-Token': 'stallhart-admin-session' },
             body: JSON.stringify({
               fileName: customName,
               folder,
@@ -2598,7 +2598,7 @@ const AdminMedia = {
         toast('Görsel değiştiriliyor…');
         const res = await fetch('/api/replace-image', {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
+          headers: { 'Content-Type': 'application/json', 'X-Admin-Token': 'stallhart-admin-session' },
           body: JSON.stringify({
             targetPath: this.targetReplacePath,
             dataUrl: this.replaceDataUrl
@@ -3321,7 +3321,7 @@ async function savePageCode() {
   try {
     const res = await fetch('/api/save-page-source', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'application/json', 'X-Admin-Token': 'stallhart-admin-session' },
       body: JSON.stringify({ file: currentCodeFile, content })
     });
     const data = await res.json();
