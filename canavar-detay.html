@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+<title>Canavar Maddesi · Bestiary | The Stallhart Saga</title>
+<meta name="description" content="Stallhart evreni yaratık maddesi: köken, anlam ve yaşam alanı.">
+<meta name="theme-color" content="#0c121f">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="The Stallhart Saga">
+<meta property="og:locale" content="tr_TR">
+<meta property="og:title" content="Canavar Maddesi · Bestiary | The Stallhart Saga">
+<meta property="og:description" content="Stallhart evreni yaratık maddesi: köken, anlam ve yaşam alanı.">
+<meta property="og:image" content="assets/images/logo-stallhart.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/images/apple-touch-icon.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Modern+Antiqua&amp;family=IM+Fell+English:ital@0;1&amp;family=Merriweather:ital,wght@0,400;0,700;1,400&amp;display=swap">
+<link rel="stylesheet" href="assets/css/styles.css?v=3.2">
+<link rel="stylesheet" href="assets/css/page-editor.css?v=1.0">
+<script src="assets/js/router.js?v=3.2"></script>
+<script src="assets/js/icons.js?v=1.0" defer></script>
+<style>
+.wiki-layout{max-width:1100px;margin:0 auto;padding:6rem 2rem 4rem;display:grid;grid-template-columns:1fr 300px;gap:2.5rem;align-items:start}
+@media(max-width:800px){.wiki-layout{grid-template-columns:1fr;padding:5rem 1.25rem 3rem}}
+@media(max-width:480px){.wiki-layout{padding:4.5rem .85rem 2.5rem}}
+.breadcrumb{display:flex;align-items:center;flex-wrap:wrap;gap:.1rem .5rem;font-size:.8rem;color:var(--parchd);margin-bottom:1.1rem}
+.breadcrumb a{color:var(--gold-ink);text-decoration:none}
+.breadcrumb a:hover{text-decoration:underline}
+.art-eyebrow{font-family:var(--font-display);font-style:italic;font-size:.72rem;letter-spacing:.12em;color:var(--gold-ink);margin-bottom:.35rem}
+.art-title{font-family:var(--font-display);font-size:2.1rem;color:var(--parchl);line-height:1.15}
+.art-subtitle{color:var(--parchd);font-style:italic;margin:.35rem 0 1.4rem}
+.art-sec{margin:1.8rem 0}
+.art-sec-head{display:flex;align-items:center;gap:.5rem;font-family:var(--font-display);font-size:1.15rem;color:var(--parchl);padding-bottom:.4rem;border-bottom:1px solid var(--gold-line);margin-bottom:.8rem}
+.art-sec p{margin:0 0 .9rem}
+.art-ex{border-left:3px solid var(--gold-line);padding:.4rem 0 .4rem 1rem;font-style:italic;color:var(--parch)}
+.stub-note{border:1px dashed var(--border);padding:.8rem 1rem;color:var(--parchd);font-size:.88rem;margin:1.4rem 0}
+.infobox{background:var(--surface);border:1px solid var(--border);overflow:hidden;position:sticky;top:70px}
+.ib-head{background:linear-gradient(135deg,rgba(196,150,42,.12),rgba(196,150,42,.04));padding:.9rem 1.1rem;border-bottom:1px solid var(--border)}
+.ib-cat{font-family:var(--font-display);font-style:italic;font-size:.68rem;letter-spacing:.1em;color:var(--gold-ink);margin-bottom:.2rem}
+.ib-name{font-family:var(--font-display);font-size:1.1rem;color:var(--parchl);line-height:1.2}
+.ib-role{font-size:.75rem;color:var(--parchd);font-style:italic}
+.char-image-wrap{width:100%;aspect-ratio:4/3;background:linear-gradient(135deg,var(--surface),var(--deep));display:flex;align-items:center;justify-content:center;border-bottom:1px solid var(--border);overflow:hidden;color:var(--gold-line);font-size:3.6rem}
+.char-image-wrap img{width:100%;height:100%;object-fit:cover}
+.ib-rows{padding:.6rem 1.1rem 1rem}
+.ib-row{display:flex;justify-content:space-between;gap:.75rem;padding:.5rem 0;border-bottom:1px solid color-mix(in srgb,var(--border) 70%,transparent);font-size:.82rem}
+.ib-row:last-child{border-bottom:none}
+.ib-key{color:var(--parchd);flex-shrink:0}
+.ib-val{color:var(--parchl);text-align:right}
+.not-found{padding:3rem 0;text-align:center}
+</style>
+</head>
+<body>
+<div class="wiki-layout" id="wiki-root">
+  <div id="content-main"><div class="skel skel-line" style="width:40%"></div><div class="skel skel-line" style="width:70%;height:32px;margin-bottom:1rem"></div><div class="skel skel-line" style="width:100%"></div></div>
+  <aside id="content-side"><div class="skel" style="height:280px"></div></aside>
+</div>
+
+<script src="assets/js/config.js?v=3.2"></script>
+<script src="assets/js/patches.js?v=3.2"></script>
+<script src="assets/js/wiki.js?v=3.2"></script>
+<script src="assets/js/community.js?v=3.2"></script>
+<script>
+'use strict';
+const { Lang, loadData, initWiki, esc } = Wiki;
+let DATA = { categories: {}, creatures: [] };
+
+function render() {
+  const l = Lang.get(), t = o => Lang.t(o) || '';
+  const main = document.getElementById('content-main'), side = document.getElementById('content-side');
+  const id = SWRoute.id('canavar');
+  const c = DATA.creatures.find(x => x.id === id);
+  document.documentElement.lang = l;
+
+  if (!c) {
+    main.innerHTML = `<div class="not-found"><h2>${l === 'tr' ? 'Yaratık Bulunamadı' : 'Creature Not Found'}</h2><br><a href="lore.html#/evren/canavar">← ${l === 'tr' ? 'Tüm Canavarlar' : 'All Creatures'}</a></div>`;
+    side.innerHTML = '';
+    document.title = '404 · Stallhart Wiki';
+    return;
+  }
+
+  const catLabel = t(DATA.categories[c.category] || DATA.categories.other);
+  document.title = `${t(c.name)} — ${l === 'tr' ? 'Canavarlar & Yaratıklar' : 'Monsters & Creatures'} | The Stallhart Saga`;
+  const md = document.querySelector('meta[name="description"]');
+  if (md) md.content = `${t(c.name)}: ${t(c.meaning)}${c.habitat ? ' · ' + t(c.habitat) : ''}`;
+
+  const img = c.image && Wiki.safeImg ? Wiki.safeImg(c.image) : '';
+  const rich = v => (Wiki.renderRichText ? Wiki.renderRichText(v) : String(v).split(/\n\s*\n/).map(p => `<p>${esc(p)}</p>`).join(''));
+
+  const rows = [
+    { k: l === 'tr' ? 'Tür' : 'Kind', v: esc(catLabel) },
+    { k: l === 'tr' ? 'Anlam' : 'Meaning', v: esc(t(c.meaning)) },
+    c.habitat ? { k: l === 'tr' ? 'Yaşam alanı' : 'Habitat', v: esc(t(c.habitat)) } : null
+  ].filter(Boolean);
+
+  main.innerHTML = `
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="index.html">${l === 'tr' ? 'Ana Sayfa' : 'Home'}</a><span>›</span>
+      <a href="lore.html#/evren/canavar">${l === 'tr' ? 'Evren · Canavarlar' : 'Lore · Creatures'}</a><span>›</span>
+      <strong style="color:var(--parchl)">${esc(t(c.name))}</strong>
+    </nav>
+    <div class="art-eyebrow">${l === 'tr' ? 'Yaratık Maddesi' : 'Creature Entry'}</div>
+    <h1 class="art-title">${esc(t(c.name))}</h1>
+    <p class="art-subtitle">${esc(t(c.meaning))}</p>
+
+    ${c.description && t(c.description) ? `<section class="art-sec" id="tanim"><h2 class="art-sec-head">📜 <span>${l === 'tr' ? 'Tanım' : 'Description'}</span></h2>${rich(t(c.description))}</section>` : ''}
+
+    ${c.origin ? `<section class="art-sec" id="etimoloji"><h2 class="art-sec-head">🔤 <span>${l === 'tr' ? 'Köken' : 'Etymology'}</span></h2><p>${esc(t(c.origin))}</p>
+      ${c.example ? `<p class="art-ex">${esc(t(c.example))}</p>` : ''}</section>` : ''}
+
+    ${c.habitat ? `<section class="art-sec" id="yasam"><h2 class="art-sec-head">🏞️ <span>${l === 'tr' ? 'Yaşam Alanı' : 'Habitat'}</span></h2><p>${esc(t(c.habitat))}</p></section>` : ''}
+
+    ${c.stub ? `<div class="stub-note">${l === 'tr'
+      ? 'Bu madde taslaktır: şimdilik yalnızca Evren Dili sözlüğündeki kayıttan derlenmiştir. Görünüşü, davranışı ve hikâyedeki rolü eklendikçe genişleyecek.'
+      : 'This entry is a stub: for now it is compiled only from the language dictionary. Appearance, behaviour and story role will be added over time.'}</div>` : ''}
+    <p style="margin-top:1.5rem"><a href="lore.html#/evren/canavar" style="color:var(--gold-ink)">← ${l === 'tr' ? 'Tüm Canavarlar' : 'All Creatures'}</a></p>`;
+
+  side.innerHTML = `
+    <div class="infobox">
+      <div class="ib-head"><div class="ib-cat">${esc(catLabel)}</div><div class="ib-name">${esc(t(c.name))}</div><div class="ib-role">${esc(t(c.meaning))}</div></div>
+      <div class="char-image-wrap">${img ? `<img src="${esc(img)}" alt="${esc(t(c.name))}">` : '🐾'}</div>
+      <div class="ib-rows">${rows.map(r => `<div class="ib-row"><span class="ib-key">${r.k}</span><span class="ib-val">${r.v}</span></div>`).join('')}</div>
+    </div>`;
+
+}
+
+async function init() {
+  try {
+    DATA = await loadData('creatures.json');
+    DATA.creatures = DATA.creatures || []; DATA.categories = DATA.categories || {};
+    render();
+  } catch (err) {
+    console.error('Canavar verisi yüklenemedi:', err);
+    Wiki.renderError('content-main', err);
+  }
+}
+
+SWRoute.canonicalize();
+SWRoute.watch();
+initWiki({ onLangChange: render });
+init();
+</script>
+<script src="assets/js/page-editor.js?v=1.0" defer></script>
+</body>
+</html>

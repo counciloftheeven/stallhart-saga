@@ -1,0 +1,67 @@
+# Onaylı topluluk önerilerini (Supabase content_patches) data/*.json dosyalarına KALICI olarak işler.
+#
+# Bu iş İSTEĞE BAĞLIDIR: yamalar zaten siteye canlı bindirildiği için çalıştırmasanız da
+# içerik yayındadır. Bunu çalıştırırsanız içerik deponuza da girer (git geçmişi, yedek).
+#
+# Kurulum: GitHub → Settings → Secrets and variables → Actions → New repository secret
+#   SUPABASE_URL                  https://xxxx.supabase.co
+#   SUPABASE_SERVICE_ROLE_KEY     Supabase → Project Settings → API → service_role (secret)
+# Çalıştırma: Actions sekmesi → "Topluluk yamalarını JSON'a işle" → Run workflow
+#             (aşağıdaki cron ile her gün de kendiliğinden çalışır)
+name: Topluluk yamalarını JSON'a işle
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '17 3 * * *'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: sync-patches
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    if: ${{ vars.DISABLE_SYNC != 'true' }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Yamaları JSON dosyalarına uygula
+        id: apply
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+        run: node scripts/sync-patches.mjs
+
+      - name: Commit ve push
+        id: push
+        run: |
+          if [ -n "$(git status --porcelain data)" ]; then
+            git config user.name "stallhart-wiki-bot"
+            git config user.email "actions@users.noreply.github.com"
+            git add data
+            git commit -m "Topluluk önerileri JSON'a işlendi"
+            git push
+            echo "pushed=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "pushed=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      # GitHub Pages yeni commit'i yayına alana kadar bekle; yamalar ancak ondan sonra kapatılır,
+      # böylece içerik hiçbir anda siteden kaybolmaz.
+      - name: Pages yayına alsın diye bekle
+        if: steps.push.outputs.pushed == 'true'
+        run: sleep 180
+
+      - name: Yamaları "işlendi" olarak işaretle
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+        run: node scripts/sync-patches.mjs --mark

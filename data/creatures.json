@@ -1,0 +1,158 @@
+{
+  "_readme": "Canavarlar/Yaratıklar maddeleri. Alanlar: id, category (beast|dragon|giant|other), name, meaning, origin, habitat, description (rich text: paragraflar boş satırla ayrılır), example, image (assets/images/creatures/… yolu), stub (true = taslak). Seçili taslaklar data/language.json sözlüğünden alınmıştır; açıklamaları yazarın doldurması beklenir.",
+  "categories": {
+    "beast": {
+      "tr": "Canavar / Hayvan",
+      "en": "Beast"
+    },
+    "dragon": {
+      "tr": "Ejderha Soyu",
+      "en": "Draconic"
+    },
+    "giant": {
+      "tr": "Dev",
+      "en": "Giant"
+    },
+    "other": {
+      "tr": "Diğer",
+      "en": "Other"
+    }
+  },
+  "creatures": [
+    {
+      "id": "alvolan",
+      "category": "beast",
+      "stub": true,
+      "name": {
+        "tr": "Alvolan",
+        "en": "Alvolan"
+      },
+      "meaning": {
+        "tr": "Akbörü / Beyazkurt",
+        "en": "White wolf"
+      },
+      "origin": {
+        "tr": "Alvis(Ak/Beyaz) +Wolan(Kurt)",
+        "en": "Alvis (White) + Wolan (Wolf)"
+      },
+      "habitat": {
+        "tr": "Kutsal Orman (Zeandarn)",
+        "en": "The Sacred Forest (Zeandarn)"
+      },
+      "example": {
+        "tr": "Alvolan viena Zeandarn. (Akbörü Kutsal Orman'dan geliyor.)",
+        "en": "Alvolan viena Zeandarn. (The White Wolf comes from the Sacred Forest.)"
+      },
+      "image": null,
+      "description": null
+    },
+    {
+      "id": "arvol",
+      "category": "beast",
+      "stub": true,
+      "name": {
+        "tr": "Arvol",
+        "en": "Arvol"
+      },
+      "meaning": {
+        "tr": "Çölkurdu",
+        "en": "Desert wolf"
+      },
+      "origin": {
+        "tr": "Ahar(Çöl) +Wolan(Kurt) → Evrimleşmiş söyleniş",
+        "en": "Ahar (Desert) + Wolan (Wolf) → evolved pronunciation"
+      },
+      "habitat": {
+        "tr": "Ateş Çölü (Fisa)",
+        "en": "The Desert of Fire (Fisa)"
+      },
+      "example": {
+        "tr": "Arvol paden Fisa. (Çölkurdu Ateş Çölü'nde yürüyor.)",
+        "en": "Arvol paden Fisa. (The Desert Wolf walks in the Desert of Fire.)"
+      },
+      "image": null,
+      "description": null
+    },
+    {
+      "id": "merwyl",
+      "category": "dragon",
+      "stub": true,
+      "name": {
+        "tr": "Merwyl",
+        "en": "Merwyl"
+      },
+      "meaning": {
+        "tr": "Denizejderi",
+        "en": "Sea dragon"
+      },
+      "origin": {
+        "tr": "Mera(Deniz) +Wyrm(Ejderha) → peltekleşerek Merwyl",
+        "en": "Mera (Sea) + Wyrm (Dragon) → lisped to Merwyl"
+      },
+      "habitat": {
+        "tr": "Büyü Denizi (Khanmera)",
+        "en": "The Sea of Magic (Khanmera)"
+      },
+      "example": {
+        "tr": "Merwyl viena Khanmera. (Denizejderi Büyü Denizi'nden geliyor.)",
+        "en": "Merwyl viena Khanmera. (The Sea Dragon comes from the Sea of Magic.)"
+      },
+      "image": null,
+      "description": null
+    },
+    {
+      "id": "mogar",
+      "category": "giant",
+      "stub": true,
+      "name": {
+        "tr": "Mogar",
+        "en": "Mogar"
+      },
+      "meaning": {
+        "tr": "Dev",
+        "en": "Giant"
+      },
+      "origin": {
+        "tr": "Mogal(Büyük/Yüce) sıfatının varlık bildiren isimleşmiş hali",
+        "en": "The nominalized, entity-denoting form of the adjective Mogal (Great/Supreme)"
+      },
+      "habitat": {
+        "tr": "Yüce Dağ (Anknor)",
+        "en": "The Lofty Mountain (Anknor)"
+      },
+      "example": {
+        "tr": "Mogar gharan Anknor. (Dev Yüce Dağ'da savaşıyor.)",
+        "en": "Mogar gharan Anknor. (The Giant fights on the Lofty Mountain.)"
+      },
+      "image": null,
+      "description": null
+    },
+    {
+      "id": "arnes",
+      "category": "other",
+      "stub": true,
+      "name": {
+        "tr": "Arnes",
+        "en": "Arnes"
+      },
+      "meaning": {
+        "tr": "Altınpençe",
+        "en": "Goldclaw"
+      },
+      "origin": {
+        "tr": "Aron(Altın) +Es(Pençe)",
+        "en": "Aron (Gold) + Es (Claw)"
+      },
+      "habitat": {
+        "tr": "Altın Orman (Arondarn)",
+        "en": "The Golden Forest (Arondarn)"
+      },
+      "example": {
+        "tr": "Arnes rakosh Arondarn. (Altınpençe Altın Ormanı'nda avlanıyor.)",
+        "en": "Arnes rakosh Arondarn. (Goldclaw hunts in the Golden Forest.)"
+      },
+      "image": null,
+      "description": null
+    }
+  ]
+}
